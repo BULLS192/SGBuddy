@@ -10,14 +10,19 @@
   <title>SGBuddy</title>
   <meta name="description" content="Live Singapore MRT, bus, weather and travel intelligence." />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="icon" href="/icon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon-192.png" />
+  <link rel="shortcut icon" href="/icon-192.png" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
+      <div class="brand-block">
+        <img class="brand-mark" src="/icon-192.png" alt="" aria-hidden="true" />
+        <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
+      </div>
       <div class="top-actions">
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
         <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
