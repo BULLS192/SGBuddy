@@ -11,6 +11,7 @@
   <meta name="description" content="Live Singapore MRT, bus, weather and travel intelligence." />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="icon" href="/icon.svg" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -19,7 +20,6 @@
       <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
       <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
     </header>
-
     <main>
       <section class="hero card glow">
         <div class="hero-row">
@@ -44,11 +44,49 @@
         <form id="railForm"><input id="railInput" placeholder="Tanah Merah / EW4" aria-label="MRT station"/><button>Check</button></form>
       </section>
 
-      <section class="section-head"><div><div class="label">BUSES</div><h2>Nearby stops</h2></div></section>
-      <section id="nearbyStops" class="stack"><div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div></div></section>
-      <section class="manual card">
-        <div><div class="label">KNOW YOUR STOP?</div><h3>Check any bus stop</h3></div>
-        <form id="stopForm"><input id="stopInput" inputmode="numeric" maxlength="5" placeholder="e.g. 84009" aria-label="Bus stop code"/><button>Check</button></form>
+      <section class="section-head transport-heading">
+        <div><div class="label">BUSES</div><h2>My stops & nearby</h2></div>
+        <div class="view-switch" aria-label="Transport view">
+          <button id="cardsViewButton" class="active" type="button">Cards</button>
+          <button id="mapViewButton" type="button">Map</button>
+        </div>
+      </section>
+
+      <div id="cardsView">
+        <section class="saved-buses card">
+          <div class="saved-bus-head">
+            <div><div class="label">MY BUS STOPS</div><h3>Favourites</h3></div>
+            <span id="savedStopCount" class="counter">0</span>
+          </div>
+          <p>Add the stops you use most often. SGBuddy refreshes their arrivals together.</p>
+          <form id="savedStopForm" class="saved-stop-form">
+            <input id="savedStopInput" inputmode="numeric" maxlength="5" placeholder="Bus stop code, e.g. 84009" aria-label="Favourite bus stop code"/>
+            <button>Add</button>
+          </form>
+          <div id="savedStops" class="stack compact-stack"><div class="empty-inline">No saved bus stops yet.</div></div>
+        </section>
+
+        <section class="section-head subhead"><div><div class="label">NEAR YOU</div><h3>Nearby stops</h3></div></section>
+        <section id="nearbyStops" class="stack"><div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div></div></section>
+        <section class="manual card">
+          <div><div class="label">KNOW YOUR STOP?</div><h3>Check any bus stop</h3></div>
+          <form id="stopForm"><input id="stopInput" inputmode="numeric" maxlength="5" placeholder="e.g. 84009" aria-label="Bus stop code"/><button>Check</button></form>
+        </section>
+      </div>
+
+      <section id="mapView" class="map-card card hidden">
+        <div class="map-head">
+          <div><div class="label">TRANSPORT MAP</div><h3>Stops & stations around you</h3></div>
+          <button id="fitMapButton" class="text-button" type="button">Fit all</button>
+        </div>
+        <div id="transportMap" class="transport-map" aria-label="Map of saved and nearby public transport"></div>
+        <div class="map-legend">
+          <span><i class="legend-dot saved-dot"></i>Saved bus</span>
+          <span><i class="legend-dot bus-dot"></i>Nearby bus</span>
+          <span><i class="legend-dot rail-dot"></i>MRT/LRT</span>
+          <span><i class="legend-dot you-dot"></i>You</span>
+        </div>
+        <p class="map-note">Map tiles © OpenStreetMap contributors. Live stop and station data comes from SGBuddy's LTA adapters when configured.</p>
       </section>
 
       <section class="planner card">
@@ -83,9 +121,10 @@
 
       <section class="integration card">
         <div class="label">ONE DATA CORE</div><h3>Built for FREYA + Providence</h3>
-        <p>MRT predictions, bus arrivals and disruptions stay behind SGBuddy APIs so FREYA and Providence can consume the same normalized state.</p>
+        <p>MRT predictions, bus arrivals, saved-stop context and disruptions stay behind SGBuddy APIs so FREYA and Providence can consume the same normalized state.</p>
         <div class="endpoint"><code>/api/snapshot</code><span>context</span></div>
         <div class="endpoint"><code>/api/rail?station=EW4</code><span>next trains</span></div>
+        <div class="endpoint"><code>/api/bus?stop=84009</code><span>bus arrivals + coordinates</span></div>
       </section>
     </main>
 
@@ -97,6 +136,7 @@
     </nav>
   </div>
   <div id="toast" class="toast" role="status"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script type="module" src="/app.js"></script>
 </body>
 </html>
