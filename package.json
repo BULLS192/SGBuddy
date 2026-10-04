@@ -1,13 +1,17 @@
 {
   "name": "sgbuddy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "engines": { "node": "22.x" },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "adm-zip": "^0.5.16",
     "csv-parse": "^6.1.0",
-    "gtfs-realtime-bindings": "^1.1.1"
+    "gtfs-realtime-bindings": "^1.1.1",
+    "@vercel/blob": "^2.3.0",
+    "qrcode": "^1.5.4"
   },
   "scripts": {
     "dev": "vercel dev",
