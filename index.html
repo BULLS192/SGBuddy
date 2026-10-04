@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="SG Companion" />
+  <title>Singapore Companion</title>
+  <meta name="description" content="Real-time Singapore transport, weather and travel intelligence." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/icon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">SINGAPORE COMPANION</div>
+        <h1 id="greeting">Good afternoon</h1>
+      </div>
+      <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
+    </header>
+
+    <main>
+      <section class="hero card glow">
+        <div class="hero-row">
+          <div>
+            <div class="label">CURRENT CONTEXT</div>
+            <div class="place" id="placeLabel">Singapore</div>
+          </div>
+          <button id="locateButton" class="icon-button">◎ Locate</button>
+        </div>
+        <div class="hero-grid">
+          <div><span class="metric" id="weatherMetric">—</span><span class="metric-label" id="weatherLabel">Weather loading</span></div>
+          <div><span class="metric" id="railMetric">—</span><span class="metric-label">Rail status</span></div>
+          <div><span class="metric" id="trafficMetric">—</span><span class="metric-label">Road incidents</span></div>
+        </div>
+        <div class="source-row"><span id="sourceBadge" class="badge">Checking live feeds</span><span id="updatedAt">—</span></div>
+      </section>
+
+      <section class="section-head">
+        <div><div class="label">RIGHT NOW</div><h2>Nearby transport</h2></div>
+        <button id="refreshButton" class="text-button">Refresh</button>
+      </section>
+
+      <section id="nearbyStops" class="stack">
+        <div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+      </section>
+
+      <section class="manual card">
+        <div><div class="label">KNOW YOUR STOP?</div><h3>Check any bus stop</h3></div>
+        <form id="stopForm"><input id="stopInput" inputmode="numeric" maxlength="5" placeholder="e.g. 84009" aria-label="Bus stop code"/><button>Check</button></form>
+      </section>
+
+      <section class="advisor card">
+        <div class="advisor-head"><div class="freya-orb">F</div><div><div class="label">FREYA-READY ADVISOR</div><h3>What do you need?</h3></div></div>
+        <div id="advisorReply" class="advisor-reply">Ask about the next bus, rail status, rain, or whether you should leave now.</div>
+        <form id="advisorForm" class="advisor-form"><input id="advisorInput" placeholder="Should I leave now?"/><button aria-label="Ask">↑</button></form>
+        <div class="chips"><button data-q="Should I leave now?">Leave now?</button><button data-q="Any train problems?">Train status</button><button data-q="Is it raining?">Rain?</button></div>
+      </section>
+
+      <section id="travellerPanel" class="traveller card hidden">
+        <div class="label">TRAVELLER MODE</div>
+        <h3>Always find your way back</h3>
+        <p>Save your hotel or temporary home. The companion keeps it one tap away.</p>
+        <div class="hotel-row"><input id="hotelInput" placeholder="Hotel or address"/><button id="saveHotel">Save</button></div>
+        <button id="goHomeButton" class="primary full" disabled>↗ Get me back to my hotel</button>
+      </section>
+
+      <section class="section-head"><div><div class="label">SINGAPORE PULSE</div><h2>Disruptions & roads</h2></div></section>
+      <section id="alerts" class="stack"></section>
+
+      <section class="integration card">
+        <div class="label">ONE DATA CORE</div>
+        <h3>Built for FREYA + Providence</h3>
+        <p>This PWA and the future Providence map use the same normalized Singapore snapshot. No duplicated API integrations.</p>
+        <div class="endpoint"><code>/api/snapshot</code><span>machine-readable</span></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Primary">
+      <button class="active">⌂<span>Today</span></button>
+      <button id="navTransport">≋<span>Transport</span></button>
+      <button id="navFreya">✦<span>FREYA</span></button>
+      <button id="navTravel">◎<span>Travel</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
