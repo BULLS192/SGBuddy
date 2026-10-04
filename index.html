@@ -18,7 +18,10 @@
   <div class="app-shell">
     <header class="topbar">
       <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
-      <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
+      <div class="top-actions">
+        <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
+        <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
+      </div>
     </header>
     <main>
       <section class="hero card glow">
@@ -98,9 +101,35 @@
 
       <section class="saved card">
         <div class="label">MY PLACES</div><h3>Home, work & hotel</h3>
-        <p>Stored only on this device in V1.</p>
+        <p>Synced to your private SGBuddy profile, with an offline cache on this device.</p>
         <div class="place-fields"><label>Home<input id="homeInput" placeholder="Home address or place"/></label><label>Work<input id="workInput" placeholder="Work address or place"/></label><label>Hotel<input id="hotelInput" placeholder="Hotel while travelling"/></label></div>
         <button id="savePlaces" class="secondary full">Save places</button>
+      </section>
+
+      <section class="profile-card card">
+        <div class="profile-head">
+          <div><div class="label">CLOUD PROFILE</div><h3 id="profileTitle">Private sync</h3></div>
+          <span id="profileSyncBadge" class="sync-badge">Local cache</span>
+        </div>
+        <p id="profileDescription">Your favourites and saved places can sync privately across your devices without a database or account.</p>
+        <div class="profile-id-row">
+          <div><span class="profile-id-label">SGBuddy ID</span><code id="profileId">Not linked yet</code></div>
+          <button id="syncProfileButton" class="text-button" type="button">Sync now</button>
+        </div>
+        <div class="profile-actions">
+          <button id="linkDeviceButton" class="secondary" type="button">Link another device</button>
+          <button id="exportProfileButton" class="secondary" type="button">Export</button>
+          <button id="importProfileButton" class="secondary" type="button">Import</button>
+          <input id="importProfileInput" type="file" accept=".json,application/json" hidden />
+        </div>
+        <div id="pairPanel" class="pair-panel hidden">
+          <div class="pair-copy"><strong>Link another device</strong><span>Scan this QR on the other device. Anyone with this QR/link can access this SGBuddy profile.</span></div>
+          <img id="pairQr" alt="SGBuddy device-link QR code" />
+          <div class="profile-actions">
+            <button id="copyPairLinkButton" class="secondary" type="button">Copy link</button>
+            <button id="closePairPanelButton" class="text-button" type="button">Close</button>
+          </div>
+        </div>
       </section>
 
       <section class="advisor card">
@@ -134,6 +163,14 @@
       <button id="navFreya">✦<span>FREYA</span></button>
       <button id="navTravel">◎<span>Travel</span></button>
     </nav>
+  </div>
+  <div id="installSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="installSheetTitle">
+    <div class="install-sheet-card">
+      <button id="closeInstallSheet" class="install-close" type="button" aria-label="Close">×</button>
+      <div class="label">INSTALL SGBUDDY</div>
+      <h3 id="installSheetTitle">Add SGBuddy to your Home Screen</h3>
+      <p id="installInstructions">On iPhone/iPad: tap <strong>Share</strong> in Safari, choose <strong>Add to Home Screen</strong>, then tap <strong>Add</strong>.</p>
+    </div>
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
