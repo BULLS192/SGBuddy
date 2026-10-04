@@ -13,6 +13,26 @@ export const demoNearby = {
     ]}
   ]
 };
+
+export const demoRail = query => ({
+  source: 'demo',
+  feedTimestamp: new Date().toISOString(),
+  stations: [{
+    id: 'EW4-demo',
+    name: query && !/^EW4$/i.test(query) ? `${query} (demo example)` : 'Tanah Merah',
+    codes: ['EW4'],
+    distance: 420,
+    departures: [
+      { line:'EWL', lineName:'East West Line', destination:'Tuas Link', minutes:2, platform:'B', predictedAt:new Date(Date.now()+120000).toISOString(), tripId:'demo-ew-west-1' },
+      { line:'EWL', lineName:'East West Line', destination:'Pasir Ris', minutes:4, platform:'A', predictedAt:new Date(Date.now()+240000).toISOString(), tripId:'demo-ew-east-1' },
+      { line:'CGL', lineName:'Changi Airport Branch', destination:'Changi Airport', minutes:6, platform:'C', predictedAt:new Date(Date.now()+360000).toISOString(), tripId:'demo-cg-1' },
+      { line:'EWL', lineName:'East West Line', destination:'Tuas Link', minutes:7, platform:'B', predictedAt:new Date(Date.now()+420000).toISOString(), tripId:'demo-ew-west-2' },
+      { line:'EWL', lineName:'East West Line', destination:'Pasir Ris', minutes:9, platform:'A', predictedAt:new Date(Date.now()+540000).toISOString(), tripId:'demo-ew-east-2' },
+      { line:'CGL', lineName:'Changi Airport Branch', destination:'Changi Airport', minutes:12, platform:'C', predictedAt:new Date(Date.now()+720000).toISOString(), tripId:'demo-cg-2' }
+    ]
+  }]
+});
+
 export const demoTrain = { source:'demo', status:1, summary:'Normal service', disruptions:[] };
 export const demoTraffic = { source:'demo', count:2, incidents:[
   { type:'Roadwork', message:'Road works reported on an eastern arterial road.', latitude:1.33, longitude:103.93 },

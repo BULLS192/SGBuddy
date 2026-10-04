@@ -1,35 +1,35 @@
-# Architecture
+# SGBuddy Architecture
 
 ```text
-Browser / iPhone PWA
-        |
-        v
-Singapore Companion API
-  |        |         |
-  v        v         v
-LTA      data.gov.sg  future STB TIH
-  |
-  +--> normalized /api/snapshot
-                  |          |
-                  v          v
-                FREYA    Providence
+                    Official Singapore data
+                 ┌──────────┬──────────────┐
+                 │ LTA      │ data.gov.sg  │
+                 │ DataMall │ weather      │
+                 └────┬─────┴──────┬───────┘
+                      │            │
+                SGBuddy serverless adapters
+         ┌────────────┼────────────┼────────────┐
+         │ Bus        │ Rail       │ Context    │
+         │ arrivals   │ GTFS/RT    │ snapshot   │
+         └────────────┴──────┬─────┴────────────┘
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+          iPhone PWA       FREYA       Providence
 ```
+
+## Rail pipeline
+
+1. `GTFSScheduleTrain` returns a short-lived HTTPS link to the current GTFS Schedule zip.
+2. SGBuddy downloads the zip server-side and builds station, stop, route and trip indexes.
+3. `GTFSRealtimeTrainTripUpdates` returns a short-lived HTTPS link to a protobuf GTFS-Realtime feed.
+4. SGBuddy decodes each `TripUpdate`, matches `StopTimeUpdate` entries to a station, and returns predicted departures.
+5. The browser receives only normalized passenger data; it never receives DataMall credentials or signed source URLs.
 
 ## Design rules
 
-1. Government/API credentials live only in server-side functions.
-2. Consumer UI does not depend on FREYA or Providence availability.
-3. FREYA and Providence consume normalized data rather than calling every source directly.
-4. Any unavailable feed fails soft and advertises demo/fallback status rather than pretending data is live.
-5. No account is required in V1. Personal settings (mode, hotel) stay in localStorage.
-
-## Suggested Wave 2
-
-- Add OneMap-native place search and routing.
-- Add GTFS Realtime Train Trip Updates and richer station status.
-- Add rain radar layer + “rain arriving” inference.
-- Add saved Home/Work/Favourites and automatic commute cards.
-- Add STB TIH attractions, F&B, events and itinerary content.
-- Add multilingual traveller mode.
-- Add Providence traffic cameras, incidents, flood alerts and crowding map layers.
-- Replace deterministic advisor with FREYA tool calls to `/api/snapshot` and journey endpoints.
+1. API credentials are server-side only.
+2. Demo/fallback data is always labelled and never represented as live.
+3. FREYA and Providence consume SGBuddy APIs instead of separately duplicating government integrations.
+4. The consumer PWA remains usable even when optional AI/operations layers are unavailable.
+5. V1/V2 personal places remain on-device; server-side profiles can be added later with explicit user accounts.

@@ -6,9 +6,9 @@
   <meta name="theme-color" content="#07111f" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="SG Companion" />
-  <title>Singapore Companion</title>
-  <meta name="description" content="Real-time Singapore transport, weather and travel intelligence." />
+  <meta name="apple-mobile-web-app-title" content="SGBuddy" />
+  <title>SGBuddy</title>
+  <meta name="description" content="Live Singapore MRT, bus, weather and travel intelligence." />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="icon" href="/icon.svg" />
   <link rel="stylesheet" href="/styles.css" />
@@ -16,20 +16,14 @@
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">SINGAPORE COMPANION</div>
-        <h1 id="greeting">Good afternoon</h1>
-      </div>
+      <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
       <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
     </header>
 
     <main>
       <section class="hero card glow">
         <div class="hero-row">
-          <div>
-            <div class="label">CURRENT CONTEXT</div>
-            <div class="place" id="placeLabel">Singapore</div>
-          </div>
+          <div><div class="label">CURRENT CONTEXT</div><div class="place" id="placeLabel">Singapore</div></div>
           <button id="locateButton" class="icon-button">◎ Locate</button>
         </div>
         <div class="hero-grid">
@@ -41,42 +35,57 @@
       </section>
 
       <section class="section-head">
-        <div><div class="label">RIGHT NOW</div><h2>Nearby transport</h2></div>
+        <div><div class="label">MRT / LRT</div><h2>Next trains</h2></div>
         <button id="refreshButton" class="text-button">Refresh</button>
       </section>
-
-      <section id="nearbyStops" class="stack">
-        <div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+      <section id="railStations" class="stack"><div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div><div class="skeleton"></div></div></section>
+      <section class="manual card">
+        <div><div class="label">CHECK A STATION</div><h3>Station name or code</h3></div>
+        <form id="railForm"><input id="railInput" placeholder="Tanah Merah / EW4" aria-label="MRT station"/><button>Check</button></form>
       </section>
 
+      <section class="section-head"><div><div class="label">BUSES</div><h2>Nearby stops</h2></div></section>
+      <section id="nearbyStops" class="stack"><div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div></div></section>
       <section class="manual card">
         <div><div class="label">KNOW YOUR STOP?</div><h3>Check any bus stop</h3></div>
         <form id="stopForm"><input id="stopInput" inputmode="numeric" maxlength="5" placeholder="e.g. 84009" aria-label="Bus stop code"/><button>Check</button></form>
       </section>
 
+      <section class="planner card">
+        <div class="label">GET THERE</div><h3>Plan a public-transport trip</h3>
+        <div class="planner-grid"><input id="tripFrom" placeholder="From — leave blank for my location"/><input id="tripTo" placeholder="Where are you going?"/></div>
+        <div class="quick-destinations"><button data-place="home">Home</button><button data-place="work">Work</button><button data-place="hotel">Hotel</button></div>
+        <button id="planTrip" class="primary full">Plan transit route ↗</button>
+      </section>
+
+      <section class="saved card">
+        <div class="label">MY PLACES</div><h3>Home, work & hotel</h3>
+        <p>Stored only on this device in V1.</p>
+        <div class="place-fields"><label>Home<input id="homeInput" placeholder="Home address or place"/></label><label>Work<input id="workInput" placeholder="Work address or place"/></label><label>Hotel<input id="hotelInput" placeholder="Hotel while travelling"/></label></div>
+        <button id="savePlaces" class="secondary full">Save places</button>
+      </section>
+
       <section class="advisor card">
         <div class="advisor-head"><div class="freya-orb">F</div><div><div class="label">FREYA-READY ADVISOR</div><h3>What do you need?</h3></div></div>
-        <div id="advisorReply" class="advisor-reply">Ask about the next bus, rail status, rain, or whether you should leave now.</div>
-        <form id="advisorForm" class="advisor-form"><input id="advisorInput" placeholder="Should I leave now?"/><button aria-label="Ask">↑</button></form>
-        <div class="chips"><button data-q="Should I leave now?">Leave now?</button><button data-q="Any train problems?">Train status</button><button data-q="Is it raining?">Rain?</button></div>
+        <div id="advisorReply" class="advisor-reply">Ask about the next train, next bus, rail status, rain, or whether you should leave now.</div>
+        <form id="advisorForm" class="advisor-form"><input id="advisorInput" placeholder="When is my next train?"/><button aria-label="Ask">↑</button></form>
+        <div class="chips"><button data-q="When is my next train?">Next train</button><button data-q="Should I leave now?">Leave now?</button><button data-q="Any train problems?">Train status</button><button data-q="Is it raining?">Rain?</button></div>
       </section>
 
       <section id="travellerPanel" class="traveller card hidden">
-        <div class="label">TRAVELLER MODE</div>
-        <h3>Always find your way back</h3>
-        <p>Save your hotel or temporary home. The companion keeps it one tap away.</p>
-        <div class="hotel-row"><input id="hotelInput" placeholder="Hotel or address"/><button id="saveHotel">Save</button></div>
-        <button id="goHomeButton" class="primary full" disabled>↗ Get me back to my hotel</button>
+        <div class="label">TRAVELLER MODE</div><h3>Your Singapore safety net</h3>
+        <p>Your saved hotel stays one tap away. Transit routing opens with public transport selected.</p>
+        <button id="goHotelButton" class="primary full" disabled>↗ Get me back to my hotel</button>
       </section>
 
       <section class="section-head"><div><div class="label">SINGAPORE PULSE</div><h2>Disruptions & roads</h2></div></section>
       <section id="alerts" class="stack"></section>
 
       <section class="integration card">
-        <div class="label">ONE DATA CORE</div>
-        <h3>Built for FREYA + Providence</h3>
-        <p>This PWA and the future Providence map use the same normalized Singapore snapshot. No duplicated API integrations.</p>
-        <div class="endpoint"><code>/api/snapshot</code><span>machine-readable</span></div>
+        <div class="label">ONE DATA CORE</div><h3>Built for FREYA + Providence</h3>
+        <p>MRT predictions, bus arrivals and disruptions stay behind SGBuddy APIs so FREYA and Providence can consume the same normalized state.</p>
+        <div class="endpoint"><code>/api/snapshot</code><span>context</span></div>
+        <div class="endpoint"><code>/api/rail?station=EW4</code><span>next trains</span></div>
       </section>
     </main>
 

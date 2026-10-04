@@ -1,9 +1,14 @@
 {
-  "name": "singapore-companion-v1",
-  "version": "0.1.0",
+  "name": "sgbuddy",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": { "node": "22.x" },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "csv-parse": "^6.1.0",
+    "gtfs-realtime-bindings": "^1.1.1"
+  },
   "scripts": {
     "dev": "vercel dev",
     "check": "node --check app.js && for f in api/*.js api/lib/*.js; do node --check \"$f\"; done"

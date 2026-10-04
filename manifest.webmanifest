@@ -1,12 +1,10 @@
 {
-  "name": "Singapore Companion",
-  "short_name": "SG Companion",
-  "description": "A context-aware Singapore mobility companion for residents and travellers.",
+  "name": "SGBuddy",
+  "short_name": "SGBuddy",
+  "description": "Live Singapore MRT, bus, weather and travel intelligence.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#07111f",
   "theme_color": "#07111f",
-  "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
-  ]
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }
