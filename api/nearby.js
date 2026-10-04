@@ -1,5 +1,5 @@
-import { allBusStops, busArrivals, haversine, hasLtaKey } from './lib/lta.js';
-import { demoNearby } from './lib/demo.js';
+import { allBusStops, busArrivals, haversine, hasLtaKey } from '../lib/lta.js';
+import { demoNearby } from '../lib/demo.js';
 export default async function handler(req,res){
   try{
     if(!hasLtaKey()) return res.status(200).json(demoNearby);

@@ -1,5 +1,5 @@
 import QRCode from 'qrcode';
-import { authenticateProfile, bearerToken } from './lib/profile-store.js';
+import { authenticateProfile, bearerToken } from '../lib/profile-store.js';
 
 function bodyObject(req) {
   if (!req.body) return {};

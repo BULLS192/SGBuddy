@@ -1,4 +1,4 @@
-import { demoWeather } from './lib/demo.js';
+import { demoWeather } from '../lib/demo.js';
 export async function getWeather(){
   try{
     const headers={accept:'application/json'}; if(process.env.DATA_GOV_SG_API_KEY) headers['x-api-key']=process.env.DATA_GOV_SG_API_KEY;

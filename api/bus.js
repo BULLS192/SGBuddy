@@ -1,5 +1,5 @@
-import { allBusStops, busArrivals, hasLtaKey } from './lib/lta.js';
-import { demoNearby } from './lib/demo.js';
+import { allBusStops, busArrivals, hasLtaKey } from '../lib/lta.js';
+import { demoNearby } from '../lib/demo.js';
 
 export default async function handler(req,res){
   const code=String(req.query.stop||'').trim();

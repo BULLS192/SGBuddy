@@ -1,5 +1,5 @@
-import { hasLtaKey, lta } from './lib/lta.js';
-import { demoTraffic } from './lib/demo.js';
+import { hasLtaKey, lta } from '../lib/lta.js';
+import { demoTraffic } from '../lib/demo.js';
 export async function getTraffic(){
   if(!hasLtaKey()) return demoTraffic;
   const p=await lta('/TrafficIncidents'); const rows=p.value||[];

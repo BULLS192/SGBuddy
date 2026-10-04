@@ -15,6 +15,6 @@
   },
   "scripts": {
     "dev": "vercel dev",
-    "check": "node --check app.js && for f in api/*.js api/lib/*.js; do node --check \"$f\"; done"
+    "check": "node --check app.js && for f in api/*.js lib/*.js; do node --check \"$f\"; done"
   }
 }

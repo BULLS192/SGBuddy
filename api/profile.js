@@ -1,4 +1,4 @@
-import { authenticateProfile, bearerToken, createProfile, publicProfile, updateProfile } from './lib/profile-store.js';
+import { authenticateProfile, bearerToken, createProfile, publicProfile, updateProfile } from '../lib/profile-store.js';
 
 function bodyObject(req) {
   if (!req.body) return {};

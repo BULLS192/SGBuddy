@@ -1,5 +1,5 @@
-import { hasLtaKey, lta } from './lib/lta.js';
-import { demoTrain } from './lib/demo.js';
+import { hasLtaKey, lta } from '../lib/lta.js';
+import { demoTrain } from '../lib/demo.js';
 
 export async function getTrain(){
   if(!hasLtaKey()) return demoTrain;

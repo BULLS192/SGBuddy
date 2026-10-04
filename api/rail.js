@@ -1,6 +1,6 @@
-import { hasLtaKey } from './lib/lta.js';
-import { railDepartures } from './lib/rail.js';
-import { demoRail } from './lib/demo.js';
+import { hasLtaKey } from '../lib/lta.js';
+import { railDepartures } from '../lib/rail.js';
+import { demoRail } from '../lib/demo.js';
 
 export default async function handler(req, res) {
   const query = String(req.query.station || '').trim();

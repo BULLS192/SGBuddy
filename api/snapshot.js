@@ -1,7 +1,7 @@
 import { getTrain } from './train.js';
 import { getTraffic } from './traffic.js';
 import { getWeather } from './weather.js';
-import { hasLtaKey } from './lib/lta.js';
+import { hasLtaKey } from '../lib/lta.js';
 export default async function handler(req,res){
   const [rail,traffic,weather]=await Promise.all([getTrain(),getTraffic(),getWeather()]);
   res.status(200).json({
