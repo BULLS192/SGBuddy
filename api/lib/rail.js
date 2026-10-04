@@ -76,6 +76,9 @@ function buildScheduleIndex(buffer) {
   const stops = csvFromZip(zip, 'stops.txt');
   const routes = csvFromZip(zip, 'routes.txt');
   const trips = csvFromZip(zip, 'trips.txt');
+  const stopTimes = csvFromZip(zip, 'stop_times.txt');
+  const calendar = csvFromZip(zip, 'calendar.txt');
+  const calendarDates = csvFromZip(zip, 'calendar_dates.txt');
 
   const stopById = new Map(stops.map(s => [s.stop_id, s]));
   const routeById = new Map(routes.map(r => [r.route_id, {
@@ -87,6 +90,7 @@ function buildScheduleIndex(buffer) {
   }]));
   const tripById = new Map(trips.map(t => [t.trip_id, {
     routeId: t.route_id,
+    serviceId: t.service_id,
     headsign: t.trip_headsign || '',
     directionId: t.direction_id || '',
   }]));
@@ -131,7 +135,33 @@ function buildScheduleIndex(buffer) {
   const stationByStopId = new Map();
   for (const station of stations) for (const id of station.stopIds) stationByStopId.set(id, station);
 
-  return { stations, stationByStopId, stopById, routeById, tripById };
+  const stopTimesByStopId = new Map();
+  const terminalStopByTripId = new Map();
+  for (const row of stopTimes) {
+    const item = {
+      tripId: row.trip_id,
+      stopId: row.stop_id,
+      arrival: row.arrival_time || '',
+      departure: row.departure_time || row.arrival_time || '',
+      sequence: Number(row.stop_sequence || 0),
+    };
+    if (!stopTimesByStopId.has(row.stop_id)) stopTimesByStopId.set(row.stop_id, []);
+    stopTimesByStopId.get(row.stop_id).push(item);
+    const prior = terminalStopByTripId.get(row.trip_id);
+    if (!prior || item.sequence >= prior.sequence) terminalStopByTripId.set(row.trip_id, item);
+  }
+
+  const calendarByService = new Map(calendar.map(row => [row.service_id, row]));
+  const calendarDatesByDate = new Map();
+  for (const row of calendarDates) {
+    if (!calendarDatesByDate.has(row.date)) calendarDatesByDate.set(row.date, []);
+    calendarDatesByDate.get(row.date).push(row);
+  }
+
+  return {
+    stations, stationByStopId, stopById, routeById, tripById,
+    stopTimesByStopId, terminalStopByTripId, calendarByService, calendarDatesByDate
+  };
 }
 
 export async function getRailSchedule() {
@@ -179,7 +209,8 @@ function stationForStopId(index, stopId) {
 function destinationFor(index, update, staticTrip) {
   const updates = update.stopTimeUpdate || [];
   const final = updates[updates.length - 1];
-  const station = stationForStopId(index, final?.stopId);
+  const finalStopId = final?.stopTimeProperties?.assignedStopId || final?.stopId;
+  const station = stationForStopId(index, finalStopId);
   if (station?.name) return station.name;
   return staticTrip?.headsign || (station?.codes?.[0] || 'Train destination');
 }
@@ -188,11 +219,106 @@ function predictedSeconds(stopUpdate) {
   return asNumber(stopUpdate?.departure?.time) ?? asNumber(stopUpdate?.arrival?.time);
 }
 
+function gtfsSeconds(value) {
+  const parts = String(value || '').split(':').map(Number);
+  if (parts.length !== 3 || parts.some(n => !Number.isFinite(n))) return null;
+  return parts[0] * 3600 + parts[1] * 60 + parts[2];
+}
+
+function singaporeClock(date = new Date()) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Singapore',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      weekday: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hourCycle: 'h23',
+    }).formatToParts(date).filter(p => p.type !== 'literal').map(p => [p.type, p.value])
+  );
+  const weekdays = { Sun:'sunday', Mon:'monday', Tue:'tuesday', Wed:'wednesday', Thu:'thursday', Fri:'friday', Sat:'saturday' };
+  return {
+    date: `${parts.year}${parts.month}${parts.day}`,
+    weekday: weekdays[parts.weekday],
+    seconds: Number(parts.hour) * 3600 + Number(parts.minute) * 60 + Number(parts.second),
+  };
+}
+
+function activeServiceIds(index, clock) {
+  const active = new Set();
+  if (index.calendarByService.size) {
+    for (const [serviceId, row] of index.calendarByService) {
+      const inRange = clock.date >= String(row.start_date || '') && clock.date <= String(row.end_date || '');
+      if (inRange && row[clock.weekday] === '1') active.add(serviceId);
+    }
+  } else {
+    for (const trip of index.tripById.values()) if (trip.serviceId) active.add(trip.serviceId);
+  }
+  for (const row of index.calendarDatesByDate.get(clock.date) || []) {
+    if (String(row.exception_type) === '1') active.add(row.service_id);
+    if (String(row.exception_type) === '2') active.delete(row.service_id);
+  }
+  return active;
+}
+
+function scheduledDeparturesForStation(index, station, now = new Date()) {
+  const today = singaporeClock(now);
+  const yesterday = singaporeClock(new Date(now.getTime() - 86400000));
+  const windows = [
+    { serviceClock: today, comparisonSeconds: today.seconds },
+    { serviceClock: yesterday, comparisonSeconds: today.seconds + 86400 },
+  ];
+  const stopSet = new Set(station.stopIds);
+  const out = [];
+
+  for (const window of windows) {
+    const active = activeServiceIds(index, window.serviceClock);
+    for (const stopId of stopSet) {
+      for (const st of index.stopTimesByStopId.get(stopId) || []) {
+        const trip = index.tripById.get(st.tripId);
+        if (!trip || !active.has(trip.serviceId)) continue;
+        const scheduled = gtfsSeconds(st.departure || st.arrival);
+        if (scheduled == null) continue;
+        const delta = scheduled - window.comparisonSeconds;
+        if (delta < -30 || delta > 90 * 60) continue;
+
+        const route = index.routeById.get(trip.routeId) || {
+          line: normalizeLine(trip.routeId),
+          shortName: trip.routeId,
+          longName: trip.routeId,
+          color: null,
+        };
+        const terminal = index.terminalStopByTripId.get(st.tripId);
+        const terminalStation = stationForStopId(index, terminal?.stopId);
+        const stopMeta = index.stopById.get(stopId);
+
+        out.push({
+          line: route.line || route.shortName || 'MRT',
+          lineName: route.longName || route.shortName || route.line || 'Train',
+          color: route.color,
+          destination: trip.headsign || terminalStation?.name || 'Train destination',
+          platform: stopMeta?.platform_code || null,
+          minutes: Math.max(0, Math.ceil(delta / 60)),
+          predictedAt: new Date(now.getTime() + Math.max(0, delta) * 1000).toISOString(),
+          tripId: st.tripId,
+          realtime: false,
+        });
+      }
+    }
+  }
+
+  return out
+    .sort((a,b) => a.minutes - b.minutes)
+    .filter((d, i, arr) => arr.findIndex(x => x.tripId === d.tripId) === i)
+    .slice(0, 18);
+}
+
 function departureForStation(index, station, entity, nowSeconds) {
   const update = entity.tripUpdate;
   if (!update) return null;
   const stopSet = new Set(station.stopIds);
-  const stopUpdate = (update.stopTimeUpdate || []).find(s => stopSet.has(s.stopId) || codesFrom(s.stopId).some(c => station.codes.includes(c)));
+  const stopUpdate = (update.stopTimeUpdate || []).find(s => {
+    const id = s.stopTimeProperties?.assignedStopId || s.stopId;
+    return stopSet.has(id) || codesFrom(id).some(c => station.codes.includes(c));
+  });
   if (!stopUpdate) return null;
   const epoch = predictedSeconds(stopUpdate);
   if (!epoch) return null;
@@ -201,7 +327,8 @@ function departureForStation(index, station, entity, nowSeconds) {
   const staticTrip = index.tripById.get(update.trip?.tripId || '');
   const routeId = update.trip?.routeId || staticTrip?.routeId || '';
   const route = index.routeById.get(routeId) || { line: normalizeLine(routeId), shortName: routeId, longName: routeId, color: null };
-  const stopMeta = index.stopById.get(stopUpdate.stopId);
+  const effectiveStopId = stopUpdate.stopTimeProperties?.assignedStopId || stopUpdate.stopId;
+  const stopMeta = index.stopById.get(effectiveStopId);
   const cancelled = [3, 7].includes(Number(update.trip?.scheduleRelationship));
   if (cancelled) return null;
   return {
@@ -213,6 +340,7 @@ function departureForStation(index, station, entity, nowSeconds) {
     minutes,
     predictedAt: new Date(epoch * 1000).toISOString(),
     tripId: update.trip?.tripId || entity.id,
+    realtime: true,
   };
 }
 
@@ -235,14 +363,23 @@ export async function railDepartures(options = {}) {
   const index = await getRailSchedule();
   const { feed, timestamp } = await getRailRealtime();
   const stations = findStations(index, options);
-  const nowSeconds = Date.now() / 1000;
+  const now = new Date();
+  const nowSeconds = now.getTime() / 1000;
+  const realtimeEntities = feed.entity || [];
   const out = stations.map(station => {
-    const departures = (feed.entity || [])
+    const scheduled = scheduledDeparturesForStation(index, station, now);
+    const realtime = realtimeEntities
       .map(entity => departureForStation(index, station, entity, nowSeconds))
-      .filter(Boolean)
+      .filter(Boolean);
+
+    const merged = new Map(scheduled.map(d => [d.tripId, d]));
+    for (const d of realtime) merged.set(d.tripId, d);
+
+    const departures = [...merged.values()]
       .sort((a,b) => a.minutes - b.minutes)
       .filter((d, i, arr) => arr.findIndex(x => x.tripId === d.tripId) === i)
       .slice(0, 12);
+
     return {
       id: station.id,
       name: station.name,
@@ -253,5 +390,12 @@ export async function railDepartures(options = {}) {
       departures,
     };
   });
-  return { source: 'live', feedTimestamp: timestamp, stations: out };
+
+  return {
+    source: 'live',
+    realtimeAvailable: realtimeEntities.length > 0,
+    realtimeEntityCount: realtimeEntities.length,
+    feedTimestamp: timestamp,
+    stations: out,
+  };
 }
