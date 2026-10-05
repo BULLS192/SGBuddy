@@ -49,3 +49,9 @@
 }
 .bottom-nav a.active span{color:#052218!important;font-weight:900}
 .bottom-nav a[aria-current="page"]{outline:1px solid rgba(255,255,255,.16)}
+
+.saved-stop-tools{display:flex;gap:7px;justify-content:flex-end;margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}
+.saved-stop-tools button{border:1px solid var(--line);background:#07111f;color:var(--muted);border-radius:10px;padding:7px 9px;font-size:10px;font-weight:800}
+.saved-stop-tools button:first-child{margin-right:auto;color:var(--accent)}
+.error-state{border-color:#61333c!important;color:#ffb2bc!important}
+button:disabled{cursor:wait}
