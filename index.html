@@ -21,7 +21,7 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="eyebrow">SGBUDDY</div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.5.2</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
@@ -127,6 +127,16 @@
           <input id="tripTo" placeholder="To — station / bus stop / Singapore place"/>
         </div>
         <div class="quick-destinations"><button data-place="home">Home</button><button data-place="work">Work</button><button data-place="hotel">Hotel</button></div>
+        <div class="journey-timing">
+          <div class="timing-toggle" role="group" aria-label="Journey timing">
+            <button id="timingNowButton" class="active" type="button">Leave now</button>
+            <button id="timingArriveButton" type="button">Arrive by</button>
+          </div>
+          <div id="arriveByWrap" class="arrive-by-wrap hidden">
+            <label for="arriveByInput">Arrive by</label>
+            <input id="arriveByInput" type="datetime-local" />
+          </div>
+        </div>
         <div class="journey-actions">
           <button id="planTrip" class="primary" type="button">Plan with SGBuddy</button>
           <button id="openGoogleTrip" class="secondary" type="button">Google Maps ↗</button>
@@ -242,6 +252,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v052.js"></script>
+  <script type="module" src="/app-v060.js"></script>
 </body>
 </html>
