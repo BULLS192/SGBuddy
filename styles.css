@@ -40,3 +40,12 @@
 @media(max-width:520px){.data-core-grid{grid-template-columns:1fr 1fr}.data-core-actions{grid-template-columns:1fr}}
 
 .bottom-nav a{text-decoration:none;text-align:center;cursor:pointer}
+
+.bottom-nav a.active{
+  background:var(--accent)!important;
+  color:#052218!important;
+  box-shadow:0 8px 24px rgba(99,230,190,.28)!important;
+  transform:translateY(-2px) scale(1.02);
+}
+.bottom-nav a.active span{color:#052218!important;font-weight:900}
+.bottom-nav a[aria-current="page"]{outline:1px solid rgba(255,255,255,.16)}
