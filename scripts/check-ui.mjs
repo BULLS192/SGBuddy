@@ -26,3 +26,6 @@ if(!process.exitCode) console.log(`UI checks passed for ${scriptPath} (${ids.siz
 
 if(!fs.existsSync('api/journey.js')) fail('Native journey API is missing');
 if(!fs.existsSync('lib/journey.js')) fail('Native journey engine is missing');
+
+if(!html.includes('/app-v052.js')) fail('Wave 4.1 client asset is not wired into index.html');
+if(!fs.readFileSync('api/health.js','utf8').includes('mixedJourneyRouting:true')) fail('Wave 4.1 mixed routing health flag missing');
