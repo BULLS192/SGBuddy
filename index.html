@@ -29,7 +29,7 @@
       </div>
     </header>
     <main>
-      <section class="hero card glow">
+      <section id="todaySection" class="hero card glow nav-section" data-nav-section="today">
         <div class="hero-row">
           <div><div class="label">CURRENT CONTEXT</div><div class="place" id="placeLabel">Singapore</div><div id="locationStatus" class="context-note">Location not set yet</div></div>
           <button id="locateButton" class="icon-button">◎ Locate</button>
@@ -51,7 +51,7 @@
         <div id="nextUpOptions" class="next-up-options"></div>
       </section>
 
-      <section class="section-head">
+      <section id="transportSection" class="section-head nav-section" data-nav-section="transport">
         <div><div class="label">MRT / LRT</div><h2>Next trains</h2></div>
         <button id="refreshButton" class="text-button">Refresh</button>
       </section>
@@ -115,7 +115,7 @@
         <p class="map-note">Map tiles © OpenStreetMap contributors. Live stop and station data comes from SGBuddy's LTA adapters when configured.</p>
       </section>
 
-      <section class="planner card">
+      <section id="travelSection" class="planner card nav-section" data-nav-section="travel">
         <div class="label">GET THERE</div><h3>Plan a public-transport trip</h3>
         <div class="planner-grid"><input id="tripFrom" placeholder="From — leave blank for my location"/><input id="tripTo" placeholder="Where are you going?"/></div>
         <div class="quick-destinations"><button data-place="home">Home</button><button data-place="work">Work</button><button data-place="hotel">Hotel</button></div>
@@ -157,7 +157,7 @@
         </div>
       </details>
 
-      <section class="advisor card">
+      <section id="freyaSection" class="advisor card nav-section" data-nav-section="freya">
         <div class="advisor-head"><div class="freya-orb">F</div><div><div class="label">FREYA-READY ADVISOR</div><h3>What do you need?</h3></div></div>
         <div id="advisorReply" class="advisor-reply">Ask about the next train, next bus, rail status, rain, or whether you should leave now.</div>
         <form id="advisorForm" class="advisor-form"><input id="advisorInput" placeholder="When is my next train?"/><button aria-label="Ask">↑</button></form>
@@ -173,20 +173,38 @@
       <section class="section-head"><div><div class="label">SINGAPORE PULSE</div><h2>Disruptions & roads</h2></div></section>
       <section id="alerts" class="stack"></section>
 
-      <section class="integration card">
-        <div class="label">ONE DATA CORE</div><h3>Built for FREYA + Providence</h3>
-        <p>MRT predictions, bus arrivals, saved-stop context and disruptions stay behind SGBuddy APIs so FREYA and Providence can consume the same normalized state.</p>
-        <div class="endpoint"><code>/api/snapshot</code><span>context</span></div>
-        <div class="endpoint"><code>/api/rail?station=EW4</code><span>next trains</span></div>
-        <div class="endpoint"><code>/api/bus?stop=84009</code><span>bus arrivals + coordinates</span></div>
+      <section id="dataCorePanel" class="integration card data-core">
+        <div class="data-core-head">
+          <div><div class="label">DATA CORE</div><h3>Live data status</h3></div>
+          <span id="dataCoreStatus" class="sync-badge">Checking…</span>
+        </div>
+        <p id="dataCoreSummary">SGBuddy combines transport, weather, disruption and profile data behind one shared layer. This panel now checks those services rather than just describing them.</p>
+        <div class="data-core-grid">
+          <div><span>LTA transport</span><strong id="dataCoreLta">—</strong></div>
+          <div><span>Rail feed</span><strong id="dataCoreRail">—</strong></div>
+          <div><span>Weather</span><strong id="dataCoreWeather">—</strong></div>
+          <div><span>Private profile</span><strong id="dataCoreProfile">—</strong></div>
+        </div>
+        <div class="data-core-actions">
+          <button id="dataCoreRefresh" class="primary" type="button">Refresh all data</button>
+          <button id="dataCoreDiagnostics" class="secondary" type="button">Run diagnostics</button>
+        </div>
+        <div id="dataCoreResult" class="data-core-result" role="status">Waiting for the first system check.</div>
+        <details class="developer-data">
+          <summary>Developer endpoints</summary>
+          <div class="endpoint-list">
+            <button class="endpoint-button" type="button" data-endpoint="/api/snapshot"><code>/api/snapshot</code><span>Unified context</span></button>
+            <button class="endpoint-button" type="button" data-endpoint="/api/health"><code>/api/health</code><span>System health</span></button>
+          </div>
+        </details>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="Primary">
-      <button class="active">⌂<span>Today</span></button>
-      <button id="navTransport">≋<span>Transport</span></button>
-      <button id="navFreya">✦<span>FREYA</span></button>
-      <button id="navTravel">◎<span>Travel</span></button>
+      <button id="navToday" class="active" type="button" data-nav-target="today" aria-current="page">⌂<span>Today</span></button>
+      <button id="navTransport" type="button" data-nav-target="transport">≋<span>Transport</span></button>
+      <button id="navFreya" type="button" data-nav-target="freya">✦<span>FREYA</span></button>
+      <button id="navTravel" type="button" data-nav-target="travel">◎<span>Travel</span></button>
     </nav>
   </div>
   <div id="locationSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="locationSheetTitle">
