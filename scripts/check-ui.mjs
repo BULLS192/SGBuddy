@@ -19,7 +19,10 @@ for(const match of html.matchAll(/href="#([^"]+)"[^>]*data-nav-target=/g)){
 }
 if(/(?<!\$)\$\([^\n;]+\)\.forEach/.test(js)) fail('Single-element $() selector is being used with .forEach()');
 if(!/\$\$\('\.bottom-nav \[data-nav-target\]'\)\.forEach/.test(js)) fail('Bottom navigation is not initialized with the multi-element selector');
-for(const required of ['dataCoreDiagnostics','locationSheet','planTrip','modeButton']){
+for(const required of ['dataCoreDiagnostics','locationSheet','planTrip','openGoogleTrip','swapTrip','journeyStatus','journeyResults','modeButton']){
   if(!ids.has(required)) fail(`Required control #${required} is missing`);
 }
 if(!process.exitCode) console.log(`UI checks passed for ${scriptPath} (${ids.size} ids)`);
+
+if(!fs.existsSync('api/journey.js')) fail('Native journey API is missing');
+if(!fs.existsSync('lib/journey.js')) fail('Native journey engine is missing');
