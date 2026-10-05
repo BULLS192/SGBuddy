@@ -116,10 +116,23 @@
       </section>
 
       <section id="travelSection" class="planner card nav-section" data-nav-section="travel">
-        <div class="label">GET THERE</div><h3>Plan a public-transport trip</h3>
-        <div class="planner-grid"><input id="tripFrom" placeholder="From — leave blank for my location"/><input id="tripTo" placeholder="Where are you going?"/></div>
+        <div class="planner-title-row">
+          <div><div class="label">SGBUDDY ROUTE</div><h3>Plan a public-transport trip</h3></div>
+          <span class="native-badge">Native beta</span>
+        </div>
+        <p class="planner-copy">SGBuddy now calculates its own MRT/LRT routes and compares direct live-bus options. Leave From blank to use your current location.</p>
+        <div class="planner-grid journey-input-grid">
+          <input id="tripFrom" placeholder="From — location / station / bus stop"/>
+          <button id="swapTrip" class="swap-trip" type="button" aria-label="Swap origin and destination">⇅</button>
+          <input id="tripTo" placeholder="To — station / bus stop / Singapore place"/>
+        </div>
         <div class="quick-destinations"><button data-place="home">Home</button><button data-place="work">Work</button><button data-place="hotel">Hotel</button></div>
-        <button id="planTrip" class="primary full">Plan transit route ↗</button>
+        <div class="journey-actions">
+          <button id="planTrip" class="primary" type="button">Plan with SGBuddy</button>
+          <button id="openGoogleTrip" class="secondary" type="button">Google Maps ↗</button>
+        </div>
+        <div id="journeyStatus" class="journey-status">Ready to plan a route.</div>
+        <div id="journeyResults" class="journey-results hidden"></div>
       </section>
 
       <section class="saved card">
@@ -229,6 +242,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v045.js"></script>
+  <script type="module" src="/app-v050.js"></script>
 </body>
 </html>
