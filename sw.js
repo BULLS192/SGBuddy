@@ -1,4 +1,4 @@
-const CACHE = 'sgbuddy-shell-v7';
+const CACHE = 'sgbuddy-shell-v8';
 const SHELL = ['/', '/styles.css', '/app.js', '/manifest.webmanifest', '/sgbuddy-icon-v2.png', '/sgbuddy-icon-v2.png'];
 self.addEventListener('install', event => { self.skipWaiting(); event.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); });
 self.addEventListener('activate', event => event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))), self.clients.claim()])));
