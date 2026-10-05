@@ -1,6 +1,6 @@
 {
   "name": "sgbuddy",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": true,
   "type": "module",
   "engines": {
@@ -15,6 +15,6 @@
   },
   "scripts": {
     "dev": "vercel dev",
-    "check": "node --check app.js && for f in api/*.js lib/*.js; do node --check \"$f\"; done"
+    "check": "node scripts/check-ui.mjs && for f in api/*.js lib/*.js; do node --check \"$f\"; done"
   }
 }
