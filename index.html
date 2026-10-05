@@ -31,7 +31,7 @@
     <main>
       <section class="hero card glow">
         <div class="hero-row">
-          <div><div class="label">CURRENT CONTEXT</div><div class="place" id="placeLabel">Singapore</div></div>
+          <div><div class="label">CURRENT CONTEXT</div><div class="place" id="placeLabel">Singapore</div><div id="locationStatus" class="context-note">Location not set yet</div></div>
           <button id="locateButton" class="icon-button">◎ Locate</button>
         </div>
         <div class="hero-grid">
@@ -42,9 +42,26 @@
         <div class="source-row"><span id="sourceBadge" class="badge">Checking live feeds</span><span id="updatedAt">—</span></div>
       </section>
 
+      <section id="nextUpCard" class="next-up card">
+        <div class="next-up-head">
+          <div><div class="label">NEXT UP</div><h2 id="nextUpTitle">Finding your best nearby departure</h2></div>
+          <span id="nextUpAction" class="next-up-action">—</span>
+        </div>
+        <p id="nextUpCopy">Allow location or use your saved stops and stations so SGBuddy can prioritize what matters to you.</p>
+        <div id="nextUpOptions" class="next-up-options"></div>
+      </section>
+
       <section class="section-head">
         <div><div class="label">MRT / LRT</div><h2>Next trains</h2></div>
         <button id="refreshButton" class="text-button">Refresh</button>
+      </section>
+      <section class="saved-rail card">
+        <div class="saved-bus-head">
+          <div><div class="label">MY STATIONS</div><h3>Favourites</h3></div>
+          <span id="savedStationCount" class="counter">0</span>
+        </div>
+        <p>Star MRT/LRT stations you use often. Tap a favourite to bring its board to the top.</p>
+        <div id="savedStations" class="station-chips"><span class="empty-inline">No favourite stations yet.</span></div>
       </section>
       <section id="railStations" class="stack"><div class="card skeleton-card"><div class="skeleton wide"></div><div class="skeleton"></div><div class="skeleton"></div></div></section>
       <section class="manual card">
@@ -92,6 +109,7 @@
           <span><i class="legend-dot saved-dot"></i>Saved bus</span>
           <span><i class="legend-dot bus-dot"></i>Nearby bus</span>
           <span><i class="legend-dot rail-dot"></i>MRT/LRT</span>
+          <span><i class="legend-dot saved-rail-dot"></i>Saved MRT/LRT</span>
           <span><i class="legend-dot you-dot"></i>You</span>
         </div>
         <p class="map-note">Map tiles © OpenStreetMap contributors. Live stop and station data comes from SGBuddy's LTA adapters when configured.</p>
@@ -111,31 +129,33 @@
         <button id="savePlaces" class="secondary full">Save places</button>
       </section>
 
-      <section class="profile-card card">
-        <div class="profile-head">
+      <details class="profile-card card">
+        <summary class="profile-summary">
           <div><div class="label">CLOUD PROFILE</div><h3 id="profileTitle">Private sync</h3></div>
           <span id="profileSyncBadge" class="sync-badge">Local cache</span>
-        </div>
-        <p id="profileDescription">Your favourites and saved places can sync privately across your devices without a database or account.</p>
-        <div class="profile-id-row">
-          <div><span class="profile-id-label">SGBuddy ID</span><code id="profileId">Not linked yet</code></div>
-          <button id="syncProfileButton" class="text-button" type="button">Sync now</button>
-        </div>
-        <div class="profile-actions">
-          <button id="linkDeviceButton" class="secondary" type="button">Link another device</button>
-          <button id="exportProfileButton" class="secondary" type="button">Export</button>
-          <button id="importProfileButton" class="secondary" type="button">Import</button>
-          <input id="importProfileInput" type="file" accept=".json,application/json" hidden />
-        </div>
-        <div id="pairPanel" class="pair-panel hidden">
-          <div class="pair-copy"><strong>Link another device</strong><span>Scan this QR on the other device. Anyone with this QR/link can access this SGBuddy profile.</span></div>
-          <img id="pairQr" alt="SGBuddy device-link QR code" />
+        </summary>
+        <div class="profile-details">
+          <p id="profileDescription">Your favourites and saved places can sync privately across your devices without a database or account.</p>
+          <div class="profile-id-row">
+            <div><span class="profile-id-label">SGBuddy ID</span><code id="profileId">Not linked yet</code></div>
+            <button id="syncProfileButton" class="text-button" type="button">Sync now</button>
+          </div>
           <div class="profile-actions">
-            <button id="copyPairLinkButton" class="secondary" type="button">Copy link</button>
-            <button id="closePairPanelButton" class="text-button" type="button">Close</button>
+            <button id="linkDeviceButton" class="secondary" type="button">Link another device</button>
+            <button id="exportProfileButton" class="secondary" type="button">Export</button>
+            <button id="importProfileButton" class="secondary" type="button">Import</button>
+            <input id="importProfileInput" type="file" accept=".json,application/json" hidden />
+          </div>
+          <div id="pairPanel" class="pair-panel hidden">
+            <div class="pair-copy"><strong>Link another device</strong><span>Scan this QR on the other device. Anyone with this QR/link can access this SGBuddy profile.</span></div>
+            <img id="pairQr" alt="SGBuddy device-link QR code" />
+            <div class="profile-actions">
+              <button id="copyPairLinkButton" class="secondary" type="button">Copy link</button>
+              <button id="closePairPanelButton" class="text-button" type="button">Close</button>
+            </div>
           </div>
         </div>
-      </section>
+      </details>
 
       <section class="advisor card">
         <div class="advisor-head"><div class="freya-orb">F</div><div><div class="label">FREYA-READY ADVISOR</div><h3>What do you need?</h3></div></div>
@@ -168,6 +188,18 @@
       <button id="navFreya">✦<span>FREYA</span></button>
       <button id="navTravel">◎<span>Travel</span></button>
     </nav>
+  </div>
+  <div id="locationSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="locationSheetTitle">
+    <div class="install-sheet-card location-sheet-card">
+      <div class="location-orb">◎</div>
+      <div class="label">MAKE SGBUDDY PERSONAL</div>
+      <h3 id="locationSheetTitle">Use your location?</h3>
+      <p>SGBuddy can automatically show nearby bus stops and MRT/LRT stations, center the map around you, and prioritize the next useful departure. Your precise location stays in your browser session and is not saved to your cloud profile.</p>
+      <div class="sheet-actions">
+        <button id="allowLocationButton" class="primary" type="button">Use my location</button>
+        <button id="notNowLocationButton" class="secondary" type="button">Not now</button>
+      </div>
+    </div>
   </div>
   <div id="installSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="installSheetTitle">
     <div class="install-sheet-card">
