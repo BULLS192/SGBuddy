@@ -26,7 +26,7 @@ let pairQrObjectUrl='';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 function greet(){const h=new Date().getHours();$('#greeting').textContent=h<12?'Good morning':h<18?'Good afternoon':'Good evening'}
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
-const navSections={today:'#todaySection',transport:'#transportSection',freya:'#freyaSection',travel:'#travelSection'};
+const navSections={today:'#todaySection',transport:'#transportSection',travel:'#travelSection',freya:'#freyaSection'};
 let navScrollLock=0;
 function setActiveNav(name){$('.bottom-nav [data-nav-target]').forEach(b=>{const active=b.dataset.navTarget===name;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
 function navigateTo(name){const target=$(navSections[name]);if(!target)return;setActiveNav(name);navScrollLock=Date.now()+700;target.scrollIntoView({behavior:'smooth',block:'start'});if(name==='freya')setTimeout(()=>$('#advisorInput')?.focus({preventScroll:true}),450)}
