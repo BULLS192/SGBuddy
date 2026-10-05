@@ -29,3 +29,8 @@ if(!fs.existsSync('lib/journey.js')) fail('Native journey engine is missing');
 
 if(!html.includes('/app-v052.js')) fail('Wave 4.1 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('mixedJourneyRouting:true')) fail('Wave 4.1 mixed routing health flag missing');
+
+for(const required of ['appVersion','timingNowButton','timingArriveButton','arriveByInput']){ if(!ids.has(required)) fail(`Wave 4.2 control #${required} is missing`); }
+if(!html.includes('/app-v060.js')) fail('Wave 4.2 client asset is not wired into index.html');
+if(!fs.readFileSync('api/health.js','utf8').includes('visibleClientVersion:true')) fail('Visible client version health flag missing');
+if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')) fail('Weather-aware routing health flag missing');
