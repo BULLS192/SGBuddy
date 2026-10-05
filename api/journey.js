@@ -19,6 +19,7 @@ export default async function handler(req,res){
       to,
       originLat:Number.isFinite(originLat)?originLat:undefined,
       originLon:Number.isFinite(originLon)?originLon:undefined,
+      arriveBy:req.query.arriveBy?String(req.query.arriveBy):undefined,
     });
     if(!result.ok){
       const status=result.code==='UNRESOLVED_DESTINATION'?422:400;
