@@ -21,11 +21,11 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.8.0</span></div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.8.1</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
-        <button id="modeButton" class="mode-pill" aria-label="Toggle traveller mode"><span class="dot"></span><span id="modeText">Resident</span></button>
+        <button id="modeButton" class="mode-pill" aria-label="Change SGBuddy mode"><span class="dot"></span><span id="modeText">Resident</span></button>
       </div>
     </header>
     <main>
@@ -52,6 +52,15 @@
       </section>
 
       <section id="tripIntelligence" class="trip-intelligence card"><div class="trip-intelligence-head"><div><div class="label">TRIP INTELLIGENCE</div><h3 id="tripIntelTitle">Checking travel conditions</h3></div><span id="tripIntelLevel" class="risk-pill">—</span></div><p id="tripIntelCopy">SGBuddy is combining weather, rail and traffic conditions.</p><div id="tripIntelSignals" class="trip-signals"></div><button id="planAroundConditions" class="secondary full" type="button">Plan around conditions</button></section>
+      <section id="personaFocus" class="persona-focus card">
+        <div class="persona-focus-head">
+          <div><div class="label">FOR YOU</div><h3 id="personaFocusTitle">Your everyday Singapore</h3></div>
+          <button id="editPersonaButton" class="text-button" type="button">Change</button>
+        </div>
+        <p id="personaFocusCopy">SGBuddy is adapting around how you use Singapore.</p>
+        <div id="personaFocusMeta" class="persona-meta"></div>
+        <div id="personaFocusActions" class="persona-actions"></div>
+      </section>
       <section id="transportSection" class="section-head nav-section" data-nav-section="transport">
         <div><div class="label">MRT / LRT</div><h2>Next trains</h2></div>
         <button id="refreshButton" class="text-button">Refresh</button>
@@ -195,8 +204,8 @@
       </section>
 
       <section id="travellerPanel" class="traveller card hidden">
-        <div class="label">TRAVELLER MODE</div><h3>Your Singapore safety net</h3>
-        <p>Your saved hotel stays one tap away. Transit routing opens with public transport selected.</p>
+        <div id="personaPanelLabel" class="label">VISITOR SUPPORT</div><h3 id="personaPanelTitle">Your Singapore safety net</h3>
+        <p id="personaPanelCopy">Your saved hotel stays one tap away.</p>
         <button id="goHotelButton" class="primary full" disabled>↗ Get me back to my hotel</button>
       </section>
 
@@ -237,6 +246,50 @@
       <a id="navTravel" href="#travelSection" data-nav-target="travel">◎<span>Travel</span></a>
     </nav>
   </div>
+  <div id="personaSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="personaSheetTitle">
+    <div class="install-sheet-card persona-sheet-card">
+      <button id="closePersonaSheet" class="install-close" type="button" aria-label="Close">×</button>
+      <div class="label">YOUR SINGAPORE</div>
+      <h3 id="personaSheetTitle">How are you using Singapore?</h3>
+      <p id="personaSheetIntro">Choose the context that best fits right now. You can switch modes anytime.</p>
+      <div class="persona-options" role="group" aria-label="SGBuddy mode">
+        <button class="persona-option" type="button" data-persona="resident"><span>🇸🇬</span><strong>Resident</strong><small>I live here</small></button>
+        <button class="persona-option" type="button" data-persona="visitor"><span>🎒</span><strong>Visitor</strong><small>I'm visiting</small></button>
+        <button class="persona-option" type="button" data-persona="executive"><span>💼</span><strong>Executive</strong><small>I'm here for business</small></button>
+        <button class="persona-option" type="button" data-persona="new_in_sg"><span>🌏</span><strong>New in SG</strong><small>I'm settling in</small></button>
+      </div>
+      <div class="persona-fields">
+        <label><span id="personaStayLabel">How long will this context last?</span>
+          <select id="personaStayHorizon">
+            <option value="day_trip">Today only</option>
+            <option value="few_days">A few days</option>
+            <option value="few_weeks">A few weeks</option>
+            <option value="one_to_three_months">1–3 months</option>
+            <option value="three_to_six_months">3–6 months</option>
+            <option value="six_plus_months">6+ months</option>
+            <option value="long_term">Long term</option>
+          </select>
+        </label>
+        <label><span>Travel style</span>
+          <select id="personaTravelStyle">
+            <option value="budget">Budget</option>
+            <option value="value">Value</option>
+            <option value="balanced">Balanced</option>
+            <option value="premium">Premium</option>
+            <option value="luxury">Luxury</option>
+          </select>
+        </label>
+        <label><span>Walking preference</span>
+          <select id="personaWalkingTolerance">
+            <option value="low">Less walking</option>
+            <option value="normal">Normal</option>
+            <option value="high">Walking is fine</option>
+          </select>
+        </label>
+      </div>
+      <button id="savePersonaButton" class="primary full" type="button">Use this SGBuddy mode</button>
+    </div>
+  </div>
   <div id="locationSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="locationSheetTitle">
     <div class="install-sheet-card location-sheet-card">
       <div class="location-orb">◎</div>
@@ -259,6 +312,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v080.js"></script>
+  <script type="module" src="/app-v081.js"></script>
 </body>
 </html>

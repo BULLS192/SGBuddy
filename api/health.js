@@ -1,4 +1,5 @@
 import { catalogStats, hasCatalogDatabase } from '../lib/catalog-db.js';
+import { hasProfileDatabaseSync } from '../lib/profile-db.js';
 
 export default async function handler(req,res){
   let catalog=null,catalogError=null;
@@ -8,7 +9,7 @@ export default async function handler(req,res){
   res.status(200).json({
     ok:true,
     service:'sgbuddy',
-    version:'0.8.0',
+    version:'0.8.1',
     time:new Date().toISOString(),
     ltaConfigured:Boolean(process.env.LTA_ACCOUNT_KEY),
     database:{
@@ -25,7 +26,7 @@ export default async function handler(req,res){
       nativeJourneyPlanner:true,directBusRouting:true,railTransferRouting:true,mixedJourneyRouting:true,
       weatherAwareRouting:true,arriveByPlanning:true,visibleClientVersion:true,journeyRouteMap:true,
       destinationIntelligence:true,recentDestinations:true,tripIntelligence:true,weatherRiskAdvisor:true,
-      supabaseCatalog:true,
+      supabaseCatalog:true,personaFoundation:true,adaptivePersonaHome:true,profileDatabaseSync:hasProfileDatabaseSync(),
       oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD))
     }
   })
