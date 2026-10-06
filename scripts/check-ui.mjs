@@ -34,11 +34,13 @@ if(!fs.readFileSync('api/health.js','utf8').includes('visibleClientVersion:true'
 if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')) fail('Weather-aware routing health flag missing');
 
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
-if(!html.includes('/app-v070.js')) fail('Wave 4.3 client asset is not wired into index.html');
+if(!html.includes('/app-v080.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("const CLIENT_VERSION='0.7.0';")) fail('Visible client version does not match Wave 4.3');
+if(!js.includes("const CLIENT_VERSION='0.8.0';")) fail('Visible client version does not match Wave 4.3');
 
-for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.7.0 control #${required} is missing`)}
+for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
 const healthV7=fs.readFileSync('api/health.js','utf8');
 for(const flag of ['destinationIntelligence:true','tripIntelligence:true','weatherRiskAdvisor:true']){if(!healthV7.includes(flag))fail(`Health flag ${flag} missing`)}
+
+if(!fs.readFileSync('api/health.js','utf8').includes('supabaseCatalog:true')) fail('Supabase catalog health flag missing');
