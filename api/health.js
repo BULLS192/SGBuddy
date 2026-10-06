@@ -9,7 +9,7 @@ export default async function handler(req,res){
   res.status(200).json({
     ok:true,
     service:'sgbuddy',
-    version:'0.8.1',
+    version:'0.8.2',
     time:new Date().toISOString(),
     ltaConfigured:Boolean(process.env.LTA_ACCOUNT_KEY),
     database:{
@@ -26,7 +26,7 @@ export default async function handler(req,res){
       nativeJourneyPlanner:true,directBusRouting:true,railTransferRouting:true,mixedJourneyRouting:true,
       weatherAwareRouting:true,arriveByPlanning:true,visibleClientVersion:true,journeyRouteMap:true,
       destinationIntelligence:true,recentDestinations:true,tripIntelligence:true,weatherRiskAdvisor:true,
-      supabaseCatalog:true,personaFoundation:true,adaptivePersonaHome:true,profileDatabaseSync:hasProfileDatabaseSync(),
+      supabaseCatalog:true,personaFoundation:true,adaptivePersonaHome:true,profileDatabaseSync:hasProfileDatabaseSync(),supabaseAuth:true,crossDeviceAccounts:true,passwordRecovery:true,accountProfileSync:true,
       oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD))
     }
   })
