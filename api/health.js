@@ -1,1 +1,32 @@
-export default function handler(req,res){res.status(200).json({ok:true,service:'sgbuddy',version:'0.7.0',time:new Date().toISOString(),ltaConfigured:Boolean(process.env.LTA_ACCOUNT_KEY),features:{bus:true,railRealtime:true,journeyHandoff:true,savedPlaces:true,cloudProfiles:true,installablePwa:true,locationOnboarding:true,favouriteRail:true,busServicePreferences:true,nextUp:true,bottomNavigation:true,dataCoreDiagnostics:true,versionedClient:true,navRegressionFixed:true,activeNavHighlight:true,wave31Qa:true,favouriteManagement:true,nativeJourneyPlanner:true,directBusRouting:true,railTransferRouting:true,mixedJourneyRouting:true,weatherAwareRouting:true,arriveByPlanning:true,visibleClientVersion:true,journeyRouteMap:true,destinationIntelligence:true,recentDestinations:true,tripIntelligence:true,weatherRiskAdvisor:true,oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD))}})}
+import { catalogStats, hasCatalogDatabase } from '../lib/catalog-db.js';
+
+export default async function handler(req,res){
+  let catalog=null,catalogError=null;
+  if(hasCatalogDatabase()){
+    try{catalog=await catalogStats()}catch(error){catalogError=error.message}
+  }
+  res.status(200).json({
+    ok:true,
+    service:'sgbuddy',
+    version:'0.8.0-foundation',
+    time:new Date().toISOString(),
+    ltaConfigured:Boolean(process.env.LTA_ACCOUNT_KEY),
+    database:{
+      configured:hasCatalogDatabase(),
+      connected:Boolean(catalog),
+      catalog,
+      error:catalogError,
+    },
+    features:{
+      bus:true,railRealtime:true,journeyHandoff:true,savedPlaces:true,cloudProfiles:true,
+      installablePwa:true,locationOnboarding:true,favouriteRail:true,busServicePreferences:true,
+      nextUp:true,bottomNavigation:true,dataCoreDiagnostics:true,versionedClient:true,
+      navRegressionFixed:true,activeNavHighlight:true,wave31Qa:true,favouriteManagement:true,
+      nativeJourneyPlanner:true,directBusRouting:true,railTransferRouting:true,mixedJourneyRouting:true,
+      weatherAwareRouting:true,arriveByPlanning:true,visibleClientVersion:true,journeyRouteMap:true,
+      destinationIntelligence:true,recentDestinations:true,tripIntelligence:true,weatherRiskAdvisor:true,
+      supabaseCatalog:true,
+      oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD))
+    }
+  })
+}
