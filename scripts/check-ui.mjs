@@ -34,9 +34,9 @@ if(!fs.readFileSync('api/health.js','utf8').includes('visibleClientVersion:true'
 if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')) fail('Weather-aware routing health flag missing');
 
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
-if(!html.includes('/app-v081.js')) fail('Wave 4.3 client asset is not wired into index.html');
+if(!html.includes('/app-v082.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("const CLIENT_VERSION='0.8.1';")) fail('Visible client version does not match Wave 4.3');
+if(!js.includes("const CLIENT_VERSION='0.8.2';")) fail('Visible client version does not match Wave 4.3');
 
 for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
@@ -50,3 +50,10 @@ const healthV81=fs.readFileSync('api/health.js','utf8');
 for(const flag of ['personaFoundation:true','adaptivePersonaHome:true']){if(!healthV81.includes(flag))fail(`Persona health flag ${flag} missing`)}
 if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 3'))fail('Cloud profile schema was not upgraded to v3');
 if(!fs.existsSync('lib/profile-db.js'))fail('Traveler profile database bridge is missing');
+
+for(const required of ['accountButton','accountSheet','accountEmail','accountPassword','signInButton','createAccountButton','forgotPasswordButton','accountSignedIn','accountSyncButton','signOutButton','passwordResetPanel','newPasswordInput','updatePasswordButton','accountMessage']){if(!ids.has(required))fail(`v0.8.2 account control #${required} is missing`)}
+const healthV82=fs.readFileSync('api/health.js','utf8');
+for(const flag of ['supabaseAuth:true','crossDeviceAccounts:true','passwordRecovery:true','accountProfileSync:true']){if(!healthV82.includes(flag))fail(`Account health flag ${flag} missing`)}
+if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 4'))fail('Cloud profile schema was not upgraded to v4');
+if(!js.includes('function loadAccountProfile'))fail('Account profile loader is missing');
+if(!js.includes("SUPABASE_PUBLIC_KEY='sb_publishable_"))fail('Supabase publishable key is not configured in the client');

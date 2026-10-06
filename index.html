@@ -21,9 +21,10 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.8.1</span></div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.8.2</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
+        <button id="accountButton" class="account-pill" type="button" aria-label="Open SGBuddy account"><span id="accountButtonIcon">◎</span><span id="accountButtonText">Account</span></button>
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
         <button id="modeButton" class="mode-pill" aria-label="Change SGBuddy mode"><span class="dot"></span><span id="modeText">Resident</span></button>
       </div>
@@ -174,7 +175,7 @@
           <span id="profileSyncBadge" class="sync-badge">Local cache</span>
         </summary>
         <div class="profile-details">
-          <p id="profileDescription">Your favourites and saved places can sync privately across your devices without a database or account.</p>
+          <p id="profileDescription">Your favourites and saved places sync through your private SGBuddy profile. Sign in to also carry them automatically across devices.</p>
           <div class="profile-id-row">
             <div><span class="profile-id-label">SGBuddy ID</span><code id="profileId">Not linked yet</code></div>
             <button id="syncProfileButton" class="text-button" type="button">Sync now</button>
@@ -246,6 +247,52 @@
       <a id="navTravel" href="#travelSection" data-nav-target="travel">◎<span>Travel</span></a>
     </nav>
   </div>
+  <div id="accountSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="accountSheetTitle">
+    <div class="install-sheet-card account-sheet-card">
+      <button id="closeAccountSheet" class="install-close" type="button" aria-label="Close">×</button>
+      <div class="label">SGBUDDY ACCOUNT</div>
+      <h3 id="accountSheetTitle">Use SGBuddy on every device</h3>
+      <p class="account-intro">Sign in with the same account on your phone, tablet or computer to keep your mode, saved places, bus stops and MRT/LRT favourites together.</p>
+
+      <div id="accountSignedOut">
+        <label class="account-field">Email
+          <input id="accountEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" />
+        </label>
+        <label class="account-field">Password
+          <input id="accountPassword" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters" />
+        </label>
+        <div class="account-actions">
+          <button id="signInButton" class="primary" type="button">Sign in</button>
+          <button id="createAccountButton" class="secondary" type="button">Create account</button>
+        </div>
+        <button id="forgotPasswordButton" class="text-button account-forgot" type="button">Forgot password?</button>
+        <p class="account-note">New accounts may need to confirm their email before the first sign-in.</p>
+      </div>
+
+      <div id="accountSignedIn" class="hidden">
+        <div class="account-identity">
+          <div class="account-avatar">◎</div>
+          <div><strong id="accountEmailDisplay">Signed in</strong><span id="accountSyncText">Account sync ready</span></div>
+          <span id="accountSyncBadge" class="sync-badge">Synced</span>
+        </div>
+        <div class="account-actions">
+          <button id="accountSyncButton" class="primary" type="button">Sync this device</button>
+          <button id="signOutButton" class="secondary" type="button">Sign out</button>
+        </div>
+        <p class="account-note">This device also keeps an offline copy. Signing out does not erase the local copy.</p>
+      </div>
+
+      <div id="passwordResetPanel" class="hidden">
+        <div class="account-reset-head"><strong>Set a new password</strong><span>Use 8 or more characters.</span></div>
+        <label class="account-field">New password
+          <input id="newPasswordInput" type="password" autocomplete="new-password" minlength="8" placeholder="New password" />
+        </label>
+        <button id="updatePasswordButton" class="primary full" type="button">Update password</button>
+      </div>
+
+      <div id="accountMessage" class="account-message" role="status"></div>
+    </div>
+  </div>
   <div id="personaSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="personaSheetTitle">
     <div class="install-sheet-card persona-sheet-card">
       <button id="closePersonaSheet" class="install-close" type="button" aria-label="Close">×</button>
@@ -312,6 +359,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v081.js"></script>
+  <script type="module" src="/app-v082.js"></script>
 </body>
 </html>
