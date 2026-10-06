@@ -42,6 +42,7 @@ function setVersionBadge(){const el=$('#appVersion');if(el)el.textContent='v'+CL
 const SUPABASE_AUTH_URL='https://zcxcjmtejcpvlttvaxes.supabase.co';
 const SUPABASE_PUBLIC_KEY='sb_publishable_4WQDw1iG2548G3icxBgxEw_MiBC3wal';
 const AUTH_SESSION_KEY='sgc-auth-session';
+const AUTH_REDIRECT_URL='https://sgbuddy.omnidite.com/';
 let accountSyncTimer=null;
 
 function authError(payload,fallback='Account request failed'){
@@ -158,7 +159,7 @@ async function createAccount(){
   if(password.length<8)return accountMessage('Use a password with at least 8 characters.','error');
   await withBusy($('#createAccountButton'),'Creating…',async()=>{
     try{
-      const redirect=location.origin+location.pathname;
+      const redirect=AUTH_REDIRECT_URL;
       const payload=await supabaseAuth('/signup?redirect_to='+encodeURIComponent(redirect),{body:{email,password}});
       if(saveAccountSession(payload)){
         await refreshAccountUser();await loadAccountProfile({preferRemote:false});
@@ -174,7 +175,7 @@ async function sendPasswordReset(){
   if(!email)return accountMessage('Enter your email address first.','error');
   await withBusy($('#forgotPasswordButton'),'Sending…',async()=>{
     try{
-      const redirect=location.origin+location.pathname;
+      const redirect=AUTH_REDIRECT_URL;
       await supabaseAuth('/recover?redirect_to='+encodeURIComponent(redirect),{body:{email}});
       accountMessage('Password reset email sent. Open the link on this device to choose a new password.','success');
     }catch(error){accountMessage(error.message,'error')}
@@ -271,7 +272,7 @@ async function loadAccountProfile({preferRemote=true}={}){
 async function initAccount(){
   const callback=consumeAuthHash();
   if(state.accountSession?.accessToken)await refreshAccountUser();
-  if(state.accountUser)await loadAccountProfile({preferRemote:!callback});
+  if(state.accountUser)await loadAccountProfile({preferRemote:state.recoveryMode?true:!callback});
   renderAccountUi();
   if(state.recoveryMode){openAccountSheet();accountMessage('Choose a new password to finish recovery.','success')}
   else if(callback&&state.accountUser)toast('SGBuddy account confirmed and signed in');
