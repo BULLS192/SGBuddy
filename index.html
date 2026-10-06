@@ -21,7 +21,7 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.6.1</span></div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.7.0</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
@@ -51,6 +51,7 @@
         <div id="nextUpOptions" class="next-up-options"></div>
       </section>
 
+      <section id="tripIntelligence" class="trip-intelligence card"><div class="trip-intelligence-head"><div><div class="label">TRIP INTELLIGENCE</div><h3 id="tripIntelTitle">Checking travel conditions</h3></div><span id="tripIntelLevel" class="risk-pill">—</span></div><p id="tripIntelCopy">SGBuddy is combining weather, rail and traffic conditions.</p><div id="tripIntelSignals" class="trip-signals"></div><button id="planAroundConditions" class="secondary full" type="button">Plan around conditions</button></section>
       <section id="transportSection" class="section-head nav-section" data-nav-section="transport">
         <div><div class="label">MRT / LRT</div><h2>Next trains</h2></div>
         <button id="refreshButton" class="text-button">Refresh</button>
@@ -120,13 +121,15 @@
           <div><div class="label">SGBUDDY ROUTE</div><h3>Plan a public-transport trip</h3></div>
           <span class="native-badge">Native beta</span>
         </div>
-        <p class="planner-copy">SGBuddy compares MRT/LRT, direct buses and mixed feeder routes, then adjusts recommendations for rain. Use Arrive by when you have a deadline.</p>
+        <p class="planner-copy">Search familiar Singapore destinations, compare rail/bus/mixed routes, and let SGBuddy adjust the recommendation for rain or a fixed arrival time.</p>
         <div class="planner-grid journey-input-grid">
-          <input id="tripFrom" placeholder="From — location / station / bus stop"/>
+          <div class="journey-field"><input id="tripFrom" autocomplete="off" placeholder="From — location, place, station or stop" aria-autocomplete="list" aria-controls="tripFromSuggestions"/><div id="tripFromSuggestions" class="place-suggestions hidden" role="listbox"></div></div>
           <button id="swapTrip" class="swap-trip" type="button" aria-label="Swap origin and destination">⇅</button>
-          <input id="tripTo" placeholder="To — station / bus stop / Singapore place"/>
+          <div class="journey-field"><input id="tripTo" autocomplete="off" placeholder="To — try Jewel, MBS, Zoo, NUS…" aria-autocomplete="list" aria-controls="tripToSuggestions"/><div id="tripToSuggestions" class="place-suggestions hidden" role="listbox"></div></div>
         </div>
         <div class="quick-destinations"><button data-place="home">Home</button><button data-place="work">Work</button><button data-place="hotel">Hotel</button></div>
+        <div class="popular-destinations" aria-label="Popular destinations"><span>Popular</span><button type="button" data-destination="Jewel Changi Airport">Jewel</button><button type="button" data-destination="Marina Bay Sands">MBS</button><button type="button" data-destination="Singapore Zoo">Zoo</button><button type="button" data-destination="Gardens by the Bay">Gardens</button><button type="button" data-destination="Orchard Road">Orchard</button></div>
+        <div id="recentDestinations" class="recent-destinations hidden"></div>
         <div class="journey-timing">
           <div class="timing-toggle" role="group" aria-label="Journey timing">
             <button id="timingNowButton" class="active" type="button">Leave now</button>
@@ -256,6 +259,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v061.js"></script>
+  <script type="module" src="/app-v070.js"></script>
 </body>
 </html>

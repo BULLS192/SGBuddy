@@ -1,11 +1,13 @@
 import { hasLtaKey } from '../lib/lta.js';
-import { planJourney } from '../lib/journey.js';
+import { planJourney, searchJourneyPlaces } from '../lib/journey.js';
 
 export default async function handler(req,res){
   res.setHeader('Cache-Control','no-store');
   if(req.method!=='GET') return res.status(405).json({error:'Method not allowed'});
   if(!hasLtaKey()) return res.status(503).json({error:'LTA data is not configured',code:'NO_LTA_KEY'});
 
+  const search=String(req.query.search||'').trim();
+  if(search){try{return res.status(200).json(await searchJourneyPlaces(search,{limit:8}))}catch(error){return res.status(500).json({error:error.message||'Place search failed',code:'PLACE_SEARCH_ERROR'})}}
   const to=String(req.query.to||'').trim();
   const from=String(req.query.from||'').trim();
   const originLat=Number(req.query.lat);
