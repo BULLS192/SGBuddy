@@ -21,7 +21,7 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.6.0</span></div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.6.1</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
         <button id="installButton" class="install-pill" type="button">⇩ Install app</button>
@@ -142,6 +142,10 @@
           <button id="openGoogleTrip" class="secondary" type="button">Google Maps ↗</button>
         </div>
         <div id="journeyStatus" class="journey-status">Ready to plan a route.</div>
+        <div id="journeyMapWrap" class="journey-map-wrap hidden">
+          <div class="journey-map-head"><div><div class="label">ROUTE MAP</div><strong id="journeyMapTitle">Recommended route</strong></div><span>Walk · Bus · Rail</span></div>
+          <div id="journeyMap" class="journey-map" aria-label="Map of selected SGBuddy journey"></div>
+        </div>
         <div id="journeyResults" class="journey-results hidden"></div>
       </section>
 
@@ -252,6 +256,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v060.js"></script>
+  <script type="module" src="/app-v061.js"></script>
 </body>
 </html>
