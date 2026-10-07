@@ -57,7 +57,7 @@
       <section id="environmentCard" class="environment-card card">
         <div class="environment-head">
           <div><div class="label">SINGAPORE CONDITIONS</div><h3 id="envHeadline">Weather & air quality</h3></div>
-          <span id="envRiskBadge" class="risk-pill">—</span>
+          <div class="environment-actions"><button id="unitsToggle" class="unit-toggle" type="button" aria-label="Switch weather units">Metric · °C</button><span id="envRiskBadge" class="risk-pill">—</span></div>
         </div>
         <p id="envForecast" class="environment-summary">Loading NEA-backed conditions…</p>
         <div class="environment-grid">
@@ -181,10 +181,24 @@
       </section>
 
       <section class="saved card">
-        <div class="label">MY PLACES</div><h3>Home, work & hotel</h3>
-        <p>Synced to your private SGBuddy profile, with an offline cache on this device.</p>
-        <div class="place-fields"><label>Home<input id="homeInput" placeholder="Home address or place"/></label><label>Work<input id="workInput" placeholder="Work address or place"/></label><label>Hotel<input id="hotelInput" placeholder="Hotel while travelling"/></label></div>
-        <button id="savePlaces" class="secondary full">Save places</button>
+        <div class="label">MY PLACES</div><h3>Saved addresses</h3>
+        <p>Save complete Singapore addresses for faster routing. Home, work and hotel remain quick shortcuts, and you can add more places below.</p>
+        <div class="quick-address-grid">
+          <div class="quick-address"><strong>Home</strong><input id="homeInput" placeholder="Street / building"/><input id="homePostal" inputmode="numeric" maxlength="6" placeholder="Postal code"/></div>
+          <div class="quick-address"><strong>Work</strong><input id="workInput" placeholder="Street / building"/><input id="workPostal" inputmode="numeric" maxlength="6" placeholder="Postal code"/></div>
+          <div class="quick-address"><strong>Hotel</strong><input id="hotelInput" placeholder="Hotel / street"/><input id="hotelPostal" inputmode="numeric" maxlength="6" placeholder="Postal code"/></div>
+        </div>
+        <button id="savePlaces" class="secondary full" type="button">Save quick places</button>
+        <div class="saved-address-divider"></div>
+        <div class="label">ADD ANOTHER PLACE</div>
+        <div class="custom-address-grid">
+          <label>Name<input id="customPlaceLabel" placeholder="Gym, client office, family…"/></label>
+          <label>Street / building<input id="customPlaceStreet" placeholder="e.g. 10 Bayfront Avenue"/></label>
+          <label>Unit (optional)<input id="customPlaceUnit" placeholder="#12-01"/></label>
+          <label>Postal code<input id="customPlacePostal" inputmode="numeric" maxlength="6" placeholder="018956"/></label>
+        </div>
+        <button id="addCustomPlace" class="primary full" type="button">Add saved place</button>
+        <div id="savedPlacesList" class="saved-address-list"><div class="empty-inline">No extra saved places yet.</div></div>
       </section>
 
       <details class="profile-card card">
@@ -234,10 +248,14 @@
         <button id="placesBackHotel" class="text-button" type="button">Back to hotel</button>
       </section>
       <section class="places-toolbar card">
-        <input id="placeSearch" autocomplete="off" placeholder="Filter places — zoo, museum, Chinatown…" aria-label="Filter featured Singapore places"/>
-        <span>Curated for routing, rain context and transit — not generic travel SEO.</span>
+        <div class="places-toolbar-row">
+          <input id="placeSearch" autocomplete="off" placeholder="Filter places — zoo, museum, Chinatown…" aria-label="Filter featured Singapore places"/>
+          <div class="view-switch" aria-label="Places view"><button id="placesCardsButton" class="active" type="button">Cards</button><button id="placesMapButton" type="button">Map</button></div>
+        </div>
+        <span>Use your location to see distance and a quick travel-time estimate for every destination.</span>
       </section>
       <section id="placesGrid" class="places-grid"><div class="card empty">Loading featured places…</div></section>
+      <section id="placesMapCard" class="map-card card hidden"><div class="map-head"><div><div class="label">PLACES MAP</div><h3>Singapore essentials around you</h3></div><button id="fitPlacesMap" class="text-button" type="button">Fit all</button></div><div id="placesMap" class="transport-map" aria-label="Map of featured Singapore places"></div><p class="map-note">Travel times shown on cards are quick estimates from your current location. Tap Take me there for the native route planner.</p></section>
 
       <section id="moneySection" class="section-head nav-section" data-nav-section="money">
         <div><div class="label">MONEY</div><h2>Rates & licensed changers</h2><p class="section-copy">Reference FX is separate from the cash rate a shop actually offers.</p></div>
@@ -246,17 +264,18 @@
         <div class="money-card-head"><div><div class="label">REFERENCE CONVERTER</div><h3>What is it worth?</h3></div><span class="reference-badge">Reference</span></div>
         <div class="fx-grid">
           <label>Amount<input id="fxAmount" inputmode="decimal" value="100" aria-label="Currency amount"/></label>
-          <label>From<select id="fxFrom" aria-label="Source currency"></select></label>
+          <label>From<select id="fxFrom" aria-label="Source currency"><option value="SGD">SGD — Singapore Dollar</option><option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="AUD">AUD — Australian Dollar</option><option value="JPY">JPY — Japanese Yen</option><option value="CNY">CNY — Chinese Yuan</option><option value="MYR">MYR — Malaysian Ringgit</option><option value="IDR">IDR — Indonesian Rupiah</option><option value="THB">THB — Thai Baht</option><option value="KRW">KRW — South Korean Won</option><option value="INR">INR — Indian Rupee</option><option value="BRL">BRL — Brazilian Real</option></select></label>
           <button id="fxSwap" class="swap-trip" type="button" aria-label="Swap currencies">⇄</button>
-          <label>To<select id="fxTo" aria-label="Target currency"></select></label>
+          <label>To<select id="fxTo" aria-label="Target currency"><option value="SGD">SGD — Singapore Dollar</option><option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — British Pound</option><option value="AUD">AUD — Australian Dollar</option><option value="JPY">JPY — Japanese Yen</option><option value="CNY">CNY — Chinese Yuan</option><option value="MYR">MYR — Malaysian Ringgit</option><option value="IDR">IDR — Indonesian Rupiah</option><option value="THB">THB — Thai Baht</option><option value="KRW">KRW — South Korean Won</option><option value="INR">INR — Indian Rupee</option><option value="BRL">BRL — Brazilian Real</option></select></label>
         </div>
         <button id="fxConvert" class="primary full" type="button">Convert reference rate</button>
         <div id="fxResult" class="fx-result">Choose an amount and currencies.</div>
-        <div id="fxRateMeta" class="money-note">ECB reference rates are informational, not a shop buy/sell quote.</div>
+        <div id="fxRateMeta" class="money-note">Reference rate source: European Central Bank (ECB). Daily informational reference rates — not the cash buy/sell rate offered by a money changer.</div>
       </section>
 
       <section class="money-card card">
-        <div class="money-card-head"><div><div class="label">MONEY CHANGERS</div><h3>MAS-listed locations</h3></div><span class="reference-badge">Trust layer</span></div>
+        <div class="money-card-head"><div><div class="label">MONEY CHANGERS</div><h3>Licensed locations</h3></div><div class="view-switch" aria-label="Money changer view"><button id="moneyCardsButton" class="active" type="button">List</button><button id="moneyMapButton" type="button">Map</button></div></div>
+        <p class="money-explainer">Locations are checked against the Monetary Authority of Singapore (MAS), Singapore’s financial regulator. “Licensed” confirms the business appears in the official directory; it does not mean SGBuddy has its live counter rate.</p>
         <div class="changer-controls">
           <input id="moneyChangerSearch" placeholder="Orchard, Bugis, postal code or name" aria-label="Search money changer location"/>
           <button id="moneyChangerSearchButton" class="secondary" type="button">Search</button>
@@ -269,7 +288,8 @@
           <button type="button" data-money-area="marina">Marina Bay</button>
         </div>
         <div id="moneyChangerResults" class="changer-list"><div class="empty-inline">Choose an area or use Near me.</div></div>
-        <p id="moneySourceNote" class="money-note">Licensing/location context comes from MAS. Live shop buy/sell rates are not supplied by MAS and remain a separate timestamped dataset.</p>
+        <div id="moneyChangerMapWrap" class="hidden"><div id="moneyChangerMap" class="transport-map" aria-label="Map of licensed money changers"></div></div>
+        <p id="moneySourceNote" class="money-note">Official licensing/location source: Monetary Authority of Singapore via data.gov.sg. Live shop buy/sell rates are separate.</p>
       </section>
 
       <section id="accountSection" class="account-hub card nav-section" data-nav-section="account">
