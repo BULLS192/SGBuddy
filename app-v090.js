@@ -769,3 +769,132 @@ function v093InitViewRouter(){
   show('today');
 }
 v093InitViewRouter();
+
+/* === v0.9.4-dev Personal Intelligence === */
+window.__SGBUDDY_CLIENT_VERSION__='0.9.4-dev';if($('#appVersion'))$('#appVersion').textContent='v0.9.4-dev';
+
+state.homeCurrency=localStorage.getItem('sgc-home-currency')||'SGD';
+state.preferredLanguage=localStorage.getItem('sgc-language')||((navigator.language||'en').split('-')[0]||'en');
+state.walkingTolerance=state.walkingTolerance||localStorage.getItem('sgc-walking-tolerance')||'normal';
+
+const _v094PersistentPreferences=persistentPreferences;
+persistentPreferences=function(){
+  return {..._v094PersistentPreferences(),units:state.units||'metric',homeCurrency:state.homeCurrency||'SGD',preferredLanguage:state.preferredLanguage||'en',walkingTolerance:state.walkingTolerance||'normal'};
+};
+const _v094ApplyPreferenceObject=applyPreferenceObject;
+applyPreferenceObject=function(prefs){
+  _v094ApplyPreferenceObject(prefs);
+  if(prefs?.units){state.units=prefs.units==='imperial'?'imperial':'metric';localStorage.setItem('sgc-units',state.units)}
+  if(prefs?.homeCurrency){state.homeCurrency=String(prefs.homeCurrency).toUpperCase().slice(0,3);localStorage.setItem('sgc-home-currency',state.homeCurrency)}
+  if(prefs?.preferredLanguage){state.preferredLanguage=String(prefs.preferredLanguage).slice(0,12);localStorage.setItem('sgc-language',state.preferredLanguage)}
+  if(prefs?.walkingTolerance){state.walkingTolerance=['low','normal','high'].includes(prefs.walkingTolerance)?prefs.walkingTolerance:'normal';localStorage.setItem('sgc-walking-tolerance',state.walkingTolerance)}
+  v094SyncSettingsUi();renderPersonaContext();renderEnvironment();
+};
+const _v094AccountRowPayload=accountRowPayload;
+accountRowPayload=function(){
+  const row=_v094AccountRowPayload();
+  row.home_currency=state.homeCurrency||'SGD';
+  row.preferred_language=state.preferredLanguage||'en';
+  row.walking_tolerance=state.walkingTolerance||'normal';
+  row.preferences=accountPreferences();
+  return row;
+};
+
+function v094SettingsCard(){
+  const section=document.createElement('section');
+  section.id='settingsCard';section.className='settings-card card';
+  section.innerHTML=`
+    <div class="settings-head"><div><div class="label">PREFERENCES</div><h3>Make SGBuddy yours</h3></div><span class="sync-badge" id="settingsSyncBadge">This device</span></div>
+    <p class="settings-copy">These choices shape what SGBuddy prioritizes. Sign in to carry them across devices.</p>
+    <div class="settings-grid">
+      <label>Using Singapore as
+        <select id="settingPersona">
+          <option value="resident">Resident</option><option value="visitor">Visitor</option><option value="executive">Executive</option><option value="new_in_sg">New in SG</option>
+        </select>
+      </label>
+      <label>Units
+        <select id="settingUnits"><option value="metric">Metric · °C / km</option><option value="imperial">Imperial · °F / mi</option></select>
+      </label>
+      <label>Home currency
+        <select id="settingCurrency">${FX_CURRENCIES.map(c=>'<option value="'+c+'">'+c+'</option>').join('')}</select>
+      </label>
+      <label>Language preference
+        <select id="settingLanguage"><option value="en">English</option><option value="zh">简体中文</option><option value="ms">Bahasa Melayu</option><option value="ta">தமிழ்</option><option value="pt">Português</option></select>
+      </label>
+      <label>Walking preference
+        <select id="settingWalking"><option value="low">Keep walking low</option><option value="normal">Balanced</option><option value="high">Walking is fine</option></select>
+      </label>
+    </div>
+    <p class="settings-note">Language is a preference signal for now; full interface translation is not claimed in v1.0.</p>
+  `;
+  return section;
+}
+function v094SyncSettingsUi(){
+  if($('#settingPersona'))$('#settingPersona').value=state.mode;
+  if($('#settingUnits'))$('#settingUnits').value=state.units||'metric';
+  if($('#settingCurrency'))$('#settingCurrency').value=state.homeCurrency||'SGD';
+  if($('#settingLanguage'))$('#settingLanguage').value=state.preferredLanguage||'en';
+  if($('#settingWalking'))$('#settingWalking').value=state.walkingTolerance||'normal';
+  if($('#settingsSyncBadge')){$('#settingsSyncBadge').textContent=state.accountUser?'Account sync':'This device';$('#settingsSyncBadge').classList.toggle('synced',Boolean(state.accountUser))}
+}
+function v094PersistSettings(){
+  localStorage.setItem('sgc-units',state.units||'metric');localStorage.setItem('sgc-home-currency',state.homeCurrency||'SGD');localStorage.setItem('sgc-language',state.preferredLanguage||'en');localStorage.setItem('sgc-walking-tolerance',state.walkingTolerance||'normal');
+  cachePreferences(true);queueProfileSync();renderPersonaContext();renderEnvironment();renderFeaturedPlaces();v094RenderTodayBrief();v094SyncSettingsUi();
+}
+
+function v094InstallSettings(){
+  if($('#settingsCard'))return;
+  const card=v094SettingsCard(),account=$('#accountSection');
+  if(account?.parentElement)account.insertAdjacentElement('afterend',card);
+  const title=account?.querySelector('h3');if(title&&title.id==='accountHubTitle'&&!state.accountUser)title.textContent='Account & settings';
+  $('#settingPersona')?.addEventListener('change',e=>{setMode(e.target.value,false);v094PersistSettings()});
+  $('#settingUnits')?.addEventListener('change',e=>{state.units=e.target.value==='imperial'?'imperial':'metric';v094PersistSettings()});
+  $('#settingCurrency')?.addEventListener('change',e=>{state.homeCurrency=e.target.value;v094PersistSettings();if($('#fxFrom')){$('#fxFrom').value=state.homeCurrency;convertFx()}});
+  $('#settingLanguage')?.addEventListener('change',e=>{state.preferredLanguage=e.target.value;v094PersistSettings()});
+  $('#settingWalking')?.addEventListener('change',e=>{state.walkingTolerance=e.target.value;v094PersistSettings()});
+  v094SyncSettingsUi();
+}
+v094InstallSettings();
+
+function v094BriefData(){
+  const risk=state.weather?.travelRisk?.level||'unknown';
+  const rain=Boolean(state.weather?.rain);
+  const next=state.nextUp||null;
+  if(state.mode==='visitor'){
+    const rainPlace=FEATURED_PLACES.find(p=>rain&&String(p.rain).toLowerCase()==='excellent')||FEATURED_PLACES[0];
+    return {icon:'🎒',eyebrow:'VISITOR NOW',title:rain?'Keep today rain-friendly':'Make the most of where you are',copy:rain?'Rain is affecting the context. Indoor or well-covered places move up your list.':'Use your location for exact route times, then keep your hotel one tap away.',actions:[['Explore '+rainPlace.name,'place:'+rainPlace.name],['Back to hotel','saved:hotel'],['Plan a trip','move']]};
+  }
+  if(state.mode==='executive'){
+    return {icon:'💼',eyebrow:'SCHEDULE NOW',title:risk==='high'?'Protect your next arrival':'Protect your schedule',copy:risk==='high'?'Current conditions justify extra buffer time. Use Arrive by before the next meeting.':'Use Arrive by to work backwards from the time you must be there.',actions:[['Plan arrival time','arrive'],['Saved places','places'],['Conditions','today']]};
+  }
+  if(state.mode==='new_in_sg'){
+    return {icon:'🌏',eyebrow:'SETTLE IN',title:'Make the routine familiar',copy:'Home, work, saved places and nearby transport are your shortcuts while you learn Singapore.',actions:[['Route home','saved:home'],['Route to work','saved:work'],['Explore nearby','places']]};
+  }
+  return {icon:'🇸🇬',eyebrow:'YOUR DAY',title:risk==='high'?'Conditions need attention':'Your Singapore at a glance',copy:'Prioritize saved routes, live departures and disruptions instead of searching from scratch every time.',actions:[['Plan to work','saved:work'],['Plan home','saved:home'],['Nearby transport','move']]};
+}
+function v094RenderTodayBrief(){
+  let card=$('#v094TodayBrief');
+  if(!card){
+    card=document.createElement('section');card.id='v094TodayBrief';card.className='today-brief card';
+    const focus=$('#personaFocus');if(focus)focus.insertAdjacentElement('beforebegin',card);
+  }
+  const d=v094BriefData();
+  card.innerHTML='<div class="today-brief-head"><span class="today-brief-icon">'+d.icon+'</span><div><div class="label">'+esc(d.eyebrow)+'</div><h3>'+esc(d.title)+'</h3></div></div><p>'+esc(d.copy)+'</p><div class="today-brief-actions">'+d.actions.map(([label,a])=>'<button type="button" data-v094-action="'+esc(a)+'">'+esc(label)+'</button>').join('')+'</div>';
+}
+const _v094RenderPersonaContext=renderPersonaContext;
+renderPersonaContext=function(){_v094RenderPersonaContext();v094RenderTodayBrief();v094SyncSettingsUi()};
+const _v094UpdateHero=updateHero;
+updateHero=function(){_v094UpdateHero();v094RenderTodayBrief()};
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-v094-action]');if(!b)return;
+  const action=b.dataset.v094Action;
+  if(action==='move'||action==='places'||action==='today'){navigateTo(action);return}
+  if(action==='arrive'){navigateTo('travel');setTimeout(()=>$('#timingArriveButton')?.click(),160);return}
+  if(action.startsWith('saved:')){const key=action.slice(6),value=state.places[key];if(!value)return toast('Save your '+key+' first.');$('#tripTo').value=value;navigateTo('travel');setTimeout(planNativeJourney,260);return}
+  if(action.startsWith('place:')){$('#tripTo').value=action.slice(6);navigateTo('travel');setTimeout(planNativeJourney,260)}
+});
+
+const _v094InitFxSelects=initFxSelects;
+initFxSelects=function(){_v094InitFxSelects();if($('#fxFrom')&&FX_CURRENCIES.includes(state.homeCurrency))$('#fxFrom').value=state.homeCurrency;};
+v094RenderTodayBrief();v094SyncSettingsUi();

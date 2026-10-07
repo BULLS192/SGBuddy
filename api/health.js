@@ -9,7 +9,7 @@ export default async function handler(req,res){
   res.status(200).json({
     ok:true,
     service:'sgbuddy',
-    version:'0.9.3-dev',
+    version:'0.9.4-dev',
     time:new Date().toISOString(),
     ltaConfigured:Boolean(process.env.LTA_ACCOUNT_KEY),
     database:{
