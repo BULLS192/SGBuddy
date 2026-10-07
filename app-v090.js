@@ -328,12 +328,15 @@ function openPersonaSheet(firstRun=false){
 function closePersonaSheet(){if(personaFirstRun&&!state.personaOnboarded)return;$('#personaSheet').classList.add('hidden')}
 function choosePersona(mode){personaDraftMode=normalizePersonaMode(mode);if(!state.stayHorizon)$('#personaStayHorizon').value=PERSONA_DEFAULT_HORIZON[personaDraftMode];updatePersonaSheetFields()}
 async function savePersonaContext(){
-  state.mode=normalizePersonaMode(personaDraftMode);
-  state.stayHorizon=$('#personaStayHorizon').value||PERSONA_DEFAULT_HORIZON[state.mode];
+  const nextMode=normalizePersonaMode(personaDraftMode);
+  state.mode=nextMode;
+  state.stayHorizon=$('#personaStayHorizon').value||PERSONA_DEFAULT_HORIZON[nextMode];
   state.travelStyle=$('#personaTravelStyle').value||'balanced';
   state.walkingTolerance=$('#personaWalkingTolerance').value||'normal';
   state.personaOnboarded=true;
-  cachePreferences(true);renderPersonaContext();$('#personaSheet').classList.add('hidden');
+  cachePreferences(true);
+  setMode(nextMode,false);
+  $('#personaSheet').classList.add('hidden');
   queueProfileSync();toast(`${personaConfig().label} mode saved`);
   if(personaFirstRun&&!state.locationChoice)setTimeout(()=>maybeUseLocation(),250);
   personaFirstRun=false;
@@ -456,7 +459,7 @@ async function toggleSavedStation(code,name=''){code=String(code||'').toUpperCas
 function firstRail(){let best=null;for(const station of allRailStationsForSummary()){for(const d of station.departures||[]){if(d.minutes==null)continue;if(!best||d.minutes<best.minutes)best={...d,stationName:station.name,stationCode:station.codes?.[0]||''}}}return best}
 function firstBus(){const x=departureCandidates().filter(x=>x.kind==='bus').sort((a,b)=>a.minutes-b.minutes)?.[0];return x?{no:String(x.label).replace(/^Bus\s+/i,''),minutes:x.minutes,stop:x.detail}:null}
 function advisor(q){const text=q.toLowerCase();let reply='I can use Singapore MRT, bus, weather and disruption data. Try “When is my next train?”, “Should I leave now?” or “Take me to Jewel.”';const rail=firstRail(),bus=firstBus(),risk=tripRiskContext();if(/next.*train|mrt.*time|train.*time/.test(text))reply=rail?`From ${rail.stationName||state.rail?.stations?.[0]?.name||'your station'}, the next ${rail.line} train towards ${rail.destination} is about ${rail.minutes} minute${rail.minutes===1?'':'s'} away${rail.platform?` from platform ${rail.platform}`:''}.`:'Search or locate an MRT station first, then I can tell you the next trains.';else if(/train|mrt|rail/.test(text))reply=state.train?.status===2?`There is a rail disruption: ${state.train.disruptions?.[0]?.message||'check the alert below.'}`:rail?`Rail service is currently normal. Your next nearby train is ${rail.line} towards ${rail.destination} in about ${rail.minutes} minutes.`:'No major train disruption is currently reported.';else if(/rain|weather|umbrella/.test(text))reply=state.weather?.rain?`${state.weather.area||'Your area'}: ${state.weather.forecast||state.weather.summary||'rain forecast'}. I’ll favor routes with less exposed walking in Travel.`:`Current forecast${state.weather?.area?` around ${state.weather.area}`:''}: ${state.weather?.summary||'weather data is not loaded yet'}. No rain signal is affecting route ranking right now.`;else if(/^(get|take|bring) me to |how do i get to |route to /.test(text)){const destination=q.replace(/^(get|take|bring) me to |^how do i get to |^route to /i,'').trim();if(destination){$('#tripTo').value=destination;navigateTo('travel');setTimeout(planNativeJourney,350);reply=`Planning a SGBuddy route to ${destination}…`}}else if(/leave|next.*bus|bus.*time/.test(text)){const candidates=[];if(bus)candidates.push({mode:`bus ${bus.no} at ${bus.stop}`,minutes:bus.minutes});if(rail)candidates.push({mode:`${rail.line} train`,minutes:rail.minutes});candidates.sort((a,b)=>a.minutes-b.minutes);if(candidates[0]){const urgency=candidates[0].minutes<=5?'I would head out now.':'You have a little time, but refresh before leaving.';const conditions=risk.level==='high'?' Conditions are elevated, so I’d add buffer time.':risk.level==='watch'?' Keep a small buffer for current conditions.':'';reply=`The soonest departure I can see is ${candidates[0].mode} in about ${candidates[0].minutes} minutes. ${urgency}${conditions}`}else reply='Locate yourself or save/search a stop first, then I can make that call.'}$('#advisorReply').textContent=reply}
-function setMode(mode,sync=true){state.mode=normalizePersonaMode(mode);localStorage.setItem('sgc-mode',state.mode);renderPersonaContext();document.dispatchEvent(new CustomEvent('sgbuddy:persona',{detail:{mode:state.mode}}));if(sync)queueProfileSync()}
+function setMode(mode,sync=true){state.mode=normalizePersonaMode(mode);localStorage.setItem('sgc-mode',state.mode);if($('#settingPersona'))$('#settingPersona').value=state.mode;renderPersonaContext();document.dispatchEvent(new CustomEvent('sgbuddy:persona',{detail:{mode:state.mode}}));if(sync)queueProfileSync()}
 function initPlaces(){for(const key of ['home','work','hotel'])$(`#${key}Input`).value=state.places[key]||'';updateHotelButton()}
 function savePlaces(){state.places={home:$('#homeInput').value.trim(),work:$('#workInput').value.trim(),hotel:$('#hotelInput').value.trim()};cachePreferences(true);updateHotelButton();queueProfileSync();toast('Places saved — syncing to your SGBuddy profile')}
 function updateHotelButton(){$('#goHotelButton').disabled=!state.places.hotel}

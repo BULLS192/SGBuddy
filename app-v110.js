@@ -19,7 +19,7 @@ if(core){
     executive:{title:'Singapore for a working day',copy:'Business districts, convention/airport access, efficient food, healthcare and meeting-friendly hubs before sightseeing.',chips:[['All','all'],['Business','business'],['Hawker','hawker'],['Healthcare','health'],['Town hubs','town'],['Attractions','attraction']]},
     new_in_sg:{title:'Settle into Singapore',copy:'Groceries, clinics, community clubs, hawkers, parks, libraries, childcare and town centres ranked ahead of tourist stops.',chips:[['All','all'],['Healthcare','health'],['Pharmacies','pharmacy'],['Community','community'],['Hawker','hawker'],['Markets','market'],['Sports','sport'],['Parks','park'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
   };
-  state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();
+  state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();state.v110PlaceRequestId=0;state.v110LoadedPersona='';
 
   function persona(){return PERSONA_COPY[state.mode]||PERSONA_COPY.resident}
   function distance(m){if(m==null||!Number.isFinite(Number(m)))return '';return m<1000?Math.round(m)+' m':(m/1000).toFixed(1)+' km'}
@@ -71,9 +71,10 @@ if(core){
   }
   function renderPlaces(){
     const grid=$('#placesGrid');if(!grid)return;
+    if(state.v110LoadedPersona&&state.v110LoadedPersona!==state.mode){loadPlaces({resetFilter:true});return}
     const rows=visiblePlaces(),p=persona(),shown=rows.slice(0,state.v110VisibleCount);
     const title=$('#placesSection h2');if(title)title.textContent=p.title;
-    if($('#placesPersonaHint'))$('#placesPersonaHint').textContent=p.copy+' · '+state.v110Places.length+' ranked matches';
+    if($('#placesPersonaHint'))$('#placesPersonaHint').textContent='Showing '+p.label+' ranking · '+p.copy+' · '+state.v110Places.length+' ranked matches';
     const hotel=$('#placesBackHotel');if(hotel)hotel.classList.toggle('hidden',!((state.mode==='visitor'||state.mode==='executive')&&state.places.hotel));
     renderChips();
     const cards=shown.map((row,i)=>{
@@ -96,17 +97,26 @@ if(core){
   async function loadPlaces({resetFilter=false}={}){
     if(resetFilter)state.v110PlaceFilter='all';
     state.v110VisibleCount=24;
+    const requestId=++state.v110PlaceRequestId;
+    const requestedPersona=state.mode;
+    const requestedFilter=state.v110PlaceFilter;
     const q=$('#placeSearch')?.value.trim()||'';
-    const params=new URLSearchParams({action:'places',persona:state.mode,limit:'120'});
+    const params=new URLSearchParams({action:'places',persona:requestedPersona,limit:'120'});
     if(q)params.set('q',q);
-    if(state.v110PlaceFilter!=='all')params.set('category',state.v110PlaceFilter);
+    if(requestedFilter!=='all')params.set('category',requestedFilter);
     if(Number.isFinite(state.lat)&&Number.isFinite(state.lon)){params.set('lat',String(state.lat));params.set('lon',String(state.lon))}
-    const grid=$('#placesGrid');if(grid)grid.innerHTML='<div class="card empty">Ranking Singapore places for you…</div>';
+    const grid=$('#placesGrid');
+    if(grid)grid.innerHTML='<div class="card empty">Loading '+escText(persona().label)+' places…</div>';
     try{
       const payload=await json('/api/journey?'+params.toString());
+      if(requestId!==state.v110PlaceRequestId||requestedPersona!==state.mode||requestedFilter!==state.v110PlaceFilter)return;
       state.v110Places=payload.items||[];
+      state.v110LoadedPersona=requestedPersona;
       renderPlaces();
-    }catch(error){if(grid)grid.innerHTML='<div class="card empty">Place Index unavailable: '+escText(error.message)+'</div>'}
+    }catch(error){
+      if(requestId!==state.v110PlaceRequestId)return;
+      if(grid)grid.innerHTML='<div class="card empty">Place Index unavailable: '+escText(error.message)+'</div>';
+    }
   }
 
   const oldSearch=$('#placeSearch');
@@ -128,7 +138,7 @@ if(core){
     }
   });
   document.addEventListener('change',e=>{if(e.target?.id==='v110PlaceSort'){state.v110PlaceSort=e.target.value;renderPlaces()}});
-  document.addEventListener('sgbuddy:persona',()=>loadPlaces({resetFilter:true}));
+  document.addEventListener('sgbuddy:persona',e=>{state.v110Places=[];state.v110LoadedPersona='';state.v110PlaceRequestId++;const grid=$('#placesGrid');if(grid)grid.innerHTML='<div class="card empty">Switching to '+escText(persona().label)+' places…</div>';loadPlaces({resetFilter:true})});
   document.addEventListener('sgbuddy:location',()=>loadPlaces());
 
   function ensureMap(){
