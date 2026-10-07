@@ -25,7 +25,8 @@ export default async function handler(req,res){
       const authoritative=await searchSingaporeAddresses(q,{limit:8});
       if(authoritative.items.length)return res.status(200).json({ok:true,...authoritative});
       const fallback=await searchJourneyPlaces(q,{limit:8});
-      const items=(fallback.suggestions||[]).map(x=>({
+      const addressLike=(fallback.suggestions||[]).filter(x=>!['bus-stop','station','rail'].includes(String(x.type||'').toLowerCase()));
+      const items=addressLike.map(x=>({
         label:x.label||x.value,address:x.address||x.value||x.label,postal:x.postal||null,
         lat:Number.isFinite(Number(x.lat))?Number(x.lat):null,lon:Number.isFinite(Number(x.lon))?Number(x.lon):null,
         source:'SGBuddy catalog',verified:false,
