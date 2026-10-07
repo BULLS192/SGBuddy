@@ -2,7 +2,7 @@ const core=window.SGBUDDY_CORE;
 if(core){
   const {state,$,toast,json,navigateTo,setActiveNav}=core;
   const qsa=selector=>[...document.querySelectorAll(selector)];
-  const VERSION='1.1.0-dev';
+  const VERSION='1.1.0';
   window.__SGBUDDY_CLIENT_VERSION__=VERSION;
   if($('#appVersion'))$('#appVersion').textContent='v'+VERSION;
 
