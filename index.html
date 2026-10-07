@@ -230,10 +230,24 @@
         </div>
       </details>
 
-      <section id="freyaSection" class="advisor card nav-section" data-nav-section="freya">
-        <div class="advisor-head"><div class="freya-orb">F</div><div><div class="label">FREYA-READY ADVISOR</div><h3>What do you need?</h3></div></div>
-        <div id="advisorReply" class="advisor-reply">Ask about the next train, next bus, rail status, rain, or whether you should leave now.</div>
-        <form id="advisorForm" class="advisor-form"><input id="advisorInput" placeholder="When is my next train?"/><button aria-label="Ask">↑</button></form>
+      <section id="freyaSection" class="advisor merlion-advisor card nav-section" data-nav-section="freya" aria-labelledby="merlionAdvisorTitle">
+        <div class="advisor-head merlion-advisor-head">
+          <div id="merlionCompanion" class="merlion-stage" data-state="idle" aria-label="SGBuddy Merlion companion">
+            <div class="merlion-glow" aria-hidden="true"></div>
+            <div id="merlionAvatar" class="merlion-avatar">
+              <img src="/assets/merlion-companion.webp" alt="SGBuddy Merlion mascot" width="160" height="160" />
+            </div>
+            <div id="merlionModelMount" class="merlion-model-mount" aria-hidden="true"></div>
+            <span class="merlion-state-dot" aria-hidden="true"></span>
+          </div>
+          <div class="merlion-heading">
+            <div class="label">SGBUDDY COMPANION</div>
+            <h3 id="merlionAdvisorTitle">Ask your Merlion</h3>
+            <div class="merlion-state-line"><span id="merlionStateText">Ready</span><span aria-hidden="true">·</span><span>Singapore-aware</span></div>
+          </div>
+        </div>
+        <div id="advisorReply" class="advisor-reply" aria-live="polite">Ask about the next train, next bus, rail status, rain, nearby places, or whether you should leave now.</div>
+        <form id="advisorForm" class="advisor-form"><input id="advisorInput" autocomplete="off" placeholder="Ask your SGBuddy…" aria-label="Ask the SGBuddy Merlion"/><button aria-label="Ask">↑</button></form>
         <div class="chips"><button data-q="When is my next train?">Next train</button><button data-q="Should I leave now?">Leave now?</button><button data-q="Any train problems?">Train status</button><button data-q="Is it raining?">Rain?</button></div>
       </section>
 
