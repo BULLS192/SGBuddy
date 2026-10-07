@@ -28,7 +28,7 @@ export default async function handler(req,res){
   }
 
   if(action==='sync-places'){
-    const allowed=new Set(['hawker','parks','libraries','community','health','childcare','supermarkets','sports','markets']);
+    const allowed=new Set(['hawker','parks','libraries','community','health','childcare','pharmacies','sports','markets']);
     const source=String(req.query.source||'');
     if(!allowed.has(source))return res.status(400).json({ok:false,error:'Unknown source'});
     try{
