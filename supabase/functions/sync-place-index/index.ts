@@ -59,7 +59,7 @@ function rowFromFeature(spec:Spec,f:any,index:number){
   const sourceUrl=`https://data.gov.sg/datasets/${spec.dataset}/view`;
   return {
     slug:`${spec.key}-${cleanSlug(ref)}`,name,aliases:[],kind:spec.kind,category:spec.category,
-    geo:`POINT(${Number(lon)} ${Number(lat)})`,description:decode(a.DESCRIPTION)||spec.description,
+    geo:`POINT(${Number(lon)} ${Number(lat)})`,description:spec.description,
     address,postal_code:postal,source_key:spec.key,source_ref:ref,source_url:sourceUrl,
     verified_at:new Date().toISOString(),active:true,
     metadata:{persona_scores:spec.scores,catalog_layer:"official_place_index",dataset_id:spec.dataset,official:true}

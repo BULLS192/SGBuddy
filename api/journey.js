@@ -78,9 +78,9 @@ export default async function handler(req,res){
     const prior=etaCache.get(key);if(prior&&Date.now()-prior.at<ETA_TTL)return res.status(200).json(prior.value);
     const rows=await pool(names,3,async name=>{
       try{
-        const p=await planJourney({originLat:lat,originLon:lon,to:name,includeWeather:false});
-        const o=p?.options?.[0];
-        return {name,ok:Boolean(p?.ok&&o),minutes:o?.totalMinutes??null,mode:o?.mode||null,title:o?.title||null,realtime:Boolean(o?.realtime),destination:p?.destination||null};
+        const p=await compareJourneyModes({originLat:lat,originLon:lon,to:name});
+        const pt=p?.publicTransport||null;
+        return {name,ok:Boolean(p?.ok),fastestEstimate:p?.fastestEstimate||null,walking:p?.walking||null,publicTransport:pt,drive:p?.drive||null,rideshare:p?.rideshare||null,minutes:pt?.minutes??null,mode:pt?.routeMode||null,title:pt?.title||null,realtime:Boolean(pt?.realtime),destination:p?.destination||null};
       }catch(error){return {name,ok:false,error:error.message,minutes:null}}
     });
     const value={ok:true,generatedAt:new Date().toISOString(),items:rows};

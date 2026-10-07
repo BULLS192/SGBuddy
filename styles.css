@@ -123,3 +123,6 @@ button:disabled{cursor:wait}
 .v110-place-filter-shell>select{min-width:122px;border:1px solid var(--line);background:#07111f;color:var(--text);border-radius:999px;padding:9px 10px;font-size:11px;font-weight:800}
 .v110-results-loading{opacity:.62;pointer-events:none;min-height:420px}
 @media(max-width:700px){.v110-place-filter-shell{grid-template-columns:32px minmax(0,1fr) 32px}.v110-place-filter-shell>select{grid-column:1/-1;width:100%;margin:0}.v110-filter-arrow{width:32px;height:32px;min-height:32px}}
+
+/* v1.1 mobility intelligence */
+.v110-mode-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.v110-mode-chip{display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:7px 9px;border:1px solid #2a4259;border-radius:11px;background:#0b1726;color:#c9d8e6;font-size:10px;white-space:nowrap}.v110-mode-chip b{font-size:13px}.v110-mode-chip strong{color:#f2f7fb;font-size:11px}.v110-mode-chip.best{border-color:#2e705e;background:#122b26;color:#9be8cf}.v110-mode-chip.best strong{color:#9be8cf}.v110-mobility-locate{display:block;padding:8px 10px;border-radius:11px;background:#0b1726;border:1px solid #263b50;color:var(--muted);font-size:10px}@media(max-width:520px){.v110-mode-chip{flex:1 1 calc(50% - 4px);justify-content:center}}
