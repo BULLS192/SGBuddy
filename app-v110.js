@@ -20,7 +20,7 @@ if(core){
     executive:{title:'Singapore for a working day',copy:'Business districts, convention/airport access, efficient food, healthcare and meeting-friendly hubs before sightseeing.',chips:[['All','all'],['Business','business'],['Hawker','hawker'],['Healthcare','health'],['Town hubs','town'],['Attractions','attraction']]},
     new_in_sg:{title:'Settle into Singapore',copy:'Groceries, clinics, community clubs, hawkers, parks, libraries, childcare and town centres ranked ahead of tourist stops.',chips:[['All','all'],['Healthcare','health'],['Pharmacies','pharmacy'],['Community','community'],['Hawker','hawker'],['Markets','market'],['Sports','sport'],['Parks','park'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
   };
-  state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();state.v110PlaceRequestId=0;state.v110LoadedPersona='';
+  state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();state.v110PlaceRequestId=0;state.v110LoadedPersona='';state.v110FilterScrollLeft=0;
 
   function persona(){return PERSONA_COPY[state.mode]||PERSONA_COPY.resident}
   function distance(m){if(m==null||!Number.isFinite(Number(m)))return '';return m<1000?Math.round(m)+' m':(m/1000).toFixed(1)+' km'}
@@ -46,11 +46,23 @@ if(core){
   function renderChips(){
     let host=$('#v110PlaceFilters');
     if(!host){
-      host=document.createElement('div');host.id='v110PlaceFilters';host.className='v110-place-filters';
+      host=document.createElement('div');host.id='v110PlaceFilters';host.className='v110-place-filter-shell';
       $('#placesGrid')?.insertAdjacentElement('beforebegin',host);
     }
-    host.innerHTML=persona().chips.map(([label,key])=>'<button type="button" data-place-filter="'+key+'" class="'+(state.v110PlaceFilter===key?'active':'')+'">'+label+'</button>').join('')+
+    const previous=$('#v110PlaceFilterRail');
+    if(previous)state.v110FilterScrollLeft=previous.scrollLeft;
+    host.innerHTML='<button type="button" class="v110-filter-arrow" data-filter-scroll="-1" aria-label="Scroll categories left">‹</button>'+
+      '<div id="v110PlaceFilterRail" class="v110-place-filters">'+persona().chips.map(([label,key])=>'<button type="button" data-place-filter="'+key+'" class="'+(state.v110PlaceFilter===key?'active':'')+'">'+label+'</button>').join('')+'</div>'+
+      '<button type="button" class="v110-filter-arrow" data-filter-scroll="1" aria-label="Scroll categories right">›</button>'+
       '<select id="v110PlaceSort" aria-label="Sort places"><option value="best">Best for me</option><option value="nearest">Nearest first</option></select>';
+    const rail=$('#v110PlaceFilterRail');
+    if(rail){
+      rail.scrollLeft=state.v110FilterScrollLeft||0;
+      rail.addEventListener('scroll',()=>{state.v110FilterScrollLeft=rail.scrollLeft},{passive:true});
+      rail.addEventListener('wheel',e=>{
+        if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){rail.scrollLeft+=e.deltaY;e.preventDefault()}
+      },{passive:false});
+    }
     $('#v110PlaceSort').value=state.v110PlaceSort;
   }
   async function loadPlaceEtas(rows){
@@ -95,9 +107,10 @@ if(core){
     loadPlaceEtas(shown);
     if(!$('#placesMapCard')?.classList.contains('hidden'))renderMap();
   }
-  async function loadPlaces({resetFilter=false}={}){
+  async function loadPlaces({resetFilter=false,preserveScroll=false}={}){
     if(resetFilter)state.v110PlaceFilter='all';
     state.v110VisibleCount=24;
+    const preservedY=preserveScroll?window.scrollY:null;
     const requestId=++state.v110PlaceRequestId;
     const requestedPersona=state.mode;
     const requestedFilter=state.v110PlaceFilter;
@@ -107,16 +120,21 @@ if(core){
     if(requestedFilter!=='all')params.set('category',requestedFilter);
     if(Number.isFinite(state.lat)&&Number.isFinite(state.lon)){params.set('lat',String(state.lat));params.set('lon',String(state.lon))}
     const grid=$('#placesGrid');
-    if(grid)grid.innerHTML='<div class="card empty">Loading '+escText(persona().label)+' places…</div>';
+    if(grid){
+      grid.classList.add('v110-results-loading');
+      if(!preserveScroll)grid.innerHTML='<div class="card empty">Loading '+escText(persona().label)+' places…</div>';
+    }
     try{
       const payload=await json('/api/journey?'+params.toString());
       if(requestId!==state.v110PlaceRequestId||requestedPersona!==state.mode||requestedFilter!==state.v110PlaceFilter)return;
       state.v110Places=payload.items||[];
       state.v110LoadedPersona=requestedPersona;
+      if(grid)grid.classList.remove('v110-results-loading');
       renderPlaces();
+      if(preserveScroll&&Number.isFinite(preservedY))requestAnimationFrame(()=>window.scrollTo({top:preservedY,behavior:'instant'}));
     }catch(error){
       if(requestId!==state.v110PlaceRequestId)return;
-      if(grid)grid.innerHTML='<div class="card empty">Place Index unavailable: '+escText(error.message)+'</div>';
+      if(grid){grid.classList.remove('v110-results-loading');grid.innerHTML='<div class="card empty">Place Index unavailable: '+escText(error.message)+'</div>'}
     }
   }
 
@@ -129,7 +147,13 @@ if(core){
   const toolbarNote=$('.places-toolbar > span');if(toolbarNote)toolbarNote.textContent='Search across the SGBuddy Place Index. Rankings change with your user mode; use Locate for nearest-first sorting.';
 
   document.addEventListener('click',e=>{
-    const f=e.target.closest('[data-place-filter]');if(f){state.v110PlaceFilter=f.dataset.placeFilter;loadPlaces();return}
+    const arrow=e.target.closest('[data-filter-scroll]');if(arrow){const rail=$('#v110PlaceFilterRail');if(rail)rail.scrollBy({left:Number(arrow.dataset.filterScroll)*Math.max(220,rail.clientWidth*.7),behavior:'smooth'});return}
+    const f=e.target.closest('[data-place-filter]');if(f){
+      const rail=$('#v110PlaceFilterRail');if(rail)state.v110FilterScrollLeft=rail.scrollLeft;
+      state.v110PlaceFilter=f.dataset.placeFilter;
+      loadPlaces({preserveScroll:true});
+      return
+    }
     const more=e.target.closest('#v110ShowMorePlaces');if(more){state.v110VisibleCount+=24;renderPlaces();return}
     const c=e.target.closest('.v110-compare-place');if(c){
       const dest=c.dataset.placeName;
@@ -138,7 +162,7 @@ if(core){
       return;
     }
   });
-  document.addEventListener('change',e=>{if(e.target?.id==='v110PlaceSort'){state.v110PlaceSort=e.target.value;renderPlaces()}});
+  document.addEventListener('change',e=>{if(e.target?.id==='v110PlaceSort'){const y=window.scrollY;state.v110PlaceSort=e.target.value;renderPlaces();requestAnimationFrame(()=>window.scrollTo({top:y,behavior:'instant'}))}});
   document.addEventListener('sgbuddy:persona',e=>{state.v110Places=[];state.v110LoadedPersona='';state.v110PlaceRequestId++;const grid=$('#placesGrid');if(grid)grid.innerHTML='<div class="card empty">Switching to '+escText(persona().label)+' places…</div>';loadPlaces({resetFilter:true})});
   document.addEventListener('sgbuddy:location',()=>loadPlaces());
 
