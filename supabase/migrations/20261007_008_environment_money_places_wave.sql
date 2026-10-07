@@ -1,5 +1,5 @@
--- SGBuddy v0.9.0-dev: Travel + Living Intelligence wave
--- Staged migration only. Do not apply to production until release approval.
+-- SGBuddy v1.0: Travel + Living Intelligence catalog and security hardening.
+-- Explicit grants are included so Data API access does not depend on legacy defaults.
 
 insert into public.data_sources
 (source_key,name,authority,base_url,source_type,refresh_strategy,default_ttl_seconds,active,metadata,last_verified_at)
@@ -52,7 +52,7 @@ returns table(
   slug text,name text,category text,description text,latitude double precision,longitude double precision,
   metadata jsonb,source_key text,source_url text,verified_at timestamptz
 )
-language sql stable security definer set search_path = pg_catalog, public, extensions as $$
+language sql stable security invoker set search_path = pg_catalog, public, extensions as $$
   select p.slug,p.name,p.category,p.description,ST_Y(p.geo::geometry),ST_X(p.geo::geometry),
          p.metadata,p.source_key,p.source_url,p.verified_at
   from public.place_catalog p
@@ -74,7 +74,7 @@ returns table(
   business_registration_number text,address text,postal_code text,latitude double precision,longitude double precision,
   distance_m double precision,verified_at timestamptz,source_url text
 )
-language sql stable security definer set search_path = pg_catalog, public, extensions as $$
+language sql stable security invoker set search_path = pg_catalog, public, extensions as $$
   with q as (
     select nullif(lower(trim(coalesce(search_text,''))),'') term,
            case when latitude between 1.0 and 1.6 and longitude between 103.4 and 104.2
@@ -96,3 +96,88 @@ language sql stable security definer set search_path = pg_catalog, public, exten
 $$;
 revoke all on function public.nearby_public_money_changers(double precision,double precision,text,integer) from public;
 grant execute on function public.nearby_public_money_changers(double precision,double precision,text,integer) to anon, authenticated;
+
+
+-- v1.0 Data API hardening ----------------------------------------------------
+alter table public.place_catalog enable row level security;
+alter table public.money_changers enable row level security;
+
+drop policy if exists place_catalog_public_active_select on public.place_catalog;
+create policy place_catalog_public_active_select
+on public.place_catalog for select
+to anon, authenticated
+using (active);
+
+drop policy if exists money_changers_public_listed_select on public.money_changers;
+create policy money_changers_public_listed_select
+on public.money_changers for select
+to anon, authenticated
+using (licence_status is not null);
+
+revoke all on table public.place_catalog from anon, authenticated;
+grant select (
+  id,slug,name,aliases,kind,category,description,address,postal_code,geo,
+  source_key,source_ref,source_url,verified_at,active,metadata
+) on public.place_catalog to anon, authenticated;
+
+revoke all on table public.money_changers from anon, authenticated;
+grant select (
+  id,place_id,legal_name,licence_type,licence_status,licence_reference,
+  source_key,verified_at,metadata
+) on public.money_changers to anon, authenticated;
+
+create or replace function public.search_public_places(search_text text,result_limit integer default 8)
+returns table(slug text,name text,kind text,category text,aliases text[],latitude double precision,longitude double precision,source_key text)
+language sql stable security invoker set search_path = pg_catalog, public, extensions as $$
+  with q as (select lower(trim(coalesce(search_text,''))) term,greatest(1,least(coalesce(result_limit,8),20)) lim)
+  select p.slug,p.name,p.kind,p.category,p.aliases,ST_Y(p.geo::geometry),ST_X(p.geo::geometry),p.source_key
+  from public.place_catalog p,q
+  where p.active and q.term<>'' and (
+    lower(p.name) % q.term or lower(p.name) like '%'||q.term||'%'
+    or exists(select 1 from unnest(p.aliases) a where lower(a)=q.term or lower(a) like '%'||q.term||'%')
+  )
+  order by case when lower(p.name)=q.term then 0 else 1 end,greatest(similarity(lower(p.name),q.term),0) desc,p.name
+  limit (select lim from q);
+$$;
+revoke all on function public.search_public_places(text,integer) from public;
+grant execute on function public.search_public_places(text,integer) to anon, authenticated;
+
+create or replace function public.public_catalog_stats()
+returns jsonb
+language sql stable security invoker set search_path = pg_catalog, public as $$
+select jsonb_build_object(
+  'places',(select count(*) from public.place_catalog where active),
+  'money_changers',(select count(*) from public.money_changers),
+  'connected',true
+);
+$$;
+revoke all on function public.public_catalog_stats() from public;
+grant execute on function public.public_catalog_stats() to anon, authenticated;
+
+drop policy if exists traveler_profiles_own_select on public.traveler_profiles;
+drop policy if exists traveler_profiles_own_insert on public.traveler_profiles;
+drop policy if exists traveler_profiles_own_update on public.traveler_profiles;
+
+create policy traveler_profiles_own_select
+on public.traveler_profiles for select
+to authenticated
+using ((select auth.uid()) = auth_user_id);
+
+create policy traveler_profiles_own_insert
+on public.traveler_profiles for insert
+to authenticated
+with check ((select auth.uid()) = auth_user_id);
+
+create policy traveler_profiles_own_update
+on public.traveler_profiles for update
+to authenticated
+using ((select auth.uid()) = auth_user_id)
+with check ((select auth.uid()) = auth_user_id);
+
+revoke all on table public.traveler_profiles from anon;
+grant select,insert,update on table public.traveler_profiles to authenticated;
+
+revoke all on function public.sync_legacy_traveler_profile(text,text,text,text,text,text,jsonb) from public;
+revoke all on function public.sync_legacy_traveler_profile(text,text,text,text,text,text,jsonb) from anon;
+revoke all on function public.sync_legacy_traveler_profile(text,text,text,text,text,text,jsonb) from authenticated;
+grant execute on function public.sync_legacy_traveler_profile(text,text,text,text,text,text,jsonb) to service_role;

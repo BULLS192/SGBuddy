@@ -36,7 +36,7 @@ if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
 if(!html.includes('/app-v090.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("const CLIENT_VERSION='0.9.0-dev';")) fail('Visible client version does not match Wave 4.3');
+if(!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.0.0'")) fail('Visible client version does not include v1.0.0');
 
 for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
@@ -54,7 +54,7 @@ if(!fs.existsSync('lib/profile-db.js'))fail('Traveler profile database bridge is
 for(const required of ['accountButton','accountSheet','accountEmail','accountPassword','signInButton','createAccountButton','forgotPasswordButton','accountSignedIn','accountSyncButton','signOutButton','passwordResetPanel','newPasswordInput','updatePasswordButton','accountMessage']){if(!ids.has(required))fail(`v0.8.2 account control #${required} is missing`)}
 const healthV82=fs.readFileSync('api/health.js','utf8');
 for(const flag of ['supabaseAuth:true','crossDeviceAccounts:true','passwordRecovery:true','accountProfileSync:true']){if(!healthV82.includes(flag))fail(`Account health flag ${flag} missing`)}
-if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 4'))fail('Cloud profile schema was not upgraded to v4');
+if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 5'))fail('Guest profile privacy schema was not upgraded to v5');
 if(!js.includes('function loadAccountProfile'))fail('Account profile loader is missing');
 if(!js.includes("SUPABASE_PUBLIC_KEY='sb_publishable_"))fail('Supabase publishable key is not configured in the client');
 
@@ -72,3 +72,10 @@ for(const endpoint of ['/air-temperature','/relative-humidity','/rainfall','/win
   if(!weatherSource.includes(endpoint)) fail('Expanded weather endpoint '+endpoint+' missing');
 }
 if(!fs.existsSync('supabase/migrations/20261007_008_environment_money_places_wave.sql')) fail('Wave database migration is missing');
+
+if(!fs.existsSync('app-v100.js')) fail('v1.0 hardening module is missing');
+if(!js.includes('legacyCloudPreferences')) fail('v1.0 guest privacy boundary is missing');
+if(!fs.readFileSync('api/health.js','utf8').includes('releaseCandidate:true')) fail('v1.0 release-candidate health flag missing');
+const migrationV1=fs.readFileSync('supabase/migrations/20261007_008_environment_money_places_wave.sql','utf8');
+if(!migrationV1.includes('security invoker')) fail('v1.0 public RPC hardening is missing');
+if(!migrationV1.includes('to authenticated')) fail('v1.0 authenticated RLS role scoping is missing');
