@@ -659,15 +659,19 @@ runDataCoreDiagnostics=async function({quiet=false}={}){
   try{
     const [health,snapshot]=await Promise.all([json('/api/health'),json('/api/snapshot')]);
     const q=snapshot.weather?.dataQuality||{};
-    const weatherState=q.status==='complete'?'Live':q.status==='partial'?'Degraded':'Unavailable';
+    const recentFallback=q.status==='fresh-fallback';
+    const weatherState=q.status==='complete'?'Live':recentFallback?'Live · recent fallback':q.status==='partial'?'Degraded':'Unavailable';
     if($('#dataCoreLta'))$('#dataCoreLta').textContent=health.ltaConfigured?'Live':'Not configured';
     if($('#dataCoreRail'))$('#dataCoreRail').textContent=state.rail?.realtimeAvailable===true?'Realtime':health.features?.railRealtime?'Scheduled + GTFS':'Unavailable';
     if($('#dataCoreWeather'))$('#dataCoreWeather').textContent=weatherState;
     if($('#dataCoreProfile'))$('#dataCoreProfile').textContent=health.database?.connected?'Connected':health.database?.configured?'Configured':'Local';
-    const degraded=weatherState!=='Live'||health.database?.configured&&!health.database?.connected;
+    const degraded=['partial','unavailable'].includes(q.status)||health.database?.configured&&!health.database?.connected;
     if(status){status.textContent=degraded?'Degraded':'Healthy';status.classList.toggle('synced',!degraded);status.classList.toggle('error',degraded)}
-    if(result)result.textContent=(degraded?'Core services are responding with partial data':'All core services responded')+' · v'+health.version+' · checked '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-    if(!quiet)toast(degraded?'Data Core is responding with partial data':'Data Core is healthy');
+    if(result){
+      const fallbackDetail=recentFallback&&q.staleSignals?.length?' · recent fallback: '+q.staleSignals.join(', '):'';
+      result.textContent=(degraded?'Core services are responding with partial data':'Core services are healthy')+fallbackDetail+' · v'+health.version+' · checked '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    }
+    if(!quiet)toast(degraded?'Data Core is responding with partial data':recentFallback?'Data Core is healthy with a recent weather fallback':'Data Core is healthy');
     return !degraded;
   }catch(e){
     if(status){status.textContent='Unavailable';status.classList.add('error')}
@@ -919,7 +923,7 @@ initFxSelects=function(){_v094InitFxSelects();if($('#fxFrom')&&FX_CURRENCIES.inc
 v094RenderTodayBrief();v094SyncSettingsUi();
 
 /* === SGBuddy v1.0 bridge === */
-window.__SGBUDDY_CLIENT_VERSION__='1.1.0-dev';
-if($('#appVersion'))$('#appVersion').textContent='v1.1.0-dev';
+window.__SGBUDDY_CLIENT_VERSION__='1.1.0';
+if($('#appVersion'))$('#appVersion').textContent='v1.1.0';
 window.SGBUDDY_CORE={state,$,$,toast,json,navigateTo,renderEnvironment,renderFeaturedPlaces,renderAccountHub,renderPersonaContext,v094SyncSettingsUi,queueProfileSync,syncAccountProfile,planNativeJourney,setActiveNav};
 import('/app-v100.js').then(()=>import('/app-v110.js')).catch(error=>console.warn('v1 module',error?.message));
