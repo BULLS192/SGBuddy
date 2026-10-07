@@ -1,5 +1,6 @@
 import { hasLtaKey } from '../lib/lta.js';
-import { planJourney, searchJourneyPlaces } from '../lib/journey.js';
+import { planJourney, searchJourneyPlaces, compareJourneyModes } from '../lib/journey.js';
+import { listPersonaPlaces } from '../lib/catalog-db.js';
 import { searchSingaporeAddresses, hasOneMapCredentials } from '../lib/onemap.js';
 
 const etaCache=new Map();
@@ -14,9 +15,30 @@ async function pool(items,limit,worker){
 export default async function handler(req,res){
   res.setHeader('Cache-Control','no-store');
   if(req.method!=='GET') return res.status(405).json({error:'Method not allowed'});
-  if(!hasLtaKey()) return res.status(503).json({error:'LTA data is not configured',code:'NO_LTA_KEY'});
-
   const action=String(req.query.action||'').trim();
+
+  if(action==='places'){
+    try{
+      const rows=await listPersonaPlaces({
+        persona:String(req.query.persona||'resident'),category:String(req.query.category||''),
+        lat:Number(req.query.lat),lon:Number(req.query.lon),query:String(req.query.q||''),limit:Number(req.query.limit)||100,
+      });
+      return res.status(200).json({ok:true,persona:String(req.query.persona||'resident'),count:rows.length,items:rows});
+    }catch(error){return res.status(500).json({ok:false,error:error.message||'Place index unavailable',items:[]})}
+  }
+
+  if(action==='sync-places'){
+    const allowed=new Set(['hawker','parks','libraries','community','health','childcare','supermarkets']);
+    const source=String(req.query.source||'');
+    if(!allowed.has(source))return res.status(400).json({ok:false,error:'Unknown source'});
+    try{
+      const r=await fetch('https://zcxcjmtejcpvlttvaxes.supabase.co/functions/v1/sync-place-index?source='+encodeURIComponent(source),{headers:{accept:'application/json'},cache:'no-store'});
+      const p=await r.json().catch(()=>({}));
+      return res.status(r.ok?200:r.status).json(p);
+    }catch(error){return res.status(502).json({ok:false,error:error.message||'Place sync unavailable'})}
+  }
+
+  if(!hasLtaKey()) return res.status(503).json({error:'LTA data is not configured',code:'NO_LTA_KEY'});
 
   if(action==='geocode'){
     const q=String(req.query.q||'').trim();
@@ -33,6 +55,18 @@ export default async function handler(req,res){
       }));
       return res.status(200).json({ok:true,query:q,configured:hasOneMapCredentials(),items});
     }catch(error){return res.status(502).json({ok:false,error:error.message,configured:hasOneMapCredentials(),items:[]})}
+  }
+
+  if(action==='compare'){
+    const to=String(req.query.to||'').trim(),from=String(req.query.from||'').trim();
+    if(!to)return res.status(400).json({ok:false,error:'Destination is required'});
+    try{
+      const payload=await compareJourneyModes({
+        from,to,originLat:Number.isFinite(Number(req.query.lat))?Number(req.query.lat):undefined,
+        originLon:Number.isFinite(Number(req.query.lon))?Number(req.query.lon):undefined,
+      });
+      return res.status(payload?.ok?200:422).json(payload);
+    }catch(error){return res.status(500).json({ok:false,error:error.message||'Mode comparison failed'})}
   }
 
   if(action==='place-etas'){
