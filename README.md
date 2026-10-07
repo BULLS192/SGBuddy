@@ -1,6 +1,6 @@
 # SGBuddy
 
-SGBuddy is a mobile-first Singapore mobility companion and shared data layer for future FREYA and Providence integrations.
+SGBuddy is a mobile-first Singapore Travel + Living Intelligence companion and shared Singapore data layer for the future Omnidite Travel Intelligence Core, FREYA and related experiences.
 
 ## Wave 2
 
@@ -57,6 +57,13 @@ Copy `.env.example` to `.env.local` and add an LTA key for live data.
 - Station crowd density and crowd forecast.
 - Richer rail alerts from GTFS-Realtime service alerts.
 - Rain-now / rain-arriving intelligence.
-- STB TIH attractions, events, hotels and F&B.
+- Curated/official attraction and experience sources. STB TIH is not used because the service was discontinued.
 - Multilingual Traveller Mode.
 - Providence map layers and FREYA tool calls.
+
+
+## v0.9.0-dev review wave
+
+The isolated development branch adds expanded NEA/data.gov.sg weather and air-quality context, ECB reference FX, MAS-listed money changer discovery, a top-20 Singapore places surface, and the scalable Today / Move / Places / Money / Account information architecture.
+
+This branch is intentionally non-production. See docs/v090-travel-living-wave.md before applying its staged Supabase migration or approving a release.

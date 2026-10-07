@@ -21,7 +21,7 @@
     <header class="topbar">
       <div class="brand-block">
         <img class="brand-mark" src="/sgbuddy-icon-v2.png" alt="" aria-hidden="true" />
-        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.8.2</span></div><h1 id="greeting">Good afternoon</h1></div>
+        <div><div class="brand-meta"><div class="eyebrow">SGBUDDY</div><span id="appVersion" class="version-badge">v0.9.0-dev</span></div><h1 id="greeting">Good afternoon</h1></div>
       </div>
       <div class="top-actions">
         <button id="accountButton" class="account-pill" type="button" aria-label="Open SGBuddy account"><span id="accountButtonIcon">◎</span><span id="accountButtonText">Account</span></button>
@@ -53,6 +53,24 @@
       </section>
 
       <section id="tripIntelligence" class="trip-intelligence card"><div class="trip-intelligence-head"><div><div class="label">TRIP INTELLIGENCE</div><h3 id="tripIntelTitle">Checking travel conditions</h3></div><span id="tripIntelLevel" class="risk-pill">—</span></div><p id="tripIntelCopy">SGBuddy is combining weather, rail and traffic conditions.</p><div id="tripIntelSignals" class="trip-signals"></div><button id="planAroundConditions" class="secondary full" type="button">Plan around conditions</button></section>
+
+      <section id="environmentCard" class="environment-card card">
+        <div class="environment-head">
+          <div><div class="label">SINGAPORE CONDITIONS</div><h3 id="envHeadline">Weather & air quality</h3></div>
+          <span id="envRiskBadge" class="risk-pill">—</span>
+        </div>
+        <p id="envForecast" class="environment-summary">Loading NEA-backed conditions…</p>
+        <div class="environment-grid">
+          <div><span class="environment-value" id="envTemp">—</span><span>Temperature</span></div>
+          <div><span class="environment-value" id="envHumidity">—</span><span>Humidity</span></div>
+          <div><span class="environment-value" id="envRain">—</span><span>Rain · 5 min</span></div>
+          <div><span class="environment-value" id="envWind">—</span><span>Wind</span></div>
+          <div><span class="environment-value" id="envPsi">—</span><span>24h PSI</span></div>
+          <div><span class="environment-value" id="envPm25">—</span><span>1h PM2.5</span></div>
+        </div>
+        <div id="envDetails" class="environment-details">1-hour PM2.5 is a concentration reading, not “1-hour PSI”.</div>
+        <div class="source-row"><span id="envSource" class="badge">NEA / data.gov.sg</span><span id="envUpdated">—</span></div>
+      </section>
       <section id="personaFocus" class="persona-focus card">
         <div class="persona-focus-head">
           <div><div class="label">FOR YOU</div><h3 id="personaFocusTitle">Your everyday Singapore</h3></div>
@@ -210,6 +228,56 @@
         <button id="goHotelButton" class="primary full" disabled>↗ Get me back to my hotel</button>
       </section>
 
+
+      <section id="placesSection" class="section-head nav-section" data-nav-section="places">
+        <div><div class="label">PLACES</div><h2>Singapore essentials</h2><p id="placesPersonaHint" class="section-copy">Actionable places for your current SGBuddy mode.</p></div>
+        <button id="placesBackHotel" class="text-button" type="button">Back to hotel</button>
+      </section>
+      <section class="places-toolbar card">
+        <input id="placeSearch" autocomplete="off" placeholder="Filter places — zoo, museum, Chinatown…" aria-label="Filter featured Singapore places"/>
+        <span>Curated for routing, rain context and transit — not generic travel SEO.</span>
+      </section>
+      <section id="placesGrid" class="places-grid"><div class="card empty">Loading featured places…</div></section>
+
+      <section id="moneySection" class="section-head nav-section" data-nav-section="money">
+        <div><div class="label">MONEY</div><h2>Rates & licensed changers</h2><p class="section-copy">Reference FX is separate from the cash rate a shop actually offers.</p></div>
+      </section>
+      <section class="money-card card">
+        <div class="money-card-head"><div><div class="label">REFERENCE CONVERTER</div><h3>What is it worth?</h3></div><span class="reference-badge">Reference</span></div>
+        <div class="fx-grid">
+          <label>Amount<input id="fxAmount" inputmode="decimal" value="100" aria-label="Currency amount"/></label>
+          <label>From<select id="fxFrom" aria-label="Source currency"></select></label>
+          <button id="fxSwap" class="swap-trip" type="button" aria-label="Swap currencies">⇄</button>
+          <label>To<select id="fxTo" aria-label="Target currency"></select></label>
+        </div>
+        <button id="fxConvert" class="primary full" type="button">Convert reference rate</button>
+        <div id="fxResult" class="fx-result">Choose an amount and currencies.</div>
+        <div id="fxRateMeta" class="money-note">ECB reference rates are informational, not a shop buy/sell quote.</div>
+      </section>
+
+      <section class="money-card card">
+        <div class="money-card-head"><div><div class="label">MONEY CHANGERS</div><h3>MAS-listed locations</h3></div><span class="reference-badge">Trust layer</span></div>
+        <div class="changer-controls">
+          <input id="moneyChangerSearch" placeholder="Orchard, Bugis, postal code or name" aria-label="Search money changer location"/>
+          <button id="moneyChangerSearchButton" class="secondary" type="button">Search</button>
+          <button id="moneyChangerNearMe" class="primary" type="button">Near me</button>
+        </div>
+        <div class="money-area-chips">
+          <button type="button" data-money-area="orchard">Orchard</button>
+          <button type="button" data-money-area="bugis">Bugis</button>
+          <button type="button" data-money-area="chinatown">Chinatown</button>
+          <button type="button" data-money-area="marina">Marina Bay</button>
+        </div>
+        <div id="moneyChangerResults" class="changer-list"><div class="empty-inline">Choose an area or use Near me.</div></div>
+        <p id="moneySourceNote" class="money-note">Licensing/location context comes from MAS. Live shop buy/sell rates are not supplied by MAS and remain a separate timestamped dataset.</p>
+      </section>
+
+      <section id="accountSection" class="account-hub card nav-section" data-nav-section="account">
+        <div class="account-hub-head"><div><div class="label">ACCOUNT</div><h3 id="accountHubTitle">Your SGBuddy</h3></div><span id="accountHubStatus" class="sync-badge">Local</span></div>
+        <p id="accountHubCopy">Manage cross-device sync, your travel mode and saved context.</p>
+        <button id="accountHubOpen" class="primary full" type="button">Open account & sync</button>
+      </section>
+
       <section class="section-head"><div><div class="label">SINGAPORE PULSE</div><h2>Disruptions & roads</h2></div></section>
       <section id="alerts" class="stack"></section>
 
@@ -242,9 +310,10 @@
 
     <nav class="bottom-nav" aria-label="Primary">
       <a id="navToday" class="active" href="#todaySection" data-nav-target="today" aria-current="page">⌂<span>Today</span></a>
-      <a id="navTransport" href="#transportSection" data-nav-target="transport">≋<span>Transport</span></a>
-      <a id="navFreya" href="#freyaSection" data-nav-target="freya">✦<span>FREYA</span></a>
-      <a id="navTravel" href="#travelSection" data-nav-target="travel">◎<span>Travel</span></a>
+      <a id="navMove" href="#transportSection" data-nav-target="move">≋<span>Move</span></a>
+      <a id="navPlaces" href="#placesSection" data-nav-target="places">◇<span>Places</span></a>
+      <a id="navMoney" href="#moneySection" data-nav-target="money">$<span>Money</span></a>
+      <a id="navAccount" href="#accountSection" data-nav-target="account">◎<span>Account</span></a>
     </nav>
   </div>
   <div id="accountSheet" class="install-sheet hidden" role="dialog" aria-modal="true" aria-labelledby="accountSheetTitle">
@@ -359,6 +428,6 @@
   </div>
   <div id="toast" class="toast" role="status"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="/app-v082.js"></script>
+  <script type="module" src="/app-v090.js"></script>
 </body>
 </html>

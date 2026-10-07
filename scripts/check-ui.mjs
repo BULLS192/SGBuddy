@@ -34,9 +34,9 @@ if(!fs.readFileSync('api/health.js','utf8').includes('visibleClientVersion:true'
 if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')) fail('Weather-aware routing health flag missing');
 
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
-if(!html.includes('/app-v082.js')) fail('Wave 4.3 client asset is not wired into index.html');
+if(!html.includes('/app-v090.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("const CLIENT_VERSION='0.8.2';")) fail('Visible client version does not match Wave 4.3');
+if(!js.includes("const CLIENT_VERSION='0.9.0-dev';")) fail('Visible client version does not match Wave 4.3');
 
 for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
@@ -57,3 +57,18 @@ for(const flag of ['supabaseAuth:true','crossDeviceAccounts:true','passwordRecov
 if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 4'))fail('Cloud profile schema was not upgraded to v4');
 if(!js.includes('function loadAccountProfile'))fail('Account profile loader is missing');
 if(!js.includes("SUPABASE_PUBLIC_KEY='sb_publishable_"))fail('Supabase publishable key is not configured in the client');
+
+for(const required of ['environmentCard','envPsi','envPm25','placesSection','placesGrid','moneySection','fxAmount','fxFrom','fxTo','moneyChangerResults','accountSection','navMove','navPlaces','navMoney','navAccount']){
+  if(!ids.has(required)) fail('v0.9.0-dev control #'+required+' is missing');
+}
+if(!fs.existsSync('api/money.js')) fail('Money API is missing');
+if(!fs.existsSync('lib/money.js')) fail('Money provider adapter is missing');
+const waveHealth=fs.readFileSync('api/health.js','utf8');
+for(const flag of ['expandedEnvironment:true','airQuality:true','referenceFx:true','licensedMoneyChangers:true','featuredPlaces:true','travelLivingNavigation:true']){
+  if(!waveHealth.includes(flag)) fail('Wave health flag '+flag+' missing');
+}
+const weatherSource=fs.readFileSync('lib/weather.js','utf8');
+for(const endpoint of ['/air-temperature','/relative-humidity','/rainfall','/wind-speed','/wind-direction','/psi','/pm25','/twenty-four-hr-forecast']){
+  if(!weatherSource.includes(endpoint)) fail('Expanded weather endpoint '+endpoint+' missing');
+}
+if(!fs.existsSync('supabase/migrations/20261007_008_environment_money_places_wave.sql')) fail('Wave database migration is missing');
