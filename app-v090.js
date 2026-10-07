@@ -692,7 +692,7 @@ async function v093LoadPlaceEtas(){
     const names=FEATURED_PLACES.map(p=>p.name);
     for(let i=0;i<names.length;i+=5){
       const batch=names.slice(i,i+5);
-      const p=await json('/api/place-etas?lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&names='+encodeURIComponent(batch.join('|')));
+      const p=await json('/api/journey?action=place-etas&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&names='+encodeURIComponent(batch.join('|')));
       for(const row of p.items||[])if(row.ok)state.v093Etas[row.name]=row;
       renderFeaturedPlaces();
       if(!$('#placesMapCard')?.classList.contains('hidden'))v091RenderPlacesMap();
@@ -716,7 +716,7 @@ async function v093SearchAddress(input){
   if(q.length<3){box.classList.add('hidden');return}
   v093AddressTimer=setTimeout(async()=>{
     try{
-      const p=await json('/api/geocode?q='+encodeURIComponent(q));
+      const p=await json('/api/journey?action=geocode&q='+encodeURIComponent(q));
       const items=p.items||[];
       box.innerHTML=items.map((x,i)=>'<button type="button" data-address-pick="'+esc(input.id)+'" data-address-index="'+i+'"><strong>'+esc(x.label||x.address)+'</strong><span>'+esc(x.address||'')+(x.postal?' · '+esc(x.postal):'')+'</span><small>'+(x.verified?'Verified by OneMap':'SGBuddy match')+'</small></button>').join('');
       box._items=items;box.classList.toggle('hidden',!items.length);
