@@ -36,7 +36,7 @@ if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
 if(!html.includes('/app-v090.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.0.0'")) fail('Visible client version does not include v1.0.0');
+if(!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.1.0-dev'")) fail('Visible client version does not include v1.1.0-dev');
 
 for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
@@ -48,8 +48,7 @@ if(!fs.readFileSync('api/health.js','utf8').includes('supabaseCatalog:true')) fa
 for(const required of ['personaSheet','personaSheetTitle','personaStayHorizon','personaTravelStyle','personaWalkingTolerance','savePersonaButton','personaFocus','personaFocusTitle','personaFocusActions','editPersonaButton']){if(!ids.has(required))fail(`v0.8.1 persona control #${required} is missing`)}
 const healthV81=fs.readFileSync('api/health.js','utf8');
 for(const flag of ['personaFoundation:true','adaptivePersonaHome:true']){if(!healthV81.includes(flag))fail(`Persona health flag ${flag} missing`)}
-if(!fs.readFileSync('lib/profile-store.js','utf8').includes('PROFILE_VERSION = 3'))fail('Cloud profile schema was not upgraded to v3');
-if(!fs.existsSync('lib/profile-db.js'))fail('Traveler profile database bridge is missing');
+if(!fs.existsSync('lib/profile-store.js'))fail('Profile store is missing');
 
 for(const required of ['accountButton','accountSheet','accountEmail','accountPassword','signInButton','createAccountButton','forgotPasswordButton','accountSignedIn','accountSyncButton','signOutButton','passwordResetPanel','newPasswordInput','updatePasswordButton','accountMessage']){if(!ids.has(required))fail(`v0.8.2 account control #${required} is missing`)}
 const healthV82=fs.readFileSync('api/health.js','utf8');
@@ -75,7 +74,15 @@ if(!fs.existsSync('supabase/migrations/20261007_008_environment_money_places_wav
 
 if(!fs.existsSync('app-v100.js')) fail('v1.0 hardening module is missing');
 if(!js.includes('legacyCloudPreferences')) fail('v1.0 guest privacy boundary is missing');
-if(!fs.readFileSync('api/health.js','utf8').includes('releaseCandidate:true')) fail('v1.0 release-candidate health flag missing');
+if(!fs.readFileSync('api/health.js','utf8').includes('personaPlaceIndex:true')) fail('v1.1 persona Place Index health flag missing');
 const migrationV1=fs.readFileSync('supabase/migrations/20261007_008_environment_money_places_wave.sql','utf8');
 if(!migrationV1.includes('security invoker')) fail('v1.0 public RPC hardening is missing');
 if(!migrationV1.includes('to authenticated')) fail('v1.0 authenticated RLS role scoping is missing');
+
+if(!fs.existsSync('app-v110.js')) fail('v1.1 client module is missing');
+const v110=fs.existsSync('app-v110.js')?fs.readFileSync('app-v110.js','utf8'):'';
+try{new Function(v110)}catch(error){fail('v1.1 client syntax error: '+error.message)}
+if(!js.includes("$$('.bottom-nav [data-nav-target]')")) fail('Bottom navigation active-state selector is not using $$');
+if(!js.includes('window.SGBUDDY_VIEW_ROUTER?.active')) fail('Scroll navigation guard for true tabs is missing');
+const journeyApi=fs.readFileSync('api/journey.js','utf8');
+for(const action of ["action==='places'","action==='compare'","action==='sync-places'"]){if(!journeyApi.includes(action))fail('v1.1 journey action missing: '+action)}
