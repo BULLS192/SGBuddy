@@ -16,7 +16,7 @@ const SOURCES:Record<string,Spec>={
   pharmacies:{key:"hsa_pharmacies_geo",dataset:"d_bb92615f43de22933e4479558b1f6c36",kind:"health",category:"Retail pharmacy",description:"HSA-registered retail pharmacy.",scores:{resident:93,visitor:74,executive:82,new_in_sg:96},format:"geojson"},
   childcare:{key:"ecda_childcare_geo",dataset:"d_5d668e3f544335f8028f546827b773b4",kind:"service",category:"Childcare",description:"ECDA-listed child care service.",scores:{resident:84,visitor:5,executive:15,new_in_sg:86},format:"geojson"},
   supermarkets:{key:"osm_supermarkets",dataset:"osm-overpass-supermarket",kind:"shopping",category:"Supermarket",description:"Supermarket mapped by OpenStreetMap contributors.",scores:{resident:99,visitor:62,executive:62,new_in_sg:99},format:"osm"},
-  sports:{key:"sport_sg_facilities_geo",dataset:"d_9b87bab59d036a60fad2a91530e10773",kind:"sport",category:"Sports facility",description:"SportSG-managed sports facility.",scores:{resident:92,visitor:48,executive:52,new_in_sg:88},format:"geojson"},
+  sports:{key:"sport_sg_facilities_geo",dataset:"d_9b87bab59d036a60fad2a91530e10773",kind:"service",category:"Sports facility",description:"SportSG-managed sports facility.",scores:{resident:92,visitor:48,executive:52,new_in_sg:88},format:"geojson"},
   markets:{key:"nea_market_food_geo",dataset:"d_a57a245b3cf3ec76ad36d55393a16e97",kind:"food",category:"Market / food centre",description:"NEA-managed market or food centre.",scores:{resident:97,visitor:93,executive:72,new_in_sg:97},format:"geojson"},
 };
 
