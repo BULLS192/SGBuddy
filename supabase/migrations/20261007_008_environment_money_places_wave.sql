@@ -146,8 +146,8 @@ create or replace function public.public_catalog_stats()
 returns jsonb
 language sql stable security invoker set search_path = pg_catalog, public as $$
 select jsonb_build_object(
-  'places',(select count(*) from public.place_catalog where active),
-  'money_changers',(select count(*) from public.money_changers),
+  'places',(select count(id) from public.place_catalog where active),
+  'money_changers',(select count(id) from public.money_changers),
   'connected',true
 );
 $$;
