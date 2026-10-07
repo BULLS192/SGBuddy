@@ -371,7 +371,7 @@ const legacyNavSections={transport:'#transportSection',travel:'#travelSection',f
 const canonicalNav=name=>name==='transport'||name==='travel'||name==='freya'?'move':name;
 let navScrollLock=0;
 function setActiveNav(name){$('.bottom-nav [data-nav-target]').forEach(b=>{const active=b.dataset.navTarget===name;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')})}
-function navigateTo(name){const target=$(navSections[name]||legacyNavSections[name]);if(!target)return;setActiveNav(canonicalNav(name));navScrollLock=Date.now()+700;target.scrollIntoView({behavior:'smooth',block:'start'});if(name==='freya')setTimeout(()=>$('#advisorInput')?.focus({preventScroll:true}),450)}
+function navigateTo(name){if(window.SGBUDDY_VIEW_ROUTER?.show){window.SGBUDDY_VIEW_ROUTER.show(canonicalNav(name),{legacyTarget:name});if(name==='freya')window.SGBUDDY_VIEW_ROUTER.openFreya?.();return}const target=$(navSections[name]||legacyNavSections[name]);if(!target)return;setActiveNav(canonicalNav(name));navScrollLock=Date.now()+700;target.scrollIntoView({behavior:'smooth',block:'start'});if(name==='freya')setTimeout(()=>$('#advisorInput')?.focus({preventScroll:true}),450)}
 function updateNavFromScroll(){if(Date.now()<navScrollLock)return;const probe=window.scrollY+Math.min(window.innerHeight*.32,240);let current='today';for(const [name,selector] of Object.entries(navSections)){const el=$(selector);if(el&&el.offsetTop<=probe)current=name}setActiveNav(current)}
 function initBottomNav(){$('.bottom-nav [data-nav-target]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();navigateTo(b.dataset.navTarget)}));window.addEventListener('scroll',()=>requestAnimationFrame(updateNavFromScroll),{passive:true});updateNavFromScroll()}
 
@@ -585,7 +585,7 @@ $('#savePlaces')?.addEventListener('click',e=>{e.preventDefault();e.stopImmediat
 $('#addCustomPlace')?.addEventListener('click',v091AddCustomPlace);
 
 function v091PlaceMetric(p){if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)||!Number.isFinite(Number(p.lat))||!Number.isFinite(Number(p.lon)))return {label:'Locate for ETA',distance:null,minutes:null};const distance=v091DistanceMeters(state.lat,state.lon,p.lat,p.lon),minutes=v091EstimatedMinutes(distance);return {label:'≈ '+minutes+' min est. · '+v091DistanceLabel(distance),distance,minutes}}
-renderFeaturedPlaces=function(){const grid=$('#placesGrid');if(!grid)return;const q=($('#placeSearch')?.value||'').trim().toLowerCase();const ordered=FEATURED_PLACES.filter(p=>!q||[p.name,p.category,p.description,p.transit].join(' ').toLowerCase().includes(q)).sort((a,b)=>(a.personas.includes(state.mode)?0:1)-(b.personas.includes(state.mode)?0:1)||FEATURED_PLACES.indexOf(a)-FEATURED_PLACES.indexOf(b));$('#placesPersonaHint').textContent='Prioritized for '+(personaConfig()?.label||'your mode')+' · '+ordered.length+' useful destinations';$('#placesBackHotel').disabled=!state.places.hotel;grid.innerHTML=ordered.map((p,i)=>{const m=v091PlaceMetric(p);return '<article class="place-card card"><div class="place-card-top"><div><span class="place-rank">'+String(i+1).padStart(2,'0')+'</span><div class="label">'+esc(p.category.toUpperCase())+'</div><h3>'+esc(p.name)+'</h3></div>'+(p.personas.includes(state.mode)?'<span class="place-fit">Good fit</span>':'')+'</div><p>'+esc(p.description)+'</p><div class="place-eta">'+esc(m.label)+'</div><div class="place-intel"><span>◎ '+esc(p.transit)+'</span><span>☂ Rain: '+esc(p.rain)+'</span><span>◷ '+esc(p.best)+'</span></div><div class="place-card-actions"><button class="secondary place-map-focus" data-featured-place="'+esc(p.name)+'" type="button">Show map</button><button class="primary place-route" data-featured-place="'+esc(p.name)+'" type="button">Take me there</button></div></article>'}).join('')||'<div class="card empty">No featured places match that filter.</div>'}
+renderFeaturedPlaces=function(){const grid=$('#placesGrid');if(!grid)return;const q=($('#placeSearch')?.value||'').trim().toLowerCase();const ordered=FEATURED_PLACES.filter(p=>!q||[p.name,p.category,p.description,p.transit].join(' ').toLowerCase().includes(q)).sort((a,b)=>(a.personas.includes(state.mode)?0:1)-(b.personas.includes(state.mode)?0:1)||FEATURED_PLACES.indexOf(a)-FEATURED_PLACES.indexOf(b));$('#placesPersonaHint').textContent='Prioritized for '+(personaConfig()?.label||'your mode')+' · '+ordered.length+' useful destinations';$('#placesBackHotel').disabled=!state.places.hotel;grid.innerHTML=ordered.map((p,i)=>{const m=v091PlaceMetric(p);return '<article class="place-card card"><div class="place-card-top"><div><span class="place-rank">'+String(i+1).padStart(2,'0')+'</span><div class="label">'+esc(p.category.toUpperCase())+'</div><h3>'+esc(p.name)+'</h3></div>'+(p.personas.includes(state.mode)?'<span class="place-fit">Good fit</span>':'')+'</div><p>'+esc(p.description)+'</p><div class="place-eta" data-place-eta="'+esc(p.name)+'">'+esc(m.label)+'</div><div class="place-intel"><span>◎ '+esc(p.transit)+'</span><span>☂ Rain: '+esc(p.rain)+'</span><span>◷ '+esc(p.best)+'</span></div><div class="place-card-actions"><button class="secondary place-map-focus" data-featured-place="'+esc(p.name)+'" type="button">Show map</button><button class="primary place-route" data-featured-place="'+esc(p.name)+'" type="button">Take me there</button></div></article>'}).join('')||'<div class="card empty">No featured places match that filter.</div>'}
 
 function v091EnsurePlacesMap(){if(state.v091PlacesMap)return true;const host=$('#placesMap');if(!host)return false;if(!window.L){host.innerHTML='<div class="map-unavailable">Map library could not load.</div>';return false}state.v091PlacesMap=L.map('placesMap',{zoomControl:true,attributionControl:true}).setView([1.3521,103.8198],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(state.v091PlacesMap);state.v091PlacesLayer=L.layerGroup().addTo(state.v091PlacesMap);state.v091PlaceMarkers=new Map();return true}
 function v091RenderPlacesMap(focusName=''){if(!v091EnsurePlacesMap())return;state.v091PlacesLayer.clearLayers();state.v091PlaceMarkers.clear();const coords=[];for(const p of FEATURED_PLACES){if(!Number.isFinite(Number(p.lat))||!Number.isFinite(Number(p.lon)))continue;const m=v091PlaceMetric(p);const marker=L.circleMarker([p.lat,p.lon],{radius:8,color:'#07111f',weight:3,fillColor:'#63e6be',fillOpacity:1}).bindPopup('<div class="map-popup"><strong>'+esc(p.name)+'</strong><small>'+esc(p.category)+' · '+esc(m.label)+'</small><div>'+esc(p.transit)+'</div><button class="place-route" data-featured-place="'+esc(p.name)+'">Take me there</button></div>').addTo(state.v091PlacesLayer);state.v091PlaceMarkers.set(p.name,marker);coords.push([p.lat,p.lon])}if(Number.isFinite(state.lat)&&Number.isFinite(state.lon)){L.circleMarker([state.lat,state.lon],{radius:7,color:'#fff',weight:3,fillColor:'#ff7b8a',fillOpacity:1}).bindPopup('<strong>You are here</strong>').addTo(state.v091PlacesLayer);coords.unshift([state.lat,state.lon])}setTimeout(()=>{state.v091PlacesMap.invalidateSize();const marker=state.v091PlaceMarkers.get(focusName);if(marker){state.v091PlacesMap.setView(marker.getLatLng(),14);marker.openPopup()}else if(coords.length>1)state.v091PlacesMap.fitBounds(coords,{padding:[28,28],maxZoom:14});else state.v091PlacesMap.setView([1.3521,103.8198],11)},40)}
@@ -657,3 +657,115 @@ runDataCoreDiagnostics=async function({quiet=false}={}){
     return false;
   }
 };
+
+/* === v0.9.3-dev Navigation & Location === */
+window.__SGBUDDY_CLIENT_VERSION__='0.9.3-dev';if($('#appVersion'))$('#appVersion').textContent='v0.9.3-dev';
+state.v093Etas={};state.v093AddressSelections={};state.v093EtaLoading=false;
+
+const _v093BasePlaceMetric=v091PlaceMetric;
+v091PlaceMetric=function(p){
+  const eta=state.v093Etas?.[p.name];
+  if(eta?.minutes)return {label:eta.minutes+' min route · '+(eta.mode==='mixed'?'Bus + rail':eta.mode==='bus'?'Bus':'Rail'),distance:null,minutes:eta.minutes,routeDerived:true};
+  return _v093BasePlaceMetric(p);
+};
+
+async function v093LoadPlaceEtas(){
+  if(state.v093EtaLoading||!Number.isFinite(state.lat)||!Number.isFinite(state.lon))return;
+  state.v093EtaLoading=true;
+  try{
+    const names=FEATURED_PLACES.map(p=>p.name);
+    for(let i=0;i<names.length;i+=5){
+      const batch=names.slice(i,i+5);
+      const p=await json('/api/place-etas?lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&names='+encodeURIComponent(batch.join('|')));
+      for(const row of p.items||[])if(row.ok)state.v093Etas[row.name]=row;
+      renderFeaturedPlaces();
+      if(!$('#placesMapCard')?.classList.contains('hidden'))v091RenderPlacesMap();
+    }
+  }catch(error){console.warn('Place ETA refresh:',error.message)}
+  finally{state.v093EtaLoading=false}
+}
+
+const _v093LoadNearby=loadNearby;
+loadNearby=async function(lat,lon){const result=await _v093LoadNearby(lat,lon);v093LoadPlaceEtas();return result};
+
+function v093SuggestionBox(input){
+  let box=input.parentElement?.querySelector('.v093-address-suggestions');
+  if(!box){box=document.createElement('div');box.className='v093-address-suggestions hidden';input.insertAdjacentElement('afterend',box)}
+  return box;
+}
+let v093AddressTimer;
+async function v093SearchAddress(input){
+  const q=input.value.trim(),box=v093SuggestionBox(input);
+  clearTimeout(v093AddressTimer);
+  if(q.length<3){box.classList.add('hidden');return}
+  v093AddressTimer=setTimeout(async()=>{
+    try{
+      const p=await json('/api/geocode?q='+encodeURIComponent(q));
+      const items=p.items||[];
+      box.innerHTML=items.map((x,i)=>'<button type="button" data-address-pick="'+esc(input.id)+'" data-address-index="'+i+'"><strong>'+esc(x.label||x.address)+'</strong><span>'+esc(x.address||'')+(x.postal?' · '+esc(x.postal):'')+'</span><small>'+(x.verified?'Verified by OneMap':'SGBuddy match')+'</small></button>').join('');
+      box._items=items;box.classList.toggle('hidden',!items.length);
+      input.dataset.geocodeConfigured=p.configured?'1':'0';
+    }catch{box.classList.add('hidden')}
+  },260);
+}
+for(const id of ['homeInput','workInput','hotelInput','customPlaceStreet']){
+  const input=$('#'+id);if(input){input.setAttribute('autocomplete','off');input.addEventListener('input',()=>v093SearchAddress(input))}
+}
+document.addEventListener('click',e=>{
+  const pick=e.target.closest('[data-address-pick]');if(!pick)return;
+  const input=$('#'+pick.dataset.addressPick),box=pick.closest('.v093-address-suggestions'),row=box?._items?.[Number(pick.dataset.addressIndex)];
+  if(!input||!row)return;
+  input.value=row.address||row.label||input.value;
+  state.v093AddressSelections[input.id]=row;
+  const type=input.id.replace('Input','');
+  const postalId=type==='customPlaceStreet'?'customPlacePostal':type+'Postal';
+  if(row.postal&&$('#'+postalId))$('#'+postalId).value=row.postal;
+  box.classList.add('hidden');
+});
+
+const _v093SaveQuickPlaces=v091SaveQuickPlaces;
+v091SaveQuickPlaces=function(){
+  _v093SaveQuickPlaces();
+  for(const type of ['home','work','hotel']){
+    const inputId=type+'Input',sel=state.v093AddressSelections[inputId];
+    if(!sel)continue;
+    const row=state.places.saved.find(p=>p.type===type);
+    if(row&&row.address===$('#'+inputId)?.value.trim()){row.lat=sel.lat;row.lon=sel.lon;row.verified=Boolean(sel.verified);row.source=sel.source||null}
+  }
+  cachePreferences(true);queueProfileSync();v091RenderSavedPlaces();
+};
+const _v093AddCustomPlace=v091AddCustomPlace;
+$('#addCustomPlace')?.addEventListener('click',e=>{
+  const sel=state.v093AddressSelections.customPlaceStreet;if(!sel)return;
+  setTimeout(()=>{
+    const last=state.places.saved?.[state.places.saved.length-1];
+    if(last?.type==='custom'){last.lat=sel.lat;last.lon=sel.lon;last.verified=Boolean(sel.verified);last.source=sel.source||null;cachePreferences(true);queueProfileSync();v091RenderSavedPlaces()}
+  },0);
+},true);
+
+function v093InitViewRouter(){
+  const main=document.querySelector('main');if(!main||main.dataset.v093Routed)return;
+  main.dataset.v093Routed='1';
+  const order=['today','move','places','money','account'],views={};
+  for(const name of order){const el=document.createElement('div');el.className='v1-view hidden';el.dataset.view=name;views[name]=el;main.appendChild(el)}
+  const add=(view,el)=>{if(el&&views[view]&&!views[view].contains(el))views[view].appendChild(el)};
+  ['#todaySection','#nextUpCard','#tripIntelligence','#environmentCard','#personaFocus','#travellerPanel'].forEach(s=>add('today',$(s)));
+  ['#transportSection','.saved-rail','#railStations','#railStations + .manual','.transport-heading','#cardsView','#mapView','#travelSection'].forEach(s=>add('move',$(s)));
+  ['.saved.card','#placesSection','.places-toolbar','#placesGrid','#placesMapCard'].forEach(s=>add('places',$(s)));
+  add('money',$('#moneySection'));$$('.money-card').forEach(el=>add('money',el));
+  add('account',$('#accountSection'));add('account',$('.profile-card'));
+  const alerts=$('#alerts');if(alerts){add('account',alerts.previousElementSibling);add('account',alerts)}add('account',$('#dataCorePanel'));
+  const freya=$('#freyaSection');if(freya){freya.classList.add('v1-freya-panel');document.body.appendChild(freya);const close=document.createElement('button');close.className='v1-freya-close';close.type='button';close.textContent='×';close.addEventListener('click',()=>freya.classList.remove('v1-freya-open'));freya.prepend(close)}
+  const fab=document.createElement('button');fab.className='v1-freya-fab';fab.type='button';fab.setAttribute('aria-label','Open FREYA');fab.textContent='F';fab.addEventListener('click',()=>{freya?.classList.add('v1-freya-open');setTimeout(()=>$('#advisorInput')?.focus(),120)});document.body.appendChild(fab);
+  function show(name,{legacyTarget}={}){
+    name=canonicalNav(name);if(!views[name])name='today';
+    Object.entries(views).forEach(([k,v])=>v.classList.toggle('hidden',k!==name));
+    setActiveNav(name);window.scrollTo({top:0,behavior:'instant'});
+    if(name==='places')v093LoadPlaceEtas();
+    if(name==='move'&&legacyTarget==='travel')setTimeout(()=>$('#travelSection')?.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  }
+  window.SGBUDDY_VIEW_ROUTER={show,openFreya:()=>freya?.classList.add('v1-freya-open')};
+  document.querySelector('.bottom-nav')?.addEventListener('click',e=>{const a=e.target.closest('[data-nav-target]');if(!a)return;e.preventDefault();e.stopImmediatePropagation();show(a.dataset.navTarget)},true);
+  show('today');
+}
+v093InitViewRouter();

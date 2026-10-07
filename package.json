@@ -1,6 +1,6 @@
 {
   "name": "sgbuddy",
-  "version": "0.9.2-dev",
+  "version": "0.9.3-dev",
   "private": true,
   "type": "module",
   "engines": {
