@@ -23,7 +23,10 @@ if(core){
   state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();state.v110PlaceRequestId=0;state.v110LoadedPersona='';state.v110FilterScrollLeft=0;
 
   function persona(){return PERSONA_COPY[state.mode]||PERSONA_COPY.resident}
-  function distance(m){if(m==null||!Number.isFinite(Number(m)))return '';return m<1000?Math.round(m)+' m':(m/1000).toFixed(1)+' km'}
+  function distance(m){const n=Number(m);if(!Number.isFinite(n))return '';if(state.units==='imperial'){const mi=n/1609.344;return mi<0.2?Math.round(n*3.28084)+' ft':mi.toFixed(1)+' mi'}return n<1000?Math.round(n)+' m':(n/1000).toFixed(1)+' km'}
+  const CLEAN_PLACE_COPY={moh_chas_geo:'MOH-listed CHAS clinic.',moh_polyclinics_geo:'MOH-listed polyclinic.',hsa_pharmacies_geo:'HSA-licensed retail pharmacy.',ecda_childcare_geo:'ECDA-licensed childcare centre.',nparks_parks_geo:'NParks-managed park.',nea_hawker_geo:'NEA-listed hawker centre.',nea_market_food_geo:'NEA-listed market / food centre.',pa_community_clubs_geo:"People's Association community club.",sport_sg_facilities_geo:'SportSG-managed sports facility.',nlb_libraries_geo:'NLB public library.'};
+  function placeDescription(row){if(CLEAN_PLACE_COPY[row?.sourceKey])return CLEAN_PLACE_COPY[row.sourceKey];const raw=String(row?.description||'').replace(/\s+/g,' ').trim();if(!raw)return String(row?.category||'Singapore place');if(/(?:^|\s)(attributes?|hci_code|hci_name|licence_type|postal_addr|addr_type|blk_hse_no|floor_no|unit_no)\b/i.test(raw))return String(row?.category||'Singapore place');return raw}
+  function estimatedWalk(distanceM){const n=Number(distanceM);if(!Number.isFinite(n))return null;const routeM=Math.max(1,Math.round(n*1.18));return {minutes:Math.max(1,Math.ceil(routeM/80)),distanceM:routeM,routed:false,source:'Straight-line walking estimate'}}
   function escText(v){const d=document.createElement('div');d.textContent=String(v??'');return d.innerHTML}
   function categoryMatch(row,filter){
     if(filter==='all')return true;
@@ -65,22 +68,32 @@ if(core){
     }
     $('#v110PlaceSort').value=state.v110PlaceSort;
   }
+  function mobilityChip(icon,label,time,best,title){
+    if(time==null)return '';
+    return '<span class="v110-mode-chip '+(best?'best':'')+'" title="'+escText(title||label)+'"><b>'+icon+'</b><span>'+escText(label)+'</span><strong>'+escText(time)+'</strong></span>';
+  }
+  function renderMobility(el,row,item){
+    if(!el)return;
+    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){el.innerHTML='<span class="v110-mobility-locate">◎ Locate to compare travel modes</span>';return}
+    const fallbackWalk=estimatedWalk(row?.distanceM);
+    const walk=item?.walking||fallbackWalk,pt=item?.publicTransport||null,drive=item?.drive||null,ride=item?.rideshare||null;
+    const fastest=item?.fastestEstimate||(walk&&(!pt||walk.minutes<=pt.minutes)?'walk':pt?'public':null);
+    const chips=[
+      walk&&mobilityChip('🚶','Walk',walk.minutes+' min',fastest==='walk',(walk.routed?'Walking route':'Estimated walking route')+' · '+distance(walk.distanceM)),
+      pt&&mobilityChip(pt.routeMode==='rail'?'🚆':pt.routeMode==='mixed'?'🚉':'🚌','Transit',pt.minutes+' min',fastest==='public',pt.title||'Public transport'),
+      drive&&mobilityChip('🚗','Drive',(drive.routed?'':'~')+drive.minutes+' min',fastest==='drive',(drive.routed?'Road route':'Estimated road time')+' · '+distance(drive.distanceM)),
+      ride&&mobilityChip('🚕','Ride',(ride.routed?'':'~')+ride.minutesLow+'–'+ride.minutesHigh+' min',fastest==='rideshare','Taxi / rideshare including pickup allowance')
+    ].filter(Boolean);
+    el.innerHTML=chips.join('')||'<span class="v110-mobility-locate">Travel comparison unavailable</span>';
+  }
   async function loadPlaceEtas(rows){
-    const elements=[...document.querySelectorAll('[data-v110-eta-name]')];
-    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){elements.forEach(el=>el.textContent='Locate for public-transport time');return}
+    const elements=[...document.querySelectorAll('[data-v110-modes-name]')],rowMap=new Map(rows.map(row=>[row.name,row]));
+    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){elements.forEach(el=>renderMobility(el,rowMap.get(el.dataset.v110ModesName),null));return}
     const candidates=rows.filter(row=>row?.name).slice(0,20);
     const keyPrefix=Number(state.lat).toFixed(3)+','+Number(state.lon).toFixed(3)+':';
     const missing=candidates.filter(row=>!state.v110EtaCache.has(keyPrefix+row.name));
-    if(missing.length){
-      try{
-        const p=await json('/api/journey?action=place-etas&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&names='+encodeURIComponent(missing.map(x=>x.name).join('|')));
-        for(const item of p.items||[])state.v110EtaCache.set(keyPrefix+item.name,item);
-      }catch{}
-    }
-    for(const el of elements){
-      const item=state.v110EtaCache.get(keyPrefix+el.dataset.v110EtaName);
-      el.textContent=item?.ok&&item.minutes!=null?item.minutes+' min by '+modeLabel(item.mode):'Public-transport time unavailable';
-    }
+    if(missing.length){try{const p=await json('/api/journey?action=place-etas&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&names='+encodeURIComponent(missing.map(x=>x.name).join('|')));for(const item of p.items||[])state.v110EtaCache.set(keyPrefix+item.name,item)}catch{}}
+    for(const el of elements){const row=rowMap.get(el.dataset.v110ModesName),item=state.v110EtaCache.get(keyPrefix+el.dataset.v110ModesName);renderMobility(el,row,item)}
   }
   function renderPlaces(){
     const grid=$('#placesGrid');if(!grid)return;
@@ -96,8 +109,8 @@ if(core){
       return '<article class="place-card card v110-place-card">'+
         '<div class="place-card-top"><div><span class="place-rank">'+String(i+1).padStart(2,'0')+'</span><div class="label">'+escText(String(row.category||'Place').toUpperCase())+'</div><h3>'+escText(row.name)+'</h3></div><span class="place-fit">'+escText(fitLabel(score))+'</span></div>'+
         (address?'<div class="v110-place-address">'+escText(address)+'</div>':'')+
-        '<p>'+escText(row.description||'Singapore place')+'</p>'+
-        '<div class="place-eta v110-route-eta" data-v110-eta-name="'+escText(row.name)+'">'+(Number.isFinite(state.lat)&&Number.isFinite(state.lon)?'Calculating public-transport time…':'Locate for public-transport time')+'</div>'+
+        '<p>'+escText(placeDescription(row))+'</p>'+
+        '<div class="v110-mode-strip" data-v110-modes-name="'+escText(row.name)+'">'+(Number.isFinite(state.lat)&&Number.isFinite(state.lon)?mobilityChip('🚶','Walk',(estimatedWalk(row.distanceM)?.minutes||'—')+' min',true,'Estimated walking time · '+distance(estimatedWalk(row.distanceM)?.distanceM)):'<span class="v110-mobility-locate">◎ Locate to compare travel modes</span>')+'</div>'+
         '<div class="place-intel"><span>'+escText(placeSource(row))+'</span>'+(row.distanceM!=null?'<span>◎ '+distance(row.distanceM)+'</span>':'')+'</div>'+
         '<div class="place-card-actions"><button class="secondary v110-compare-place" data-place-name="'+escText(row.name)+'" type="button">Compare ways</button><button class="primary place-route" data-featured-place="'+escText(row.name)+'" type="button">Take me there</button></div>'+
       '</article>';
@@ -193,8 +206,8 @@ if(core){
   $('#fitPlacesMap')?.addEventListener('click',renderMap,true);
 
   const compare=document.createElement('section');compare.id='v110CompareCard';compare.className='compare-card card';
-  compare.innerHTML='<div class="compare-head"><div><div class="label">COMPARE WAYS TO GO</div><h3>Public transport vs road</h3></div><span class="reference-badge">Planning</span></div>'+
-    '<p>Compare SGBuddy public transport with a driving and taxi/rideshare estimate. Road options are clearly marked when OneMap routing is not configured.</p>'+
+  compare.innerHTML='<div class="compare-head"><div><div class="label">COMPARE WAYS TO GO</div><h3>Walk · transit · drive · ride</h3></div><span class="reference-badge">Planning</span></div>'+
+    '<p>Compare walking, public transport, driving and taxi/rideshare. SGBuddy highlights the fastest practical estimate and labels estimated road/walking data when OneMap routing is not configured.</p>'+
     '<div class="compare-input-row"><input id="v110CompareDestination" autocomplete="off" placeholder="Where are you going?"/><button id="v110CompareButton" class="primary" type="button">Compare</button></div>'+
     '<div id="v110CompareResults" class="compare-results"><div class="empty-inline">Use Locate, enter a destination, then compare all three modes.</div></div>';
   $('#transportSection')?.insertAdjacentElement('afterend',compare);
@@ -205,10 +218,11 @@ if(core){
   async function compareWays(){
     const input=$('#v110CompareDestination'),dest=input?.value.trim();if(!dest)return toast('Add a destination first.');
     if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){toast('Use Locate first so SGBuddy can compare from where you are.');return}
-    const button=$('#v110CompareButton'),host=$('#v110CompareResults');button.disabled=true;button.textContent='Comparing…';host.innerHTML='<div class="empty-inline">Comparing public transport and road options…</div>';
+    const button=$('#v110CompareButton'),host=$('#v110CompareResults');button.disabled=true;button.textContent='Comparing…';host.innerHTML='<div class="empty-inline">Comparing walk, public transport and road options…</div>';
     try{
       const p=await json('/api/journey?action=compare&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&to='+encodeURIComponent(dest));
       const cards=[];
+      if(p.walking){const x=p.walking;cards.push(modeCard('Walk','🚶',x.minutes+' min',(x.routed?'Walking route':'Estimated walking route')+' · '+distance(x.distanceM),'No fare',x.note,p.fastestEstimate==='walk'))}
       if(p.publicTransport){const x=p.publicTransport;cards.push(modeCard('Public transport','▰',x.minutes+' min',(x.title||'Route')+' · '+x.walkMinutes+' min walk · '+x.transfers+' transfer'+(x.transfers===1?'':'s'),'Approx. SGD '+Number(x.fareEstimateSgd||0).toFixed(2)+' adult card fare',x.note,p.fastestEstimate==='public'))}
       if(p.drive){const x=p.drive;cards.push(modeCard('Drive','🚗',x.minutes+' min',(x.routed?'Road-routed':'Estimated')+' · '+(x.distanceM?distance(x.distanceM):'distance unavailable')+' · includes '+x.parkingAllowanceMinutes+' min parking/walk','Fuel and parking not estimated',x.note,p.fastestEstimate==='drive'))}
       if(p.rideshare){const x=p.rideshare;cards.push(modeCard('Taxi / rideshare','↗',x.minutesLow+'–'+x.minutesHigh+' min',(x.routed?'Road-routed':'Estimated')+' · includes '+x.pickupLowMinutes+'–'+x.pickupHighMinutes+' min pickup',x.taxiMeterBaselineSgd?'Meter baseline approx. SGD '+Number(x.taxiMeterBaselineSgd).toFixed(2)+' before extras':'Check provider app for fare',x.note,p.fastestEstimate==='rideshare'))}
@@ -222,6 +236,8 @@ if(core){
 
   window.SGBUDDY_PLACE_INDEX_RENDERER=renderPlaces;
   window.SGBUDDY_PLACE_INDEX_RENDER_MAP=renderMap;
-  $('.bottom-nav [data-nav-target="places"]').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{if(state.v110Places.length)renderPlaces();else loadPlaces()},20),true));
+  qsa('.bottom-nav [data-nav-target="places"]').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{if(state.v110Places.length)renderPlaces();else loadPlaces()},20),true));
+  $('#unitsToggle')?.addEventListener('click',()=>setTimeout(()=>{renderPlaces();if($('#v110CompareDestination')?.value.trim())compareWays()},20));
+  $('#settingUnits')?.addEventListener('change',()=>setTimeout(()=>{renderPlaces();if($('#v110CompareDestination')?.value.trim())compareWays()},20));
   loadPlaces({resetFilter:true});
 }
