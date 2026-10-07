@@ -12,6 +12,7 @@ const SOURCES:Record<string,Spec>={
   libraries:{key:"nlb_libraries_geo",dataset:"d_27b8dae65d9ca1539e14d09578b17cbf",kind:"education",category:"Library",description:"National Library Board location.",scores:{resident:82,visitor:42,executive:46,new_in_sg:86},format:"geojson"},
   community:{key:"pa_community_clubs_geo",dataset:"d_9de02d3fb33d96da1855f4fbef549a0f",kind:"service",category:"Community club",description:"People's Association community location.",scores:{resident:88,visitor:28,executive:40,new_in_sg:98},format:"geojson"},
   health:{key:"moh_chas_geo",dataset:"d_548c33ea2d99e29ec63a7cc9edcccedc",kind:"health",category:"CHAS clinic",description:"MOH-listed CHAS clinic.",scores:{resident:96,visitor:58,executive:72,new_in_sg:98},format:"geojson"},
+  pharmacies:{key:"hsa_pharmacies_geo",dataset:"d_bb92615f43de22933e4479558b1f6c36",kind:"health",category:"Retail pharmacy",description:"HSA-registered retail pharmacy.",scores:{resident:93,visitor:74,executive:82,new_in_sg:96},format:"geojson"},
   childcare:{key:"ecda_childcare_geo",dataset:"d_5d668e3f544335f8028f546827b773b4",kind:"service",category:"Childcare",description:"ECDA-listed child care service.",scores:{resident:84,visitor:5,executive:15,new_in_sg:86},format:"geojson"},
   supermarkets:{key:"osm_supermarkets",dataset:"osm-overpass-supermarket",kind:"shopping",category:"Supermarket",description:"Supermarket mapped by OpenStreetMap contributors.",scores:{resident:99,visitor:62,executive:62,new_in_sg:99},format:"osm"},
   sports:{key:"sport_sg_facilities_geo",dataset:"d_9b87bab59d036a60fad2a91530e10773",kind:"sport",category:"Sports facility",description:"SportSG-managed sports facility.",scores:{resident:92,visitor:48,executive:52,new_in_sg:88},format:"geojson"},
@@ -38,8 +39,8 @@ function attrs(html:string){
 function cleanSlug(s:string){return String(s||"place").toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g,"").replace(/[\s_]+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"").slice(0,90)||"place"}
 function validCoord(lon:any,lat:any){return Number.isFinite(Number(lat))&&Number.isFinite(Number(lon))&&Number(lat)>=1&&Number(lat)<=1.6&&Number(lon)>=103.4&&Number(lon)<=104.2}
 function makeAddress(a:Record<string,string>){
-  const block=a.ADDRESSBLOCKHOUSENUMBER||a.BLK_HSE_NO||"";
-  const street=a.ADDRESSSTREETNAME||a.STREET_NAME||"";
+  const block=a.ADDRESSBLOCKHOUSENUMBER||a.BLK_HSE_NO||a.HOUSE_BLK_NO||"";
+  const street=a.ADDRESSSTREETNAME||a.STREET_NAME||a.ROAD_NAME||"";
   const building=a.ADDRESSBUILDINGNAME||a.BUILDING_NAME||"";
   if(a.LOCATION_CENTRE)return a.LOCATION_CENTRE;
   const base=[block,street].filter(Boolean).join(" ").trim();
@@ -49,7 +50,7 @@ function rowFromFeature(spec:Spec,f:any,index:number){
   if(f?.geometry?.type!=="Point")return null;
   const [lon,lat]=f.geometry.coordinates||[]; if(!validCoord(lon,lat))return null;
   const p=f.properties||{}, a={...Object.fromEntries(Object.entries(p).map(([k,v])=>[k.toUpperCase(),v==null?"":String(v)])),...attrs(p.Description||p.DESCRIPTION||"")};
-  const name=decode(a.HCI_NAME||a.VENUE||a.NAME_OF_CENTRE||a.NAME||a.ADDRESSBUILDINGNAME||p.Name||p.NAME||"");
+  const name=decode(a.HCI_NAME||a.PHARMACY_NAME||a.VENUE||a.NAME_OF_CENTRE||a.NAME||a.ADDRESSBUILDINGNAME||p.Name||p.NAME||"");
   if(!name||/^kml_\d+$/i.test(name))return null;
   const ref=String(a.OBJECTID||a.OBJECTID_1||a.HCI_CODE||a.INC_CRC||`${index}-${name}`);
   const postal=String(a.ADDRESSPOSTALCODE||a.POSTAL_CODE||a.POSTAL_CD||"").replace(/\D/g,"").slice(0,6)||null;
