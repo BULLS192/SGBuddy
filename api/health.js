@@ -26,7 +26,7 @@ export default async function handler(req,res){
       weatherAwareRouting:true,arriveByPlanning:true,visibleClientVersion:true,journeyRouteMap:true,
       destinationIntelligence:true,recentDestinations:true,tripIntelligence:true,weatherRiskAdvisor:true,
       supabaseCatalog:true,personaFoundation:true,adaptivePersonaHome:true,profileDatabaseSync:false,legacyProfileDatabaseBridge:false,privateAddressAccountSync:true,guestSensitiveCloudSync:false,trueTabViews:true,offlineLastKnownWeather:true,supabaseAuth:true,crossDeviceAccounts:true,passwordRecovery:true,accountProfileSync:true,expandedEnvironment:true,airQuality:true,referenceFx:true,licensedMoneyChangers:true,featuredPlaces:true,travelLivingNavigation:true,
-      oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD)),releaseCandidate:false,activeTabStateFixed:true,personaPlaceIndex:true,officialPlaceIngestion:true,transportModeComparison:true
+      oneMapGeocoding:Boolean(process.env.ONEMAP_TOKEN||(process.env.ONEMAP_API_EMAIL&&process.env.ONEMAP_API_PASSWORD)),releaseCandidate:false,activeTabStateFixed:true,personaPlaceIndex:true,officialPlaceIngestion:true,transportModeComparison:true,diversifiedPersonaRanking:true,modeCostComparison:true,polyclinicIndex:true
     }
   })
 }

@@ -135,8 +135,8 @@ if(core){
     '<div id="v110CompareResults" class="compare-results"><div class="empty-inline">Use Locate, enter a destination, then compare all three modes.</div></div>';
   $('#travelSection')?.insertAdjacentElement('beforebegin',compare);
 
-  function modeCard(label,badge,time,meta,note,fast){
-    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+badge+'</span><strong>'+label+'</strong></div>'+(fast?'<b>Fastest estimate</b>':'')+'</div><div class="compare-time">'+time+'</div><div class="compare-meta">'+meta+'</div><small>'+note+'</small></article>';
+  function modeCard(label,badge,time,meta,cost,note,fast){
+    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+badge+'</span><strong>'+label+'</strong></div>'+(fast?'<b>Fastest estimate</b>':'')+'</div><div class="compare-time">'+time+'</div><div class="compare-meta">'+meta+'</div>'+(cost?'<div class="compare-cost">'+cost+'</div>':'')+'<small>'+note+'</small></article>';
   }
   async function compareWays(){
     const input=$('#v110CompareDestination'),dest=input?.value.trim();if(!dest)return toast('Add a destination first.');
@@ -145,9 +145,9 @@ if(core){
     try{
       const p=await json('/api/journey?action=compare&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&to='+encodeURIComponent(dest));
       const cards=[];
-      if(p.publicTransport){const x=p.publicTransport;cards.push(modeCard('Public transport','▰',x.minutes+' min',(x.title||'Route')+' · '+x.walkMinutes+' min walk · '+x.transfers+' transfer'+(x.transfers===1?'':'s'),x.note,p.fastestEstimate==='public'))}
-      if(p.drive){const x=p.drive;cards.push(modeCard('Drive','🚗',x.minutes+' min',(x.routed?'Road-routed':'Estimated')+' · '+(x.distanceM?distance(x.distanceM):'distance unavailable')+' · includes '+x.parkingAllowanceMinutes+' min parking/walk',x.note,p.fastestEstimate==='drive'))}
-      if(p.rideshare){const x=p.rideshare;cards.push(modeCard('Taxi / rideshare','↗',x.minutesLow+'–'+x.minutesHigh+' min',(x.routed?'Road-routed':'Estimated')+' · includes '+x.pickupLowMinutes+'–'+x.pickupHighMinutes+' min pickup',x.note,p.fastestEstimate==='rideshare'))}
+      if(p.publicTransport){const x=p.publicTransport;cards.push(modeCard('Public transport','▰',x.minutes+' min',(x.title||'Route')+' · '+x.walkMinutes+' min walk · '+x.transfers+' transfer'+(x.transfers===1?'':'s'),'Approx. SGD '+Number(x.fareEstimateSgd||0).toFixed(2)+' adult card fare',x.note,p.fastestEstimate==='public'))}
+      if(p.drive){const x=p.drive;cards.push(modeCard('Drive','🚗',x.minutes+' min',(x.routed?'Road-routed':'Estimated')+' · '+(x.distanceM?distance(x.distanceM):'distance unavailable')+' · includes '+x.parkingAllowanceMinutes+' min parking/walk','Fuel and parking not estimated',x.note,p.fastestEstimate==='drive'))}
+      if(p.rideshare){const x=p.rideshare;cards.push(modeCard('Taxi / rideshare','↗',x.minutesLow+'–'+x.minutesHigh+' min',(x.routed?'Road-routed':'Estimated')+' · includes '+x.pickupLowMinutes+'–'+x.pickupHighMinutes+' min pickup',x.taxiMeterBaselineSgd?'Meter baseline approx. SGD '+Number(x.taxiMeterBaselineSgd).toFixed(2)+' before extras':'Check provider app for fare',x.note,p.fastestEstimate==='rideshare'))}
       host.innerHTML=cards.join('')+'<div class="compare-disclaimer">'+escText(p.disclaimer||'')+'</div><button id="v110OpenTransitRoute" class="secondary full" type="button">Open detailed public-transport route</button>';
       $('#v110OpenTransitRoute')?.addEventListener('click',()=>{if($('#tripTo'))$('#tripTo').value=dest;$('#planTrip')?.click();$('#travelSection')?.scrollIntoView({behavior:'smooth',block:'start'})});
     }catch(error){host.innerHTML='<div class="empty-inline error-state">'+escText(error.message)+'</div>'}
