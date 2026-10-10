@@ -123,6 +123,7 @@ if(panel){
  group?.insertAdjacentElement('beforebegin',merliContext);
  merliMore=document.createElement('button');merliMore.id='uxMerliMore';merliMore.type='button';merliMore.className='ux-merli-more';
  merliMore.setAttribute('aria-expanded','false');
+ if(group){group.id='uxAllMerliActions';merliMore.setAttribute('aria-controls','uxAllMerliActions')}
  group?.insertAdjacentElement('afterend',merliMore);
  merliMore.addEventListener('click',()=>{showAllMerli=!showAllMerli;updateMerli()});
  $('#uxMerliSuggestions')?.addEventListener('click',e=>{
@@ -275,4 +276,6 @@ document.addEventListener('sgbuddy:persona',()=>queueMicrotask(renderPersona));
 document.addEventListener('sgbuddy:weather',updateMerli);
 renderPersona();
 window.__SGBUDDY_UX_WAVES__='1-6';
+window.__SGBUDDY_CLIENT_VERSION__='1.6.0-preview';
+if($('#appVersion'))$('#appVersion').textContent='v1.6.0-preview';
 })();
