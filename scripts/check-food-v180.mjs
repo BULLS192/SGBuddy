@@ -8,7 +8,7 @@ const catalog=JSON.parse(read('data/discover-v120.json'));
 const stalls=JSON.parse(read('data/food-stalls-v180.json'));
 const dishes=JSON.parse(read('data/singapore-dishes-v180.json'));
 const published=JSON.parse(read('data/facts-published.json'));
-assert.equal(catalog.places.length,267,'Place catalog must stay intact');
+assert.ok(catalog.places.length>=271,'Place catalog should include NEA award-associated centres');
 assert.ok(stalls.stalls.length>=45,'Expected expanded stall lead directory');
 assert.ok(dishes.dishes.length>=80,'Expected expanded dish library');
 assert.ok(published.verifiedCount>=130,'Expected 130 officially sourced Singapore facts');
