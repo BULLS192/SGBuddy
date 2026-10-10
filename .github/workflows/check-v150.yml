@@ -1,0 +1,22 @@
+name: SGBuddy V1.5 Official Library QA
+on:
+  push:
+    branches: [feature/sgbuddy-v1.5-official-place-library]
+  pull_request:
+    paths:
+      - 'app-v150.js'
+      - 'api/library.js'
+      - 'lib/official-library.js'
+      - 'scripts/**'
+      - 'official-library-v150.css'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: npm run check
