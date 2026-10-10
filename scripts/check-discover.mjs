@@ -59,12 +59,7 @@ const renderer=discover.slice(airStart,airEnd);
 const simulateAir=weather=>{
   const elements=Object.fromEntries(['v120AirPanel','v120AirStatus','v120AirUpdated','v120AirAdvisory'].map(id=>[id,{textContent:'',innerHTML:'',className:''}]));
   const fakeState={weather};
-  new Function('state','
-  catalog.places.length+' unique venues,',
-  catalog.apps.length+' apps,',
-  catalog.facts.length+' source-reviewed facts,',
-  'student and NEA support wired.');
-,'safe','dateText','category','airValue',renderer+';drawAirQuality()')(
+  new Function('state','$','safe','dateText','category','airValue',renderer+';drawAirQuality()')(
     fakeState,s=>elements[s.slice(1)],String,iso=>iso||'Not provided',
     n=>n<=50?'Good':n<=100?'Moderate':'Unhealthy',
     raw=>raw==null?null:Number(raw)
