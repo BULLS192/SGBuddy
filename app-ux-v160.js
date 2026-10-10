@@ -201,7 +201,7 @@ function setExplore(tab){
  setHidden(searchRow,isNearby||isFacts);
  const nearTab=$('[data-ux-nearby]');
  if(nearTab){nearTab.classList.toggle('ux-active',isNearby);nearTab.setAttribute('aria-selected',String(isNearby));nearTab.tabIndex=isNearby?0:-1}
- if(isNearby)$('[data-discover-tab]').forEach(b=>{b.setAttribute('aria-selected','false');b.classList.remove('active');b.tabIndex=-1});
+ if(isNearby)$$('[data-discover-tab]').forEach(b=>{b.setAttribute('aria-selected','false');b.classList.remove('active');b.tabIndex=-1});
  syncKnowledge();
 }
 const back=document.createElement('div');back.className='ux-move-links';
