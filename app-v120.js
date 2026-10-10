@@ -87,10 +87,25 @@
       '<button type="button" class="secondary" data-next-discover-fact>Another fact ↻</button>'+
       '<button type="button" class="secondary" data-save-discover="'+safe(fact.id)+'" aria-pressed="'+String(marked)+'">'+(marked?'★ Saved':'☆ Save')+'</button></div></article>';
   }
+  /* Ranking is independent of broad audience eligibility. A student listing is
+     not automatically a top pick merely because it is tagged Student. */
+  const cues={
+    resident:{eat:/bedok|whampoa|tiong bahru|old airport|boon lay|bukit merah|bukit merah|changi village/i,do:/park|reservoir|garden|wetland|pulau ubin|southern ridges/i,shop:/northpoint|tampines|junction 8|nex|westgate|imm|jem|city square/i,apps:/singpass|lifesg|healthhub|myenv|simplygo|fairprice|oneservice/i},
+    visitor:{eat:/maxwell|lau pa sat|newton|chinatown|tekka|amoy|chomp chomp/i,do:/gardens by the bay|merlion|national|sentosa|botanic|jewel|kampong|little india/i,shop:/orchard|bugis|jewel|chinatown|haji lane|mustafa/i,apps:/grab|maps|simplygo|arrival|klook|trip.com|myenv/i},
+    executive:{eat:/amoy|lau pa sat|maxwell|hong lim|chinatown|zion|golden mile/i,do:/national gallery|artscience|esplanade|marina bay|gardens by the bay/i,shop:/orchard|marina|suntec|jewel|plaza singapura/i,apps:/grab|gojek|zig|maps|wise|revolut|sgworkpass/i},
+    student:{eat:/old airport|bedok|tekka|adam road|whampoa|boon lay|tiong bahru|pek kio/i,do:/science centre|national museum|fort canning|east coast park|botanic|reservoir|haw par|haw par/i,shop:/mustafa|bugis|imm|carousell|city square|jem|westgate/i,apps:/simplygo|nlb|activesg|carousell|maps|citymapper|wireless|fairprice/i}
+  };
+  function audienceScore(row){
+    const current=state.mode==='new_in_sg'?'resident':mode();
+    const key=tab==='apps'?'apps':tab;
+    const matcher=cues[current]?.[key];
+    const text=[row.name,row.area,row.category].join(' ');
+    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0);
+  }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
     return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(!q||[r.name,r.area,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
-      .sort((a,b)=>Number(matchesMode(b))-Number(matchesMode(a))||(a.name||a.text||'').localeCompare(b.name||b.text||''));
+      .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
     if(!loaded)return;
