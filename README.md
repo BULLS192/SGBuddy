@@ -115,11 +115,11 @@ Development branch: `feature/sgbuddy-v1.4-merli-knowledge`. This is a reviewable
 
 ### Source-checked Singapore library
 
-- `content/facts-approved.json` holds **80 claims**: **72 AI-assisted, individually source-checked** and **8 review pending**.
-- `data/facts-published.json` contains only the 72 checked claims across **Hawker heritage, National symbols, Botanic heritage, Transport heritage, Water innovation, and Singapore history**.
+- `content/facts-approved.json` holds **112 claims**: **104 AI-assisted, official-source checked** and **8 review pending**.
+- `data/facts-published.json` contains only the 104 checked claims across **Hawker heritage, National symbols, Botanic heritage, Transport heritage, Water innovation, and Singapore history**.
 - Official sources include NEA, NParks, Singapore Statutes Online, LTA, PUB and SG101. Every checked claim links to its source and retains `verifiedOn`, `reviewedBy`, `reviewMethod`, and `evidenceNote` in the published bundle.
 - `scripts/publish-facts.mjs` rejects missing/unsafe sources, duplicate reviewed claims, missing reviewer metadata or source-check notes. Publishing never promotes a `status: review-pending` candidate.
-- The "10,000 facts" concept remains a target, **not** a representation of completed or human-reviewed content. The 72 claims received **AI-assisted source review**, not independent expert/human sign-off; sources and historical descriptions can change. Further editorial and accessibility QA is required before broad rollout.
+- The "10,000 facts" concept remains a target, **not** a representation of completed or human-reviewed content. The 104 claims received **AI-assisted source review**, not independent expert/human sign-off; sources and historical descriptions can change. Further editorial and accessibility QA is required before broad rollout.
 
 ### Merli and Discover improvements
 
@@ -134,3 +134,13 @@ Development branch: `feature/sgbuddy-v1.4-merli-knowledge`. This is a reviewable
 2. Manually inspect preview at mobile and desktop sizes: Merli launcher, overlay stacking, opening/closing, keyboard, mode changes and return focus.
 3. Exercise live train/bus and saved-home route questions, fresh/stale/unavailable environmental feeds, content filters, pagination, source links and cross-screen saved fact synchronization.
 4. Test installed PWA refresh/offline loading. Only merge and deploy after approval; `vercel.json` disables automatic Git deployment.
+
+
+### V1.4 directory expansion — 10 October 2026
+
+- Expanded `data/discover-v120.json` from 79 to **267 unique venue candidates**, spanning **98 Eat**, **98 Do** and **71 Shop** records. Preserves the initial 27 app candidates. New entries include named hawker centres island-wide, museums and heritage districts, nature areas, parks, attractions, and neighbourhood/shopping centres.
+- New records are explicitly marked `curated-preview`, with an `editorialNote` stating that individual existence, source-specific claim, exact address, current operational status and opening hours are still to be validated. Agency URLs are *directory/category context*, **not proof that an individual venue is listed there or currently operating**.
+- Source discovery: NEA Hawker Centre management (https://www.nea.gov.sg/our-services/hawker-management), NParks parks directory (https://www.nparks.gov.sg/visit/parks), National Heritage Board monuments (https://www.roots.gov.sg/nhb/monuments), and Singapore Tourism Board visitor site (https://www.visitsingapore.com/).
+- `data/facts-published.json` now contains **104** AI-assisted official-source-checked facts, adding a Nature & parks topic; **8** previously staged claims remain under review. These source checks do not constitute independent human expert review.
+- Discover now supports a geographical area dropdown alongside searching, mode ranking and Saved-only filtering. Large result sets continue to show the first 24 entries, with an optional Show all action.
+- All new entries should receive canonical postal addresses (OneMap geocoding), exact source records, temporal validity and operations/closure checks before being treated as reliable route targets. Closed or redeveloping hawker centres must not be represented as open.
