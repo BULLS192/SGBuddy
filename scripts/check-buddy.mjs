@@ -29,6 +29,8 @@ assert.equal(blobSha,'7664fe37eb3b6aa7ac433993722d48a068c670c4','Must reuse the 
 assert.ok(!/FREYA|freyaSection|freya-orb/.test(page),'Old FREYA panel remains in HTML');
 assert.ok(!/Open FREYA|v1-freya-fab|v1-freya-panel/.test(app),'Old FREYA floating assistant remains');
 assert.ok(!/v1-freya-fab|v1-freya-panel/.test(styles),'Obsolete FREYA overlay styles remain');
+assert.ok(!/freya-orb|freyaSection|Open FREYA/i.test(styles+app+page),'No old FREYA interface references should remain');
+assert.ok(/z-index:1450/.test(buddyCSS),'Merli should sit below modal overlays for sign-in, persona and install');
 assert.ok(!page.includes('id="advisorForm"'),'Duplicate legacy assistant form remains');
 assert.ok(app.includes('askAdvisor:advisor'),'Old transport advisor should be wired to Merli');
 assert.ok(ui.includes('askAdvisor(original)'),'Merli should answer transport queries using the existing advisor');
