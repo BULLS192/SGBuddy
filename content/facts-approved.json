@@ -1,0 +1,437 @@
+[
+  {
+    "id": "FACT-00001",
+    "theme": "Hawker heritage",
+    "text": "Chomp Chomp Food Centre opened in 1972.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00002",
+    "theme": "Hawker heritage",
+    "text": "Chomp Chomp's name is an English adaptation of the older Teochew Tiong Tiong.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00003",
+    "theme": "Hawker heritage",
+    "text": "Tiong Tiong means loyalty and righteousness in Teochew.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00004",
+    "theme": "Hawker heritage",
+    "text": "East Coast Lagoon Food Village was built on reclaimed land.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00005",
+    "theme": "Hawker heritage",
+    "text": "East Coast Lagoon Food Village opened as a hawker centre in 1978.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00006",
+    "theme": "Hawker heritage",
+    "text": "Geylang Serai Market was opened in 1964 by then Prime Minister Lee Kuan Yew.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00007",
+    "theme": "Hawker heritage",
+    "text": "Geylang Serai Market was rebuilt in 2009.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00008",
+    "theme": "Hawker heritage",
+    "text": "Geylang Serai Market's rebuilt architecture draws on Malay cultural heritage.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00009",
+    "theme": "Hawker heritage",
+    "text": "Maxwell Food Centre was a site of a post-war low-cost meals programme.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00010",
+    "theme": "Hawker heritage",
+    "text": "Newton Food Centre was the first Singapore hawker centre built with a garden setting.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00011",
+    "theme": "Hawker heritage",
+    "text": "Old Airport Road Food Centre was completed in 1973.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00012",
+    "theme": "Hawker heritage",
+    "text": "People's Park Food Centre began as a hawker shelter in 1923.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00013",
+    "theme": "Hawker heritage",
+    "text": "By 1940 the People's Park market was Singapore's largest fresh-produce market.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00014",
+    "theme": "Hawker heritage",
+    "text": "Tekka Market was built in 1915.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00015",
+    "theme": "Hawker heritage",
+    "text": "Tekka Market was previously called Kandang Kerbau Market.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00016",
+    "theme": "Hawker heritage",
+    "text": "Kandang Kerbau means buffalo enclosure in Malay.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00017",
+    "theme": "Hawker heritage",
+    "text": "Tiong Bahru Market opened in 1951 under the name Seng Poh Road Market.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00018",
+    "theme": "Hawker heritage",
+    "text": "The old Tiong Bahru Market was used for public meetings and political rallies.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00020",
+    "theme": "National symbols",
+    "text": "Singapore's national flower is Vanda Miss Joaquim.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00021",
+    "theme": "National symbols",
+    "text": "Vanda Miss Joaquim was announced as national flower on 15 April 1981.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00022",
+    "theme": "National symbols",
+    "text": "Vanda Miss Joaquim is a cross between Vanda hookeriana and Vanda teres.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00023",
+    "theme": "National symbols",
+    "text": "Vanda Miss Joaquim is named after Agnes Joaquim.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00024",
+    "theme": "National symbols",
+    "text": "Agnes Joaquim bred the national-flower orchid in 1893.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00025",
+    "theme": "National symbols",
+    "text": "Vanda Miss Joaquim was recorded as Singapore's first orchid hybrid.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00026",
+    "theme": "National symbols",
+    "text": "Vanda Miss Joaquim was recorded as the world's first Vanda hybrid.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00027",
+    "theme": "National symbols",
+    "text": "Agnes Joaquim was a second-generation Singapore-born Armenian.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00028",
+    "theme": "National symbols",
+    "text": "Agnes Joaquim was born on 7 April 1854.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00029",
+    "theme": "National symbols",
+    "text": "Agnes Joaquim won more than 70 annual flower-show awards.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  },
+  {
+    "id": "FACT-00030",
+    "theme": "National symbols",
+    "text": "Over 40 flower types were considered when choosing the national flower.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+    "status": "source-reviewed",
+    "reviewedBy": "",
+    "verifiedOn": ""
+  }
+]
