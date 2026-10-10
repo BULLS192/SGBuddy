@@ -157,15 +157,40 @@
     const regionHost=$('#v120AirPanel');if(!regionHost)return;
     const air=state.weather?.airQuality||{},psi=air.psi24h,pm=air.pm25OneHour;
     const regions=['north','south','east','west','central'],psiRegions=psi?.regions||{},pmRegions=pm?.regions||{};
-    const latest=psi?.updatedAt||pm?.updatedAt||null;
-    const stamp=latest?Date.parse(latest):NaN;
-    const ageMins=Number.isFinite(stamp)?(Date.now()-stamp)/60000:Infinity;
-    const quality=state.weather?.dataQuality?.status||'unknown';
-    const stale=ageMins>90||ageMins< -15||quality==='unavailable';
+    // The weather endpoint aggregates NINE datasets. Its global 'partial' status
+    // must not be presented as an air-quality failure when PSI and PM2.5 are fine.
+    const weather=state.weather||{},quality=weather.dataQuality||{};
+    const fallbackSignals=Array.isArray(quality.staleSignals)?quality.staleSignals:[];
+    const offline=weather.source==='device-cache'||fallbackSignals.includes('offline device cache');
+    const psiCached=fallbackSignals.includes('psi'),pmCached=fallbackSignals.includes('pm25');
+    const readings=[['PSI',psi,120],['PM2.5',pm,90]].filter(([,item])=>Boolean(item));
+    const sourceAges=readings.map(([name,item,maxMins])=>{
+      const stamp=item.updatedAt?Date.parse(item.updatedAt):NaN;
+      const age=Number.isFinite(stamp)?(Date.now()-stamp)/60000:null;
+      return {name,age,maxMins,updatedAt:item.updatedAt||null};
+    });
+    const delayed=sourceAges.some(x=>x.age!==null&&(x.age>x.maxMins||x.age< -15));
+    const timestampUnknown=sourceAges.some(x=>x.age===null);
+    const cached=offline||psiCached||pmCached;
+    const missing=!psi||!pm;
     const badge=$('#v120AirStatus');
-    badge.textContent=!psi&&!pm?'Unavailable':stale?'Last known / check freshness':quality==='partial'?'Partial official data':'Official NEA readings';
-    badge.className='sync-badge'+(stale?' v120-stale':'');
-    $('#v120AirUpdated').textContent='Latest source timestamp: '+dateText(latest)+(stale?' · Not confirmed live':'');
+    badge.textContent=!psi&&!pm?'Air readings unavailable'
+      :offline?'Saved offline readings'
+      :missing?'Partial air-quality data'
+      :cached?'Cached NEA air readings'
+      :delayed?'Delayed NEA readings'
+      :timestampUnknown?'NEA time unconfirmed'
+      :'Official NEA readings';
+    badge.className='sync-badge'+(offline||missing||cached||delayed||timestampUnknown?' v120-stale':'');
+    const statusNotes=[];
+    if(!psi)statusNotes.push('24h PSI unavailable');
+    if(!pm)statusNotes.push('1h PM2.5 unavailable');
+    if(cached)statusNotes.push('cached air readings — not confirmed live');
+    if(delayed)statusNotes.push('source timestamp outside expected refresh window');
+    if(timestampUnknown)statusNotes.push('source timestamp unavailable');
+    $('#v120AirUpdated').textContent=sourceAges.length
+      ?sourceAges.map(x=>x.name+': '+dateText(x.updatedAt)).join(' · ')+(statusNotes.length?' · '+statusNotes.join('; '):'')
+      :'PSI / PM2.5 source timestamps unavailable';
     const regionSelected=String(air.region||'').toLowerCase();
     regionHost.innerHTML=regions.map(region=>{
       const p=airValue(psiRegions[region]),m=airValue(pmRegions[region]);
