@@ -1,6 +1,806 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "publishedOn": "2026-10-10",
-  "verifiedCount": 0,
-  "facts": []
+  "verifiedCount": 47,
+  "facts": [
+    {
+      "id": "FACT-00001",
+      "theme": "Hawker heritage",
+      "text": "Chomp Chomp Food Centre opened in 1972.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Chomp Chomp opened in 1972",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00002",
+      "theme": "Hawker heritage",
+      "text": "Chomp Chomp's name is an English adaptation of the older Teochew Tiong Tiong.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: name adapted from Teochew Tiong Tiong",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00003",
+      "theme": "Hawker heritage",
+      "text": "Tiong Tiong means loyalty and righteousness in Teochew.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Tiong Tiong means loyalty and righteousness",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00004",
+      "theme": "Hawker heritage",
+      "text": "East Coast Lagoon Food Village was built on reclaimed land.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: East Coast Lagoon built on reclaimed land",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00005",
+      "theme": "Hawker heritage",
+      "text": "East Coast Lagoon Food Village opened as a hawker centre in 1978.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: East Coast Lagoon opened in 1978",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00006",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market was opened in 1964 by then Prime Minister Lee Kuan Yew.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Geylang Serai opened 1964 by Lee Kuan Yew",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00007",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market was rebuilt in 2009.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Geylang Serai rebuilt 2009",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00008",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market's rebuilt architecture draws on Malay cultural heritage.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: architecture inspired by Malay community culture",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00009",
+      "theme": "Hawker heritage",
+      "text": "Maxwell Food Centre was a site of a post-war low-cost meals programme.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Maxwell former low-cost meals programme",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00010",
+      "theme": "Hawker heritage",
+      "text": "Newton Food Centre was the first Singapore hawker centre built with a garden setting.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Newton first garden-setting hawker centre",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00011",
+      "theme": "Hawker heritage",
+      "text": "Old Airport Road Food Centre was completed in 1973.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Old Airport Road completed 1973",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00012",
+      "theme": "Hawker heritage",
+      "text": "People's Park Food Centre began as a hawker shelter in 1923.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: People's Park began hawker shelter 1923",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00013",
+      "theme": "Hawker heritage",
+      "text": "By 1940 the People's Park market was Singapore's largest fresh-produce market.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: People's Park Singapore's largest fresh produce market by 1940",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00014",
+      "theme": "Hawker heritage",
+      "text": "Tekka Market was built in 1915.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Tekka built 1915",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00015",
+      "theme": "Hawker heritage",
+      "text": "Tekka Market was previously called Kandang Kerbau Market.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Tekka formerly Kandang Kerbau",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00016",
+      "theme": "Hawker heritage",
+      "text": "Kandang Kerbau means buffalo enclosure in Malay.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Kandang Kerbau Malay for buffalo enclosure",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00017",
+      "theme": "Hawker heritage",
+      "text": "Tiong Bahru Market opened in 1951 under the name Seng Poh Road Market.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: Tiong Bahru Market opened 1951 as Seng Poh Road Market",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00018",
+      "theme": "Hawker heritage",
+      "text": "The old Tiong Bahru Market was used for public meetings and political rallies.",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NEA: old Tiong Bahru Market held meetings and political rallies",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00020",
+      "theme": "National symbols",
+      "text": "Singapore's national flower is Vanda Miss Joaquim.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: Vanda Miss Joaquim is national flower",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00022",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim is a cross between Vanda hookeriana and Vanda teres.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks: historical record of Vanda hookeriana x Vanda teres",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-00023",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim is named after Agnes Joaquim.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks: Vanda Miss Joaquim arose in Agnes Joaquim's garden",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-001",
+      "theme": "Botanic heritage",
+      "text": "The Singapore Botanic Gardens began at their present Tanglin site in 1859.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: 1859 establishment at Tanglin",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-002",
+      "theme": "Botanic heritage",
+      "text": "Sir Stamford Raffles established an experimental garden on Fort Canning Hill in 1822.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Raffles experimental garden on Government Hill in 1822",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-003",
+      "theme": "Botanic heritage",
+      "text": "The first botanical and experimental garden at Fort Canning effectively closed in 1829.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: first site effectively closed 1829",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-004",
+      "theme": "Botanic heritage",
+      "text": "An agricultural society revived a 2.8-hectare portion of the early gardens in 1836.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: 1836 society revival",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-005",
+      "theme": "Botanic heritage",
+      "text": "The Tanglin gardens began on a 23-hectare tract of former plantation land.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: original 23 hectares at Tanglin",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-006",
+      "theme": "Botanic heritage",
+      "text": "Hoo Ah Kay, also known as Whampoa, was one of the founders who provided land for the Botanic Gardens.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Whampoa tract at Tanglin",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-007",
+      "theme": "Botanic heritage",
+      "text": "Lawrence Niven designed the Botanic Gardens' early English landscape-style grounds.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Lawrence Niven landscape",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-008",
+      "theme": "Botanic heritage",
+      "text": "Burkill Hall stands on land added to the Botanic Gardens in 1866.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: 1866 expansion and house",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-009",
+      "theme": "Botanic heritage",
+      "text": "Henry James Murton became superintendent of the Botanic Gardens in 1875.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Murton appointed 1875",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-010",
+      "theme": "Botanic heritage",
+      "text": "Henry Nicholas Ridley arrived at the Singapore Botanic Gardens in 1888.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Ridley arrived 1888",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-011",
+      "theme": "Botanic heritage",
+      "text": "The Singapore Botanic Gardens helped develop the regional plantation rubber industry.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Ridley's rubber research",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-012",
+      "theme": "Botanic heritage",
+      "text": "In 1928, the Botanic Gardens established laboratories for orchid breeding and hybridisation.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Holttum's 1928 laboratories",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-013",
+      "theme": "Botanic heritage",
+      "text": "The National Orchid Garden grew from an earlier orchid enclosure at the Botanic Gardens.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Purseglove's Orchid Enclosure",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-014",
+      "theme": "Botanic heritage",
+      "text": "Singapore Botanic Gardens became a UNESCO World Heritage Site in 2015.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: UNESCO inscription 2015",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-015",
+      "theme": "Botanic heritage",
+      "text": "Singapore Botanic Gardens covers 82 hectares.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks About page: gardens 82 hectares",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-016",
+      "theme": "Botanic heritage",
+      "text": "The Botanic Gardens' Learning Forest and Gallop Extension increased its total area to 82 hectares.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: expansions to 82 hectares",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-017",
+      "theme": "Botanic heritage",
+      "text": "The Singapore Botanic Gardens Seed Bank was introduced in 2019.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: Seed Bank 2019",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-BOT-018",
+      "theme": "Botanic heritage",
+      "text": "Lee Kuan Yew launched Singapore's first Tree Planting campaign in 1963.",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "NParks history: first Tree Planting campaign 1963",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-001",
+      "theme": "National symbols",
+      "text": "Singapore's National Flag has red above white in two equal horizontal sections.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: First Schedule flag description",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-002",
+      "theme": "National symbols",
+      "text": "The Singapore flag has a white crescent and five white stars arranged in a circle.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: First Schedule flag canton",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-003",
+      "theme": "National symbols",
+      "text": "The Singapore flag has a width-to-length ratio of 2:3.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: First Schedule flag proportions",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-004",
+      "theme": "National symbols",
+      "text": "Singapore's State Crest features a lion and a tiger supporting a shield.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: Coat of Arms description",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-005",
+      "theme": "National symbols",
+      "text": "The tiger on Singapore's State Crest represents historical links with Malaysia.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: State Crest symbolism",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-006",
+      "theme": "National symbols",
+      "text": "The lion on Singapore's State Crest represents Singapore as the Lion City.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: State Crest symbolism",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-007",
+      "theme": "National symbols",
+      "text": "The motto on Singapore's State Crest is Majulah Singapura.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: State Crest motto",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-SYM-008",
+      "theme": "National symbols",
+      "text": "The public seal of Singapore is kept by the President.",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "verifiedOn": "2026-10-10",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "evidenceNote": "National Symbols Act: public seal provision",
+      "status": "verified"
+    }
+  ]
 }
