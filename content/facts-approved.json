@@ -1342,5 +1342,549 @@
     "reviewMethod": "primary-source-check",
     "verifiedOn": "2026-10-10",
     "evidenceNote": "SG101: compulsory voting 1959"
+  },
+  {
+    "id": "FACT-NAT-001",
+    "theme": "Nature & parks",
+    "text": "Bukit Timah Nature Reserve covers about 163 hectares.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: Bukit Timah 163ha"
+  },
+  {
+    "id": "FACT-NAT-002",
+    "theme": "Nature & parks",
+    "text": "Bukit Timah Nature Reserve was established as a forest reserve in 1883.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: gazetted forest reserve in 1883"
+  },
+  {
+    "id": "FACT-NAT-003",
+    "theme": "Nature & parks",
+    "text": "Around half of Bukit Timah Nature Reserve contains primary forest.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: primary forest proportion"
+  },
+  {
+    "id": "FACT-NAT-004",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh was opened as a nature park in 1993.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: Sungei Buloh initial opening"
+  },
+  {
+    "id": "FACT-NAT-005",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh was officially gazetted as a nature reserve in 2002.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: gazettement in 2002"
+  },
+  {
+    "id": "FACT-NAT-006",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh was named Singapore's first ASEAN Heritage Park in 2003.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: ASEAN Heritage Park 2003"
+  },
+  {
+    "id": "FACT-NAT-007",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh Wetland Reserve covers approximately 202 hectares.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature reserves: expansion to 202 ha"
+  },
+  {
+    "id": "FACT-NAT-008",
+    "theme": "Nature & parks",
+    "text": "Singapore has four nature reserves protected under the Parks and Trees Act.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks: four nature reserves protected by Parks and Trees Act"
+  },
+  {
+    "id": "FACT-NAT-009",
+    "theme": "Nature & parks",
+    "text": "NParks identifies 20 nature areas in Singapore.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks: 20 nature areas"
+  },
+  {
+    "id": "FACT-NAT-010",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Kent Ridge Park as part of Singapore's nature areas.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Kent Ridge Park"
+  },
+  {
+    "id": "FACT-NAT-011",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Kranji Mangrove as a nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Kranji Mangrove"
+  },
+  {
+    "id": "FACT-NAT-012",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Mount Faber Park as a nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Mount Faber Park"
+  },
+  {
+    "id": "FACT-NAT-013",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Pasir Ris Nature Area as one of Singapore's nature areas.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Pasir Ris"
+  },
+  {
+    "id": "FACT-NAT-014",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Pulau Ubin Nature Area as a protected nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Pulau Ubin"
+  },
+  {
+    "id": "FACT-NAT-015",
+    "theme": "Nature & parks",
+    "text": "NParks lists Sentosa Nature Area among Singapore's nature areas.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Sentosa"
+  },
+  {
+    "id": "FACT-NAT-016",
+    "theme": "Nature & parks",
+    "text": "NParks lists Sisters' Islands Marine Nature Area among Singapore's nature areas.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Sisters' Islands"
+  },
+  {
+    "id": "FACT-NAT-017",
+    "theme": "Nature & parks",
+    "text": "NParks lists Singapore Botanic Gardens Rainforest as a nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Botanic Gardens Rainforest"
+  },
+  {
+    "id": "FACT-NAT-018",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Telok Blangah Hill Park as a nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Telok Blangah Hill"
+  },
+  {
+    "id": "FACT-NAT-019",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Bukit Batok Nature Area as a nature area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Bukit Batok"
+  },
+  {
+    "id": "FACT-NAT-020",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Dairy Farm Nature Area as part of Bukit Timah Nature Area.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Dairy Farm"
+  },
+  {
+    "id": "FACT-NAT-021",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Chestnut Nature Area in Singapore.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Chestnut"
+  },
+  {
+    "id": "FACT-NAT-022",
+    "theme": "Nature & parks",
+    "text": "NParks identifies Kranji Reservoir Marshes as one of its nature highlights.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks nature areas list: Kranji Reservoir Marshes"
+  },
+  {
+    "id": "FACT-NAT-023",
+    "theme": "Nature & parks",
+    "text": "East Coast Park supports cycling and inline skating activities.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks Parks for nature enthusiasts: East Coast Park cycling and skating"
+  },
+  {
+    "id": "FACT-NAT-024",
+    "theme": "Nature & parks",
+    "text": "East Coast Park has barbecue and camping amenities.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks Parks for nature enthusiasts: East Coast Park barbecue and camping"
+  },
+  {
+    "id": "FACT-NAT-025",
+    "theme": "Nature & parks",
+    "text": "Fort Canning Park features nature walks and heritage activities.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Fort Canning nature and heritage"
+  },
+  {
+    "id": "FACT-NAT-026",
+    "theme": "Nature & parks",
+    "text": "The Singapore Botanic Gardens is described by NParks as a destination for family activities and nature walks.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Botanic Gardens activities"
+  },
+  {
+    "id": "FACT-NAT-027",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh Wetland Reserve is a destination for birdwatching.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Sungei Buloh birdwatching"
+  },
+  {
+    "id": "FACT-NAT-028",
+    "theme": "Nature & parks",
+    "text": "Sungei Buloh Wetland Reserve has wildlife photography activities.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Sungei Buloh photography"
+  },
+  {
+    "id": "FACT-NAT-029",
+    "theme": "Nature & parks",
+    "text": "Admiralty Park supports family-friendly activities and nature walks.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Admiralty Park activities"
+  },
+  {
+    "id": "FACT-NAT-030",
+    "theme": "Nature & parks",
+    "text": "Ann Siang Hill Park combines nature and heritage attractions.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Ann Siang Hill Park activities"
+  },
+  {
+    "id": "FACT-NAT-031",
+    "theme": "Nature & parks",
+    "text": "Bedok Reservoir Park offers water sports activities.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Bedok Reservoir water sports"
+  },
+  {
+    "id": "FACT-NAT-032",
+    "theme": "Nature & parks",
+    "text": "Bedok Town Park allows cycling and inline skating.",
+    "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NParks parks: Bedok Town Park cycling"
   }
 ]
