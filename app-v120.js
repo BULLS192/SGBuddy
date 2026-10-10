@@ -14,6 +14,7 @@
   let catalog={places:[],apps:[],facts:[]};
   let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all';
   const addressCache=new Map();
+  let officialClosures=new Map();
   const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['apps','Useful apps'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
@@ -74,12 +75,18 @@
     }
     return '<p class="discover-address-note" role="status">'+(value.status==='not-configured'?'OneMap not configured':value.status==='ambiguous'?'Ambiguous address match — no verified coordinates':value.status==='not-found'?'No matching address found':'OneMap temporarily unavailable')+'. Search by name instead.</p>';
   }
+  function publishedClosure(place){
+    const row=officialClosures.get(place.id);if(!row)return '';
+    const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    if(today<row.start||today>row.end)return '';
+    return '<p class="discover-closure" role="note">⚠ NEA scheduled closure: '+safe(row.start)+' to '+safe(row.end)+' · '+safe(row.reason)+'. Check current NEA updates before visiting.</p>';
+  }
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p>Curated location · Opening hours, availability and entrance fees have not been verified.</p>'+
+      '<p>Curated location · Opening hours, availability and entrance fees have not been verified.</p>'+publishedClosure(place)+
       '<div class="discover-actions">'+sourceLink(map,'Search place by name')+'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button></div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
@@ -249,8 +256,10 @@
   }
   Promise.all([
     fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Catalog response '+r.status);return r.json()}),
-    fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
-  ]).then(([data,published])=>{
+    fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/data/nea-closures-v180.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([data,published,closureFeed])=>{
+    officialClosures=new Map((Array.isArray(closureFeed?.closures)?closureFeed.closures:[]).map(x=>[x.centreId,x]));
     for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
     const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
     const ids=new Set(checked.map(f=>f.id));
