@@ -60,6 +60,7 @@
     });
     $('#discoverSearch').placeholder=tab==='apps'?'Search app names and purposes':tab==='facts'?'Search Singapore facts':'Search places or neighbourhoods';
     render();
+    document.dispatchEvent(new CustomEvent('sgbuddy:discover-tab',{detail:{tab}}));
   }
   function dirCard(place){
     const marked=saved.has(place.id);
@@ -81,7 +82,7 @@
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
-    return '<article class="card discover-fact"><div class="label">'+safe(fact.theme)+' · Source-reviewed</div>'+
+    return '<article class="card discover-fact"><div class="label">'+safe(fact.theme)+' · '+(fact.status==='verified'?'Official-source checked':'Editorial review pending')+'</div>'+
       '<h3>Did you know?</h3><p>'+safe(fact.text)+'</p>'+
       '<div class="discover-actions">'+sourceLink(fact.sourceUrl,'Read original source')+
       '<button type="button" class="secondary" data-next-discover-fact>Another fact ↻</button>'+
@@ -121,7 +122,7 @@
     if(tab==='facts'){
       const candidates=catalog.facts.filter(f=>(!savedOnly||saved.has(f.id))&&(!q||[f.theme,f.text].join(' ').toLowerCase().includes(q))&&matchesMode(f));
       if(factIndex>=candidates.length)factIndex=0;
-      $('#discoverStatus').textContent=candidates.length+' source-reviewed facts in this preview · growing toward 10,000 independently verified facts';
+      $('#discoverStatus').textContent=candidates.filter(f=>f.status==='verified').length+' source-checked · '+candidates.filter(f=>f.status!=='verified').length+' review pending · independently reviewed target: 10,000';
       results.innerHTML=candidates.length?factsCard(candidates[factIndex]):'<div class="card discover-empty">No matching source-reviewed facts yet. Try clearing the search or Saved only.</div>';
       return;
     }
@@ -215,11 +216,17 @@
     document.addEventListener('sgbuddy:weather',drawAirQuality);
     drawAirQuality();
   }
-  fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Catalog response '+r.status);return r.json()})
-    .then(data=>{
-      for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
-      catalog=data;loaded=true;render();
-    }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
+  Promise.all([
+    fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Catalog response '+r.status);return r.json()}),
+    fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([data,published])=>{
+    for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
+    const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
+    const ids=new Set(checked.map(f=>f.id));
+    catalog={...data,facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
+    loaded=true;render();
+    document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
+  }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
   window.__SGBUDDY_CLIENT_VERSION__='1.2.0-dev';
   if($('#appVersion'))$('#appVersion').textContent='v1.2.0-dev';
 })();
