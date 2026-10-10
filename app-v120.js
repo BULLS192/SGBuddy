@@ -39,7 +39,7 @@
   const placesLabel=$('#placesSection .label');if(placesLabel)placesLabel.textContent='MORE NEARBY PLACES';
   const placesTitle=$('#placesSection h2');if(placesTitle)placesTitle.textContent='Nearby essentials';
   const dateText=iso=>{const ms=Date.parse(iso||'');return Number.isFinite(ms)?new Intl.DateTimeFormat('en-SG',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Singapore'}).format(ms)+' SGT':'Not provided'};
-  function persist(){try{localStorage.setItem(storeKey,JSON.stringify([...saved].slice(0,500)))}catch{}}
+  function persist(){try{localStorage.setItem(storeKey,JSON.stringify([...saved].slice(0,500)))}catch{}document.dispatchEvent(new Event('sgbuddy:knowledge-saved'))}
   function mode(){return state.mode==='new_in_sg'?'resident':state.mode}
   function matchesMode(row){return (row.modes||[]).includes(mode())}
   function sourceLink(url,label){
@@ -143,6 +143,10 @@
   });
   $('#discoverSearch').addEventListener('input',()=>{factIndex=0;showAll=false;render()});
   $('#discoverSavedOnly').addEventListener('change',e=>{savedOnly=e.target.checked;showAll=false;factIndex=0;render()});
+  document.addEventListener('sgbuddy:knowledge-saved',()=>{
+    try{const rows=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(rows))saved=new Set(rows.filter(x=>typeof x==='string'))}catch{}
+    render();
+  });
   host.addEventListener('keydown',event=>{
     const el=event.target.closest('[data-discover-tab]');if(!el||!['ArrowRight','ArrowLeft'].includes(event.key))return;
     event.preventDefault();const i=tabs.findIndex(([id])=>id===el.dataset.discoverTab);
