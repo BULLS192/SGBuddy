@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - feature/sgbuddy-ux-waves-1-3
+      - feature/sgbuddy-ux-waves-4-6
   pull_request:
     paths:
       - 'app-ux-v160.js'
+      - 'app-ux-v170.js'
+      - 'ux-v170.css'
+      - 'scripts/check-ux-v170.mjs'
       - 'ux-v160.css'
       - 'index.html'
       - 'app-v090.js'
