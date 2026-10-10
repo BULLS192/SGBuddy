@@ -160,7 +160,7 @@
       addressCache.set(id,{status:'loading'});addressButton.disabled=true;
       const result=addressButton.closest('.discover-item')?.querySelector('.discover-address-result');
       if(result)result.innerHTML=directoryAddressStatus(place);
-      fetch('/api/discover-address?id='+encodeURIComponent(id),{cache:'no-store'})
+      fetch('/api/journey?action=discover-address&id='+encodeURIComponent(id),{cache:'no-store'})
         .then(r=>r.ok?r.json():Promise.reject(Error('lookup failed')))
         .then(payload=>{addressCache.set(id,payload);if(result?.isConnected)result.innerHTML=directoryAddressStatus(place)})
         .catch(()=>{addressCache.set(id,{status:'provider-unavailable'});if(result?.isConnected)result.innerHTML=directoryAddressStatus(place)})
