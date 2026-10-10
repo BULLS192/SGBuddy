@@ -13,6 +13,7 @@
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
   let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all';
+  const addressCache=new Map();
   const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['apps','Useful apps'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
@@ -62,13 +63,24 @@
     render();
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-tab',{detail:{tab}}));
   }
+  function directoryAddressStatus(place){
+    const value=addressCache.get(place.id);
+    if(!value)return '<p class="discover-address-note">Full street address not checked in OneMap.</p>';
+    if(value.status==='loading')return '<p class="discover-address-note" role="status">Checking OneMap address…</p>';
+    if(value.status==='address-matched'&&value.address){
+      const a=value.address;
+      const dest='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a.address||place.name);
+      return '<p class="discover-address-note">📍 '+safe(a.address)+' · '+safe(a.postal||'Postal unknown')+'</p><p class="discover-address-note">OneMap address/name match · Business open status not checked</p><a href="'+safe(dest)+'" target="_blank" rel="noopener noreferrer">Directions to matched address ↗</a>';
+    }
+    return '<p class="discover-address-note" role="status">'+(value.status==='not-configured'?'OneMap not configured':value.status==='ambiguous'?'Ambiguous address match — no verified coordinates':value.status==='not-found'?'No matching address found':'OneMap temporarily unavailable')+'. Search by name instead.</p>';
+  }
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>Curated location · Opening hours, availability and entrance fees have not been verified.</p>'+
-      '<div class="discover-actions">'+sourceLink(map,'Find on map')+'</div></article>';
+      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button></div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
     const marked=saved.has(app.id);
@@ -134,6 +146,20 @@
       (!showAll&&rows.length>visible.length?'<button class="secondary discover-more" type="button" id="discoverMore">Show all '+rows.length+'</button>':'');
   }
   host.addEventListener('click',event=>{
+    const addressButton=event.target.closest('[data-verify-address]');
+    if(addressButton){
+      const id=addressButton.dataset.verifyAddress,place=catalog.places.find(p=>p.id===id);
+      if(!place)return;
+      addressCache.set(id,{status:'loading'});addressButton.disabled=true;
+      const result=addressButton.closest('.discover-item')?.querySelector('.discover-address-result');
+      if(result)result.innerHTML=directoryAddressStatus(place);
+      fetch('/api/discover-address?id='+encodeURIComponent(id),{cache:'no-store'})
+        .then(r=>r.ok?r.json():Promise.reject(Error('lookup failed')))
+        .then(payload=>{addressCache.set(id,payload);if(result?.isConnected)result.innerHTML=directoryAddressStatus(place)})
+        .catch(()=>{addressCache.set(id,{status:'provider-unavailable'});if(result?.isConnected)result.innerHTML=directoryAddressStatus(place)})
+        .finally(()=>{if(addressButton.isConnected)addressButton.disabled=false});
+      return;
+    }
     const switcher=event.target.closest('[data-discover-tab]');
     if(switcher){changeTab(switcher.dataset.discoverTab);return}
     const saver=event.target.closest('[data-save-discover]');
