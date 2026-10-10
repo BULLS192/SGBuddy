@@ -1,5 +1,5 @@
-const CACHE = 'sgbuddy-shell-v41';
-const SHELL = ['/', '/styles.css', '/app-v090.js', '/app-v100.js', '/app-v110.js', '/app-v120.js', '/app-v140.js', '/app-ux-v160.js', '/ux-v160.css', '/knowledge-v140.css', '/buddy-v130.css', '/assets/merlion-companion.webp', '/data/facts-published.json', '/discover-v120.css', '/data/discover-v120.json', '/manifest.webmanifest', '/sgbuddy-icon-v2.png', '/sgbuddy-icon-v2.png'];
+const CACHE = 'sgbuddy-shell-v42';
+const SHELL = ['/', '/styles.css', '/app-v090.js', '/app-v100.js', '/app-v110.js', '/app-v120.js', '/app-v140.js', '/app-ux-v160.js', '/ux-v160.css', '/app-ux-v170.js', '/ux-v170.css', '/knowledge-v140.css', '/buddy-v130.css', '/assets/merlion-companion.webp', '/data/facts-published.json', '/discover-v120.css', '/data/discover-v120.json', '/manifest.webmanifest', '/sgbuddy-icon-v2.png', '/sgbuddy-icon-v2.png'];
 self.addEventListener('install', event => { self.skipWaiting(); event.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); });
 self.addEventListener('activate', event => event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))), self.clients.claim()])));
 self.addEventListener('fetch', event => {
