@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updatedOn": "2026-10-10",
   "status": "editorial-research-leads",
-  "notice": "Stall names, dish associations and centre affiliations are research candidates; none are asserted as currently open, verified, halal-certified, vegan or priced.",
+  "notice": "48 editorial research leads and nine historically documented 2025 NEA award stalls. None are independently confirmed trading today; prices/dietary claims omitted.",
   "stalls": [
     {
       "id": "STL-0001",
@@ -963,6 +963,213 @@
       "reviewStatus": "research-candidate",
       "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Maxwell%20Fuzhou%20Oyster%20Cake%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
       "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0049",
+      "name": "Warong Pak Sapari",
+      "centreId": "SGP-0015",
+      "centreName": "Adam Road Food Centre",
+      "area": "Bukit Timah",
+      "cuisine": "Malay",
+      "dishes": [
+        "Mee soto"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#01-09",
+      "award2025": "Hawker Heritage",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Warong%20Pak%20Sapari%2C%20Adam%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0050",
+      "name": "Ghim Moh Chwee Kueh",
+      "centreId": "SGP-2267",
+      "centreName": "Ghim Moh Market & Food Centre",
+      "area": "Queenstown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Chwee kueh"
+      ],
+      "meal": "Breakfast",
+      "stallNumber": "#01-54",
+      "award2025": "Hawker Heritage",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Ghim%20Moh%20Chwee%20Kueh%2C%20Ghim%20Moh%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0051",
+      "name": "Bahrakath Mutton Soup",
+      "centreId": "SGP-0015",
+      "centreName": "Adam Road Food Centre",
+      "area": "Bukit Timah",
+      "cuisine": "Indian Muslim",
+      "dishes": [
+        "Mutton soup"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#01-10",
+      "award2025": "Hawker Heritage",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Bahrakath%20Mutton%20Soup%2C%20Adam%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0052",
+      "name": "Spicelios",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Indian",
+      "dishes": [
+        "Biryani"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#01-69",
+      "award2025": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Spicelios%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0053",
+      "name": "Ah Kiat Wanton Mee",
+      "centreId": "SGP-2268",
+      "centreName": "Bedok 538 Market & Food Centre",
+      "area": "Bedok",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Wanton mee"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#01-92",
+      "award2025": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Ah%20Kiat%20Wanton%20Mee%2C%20Bedok%20538%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0054",
+      "name": "Salt.Singapore",
+      "centreId": "SGP-0002",
+      "centreName": "Old Airport Road Food Centre",
+      "area": "Geylang",
+      "cuisine": "Western",
+      "dishes": [
+        "Western food"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#01-128",
+      "award2025": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Salt.Singapore%2C%20Old%20Airport%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0055",
+      "name": "Huang Da Fu",
+      "centreId": "SGP-1057",
+      "centreName": "Commonwealth Crescent Market & Food Centre",
+      "area": "Queenstown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Bak chor mee"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#02-94",
+      "award2025": "Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Huang%20Da%20Fu%2C%20Commonwealth%20Crescent%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0056",
+      "name": "Rong Xing Yong Tau Fu",
+      "centreId": "SGP-2269",
+      "centreName": "Tanjong Pagar Plaza Market & Food Centre",
+      "area": "Tanjong Pagar",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Yong tau foo"
+      ],
+      "meal": "Lunch",
+      "stallNumber": "#02-04",
+      "award2025": "Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Rong%20Xing%20Yong%20Tau%20Fu%2C%20Tanjong%20Pagar%20Plaza%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0057",
+      "name": "Long Ding Seafood",
+      "centreId": "SGP-2270",
+      "centreName": "Kampung Admiralty Hawker Centre",
+      "area": "Woodlands",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Zi char"
+      ],
+      "meal": "Dinner",
+      "stallNumber": "#02-12",
+      "award2025": "Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2025",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Long%20Ding%20Seafood%2C%20Kampung%20Admiralty%20Hawker%20Centre%2C%20Singapore",
+      "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
     }
   ]
 }
