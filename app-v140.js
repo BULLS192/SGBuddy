@@ -96,8 +96,8 @@ function airReply(){
  const signal=w?.dataQuality?.staleSignals||[];
  const possiblyCached=w.source==='device-cache'||signal.includes('psi')||signal.includes('pm25');
  const values=[];
- if(Number.isFinite(Number(psi?.overall)))values.push('24h PSI '+Math.round(psi.overall));
- if(Number.isFinite(Number(pm?.value)))values.push('1h PM2.5 '+Math.round(pm.value)+' µg/m³');
+ if(psi?.overall!=null&&Number.isFinite(Number(psi.overall)))values.push('24h PSI '+Math.round(psi.overall));
+ if(pm?.value!=null&&Number.isFinite(Number(pm.value)))values.push('1h PM2.5 '+Math.round(pm.value)+' µg/m³');
  const sourceTimes=[psi?.updatedAt,pm?.updatedAt].filter(Boolean).map(x=>Date.parse(x)).filter(Number.isFinite);
  const age=sourceTimes.length?Math.max(...sourceTimes.map(t=>(Date.now()-t)/60000)):Infinity;
  const stale=possiblyCached||age>90||age< -15||!Number.isFinite(age);
