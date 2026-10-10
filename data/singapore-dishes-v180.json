@@ -1,0 +1,1319 @@
+{
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-10",
+  "note": "Browse styles of food. Dish entries are general food-culture terms; not live menus. Prices, allergens and dietary certification must be verified with vendors.",
+  "dishes": [
+    {
+      "id": "DISH-0001",
+      "name": "Hainanese chicken rice",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Poached or roasted chicken with fragrant rice",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "hainanese chicken rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0002",
+      "name": "Char kway teow",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Stir-fried flat rice noodles",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "char kway teow"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0003",
+      "name": "Hokkien prawn mee",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Wok-fried noodles with seafood stock",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "hokkien prawn mee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0004",
+      "name": "Bak chor mee",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "bak chor mee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0005",
+      "name": "Fishball noodles",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fishball noodles"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0006",
+      "name": "Lor mee",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "lor mee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0007",
+      "name": "Wanton mee",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "wanton mee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0008",
+      "name": "Roast duck rice",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "roast duck rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0009",
+      "name": "Soya sauce chicken rice",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "soya sauce chicken rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0010",
+      "name": "Carrot cake",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Stir-fried radish cake, not a sweet carrot dessert",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "carrot cake"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0011",
+      "name": "Chwee kueh",
+      "cuisine": "Chinese",
+      "meal": "Snacks and desserts",
+      "description": "Steamed rice cakes with savoury preserved radish",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "chwee kueh"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0012",
+      "name": "Oyster omelette",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "oyster omelette"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0013",
+      "name": "Fish soup",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fish soup"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0014",
+      "name": "Fish porridge",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fish porridge"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0015",
+      "name": "Kway chap",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "kway chap"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0016",
+      "name": "Prawn mee",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "prawn mee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0017",
+      "name": "Yong tau foo",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "yong tau foo"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0018",
+      "name": "Bak kut teh",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "bak kut teh"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0019",
+      "name": "Claypot rice",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "claypot rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0020",
+      "name": "Popiah",
+      "cuisine": "Chinese",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "popiah"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0021",
+      "name": "Rojak",
+      "cuisine": "Chinese",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "rojak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0022",
+      "name": "Chee cheong fun",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "chee cheong fun"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0023",
+      "name": "Laksa",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Spiced noodle soup in local hawker cuisine",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "laksa"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0024",
+      "name": "Mee siam",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "mee siam"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0025",
+      "name": "Oyster cake",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "oyster cake"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0026",
+      "name": "Ban mian",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ban mian"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0027",
+      "name": "Mee pok",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "mee pok"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0028",
+      "name": "Economic rice",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "economic rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0029",
+      "name": "Porridge",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "porridge"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0030",
+      "name": "Xiao long bao",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "xiao long bao"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0031",
+      "name": "Peanut soup",
+      "cuisine": "Chinese",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "peanut soup"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0032",
+      "name": "Tau huay",
+      "cuisine": "Chinese",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "tau huay"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0033",
+      "name": "Nasi lemak",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Coconut rice with sambal and accompaniments",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "nasi lemak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0034",
+      "name": "Satay",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Grilled skewers served with dipping sauce",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "satay"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0035",
+      "name": "Mee rebus",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "mee rebus"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0036",
+      "name": "Mee soto",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "mee soto"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0037",
+      "name": "Lontong",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "lontong"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0038",
+      "name": "Nasi padang",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "nasi padang"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0039",
+      "name": "Sambal stingray",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "sambal stingray"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0040",
+      "name": "Ayam penyet",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ayam penyet"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0041",
+      "name": "Putu piring",
+      "cuisine": "Malay",
+      "meal": "Snacks and desserts",
+      "description": "Steamed rice-flour cake usually filled with palm sugar",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "putu piring"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0042",
+      "name": "Otah",
+      "cuisine": "Malay",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "otah"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0043",
+      "name": "Mee goreng",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "mee goreng"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0044",
+      "name": "Nasi goreng",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "nasi goreng"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0045",
+      "name": "Ketupat",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ketupat"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0046",
+      "name": "Rendang",
+      "cuisine": "Malay",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "rendang"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0047",
+      "name": "Roti prata",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Pan-fried flatbread commonly served with curry",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "roti prata"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0048",
+      "name": "Thosai",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "thosai"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0049",
+      "name": "Biryani",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Fragrant spiced rice served with accompaniments",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "biryani"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0050",
+      "name": "Indian rojak",
+      "cuisine": "Indian",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "indian rojak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0051",
+      "name": "Murtabak",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "murtabak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0052",
+      "name": "Fish head curry",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fish head curry"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0053",
+      "name": "Idli",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "idli"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0054",
+      "name": "Vadai",
+      "cuisine": "Indian",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "vadai"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0055",
+      "name": "Chapati",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "chapati"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0056",
+      "name": "Puri",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "puri"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0057",
+      "name": "Teh tarik",
+      "cuisine": "Indian",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "teh tarik"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0058",
+      "name": "Ayam buah keluak",
+      "cuisine": "Peranakan",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ayam buah keluak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0059",
+      "name": "Kueh pie tee",
+      "cuisine": "Peranakan",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "kueh pie tee"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0060",
+      "name": "Laksa lemak",
+      "cuisine": "Peranakan",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "laksa lemak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0061",
+      "name": "Nyonya kueh",
+      "cuisine": "Peranakan",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "nyonya kueh"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0062",
+      "name": "Otak-otak",
+      "cuisine": "Peranakan",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "otak-otak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0063",
+      "name": "Kopi",
+      "cuisine": "Drinks and desserts",
+      "meal": "Drinks",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "kopi"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0064",
+      "name": "Teh",
+      "cuisine": "Drinks and desserts",
+      "meal": "Drinks",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "teh"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0065",
+      "name": "Bandung",
+      "cuisine": "Drinks and desserts",
+      "meal": "Drinks",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "bandung"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0066",
+      "name": "Sugarcane juice",
+      "cuisine": "Drinks and desserts",
+      "meal": "Drinks",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "sugarcane juice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0067",
+      "name": "Ice kacang",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ice kacang"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0068",
+      "name": "Chendol",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Shaved-ice dessert with coconut milk and palm-sugar syrup",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "chendol"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0069",
+      "name": "Grass jelly",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "grass jelly"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0070",
+      "name": "Cheng tng",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "cheng tng"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0071",
+      "name": "Pulut hitam",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "pulut hitam"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0072",
+      "name": "Tau suan",
+      "cuisine": "Drinks and desserts",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "tau suan"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0073",
+      "name": "Ice lemon tea",
+      "cuisine": "Drinks and desserts",
+      "meal": "Drinks",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "ice lemon tea"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0074",
+      "name": "BBQ chicken wings",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "bbq chicken wings"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0075",
+      "name": "Chilli crab",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "chilli crab"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0076",
+      "name": "Black pepper crab",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "black pepper crab"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0077",
+      "name": "Vegetarian bee hoon",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "vegetarian bee hoon"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0078",
+      "name": "Fruit rojak",
+      "cuisine": "Other",
+      "meal": "Snacks and desserts",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fruit rojak"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0079",
+      "name": "Fried rice",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "fried rice"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0080",
+      "name": "Curry chicken noodles",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "curry chicken noodles"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0081",
+      "name": "Sup tulang",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "sup tulang"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    },
+    {
+      "id": "DISH-0082",
+      "name": "Singapore-style ramen",
+      "cuisine": "Other",
+      "meal": "Main meals",
+      "description": "Singapore food-culture exploration term",
+      "priceSgd": null,
+      "vegetarianVerified": null,
+      "halalCertified": null,
+      "searchTags": [
+        "singapore-style ramen"
+      ],
+      "sourceContext": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "status": "food-culture-guide",
+      "note": "Dish taxonomy is illustrative, not a guaranteed menu, allergen statement, dietary certification or price."
+    }
+  ]
+}

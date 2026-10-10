@@ -8,7 +8,8 @@ assert.doesNotThrow(()=>new Function(ui),'UX v170 module has a syntax error');
 assert.doesNotThrow(()=>new Function(previous),'UX v160 module has a syntax error');
 assert.ok(page.includes('href="/ux-v170.css"'),'UX v170 stylesheet missing');
 assert.ok(bootstrap.includes("import('/app-ux-v160.js')).then(()=>import('/app-ux-v170.js')"),'UX modules must load after V1.4 Merli');
-assert.ok(sw.includes("sgbuddy-shell-v43"),'PWA cache version must advance');
+const cacheVersion=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
+assert.ok(cacheVersion>=43,'PWA cache version must not regress');
 for(const asset of ['/ux-v160.css','/ux-v170.css','/app-ux-v160.js','/app-ux-v170.js']){
   assert.ok(sw.includes(asset),'Offline shell is missing '+asset);
 }

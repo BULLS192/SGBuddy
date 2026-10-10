@@ -1,0 +1,23 @@
+name: SGBuddy V1.8 Food and OneMap QA
+on:
+  push:
+    branches: [feature/sgbuddy-v1.8-onemap-food-library]
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'food-v180.css'
+      - 'data/**'
+      - 'lib/discover-geo.js'
+      - 'api/discover-address.js'
+      - 'scripts/**'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
