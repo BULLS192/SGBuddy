@@ -5,7 +5,7 @@ if(!storedPlaces.hotel && localStorage.getItem('sgc-hotel')) storedPlaces.hotel=
 const storedStops=safeParse(localStorage.getItem('sgc-bus-stops')||'[]',[]);
 const storedStations=safeParse(localStorage.getItem('sgc-rail-stations')||'[]',[]);
 const storedRecentDestinations=safeParse(localStorage.getItem('sgc-recent-destinations')||'[]',[]);
-const normalizePersonaMode=value=>value==='traveller'?'visitor':['resident','visitor','executive','new_in_sg'].includes(value)?value:'resident';
+const normalizePersonaMode=value=>value==='traveller'?'visitor':['resident','visitor','executive','new_in_sg','student'].includes(value)?value:'resident';
 const state={
   mode:normalizePersonaMode(localStorage.getItem('sgc-mode')||'resident'),
   transportView:localStorage.getItem('sgc-transport-view')||'cards',
@@ -217,7 +217,7 @@ function accountPreferences(){
 function accountRowPayload(){
   return {
     auth_user_id:state.accountUser.id,
-    active_mode:state.mode,
+    active_mode:state.mode==='student'?'new_in_sg':state.mode, // Legacy DB mode enum; exact Student preserved in preferences.mode
     stay_horizon:state.stayHorizon||null,
     home_currency:'SGD',
     preferred_language:(navigator.language||'en').split('-')[0].slice(0,12),
@@ -291,9 +291,10 @@ const PERSONAS={
   resident:{label:'Resident',icon:'🇸🇬',title:'Your everyday Singapore',copy:'Prioritize routines, reliable transport and the fastest practical way around your day.',planner:'Plan the trips you make repeatedly, with live transport, weather and disruption context.',panelLabel:'RESIDENT',panelTitle:'Your daily shortcuts',panelCopy:'Save Home and Work so everyday routes stay one tap away.',actions:[['Plan to work','saved:work'],['Plan home','saved:home'],['Transport','transport']]},
   visitor:{label:'Visitor',icon:'🎒',title:'Make Singapore easy',copy:'Keep navigation simple, your hotel close, and the places you want to see easy to reach.',planner:'Search attractions and familiar place names. SGBuddy keeps transfers, weather and your hotel context in view.',panelLabel:'VISITOR SUPPORT',panelTitle:'Your Singapore safety net',panelCopy:'Your saved hotel stays one tap away while you explore.',actions:[['Back to hotel','saved:hotel'],['Jewel','destination:Jewel Changi Airport'],['MBS','destination:Marina Bay Sands']]},
   executive:{label:'Executive',icon:'💼',title:'Protect your schedule',copy:'Prioritize punctuality, lower-friction routes and enough buffer to arrive composed.',planner:'Use Arrive by for meetings. SGBuddy emphasizes schedule reliability and lower-friction routing.',panelLabel:'EXECUTIVE MODE',panelTitle:'Keep the day moving',panelCopy:'Save your hotel and use arrival-time planning to protect meeting buffers.',actions:[['Arrive on time','arrive'],['Marina Bay','destination:Marina Bay Sands'],['Suntec','destination:Suntec City']]},
+  student:{label:'Student',icon:'📚',title:'Study and discover Singapore',copy:'Find budget-friendly meals, libraries, study spaces, convenient routes and affordable shopping.',planner:'Plan routes between campus, accommodation, libraries and everyday destinations.',panelLabel:'STUDENT',panelTitle:'A smarter student day',panelCopy:'Save campus or home, find practical places and compare transport options.',actions:[['Discover affordable spots','places'],['Nearby transport','transport'],['Plan campus trip','destination:National University of Singapore']]},
   new_in_sg:{label:'New in SG',icon:'🌏',title:'Settle in like a local',copy:'Learn daily transport, build useful routines and gradually discover Singapore beyond the visitor checklist.',planner:'Build familiar routes to home, work or school while you learn how Singapore fits together.',panelLabel:'NEW IN SG',panelTitle:'Build your Singapore routine',panelCopy:'Save Home, Work or School-area destinations and let SGBuddy make them familiar.',actions:[['Plan home','saved:home'],['Orchard','destination:Orchard Road'],['NUS','destination:National University of Singapore']]}
 };
-const PERSONA_DEFAULT_HORIZON={resident:'long_term',visitor:'few_days',executive:'few_days',new_in_sg:'one_to_three_months'};
+const PERSONA_DEFAULT_HORIZON={resident:'long_term',visitor:'few_days',executive:'few_days',new_in_sg:'one_to_three_months',student:'six_plus_months'};
 let personaDraftMode=state.mode;
 let personaFirstRun=false;
 function personaConfig(){return PERSONAS[state.mode]||PERSONAS.resident}
@@ -314,7 +315,7 @@ function renderPersonaContext(){if(document.querySelector('#placesGrid'))setTime
 }
 function updatePersonaSheetFields(){
   $$('.persona-option').forEach(b=>b.classList.toggle('active',b.dataset.persona===personaDraftMode));
-  const labels={resident:'Your Singapore horizon',visitor:'How long are you visiting?',executive:'How long is this business trip?',new_in_sg:'How long are you settling in?'};
+  const labels={resident:'Your Singapore horizon',visitor:'How long are you visiting?',executive:'How long is this business trip?',new_in_sg:'How long are you settling in?',student:'How long will you be studying here?'};
   if($('#personaStayLabel'))$('#personaStayLabel').textContent=labels[personaDraftMode]||labels.resident;
 }
 function openPersonaSheet(firstRun=false){
@@ -832,7 +833,7 @@ function v094SettingsCard(){
     <div class="settings-grid">
       <label>Using Singapore as
         <select id="settingPersona">
-          <option value="resident">Resident</option><option value="visitor">Visitor</option><option value="executive">Executive</option><option value="new_in_sg">New in SG</option>
+          <option value="resident">Resident</option><option value="visitor">Visitor</option><option value="executive">Executive</option><option value="student">Student</option><option value="new_in_sg">New in SG</option>
         </select>
       </label>
       <label>Units
@@ -890,6 +891,7 @@ function v094BriefData(){
   if(state.mode==='executive'){
     return {icon:'💼',eyebrow:'SCHEDULE NOW',title:risk==='high'?'Protect your next arrival':'Protect your schedule',copy:risk==='high'?'Current conditions justify extra buffer time. Use Arrive by before the next meeting.':'Use Arrive by to work backwards from the time you must be there.',actions:[['Plan arrival time','arrive'],['Saved places','places'],['Conditions','today']]};
   }
+  if(state.mode==='student')return {icon:'📚',eyebrow:'CAMPUS & BEYOND',title:'Make student life easier',copy:'Find affordable food, study spaces and everyday destinations near campus.',actions:[['Discover Singapore','places'],['Nearby transport','move'],['Route home','saved:home']]};
   if(state.mode==='new_in_sg'){
     return {icon:'🌏',eyebrow:'SETTLE IN',title:'Make the routine familiar',copy:'Home, work, saved places and nearby transport are your shortcuts while you learn Singapore.',actions:[['Route home','saved:home'],['Route to work','saved:work'],['Explore nearby','places']]};
   }
@@ -907,7 +909,7 @@ function v094RenderTodayBrief(){
 const _v094RenderPersonaContext=renderPersonaContext;
 renderPersonaContext=function(){_v094RenderPersonaContext();v094RenderTodayBrief();v094SyncSettingsUi()};
 const _v094UpdateHero=updateHero;
-updateHero=function(){_v094UpdateHero();v094RenderTodayBrief()};
+updateHero=function(){_v094UpdateHero();v094RenderTodayBrief();document.dispatchEvent(new CustomEvent('sgbuddy:weather'))};
 
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-v094-action]');if(!b)return;
@@ -926,4 +928,4 @@ v094RenderTodayBrief();v094SyncSettingsUi();
 window.__SGBUDDY_CLIENT_VERSION__='1.1.0';
 if($('#appVersion'))$('#appVersion').textContent='v1.1.0';
 window.SGBUDDY_CORE={state,$,$,toast,json,navigateTo,renderEnvironment,renderFeaturedPlaces,renderAccountHub,renderPersonaContext,v094SyncSettingsUi,queueProfileSync,syncAccountProfile,planNativeJourney,setActiveNav};
-import('/app-v100.js').then(()=>import('/app-v110.js')).catch(error=>console.warn('v1 module',error?.message));
+import('/app-v100.js').then(()=>import('/app-v110.js')).then(()=>import('/app-v120.js')).catch(error=>console.warn('v1 module',error?.message));
