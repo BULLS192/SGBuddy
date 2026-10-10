@@ -1,0 +1,968 @@
+{
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-10",
+  "status": "editorial-research-leads",
+  "notice": "Stall names, dish associations and centre affiliations are research candidates; none are asserted as currently open, verified, halal-certified, vegan or priced.",
+  "stalls": [
+    {
+      "id": "STL-0001",
+      "name": "Tian Tian Hainanese Chicken Rice",
+      "centreId": "SGP-0001",
+      "centreName": "Maxwell Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Hainanese",
+      "dishes": [
+        "Chicken rice"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Tian%20Tian%20Hainanese%20Chicken%20Rice%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0002",
+      "name": "Ah Tai Hainanese Chicken Rice",
+      "centreId": "SGP-0001",
+      "centreName": "Maxwell Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Hainanese",
+      "dishes": [
+        "Chicken rice"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Ah%20Tai%20Hainanese%20Chicken%20Rice%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0003",
+      "name": "Zhen Zhen Porridge",
+      "centreId": "SGP-0001",
+      "centreName": "Maxwell Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Fish porridge"
+      ],
+      "meal": "Breakfast",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Zhen%20Zhen%20Porridge%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0004",
+      "name": "China Street Fritters",
+      "centreId": "SGP-0001",
+      "centreName": "Maxwell Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Fried fritters"
+      ],
+      "meal": "Snack",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=China%20Street%20Fritters%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0005",
+      "name": "Nam Sing Hokkien Fried Mee",
+      "centreId": "SGP-0002",
+      "centreName": "Old Airport Road Food Centre",
+      "area": "Geylang",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Hokkien mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Nam%20Sing%20Hokkien%20Fried%20Mee%2C%20Old%20Airport%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0006",
+      "name": "Lao Fu Zi Fried Kway Teow",
+      "centreId": "SGP-0002",
+      "centreName": "Old Airport Road Food Centre",
+      "area": "Geylang",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Char kway teow"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Lao%20Fu%20Zi%20Fried%20Kway%20Teow%2C%20Old%20Airport%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0007",
+      "name": "Xin Mei Xiang Lor Mee",
+      "centreId": "SGP-0002",
+      "centreName": "Old Airport Road Food Centre",
+      "area": "Geylang",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Lor mee"
+      ],
+      "meal": "Breakfast",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Xin%20Mei%20Xiang%20Lor%20Mee%2C%20Old%20Airport%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0008",
+      "name": "Whitley Road Big Prawn Noodle",
+      "centreId": "SGP-0002",
+      "centreName": "Old Airport Road Food Centre",
+      "area": "Geylang",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Prawn mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Whitley%20Road%20Big%20Prawn%20Noodle%2C%20Old%20Airport%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0009",
+      "name": "Jian Bo Shui Kueh",
+      "centreId": "SGP-0003",
+      "centreName": "Tiong Bahru Market",
+      "area": "Tiong Bahru",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Chwee kueh"
+      ],
+      "meal": "Breakfast",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Jian%20Bo%20Shui%20Kueh%2C%20Tiong%20Bahru%20Market%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0010",
+      "name": "Tiong Bahru Hainanese Boneless Chicken Rice",
+      "centreId": "SGP-0003",
+      "centreName": "Tiong Bahru Market",
+      "area": "Tiong Bahru",
+      "cuisine": "Hainanese",
+      "dishes": [
+        "Chicken rice"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Tiong%20Bahru%20Hainanese%20Boneless%20Chicken%20Rice%2C%20Tiong%20Bahru%20Market%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0011",
+      "name": "Koh Brother Pig's Organ Soup",
+      "centreId": "SGP-0003",
+      "centreName": "Tiong Bahru Market",
+      "area": "Tiong Bahru",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Pig's organ soup"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Koh%20Brother%20Pig's%20Organ%20Soup%2C%20Tiong%20Bahru%20Market%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0012",
+      "name": "178 Lor Mee",
+      "centreId": "SGP-0003",
+      "centreName": "Tiong Bahru Market",
+      "area": "Tiong Bahru",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Lor mee"
+      ],
+      "meal": "Breakfast",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=178%20Lor%20Mee%2C%20Tiong%20Bahru%20Market%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0013",
+      "name": "Han Kee Fish Soup",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Fish soup"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Han%20Kee%20Fish%20Soup%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0014",
+      "name": "A Noodle Story",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Fusion",
+      "dishes": [
+        "Singapore-style ramen"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=A%20Noodle%20Story%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0015",
+      "name": "Hong Kee Beef Noodle",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Beef noodles"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Hong%20Kee%20Beef%20Noodle%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0016",
+      "name": "Piao Ji Fish Porridge",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Fish porridge"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Piao%20Ji%20Fish%20Porridge%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0017",
+      "name": "Outram Park Fried Kway Teow Mee",
+      "centreId": "SGP-0013",
+      "centreName": "Hong Lim Market & Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Char kway teow"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Outram%20Park%20Fried%20Kway%20Teow%20Mee%2C%20Hong%20Lim%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0018",
+      "name": "Tai Wah Pork Noodle",
+      "centreId": "SGP-0013",
+      "centreName": "Hong Lim Market & Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Bak chor mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Tai%20Wah%20Pork%20Noodle%2C%20Hong%20Lim%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0019",
+      "name": "Liao Fan Hawker Chan",
+      "centreId": "SGP-0010",
+      "centreName": "Chinatown Complex Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Soya sauce chicken rice"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Liao%20Fan%20Hawker%20Chan%2C%20Chinatown%20Complex%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0020",
+      "name": "Zhong Guo La Mian Xiao Long Bao",
+      "centreId": "SGP-0010",
+      "centreName": "Chinatown Complex Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Xiao long bao"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Zhong%20Guo%20La%20Mian%20Xiao%20Long%20Bao%2C%20Chinatown%20Complex%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0021",
+      "name": "Pan Ji Cooked Food",
+      "centreId": "SGP-0010",
+      "centreName": "Chinatown Complex Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Peanut soup"
+      ],
+      "meal": "Dessert",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Pan%20Ji%20Cooked%20Food%2C%20Chinatown%20Complex%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0022",
+      "name": "Jin Ji Teochew Braised Duck & Kway Chap",
+      "centreId": "SGP-0010",
+      "centreName": "Chinatown Complex Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Teochew",
+      "dishes": [
+        "Braised duck rice"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Jin%20Ji%20Teochew%20Braised%20Duck%20%26%20Kway%20Chap%2C%20Chinatown%20Complex%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0023",
+      "name": "Selera Rasa Nasi Lemak",
+      "centreId": "SGP-0015",
+      "centreName": "Adam Road Food Centre",
+      "area": "Bukit Timah",
+      "cuisine": "Malay",
+      "dishes": [
+        "Nasi lemak"
+      ],
+      "meal": "Breakfast",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Selera%20Rasa%20Nasi%20Lemak%2C%20Adam%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0024",
+      "name": "Adam Road Noo Cheng Big Prawn Noodle",
+      "centreId": "SGP-0015",
+      "centreName": "Adam Road Food Centre",
+      "area": "Bukit Timah",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Prawn mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Adam%20Road%20Noo%20Cheng%20Big%20Prawn%20Noodle%2C%20Adam%20Road%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0025",
+      "name": "Haji Kadir Food Chains",
+      "centreId": "SGP-0018",
+      "centreName": "Golden Mile Food Centre",
+      "area": "Beach Road",
+      "cuisine": "Indian Muslim",
+      "dishes": [
+        "Sup tulang"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Haji%20Kadir%20Food%20Chains%2C%20Golden%20Mile%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0026",
+      "name": "Kheng Fatt Hainanese Beef Noodles",
+      "centreId": "SGP-0018",
+      "centreName": "Golden Mile Food Centre",
+      "area": "Beach Road",
+      "cuisine": "Hainanese",
+      "dishes": [
+        "Beef noodles"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Kheng%20Fatt%20Hainanese%20Beef%20Noodles%2C%20Golden%20Mile%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0027",
+      "name": "Chung Cheng Chilli Mee",
+      "centreId": "SGP-0018",
+      "centreName": "Golden Mile Food Centre",
+      "area": "Beach Road",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Chilli mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Chung%20Cheng%20Chilli%20Mee%2C%20Golden%20Mile%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0028",
+      "name": "Ah Hock Fried Hokkien Mee",
+      "centreId": "SGP-0005",
+      "centreName": "Chomp Chomp Food Centre",
+      "area": "Serangoon Gardens",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Hokkien mee"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Ah%20Hock%20Fried%20Hokkien%20Mee%2C%20Chomp%20Chomp%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0029",
+      "name": "Chong Pang Huat Chicken Wings",
+      "centreId": "SGP-0005",
+      "centreName": "Chomp Chomp Food Centre",
+      "area": "Serangoon Gardens",
+      "cuisine": "Chinese",
+      "dishes": [
+        "BBQ chicken wings"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Chong%20Pang%20Huat%20Chicken%20Wings%2C%20Chomp%20Chomp%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0030",
+      "name": "Hai Wei Yuan BBQ Seafood",
+      "centreId": "SGP-0005",
+      "centreName": "Chomp Chomp Food Centre",
+      "area": "Serangoon Gardens",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Sambal stingray"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Hai%20Wei%20Yuan%20BBQ%20Seafood%2C%20Chomp%20Chomp%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0031",
+      "name": "Lagoon Carrot Cake",
+      "centreId": "SGP-0006",
+      "centreName": "East Coast Lagoon Food Village",
+      "area": "East Coast",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Carrot cake"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Lagoon%20Carrot%20Cake%2C%20East%20Coast%20Lagoon%20Food%20Village%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0032",
+      "name": "BBQ Stingray",
+      "centreId": "SGP-0006",
+      "centreName": "East Coast Lagoon Food Village",
+      "area": "East Coast",
+      "cuisine": "Seafood",
+      "dishes": [
+        "Sambal stingray"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=BBQ%20Stingray%2C%20East%20Coast%20Lagoon%20Food%20Village%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0033",
+      "name": "Allauddin's Briyani",
+      "centreId": "SGP-0008",
+      "centreName": "Tekka Centre",
+      "area": "Little India",
+      "cuisine": "Indian Muslim",
+      "dishes": [
+        "Biryani"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Allauddin's%20Briyani%2C%20Tekka%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0034",
+      "name": "545 Whampoa Prawn Noodles",
+      "centreId": "SGP-0008",
+      "centreName": "Tekka Centre",
+      "area": "Little India",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Prawn mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=545%20Whampoa%20Prawn%20Noodles%2C%20Tekka%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0035",
+      "name": "Temasek Indian Rojak",
+      "centreId": "SGP-0008",
+      "centreName": "Tekka Centre",
+      "area": "Little India",
+      "cuisine": "Indian Muslim",
+      "dishes": [
+        "Indian rojak"
+      ],
+      "meal": "Snack",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Temasek%20Indian%20Rojak%2C%20Tekka%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0036",
+      "name": "Yong Xiang Xing Dou Fu",
+      "centreId": "SGP-0009",
+      "centreName": "People's Park Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Yong tau foo"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Yong%20Xiang%20Xing%20Dou%20Fu%2C%20People's%20Park%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0037",
+      "name": "No.18 Zion Road Fried Kway Teow",
+      "centreId": "SGP-0019",
+      "centreName": "Zion Riverside Food Centre",
+      "area": "River Valley",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Char kway teow"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=No.18%20Zion%20Road%20Fried%20Kway%20Teow%2C%20Zion%20Riverside%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0038",
+      "name": "Zion Road Big Prawn Noodle",
+      "centreId": "SGP-0019",
+      "centreName": "Zion Riverside Food Centre",
+      "area": "River Valley",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Prawn mee"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Zion%20Road%20Big%20Prawn%20Noodle%2C%20Zion%20Riverside%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0039",
+      "name": "Alliance Seafood",
+      "centreId": "SGP-0004",
+      "centreName": "Newton Food Centre",
+      "area": "Newton",
+      "cuisine": "Seafood",
+      "dishes": [
+        "Chilli crab"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Alliance%20Seafood%2C%20Newton%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0040",
+      "name": "Heng Carrot Cake",
+      "centreId": "SGP-0004",
+      "centreName": "Newton Food Centre",
+      "area": "Newton",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Carrot cake"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Heng%20Carrot%20Cake%2C%20Newton%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0041",
+      "name": "Boon Lay Power Nasi Lemak",
+      "centreId": "SGP-0023",
+      "centreName": "Boon Lay Place Market & Food Village",
+      "area": "Jurong West",
+      "cuisine": "Malay",
+      "dishes": [
+        "Nasi lemak"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Boon%20Lay%20Power%20Nasi%20Lemak%2C%20Boon%20Lay%20Place%20Market%20%26%20Food%20Village%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0042",
+      "name": "Boon Lay Satay",
+      "centreId": "SGP-0023",
+      "centreName": "Boon Lay Place Market & Food Village",
+      "area": "Jurong West",
+      "cuisine": "Malay",
+      "dishes": [
+        "Satay"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Boon%20Lay%20Satay%2C%20Boon%20Lay%20Place%20Market%20%26%20Food%20Village%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0043",
+      "name": "Hock Hai Curry Chicken Noodle",
+      "centreId": "SGP-0016",
+      "centreName": "Bedok Interchange Hawker Centre",
+      "area": "Bedok",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Curry chicken noodles"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Hock%20Hai%20Curry%20Chicken%20Noodle%2C%20Bedok%20Interchange%20Hawker%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0044",
+      "name": "Haig Road Putu Piring",
+      "centreId": "SGP-0007",
+      "centreName": "Geylang Serai Market",
+      "area": "Geylang Serai",
+      "cuisine": "Malay",
+      "dishes": [
+        "Putu piring"
+      ],
+      "meal": "Snack",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Haig%20Road%20Putu%20Piring%2C%20Geylang%20Serai%20Market%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0045",
+      "name": "Satay Street",
+      "centreId": "SGP-0011",
+      "centreName": "Lau Pa Sat",
+      "area": "CBD",
+      "cuisine": "Malay",
+      "dishes": [
+        "Satay"
+      ],
+      "meal": "Dinner",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Satay%20Street%2C%20Lau%20Pa%20Sat%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0046",
+      "name": "Balestier Road Hoover Rojak",
+      "centreId": "SGP-0020",
+      "centreName": "Whampoa Makan Place",
+      "area": "Whampoa",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Rojak"
+      ],
+      "meal": "Snack",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Balestier%20Road%20Hoover%20Rojak%2C%20Whampoa%20Makan%20Place%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0047",
+      "name": "Amoy Street Teochew Fishball Noodles",
+      "centreId": "SGP-0012",
+      "centreName": "Amoy Street Food Centre",
+      "area": "CBD",
+      "cuisine": "Teochew",
+      "dishes": [
+        "Fishball noodles"
+      ],
+      "meal": "Lunch",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Amoy%20Street%20Teochew%20Fishball%20Noodles%2C%20Amoy%20Street%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    },
+    {
+      "id": "STL-0048",
+      "name": "Maxwell Fuzhou Oyster Cake",
+      "centreId": "SGP-0001",
+      "centreName": "Maxwell Food Centre",
+      "area": "Chinatown",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Oyster cake"
+      ],
+      "meal": "Snack",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "research-candidate",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Maxwell%20Fuzhou%20Oyster%20Cake%2C%20Maxwell%20Food%20Centre%2C%20Singapore",
+      "notes": "Research lead only. Verify tenant, stall number, current operation, menu and dietary certification before visiting."
+    }
+  ]
+}
