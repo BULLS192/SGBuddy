@@ -1,6 +1,6 @@
 # SGBuddy
 
-SGBuddy is a mobile-first Singapore Travel + Living Intelligence companion and shared Singapore data layer for the future Omnidite Travel Intelligence Core, FREYA and related experiences.
+SGBuddy is a mobile-first Singapore Travel + Living Intelligence companion and shared Singapore data layer for the future Omnidite Travel Intelligence Core and related experiences.
 
 ## Wave 2
 
@@ -13,8 +13,8 @@ SGBuddy is a mobile-first Singapore Travel + Living Intelligence companion and s
 - Save Home, Work and Hotel on-device.
 - Public-transport journey handoff to Google Maps.
 - Resident / Traveller modes and one-tap route back to a saved hotel.
-- FREYA-ready deterministic advisor using bus, rail, weather and disruption context.
-- `/api/snapshot` for a normalized FREYA / Providence context feed.
+- **Merli**, SGBuddy's lightweight Merlion assistant, using curated recommendations and real bus, rail, weather and disruption context.
+- `/api/snapshot` for normalized Providence and external-assistant integrations, independent of Merli's interface.
 
 ## Live data setup
 
@@ -59,7 +59,7 @@ Copy `.env.example` to `.env.local` and add an LTA key for live data.
 - Rain-now / rain-arriving intelligence.
 - Curated/official attraction and experience sources. STB TIH is not used because the service was discontinued.
 - Multilingual Traveller Mode.
-- Providence map layers and FREYA tool calls.
+- Providence map layers and external-assistant integrations.
 
 
 ## v0.9.0-dev review wave
@@ -71,7 +71,7 @@ This branch is intentionally non-production. See docs/v090-travel-living-wave.md
 
 ## V1.2 Discover & Content Intelligence (isolated development branch)
 
-Branch: `feature/sgbuddy-v1.2-discover-air-student`. Production remains on `main` pending manual QA and approval.
+V1.2 was released to production through PR #8 on 2026-10-10.
 
 - Air Quality: extends the existing NEA/data.gov.sg 24-hour PSI and one-hour PM2.5 integration with **regional readings**, a last-updated timestamp, stale/partial status, and an NEA source link. The UI must never describe stale/cached readings as live.
 - Discover: a dedicated Discover tab with Eat, Things to do, Shop, Useful apps and Did you know; searchable directory, audience relevance ranking and on-device saved items.
@@ -96,3 +96,14 @@ New facts must be **one unique atomic verifiable claim per record** with an exac
 6. Only then approve preview promotion to `main`.
 
 Note: `vercel.json` currently has `git.deploymentEnabled=false`, so a branch push alone does **not** guarantee an automatic Vercel preview deployment.
+
+
+## V1.3 — Merli companion (development branch)
+
+- **Identity:** Merli is the only assistant inside SGBuddy. The old FREYA floating button and duplicate advisor panel have been retired; the separate FREYA product outside SGBuddy is unaffected.
+- **Avatar:** Reuses the exact approved `assets/merlion-companion.webp` blob from [the earlier companion PR #4](https://github.com/BULLS192/SGBuddy/pull/4). The temporary emoji is no longer used for Merli's launcher or header.
+- **Experience:** One **Ask Merli** button and a responsive panel, with subtle 2D idle/listening/speaking/success/warning animations and reduced-motion support. No new 3D dependencies.
+- **Intelligence:** The existing deterministic bus, rail, route-planning and rain advisor remains accessible via Merli alongside Discover shortcuts, air-quality navigation and Singapore trivia.
+- **Accessibility:** Escape-to-close, focus return, accessible controls and live announcement of responses.
+- **PWA:** The existing Merlion image is precached for offline display.
+- **Release:** Changes are reviewed in [PR #9](https://github.com/BULLS192/SGBuddy/pull/9) from `feature/sgbuddy-v1.3-facts-merlion`. Production stays at V1.2 until V1.3 is approved and merged.
