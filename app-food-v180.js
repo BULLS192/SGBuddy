@@ -75,7 +75,7 @@ sec.addEventListener('click',e=>{
  const addressButton=e.target.closest('[data-stall-address]');if(addressButton){
   const note=addressButton.closest('.food-stall')?.querySelector('.food-address');if(!note)return;
   note.textContent='Checking the hawker centre with OneMap…';addressButton.disabled=true;
-  fetch('/api/discover-address?id='+encodeURIComponent(addressButton.dataset.stallAddress),{cache:'no-store'})
+  fetch('/api/journey?action=discover-address&id='+encodeURIComponent(addressButton.dataset.stallAddress),{cache:'no-store'})
    .then(r=>r.ok?r.json():Promise.reject(Error('lookup failed')))
    .then(p=>{note.textContent=p.status==='address-matched'&&p.address?('OneMap matched: '+p.address.address+' · Operating status not checked'):(p.status==='ambiguous'?'Ambiguous match; verify this centre manually':p.status==='not-configured'?'OneMap not configured':'No confirmed match yet')})
    .catch(()=>{note.textContent='OneMap temporarily unavailable'})
