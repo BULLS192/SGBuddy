@@ -926,4 +926,4 @@ v094RenderTodayBrief();v094SyncSettingsUi();
 window.__SGBUDDY_CLIENT_VERSION__='1.1.0';
 if($('#appVersion'))$('#appVersion').textContent='v1.1.0';
 window.SGBUDDY_CORE={state,$,$,toast,json,navigateTo,renderEnvironment,renderFeaturedPlaces,renderAccountHub,renderPersonaContext,v094SyncSettingsUi,queueProfileSync,syncAccountProfile,planNativeJourney,setActiveNav,askAdvisor:advisor};
-import('/app-v100.js').then(()=>import('/app-v110.js')).then(()=>import('/app-v120.js')).then(()=>import('/app-v130.js')).catch(error=>console.warn('v1 module',error?.message));
+import('/app-v100.js').then(()=>import('/app-v110.js')).then(()=>import('/app-v120.js')).then(()=>import('/app-v140.js')).catch(error=>console.warn('v1 module',error?.message));
