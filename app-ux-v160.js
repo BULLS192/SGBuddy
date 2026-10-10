@@ -118,6 +118,27 @@ function home(){
  update();
 }
 home();
+
+// Appearance is an explicitly reversible, local preference; product functions remain unchanged.
+function initAppearance(){
+ const key='sgbuddy-appearance-v1',select=document.createElement('label');
+ select.className='ux-appearance-control';
+ select.innerHTML='<span><strong>Appearance</strong><small>Choose the look that is easiest for you to use.</small></span><select id="uxThemeSelect" aria-label="App appearance"><option value="system">Use device setting</option><option value="dark">Dark</option><option value="light">Light</option></select>';
+ $('#accountSection')?.appendChild(select);
+ const stored=(()=>{try{return localStorage.getItem(key)||'system'}catch{return 'system'}})();
+ const input=$('#uxThemeSelect');if(!input)return;
+ input.value=['system','dark','light'].includes(stored)?stored:'system';
+ const mq=window.matchMedia?.('(prefers-color-scheme: light)');
+ const apply=()=>{
+ const choice=input.value,light=choice==='light'||choice==='system'&&Boolean(mq?.matches);
+ document.documentElement.dataset.uxTheme=light?'light':'dark';
+ const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#f6f8fb':'#091727';
+ };
+ input.addEventListener('change',()=>{try{localStorage.setItem(key,input.value)}catch{}apply()});
+ mq?.addEventListener?.('change',()=>{if(input.value==='system')apply()});
+ apply();
+}
+initAppearance();
 const move=$('.v1-view[data-view="move"]');
 if(move){
  const planner=$('#travelSection');
@@ -177,10 +198,10 @@ function setExplore(tab){
  const results=$('#discoverResults'),status=$('#discoverStatus'),searchRow=$('.discover-search-row');
  setHidden(results,isNearby||isFacts);
  setHidden(status,isNearby||isFacts);
- setHidden(searchRow,isNearby);
+ setHidden(searchRow,isNearby||isFacts);
  const nearTab=$('[data-ux-nearby]');
  if(nearTab){nearTab.classList.toggle('ux-active',isNearby);nearTab.setAttribute('aria-selected',String(isNearby));nearTab.tabIndex=isNearby?0:-1}
- if(isNearby)$('[data-discover-tab]')?.setAttribute('aria-selected','false');
+ if(isNearby)$('[data-discover-tab]').forEach(b=>{b.setAttribute('aria-selected','false');b.classList.remove('active');b.tabIndex=-1});
  syncKnowledge();
 }
 const back=document.createElement('div');back.className='ux-move-links';
