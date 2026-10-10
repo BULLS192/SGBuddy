@@ -38,5 +38,5 @@ assert.ok(css.includes('html[data-ux-theme="light"]'),'Light mode styling missin
 assert.ok(css.includes('@media(max-width:540px)'),'Mobile breakpoint missing');
 assert.ok(css.includes('prefers-reduced-motion:reduce'),'Reduced motion fallback missing');
 assert.ok(previous.includes("if(isNearby)$$('[data-discover-tab]').forEach"),'Near me tab must not invoke forEach on one element');
-assert.ok(ui.includes("1.6.0-preview"),'Preview version marker missing');
+assert.ok(ui.includes("1.6.0"),'Stable version marker missing');
 console.log('SGBuddy UX 4–6 checks passed: five audience contexts, Merli, offline cache, navigation and accessible states.');
