@@ -60,3 +60,5 @@ html[data-ux-theme="light"] .ux-explore-context,html[data-ux-theme="light"] .ux-
 html[data-ux-theme="light"] .ux-merli-home-hint>button#uxMerliHomeAsk{background:#d9ede8;color:#20574e}
 html[data-ux-theme="light"] .ux-merli-home-hint #uxMerliHomeDismiss{color:#53697a}
 html[data-ux-theme="light"] .ux-persona-journey{color:#426a78!important}
+
+@media(min-width:820px){.v1-view[data-view="today"]>.ux-persona-banner,.v1-view[data-view="today"]>.ux-merli-home-hint{grid-column:1/-1}}
