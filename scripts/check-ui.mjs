@@ -36,7 +36,7 @@ if(!fs.readFileSync('api/health.js','utf8').includes('weatherAwareRouting:true')
 for(const required of ['journeyMapWrap','journeyMap','journeyMapTitle']){ if(!ids.has(required)) fail(`Wave 4.3 control #${required} is missing`); }
 if(!html.includes('/app-v090.js')) fail('Wave 4.3 client asset is not wired into index.html');
 if(!fs.readFileSync('api/health.js','utf8').includes('journeyRouteMap:true')) fail('Journey route map health flag missing');
-if(!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.1.0-dev'")) fail('Visible client version does not include v1.1.0-dev');
+if(!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.1.0-dev'")&&!js.includes("window.__SGBUDDY_CLIENT_VERSION__='1.1.0'")) fail('v1.1 client bridge version marker is missing');
 
 for(const required of ['tripIntelligence','tripIntelTitle','tripIntelLevel','planAroundConditions','tripFromSuggestions','tripToSuggestions','recentDestinations']){if(!ids.has(required))fail(`v0.8.0 control #${required} is missing`)}
 if(!fs.existsSync('lib/places.js'))fail('Destination intelligence catalog is missing');
