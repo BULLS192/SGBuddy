@@ -64,7 +64,7 @@
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
-    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(place.kind)+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
+    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>Curated location · Opening hours, availability and entrance fees have not been verified.</p>'+
       '<div class="discover-actions">'+sourceLink(map,'Find on map')+'</div></article>';
@@ -125,7 +125,7 @@
       results.innerHTML=candidates.length?factsCard(candidates[factIndex]):'<div class="card discover-empty">No matching source-reviewed facts yet. Try clearing the search or Saved only.</div>';
       return;
     }
-    const rows=orderedRows(tab==='apps'?catalog.apps:catalog.places.filter(p=>p.kind===directoryKinds[tab]));
+    const rows=orderedRows(tab==='apps'?catalog.apps:catalog.places.filter(p=>(p.kinds||[p.kind]).includes(directoryKinds[tab])));
     $('#discoverStatus').textContent=rows.length+' curated '+(tab==='apps'?'app':'place')+' entries · '+rows.filter(matchesMode).length+' matches for '+persona+' · Listing details require verification';
     const visible=showAll?rows:rows.slice(0,24);
     results.innerHTML='<div class="discover-grid">'+visible.map(tab==='apps'?appsCard:dirCard).join('')+'</div>'+
