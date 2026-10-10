@@ -126,3 +126,37 @@ button:disabled{cursor:wait}
 
 /* v1.1 mobility intelligence */
 .v110-mode-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.v110-mode-chip{display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:7px 9px;border:1px solid #2a4259;border-radius:11px;background:#0b1726;color:#c9d8e6;font-size:10px;white-space:nowrap}.v110-mode-chip b{font-size:13px}.v110-mode-chip strong{color:#f2f7fb;font-size:11px}.v110-mode-chip.best{border-color:#2e705e;background:#122b26;color:#9be8cf}.v110-mode-chip.best strong{color:#9be8cf}.v110-mobility-locate{display:block;padding:8px 10px;border-radius:11px;background:#0b1726;border:1px solid #263b50;color:var(--muted);font-size:10px}@media(max-width:520px){.v110-mode-chip{flex:1 1 calc(50% - 4px);justify-content:center}}
+
+
+/* === Merlion companion v1 === */
+.merlion-advisor{position:relative;overflow:hidden;isolation:isolate}
+.merlion-advisor::before{content:"";position:absolute;inset:-35% 35% auto -15%;height:220px;background:radial-gradient(circle,rgba(239,55,65,.14),transparent 68%);pointer-events:none;z-index:-1}
+.merlion-advisor-head{display:flex;align-items:center;gap:14px}
+.merlion-heading{min-width:0}
+.merlion-heading h3{margin:.15rem 0 .15rem}
+.merlion-state-line{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted,#8ea0b7)}
+.merlion-stage{--look-x:0;--look-y:0;position:relative;flex:0 0 92px;width:92px;height:92px;display:grid;place-items:center;perspective:700px;touch-action:manipulation;cursor:pointer}
+.merlion-glow{position:absolute;inset:9px;border-radius:50%;background:radial-gradient(circle at 50% 68%,rgba(255,255,255,.18),rgba(239,55,65,.13) 48%,transparent 70%);filter:blur(7px);transform:translateZ(-20px)}
+.merlion-avatar{position:relative;width:82px;height:82px;border-radius:50%;transform-style:preserve-3d;transform:rotateY(calc(var(--look-x) * 1deg)) rotateX(calc(var(--look-y) * -1deg));transition:transform .22s ease,filter .22s ease;filter:drop-shadow(0 10px 18px rgba(0,0,0,.22));will-change:transform}
+.merlion-avatar img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),0 0 0 2px rgba(239,55,65,.16)}
+.merlion-model-mount{position:absolute;inset:0;display:none}
+.merlion-state-dot{position:absolute;right:7px;bottom:9px;width:12px;height:12px;border-radius:50%;background:#44d17a;border:2px solid #0b1422;box-shadow:0 0 0 3px rgba(68,209,122,.12)}
+.merlion-stage[data-state="idle"] .merlion-avatar{animation:merlion-idle 4.2s ease-in-out infinite}
+.merlion-stage[data-state="listening"] .merlion-avatar{animation:merlion-listen 1.05s ease-in-out infinite;filter:drop-shadow(0 11px 20px rgba(239,55,65,.28))}
+.merlion-stage[data-state="thinking"] .merlion-avatar{animation:merlion-think 1.15s ease-in-out infinite}
+.merlion-stage[data-state="thinking"] .merlion-state-dot{background:#ffbf47;box-shadow:0 0 0 3px rgba(255,191,71,.14)}
+.merlion-stage[data-state="speaking"] .merlion-avatar{animation:merlion-speak .62s ease-in-out infinite}
+.merlion-stage[data-state="speaking"] .merlion-state-dot,.merlion-stage[data-state="success"] .merlion-state-dot{background:#44d17a}
+.merlion-stage[data-state="success"] .merlion-avatar{animation:merlion-success .7s cubic-bezier(.2,.8,.2,1) 1}
+.merlion-stage[data-state="warning"] .merlion-avatar{animation:merlion-warning .78s ease-in-out 2;filter:drop-shadow(0 10px 20px rgba(255,180,72,.32))}
+.merlion-stage[data-state="warning"] .merlion-state-dot{background:#ff9c3d}
+.merlion-stage[data-state="wave"] .merlion-avatar{animation:merlion-wave .75s ease-in-out 1}
+@keyframes merlion-idle{0%,100%{transform:translateY(0) rotateY(calc(var(--look-x) * 1deg)) rotateX(calc(var(--look-y) * -1deg))}50%{transform:translateY(-4px) rotateY(calc(var(--look-x) * 1deg)) rotateX(calc(var(--look-y) * -1deg))}}
+@keyframes merlion-listen{0%,100%{transform:rotate(-2deg) scale(1.01)}50%{transform:rotate(3deg) scale(1.035)}}
+@keyframes merlion-think{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(4deg)}}
+@keyframes merlion-speak{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.025)}}
+@keyframes merlion-success{0%{transform:translateY(0) scale(1)}45%{transform:translateY(-8px) scale(1.06)}75%{transform:translateY(1px) scale(.99)}100%{transform:translateY(0) scale(1)}}
+@keyframes merlion-warning{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+@keyframes merlion-wave{0%,100%{transform:rotate(0) scale(1)}35%{transform:rotate(-7deg) scale(1.05)}70%{transform:rotate(6deg) scale(1.03)}}
+@media(max-width:560px){.merlion-stage{flex-basis:78px;width:78px;height:78px}.merlion-avatar{width:70px;height:70px}.merlion-advisor-head{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.merlion-stage .merlion-avatar{animation:none!important;transition:none!important}}
