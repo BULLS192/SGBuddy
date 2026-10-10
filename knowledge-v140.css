@@ -1,0 +1,17 @@
+
+/* v1.4 Merli knowledge review and source-aware conversations */
+.merli-evidence{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:8px;padding:10px;border:1px solid #375c77;border-radius:11px;background:#14354e;font-size:12px}
+.merli-evidence[hidden],.sgb-library[hidden],#merliLoadMore[hidden]{display:none!important}
+.merli-evidence a{color:#9bdbff;font-weight:700}
+.merli-evidence button,.sgb-fact-foot button{font:inherit;color:#e5f6ff;border:1px solid #5d88a5;background:#18394f;border-radius:9px;min-height:34px;padding:7px 10px;cursor:pointer}
+.sgb-library-controls{align-items:center}
+.sgb-library-controls select{max-width:min(100%,225px);border-radius:9px}
+.merli-saved-filter{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-size:13px;color:inherit}
+.merli-saved-filter input{min-height:auto}
+.merli-status{font-size:12px;font-weight:600}
+.merli-status.checked{color:#9de9c5}
+.merli-status.pending{color:#ffd9a2}
+.merli-more{margin:16px auto 0;display:block}
+.sgb-fact{min-width:0}.sgb-fact-foot{align-items:center}
+.buddy-reply{overflow-wrap:anywhere}.buddy-panel{overscroll-behavior:contain}
+@media(max-width:600px){.sgb-library-controls select,.sgb-library-controls input[type="search"]{width:100%;flex:auto}}
