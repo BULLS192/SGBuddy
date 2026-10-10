@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {spawnSync} from 'node:child_process';
+const read=p=>fs.readFileSync(p,'utf8');
+const ui=read('app-v130.js'),app=read('app-v090.js'),html=read('index.html'),sw=read('sw.js');
+const seed=JSON.parse(read('data/discover-v120.json')),published=JSON.parse(read('data/facts-published.json'));
+const approved=JSON.parse(read('content/facts-approved.json'));
+assert.ok(app.includes("import('/app-v130.js')"),'buddy module missing from app bootstrap');
+assert.ok(html.includes('buddy-v130.css'),'buddy stylesheet not loaded');
+assert.ok(sw.includes('/app-v130.js')&&sw.includes('/data/facts-published.json'),'PWA missing assets');
+for(const v of ['buddyLauncher','buddyPanel','buddyAskForm','buddyReply','sgbFactList','sgbFactQuery','sgbFactTopic'])assert.ok(ui.includes(v),'missing '+v);
+for(const mode of ['resident','visitor','executive','student'])assert.ok(seed.facts.some(f=>f.modes.includes(mode)));
+assert.equal(published.verifiedCount,published.facts.length);
+assert.ok(approved.length>=29);
+assert.ok(approved.every(f=>f.status!=='verified'),'Seed facts should not be silently promoted');
+const scratch='data/_facts-test-output.json';
+let result=spawnSync(process.execPath,['scripts/publish-facts.mjs','content/facts-approved.json',scratch],{encoding:'utf8'});
+assert.equal(result.status,0,result.stderr);
+const parsed=JSON.parse(read(scratch));
+assert.equal(parsed.verifiedCount,0,'Unreviewed facts were incorrectly published');
+fs.unlinkSync(scratch);
+
+// Merli migration: exactly one assistant, the approved image, and no old FREYA UI.
+import crypto from 'node:crypto';
+const page=read('index.html'),styles=read('styles.css'),buddyCSS=read('buddy-v130.css'),service=read('sw.js');
+const asset=fs.readFileSync('assets/merlion-companion.webp');
+const blobSha=crypto.createHash('sha1').update('blob '+asset.length+'\0').update(asset).digest('hex');
+assert.equal(blobSha,'7664fe37eb3b6aa7ac433993722d48a068c670c4','Must reuse the original approved Merlion asset from PR #4');
+assert.ok(!/FREYA|freyaSection|freya-orb/.test(page),'Old FREYA panel remains in HTML');
+assert.ok(!/Open FREYA|v1-freya-fab|v1-freya-panel/.test(app),'Old FREYA floating assistant remains');
+assert.ok(!/v1-freya-fab|v1-freya-panel/.test(styles),'Obsolete FREYA overlay styles remain');
+assert.ok(!/freya-orb|freyaSection|Open FREYA/i.test(styles+app+page),'No old FREYA interface references should remain');
+assert.ok(/z-index:1450/.test(buddyCSS),'Merli should sit below modal overlays for sign-in, persona and install');
+assert.ok(!page.includes('id="advisorForm"'),'Duplicate legacy assistant form remains');
+assert.ok(app.includes('askAdvisor:advisor'),'Old transport advisor should be wired to Merli');
+assert.ok(ui.includes('askAdvisor(original)'),'Merli should answer transport queries using the existing advisor');
+assert.ok(ui.includes("window.SGBUDDY_OPEN_MERLI"),'Merli must be accessible from legacy navigation');
+assert.ok(ui.includes('Ask Merli')&&ui.includes('>Merli</strong>'),'Merli name missing from launcher/panel');
+assert.ok(ui.includes('/assets/merlion-companion.webp'),'Approved image not wired');
+assert.ok(buddyCSS.includes('.buddy-symbol img'),'Avatar image styling not present');
+assert.ok(service.includes('/assets/merlion-companion.webp'),'Original asset not precached for installed PWA');
+assert.ok(!ui.includes('🦁'),'Temporary lion emoji still used as primary avatar');
+
+console.log('Wave 4+5 checks passed: staged claims blocked; 2D buddy and persona-aware fact library wired.');

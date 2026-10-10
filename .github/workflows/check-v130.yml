@@ -1,0 +1,22 @@
+name: SGBuddy Wave 4-5 verification
+on:
+  push:
+    branches:
+      - feature/sgbuddy-v1.3-facts-merlion
+  pull_request:
+    paths:
+      - 'app-v130.js'
+      - 'buddy-v130.css'
+      - 'scripts/**'
+      - 'content/**'
+      - 'data/facts-published.json'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
