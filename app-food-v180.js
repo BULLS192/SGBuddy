@@ -29,10 +29,10 @@ function options(selector,values){
 function cardStall(x){
  const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl);
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(x.cuisine)+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>Research lead at '+esc(x.centreName)+' · Suggested dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning">Stall and menu not independently confirmed · Prices and dietary certification unknown</p>'+
+ '<p>'+(x.reviewStatus==='nea-award-listed-2025'?'NEA 2025 award listing':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
+ '<p class="food-warning">'+(x.reviewStatus==='nea-award-listed-2025'?'NEA documented in 2025; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
- (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+
+ (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(x.sourceUrl?'<a href="'+esc(x.sourceUrl)+'" target="_blank" rel="noopener noreferrer">NEA award source ↗</a>':'')+
  '<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button></div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
@@ -50,7 +50,7 @@ function render(){
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
   (meal==='all'||x.meal===meal)&&(!q||(x.name+' '+x.cuisine+' '+x.description).toLowerCase().includes(q)));
- $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall research leads (none confirmed operating)':'Singapore food and drink styles')+' · '+Math.min(rows.length,limit)+' shown';
+ $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':'Singapore food and drink styles')+' · '+Math.min(rows.length,limit)+' shown';
  $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
  $('#foodLoadMore').hidden=rows.length<=limit;
  $('#foodSavedOnly').closest('label').hidden=tab!=='stalls';
@@ -97,7 +97,7 @@ Promise.all([
  fetch('/data/food-stalls-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('stalls unavailable');return r.json()}),
  fetch('/data/singapore-dishes-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('dish guide unavailable');return r.json()})
 ]).then(([a,b])=>{
- stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>x.reviewStatus==='research-candidate'):[];
+ stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>['research-candidate','nea-award-listed-2025'].includes(x.reviewStatus)):[];
  dishes=Array.isArray(b.dishes)?b.dishes:[];
  options('#foodArea',[...new Set(stalls.map(x=>x.area))]);
  options('#foodCuisine',[...new Set([...stalls,...dishes].map(x=>x.cuisine))]);
