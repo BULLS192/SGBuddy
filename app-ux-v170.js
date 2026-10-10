@@ -276,6 +276,6 @@ document.addEventListener('sgbuddy:persona',()=>queueMicrotask(renderPersona));
 document.addEventListener('sgbuddy:weather',updateMerli);
 renderPersona();
 window.__SGBUDDY_UX_WAVES__='1-6';
-window.__SGBUDDY_CLIENT_VERSION__='1.6.0-preview';
-if($('#appVersion'))$('#appVersion').textContent='v1.6.0-preview';
+window.__SGBUDDY_CLIENT_VERSION__='1.6.0';
+if($('#appVersion'))$('#appVersion').textContent='v1.6.0';
 })();

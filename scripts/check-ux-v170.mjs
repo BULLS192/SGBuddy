@@ -8,7 +8,7 @@ assert.doesNotThrow(()=>new Function(ui),'UX v170 module has a syntax error');
 assert.doesNotThrow(()=>new Function(previous),'UX v160 module has a syntax error');
 assert.ok(page.includes('href="/ux-v170.css"'),'UX v170 stylesheet missing');
 assert.ok(bootstrap.includes("import('/app-ux-v160.js')).then(()=>import('/app-ux-v170.js')"),'UX modules must load after V1.4 Merli');
-assert.ok(sw.includes("sgbuddy-shell-v42"),'PWA cache version must advance');
+assert.ok(sw.includes("sgbuddy-shell-v43"),'PWA cache version must advance');
 for(const asset of ['/ux-v160.css','/ux-v170.css','/app-ux-v160.js','/app-ux-v170.js']){
   assert.ok(sw.includes(asset),'Offline shell is missing '+asset);
 }
@@ -38,5 +38,5 @@ assert.ok(css.includes('html[data-ux-theme="light"]'),'Light mode styling missin
 assert.ok(css.includes('@media(max-width:540px)'),'Mobile breakpoint missing');
 assert.ok(css.includes('prefers-reduced-motion:reduce'),'Reduced motion fallback missing');
 assert.ok(previous.includes("if(isNearby)$$('[data-discover-tab]').forEach"),'Near me tab must not invoke forEach on one element');
-assert.ok(ui.includes("1.6.0-preview"),'Preview version marker missing');
+assert.ok(ui.includes("1.6.0"),'Stable version marker missing');
 console.log('SGBuddy UX 4–6 checks passed: five audience contexts, Merli, offline cache, navigation and accessible states.');
