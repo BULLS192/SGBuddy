@@ -33,10 +33,11 @@ assert.ok(main.includes("import('/app-food-v180.js')"),'Food module must load af
 assert.ok(index.includes('/food-v180.css'),'Food styling missing');
 for(const url of ['/data/food-stalls-v180.json','/data/singapore-dishes-v180.json','/app-food-v180.js'])assert.ok(sw.includes(url),'Offline shell missing '+url);
 assert.ok(discover.includes('data-verify-address'),'Places must support OneMap checks');
-assert.ok(discover.includes('/api/discover-address?id='),'OneMap endpoint must be used');
+assert.ok(discover.includes('/api/journey?action=discover-address&id='),'Existing Journey OneMap action must be used');
 for(const feature of ['foodArea','foodMeal','foodCuisine','foodDish','foodSavedOnly','foodSearch','foodLoadMore'])assert.ok(food.includes(feature),'Food filter absent: '+feature);
-const addr=read('api/discover-address.js');
+const addr=read('lib/discover-address-endpoint.js');
 assert.ok(addr.includes('hasOneMapCredentials()')&&addr.includes('operationalStatus'), 'OneMap server gate missing');
+assert.ok(read('api/journey.js').includes("action==='discover-address'"),'Existing Journey API must route the address handler before LTA-key gate');
 assert.ok(!addr.includes('req.query.q'),'Open-ended OneMap query would permit unnecessary abuse');
 const place={name:'Maxwell Food Centre',area:'Chinatown'};
 const good={label:'MAXWELL FOOD CENTRE',address:'1 Kadayanallur Street Singapore 069184',postal:'069184',lat:1.2803,lon:103.8445};
