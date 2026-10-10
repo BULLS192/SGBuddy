@@ -917,5 +917,430 @@
     "reviewMethod": "primary-source-check",
     "evidenceNote": "National Symbols Act: public seal provision",
     "verifiedOn": "2026-10-10"
+  },
+  {
+    "id": "FACT-MRT-001",
+    "theme": "Transport heritage",
+    "text": "Singapore's first MRT line was the North-South Line.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: NSL is Singapore's first MRT line"
+  },
+  {
+    "id": "FACT-MRT-002",
+    "theme": "Transport heritage",
+    "text": "The MRT began operations in 1987 with five stations between Yio Chu Kang and Toa Payoh.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: 1987 service with five stations"
+  },
+  {
+    "id": "FACT-MRT-003",
+    "theme": "Transport heritage",
+    "text": "The North-South MRT Line runs for about 45 kilometres.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: line length 45 km"
+  },
+  {
+    "id": "FACT-MRT-004",
+    "theme": "Transport heritage",
+    "text": "The North-South MRT Line has 27 stations according to LTA's 2026 overview.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: NSL 27 stations"
+  },
+  {
+    "id": "FACT-MRT-005",
+    "theme": "Transport heritage",
+    "text": "Marina South Pier MRT station was added to the North-South Line in 2014.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: 2014 1 km extension"
+  },
+  {
+    "id": "FACT-MRT-006",
+    "theme": "Transport heritage",
+    "text": "Canberra MRT station was added between Yishun and Sembawang in 2019.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: Canberra station 2019"
+  },
+  {
+    "id": "FACT-MRT-007",
+    "theme": "Transport heritage",
+    "text": "Jurong East MRT station gained two additional platforms in 2012.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: Jurong East 2012 additional platforms"
+  },
+  {
+    "id": "FACT-MRT-008",
+    "theme": "Transport heritage",
+    "text": "Dhoby Ghaut became Singapore's first interchange serving three MRT lines.",
+    "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "LTA: Dhoby Ghaut first three-line interchange"
+  },
+  {
+    "id": "FACT-WAT-001",
+    "theme": "Water innovation",
+    "text": "NEWater is high-grade recycled water produced from treated used water.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: NEWater process"
+  },
+  {
+    "id": "FACT-WAT-002",
+    "theme": "Water innovation",
+    "text": "PUB set up a team to test water-reclamation membrane technology in 1998.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: NEWater research 1998"
+  },
+  {
+    "id": "FACT-WAT-003",
+    "theme": "Water innovation",
+    "text": "A NEWater demonstration plant commissioned in 2000 could produce 10,000 cubic metres per day.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: 2000 demonstration plant capacity"
+  },
+  {
+    "id": "FACT-WAT-004",
+    "theme": "Water innovation",
+    "text": "NEWater was introduced to the Singapore public at the National Day Parade on 9 August 2002.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: NEWater NDP launch"
+  },
+  {
+    "id": "FACT-WAT-005",
+    "theme": "Water innovation",
+    "text": "The first two NEWater plants opened at Bedok and Kranji in 2003.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: Bedok and Kranji plants"
+  },
+  {
+    "id": "FACT-WAT-006",
+    "theme": "Water innovation",
+    "text": "NEWater purification includes microfiltration or ultrafiltration.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: NEWater first purification stage"
+  },
+  {
+    "id": "FACT-WAT-007",
+    "theme": "Water innovation",
+    "text": "Reverse osmosis is the second stage in PUB's NEWater treatment process.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: second purification stage"
+  },
+  {
+    "id": "FACT-WAT-008",
+    "theme": "Water innovation",
+    "text": "Ultraviolet disinfection is the third stage in PUB's NEWater treatment process.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: third purification stage"
+  },
+  {
+    "id": "FACT-WAT-009",
+    "theme": "Water innovation",
+    "text": "NEWater is used primarily for industrial processes and air-conditioning cooling.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: NEWater non-potable uses"
+  },
+  {
+    "id": "FACT-WAT-010",
+    "theme": "Water innovation",
+    "text": "During dry periods, Singapore adds NEWater to reservoirs for indirect potable use.",
+    "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: indirect potable use"
+  },
+  {
+    "id": "FACT-WAT-011",
+    "theme": "Water innovation",
+    "text": "Singapore's SingSpring Desalination Plant opened in 2005.",
+    "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: 2005 fourth National Tap"
+  },
+  {
+    "id": "FACT-WAT-012",
+    "theme": "Water innovation",
+    "text": "The Singapore River clean-up was launched in 1977.",
+    "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "PUB: river clean-up 1977"
+  },
+  {
+    "id": "FACT-HIS-001",
+    "theme": "Singapore history",
+    "text": "Singapore became a self-governing state in 1959.",
+    "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "SG101: self-governance 1959"
+  },
+  {
+    "id": "FACT-HIS-002",
+    "theme": "Singapore history",
+    "text": "From 1960 through 1963, Singapore celebrated National Day on 3 June.",
+    "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "SG101: 3 June National Day dates"
+  },
+  {
+    "id": "FACT-HIS-003",
+    "theme": "Singapore history",
+    "text": "Zubir Said composed Majulah Singapura for the reopening of Victoria Theatre in 1958.",
+    "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "SG101: anthem composition 1958"
+  },
+  {
+    "id": "FACT-HIS-004",
+    "theme": "Singapore history",
+    "text": "Majulah Singapura was adapted into Singapore's National Anthem in 1959.",
+    "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "SG101: anthem adopted 1959"
+  },
+  {
+    "id": "FACT-HIS-005",
+    "theme": "Singapore history",
+    "text": "Voting became compulsory in Singapore for the first time in 1959.",
+    "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "SG101: compulsory voting 1959"
   }
 ]
