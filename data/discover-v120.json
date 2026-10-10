@@ -1,0 +1,1788 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-10",
+  "note": "Content seed only. Locations and third-party apps are curated preview records; hours and availability unverified.",
+  "places": [
+    {
+      "id": "SGP-0001",
+      "name": "Maxwell Food Centre",
+      "kind": "Eat",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0002",
+      "name": "Old Airport Road Food Centre",
+      "kind": "Eat",
+      "area": "Geylang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0003",
+      "name": "Tiong Bahru Market",
+      "kind": "Eat",
+      "area": "Tiong Bahru",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0004",
+      "name": "Newton Food Centre",
+      "kind": "Eat",
+      "area": "Newton",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0005",
+      "name": "Chomp Chomp Food Centre",
+      "kind": "Eat",
+      "area": "Serangoon Gardens",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0006",
+      "name": "East Coast Lagoon Food Village",
+      "kind": "Eat",
+      "area": "East Coast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0007",
+      "name": "Geylang Serai Market",
+      "kind": "Eat",
+      "area": "Geylang Serai",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0008",
+      "name": "Tekka Centre",
+      "kind": "Eat",
+      "area": "Little India",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0009",
+      "name": "People's Park Food Centre",
+      "kind": "Eat",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0010",
+      "name": "Chinatown Complex Food Centre",
+      "kind": "Eat",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0011",
+      "name": "Lau Pa Sat",
+      "kind": "Eat",
+      "area": "CBD",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0012",
+      "name": "Amoy Street Food Centre",
+      "kind": "Eat",
+      "area": "CBD",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0013",
+      "name": "Hong Lim Market & Food Centre",
+      "kind": "Eat",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0014",
+      "name": "ABC Brickworks Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0015",
+      "name": "Adam Road Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Timah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0016",
+      "name": "Bedok Interchange Hawker Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0017",
+      "name": "Changi Village Hawker Centre",
+      "kind": "Eat",
+      "area": "Changi Village",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0018",
+      "name": "Golden Mile Food Centre",
+      "kind": "Eat",
+      "area": "Beach Road",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0019",
+      "name": "Zion Riverside Food Centre",
+      "kind": "Eat",
+      "area": "River Valley",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0020",
+      "name": "Whampoa Makan Place",
+      "kind": "Eat",
+      "area": "Whampoa",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0021",
+      "name": "Berseh Food Centre",
+      "kind": "Eat",
+      "area": "Jalan Besar",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0022",
+      "name": "Pek Kio Market & Food Centre",
+      "kind": "Eat",
+      "area": "Farrer Park",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0023",
+      "name": "Boon Lay Place Market & Food Village",
+      "kind": "Eat",
+      "area": "Jurong West",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0024",
+      "name": "Bukit Merah View Market & Hawker Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://data.gov.sg/datasets/d_4a086da0a5553be1d89383cd90d07ecd/view",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0025",
+      "name": "Jewel Changi Airport",
+      "kind": "Do",
+      "area": "Changi Airport",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0026",
+      "name": "Gardens by the Bay",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0027",
+      "name": "Merlion Park",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0028",
+      "name": "Marina Bay Sands SkyPark",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0029",
+      "name": "Singapore Flyer",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0030",
+      "name": "National Gallery Singapore",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0031",
+      "name": "National Museum of Singapore",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0032",
+      "name": "Asian Civilisations Museum",
+      "kind": "Do",
+      "area": "Singapore River",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0033",
+      "name": "ArtScience Museum",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0034",
+      "name": "Singapore Botanic Gardens",
+      "kind": "Do",
+      "area": "Tanglin",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0035",
+      "name": "National Orchid Garden",
+      "kind": "Do",
+      "area": "Botanic Gardens",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0036",
+      "name": "East Coast Park",
+      "kind": "Do",
+      "area": "East Coast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0037",
+      "name": "MacRitchie Reservoir Park",
+      "kind": "Do",
+      "area": "Central Catchment",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0038",
+      "name": "Southern Ridges",
+      "kind": "Do",
+      "area": "Henderson",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0039",
+      "name": "Fort Canning Park",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0040",
+      "name": "Sungei Buloh Wetland Reserve",
+      "kind": "Do",
+      "area": "Kranji",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0041",
+      "name": "Haw Par Villa",
+      "kind": "Do",
+      "area": "Pasir Panjang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0042",
+      "name": "Singapore Zoo",
+      "kind": "Do",
+      "area": "Mandai",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0043",
+      "name": "Night Safari",
+      "kind": "Do",
+      "area": "Mandai",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0044",
+      "name": "Bird Paradise",
+      "kind": "Do",
+      "area": "Mandai",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0045",
+      "name": "Universal Studios Singapore",
+      "kind": "Do",
+      "area": "Sentosa",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0046",
+      "name": "Sentosa beaches",
+      "kind": "Do",
+      "area": "Sentosa",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0047",
+      "name": "Chinatown Heritage Area",
+      "kind": "Do",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0048",
+      "name": "Kampong Gelam",
+      "kind": "Do",
+      "area": "Kampong Gelam",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0049",
+      "name": "Little India",
+      "kind": "Do",
+      "area": "Little India",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0050",
+      "name": "Katong–Joo Chiat",
+      "kind": "Do",
+      "area": "East Coast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0051",
+      "name": "Singapore River",
+      "kind": "Do",
+      "area": "Clarke Quay",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0052",
+      "name": "Pulau Ubin",
+      "kind": "Do",
+      "area": "Changi",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0053",
+      "name": "Science Centre Singapore",
+      "kind": "Do",
+      "area": "Jurong East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0054",
+      "name": "Esplanade – Theatres on the Bay",
+      "kind": "Do",
+      "area": "Marina Bay",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0055",
+      "name": "Orchard Road",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0056",
+      "name": "ION Orchard",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0057",
+      "name": "Ngee Ann City",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0058",
+      "name": "Paragon",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0059",
+      "name": "Plaza Singapura",
+      "kind": "Shop",
+      "area": "Dhoby Ghaut",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0060",
+      "name": "Bugis Junction",
+      "kind": "Shop",
+      "area": "Bugis",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0061",
+      "name": "Bugis Street",
+      "kind": "Shop",
+      "area": "Bugis",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0062",
+      "name": "Suntec City",
+      "kind": "Shop",
+      "area": "Marina Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0063",
+      "name": "Marina Square",
+      "kind": "Shop",
+      "area": "Marina Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0064",
+      "name": "VivoCity",
+      "kind": "Shop",
+      "area": "HarbourFront",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0065",
+      "name": "Jewel Changi retail",
+      "kind": "Shop",
+      "area": "Changi Airport",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0066",
+      "name": "Mustafa Centre",
+      "kind": "Shop",
+      "area": "Little India",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0067",
+      "name": "City Square Mall",
+      "kind": "Shop",
+      "area": "Farrer Park",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0068",
+      "name": "New Bahru",
+      "kind": "Shop",
+      "area": "River Valley",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0069",
+      "name": "DORS – Design Orchard Retail Showcase",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0070",
+      "name": "Chinatown Street Market",
+      "kind": "Shop",
+      "area": "Chinatown",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0071",
+      "name": "Haji Lane",
+      "kind": "Shop",
+      "area": "Kampong Gelam",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0072",
+      "name": "Geylang Serai Market",
+      "kind": "Shop",
+      "area": "Geylang Serai",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0073",
+      "name": "Tekka Market",
+      "kind": "Shop",
+      "area": "Little India",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0074",
+      "name": "IMM",
+      "kind": "Shop",
+      "area": "Jurong East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0075",
+      "name": "JEM",
+      "kind": "Shop",
+      "area": "Jurong East",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0076",
+      "name": "Westgate",
+      "kind": "Shop",
+      "area": "Jurong East",
+      "modes": [
+        "resident",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0077",
+      "name": "NEX",
+      "kind": "Shop",
+      "area": "Serangoon",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0078",
+      "name": "Junction 8",
+      "kind": "Shop",
+      "area": "Bishan",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0079",
+      "name": "Northpoint City",
+      "kind": "Shop",
+      "area": "Yishun",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    },
+    {
+      "id": "SGP-0080",
+      "name": "Tampines Mall",
+      "kind": "Shop",
+      "area": "Tampines",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview"
+    }
+  ],
+  "apps": [
+    {
+      "id": "APP-0001",
+      "name": "Singpass",
+      "category": "Government & identity",
+      "modes": [
+        "resident",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.tech.gov.sg/products-and-services/for-citizens/digital-services/singpass/",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0002",
+      "name": "LifeSG",
+      "category": "Government & services",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "https://www.life.gov.sg/app",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0003",
+      "name": "HealthHub",
+      "category": "Healthcare",
+      "modes": [
+        "resident",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.healthhub.sg/download-app",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0004",
+      "name": "myENV",
+      "category": "Air quality & hazards",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.nea.gov.sg/myenv",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0005",
+      "name": "SimplyGo",
+      "category": "Transport payment",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.simplygo.com.sg/simplygo-app/",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0006",
+      "name": "MyTransport.SG",
+      "category": "Transport",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.lta.gov.sg",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0007",
+      "name": "SG Arrival Card",
+      "category": "Immigration",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0008",
+      "name": "SGWorkPass",
+      "category": "Employment",
+      "modes": [
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "https://www.mom.gov.sg/eservices/sgworkpass",
+      "status": "publisher-reference"
+    },
+    {
+      "id": "APP-0009",
+      "name": "NLB Mobile",
+      "category": "Library & learning",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0010",
+      "name": "ActiveSG",
+      "category": "Fitness & recreation",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0011",
+      "name": "Grab",
+      "category": "Rides & delivery",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0012",
+      "name": "Gojek",
+      "category": "Ride hailing",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0013",
+      "name": "CDG Zig",
+      "category": "Taxi booking",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0014",
+      "name": "Google Maps",
+      "category": "Navigation",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0015",
+      "name": "Citymapper",
+      "category": "Multi-modal routes",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0016",
+      "name": "OneService",
+      "category": "Municipal feedback",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0017",
+      "name": "Wireless@SGx",
+      "category": "Public WiFi",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0018",
+      "name": "FairPrice Group",
+      "category": "Groceries",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0019",
+      "name": "Lazada",
+      "category": "Online shopping",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0020",
+      "name": "Shopee",
+      "category": "Online shopping",
+      "modes": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0021",
+      "name": "Carousell",
+      "category": "Secondhand goods",
+      "modes": [
+        "resident",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0022",
+      "name": "foodpanda",
+      "category": "Food delivery",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0023",
+      "name": "Klook",
+      "category": "Tickets and activities",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0024",
+      "name": "Trip.com",
+      "category": "Travel booking",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0025",
+      "name": "Wise",
+      "category": "International transfers",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0026",
+      "name": "Revolut",
+      "category": "Multicurrency payments",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    },
+    {
+      "id": "APP-0027",
+      "name": "DBS digibank",
+      "category": "Banking",
+      "modes": [
+        "resident",
+        "executive",
+        "student"
+      ],
+      "publisherUrl": "",
+      "status": "store-listing-pending"
+    }
+  ],
+  "facts": [
+    {
+      "id": "FACT-00001",
+      "theme": "Hawker heritage",
+      "text": "Chomp Chomp Food Centre opened in 1972.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00002",
+      "theme": "Hawker heritage",
+      "text": "Chomp Chomp's name is an English adaptation of the older Teochew Tiong Tiong.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00003",
+      "theme": "Hawker heritage",
+      "text": "Tiong Tiong means loyalty and righteousness in Teochew.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00004",
+      "theme": "Hawker heritage",
+      "text": "East Coast Lagoon Food Village was built on reclaimed land.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00005",
+      "theme": "Hawker heritage",
+      "text": "East Coast Lagoon Food Village opened as a hawker centre in 1978.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00006",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market was opened in 1964 by then Prime Minister Lee Kuan Yew.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00007",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market was rebuilt in 2009.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00008",
+      "theme": "Hawker heritage",
+      "text": "Geylang Serai Market's rebuilt architecture draws on Malay cultural heritage.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00009",
+      "theme": "Hawker heritage",
+      "text": "Maxwell Food Centre was a site of a post-war low-cost meals programme.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00010",
+      "theme": "Hawker heritage",
+      "text": "Newton Food Centre was the first Singapore hawker centre built with a garden setting.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00011",
+      "theme": "Hawker heritage",
+      "text": "Old Airport Road Food Centre was completed in 1973.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00012",
+      "theme": "Hawker heritage",
+      "text": "People's Park Food Centre began as a hawker shelter in 1923.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00013",
+      "theme": "Hawker heritage",
+      "text": "By 1940 the People's Park market was Singapore's largest fresh-produce market.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00014",
+      "theme": "Hawker heritage",
+      "text": "Tekka Market was built in 1915.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00015",
+      "theme": "Hawker heritage",
+      "text": "Tekka Market was previously called Kandang Kerbau Market.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00016",
+      "theme": "Hawker heritage",
+      "text": "Kandang Kerbau means buffalo enclosure in Malay.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00017",
+      "theme": "Hawker heritage",
+      "text": "Tiong Bahru Market opened in 1951 under the name Seng Poh Road Market.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00018",
+      "theme": "Hawker heritage",
+      "text": "The old Tiong Bahru Market was used for public meetings and political rallies.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00020",
+      "theme": "National symbols",
+      "text": "Singapore's national flower is Vanda Miss Joaquim.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00021",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim was announced as national flower on 15 April 1981.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00022",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim is a cross between Vanda hookeriana and Vanda teres.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00023",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim is named after Agnes Joaquim.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00024",
+      "theme": "National symbols",
+      "text": "Agnes Joaquim bred the national-flower orchid in 1893.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00025",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim was recorded as Singapore's first orchid hybrid.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00026",
+      "theme": "National symbols",
+      "text": "Vanda Miss Joaquim was recorded as the world's first Vanda hybrid.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00027",
+      "theme": "National symbols",
+      "text": "Agnes Joaquim was a second-generation Singapore-born Armenian.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00028",
+      "theme": "National symbols",
+      "text": "Agnes Joaquim was born on 7 April 1854.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00029",
+      "theme": "National symbols",
+      "text": "Agnes Joaquim won more than 70 annual flower-show awards.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    },
+    {
+      "id": "FACT-00030",
+      "theme": "National symbols",
+      "text": "Over 40 flower types were considered when choosing the national flower.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/community-engagement/education/resources/national-symbols/national-flower",
+      "status": "source-reviewed"
+    }
+  ]
+}
