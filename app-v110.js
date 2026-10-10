@@ -15,10 +15,11 @@ if(core){
   });
 
   const PERSONA_COPY={
-    resident:{title:'Everyday Singapore',copy:'Food, groceries, healthcare, parks, community, libraries and neighbourhood hubs — tourist attractions only when they are genuinely useful.',chips:[['All','all'],['Hawker','hawker'],['Pharmacies','pharmacy'],['Healthcare','health'],['Parks','park'],['Markets','market'],['Sports','sport'],['Community','community'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
-    visitor:{title:'Singapore worth your time',copy:'Iconic attractions, heritage, hawker food, parks and useful visitor anchors ranked for a limited stay.',chips:[['All','all'],['Attractions','attraction'],['Hawker','hawker'],['Markets','market'],['Parks','park'],['Neighbourhoods','neighbourhood'],['Business / Marina','business']]},
-    executive:{title:'Singapore for a working day',copy:'Business districts, convention/airport access, efficient food, healthcare and meeting-friendly hubs before sightseeing.',chips:[['All','all'],['Business','business'],['Hawker','hawker'],['Healthcare','health'],['Town hubs','town'],['Attractions','attraction']]},
-    new_in_sg:{title:'Settle into Singapore',copy:'Groceries, clinics, community clubs, hawkers, parks, libraries, childcare and town centres ranked ahead of tourist stops.',chips:[['All','all'],['Healthcare','health'],['Pharmacies','pharmacy'],['Community','community'],['Hawker','hawker'],['Markets','market'],['Sports','sport'],['Parks','park'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
+    resident:{label:'Resident',title:'Everyday Singapore',copy:'Food, groceries, healthcare, parks, community, libraries and neighbourhood hubs — tourist attractions only when they are genuinely useful.',chips:[['All','all'],['Hawker','hawker'],['Pharmacies','pharmacy'],['Healthcare','health'],['Parks','park'],['Markets','market'],['Sports','sport'],['Community','community'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
+    visitor:{label:'Tourist',title:'Singapore worth your time',copy:'Iconic attractions, heritage, hawker food, parks and useful visitor anchors ranked for a limited stay.',chips:[['All','all'],['Attractions','attraction'],['Hawker','hawker'],['Markets','market'],['Parks','park'],['Neighbourhoods','neighbourhood'],['Business / Marina','business']]},
+    executive:{label:'Business',title:'Singapore for a working day',copy:'Business districts, convention/airport access, efficient food, healthcare and meeting-friendly hubs before sightseeing.',chips:[['All','all'],['Business','business'],['Hawker','hawker'],['Healthcare','health'],['Town hubs','town'],['Attractions','attraction']]},
+    student:{label:'Student',title:'Student Singapore',copy:'Affordable hawker food, libraries, parks, sports and town hubs for campus life.',chips:[['All','all'],['Hawker','hawker'],['Libraries','library'],['Sports','sport'],['Parks','park'],['Markets','market'],['Town hubs','town'],['Healthcare','health']]},
+    new_in_sg:{label:'New in SG',title:'Settle into Singapore',copy:'Groceries, clinics, community clubs, hawkers, parks, libraries, childcare and town centres ranked ahead of tourist stops.',chips:[['All','all'],['Healthcare','health'],['Pharmacies','pharmacy'],['Community','community'],['Hawker','hawker'],['Markets','market'],['Sports','sport'],['Parks','park'],['Libraries','library'],['Childcare','childcare'],['Town hubs','town']]},
   };
   state.v110Places=[];state.v110PlaceFilter='all';state.v110PlaceSort='best';state.v110PlacesMap=null;state.v110VisibleCount=24;state.v110EtaCache=new Map();state.v110PlaceRequestId=0;state.v110LoadedPersona='';state.v110FilterScrollLeft=0;
 
@@ -128,7 +129,8 @@ if(core){
     const requestedPersona=state.mode;
     const requestedFilter=state.v110PlaceFilter;
     const q=$('#placeSearch')?.value.trim()||'';
-    const params=new URLSearchParams({action:'places',persona:requestedPersona,limit:'120'});
+    // Existing Supabase place ranking accepts four legacy personas; use newcomer ranking as an interim fallback for Student.
+    const params=new URLSearchParams({action:'places',persona:requestedPersona==='student'?'new_in_sg':requestedPersona,limit:'120'});
     if(q)params.set('q',q);
     if(requestedFilter!=='all')params.set('category',requestedFilter);
     if(Number.isFinite(state.lat)&&Number.isFinite(state.lon)){params.set('lat',String(state.lat));params.set('lon',String(state.lon))}
