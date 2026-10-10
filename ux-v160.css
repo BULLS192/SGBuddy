@@ -120,3 +120,36 @@ input,select,textarea{font-size:15px;max-width:100%}
  .buddy-panel{bottom:66px;max-height:calc(100dvh - 170px)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Appearance controls and a genuinely readable light mode. */
+.ux-appearance-control{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:18px;padding:16px;border:1px solid var(--ux-stroke);border-radius:15px;background:#122b40}
+.ux-appearance-control span{display:grid;gap:3px}.ux-appearance-control strong{font-size:15px}.ux-appearance-control small{font-size:12px;color:var(--ux-muted)}
+.ux-appearance-control select{min-height:44px;max-width:210px}
+.discover-search-row[hidden]{display:none!important}
+html[data-ux-theme="light"]{color-scheme:light;--bg:#f6f8fb;--panel:#ffffff;--panel2:#eef4f8;--line:#d5e0e9;--text:#192a3b;--muted:#576b7e;--accent:#176b65;--accent2:#286cbb;--ux-ink:#192a3b;--ux-muted:#576b7e;--ux-elevated:#f4f8fa;--ux-stroke:#dce5ec;--ux-primary:#196b66;--ux-focus:#397db3}
+html[data-ux-theme="light"] body{color:#192a3b;background:radial-gradient(ellipse at 24% -20%,#e3eef5 0,transparent 40%),#f6f8fb}
+html[data-ux-theme="light"] .card,html[data-ux-theme="light"] .discover-intro{background:#fff;color:#192a3b;border-color:#dce5ec;box-shadow:0 8px 25px #254c6610}
+html[data-ux-theme="light"] .hero-grid>div,html[data-ux-theme="light"] #todaySection .hero-grid>div{background:#f3f7fa;border-color:#dce5ec}
+html[data-ux-theme="light"] .ux-shortcut,html[data-ux-theme="light"] .ux-expand-section,html[data-ux-theme="light"] .ux-move-links button,html[data-ux-theme="light"] .ux-appearance-control{background:#fff;color:#192a3b;border-color:#dce5ec}
+html[data-ux-theme="light"] .ux-shortcut-icon{background:#e6f2f1;color:#136f68}
+html[data-ux-theme="light"] .ux-home-summary strong{color:#20364b}
+html[data-ux-theme="light"] .ux-expand-section summary{color:#173044}
+html[data-ux-theme="light"] .ux-detail-button,html[data-ux-theme="light"] .discover-item .ux-detail-button,html[data-ux-theme="light"] .v110-place-card .ux-save-index{background:#edf5f7;color:#234f60;border-color:#d5e5e9}
+html[data-ux-theme="light"] .bottom-nav{background:#fff;border:1px solid #dbe6ef;box-shadow:0 10px 28px #1a3e5622}
+html[data-ux-theme="light"] .bottom-nav a:not(.active),html[data-ux-theme="light"] .bottom-nav button:not(.active){color:#526779}
+html[data-ux-theme="light"] .discover-tabs button:not(.active):not(.ux-active){background:#f1f6f8;border-color:#d8e5eb;color:#385267}
+html[data-ux-theme="light"] .ux-place-dialog-card{background:#fff;color:#192a3b}
+html[data-ux-theme="light"] .ux-place-dialog p,html[data-ux-theme="light"] .ux-source-note{color:#54697a}
+html[data-ux-theme="light"] .ux-place-dialog-top button{background:#e8f0f3;color:#1a3749}
+html[data-ux-theme="light"] .ux-saved-item button,html[data-ux-theme="light"] .ux-account-utilities button{background:#edf6f5;color:#165f5c}
+html[data-ux-theme="light"] .ux-saved-header p,html[data-ux-theme="light"] .ux-home-title p{color:#50677b}
+html[data-ux-theme="light"] .next-up{background:#f6fafb;border-color:#d6e9e7}
+html[data-ux-theme="light"] .environment-grid>div,html[data-ux-theme="light"] .environment-value{color:#1a3547}
+html[data-ux-theme="light"] input,html[data-ux-theme="light"] select,html[data-ux-theme="light"] textarea{background:#fff;color:#172f43;border:1px solid #b9cad8}
+html[data-ux-theme="light"] .places-toolbar,html[data-ux-theme="light"] .saved-rail,html[data-ux-theme="light"] .saved-buses,html[data-ux-theme="light"] .saved.card{background:#fff}
+html[data-ux-theme="light"] .v110-mode-chip{background:#edf6f4;color:#27534c;border-color:#bad8d2}
+html[data-ux-theme="light"] .place-card p,html[data-ux-theme="light"] .discover-item p,html[data-ux-theme="light"] .environment-summary{color:#536879}
+html[data-ux-theme="light"] .merlion-buddy .buddy-panel{background:#123149;color:#f2f7fb}
+html[data-ux-theme="light"] .merlion-buddy .buddy-panel input{background:#0f2c43;color:#fff;border-color:#6794b1}
+@media(max-width:490px){.ux-appearance-control{align-items:stretch;flex-direction:column}.ux-appearance-control select{max-width:100%}}
