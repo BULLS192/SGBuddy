@@ -1,0 +1,46 @@
+/* SGBuddy V1.2 — Discover and NEA regional readings.
+   Scoped selectors intentionally do not affect existing v1.1 layouts. */
+.discover-hub{display:grid;gap:16px;margin-bottom:22px}
+.discover-intro{padding:22px!important;overflow:hidden}
+.discover-title-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin:6px 0 18px}
+.discover-title-row h2{margin:0 0 6px;font-size:clamp(1.5rem,3vw,2rem);line-height:1.2}
+.discover-title-row p{margin:0;color:var(--muted,#9babbb);max-width:64ch}
+.discover-tabs{display:flex;gap:8px;overflow-x:auto;padding:3px 2px 10px;scrollbar-width:thin}
+.discover-tabs button{flex:0 0 auto;border:1px solid rgba(143,170,198,.32);border-radius:20px;background:rgba(130,159,191,.08);color:inherit;padding:10px 14px;white-space:nowrap;font:inherit;cursor:pointer}
+.discover-tabs button.active,.discover-tabs button[aria-selected=true]{background:#eaf3ff;color:#123755;border-color:#eaf3ff;font-weight:700}
+.discover-tabs button:focus-visible,.discover-fav:focus-visible,.discover-actions a:focus-visible{outline:3px solid #6db7ff;outline-offset:2px}
+.discover-search-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#discoverSearch{flex:1;min-width:min(240px,100%);min-height:42px;max-width:100%;box-sizing:border-box}
+.discover-save-filter{display:flex;gap:7px;align-items:center;white-space:nowrap;cursor:pointer;color:inherit;font-size:.9rem}
+.discover-save-filter input{accent-color:#68b0f0}
+.discover-status{font-size:.85rem;color:var(--muted,#9babbb);margin:12px 0 0}
+.discover-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(255px,100%),1fr));gap:12px;align-items:stretch}
+.discover-item{padding:18px!important;margin:0;min-width:0;display:flex;flex-direction:column;gap:10px}
+.discover-item-title{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.discover-item h3{margin:6px 0 0;line-height:1.3;font-size:1.08rem;overflow-wrap:anywhere}
+.discover-item p{font-size:.88rem;color:var(--muted,#a6b5c5);margin:0;line-height:1.5;flex:1}
+.discover-fav{font:1.5rem sans-serif;cursor:pointer;min-width:38px;min-height:38px;border-radius:12px;color:inherit;background:rgba(130,159,191,.09);border:1px solid rgba(143,170,198,.3)}
+.discover-fav.active{color:#f5ca6f;background:rgba(234,170,48,.12)}
+.discover-actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:auto;font-size:.86rem}
+.discover-actions a{display:inline-flex;align-items:center;min-height:36px;color:#8bc9ff;text-decoration:underline;text-underline-offset:3px}
+.discover-actions button{min-height:36px;padding:7px 12px;font-size:.85rem}
+.discover-fact{padding:25px!important}
+.discover-fact h3{font-size:1.4rem;margin:8px 0}
+.discover-fact p{font-size:clamp(1rem,2.2vw,1.25rem);line-height:1.6;margin:12px 0 22px}
+.discover-empty{padding:22px!important;line-height:1.5}
+.discover-more{margin:16px auto;display:block;min-width:200px}
+.v120-air{margin:12px 0 18px;padding:20px!important}
+.v120-air-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.v120-air h3{margin:5px 0 0;font-size:1.2rem}
+.v120-air>p{margin:10px 0;color:var(--muted,#a6b5c5);font-size:.9rem}
+.v120-air-regions{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:15px 0}
+.v120-region{padding:12px 10px;border:1px solid rgba(143,170,198,.26);background:rgba(130,159,191,.06);border-radius:12px;min-width:0;display:grid;gap:5px;text-align:center}
+.v120-region.selected{border-color:#80baf3;background:rgba(76,133,191,.18)}
+.v120-region strong{font-size:.84rem}
+.v120-region span{font-weight:700;font-size:1.1rem}
+.v120-region small{color:var(--muted,#a6b5c5);font-size:.74rem}
+.v120-air-advisory{border-top:1px solid rgba(143,170,198,.18);padding-top:12px;line-height:1.5}
+.v120-stale{color:#f6be67!important}
+#v120AirUpdated{max-width:100%;overflow-wrap:anywhere;color:var(--muted,#a6b5c5)}
+@media(max-width:640px){.discover-intro{padding:15px!important}.discover-tabs{margin-right:-8px}.discover-title-row h2{font-size:1.4rem}.discover-grid{grid-template-columns:1fr}.v120-air{padding:15px!important}.v120-air-regions{grid-template-columns:repeat(2,minmax(0,1fr))}.v120-region:last-child{grid-column:1/-1}.discover-actions{gap:12px}}
+@media(prefers-reduced-motion:reduce){.discover-tabs *,.discover-fav{transition:none!important}}

@@ -1,0 +1,25 @@
+name: SGBuddy V1.2 checks
+on:
+  push:
+    branches:
+      - feature/sgbuddy-v1.2-discover-air-student
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'data/discover-v120.json'
+      - 'app-v090.js'
+      - 'app-v110.js'
+      - 'index.html'
+      - 'scripts/**'
+      - '.github/workflows/check-v120.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, integrity and existing UI checks
+        run: npm run check

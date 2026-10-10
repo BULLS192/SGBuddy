@@ -67,3 +67,32 @@ Copy `.env.example` to `.env.local` and add an LTA key for live data.
 The isolated development branch adds expanded NEA/data.gov.sg weather and air-quality context, ECB reference FX, MAS-listed money changer discovery, a top-20 Singapore places surface, and the scalable Today / Move / Places / Money / Account information architecture.
 
 This branch is intentionally non-production. See docs/v090-travel-living-wave.md before applying its staged Supabase migration or approving a release.
+
+
+## V1.2 Discover & Content Intelligence (isolated development branch)
+
+Branch: `feature/sgbuddy-v1.2-discover-air-student`. Production remains on `main` pending manual QA and approval.
+
+- Air Quality: extends the existing NEA/data.gov.sg 24-hour PSI and one-hour PM2.5 integration with **regional readings**, a last-updated timestamp, stale/partial status, and an NEA source link. The UI must never describe stale/cached readings as live.
+- Discover: a dedicated Discover tab with Eat, Things to do, Shop, Useful apps and Did you know; searchable directory, audience relevance ranking and on-device saved items.
+- Initial catalog: `data/discover-v120.json` contains **79 deduplicated venues** covering 80 original category listings, **27 app candidates** and **29 source-reviewed historical facts**. Place details and third-party listings are **curated preview records**, not verified opening hours/prices/availability; iOS/Android buttons open *store searches*, not claimed exact product listings.
+- Personas: **Student** is a fifth dedicated mode alongside Resident, Visitor, Executive and New in SG. Student rankings exist in Discover. The legacy Supabase Place Index only accepts four modes, so its nearby-place query temporarily maps Student to New in SG ranking, without changing the Student selection in the app.
+- Profile sync compatibility: guest profile stores Student; cross-device account profile stores it in `preferences.mode` while `active_mode` retains a compatible legacy value pending a DB migration. This migration should be reviewed separately before changing production.
+- Offline/PWA: static Discover assets are included in the service-worker shell cache. Saved items are local-device only until a dedicated favourites-sync contract is approved.
+
+### Data governance
+
+Master editorial Google Sheet: https://docs.google.com/spreadsheets/d/10H9VHt9fzsaNyEPARFECmQR5ZEH-310UinxHNpg-Cmo/edit
+
+New facts must be **one unique atomic verifiable claim per record** with an exact authoritative citation. The 10,000-fact number is the verified acquisition target, not a completed content count. Source-matched candidates must not be promoted until individually reviewed. Third-party app links, venue existence and operating information must be refreshed before production.
+
+### Release gates
+
+1. Run `npm run check` (includes `scripts/check-discover.mjs`).
+2. Test all five modes on desktop and mobile. Switching modes must not jump back to the top, and student must not reset to Resident after refresh, guest sync or account sync.
+3. Verify accurate region/PSI/PM2.5 values and fresh/stale/failure handling using actual API responses, including bad/missing tokens.
+4. Verify all five Discover tabs, saved filter, keyboard controls, external map/store links, source citations and offline caching.
+5. Verify profile security and existing transport, maps, routes, Money and account workflows remain functional.
+6. Only then approve preview promotion to `main`.
+
+Note: `vercel.json` currently has `git.deploymentEnabled=false`, so a branch push alone does **not** guarantee an automatic Vercel preview deployment.
