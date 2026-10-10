@@ -1,0 +1,18 @@
+/* Large official-place library, layered under curated Discover */
+.official-directory{padding:20px;margin:20px 0;display:grid;gap:14px}
+.official-directory[hidden],.official-more[hidden]{display:none!important}
+.official-header{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.official-header h3{font-size:1.25rem;margin:8px 0}.official-header p{max-width:650px;line-height:1.5;color:var(--muted,#abbdcb)}
+.official-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px}.official-controls input[type="search"]{min-width:200px;flex:1}.official-controls input[type="search"],.official-controls select{padding:9px 11px;min-height:40px;border-radius:11px;border:1px solid var(--line,#34516c);background:#0f2538;color:var(--text,#fff)}
+.official-filter{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--text,#d5e8f6)}.official-filter input{min-height:auto}
+.official-summary{font-size:12px;line-height:1.5;color:var(--muted,#a9c3d5)}
+.official-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:12px}
+.official-card{padding:15px!important;display:flex;flex-direction:column;gap:11px;min-width:0;margin:0}
+.official-title{display:flex;align-items:flex-start;justify-content:space-between;gap:9px}.official-title h4{font-size:15px;line-height:1.35;margin:5px 0 0}.official-title button{border:1px solid #466e8c;border-radius:50%;background:#17374e;color:#cde8fc;min-width:38px;min-height:38px;cursor:pointer;font-size:19px}
+.official-address{font-size:12px;color:var(--muted,#b4cad8);margin:0;line-height:1.5}
+.official-badges{display:flex;gap:6px;flex-wrap:wrap}.official-badges span{border-radius:99px;border:1px solid #31506a;background:#153047;padding:5px 8px;font-size:10px;color:#b8d5e7}
+.official-badges span.official-historical{border-color:#796647;color:#ffdaa0;background:#352b19}
+.official-more{justify-self:center;margin-top:7px}
+.official-source-details{padding:12px 0;border-top:1px solid var(--line,#294b66);font-size:12px}.official-source-details summary{cursor:pointer;font-weight:650}
+.official-source-details p{line-height:1.5;margin:9px 0}.official-source-details a,.official-card .discover-actions a{color:#86cdf8}
+@media(max-width:650px){.official-directory{padding:14px}.official-controls input[type="search"],.official-controls select{width:100%;flex:1 1 100%}.official-filter{flex:1 1 40%}}
