@@ -8,6 +8,7 @@ run('app-v100.js');
 run('app-v110.js');
 run('app-v120.js');
 run('app-v130.js');
+run('app-v140.js');
 run('scripts/publish-facts.mjs');
 execFileSync(process.execPath,['scripts/check-discover.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-buddy.mjs'],{stdio:'inherit'});
