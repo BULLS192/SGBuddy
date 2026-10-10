@@ -18,7 +18,8 @@ for(const s of stalls.stalls){
  assert.ok(!stallIds.has(s.id));stallIds.add(s.id);
  assert.ok(ids.has(s.centreId),'Dangling hawker centre: '+s.name);
  assert.equal(s.operatingStatus,'unverified');
- assert.equal(s.reviewStatus,'research-candidate');
+ assert.ok(['research-candidate','nea-award-listed-2025'].includes(s.reviewStatus));
+ if(s.reviewStatus==='nea-award-listed-2025'){assert.ok(s.stallNumber&&/^https:\/\/www\.nea\.gov\.sg\//.test(s.sourceUrl),'NEA award stall needs official source and stall number')}
  assert.equal(s.halalCertified,null,'Do not guess halal certification');
  assert.equal(s.priceSgd,null,'Do not guess prices');
  assert.equal(s.vegetarianAvailable,null,'Do not guess vegetarian options');
