@@ -11,6 +11,8 @@ run('app-v130.js');
 run('app-v140.js');
 run('app-ux-v160.js');
 run('app-ux-v170.js');
+run('app-food-v180.js');
+run('lib/discover-geo.js');
 run('scripts/publish-facts.mjs');
 execFileSync(process.execPath,['scripts/check-discover.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-buddy.mjs'],{stdio:'inherit'});
