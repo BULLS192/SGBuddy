@@ -1,0 +1,62 @@
+/* UX 4–6: persona-led surfaces, contextual Merli, graceful motion and accessibility. */
+.ux-persona-banner{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--ux-stroke);border-radius:18px;background:linear-gradient(125deg,rgba(38,102,120,.26),rgba(22,51,73,.6))}
+.ux-persona-icon{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:14px;background:rgba(94,183,182,.19);color:#b0e9e1;font-size:23px}
+.ux-persona-banner-text{flex:1;min-width:0}
+.ux-persona-banner-text strong{font-size:15px;font-weight:750}
+.ux-persona-banner-text p{margin:2px 0 0;font-size:13px;color:#b5cbd8;line-height:1.45}
+.ux-persona-banner>button,.ux-persona-preferences>button,.ux-explore-context>button{flex:0 0 auto;min-height:44px;padding:10px 14px;border:1px solid rgba(147,211,211,.33);border-radius:12px;background:#1d4857;color:#e4fffa;font-size:13px;font-weight:700}
+.ux-persona-journey{font-size:14px;color:#b4d4dd!important;max-width:67ch}
+.ux-explore-context{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding:14px 17px;border-radius:17px;background:#142d40;border:1px solid var(--ux-stroke)}
+.ux-explore-context strong{font-size:14px}.ux-explore-context p{flex:1;min-width:210px;color:#b9c9d7;font-size:13px;line-height:1.5;margin:0}
+.ux-persona-preferences{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:15px;padding:16px;border-radius:16px;border:1px solid var(--ux-stroke);background:#122d40}
+.ux-persona-preferences>div{display:grid;gap:4px;flex:1;min-width:190px}
+.ux-persona-preferences strong{font-size:17px}
+.ux-persona-preferences p{font-size:13px;color:#b5c7d7;line-height:1.45;margin:0}
+.ux-merli-home-hint{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--ux-stroke);border-radius:17px;background:#102b3e}
+.ux-merli-home-hint[hidden]{display:none!important}
+.ux-merli-home-hint img{width:56px;height:56px;border-radius:50%;flex:0 0 56px;object-fit:contain;background:#d9eafa}
+.ux-merli-home-hint>div{flex:1;min-width:0}
+.ux-merli-home-hint strong{font-size:14px}
+.ux-merli-home-hint p{font-size:12px;color:#b9cedc;margin:3px 0 0;line-height:1.45}
+.ux-merli-home-hint>button{min-height:42px;flex:none;border:1px solid #418b8c;background:#205c64;color:#efffff;border-radius:11px;padding:8px 11px;font-size:13px;font-weight:700}
+.ux-merli-home-hint #uxMerliHomeDismiss{min-width:34px;min-height:38px;border:0;background:transparent;font-size:24px;color:#c4d6df;padding:0}
+.ux-merli-context{background:#12364c;border:1px solid #32617a;border-radius:16px;padding:13px 14px}
+.ux-merli-context strong{font-size:14px;display:block}
+.ux-merli-context p{font-size:12px;color:#bacfdc;margin:5px 0 12px;line-height:1.5}
+.ux-merli-suggestions{display:flex;flex-wrap:wrap;gap:7px}
+.ux-merli-suggestions button{min-height:40px;border-radius:12px;padding:8px 10px;font-size:13px;background:#2c6470;border:1px solid #4f8790;color:#f4fffd;font-weight:650}
+.ux-merli-more{margin:10px 0 0;width:100%;border:1px solid #426a7d;background:#17364c;color:#deedf5;border-radius:11px;padding:10px 12px;min-height:44px;font-size:13px;text-align:center}
+.buddy-chips[hidden]{display:none!important}
+.ux-persona-banner button:active,.ux-shortcut:active,.ux-merli-suggestions button:active,.ux-merli-more:active{transform:scale(.985)}
+.ux-visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.ux-persona-banner:focus-within,.ux-explore-context:focus-within,.ux-merli-context:focus-within{border-color:#68b6c5}
+.ux-persona-banner button:focus-visible,.ux-merli-suggestions button:focus-visible,.ux-merli-more:focus-visible,.ux-merli-home-hint button:focus-visible{outline:3px solid var(--ux-focus,#a1d8ff);outline-offset:2px}
+#discoverResults[aria-busy="true"],#placesGrid[aria-busy="true"]{opacity:.8}
+#journeyStatus[role="status"]{font-size:14px;line-height:1.5}
+.ux-place-dialog-open{overflow:hidden}
+@media(min-width:820px){.ux-persona-banner{padding:19px 22px}.ux-shortcut{transition:transform .15s ease,border-color .2s ease,background .2s ease}.ux-shortcut:hover{transform:translateY(-2px);border-color:#448b88}.ux-merli-home-hint{max-width:none}}
+@media(max-width:540px){.ux-persona-banner{align-items:flex-start;flex-wrap:wrap;gap:10px;padding:13px}
+ .ux-persona-icon{width:35px;height:35px;flex-basis:35px;font-size:20px}
+ .ux-persona-banner-text{flex-basis:calc(100% - 48px)}
+ .ux-persona-banner>button{margin-left:45px}
+ .ux-merli-home-hint{display:grid;grid-template-columns:44px minmax(0,1fr) auto;padding:12px;column-gap:9px}
+ .ux-merli-home-hint img{width:44px;height:44px;grid-row:1 / span 2}
+ .ux-merli-home-hint>div{grid-column:2;grid-row:1 / span 2}
+ .ux-merli-home-hint #uxMerliHomeAsk{grid-column:2;grid-row:3;justify-self:start}
+ .ux-merli-home-hint #uxMerliHomeDismiss{grid-column:3;grid-row:1}
+ .ux-explore-context{padding:13px}
+ .ux-explore-context p{min-width:100%}
+ .ux-persona-preferences{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+ .ux-persona-banner button:active,.ux-shortcut:active,.ux-merli-suggestions button:active,.ux-merli-more:active{transform:none!important}
+ .ux-shortcut{transition:none!important}
+}
+html[data-ux-theme="light"] .ux-persona-banner{background:linear-gradient(125deg,#e9f5f3,#f5fafb);border-color:#cadfde}
+html[data-ux-theme="light"] .ux-persona-banner-text p,html[data-ux-theme="light"] .ux-explore-context p,html[data-ux-theme="light"] .ux-persona-preferences p,html[data-ux-theme="light"] .ux-merli-home-hint p{color:#52697b}
+html[data-ux-theme="light"] .ux-persona-banner>button,html[data-ux-theme="light"] .ux-persona-preferences>button,html[data-ux-theme="light"] .ux-explore-context>button{background:#e5f2f0;color:#195b58;border-color:#bfded9}
+html[data-ux-theme="light"] .ux-persona-icon{color:#1b776e;background:#d0e9e3}
+html[data-ux-theme="light"] .ux-explore-context,html[data-ux-theme="light"] .ux-persona-preferences,html[data-ux-theme="light"] .ux-merli-home-hint{background:#fff;color:#193446;border-color:#d6e2e9}
+html[data-ux-theme="light"] .ux-merli-home-hint>button#uxMerliHomeAsk{background:#d9ede8;color:#20574e}
+html[data-ux-theme="light"] .ux-merli-home-hint #uxMerliHomeDismiss{color:#53697a}
+html[data-ux-theme="light"] .ux-persona-journey{color:#426a78!important}
