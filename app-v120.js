@@ -12,7 +12,7 @@
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
-  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false;
+  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all';
   const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['apps','Useful apps'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
@@ -30,7 +30,7 @@
       tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
-    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label></div>',
+    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select></div>',
     '<p id="discoverStatus" class="discover-status" role="status">Loading curated Singapore content…</p></section>',
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
@@ -52,7 +52,7 @@
   }
   function changeTab(next){
     if(!tabs.some(([id])=>id===next))return;
-    tab=next;showAll=false;
+    tab=next;showAll=false;areaFilter='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';
     host.querySelectorAll('[data-discover-tab]').forEach(b=>{
       const active=b.dataset.discoverTab===tab;
       b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));
@@ -105,7 +105,7 @@
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(!q||[r.name,r.area,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(!q||[r.name,r.area,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -143,6 +143,7 @@
   });
   $('#discoverSearch').addEventListener('input',()=>{factIndex=0;showAll=false;render()});
   $('#discoverSavedOnly').addEventListener('change',e=>{savedOnly=e.target.checked;showAll=false;factIndex=0;render()});
+  $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;showAll=false;render()});
   document.addEventListener('sgbuddy:knowledge-saved',()=>{
     try{const rows=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(rows))saved=new Set(rows.filter(x=>typeof x==='string'))}catch{}
     render();
@@ -228,6 +229,8 @@
     const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
     const ids=new Set(checked.map(f=>f.id));
     catalog={...data,facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
+    const areas=[...new Set(data.places.map(p=>p.area).filter(Boolean))].sort();
+    $('#discoverAreaFilter').insertAdjacentHTML('beforeend',areas.map(a=>'<option value="'+safe(a)+'">'+safe(a)+'</option>').join(''));
     loaded=true;render();
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
