@@ -13,7 +13,7 @@ for(const mode of ['resident','visitor','executive','student'])assert.ok(seed.fa
 assert.equal(published.verifiedCount,published.facts.length);
 assert.ok(approved.length>=29);
 assert.ok(approved.some(f=>f.status!=='verified'),'Review queue should remain distinct');
-assert.equal(published.verifiedCount,47,'Expected audited Wave 6 batch');
+assert.equal(published.verifiedCount,72,'Expected audited Wave 6 batch');
 assert.equal(approved.filter(f=>f.status==='verified').length,published.verifiedCount,'Published count must equal checks');
 assert.ok(published.facts.every(f=>f.status==='verified'&&f.reviewMethod==='primary-source-check'&&f.reviewedBy&&f.evidenceNote&&f.verifiedOn),'Review provenance missing');
 assert.ok(published.facts.every(f=>/^https:\/\//.test(f.sourceUrl)),'Facts need original source links');
