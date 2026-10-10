@@ -14,7 +14,7 @@
 
 Existing server-side OneMap credentials (`ONEMAP_TOKEN` for Preview/Production) are reused. No new secret is added to the client.
 
-1. In Discover, select Eat / Things to do / Shop and click **Check OneMap address** on an entry. A request to `GET /api/discover-address?id=SGP-0001` looks up the server-controlled venue name, not a user-defined search query.
+1. In Discover, select Eat / Things to do / Shop and click **Check OneMap address** on an entry. A request to `GET /api/journey?action=discover-address&id=SGP-0001` looks up the server-controlled venue name, not a user-defined search query.
 2. The server calls the existing `lib/onemap.js` Search API adapter. `lib/discover-geo.js` requires conservative name overlap and valid Singapore coordinates; ambiguous street/name matches are discarded.
 3. Responses distinguish `address-matched`, `ambiguous`, `not-found`, `not-configured` and `provider-unavailable`. Only `address-matched` exposes exact postal address and navigation. This **does not** certify that an establishment exists or is trading there today.
 4. To audit the entire directory with an explicit authorized service token, use `node scripts/verify-directory.mjs --limit=271 --delay=1200` from a Node 22 environment where OneMap credentials are configured. This writes resumable `data/place-address-audit.json` with per-record provenance, but does not silently overwrite the catalog. Batch run is **not completed** by adding the script.
