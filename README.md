@@ -98,7 +98,7 @@ New facts must be **one unique atomic verifiable claim per record** with an exac
 Note: `vercel.json` currently has `git.deploymentEnabled=false`, so a branch push alone does **not** guarantee an automatic Vercel preview deployment.
 
 
-## V1.3 — Merli companion (development branch)
+## V1.3 — Merli companion (released)
 
 - **Identity:** Merli is the only assistant inside SGBuddy. The old FREYA floating button and duplicate advisor panel have been retired; the separate FREYA product outside SGBuddy is unaffected.
 - **Avatar:** Reuses the exact approved `assets/merlion-companion.webp` blob from [the earlier companion PR #4](https://github.com/BULLS192/SGBuddy/pull/4). The temporary emoji is no longer used for Merli's launcher or header.
@@ -106,4 +106,41 @@ Note: `vercel.json` currently has `git.deploymentEnabled=false`, so a branch pus
 - **Intelligence:** The existing deterministic bus, rail, route-planning and rain advisor remains accessible via Merli alongside Discover shortcuts, air-quality navigation and Singapore trivia.
 - **Accessibility:** Escape-to-close, focus return, accessible controls and live announcement of responses.
 - **PWA:** The existing Merlion image is precached for offline display.
-- **Release:** Changes are reviewed in [PR #9](https://github.com/BULLS192/SGBuddy/pull/9) from `feature/sgbuddy-v1.3-facts-merlion`. Production stays at V1.2 until V1.3 is approved and merged.
+- **Release:** Changes are reviewed in [PR #9](https://github.com/BULLS192/SGBuddy/pull/9) from `feature/sgbuddy-v1.3-facts-merlion`. V1.3 was approved, merged through PR #9, and deployed to production on 2026-10-10.
+
+
+## V1.4 — Merli Knowledge Wave (preview branch)
+
+Development branch: `feature/sgbuddy-v1.4-merli-knowledge`. This is a reviewable preview, not an authorized production release.
+
+### Source-checked Singapore library
+
+- `content/facts-approved.json` holds **112 claims**: **104 AI-assisted, official-source checked** and **8 review pending**.
+- `data/facts-published.json` contains only the 104 checked claims across **Hawker heritage, National symbols, Botanic heritage, Transport heritage, Water innovation, and Singapore history**.
+- Official sources include NEA, NParks, Singapore Statutes Online, LTA, PUB and SG101. Every checked claim links to its source and retains `verifiedOn`, `reviewedBy`, `reviewMethod`, and `evidenceNote` in the published bundle.
+- `scripts/publish-facts.mjs` rejects missing/unsafe sources, duplicate reviewed claims, missing reviewer metadata or source-check notes. Publishing never promotes a `status: review-pending` candidate.
+- The "10,000 facts" concept remains a target, **not** a representation of completed or human-reviewed content. The 104 claims received **AI-assisted source review**, not independent expert/human sign-off; sources and historical descriptions can change. Further editorial and accessibility QA is required before broad rollout.
+
+### Merli and Discover improvements
+
+- **Ask Merli** offers direct source links and source-aware facts with local on-device saved favorites (shared with Discover). A session-only list avoids immediately repeating facts. No conversation history is sent to a server.
+- Persona-aware greetings, weather/PSI/PM2.5 summaries with freshness caveats, existing train/bus/route advice, saved Home/Hotel route planning, and quick category navigation.
+- The Discover **Did You Know** tab now combines checked and pending records without duplicates, with clearly different statuses. Its extended library is visible only on that tab and defaults to **source-checked only**, adding topic, status, search, saved-only and progressive "Show more" controls.
+- Static `app-v140.js` replaces `app-v130.js` in the bootstrap (v130 stays available in Git for rollback). `knowledge-v140.css` adds responsive features. PWA shell increments to v40, and all changes preserve the approved Merli artwork. No 3D asset, new account requirement, database migration or paid AI dependency.
+
+### V1.4 QA gates
+
+1. `npm run check` and GitHub Actions must pass: syntax, bundle regeneration, exact Merlion image, no FREYA interface, verified/pending provenance and old functionality contracts.
+2. Manually inspect preview at mobile and desktop sizes: Merli launcher, overlay stacking, opening/closing, keyboard, mode changes and return focus.
+3. Exercise live train/bus and saved-home route questions, fresh/stale/unavailable environmental feeds, content filters, pagination, source links and cross-screen saved fact synchronization.
+4. Test installed PWA refresh/offline loading. Only merge and deploy after approval; `vercel.json` disables automatic Git deployment.
+
+
+### V1.4 directory expansion — 10 October 2026
+
+- Expanded `data/discover-v120.json` from 79 to **267 unique venue candidates**, spanning **98 Eat**, **98 Do** and **71 Shop** records. Preserves the initial 27 app candidates. New entries include named hawker centres island-wide, museums and heritage districts, nature areas, parks, attractions, and neighbourhood/shopping centres.
+- New records are explicitly marked `curated-preview`, with an `editorialNote` stating that individual existence, source-specific claim, exact address, current operational status and opening hours are still to be validated. Agency URLs are *directory/category context*, **not proof that an individual venue is listed there or currently operating**.
+- Source discovery: NEA Hawker Centre management (https://www.nea.gov.sg/our-services/hawker-management), NParks parks directory (https://www.nparks.gov.sg/visit/parks), National Heritage Board monuments (https://www.roots.gov.sg/nhb/monuments), and Singapore Tourism Board visitor site (https://www.visitsingapore.com/).
+- `data/facts-published.json` now contains **104** AI-assisted official-source-checked facts, adding a Nature & parks topic; **8** previously staged claims remain under review. These source checks do not constitute independent human expert review.
+- Discover now supports a geographical area dropdown alongside searching, mode ranking and Saved-only filtering. Large result sets continue to show the first 24 entries, with an optional Show all action.
+- All new entries should receive canonical postal addresses (OneMap geocoding), exact source records, temporal validity and operations/closure checks before being treated as reliable route targets. Closed or redeveloping hawker centres must not be represented as open.

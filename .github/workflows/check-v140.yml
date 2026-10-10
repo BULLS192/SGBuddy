@@ -1,0 +1,22 @@
+name: SGBuddy V1.4 Merli Knowledge QA
+on:
+  push:
+    branches: [feature/sgbuddy-v1.4-merli-knowledge]
+  pull_request:
+    paths:
+      - 'app-v140.js'
+      - 'app-v120.js'
+      - 'knowledge-v140.css'
+      - 'content/**'
+      - 'data/facts-published.json'
+      - 'scripts/**'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check

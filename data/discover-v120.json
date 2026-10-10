@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updatedAt": "2026-10-10",
-  "note": "Content seed only. Locations and third-party apps are curated preview records; hours and availability unverified.",
+  "note": "Expanded directory. New locations are candidate names, NOT fully verified listings. Source URLs are agency/category context only; exact address, fees, operations and hours require field verification.",
   "places": [
     {
       "id": "SGP-0001",
@@ -1297,6 +1297,3390 @@
       "kinds": [
         "Shop"
       ]
+    },
+    {
+      "id": "SGP-1000",
+      "name": "Ang Mo Kio Central Market & Food Centre",
+      "kind": "Eat",
+      "area": "Ang Mo Kio",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1001",
+      "name": "Chong Boon Market & Food Centre",
+      "kind": "Eat",
+      "area": "Ang Mo Kio",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1002",
+      "name": "Mayflower Market & Food Centre",
+      "kind": "Eat",
+      "area": "Ang Mo Kio",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1003",
+      "name": "Cheng San Market & Cooked Food Centre",
+      "kind": "Eat",
+      "area": "Ang Mo Kio",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1004",
+      "name": "Bedok 85 Market",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1005",
+      "name": "Fengshan Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1006",
+      "name": "Bedok North Street 1 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1007",
+      "name": "Bedok South Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1008",
+      "name": "Bedok Reservoir Food Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1009",
+      "name": "Bishan Street 13 Blk 511 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bishan",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1010",
+      "name": "Shunfu Mart Food Centre",
+      "kind": "Eat",
+      "area": "Bishan",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1011",
+      "name": "Bukit Batok West Shopping Centre Market",
+      "kind": "Eat",
+      "area": "Bukit Batok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1012",
+      "name": "Bukit Batok Street 11 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Batok",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1013",
+      "name": "Bukit Merah Central Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1014",
+      "name": "Bukit Merah View Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1015",
+      "name": "Alexandra Village Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1016",
+      "name": "Redhill Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1017",
+      "name": "Beo Crescent Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1018",
+      "name": "Havelock Road Cooked Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Merah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1019",
+      "name": "Bukit Panjang Hawker Centre & Market",
+      "kind": "Eat",
+      "area": "Bukit Panjang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1020",
+      "name": "Senja Hawker Centre",
+      "kind": "Eat",
+      "area": "Bukit Panjang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1021",
+      "name": "Beauty World Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Timah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1022",
+      "name": "Bukit Timah Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bukit Timah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1023",
+      "name": "Clementi Market & Food Centre",
+      "kind": "Eat",
+      "area": "Clementi",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1024",
+      "name": "Clementi 448 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Clementi",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1025",
+      "name": "Clementi West Street 2 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Clementi",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1026",
+      "name": "Haig Road Market & Food Centre",
+      "kind": "Eat",
+      "area": "Geylang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1027",
+      "name": "Sims Vista Market & Food Centre",
+      "kind": "Eat",
+      "area": "Geylang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1028",
+      "name": "Geylang East Centre Market & Food Centre",
+      "kind": "Eat",
+      "area": "Geylang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1029",
+      "name": "Circuit Road Hawker Centre",
+      "kind": "Eat",
+      "area": "Geylang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1030",
+      "name": "Holland Village Market & Food Centre",
+      "kind": "Eat",
+      "area": "Holland Village",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1031",
+      "name": "Holland Drive Market & Food Centre",
+      "kind": "Eat",
+      "area": "Holland Village",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1032",
+      "name": "Kovan Market & Food Centre",
+      "kind": "Eat",
+      "area": "Hougang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1033",
+      "name": "Hougang Hainanese Village Centre",
+      "kind": "Eat",
+      "area": "Hougang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1034",
+      "name": "Hougang Ave 1 Blk 105 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Hougang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1035",
+      "name": "Ci Yuan Hawker Centre",
+      "kind": "Eat",
+      "area": "Hougang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1036",
+      "name": "Yuhua Village Market & Food Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1037",
+      "name": "Yuhua Market & Hawker Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1038",
+      "name": "Taman Jurong Market & Food Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1039",
+      "name": "Jurong West 505 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1040",
+      "name": "Jurong East 347 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1041",
+      "name": "Jurong East 254 Food Centre",
+      "kind": "Eat",
+      "area": "Jurong",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1042",
+      "name": "Bendemeer Market & Food Centre",
+      "kind": "Eat",
+      "area": "Kallang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1043",
+      "name": "North Bridge Road Market & Food Centre",
+      "kind": "Eat",
+      "area": "Kallang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1044",
+      "name": "Upper Boon Keng Market & Food Centre",
+      "kind": "Eat",
+      "area": "Kallang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1045",
+      "name": "Geylang Bahru Market & Food Centre",
+      "kind": "Eat",
+      "area": "Kallang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1046",
+      "name": "Jalan Batu Hawker Centre",
+      "kind": "Eat",
+      "area": "Kallang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1047",
+      "name": "Marine Parade Central Market & Food Centre",
+      "kind": "Eat",
+      "area": "Marine Parade",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1048",
+      "name": "Marine Terrace Market & Food Centre",
+      "kind": "Eat",
+      "area": "Marine Parade",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1049",
+      "name": "Marsiling Lane Food Centre",
+      "kind": "Eat",
+      "area": "Marsiling",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1050",
+      "name": "Marsiling Mall Hawker Centre",
+      "kind": "Eat",
+      "area": "Marsiling",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1051",
+      "name": "Woodlands Street 12 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Marsiling",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1052",
+      "name": "Pasir Ris Central Hawker Centre",
+      "kind": "Eat",
+      "area": "Pasir Ris",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1053",
+      "name": "One Punggol Hawker Centre",
+      "kind": "Eat",
+      "area": "Punggol",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1054",
+      "name": "Punggol Coast Mall Hawker Centre",
+      "kind": "Eat",
+      "area": "Punggol",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1055",
+      "name": "Tanglin Halt Market",
+      "kind": "Eat",
+      "area": "Queenstown",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1056",
+      "name": "Mei Ling Market & Food Centre",
+      "kind": "Eat",
+      "area": "Queenstown",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1057",
+      "name": "Commonwealth Crescent Market & Food Centre",
+      "kind": "Eat",
+      "area": "Queenstown",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1058",
+      "name": "Sembawang Hills Food Centre",
+      "kind": "Eat",
+      "area": "Sembawang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1059",
+      "name": "Bukit Canberra Hawker Centre",
+      "kind": "Eat",
+      "area": "Sembawang",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1060",
+      "name": "Serangoon Garden Market & Food Centre",
+      "kind": "Eat",
+      "area": "Serangoon",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1061",
+      "name": "Tampines Round Market & Food Centre",
+      "kind": "Eat",
+      "area": "Tampines",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1062",
+      "name": "Tampines Street 11 Food Centre",
+      "kind": "Eat",
+      "area": "Tampines",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1063",
+      "name": "Our Tampines Hub Hawker Centre",
+      "kind": "Eat",
+      "area": "Tampines",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1064",
+      "name": "Telok Blangah Crescent Market & Food Centre",
+      "kind": "Eat",
+      "area": "Telok Blangah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1065",
+      "name": "Telok Blangah Drive Food Centre",
+      "kind": "Eat",
+      "area": "Telok Blangah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1066",
+      "name": "Seah Im Food Centre",
+      "kind": "Eat",
+      "area": "Telok Blangah",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1067",
+      "name": "Toa Payoh West Market & Food Centre",
+      "kind": "Eat",
+      "area": "Toa Payoh",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1068",
+      "name": "Toa Payoh Lorong 5 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Toa Payoh",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1069",
+      "name": "Kim Keat Palm Market & Food Centre",
+      "kind": "Eat",
+      "area": "Toa Payoh",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1070",
+      "name": "Lorong 8 Toa Payoh Market & Food Centre",
+      "kind": "Eat",
+      "area": "Toa Payoh",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1071",
+      "name": "Whampoa Drive Market & Food Centre",
+      "kind": "Eat",
+      "area": "Whampoa",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1072",
+      "name": "Yishun Park Hawker Centre",
+      "kind": "Eat",
+      "area": "Yishun",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1073",
+      "name": "Chong Pang Market & Food Centre",
+      "kind": "Eat",
+      "area": "Yishun",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1074",
+      "name": "Peranakan Museum",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1075",
+      "name": "Singapore Art Museum",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1076",
+      "name": "The Padang",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1077",
+      "name": "Victoria Theatre and Concert Hall",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1078",
+      "name": "CHIJMES",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1079",
+      "name": "Armenian Church",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1080",
+      "name": "Thian Hock Keng Temple",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1081",
+      "name": "Lau Pa Sat Historic Building",
+      "kind": "Do",
+      "area": "Central",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1082",
+      "name": "Changi Beach Park",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1083",
+      "name": "Pasir Ris Park",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1084",
+      "name": "Bedok Reservoir Park",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1085",
+      "name": "Bedok Town Park",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1086",
+      "name": "Bidadari Park",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1087",
+      "name": "Changi Chapel and Museum",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1088",
+      "name": "Changi Museum",
+      "kind": "Do",
+      "area": "East",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1089",
+      "name": "Jurong Lake Gardens",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1090",
+      "name": "Chinese Garden",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1091",
+      "name": "Japanese Garden",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1092",
+      "name": "Snow City Singapore",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1093",
+      "name": "West Coast Park",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1094",
+      "name": "Bukit Batok Nature Park",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1095",
+      "name": "Bukit Batok Town Park",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1096",
+      "name": "Bukit Timah Nature Reserve",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1097",
+      "name": "Dairy Farm Nature Park",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1098",
+      "name": "Hindhede Nature Park",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1099",
+      "name": "Rail Corridor",
+      "kind": "Do",
+      "area": "West",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1100",
+      "name": "Kranji Marshes",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1101",
+      "name": "Admiralty Park",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1102",
+      "name": "Sembawang Park",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1103",
+      "name": "Lower Seletar Reservoir Park",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1104",
+      "name": "Woodlands Waterfront Park",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1105",
+      "name": "Mandai Wildlife Reserve",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1106",
+      "name": "River Wonders",
+      "kind": "Do",
+      "area": "North",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1107",
+      "name": "Punggol Waterway Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1108",
+      "name": "Coney Island Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1109",
+      "name": "Sengkang Riverside Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1110",
+      "name": "Bishan-Ang Mo Kio Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1111",
+      "name": "Central Catchment Nature Reserve",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1112",
+      "name": "Thomson Nature Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1113",
+      "name": "Windsor Nature Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1114",
+      "name": "Upper Peirce Reservoir Park",
+      "kind": "Do",
+      "area": "Northeast",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1115",
+      "name": "Henderson Waves",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1116",
+      "name": "Mount Faber Park",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1117",
+      "name": "Labrador Nature Park",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1118",
+      "name": "Labrador Nature Reserve",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1119",
+      "name": "Kent Ridge Park",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1120",
+      "name": "HortPark",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1121",
+      "name": "Telok Blangah Hill Park",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1122",
+      "name": "HarbourFront",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1123",
+      "name": "Fort Siloso",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1124",
+      "name": "S.E.A. Aquarium",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1125",
+      "name": "Palawan Beach",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1126",
+      "name": "Siloso Beach",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1127",
+      "name": "Tanjong Beach",
+      "kind": "Do",
+      "area": "South",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1128",
+      "name": "Former City Hall",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1129",
+      "name": "Former Supreme Court",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1130",
+      "name": "Civilian War Memorial",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1131",
+      "name": "St Andrew's Cathedral",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1132",
+      "name": "Raffles Landing Site",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1133",
+      "name": "The Arts House",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1134",
+      "name": "Old Parliament House",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1135",
+      "name": "Clarke Quay",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1136",
+      "name": "Boat Quay",
+      "kind": "Do",
+      "area": "Civic District",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1137",
+      "name": "Sultan Mosque",
+      "kind": "Do",
+      "area": "Heritage Districts",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1138",
+      "name": "Malay Heritage Centre",
+      "kind": "Do",
+      "area": "Heritage Districts",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1139",
+      "name": "Arab Street",
+      "kind": "Do",
+      "area": "Heritage Districts",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1140",
+      "name": "Sri Veeramakaliamman Temple",
+      "kind": "Do",
+      "area": "Heritage Districts",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1141",
+      "name": "Koon Seng Road Peranakan Shophouses",
+      "kind": "Do",
+      "area": "Heritage Districts",
+      "modes": [
+        "visitor",
+        "resident",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks",
+      "status": "curated-preview",
+      "kinds": [
+        "Do"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1142",
+      "name": "Takashimaya Shopping Centre",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1143",
+      "name": "Paragon Shopping Centre",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1144",
+      "name": "Wisma Atria",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1145",
+      "name": "313@somerset",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1146",
+      "name": "Orchard Gateway",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1147",
+      "name": "Far East Plaza",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1148",
+      "name": "Lucky Plaza",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1149",
+      "name": "The Centrepoint",
+      "kind": "Shop",
+      "area": "Orchard",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1150",
+      "name": "Bugis+",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1151",
+      "name": "Raffles City Shopping Centre",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1152",
+      "name": "Funan",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1153",
+      "name": "Capitol Singapore",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1154",
+      "name": "CityLink Mall",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1155",
+      "name": "Millenia Walk",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1156",
+      "name": "Marina Bay Sands Shoppes",
+      "kind": "Shop",
+      "area": "City Centre",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1157",
+      "name": "Century Square",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1158",
+      "name": "Tampines 1",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1159",
+      "name": "Bedok Mall",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1160",
+      "name": "White Sands",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1161",
+      "name": "i12 Katong",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1162",
+      "name": "Parkway Parade",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1163",
+      "name": "Eastpoint Mall",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1164",
+      "name": "Downtown East",
+      "kind": "Shop",
+      "area": "East",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1165",
+      "name": "Causeway Point",
+      "kind": "Shop",
+      "area": "North",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1166",
+      "name": "Canberra Plaza",
+      "kind": "Shop",
+      "area": "North",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1167",
+      "name": "Sembawang Shopping Centre",
+      "kind": "Shop",
+      "area": "North",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1168",
+      "name": "Woodlands Civic Centre",
+      "kind": "Shop",
+      "area": "North",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1169",
+      "name": "Compass One",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1170",
+      "name": "Waterway Point",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1171",
+      "name": "Hougang Mall",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1172",
+      "name": "Punggol Plaza",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1173",
+      "name": "The Seletar Mall",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1174",
+      "name": "AMK Hub",
+      "kind": "Shop",
+      "area": "Northeast",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1175",
+      "name": "IMM Outlet Mall",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1176",
+      "name": "Jurong Point",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1177",
+      "name": "Junction 10",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1178",
+      "name": "Lot One Shoppers' Mall",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1179",
+      "name": "Hillion Mall",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1180",
+      "name": "Bukit Panjang Plaza",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1181",
+      "name": "Clementi Mall",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1182",
+      "name": "West Mall",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1183",
+      "name": "The Star Vista",
+      "kind": "Shop",
+      "area": "West",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1184",
+      "name": "HarbourFront Centre",
+      "kind": "Shop",
+      "area": "South",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1185",
+      "name": "Alexandra Retail Centre",
+      "kind": "Shop",
+      "area": "South",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1186",
+      "name": "Anchorpoint Shopping Centre",
+      "kind": "Shop",
+      "area": "South",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-1187",
+      "name": "Queensway Shopping Centre",
+      "kind": "Shop",
+      "area": "South",
+      "modes": [
+        "resident",
+        "visitor",
+        "student",
+        "executive"
+      ],
+      "sourceUrl": "https://www.visitsingapore.com/",
+      "status": "curated-preview",
+      "kinds": [
+        "Shop"
+      ],
+      "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
     }
   ],
   "apps": [

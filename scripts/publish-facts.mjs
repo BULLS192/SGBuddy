@@ -27,11 +27,13 @@ for(const row of rows){
   if(u.protocol!=='https:'||!u.hostname.includes('.'))throw new Error('Non-HTTPS primary source: '+row.id);
   if(!/^\d{4}-\d{2}-\d{2}$/.test(String(row.verifiedOn||''))||Number.isNaN(Date.parse(row.verifiedOn+'T00:00:00Z')))throw new Error('Missing review date: '+row.id);
   if(!String(row.reviewedBy||'').trim())throw new Error('Missing reviewer: '+row.id);
+  if(row.reviewMethod!=='primary-source-check')throw new Error('Claim needs primary-source review: '+row.id);
+  if(String(row.evidenceNote||'').trim().length<12)throw new Error('Missing source evidence note: '+row.id);
   if(!Array.isArray(row.modes)||row.modes.length===0||row.modes.some(x=>!modes.has(x)))throw new Error('Invalid persona tags: '+row.id);
-  accepted.push({id:row.id,theme:String(row.theme||'Singapore'),text,sourceUrl:u.href,modes:[...new Set(row.modes)],verifiedOn:row.verifiedOn,status:'verified'});
+  accepted.push({id:row.id,theme:String(row.theme||'Singapore'),text,sourceUrl:u.href,modes:[...new Set(row.modes)],verifiedOn:row.verifiedOn,reviewedBy:row.reviewedBy,reviewMethod:row.reviewMethod,evidenceNote:row.evidenceNote,status:'verified'});
 }
 accepted.sort((a,b)=>a.id.localeCompare(b.id));
-const bundle={schemaVersion:2,publishedOn:new Date().toISOString().slice(0,10),verifiedCount:accepted.length,facts:accepted};
+const bundle={schemaVersion:3,publishedOn:new Date().toISOString().slice(0,10),verifiedCount:accepted.length,facts:accepted};
 fs.mkdirSync(path.dirname(output),{recursive:true});
 fs.writeFileSync(output,JSON.stringify(bundle,null,2)+'\n');
 console.log('Published '+accepted.length+' independently approved facts; excluded '+pending+' pending candidates -> '+output);
