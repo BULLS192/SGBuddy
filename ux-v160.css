@@ -1,0 +1,155 @@
+/* SGBuddy UX 1–3: unified product design system. Layered after legacy styles. */
+:root{--ux-ink:#f1f6fb;--ux-muted:#aec0d3;--ux-elevated:#10263a;--ux-stroke:rgba(147,184,216,.18);--ux-primary:#8ad8c3;--ux-focus:#a1d8ff}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 25% -18%,#204260 0,transparent 34%),#091727;color:var(--ux-ink);font-size:15px;line-height:1.5}
+.app-shell{max-width:1180px;padding-left:clamp(14px,3vw,34px);padding-right:clamp(14px,3vw,34px)}
+.card{border:1px solid var(--ux-stroke);background:#102337;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.10)}
+h1,h2,h3{letter-spacing:-.025em;line-height:1.22}
+h1{font-size:clamp(24px,3vw,35px)}h2{font-size:clamp(22px,2.6vw,29px)}h3{font-size:clamp(18px,2vw,22px)}
+.eyebrow,.label{font-size:11px;letter-spacing:.1em;color:var(--ux-primary)}
+.card p,.section-copy{line-height:1.58}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--ux-focus)!important;outline-offset:2px}
+button,.primary,.secondary{min-height:42px}
+input,select,textarea{font-size:15px;max-width:100%}
+.bottom-nav{max-width:580px;left:50%;transform:translateX(-50%);right:auto;width:calc(100% - 26px);border-radius:19px 19px 12px 12px;box-shadow:0 9px 35px #0007}
+.bottom-nav [data-nav-target]{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:0;line-height:1.2}
+.bottom-nav .ux-nav-icon{height:22px;width:22px;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.bottom-nav [data-nav-target] span{font-size:11px}
+.bottom-nav a.active,.bottom-nav button.active{transform:none!important}
+.topbar{gap:14px;flex-wrap:wrap}.top-actions{flex-wrap:wrap;justify-content:flex-end}
+.version-badge{opacity:.65}
+.v1-view[data-view="today"]{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
+.v1-view[data-view="today"] > *{margin-top:0}
+#todaySection{padding:clamp(18px,3vw,26px)}
+#todaySection .hero-grid{margin:14px 0 10px}
+#todaySection .hero-grid>div{background:#142b41;border-color:var(--ux-stroke)}
+#todaySection .source-row{margin-top:9px}
+.ux-home-title{padding:3px 2px 0}
+.ux-home-title h2{margin:0 0 4px}
+.ux-home-title p{margin:0;color:var(--ux-muted)}
+.ux-primary-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ux-shortcut{display:flex;align-items:center;gap:12px;text-align:left;min-width:0;padding:15px;border:1px solid var(--ux-stroke);border-radius:17px;background:#122940;color:#f2f7fc}
+.ux-shortcut-icon{width:40px;height:40px;display:grid;place-items:center;flex:none;border-radius:13px;background:#1a4258;color:#a3e5dc;font-size:19px}
+.ux-shortcut-copy{min-width:0}.ux-shortcut-copy strong{display:block;font-size:15px}.ux-shortcut-copy small{display:block;font-size:12px;color:var(--ux-muted);line-height:1.45}
+.ux-home-summary{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:13px;color:var(--ux-muted);margin-top:12px}
+.ux-home-summary strong{color:#f0f6fa;font-weight:700}
+.ux-condition-link{border:0;background:transparent;color:#9adad3;padding:3px 5px;min-height:36px;font-size:13px;margin-left:auto}
+.ux-expand-section{border:1px solid var(--ux-stroke);background:#0c2031;border-radius:18px;overflow:hidden}
+.ux-expand-section summary{display:flex;gap:10px;align-items:center;justify-content:space-between;list-style:none;padding:15px 18px;font-weight:750;cursor:pointer;min-height:50px}
+.ux-expand-section summary::-webkit-details-marker{display:none}
+.ux-expand-section summary::after{content:"⌄";font-size:20px;line-height:1;color:#9ac3d5}
+.ux-expand-section[open] summary::after{transform:rotate(180deg)}
+.ux-expand-content{display:grid;gap:12px;padding:0 12px 12px}
+.ux-expand-content>.card{margin:0}
+#nextUpCard{margin:0}
+.ux-move-intro{margin-bottom:14px}.ux-move-intro p{color:var(--ux-muted)}
+.ux-move-links{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 17px}
+.ux-move-links button{padding:8px 12px;border:1px solid var(--ux-stroke);border-radius:14px;background:#18344b;color:#f5f9fc}
+#travelSection{margin-top:0}
+#travelSection .planner-copy{max-width:70ch}
+#v110CompareCard{margin-top:14px}
+.ux-departures-heading{margin:18px 0 4px}.ux-departures-heading p{color:var(--ux-muted);margin:5px 0}
+.discover-hub{gap:10px;margin-bottom:14px}
+.discover-intro{border-color:var(--ux-stroke);background:#102337}
+.discover-intro p{line-height:1.5}
+.discover-tabs button{min-height:43px;padding:10px 17px}
+.discover-tabs button.active,.discover-tabs button[aria-selected=true],.discover-tabs .ux-active{background:#b5e7dc;border-color:#b5e7dc;color:#092a31;font-weight:800}
+.ux-discover-nearby{display:grid;gap:10px}
+.ux-discover-nearby[hidden],.ux-saved-view.hidden,.ux-place-dialog[hidden]{display:none!important}
+.ux-discover-nearby>.section-head{margin:4px 0 6px}
+#merliKnowledgeLibrary[hidden],#discoverResults[hidden],#discoverStatus[hidden],.ux-discover-nearby[hidden]{display:none!important}
+.ux-curated-card-image{display:none}
+.discover-item{position:relative;gap:9px}
+.discover-item h3{font-size:19px}
+.discover-item .ux-detail-button{align-self:start;padding:9px 15px;border-radius:12px;border:1px solid var(--ux-stroke);background:#193a50;color:#e8f4fa}
+.v110-place-card .ux-save-index{margin-top:9px;border:1px solid var(--ux-stroke);border-radius:11px;background:transparent;color:#dce9f4;padding:8px 12px;font-size:13px}
+.v110-place-card .ux-save-index[aria-pressed="true"]{color:#ffe7a4;border-color:#91743c}
+.ux-saved-view{display:grid;gap:15px}
+.ux-saved-header h2{margin:4px 0}.ux-saved-header p{color:var(--ux-muted);margin:0}
+.ux-saved-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:10px}
+.ux-saved-item{padding:15px;display:grid;gap:8px}
+.ux-saved-item strong{font-size:16px}
+.ux-saved-item small{color:var(--ux-muted)}
+.ux-saved-item button{justify-self:start;border:1px solid var(--ux-stroke);border-radius:11px;background:#153d51;color:#edf7f8;padding:8px 12px}
+.ux-saved-empty{font-size:14px;color:var(--ux-muted);padding:9px 0}
+.ux-place-dialog{position:fixed;inset:0;z-index:2800;background:#020812d9;display:grid;place-items:end center;padding:16px}
+.ux-place-dialog-card{background:#102438;border:1px solid #45617a;border-radius:24px 24px 18px 18px;box-shadow:0 25px 95px #0009;padding:23px;width:min(100%,620px);max-height:85dvh;overflow:auto}
+.ux-place-dialog-top{display:flex;align-items:start;justify-content:space-between;gap:16px}
+.ux-place-dialog-top button{min-height:44px;min-width:44px;font-size:24px;border:0;border-radius:50%;background:#1b3a50;color:#fff}
+.ux-place-dialog p{color:#bfd0df}
+.ux-place-dialog-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.ux-place-dialog-actions button,.ux-place-dialog-actions a{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:10px 14px;background:#1f514c;color:#f2fffd;text-decoration:none;border:1px solid #3e8b82;min-height:44px}
+.ux-source-note{font-size:12px;color:#aabfd1}
+.ux-account-utilities{display:grid;gap:9px}
+.ux-account-utilities button{border:1px solid var(--ux-stroke);border-radius:14px;background:#15354b;color:#fff;padding:12px 16px;text-align:left}
+.merlion-buddy{right:clamp(10px,2.5vw,25px)}
+.buddy-launcher{box-shadow:0 9px 25px #0006}
+.buddy-chips{gap:8px}
+.buddy-chips button{min-height:38px}
+.ux-saved-view .saved.card{margin:0}
+@media(min-width:820px){
+ .v1-view[data-view="today"]{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .v1-view[data-view="today"]>.ux-home-title,.v1-view[data-view="today"]>#todaySection,.v1-view[data-view="today"]>.ux-primary-shortcuts,.v1-view[data-view="today"]>.ux-expand-section{grid-column:1/-1}
+ .v1-view[data-view="today"]>.ux-primary-shortcuts{grid-template-columns:repeat(4,1fr)}
+ .v1-view[data-view="move"]{max-width:960px;margin:auto}
+ .v1-view[data-view="places"]{max-width:1080px;margin:auto}
+ .v1-view[data-view="money"]{max-width:960px;margin:auto}
+ .ux-expand-content{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ux-expand-content>#environmentCard,.ux-expand-content>#v120AirExtended{grid-column:span 1}
+ .discover-grid,.places-grid{grid-template-columns:repeat(auto-fill,minmax(275px,1fr))}
+}
+@media(max-width:640px){
+ body{font-size:15px}.app-shell{padding-bottom:calc(105px + env(safe-area-inset-bottom))}
+ .topbar{flex-wrap:nowrap;align-items:center}
+ .top-actions{flex-direction:column;align-items:flex-end;gap:5px}
+ .top-actions .install-pill{display:none}
+ .ux-primary-shortcuts{grid-template-columns:1fr 1fr}
+ .ux-shortcut{padding:12px;gap:9px;flex-direction:column;align-items:flex-start}
+ .ux-shortcut-icon{width:37px;height:37px}
+ .ux-shortcut-copy strong{font-size:14px}
+ .ux-shortcut-copy small{font-size:11px}
+ .ux-home-summary{gap:7px}
+ .ux-place-dialog{padding:0;place-items:end center}
+ .ux-place-dialog-card{border-radius:23px 23px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));max-height:88dvh}
+ .merlion-buddy{bottom:calc(86px + env(safe-area-inset-bottom));right:10px}
+ .buddy-launcher{padding:7px;border-radius:50%}
+ .buddy-launcher>span:not(.buddy-symbol){display:none}
+ .buddy-launcher .buddy-symbol{width:43px;height:43px;flex-basis:43px}
+ .buddy-panel{bottom:66px;max-height:calc(100dvh - 170px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Appearance controls and a genuinely readable light mode. */
+.ux-appearance-control{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:18px;padding:16px;border:1px solid var(--ux-stroke);border-radius:15px;background:#122b40}
+.ux-appearance-control span{display:grid;gap:3px}.ux-appearance-control strong{font-size:15px}.ux-appearance-control small{font-size:12px;color:var(--ux-muted)}
+.ux-appearance-control select{min-height:44px;max-width:210px}
+.discover-search-row[hidden]{display:none!important}
+html[data-ux-theme="light"]{color-scheme:light;--bg:#f6f8fb;--panel:#ffffff;--panel2:#eef4f8;--line:#d5e0e9;--text:#192a3b;--muted:#576b7e;--accent:#176b65;--accent2:#286cbb;--ux-ink:#192a3b;--ux-muted:#576b7e;--ux-elevated:#f4f8fa;--ux-stroke:#dce5ec;--ux-primary:#196b66;--ux-focus:#397db3}
+html[data-ux-theme="light"] body{color:#192a3b;background:radial-gradient(ellipse at 24% -20%,#e3eef5 0,transparent 40%),#f6f8fb}
+html[data-ux-theme="light"] .card,html[data-ux-theme="light"] .discover-intro{background:#fff;color:#192a3b;border-color:#dce5ec;box-shadow:0 8px 25px #254c6610}
+html[data-ux-theme="light"] .hero-grid>div,html[data-ux-theme="light"] #todaySection .hero-grid>div{background:#f3f7fa;border-color:#dce5ec}
+html[data-ux-theme="light"] .ux-shortcut,html[data-ux-theme="light"] .ux-expand-section,html[data-ux-theme="light"] .ux-move-links button,html[data-ux-theme="light"] .ux-appearance-control{background:#fff;color:#192a3b;border-color:#dce5ec}
+html[data-ux-theme="light"] .ux-shortcut-icon{background:#e6f2f1;color:#136f68}
+html[data-ux-theme="light"] .ux-home-summary strong{color:#20364b}
+html[data-ux-theme="light"] .ux-expand-section summary{color:#173044}
+html[data-ux-theme="light"] .ux-detail-button,html[data-ux-theme="light"] .discover-item .ux-detail-button,html[data-ux-theme="light"] .v110-place-card .ux-save-index{background:#edf5f7;color:#234f60;border-color:#d5e5e9}
+html[data-ux-theme="light"] .bottom-nav{background:#fff;border:1px solid #dbe6ef;box-shadow:0 10px 28px #1a3e5622}
+html[data-ux-theme="light"] .bottom-nav a:not(.active),html[data-ux-theme="light"] .bottom-nav button:not(.active){color:#526779}
+html[data-ux-theme="light"] .discover-tabs button:not(.active):not(.ux-active){background:#f1f6f8;border-color:#d8e5eb;color:#385267}
+html[data-ux-theme="light"] .ux-place-dialog-card{background:#fff;color:#192a3b}
+html[data-ux-theme="light"] .ux-place-dialog p,html[data-ux-theme="light"] .ux-source-note{color:#54697a}
+html[data-ux-theme="light"] .ux-place-dialog-top button{background:#e8f0f3;color:#1a3749}
+html[data-ux-theme="light"] .ux-saved-item button,html[data-ux-theme="light"] .ux-account-utilities button{background:#edf6f5;color:#165f5c}
+html[data-ux-theme="light"] .ux-saved-header p,html[data-ux-theme="light"] .ux-home-title p{color:#50677b}
+html[data-ux-theme="light"] .next-up{background:#f6fafb;border-color:#d6e9e7}
+html[data-ux-theme="light"] .environment-grid>div,html[data-ux-theme="light"] .environment-value{color:#1a3547}
+html[data-ux-theme="light"] input,html[data-ux-theme="light"] select,html[data-ux-theme="light"] textarea{background:#fff;color:#172f43;border:1px solid #b9cad8}
+html[data-ux-theme="light"] .places-toolbar,html[data-ux-theme="light"] .saved-rail,html[data-ux-theme="light"] .saved-buses,html[data-ux-theme="light"] .saved.card{background:#fff}
+html[data-ux-theme="light"] .v110-mode-chip{background:#edf6f4;color:#27534c;border-color:#bad8d2}
+html[data-ux-theme="light"] .place-card p,html[data-ux-theme="light"] .discover-item p,html[data-ux-theme="light"] .environment-summary{color:#536879}
+html[data-ux-theme="light"] .merlion-buddy .buddy-panel{background:#123149;color:#f2f7fb}
+html[data-ux-theme="light"] .merlion-buddy .buddy-panel input{background:#0f2c43;color:#fff;border-color:#6794b1}
+@media(max-width:490px){.ux-appearance-control{align-items:stretch;flex-direction:column}.ux-appearance-control select{max-width:100%}}
