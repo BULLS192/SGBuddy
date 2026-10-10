@@ -10,7 +10,7 @@ let stalls=[],dishes=[],tab='stalls',area='all',cuisine='all',meal='all',dish='a
 const host=$('#discoverHub');if(!host)return;
 const sec=document.createElement('section');sec.id='foodExplorer';sec.className='card food-explorer';sec.hidden=true;
 sec.innerHTML='<div class="label">SGBUDDY FOOD LIBRARY</div><h3>What shall we eat?</h3>'+
-'<p class="food-note">Explore Singapore dishes and hawker-stall research leads. Stall operating status, opening hours, menu prices, halal certification and vegetarian options are <strong>not verified</strong>.</p>'+
+'<p class="food-note">Explore Singapore dishes and hawker-stall research leads. Stall operating status, opening hours, menu prices, halal certification and vegetarian options are <strong>not verified</strong>. Verify halal certification against <a href="https://halal.muis.gov.sg/halal/establishments" target="_blank" rel="noopener noreferrer">MUIS’s official directory ↗</a>.</p>'+
 '<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button></div>'+
 '<div class="food-controls"><input id="foodSearch" type="search" placeholder="Search stall, dish or hawker centre" aria-label="Search the food library"/>'+
 '<select id="foodArea" aria-label="Filter food by area"><option value="all">All areas</option></select>'+
