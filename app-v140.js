@@ -22,7 +22,7 @@ widget.innerHTML=
 '<header class="buddy-header">'+art+'<div><strong id="buddyTitle">Merli</strong><small id="merliPersonaNote">Your little Singapore buddy</small></div><button id="buddyClose" type="button" aria-label="Close Merli">×</button></header>'+
 '<div id="buddyReply" class="buddy-reply" role="status" aria-live="polite">Hi, I’m Merli! 🫶 Need a hand getting around or discovering Singapore?</div>'+
 '<div id="merliEvidence" class="merli-evidence" hidden><a id="merliSource" href="https://www.nea.gov.sg" target="_blank" rel="noopener noreferrer">Read official source ↗</a><button type="button" id="merliSaveFact" hidden>☆ Save this fact</button></div>'+
-'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button></div>'+
+'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button><button type="button" data-buddy-action="home">🏠 Saved place</button></div>'+
 '<form id="buddyAskForm"><input id="buddyAskInput" type="text" maxlength="160" autocomplete="off" aria-label="Ask Merli" placeholder="Ask Merli about Singapore…" /><button type="submit">Ask</button></form>'+
 '<p class="buddy-note">Merli uses SGBuddy data and checked sources, not generative AI. Live information may be delayed.</p></section>';
 document.body.appendChild(widget);
@@ -103,8 +103,19 @@ function airReply(){
  const stale=possiblyCached||age>90||age< -15||!Number.isFinite(age);
  say((stale?'Last available (not confirmed current): ':'Official NEA readings: ')+values.join(' · ')+'. See Today for regional details and timestamps.','navigation','https://www.nea.gov.sg/our-services/pollution-control/air-pollution');
 }
+function toSavedPlace(){
+ const preferred=persona()==='visitor'?'hotel':'home';
+ const dest=state.places?.[preferred]||state.places?.home||state.places?.hotel||state.places?.work;
+ if(!dest){say('Save your home, work or hotel address in SGBuddy first. Merli can then help route you there without storing a conversation.','warning');return}
+ const to=$('#tripTo');if(!to){say('Trip planning is currently unavailable. Open Move to check routes.','warning');return}
+ to.value=dest;
+ navigateTo('travel');
+ if(typeof core.planNativeJourney==='function')setTimeout(()=>core.planNativeJourney(),300);
+ say('I’ve set your saved destination in Move and started the route planner. Review the options before travelling.','navigation');
+}
 function act(a){
  if(a==='fact')return factTip();
+ if(a==='home')return toSavedPlace();
  if(a==='saved')return openFacts(true);
  if(a==='weather')return airReply();
  if(a==='transit')return say(askAdvisor?.('When is my next train?')||'Open Move for bus and MRT details.','navigation');
@@ -122,9 +133,13 @@ $('#merliSaveFact').addEventListener('click',()=>{
 $('#buddyAskForm').addEventListener('submit',e=>{
  e.preventDefault();const input=$('#buddyAskInput'),raw=input.value.trim(),q=raw.toLowerCase();
  if(!q)return;
- if(/next.*train|next.*bus|train.*time|bus.*time|train problems|rail status|mrt|should i leave|leave now|^(get|take|bring) me to |^how do i get to |^route to |is it raining|umbrella/.test(q)){
+ if(/^(take|get|bring) me (back )?(home|to my hotel|to my house)|^(go|route) (home|to (home|my hotel))$/.test(q))act('home');
+ else if(/next.*train|next.*bus|train.*time|bus.*time|train problems|rail status|mrt|should i leave|leave now|^(get|take|bring) me to |^how do i get to |^route to |is it raining|umbrella/.test(q)){
   say(typeof askAdvisor==='function'?askAdvisor(raw):'Please open Move for transport details.','navigation');
  }else if(/air quality|psi|pm2|pollution|weather/.test(q))act('weather');
+ else if(/what should i do|plan my day|what can i do|ideas for today/.test(q)){
+  say('Try a place to eat or something to do in Discover. I can also check the air quality before you go. Choose one of those shortcuts to start.','success');
+ }
  else if(/saved|favo(u)?rite|bookmark/.test(q))act('saved');
  else if(/food|eat|hawker|restaurant|hungry|lunch|dinner/.test(q))act('eat');
  else if(/shop|mall|market|buy/.test(q))act('shop');
