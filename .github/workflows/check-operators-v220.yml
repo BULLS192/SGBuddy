@@ -1,0 +1,27 @@
+name: SGBuddy Operator Evidence Audit
+on:
+  push:
+    branches: [feature/sgbuddy-v2.2-current-verification]
+    paths: ['data/operator-listings-v220.json','scripts/audit-operator-v220.mjs','.github/workflows/check-operators-v220.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source pages and published postal evidence
+        run: node scripts/audit-operator-v220.mjs
+      - name: Upload non-destructive evidence report
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-operator-evidence-v220
+          path: |
+            reports/operator-source-audit-v220.json
+            reports/operator-source-audit-v220.md
+          retention-days: 30
