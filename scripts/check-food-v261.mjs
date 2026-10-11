@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 const read=p=>fs.readFileSync(p,'utf8'),json=p=>JSON.parse(read(p));
 const extra=json('data/food-leads-v261.json'),dining=json('data/dining-services-v261.json');
 const legacy=json('data/food-stalls-v180.json').stalls,guide=json('data/guide-stalls-v230.json').stalls;
@@ -67,4 +68,9 @@ for(const f of ['/app-food-tools-v261.js','/food-tools-v261.css','/data/food-lea
 assert.ok(sw.includes('sgbuddy-shell-v55'),'PWA version not bumped');
 assert.ok(html.includes('/food-tools-v261.css'));
 for(const x of ['data-ux-theme="light"','max-width:630px','focus-visible','min-height:44px'])assert.ok(css.includes(x),'Responsive/light accessibility selector missing '+x);
+execFileSync(process.execPath,['scripts/food-review-v261.mjs'],{stdio:'inherit'});
+const quality=json('reports/food-discovery-v261.json');
+assert.ok(quality.counts.foodCardsAfterDeduplication>=140,'Guide expansion must add useful records');
+assert.ok(quality.counts.unverifiedCurrentOperation>=140,'No fake current-operation claims');
+assert.ok(fs.existsSync('reports/food-review-v261.csv'));
 console.log('SGBuddy V2.6 Food PASS:',extra.stalls.length,'new guide leads;',dining.additions.length,'new app/tool entries;',dining.enhancements.length,'app enhancements;',dining.services.length,'food service groups; no fake availability');
