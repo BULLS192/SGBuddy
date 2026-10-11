@@ -53,7 +53,7 @@ function translate(){
  const s=t();doc.documentElement.lang=locale();window.SGBUDDY_LANGUAGE=locale();
  const copy=(selector,text)=>{const node=doc.querySelector(selector);if(node)node.textContent=text};
  copy('#sgbLanguageLabel',s.language);
- for(const [id,value] of Object.entries({navToday:s.home,navPlaces:s.discover,navMove:s.move,navMoney:({"en":"Money","zh-CN":"货币","zh-TW":"金錢","ms":"Wang","id":"Uang","ja":"お金","ko":"금융","th":"การเงิน","vi":"Tiền tệ","fr":"Argent","es":"Dinero","pt-BR":"Dinheiro"})[locale()]||'Money',navAccount:s.profile}))copy('#'+id+' span',value);
+ for(const [id,value] of Object.entries({navToday:s.home,navPlaces:s.discover,navMove:s.move,navMoney:s.saved,navAccount:s.profile}))copy('#'+id+' span',value);
  Object.entries(s.tabs).forEach(([id,value])=>copy('[data-discover-tab="'+id+'"]',value));
  copy('#discoverTitle',lang==='zh-CN'?'用自己的方式探索新加坡':s.discoverTitle||'Explore Singapore your way');
  copy('#discoverTab-travel',s.travel);

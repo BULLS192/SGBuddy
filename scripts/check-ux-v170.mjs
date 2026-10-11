@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 const read=path=>fs.readFileSync(path,'utf8');
 const ui=read('app-ux-v170.js'),previous=read('app-ux-v160.js'),css=read('ux-v170.css');
 const page=read('index.html'),bootstrap=read('app-v090.js'),sw=read('sw.js');
 const merli=read('app-v140.js'),discover=read('app-v120.js'),nearby=read('app-v110.js');
 assert.doesNotThrow(()=>new Function(ui),'UX v170 module has a syntax error');
-assert.doesNotThrow(()=>new Function(previous),'UX v160 module has a syntax error');
+assert.doesNotThrow(()=>execFileSync(process.execPath,['--check','app-ux-v160.js'],{stdio:'pipe'}),'UX v160 module has a syntax error');
 assert.ok(page.includes('href="/ux-v170.css"'),'UX v170 stylesheet missing');
 assert.ok(bootstrap.includes("import('/app-ux-v160.js')).then(()=>import('/app-ux-v170.js')"),'UX modules must load after V1.4 Merli');
 const cacheVersion=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
