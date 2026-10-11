@@ -11,6 +11,18 @@ on:
       - 'lib/i18n-stall-notes-v311.mjs'
       - 'lib/i18n-app-content-v312.mjs'
       - 'lib/i18n-water-v312.mjs'
+      - 'lib/i18n-civic-v313.mjs'
+      - 'lib/i18n-parks-v313.mjs'
+      - 'lib/i18n-history-v313.mjs'
+      - 'lib/i18n-heritage-v313.mjs'
+      - 'lib/i18n-culture-v313.mjs'
+      - 'lib/i18n-awards-v313.mjs'
+      - 'lib/i18n-app-content2-v313.mjs'
+      - 'lib/i18n-app-content3-v313.mjs'
+      - 'lib/i18n-app-content4-v313.mjs'
+      - 'lib/i18n-app-content5-v313.mjs'
+      - 'scripts/check-v313.mjs'
+      - 'scripts/browser-qa-v313.mjs'
       - 'scripts/check-v312.mjs'
       - 'scripts/browser-qa-v312.mjs'
       - 'app-v120.js'
@@ -60,3 +72,5 @@ jobs:
         run: node scripts/browser-qa-v311.mjs
       - name: Test 12-language high-use app descriptions and water history
         run: node scripts/browser-qa-v312.mjs
+      - name: Final 12-language full-source facts and app browser QA
+        run: node scripts/browser-qa-v313.mjs
