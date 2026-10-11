@@ -12,10 +12,10 @@
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
-  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all',categoryFilter='all',freshnessFilter='all',includeArchive=false;
+  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all',categoryFilter='all',freshnessFilter='all',includeArchive=false,neighbourhoodFilter='all',neighbourhoods=[];
   const addressCache=new Map();
   let officialClosures=new Map();
-  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Useful apps'],['facts','Did you know?']];
+  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Everyday apps'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop',essentials:'Essentials',healthcare:'Healthcare'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
   const view=$('.v1-view[data-view="places"]');
@@ -29,10 +29,10 @@
     '<p id="discoverPersonaCopy">Recommendations tailored to your SGBuddy mode.</p></div>',
     '<span id="discoverPersonaBadge" class="sync-badge"></span></div>',
     '<div class="discover-tabs" role="tablist" aria-label="Discover categories">',
-      tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
+      tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="'+(id==='apps'?'everydayApps':'discoverResults')+'" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
-    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option></select><select id="discoverFreshnessFilter" aria-label="Filter by source freshness"><option value="all">All source ages</option><option value="recent">Source ≤ 1 year</option><option value="aging">Source 1–2 years</option><option value="historical">Source over 2 years</option><option value="undated">Undated or curated</option></select><label class="discover-save-filter discover-archive-filter"><input id="discoverIncludeArchive" type="checkbox"/> Include historical supermarket licences</label><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
+    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option><option value="operator">First-party operator</option></select><select id="discoverNeighbourhoodFilter" aria-label="Filter Discover by neighbourhood"><option value="all">All neighbourhoods</option></select><select id="discoverFreshnessFilter" aria-label="Filter by source freshness"><option value="all">All source ages</option><option value="recent">Source ≤ 1 year</option><option value="aging">Source 1–2 years</option><option value="historical">Source over 2 years</option><option value="undated">Undated or curated</option></select><label class="discover-save-filter discover-archive-filter"><input id="discoverIncludeArchive" type="checkbox"/> Include historical supermarket licences</label><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
     '<p id="discoverStatus" class="discover-status" role="status">Loading curated Singapore content…</p><section id="discoverQuality" class="library-quality-v220" aria-label="Library quality and source freshness"><p>Checking original dataset coverage…</p></section></section>',
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
@@ -54,7 +54,7 @@
   }
   function changeTab(next){
     if(!tabs.some(([id])=>id===next))return;
-    tab=next;showAll=false;visibleCount=24;areaFilter='all';sourceFilter='all';categoryFilter='all';freshnessFilter='all';if($('#discoverFreshnessFilter'))$('#discoverFreshnessFilter').value='all';if($('#discoverCategoryFilter'))$('#discoverCategoryFilter').value='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';if($('#discoverSourceFilter'))$('#discoverSourceFilter').value='all';
+    tab=next;showAll=false;visibleCount=24;areaFilter='all';sourceFilter='all';categoryFilter='all';freshnessFilter='all';neighbourhoodFilter='all';if($('#discoverNeighbourhoodFilter'))$('#discoverNeighbourhoodFilter').value='all';if($('#discoverFreshnessFilter'))$('#discoverFreshnessFilter').value='all';if($('#discoverCategoryFilter'))$('#discoverCategoryFilter').value='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';if($('#discoverSourceFilter'))$('#discoverSourceFilter').value='all';
     host.querySelectorAll('[data-discover-tab]').forEach(b=>{
       const active=b.dataset.discoverTab===tab;
       b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));
@@ -66,6 +66,7 @@
   }
   function directoryAddressStatus(place){
     const value=addressCache.get(place.id);
+    if(!value&&place.status==='operator-listed')return '<p class="discover-address-note">📍 Operator-published address: '+safe(place.address||'Source link')+' · Not OneMap-confirmed; not open-now verification.</p>';
     if(!value&&place.status==='official-source-snapshot')return '<p class="discover-address-note">'+(place.address?'📍 Government source address: '+safe(place.address):'No street address in government source')+' · Not OneMap-confirmed · Entrance may differ.</p>';
     if(!value)return '<p class="discover-address-note">Full street address not checked in OneMap.</p>';
     if(value.status==='loading')return '<p class="discover-address-note" role="status">Checking OneMap address…</p>';
@@ -94,8 +95,8 @@
     return raw;
   }
   function sourceAge(place){
-    if(place.status!=='official-source-snapshot')return 'undated';
-    const stamp=Date.parse(place.sourceCoverageAsOf||'');
+    if(!['official-source-snapshot','operator-listed'].includes(place.status))return 'undated';
+    const stamp=Date.parse(place.status==='operator-listed'?place.sourceCheckedOn:place.sourceCoverageAsOf||'');
     if(!Number.isFinite(stamp))return 'undated';
     const age=Math.max(0,(Date.now()-stamp)/86400000);
     return age>730?'historical':age>365?'aging':'recent';
@@ -103,20 +104,21 @@
   function isArchived(place){return place.category==='Supermarket (historical licence)'}
   function freshnessLabel(place){
     if(isArchived(place))return 'Historical licence (circa 2016), not a confirmed supermarket';
+    if(place.status==='operator-listed')return 'First-party operator listing checked '+(place.sourceCheckedOn||'date unknown')+' — not open-now';
     const status=sourceAge(place);
     return status==='historical'?'Historical government source':status==='aging'?'Government source older than 1 year':status==='recent'?'Government source snapshot (not live)': 'Curated / source date unknown';
   }
   function renderQuality(){
-    const rows=catalog.places,official=rows.filter(p=>p.status==='official-source-snapshot');
+    const rows=catalog.places,official=rows.filter(p=>p.status==='official-source-snapshot'),operator=rows.filter(p=>p.status==='operator-listed');
     const archived=rows.filter(isArchived).length;
-    const historical=official.filter(p=>sourceAge(p)==='historical').length;
-    const aging=official.filter(p=>sourceAge(p)==='aging').length;
-    const recent=official.filter(p=>sourceAge(p)==='recent').length;
-    const undated=rows.length-official.length+official.filter(p=>sourceAge(p)==='undated').length;
+    const historical=rows.filter(p=>sourceAge(p)==='historical').length;
+    const aging=rows.filter(p=>sourceAge(p)==='aging').length;
+    const recent=rows.filter(p=>sourceAge(p)==='recent').length;
+    const undated=rows.filter(p=>sourceAge(p)==='undated').length;
     const verifiedLive=rows.filter(p=>p.operatingStatus==='confirmed-open'&&/^https:\/\//.test(p.operatingVerification?.sourceUrl||'')&&Number.isFinite(Date.parse(p.operatingVerification?.checkedOn||''))&&(Date.now()-Date.parse(p.operatingVerification.checkedOn))<=30*86400000).length;
     const box=$('#discoverQuality');if(!box)return;
     box.innerHTML='<div class="library-quality-title"><div><strong>Library quality</strong><p>Source evidence ≠ current business operation. Historical supermarket licences are hidden from search unless enabled.</p></div><a href="https://www.chas.sg/clinic-locator" target="_blank" rel="noopener noreferrer">Current CHAS lookup ↗</a></div>'+
-      '<div class="library-quality-stats"><div><strong>'+rows.length.toLocaleString('en-SG')+'</strong><span>Directory records</span></div><div><strong>'+recent+'</strong><span>Source ≤1 year</span></div><div><strong>'+aging+'</strong><span>Source 1–2 years</span></div><div><strong>'+historical+'</strong><span>Source over 2 years</span></div><div><strong>'+undated+'</strong><span>Undated or curated</span></div><div><strong>'+verifiedLive+'</strong><span>Current operation confirmed</span></div></div>'+
+      '<div class="library-quality-stats"><div><strong>'+rows.length.toLocaleString('en-SG')+'</strong><span>Directory records</span></div><div><strong>'+operator.length+'</strong><span>Operator-listed branches (not open-now)</span></div><div><strong>'+recent+'</strong><span>Source ≤1 year</span></div><div><strong>'+aging+'</strong><span>Source 1–2 years</span></div><div><strong>'+historical+'</strong><span>Source over 2 years</span></div><div><strong>'+undated+'</strong><span>Undated or curated</span></div><div><strong>'+verifiedLive+'</strong><span>Current operation confirmed</span></div></div>'+
       '<p class="library-quality-note">'+archived+' historical supermarket licences excluded by default · Age is calculated from source coverage, not import date · <a href="https://www.sfa.gov.sg/tools-and-resources/track-records" target="_blank" rel="noopener noreferrer">Check current SFA food licences ↗</a></p>';
   }
   function dirCard(place){
@@ -124,18 +126,16 @@
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(place.category||place.kind)+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p class="discover-freshness">'+safe(freshnessLabel(place))+' · Current operating status not verified</p><p>'+(place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot'+(place.sourceCoverageAsOf?' (source coverage '+safe(place.sourceCoverageAsOf)+')':'')+' · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+(place.kind==='Healthcare'?' Clinic registration, CHAS participation and services must be checked with the provider.':'')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
-      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
+      '<p class="discover-freshness">'+safe(freshnessLabel(place))+' · Current operating status not verified</p><p>'+(place.status==='operator-listed'?'Published by '+safe(place.operator||'operator')+'. '+(place.sourceReportedHours?'Operator hours: '+safe(place.sourceReportedHours)+' (check before travel). ':'')+'Availability unverified. ':place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot'+(place.sourceCoverageAsOf?' (source coverage '+safe(place.sourceCoverageAsOf)+')':'')+' · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+(place.kind==='Healthcare'?' Clinic registration, CHAS participation and services must be checked with the provider.':'')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
+      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='operator-listed'?'Operator location page':place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
     const marked=saved.has(app.id);
-    const appName=encodeURIComponent(app.name);
-    const ios='https://apps.apple.com/sg/search?term='+appName;
-    const android='https://play.google.com/store/search?c=apps&q='+appName;
+    const publisherLink=safeUrl(app.publisherUrl);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(app.category)+'</span><h3>'+safe(app.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(app.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>'+(app.status==='publisher-reference'?'Official publisher reference; check account eligibility and installation requirements.':'Suggested app; publisher and store listing still require verification.')+'</p>'+
-      '<div class="discover-actions">'+sourceLink(app.publisherUrl,'Publisher')+sourceLink(ios,'Search iOS')+sourceLink(android,'Search Android')+'</div></article>';
+      '<div class="discover-actions">'+sourceLink(publisherLink,'Official publisher')+'<span class="discover-app-legacy-note">Use publisher links to find authentic app-store downloads.</span>'+'</div></article>';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
@@ -158,11 +158,18 @@
     const key=tab==='apps'?'apps':tab;
     const matcher=cues[current]?.[key];
     const text=[row.name,row.area,row.category].join(' ');
-    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='official-source-snapshot'?0:30);
+    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='operator-listed'?70:row.status==='official-source-snapshot'?0:30);
+  }
+  function matchesNeighbourhood(r){
+    if(neighbourhoodFilter==='all')return true;
+    const nb=neighbourhoods.find(n=>n.id===neighbourhoodFilter);if(!nb)return true;
+    const hay=[r.name,r.area,r.address,r.street].filter(Boolean).join(' ').toLowerCase();
+    return (nb.aliases||[]).some(term=>hay.includes(term.toLowerCase()));
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!isArchived(r)||includeArchive)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    const superseded=new Set(catalog.places.filter(p=>p.status==='operator-listed'&&p.operator==='Sheng Siong').map(p=>p.postal));
+    return rows.filter(r=>(!isArchived(r)||includeArchive)&&!(isArchived(r)&&superseded.has(r.postal))&&matchesNeighbourhood(r)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':sourceFilter==='operator'?r.status==='operator-listed':!['official-source-snapshot','operator-listed'].includes(r.status)))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -218,6 +225,7 @@
   $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;visibleCount=24;showAll=false;render()});
   $('#discoverSourceFilter').addEventListener('change',e=>{sourceFilter=e.target.value;visibleCount=24;render()});
   $('#discoverCategoryFilter').addEventListener('change',e=>{categoryFilter=e.target.value;visibleCount=24;render()});
+  $('#discoverNeighbourhoodFilter').addEventListener('change',e=>{neighbourhoodFilter=e.target.value;visibleCount=24;render()});
   $('#discoverFreshnessFilter').addEventListener('change',e=>{freshnessFilter=e.target.value;visibleCount=24;render()});
   $('#discoverIncludeArchive').addEventListener('change',e=>{includeArchive=e.target.checked;visibleCount=24;render()});
   document.addEventListener('sgbuddy:knowledge-saved',()=>{
@@ -302,8 +310,10 @@
     fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
     fetch('/data/nea-closures-v180.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
     fetch('/data/official-places-v200.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('/data/services-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
-  ]).then(([data,published,closureFeed,officialFeed,servicesFeed])=>{
+    fetch('/data/services-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/data/operator-listings-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/data/neighbourhoods-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([data,published,closureFeed,officialFeed,servicesFeed,operatorFeed,neighbourhoodFeed])=>{
     officialClosures=new Map((Array.isArray(closureFeed?.closures)?closureFeed.closures:[]).map(x=>[x.centreId,x]));
     for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
     const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
@@ -311,15 +321,18 @@
     const sourcePlaces=[...(Array.isArray(officialFeed?.places)?officialFeed.places:[]),...(Array.isArray(servicesFeed?.places)?servicesFeed.places:[])].filter(p=>p.status==='official-source-snapshot'&&p.name&&p.id&&p.kind&&p.sourceUrl);
     const names=new Set(data.places.map(p=>String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')));
     const unique=sourcePlaces.filter(p=>{const key=String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')+'|'+String(p.postal||p.id);if(names.has(key))return false;names.add(key);return true});
-    catalog={...data,places:[...data.places,...unique],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
+    const operatorPlaces=(Array.isArray(operatorFeed?.places)?operatorFeed.places:[]).filter(p=>p.id&&p.name&&p.kind&&p.postal&&p.sourceUrl&&p.status==='operator-listed');
+    neighbourhoods=Array.isArray(neighbourhoodFeed?.neighbourhoods)?neighbourhoodFeed.neighbourhoods:[];
+    $('#discoverNeighbourhoodFilter').insertAdjacentHTML('beforeend',neighbourhoods.map(n=>'<option value="'+safe(n.id)+'">'+safe(n.name)+'</option>').join(''));
+    catalog={...data,places:[...data.places,...unique,...operatorPlaces],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
     const areas=[...new Set(catalog.places.map(p=>p.area).filter(Boolean))].sort();
     $('#discoverAreaFilter').insertAdjacentHTML('beforeend',areas.map(a=>'<option value="'+safe(a)+'">'+safe(a)+'</option>').join(''));
     const kinds=[...new Set(catalog.places.map(p=>p.category||p.kind).filter(Boolean))].sort();
     $('#discoverCategoryFilter').insertAdjacentHTML('beforeend',kinds.map(k=>'<option value="'+safe(k)+'">'+safe(k)+'</option>').join(''));
     loaded=true;render();
-    document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
+    document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,operator:operatorPlaces.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
-  window.__SGBUDDY_CLIENT_VERSION__='1.2.0-dev';
-  if($('#appVersion'))$('#appVersion').textContent='v1.2.0-dev';
+  window.__SGBUDDY_CLIENT_VERSION__='2.4.0-preview';
+  if($('#appVersion'))$('#appVersion').textContent='v2.4.0-preview';
 })();

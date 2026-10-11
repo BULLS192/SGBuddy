@@ -6,18 +6,18 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
 const key='sgbuddy-stall-saved-v1';
 let saved=new Set();try{const arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr))saved=new Set(arr.filter(x=>typeof x==='string').slice(0,300))}catch{}
-let stalls=[],dishes=[],menus=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',awardYear='all',term='',onlySaved=false,limit=16,initialised=false;
+let stalls=[],dishes=[],menus=[],hawkerMenus=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',awardYear='all',term='',onlySaved=false,limit=16,initialised=false;
 const host=$('#discoverHub');if(!host)return;
 const sec=document.createElement('section');sec.id='foodExplorer';sec.className='card food-explorer';sec.hidden=true;
 sec.innerHTML='<div class="label">SGBUDDY FOOD LIBRARY</div><h3>What shall we eat?</h3>'+
 '<p class="food-note">Explore Singapore dishes and hawker-stall research leads. Stall operating status, opening hours, menu prices, halal certification and vegetarian options are <strong>not verified</strong>. Verify halal certification against <a href="https://halal.muis.gov.sg/halal/establishments" target="_blank" rel="noopener noreferrer">MUIS’s official directory ↗</a>.</p>'+
-'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button><button type="button" data-food-view="menus" aria-pressed="false">Vendor-listed menus</button></div>'+
+'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button><button type="button" data-food-view="menus" aria-pressed="false">Vendor-listed menus</button><button type="button" data-food-view="hawker-menus" aria-pressed="false">Hawker brand menu</button></div>'+
 '<div class="food-controls"><input id="foodSearch" type="search" placeholder="Search stall, dish or hawker centre" aria-label="Search the food library"/>'+
 '<select id="foodArea" aria-label="Filter food by area"><option value="all">All areas</option></select>'+
 '<select id="foodCuisine" aria-label="Filter by cuisine"><option value="all">All cuisines</option></select>'+
 '<select id="foodMeal" aria-label="Filter by meal"><option value="all">Any meal</option></select>'+
 '<select id="foodDish" aria-label="Filter by dish"><option value="all">Any dish</option></select>'+ 
-'<select id="foodAwardYear" aria-label="Filter historical award year"><option value="all">All evidence years</option><option value="2025">NEA 2025</option><option value="2024">NEA 2024</option><option value="2023">NEA 2023</option><option value="2022">NEA 2022</option><option value="editorial">Editorial leads</option></select>'+
+'<select id="foodAwardYear" aria-label="Filter historical award year"><option value="all">All evidence years</option><option value="2026">MICHELIN 2026</option><option value="2025">NEA 2025</option><option value="2024">NEA 2024</option><option value="2023">NEA 2023</option><option value="2022">NEA 2022</option><option value="editorial">Editorial leads</option></select>'+
 '<label class="food-saved"><input id="foodSavedOnly" type="checkbox"/> Saved stalls only</label></div>'+
 '<p class="food-count" role="status" id="foodCount">Loading food research leads…</p>'+
 '<div id="foodCards" class="food-grid"></div><button type="button" class="secondary" id="foodLoadMore" hidden>Show more</button>';
@@ -28,12 +28,12 @@ function options(selector,values){
  field.insertAdjacentHTML('beforeend',values.filter(Boolean).sort().map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
 }
 function cardStall(x){
- const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
+ const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),guide=x.reviewStatus==='guide-listed-2026',award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(x.cuisine)+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>'+(award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning">'+(award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
+ '<p>'+(guide?'MICHELIN 2026 address listing':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
+ '<p class="food-warning">'+(guide?'2026 guide-listed name and address; trading today and current menu unverified':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
- (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">NEA historical award ↗</a>':'')+
+ (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':'NEA historical award')+' ↗</a>':'')+
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
@@ -48,26 +48,32 @@ function cardMenu(x){
   '<p class="food-warning">Availability, dietary details and current price are not confirmed. A vendor-listed item is not necessarily a hawker stall.</p>'+
   (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Original vendor menu ↗</a>':'')+'</article>';
 }
+function cardHawkerMenu(x){
+ const url=allowedUrl(x.sourceUrl);
+ return '<article class="card food-stall"><div class="label">First-party hawker brand · '+esc(x.stallName)+'</div><h4>'+esc(x.dishName)+'</h4>'+
+ '<p>'+esc(x.description||'')+'</p><p class="food-warning">Menu appears on the brand website, NOT verified as available at '+esc(x.centreName||'this outlet')+'. No current price, allergen or halal claim.</p>'+
+ (url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">View operator menu ↗</a>':'')+'</article>';
+}
 function render(){
  if(!initialised)return;
  const q=term.trim().toLowerCase();
- const rows=tab==='menus'?menus.filter(x=>!q||(x.name+' '+x.vendor).toLowerCase().includes(q)):tab==='stalls'?stalls.filter(x=>
+ const rows=tab==='hawker-menus'?hawkerMenus.filter(x=>!q||(x.stallName+' '+x.dishName).toLowerCase().includes(q)):tab==='menus'?menus.filter(x=>!q||(x.name+' '+x.vendor).toLowerCase().includes(q)):tab==='stalls'?stalls.filter(x=>
   (area==='all'||x.area===area)&&(cuisine==='all'||x.cuisine===cuisine)&&
-  (meal==='all'||x.meal===meal)&&(dish==='all'||(x.dishes||[]).includes(dish))&&(awardYear==='all'||(awardYear==='editorial'?!x.reviewStatus.startsWith('nea-award-listed-'):x.reviewStatus==='nea-award-listed-'+awardYear))&&
+  (meal==='all'||x.meal===meal)&&(dish==='all'||(x.dishes||[]).includes(dish))&&(awardYear==='all'||(awardYear==='editorial'?x.reviewStatus==='research-candidate':awardYear==='2026'?x.reviewStatus==='guide-listed-2026':x.reviewStatus==='nea-award-listed-'+awardYear))&&
   (!onlySaved||saved.has(x.id))&&
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
   (meal==='all'||x.meal===meal)&&(!q||(x.name+' '+x.cuisine+' '+x.description).toLowerCase().includes(q)));
- $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':tab==='dishes'?'Singapore food and drink styles':'vendor-published menu items, not live availability')+' · '+Math.min(rows.length,limit)+' shown';
- $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
+ $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':tab==='dishes'?'Singapore food and drink styles':tab==='hawker-menus'?'operator hawker menu items, outlet availability unverified':'vendor-published menu items, not live availability')+' · '+Math.min(rows.length,limit)+' shown';
+ $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:tab==='hawker-menus'?cardHawkerMenu:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
  $('#foodLoadMore').hidden=rows.length<=limit;
  $('#foodSavedOnly').closest('label').hidden=tab!=='stalls';
  $('#foodArea').hidden=tab!=='stalls';
  $('#foodDish').hidden=tab!=='stalls';$('#foodAwardYear').hidden=tab!=='stalls';
- $('#foodCuisine').hidden=tab==='menus';$('#foodMeal').hidden=tab==='menus';
+ $('#foodCuisine').hidden=['menus','hawker-menus'].includes(tab);$('#foodMeal').hidden=['menus','hawker-menus'].includes(tab);
 }
 function setView(next){
- tab=['stalls','dishes','menus'].includes(next)?next:'stalls';limit=16;
+ tab=['stalls','dishes','menus','hawker-menus'].includes(next)?next:'stalls';limit=16;
  for(const x of sec.querySelectorAll('[data-food-view]'))x.setAttribute('aria-pressed',String(x.dataset.foodView===tab));
  $('#foodCuisine').value='all';cuisine='all';$('#foodMeal').value='all';meal='all';$('#foodDish').value='all';dish='all';$('#foodAwardYear').value='all';awardYear='all';
  render();
@@ -105,11 +111,18 @@ const eat=$('[data-discover-tab="eat"]');sec.hidden=!eat||eat.getAttribute('aria
 Promise.all([
  fetch('/data/food-stalls-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('stalls unavailable');return r.json()}),
  fetch('/data/singapore-dishes-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('dish guide unavailable');return r.json()}),
- fetch('/data/vendor-menus-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]}))
-]).then(([a,b,c])=>{
- stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>(x.reviewStatus==='research-candidate'||/^nea-award-listed-20\d\d$/.test(x.reviewStatus))):[];
+ fetch('/data/vendor-menus-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]})),
+ fetch('/data/guide-stalls-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stalls:[]}).catch(()=>({stalls:[]})),
+ fetch('/data/operator-menus-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{hawkerMenus:[],vendorMenus:[]}).catch(()=>({hawkerMenus:[],vendorMenus:[]}))
+]).then(([a,b,c,guide,operatorMenu])=>{
+ const guideRows=Array.isArray(guide.stalls)?guide.stalls.filter(x=>x.reviewStatus==='guide-listed-2026'&&allowedUrl(x.sourceUrl)&&x.postal):[];
+ const oldRows=Array.isArray(a.stalls)?a.stalls.filter(x=>(x.reviewStatus==='research-candidate'||/^nea-award-listed-20\d\d$/.test(x.reviewStatus))):[];
+ const normaliseName=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+ const guideNames=new Set(guideRows.map(x=>normaliseName(x.name)));
+ stalls=[...guideRows,...oldRows.filter(x=>!guideNames.has(normaliseName(x.name)))];
  dishes=Array.isArray(b.dishes)?b.dishes:[];
- menus=Array.isArray(c.items)?c.items.filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl)):[];
+ menus=[...(Array.isArray(c.items)?c.items:[]),...(Array.isArray(operatorMenu.vendorMenus)?operatorMenu.vendorMenus:[])].filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl));
+ hawkerMenus=Array.isArray(operatorMenu.hawkerMenus)?operatorMenu.hawkerMenus.filter(x=>x.stallId&&x.dishName&&allowedUrl(x.sourceUrl)&&x.stallSpecificAvailabilityVerified===false):[];
  options('#foodArea',[...new Set(stalls.map(x=>x.area))]);
  options('#foodCuisine',[...new Set([...stalls,...dishes].map(x=>x.cuisine))]);
  options('#foodMeal',[...new Set([...stalls,...dishes].map(x=>x.meal))]);
