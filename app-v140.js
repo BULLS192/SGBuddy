@@ -1,6 +1,7 @@
 /* SGBuddy v1.4 — Merli, source-aware Singapore companion. No AI API or user history server. */
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
+import {merliMessage} from './lib/i18n-merli-replies-v315.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const {state,navigateTo,askAdvisor}=core;
@@ -35,7 +36,9 @@ function mood(name='speaking'){
  animation=setTimeout(()=>{widget.dataset.state='idle';animation=null},1800);
 }
 let activeFact=null;
+let lastLocalReply=null;
 function say(message,visual='speaking',source='',fact=null){
+ lastLocalReply=null;
  $('#buddyReply').textContent=message;
  const link=url(source),e=$('#merliEvidence'),a=$('#merliSource'),btn=$('#merliSaveFact');
  e.hidden=!link;
@@ -45,10 +48,14 @@ function say(message,visual='speaking',source='',fact=null){
  if(activeFact){btn.textContent=(saved.has(activeFact.id)?'★ Saved':'☆ Save this fact')}
  mood(visual);
 }
+function sayLocalized(key,params={},visual='speaking',source='',fact=null){
+ say(merliMessage(locale(),key,params),visual,source,fact);
+ lastLocalReply={key,params,visual,source,fact};
+}
 function persona(){return state.mode==='new_in_sg'?'resident':state.mode||'resident'}
 function greeting(){
- const p={resident:'around your neighbourhood',visitor:'as you explore Singapore',executive:'on your working day',student:'on a student budget'}[persona()]||'around Singapore';
- $('#merliPersonaNote').textContent='Here to help '+p;
+ const key={resident:'personaResident',visitor:'personaVisitor',executive:'personaExecutive',student:'personaStudent'}[persona()]||'personaResident';
+ $('#merliPersonaNote').textContent=merliMessage(locale(),key);
 }
 function panel(opened=true){
  open=!!opened;$('#buddyPanel').hidden=!open;
@@ -74,28 +81,28 @@ function openFacts(savedFilter=false){
  const button=$('[data-discover-tab="facts"]');if(button)button.click();
  if(savedFilter){savedOnly=true;const filter=$('#merliSavedOnly');if(filter)filter.checked=true}
  renderLibrary();
- say(savedFilter?'Your saved Singapore facts are under Discover → Did you know.':'Open Discover → Did you know for all fact topics and original sources.','navigation');
+ sayLocalized(savedFilter?'savedFacts':'allFacts',{},'navigation');
 }
 function factTip(){
  const choices=facts.filter(f=>f.status==='verified'&&eligible(f));
- if(!choices.length){say('No source-checked facts are available for your mode yet.','warning');return}
+ if(!choices.length){sayLocalized('noFacts',{},'warning');return}
  let recent=new Set();
  try{const v=JSON.parse(sessionStorage.getItem('merli-fact-recent-v1')||'[]');recent=new Set(Array.isArray(v)?v:[])}catch{}
  let next=choices.find(f=>!recent.has(f.id));
  if(!next){recent.clear();next=choices[randomCursor++%choices.length]}
  recent.add(next.id);
  try{sessionStorage.setItem('merli-fact-recent-v1',JSON.stringify([...recent].slice(-75)))}catch{}
- say('Merli’s tip: '+(factTranslation(locale(),next)||next.text),'success',next.sourceUrl,next);
+ sayLocalized('tip',{text:factTranslation(locale(),next)||next.text},'success',next.sourceUrl,next);
 }
 function navigateDiscover(tab){
  navigateTo('places');const button=$('[data-discover-tab="'+tab+'"]');if(button)button.click();
  const label={eat:'food',do:'activities',shop:'shops',apps:'useful apps',essentials:'libraries, community clubs and sports facilities',healthcare:'clinics and pharmacies'}[tab];
- say('I’ve opened '+label+' in Discover for your '+persona()+' mode. Check individual listings before visiting.','navigation');
+ sayLocalized('opened',{section:label,mode:persona()},'navigation');
 }
 function airReply(){
  const w=state.weather,air=w?.airQuality,psi=air?.psi24h,pm=air?.pm25OneHour;
  navigateTo('today');
- if(!psi&&!pm){say('The air readings are unavailable here. Please check the official NEA readings on the Today panel before outdoor activity.','warning','https://www.nea.gov.sg/our-services/pollution-control/air-pollution');return}
+ if(!psi&&!pm){sayLocalized('airUnavailable',{},'warning','https://www.nea.gov.sg/our-services/pollution-control/air-pollution');return}
  const signal=w?.dataQuality?.staleSignals||[];
  const possiblyCached=w.source==='device-cache'||signal.includes('psi')||signal.includes('pm25');
  const values=[];
@@ -104,24 +111,25 @@ function airReply(){
  const sourceTimes=[psi?.updatedAt,pm?.updatedAt].filter(Boolean).map(x=>Date.parse(x)).filter(Number.isFinite);
  const age=sourceTimes.length?Math.max(...sourceTimes.map(t=>(Date.now()-t)/60000)):Infinity;
  const stale=possiblyCached||age>90||age< -15||!Number.isFinite(age);
- say((stale?'Last available (not confirmed current): ':'Official NEA readings: ')+values.join(' · ')+'. See Today for regional details and timestamps.','navigation','https://www.nea.gov.sg/our-services/pollution-control/air-pollution');
+ sayLocalized(stale?'airLast':'airOfficial',{measurements:values.join(' · ')},'navigation','https://www.nea.gov.sg/our-services/pollution-control/air-pollution');
+ $('#buddyReply').textContent+=' '+merliMessage(locale(),'airSeeToday');
 }
 function toSavedPlace(){
  const preferred=persona()==='visitor'?'hotel':'home';
  const dest=state.places?.[preferred]||state.places?.home||state.places?.hotel||state.places?.work;
- if(!dest){say('Save your home, work or hotel address in SGBuddy first. Merli can then help route you there without storing a conversation.','warning');return}
- const to=$('#tripTo');if(!to){say('Trip planning is currently unavailable. Open Move to check routes.','warning');return}
+ if(!dest){sayLocalized('noSavedDestination',{},'warning');return}
+ const to=$('#tripTo');if(!to){sayLocalized('tripUnavailable',{},'warning');return}
  to.value=dest;
  navigateTo('travel');
  if(typeof core.planNativeJourney==='function')setTimeout(()=>core.planNativeJourney(),300);
- say('I’ve set your saved destination in Move and started the route planner. Review the options before travelling.','navigation');
+ sayLocalized('tripStarted',{},'navigation');
 }
 function act(a){
  if(a==='fact')return factTip();
  if(a==='home')return toSavedPlace();
  if(a==='saved')return openFacts(true);
  if(a==='weather')return airReply();
- if(a==='transit')return say(askAdvisor?.('When is my next train?')||'Open Move for bus and MRT details.','navigation');
+ if(a==='transit')return say(askAdvisor?.('When is my next train?')||merliMessage(locale(),'transitFallback'),'navigation');
  if(['eat','do','shop','apps','essentials','healthcare'].includes(a))return navigateDiscover(a);
 }
 widget.addEventListener('click',e=>{
@@ -141,7 +149,7 @@ $('#buddyAskForm').addEventListener('submit',e=>{
   say(typeof askAdvisor==='function'?askAdvisor(raw):'Please open Move for transport details.','navigation');
  }else if(/air quality|psi|pm2|pollution|weather/.test(q))act('weather');
  else if(/what should i do|plan my day|what can i do|ideas for today/.test(q)){
-  say('Try a place to eat or something to do in Discover. I can also check the air quality before you go. Choose one of those shortcuts to start.','success');
+  sayLocalized('planDay',{},'success');
  }
  else if(/saved|favo(u)?rite|bookmark/.test(q))act('saved');
  else if(/food|eat|hawker|restaurant|hungry|lunch|dinner/.test(q))act('eat');
@@ -151,7 +159,7 @@ $('#buddyAskForm').addEventListener('submit',e=>{
  else if(/library|libraries|community club|sports centre|sports center|public pool|swimming pool|gymnasium|supermarket|grocery|grocer/.test(q))act('essentials');
  else if(/fact|history|did you know|surprise|interesting|tell me something/.test(q))act('fact');
  else if(/visit|tour|attraction|museum|park|see|activity/.test(q))act('do');
- else say('Try asking about bus and MRT timing, Singapore facts, favourite places, air quality, things to do or where to eat.');
+ else sayLocalized('unknown');
  input.value='';
 });
 function renderLibrary(){
@@ -188,7 +196,7 @@ function mountLibrary(){
  $('#merliLoadMore').addEventListener('click',()=>{limit+=16;renderLibrary()});
  sec.addEventListener('click',e=>{const b=e.target.closest('[data-merli-save]');if(!b)return;const id=b.dataset.merliSave;saved.has(id)?saved.delete(id):saved.add(id);writeSaved();renderLibrary()});
  document.addEventListener('sgbuddy:persona',()=>{greeting();limit=16;renderLibrary()});
-document.addEventListener('sgbuddy:language',()=>{for(const option of $('#sgbFactTopic')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(locale(),option.value);renderLibrary()});
+document.addEventListener('sgbuddy:language',()=>{for(const option of $('#sgbFactTopic')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(locale(),option.value);greeting();if(lastLocalReply){const {key,params}=lastLocalReply;const values=lastLocalReply.fact&&key==='tip'?{text:factTranslation(locale(),lastLocalReply.fact)||lastLocalReply.fact.text}:params;$('#buddyReply').textContent=merliMessage(locale(),key,values)+(key==='airLast'||key==='airOfficial'?' '+merliMessage(locale(),'airSeeToday'):'');lastLocalReply.params=values;}renderLibrary()});
  document.addEventListener('sgbuddy:knowledge-saved',()=>{saved=readSaved();renderLibrary()});
  document.addEventListener('sgbuddy:discover-tab',e=>{activeTab=e.detail.tab;sec.hidden=activeTab!=='facts';if(activeTab==='facts')renderLibrary()});
  renderLibrary();
@@ -205,7 +213,7 @@ Promise.all([
    ids.add(f.id);return true
  });
  mountLibrary();
-}).catch(()=>say('The fact library could not be loaded. Merli’s travel and transport shortcuts still work.','warning'));
+}).catch(()=>sayLocalized('factLoadFailed',{},'warning'));
 window.__SGBUDDY_CLIENT_VERSION__='1.4.0-dev';
 if($('#appVersion'))$('#appVersion').textContent='v1.4.0-dev';
 })();
