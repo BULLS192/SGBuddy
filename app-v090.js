@@ -1,6 +1,27 @@
-import {runtimeText,runtimeOriginal} from './lib/i18n-runtime-v320.mjs';
-const rt=(key,fields)=>runtimeText(window.SGBUDDY_LANGUAGE||'en',key,fields);
-const rtOriginal=source=>runtimeOriginal(window.SGBUDDY_LANGUAGE||'en',source);
+/* Keep the legacy bootstrap classic-script compatible; load translations asynchronously. */
+let runtimeTranslations=null;
+const fallbackRuntime={
+ syncing:'Syncing…',syncIssue:'Sync issue',synced:'Synced',offline:'Offline',
+ updatingProfile:'Updating account profile…',syncAttention:'Last sync needs attention',
+ profileActive:'Cross-device profile active',signInToSync:'Sign in to sync across devices',
+ weatherUnavailable:'Weather unavailable',unavailable:'Unavailable',
+ rainNearby:'Rain nearby',noRain:'No rain detected',
+ sensorsUnavailable:'Some live sensors are temporarily unavailable: {sensors}.',
+ psiExplanation:'1-hour PM2.5 is a concentration reading, not “1-hour PSI”.',
+ weatherUpdated:'Updated {time}',weatherConditions:'{area} conditions',
+ destinationMissing:'Add a destination first.',arrivalMissing:'Choose an arrival time.',
+ arrivalInvalid:'Choose a valid arrival time.',
+ routingArrive:'Calculating when you should leave, with weather-aware routing…',
+ routingCompare:'SGBuddy is comparing rail, direct bus, mixed feeder routes, and walking exposure…',
+ journeyUnavailable:'Journey planning is temporarily unavailable.',
+ journeyLocation:'Use your location or enter an MRT/LRT station, bus stop code, or origin place.',
+ destinationSelected:'Destination selected. Ready to plan.'
+};
+const rt=(key,fields={})=>runtimeTranslations?.runtimeText(window.SGBUDDY_LANGUAGE||'en',key,fields)||
+ String(fallbackRuntime[key]||key).replace(/\{(\w+)\}/g,(m,k)=>Object.hasOwn(fields,k)?String(fields[k]):m);
+const rtOriginal=source=>runtimeTranslations?.runtimeOriginal(window.SGBUDDY_LANGUAGE||'en',source)||String(source);
+import('./lib/i18n-runtime-v320.mjs').then(mod=>{runtimeTranslations=mod;try{renderAccountUi();renderEnvironment()}catch{}}).catch(()=>{});
+
 const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
 const safeParse=(value,fallback)=>{try{return JSON.parse(value)}catch{return fallback}};
 const storedPlaces=safeParse(localStorage.getItem('sgc-places')||'{}',{});
