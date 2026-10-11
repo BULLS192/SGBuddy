@@ -62,6 +62,7 @@ execFileSync(process.execPath,['scripts/check-v310.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v311.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v312.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v313.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v314.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/localization-report-v310.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v270.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-food-v261.mjs'],{stdio:'inherit'});
