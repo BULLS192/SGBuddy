@@ -1,0 +1,37 @@
+name: SGBuddy V2.6 Mobile Food Interaction QA
+on:
+  push:
+    branches: [feature/sgbuddy-v26-food-discovery]
+  pull_request:
+    paths:
+      - 'app-food-tools-v261.js'
+      - 'app-food-v180.js'
+      - 'app-apps-v240.js'
+      - 'data/food-leads-v261.json'
+      - 'data/dining-services-v261.json'
+      - 'food-tools-v261.css'
+      - 'scripts/browser-qa-food-v261.mjs'
+      - '.github/workflows/check-food-v261-browser.yml'
+permissions:
+  contents: read
+jobs:
+  chromium-food:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium browser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve SGBuddy locally
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-http.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-http.log
+          exit 1
+      - name: Verify Food V2.6 mobile browser interactions
+        run: node scripts/browser-qa-food-v261.mjs
