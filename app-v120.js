@@ -32,7 +32,7 @@
       tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
-    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option></select><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
+    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="operator">Retailer / operator listed</option><option value="official">Government datasets</option><option value="historical">Historical licences</option><option value="curated">Curated leads</option></select><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
     '<p id="discoverStatus" class="discover-status" role="status">Loading curated Singapore content…</p></section>',
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
@@ -66,6 +66,7 @@
   }
   function directoryAddressStatus(place){
     const value=addressCache.get(place.id);
+    if(!value&&place.status==='operator-listed')return '<p class="discover-address-note">📍 Address published by '+safe(place.operator||'the operator')+': '+safe(place.address||'unknown')+' · Not checked in OneMap; no live-open confirmation.</p>';
     if(!value&&place.status==='official-source-snapshot')return '<p class="discover-address-note">'+(place.address?'📍 Government source address: '+safe(place.address):'No street address in government source')+' · Not OneMap-confirmed · Entrance may differ.</p>';
     if(!value)return '<p class="discover-address-note">Full street address not checked in OneMap.</p>';
     if(value.status==='loading')return '<p class="discover-address-note" role="status">Checking OneMap address…</p>';
@@ -85,6 +86,7 @@
   function displayPlaceName(place){
     const raw=String(place.name||'');
     if(place.sourceAgency==='NLB'&&!/library/i.test(raw))return 'Public library location — '+raw;
+    if(place.status==='operator-listed')return raw;
     if(place.category==='Supermarket (historical licence)')return raw+' · '+(place.street||place.postal||'historic listed address');
     if(place.category==='CHAS clinic'&&place.postal)return raw+' · S'+place.postal;
     if(place.sourceAgency==='NParks'){
@@ -93,13 +95,21 @@
     }
     return raw;
   }
+  function trustLabel(place){
+    if(place.status==='operator-listed')return 'Operator website checked '+safe(place.sourceCheckedOn||'unknown date')+' · branch address listed, NOT independently open-now checked.';
+    if(place.category==='Supermarket (historical licence)')return 'Historical licence from around 2016 — NOT a confirmed current store. Confirm via the retailer before visiting.';
+    if(place.category==='CHAS clinic')return 'Historic MOH clinic record ('+safe(place.sourceCoverageAsOf||'undated')+'). CHAS participation is not verified today; check the current CHAS locator or call the clinic.';
+    if(place.status==='official-source-snapshot')return 'Government directory snapshot'+(place.sourceCoverageAsOf?' (original coverage '+safe(place.sourceCoverageAsOf)+')':'')+'. Operating status, licence and hours NOT confirmed.';
+    return 'Curated lead — venue details and current operation not independently verified.';
+  }
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(place.category||place.kind)+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p>'+(place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot'+(place.sourceCoverageAsOf?' (source coverage '+safe(place.sourceCoverageAsOf)+')':'')+' · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+(place.kind==='Healthcare'?' Clinic registration, CHAS participation and services must be checked with the provider.':'')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
-      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
+      '<p class="discover-trust '+(place.status==='operator-listed'?'discover-trust-operator':place.category==='Supermarket (historical licence)'?'discover-trust-historic':'')+'">'+trustLabel(place)+'</p>'+
+      (place.status==='operator-listed'&&place.sourceReportedHours?'<p class="discover-published-hours">Published hours: '+safe(place.sourceReportedHours)+' · Not a live-open signal.</p>':'')+publishedClosure(place)+
+      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='operator-listed'?'Operator location page':place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.status==='operator-listed'&&place.operator==='Sheng Siong'?sourceLink('https://corporate.shengsiong.com.sg/store-locator/','Operator store locator'):'')+(place.menuUrl?sourceLink(place.menuUrl,'Vendor menu'):'')+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
     const marked=saved.has(app.id);
@@ -132,11 +142,11 @@
     const key=tab==='apps'?'apps':tab;
     const matcher=cues[current]?.[key];
     const text=[row.name,row.area,row.category].join(' ');
-    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='official-source-snapshot'?0:30);
+    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='operator-listed'?95:row.category==='Supermarket (historical licence)'?-65:row.status==='official-source-snapshot'?0:30);
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='operator'?r.status==='operator-listed':sourceFilter==='historical'?r.category==='Supermarket (historical licence)':sourceFilter==='official'?r.status==='official-source-snapshot'&&r.category!=='Supermarket (historical licence)':r.status==='curated-preview'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -273,22 +283,29 @@
     fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
     fetch('/data/nea-closures-v180.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
     fetch('/data/official-places-v200.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('/data/services-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
-  ]).then(([data,published,closureFeed,officialFeed,servicesFeed])=>{
+    fetch('/data/services-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/data/operator-listings-v220.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([data,published,closureFeed,officialFeed,servicesFeed,operatorFeed])=>{
     officialClosures=new Map((Array.isArray(closureFeed?.closures)?closureFeed.closures:[]).map(x=>[x.centreId,x]));
     for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
     const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
     const ids=new Set(checked.map(f=>f.id));
     const sourcePlaces=[...(Array.isArray(officialFeed?.places)?officialFeed.places:[]),...(Array.isArray(servicesFeed?.places)?servicesFeed.places:[])].filter(p=>p.status==='official-source-snapshot'&&p.name&&p.id&&p.kind&&p.sourceUrl);
+    const operatorPlaces=Array.isArray(operatorFeed?.places)?operatorFeed.places.filter(p=>p.status==='operator-listed'&&p.sourceUrl&&p.name&&p.postal):[];
+    const liveBrandPostal=new Set(operatorPlaces.filter(p=>p.operator==='Sheng Siong').map(p=>'shengsiong|'+p.postal));
     const names=new Set(data.places.map(p=>String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')));
-    const unique=sourcePlaces.filter(p=>{const key=String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')+'|'+String(p.postal||p.id);if(names.has(key))return false;names.add(key);return true});
-    catalog={...data,places:[...data.places,...unique],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
+    const unique=sourcePlaces.filter(p=>{
+      if(p.category==='Supermarket (historical licence)'&&/sheng\s*siong/i.test(p.name)&&liveBrandPostal.has('shengsiong|'+p.postal))return false;
+      const key=String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')+'|'+String(p.postal||p.id);
+      if(names.has(key))return false;names.add(key);return true;
+    });
+    catalog={...data,places:[...operatorPlaces,...data.places,...unique],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
     const areas=[...new Set(catalog.places.map(p=>p.area).filter(Boolean))].sort();
     $('#discoverAreaFilter').insertAdjacentHTML('beforeend',areas.map(a=>'<option value="'+safe(a)+'">'+safe(a)+'</option>').join(''));
     const kinds=[...new Set(catalog.places.map(p=>p.category||p.kind).filter(Boolean))].sort();
     $('#discoverCategoryFilter').insertAdjacentHTML('beforeend',kinds.map(k=>'<option value="'+safe(k)+'">'+safe(k)+'</option>').join(''));
     loaded=true;render();
-    document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
+    document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,operator:operatorPlaces.length,official:unique.length,total:catalog.places.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
   window.__SGBUDDY_CLIENT_VERSION__='1.2.0-dev';

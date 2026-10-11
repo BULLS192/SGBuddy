@@ -1,0 +1,8 @@
+/* SGBuddy V2.2 – source confidence, not synthetic verification badges. */
+.discover-item .discover-trust{font-size:0.82rem;line-height:1.55;color:var(--muted,#b8cbd9);margin:10px 0}
+.discover-item .discover-trust-operator{border-left:3px solid #56bf9b;padding:8px 12px;background:rgba(52,156,118,.09);border-radius:0 9px 9px 0;color:var(--text,#eaf3f7)}
+.discover-item .discover-trust-historic{border-left:3px solid #dba85a;padding:8px 12px;background:rgba(199,142,61,.10);border-radius:0 9px 9px 0;color:var(--text,#eaf3f7)}
+.discover-published-hours{font-size:.81rem;line-height:1.4;color:var(--muted,#bdcbd7)}
+.food-source-branch{font-size:.78rem;color:var(--text,#eaf3f7);font-weight:550}
+.food-stall>a{display:inline-block;margin-right:12px;margin-top:5px;font-size:.82rem}
+@media(max-width:640px){.discover-item .discover-trust{font-size:.8rem}.food-stall>a{margin-top:8px}}

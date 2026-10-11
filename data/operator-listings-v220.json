@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "sourceCheckedOn": "2026-10-11",
+  "editorialMethod": "manual first-party operator page cross-check",
+  "trustPolicy": "Current website listing for a branch, not an independent on-site check or real-time open signal. Source-reported hours can change.",
+  "counts": {
+    "operatorSupermarkets": 15,
+    "operatorFoodLocations": 2,
+    "total": 17
+  },
+  "places": [
+    {
+      "id": "SGV-MART-001",
+      "name": "Sheng Siong — Ang Mo Kio Avenue 4",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North East",
+      "address": "161 Ang Mo Kio Avenue 4, #01-504, Singapore 560161",
+      "postal": "560161",
+      "street": "161 Ang Mo Kio Avenue 4",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-002",
+      "name": "Sheng Siong — Ang Mo Kio Drive",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North East",
+      "address": "2 Ang Mo Kio Drive, #A1-12, Singapore 567720",
+      "postal": "567720",
+      "street": "2 Ang Mo Kio Drive",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "7am–10pm",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-003",
+      "name": "Sheng Siong — Anchorvale Road",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North East",
+      "address": "351 Anchorvale Road, #01-05, Singapore 540351",
+      "postal": "540351",
+      "street": "351 Anchorvale Road",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-004",
+      "name": "Sheng Siong — Fernvale Street",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North East",
+      "address": "473 Fernvale Street, #01-06, Singapore 790473",
+      "postal": "790473",
+      "street": "473 Fernvale Street",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-005",
+      "name": "Sheng Siong — Punggol Central",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North East",
+      "address": "301 Punggol Central, #01-01, Singapore 820301",
+      "postal": "820301",
+      "street": "301 Punggol Central",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-006",
+      "name": "Sheng Siong — Bukit Batok West Avenue 8",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "West",
+      "address": "440 Bukit Batok West Avenue 8, #01-10, Singapore 650440",
+      "postal": "650440",
+      "street": "440 Bukit Batok West Avenue 8",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-007",
+      "name": "Sheng Siong — Clementi Avenue 2",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "West",
+      "address": "352 Clementi Avenue 2, #01-91/99, Singapore 120352",
+      "postal": "120352",
+      "street": "352 Clementi Avenue 2",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-008",
+      "name": "Sheng Siong — Jurong West Street 42",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "West",
+      "address": "544 Jurong West Street 42, #01-97/99, Singapore 640544",
+      "postal": "640544",
+      "street": "544 Jurong West Street 42",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-009",
+      "name": "Sheng Siong — Yishun Avenue 4",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North",
+      "address": "675 Yishun Avenue 4, #01-10, Singapore 760675",
+      "postal": "760675",
+      "street": "675 Yishun Avenue 4",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-010",
+      "name": "Sheng Siong — Woodlands Street 31",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North",
+      "address": "301 Woodlands Street 31, #01-217, Singapore 730301",
+      "postal": "730301",
+      "street": "301 Woodlands Street 31",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-011",
+      "name": "Sheng Siong — Bishan Street 13",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "Central",
+      "address": "512 Bishan Street 13, #01-524, Singapore 570512",
+      "postal": "570512",
+      "street": "512 Bishan Street 13",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-012",
+      "name": "Sheng Siong — Tampines Central 1",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "East",
+      "address": "506 Tampines Central 1, #01/02-361, Singapore 520506",
+      "postal": "520506",
+      "street": "506 Tampines Central 1",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-013",
+      "name": "Sheng Siong — Bedok North Road",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "East",
+      "address": "115 Bedok North Road, #01-319, Singapore 460115",
+      "postal": "460115",
+      "street": "115 Bedok North Road",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-014",
+      "name": "Sheng Siong — Pasir Ris Street 51",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "East",
+      "address": "527D Pasir Ris Street 51, #01-01, Singapore 514527",
+      "postal": "514527",
+      "street": "527D Pasir Ris Street 51",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-MART-015",
+      "name": "Sheng Siong — Sembawang Crescent",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "category": "Supermarket — operator locator",
+      "area": "North",
+      "address": "361 Sembawang Crescent, #01-10, Singapore 750361",
+      "postal": "750361",
+      "street": "361 Sembawang Crescent",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Sheng Siong",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://corporate.shengsiong.com.sg/store-locator/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "24 hours",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Address and stated hours appear on the retailer's own store locator. Not a live open-now signal; check retailer before travelling."
+    },
+    {
+      "id": "SGV-FOOD-001",
+      "name": "Chiew Kee Soya Sauce Chicken — 32 Upper Cross Street",
+      "kind": "Eat",
+      "kinds": [
+        "Eat"
+      ],
+      "category": "Restaurant — operator website",
+      "area": "Chinatown",
+      "address": "32 Upper Cross Street, Singapore 058339",
+      "postal": "058339",
+      "street": "Upper Cross Street",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Chiew Kee Soya Sauce Chicken",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://www.chiewkee.com/locate-us/",
+      "menuUrl": "https://chiewkee.com/our-menu/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "Daily 8am–8pm; closed on alternate Mondays",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Operator page publishes address and hours, but alternate-Monday closure requires checking. Menu page provides priced items; verify current availability."
+    },
+    {
+      "id": "SGV-FOOD-002",
+      "name": "Chiew Kee Soya Sauce Chicken — 30 Upper Cross Street",
+      "kind": "Eat",
+      "kinds": [
+        "Eat"
+      ],
+      "category": "Restaurant — operator website",
+      "area": "Chinatown",
+      "address": "30 Upper Cross Street, Singapore 058338",
+      "postal": "058338",
+      "street": "Upper Cross Street",
+      "lat": null,
+      "lon": null,
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "status": "operator-listed",
+      "operator": "Chiew Kee Soya Sauce Chicken",
+      "verifiedScope": "operator-published-branch-address",
+      "sourceUrl": "https://www.chiewkee.com/locate-us/",
+      "sourceCheckedOn": "2026-10-11",
+      "sourceReportedHours": "Daily 8am–7pm; closed on alternate Mondays",
+      "operatingStatus": "not-live-confirmed",
+      "hoursCurrentNow": false,
+      "notes": "Operator has a second address with different closing time; the priced menu may not apply to this branch."
+    }
+  ]
+}

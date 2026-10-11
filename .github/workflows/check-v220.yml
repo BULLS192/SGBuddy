@@ -1,0 +1,20 @@
+name: SGBuddy V2.2 Operator Verification QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.2-current-verification]
+  pull_request:
+    paths:
+      - 'data/operator-listings-v220.json'
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'scripts/**'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
