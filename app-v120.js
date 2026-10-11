@@ -85,6 +85,8 @@
   function displayPlaceName(place){
     const raw=String(place.name||'');
     if(place.sourceAgency==='NLB'&&!/library/i.test(raw))return 'Public library location — '+raw;
+    if(place.category==='Supermarket (historical licence)')return raw+' · '+(place.street||place.postal||'historic listed address');
+    if(place.category==='CHAS clinic'&&place.postal)return raw+' · S'+place.postal;
     if(place.sourceAgency==='NParks'){
       return raw.replace(/\bPK\b/g,'Park').replace(/\bPG\b/g,'Playground').replace(/\bOS\b/g,'Open Space')
         .toLowerCase().replace(/\b[a-z]/g,m=>m.toUpperCase());
