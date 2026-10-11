@@ -1,0 +1,30 @@
+name: SGBuddy V2.6 Food Discovery QA
+on:
+  push:
+    branches: [feature/sgbuddy-v26-food-discovery]
+  pull_request:
+    paths:
+      - 'data/food-leads-v261.json'
+      - 'data/dining-services-v261.json'
+      - 'app-food-tools-v261.js'
+      - 'app-food-v180.js'
+      - 'app-apps-v240.js'
+      - 'food-tools-v261.css'
+      - 'app-v090.js'
+      - 'sw.js'
+      - 'scripts/check-food-v261.mjs'
+      - 'scripts/check-all.mjs'
+      - '.github/workflows/check-food-v261.yml'
+permissions:
+  contents: read
+jobs:
+  food-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run full SGBuddy regression, including food evidence contracts
+        run: npm run check
