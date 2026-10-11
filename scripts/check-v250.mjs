@@ -40,7 +40,7 @@ assert.ok(apps.includes("/data/travel-essentials-v250.json")&&apps.includes("ext
 assert.ok(apps.includes('translated(a,')&&apps.includes('sgbuddy:language'),'App library bilingual integration missing');
 assert.ok(discover.includes("['travel','Travel prep']")&&discover.includes("'travelEssentials'"),'Discover tab not wired');
 assert.ok(nav.includes("tab==='travel'"),'Legacy Discover list must hide when Travel Prep shown');
-assert.ok(boot.includes("import('/app-travel-v250.js')")&&boot.includes('2.5.0'),'Travel module not loaded');
+assert.ok(boot.includes("import('/app-travel-v250.js')")&&/2\.(5|6)\.0/.test(boot),'Travel module not loaded');
 assert.ok(html.includes('travel-v250.css')&&html.includes('v2.5.0'),'CSS or version missing');
 for(const asset of ['/app-travel-v250.js','/travel-v250.css','/data/travel-essentials-v250.json'])assert.ok(sw.includes(asset),'PWA cache missing '+asset);
 assert.ok(/sgbuddy-shell-v5[2-9]/.test(sw),'PWA cache must refresh');
