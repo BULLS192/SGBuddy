@@ -1,0 +1,27 @@
+name: SGBuddy V2.1 Library and Freshness QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.1-services-food-freshness]
+    paths:
+      - 'app-v120.js'
+      - 'app-v140.js'
+      - 'app-food-v180.js'
+      - 'data/**'
+      - 'scripts/**'
+      - '.github/workflows/check-v210.yml'
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'data/**'
+      - 'scripts/**'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check

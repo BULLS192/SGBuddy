@@ -1,0 +1,33 @@
+name: Build SGBuddy V2.1 Services Library
+on:
+  push:
+    branches: [feature/sgbuddy-v2.1-services-food-freshness]
+    paths: ['scripts/build-services-v210.mjs','scripts/build-supermarkets-v210.mjs','.github/workflows/build-services-v210.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-directory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/sgbuddy-v2.1-services-food-freshness
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/build-services-v210.mjs
+      - name: Add historical supermarket license records (non-blocking if retired source)
+        run: node scripts/build-supermarkets-v210.mjs || echo 'Historical NEA supermarket source unavailable; report will flag it'
+      - name: Commit source evidence to development branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/services-v210.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(services): refresh official healthcare and neighbourhood source snapshot"
+            git fetch origin feature/sgbuddy-v2.1-services-food-freshness
+            git rebase origin/feature/sgbuddy-v2.1-services-food-freshness
+            git push origin HEAD:feature/sgbuddy-v2.1-services-food-freshness
+          fi

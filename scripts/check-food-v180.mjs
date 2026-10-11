@@ -16,10 +16,11 @@ const ids=new Set(catalog.places.map(p=>p.id));
 const stallIds=new Set();
 for(const s of stalls.stalls){
  assert.ok(!stallIds.has(s.id));stallIds.add(s.id);
- assert.ok(ids.has(s.centreId),'Dangling hawker centre: '+s.name);
+ if(s.centreId!=null)assert.ok(ids.has(s.centreId),'Dangling hawker centre: '+s.name);
+ else assert.ok(s.referenceUrl?.startsWith('https://www.google.com/maps/search/'),'Unmapped historical stall must have a search fallback');
  assert.equal(s.operatingStatus,'unverified');
- assert.ok(['research-candidate','nea-award-listed-2025'].includes(s.reviewStatus));
- if(s.reviewStatus==='nea-award-listed-2025'){assert.ok(s.stallNumber&&/^https:\/\/www\.nea\.gov\.sg\//.test(s.sourceUrl),'NEA award stall needs official source and stall number')}
+ assert.ok(s.reviewStatus==='research-candidate'||/^nea-award-listed-20\d\d$/.test(s.reviewStatus));
+ if(/^nea-award-listed-20\d\d$/.test(s.reviewStatus)){assert.ok(s.stallNumber&&/^https:\/\/www\.nea\.gov\.sg\//.test(s.sourceUrl),'NEA award stall needs official source and stall number')}
  assert.equal(s.halalCertified,null,'Do not guess halal certification');
  assert.equal(s.priceSgd,null,'Do not guess prices');
  assert.equal(s.vegetarianAvailable,null,'Do not guess vegetarian options');

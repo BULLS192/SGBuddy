@@ -1,0 +1,8 @@
+/* SGBuddy V2 – scalable Singapore directory */
+#discoverSourceFilter{min-height:42px;max-width:190px;border-radius:11px;padding:8px;color:inherit;border:1px solid rgba(150,184,213,.45);background:transparent}
+#discoverAreaFilter{max-width:200px;min-height:42px}
+.discover-item .discover-address-result{font-size:.8rem}
+.discover-item .discover-address-note{flex:unset}
+.discover-item .discover-actions{row-gap:4px}
+.discover-item .discover-actions a{font-size:.82rem}
+@media(max-width:650px){#discoverSourceFilter,#discoverAreaFilter{flex:1;max-width:100%;min-width:0}.discover-tabs{scroll-padding-inline:10px}}
