@@ -2328,5 +2328,379 @@
     "reviewMethod": "primary-source-check",
     "verifiedOn": "2026-10-10",
     "evidenceNote": "NEA HawkerFest: more than 7000 responses"
+  },
+  {
+    "id": "FACT-V21-001",
+    "theme": "2025 Hawker Awards",
+    "text": "NEA's 2025 Singapore Hawkers’ Celebration and Awards recognised nine individual hawkers.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-002",
+    "theme": "2025 Hawker Awards",
+    "text": "The 2025 awards included the Hawker Heritage Award, Enterprising Hawker Award and Outstanding Hawker Mentor Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-003",
+    "theme": "2025 Hawker Awards",
+    "text": "Singapore's hawker culture had been on UNESCO's Intangible Cultural Heritage list for five years by December 2025.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-004",
+    "theme": "2025 Hawker Awards",
+    "text": "Warong Pak Sapari was recognised with a Hawker Heritage Award in 2025.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-005",
+    "theme": "2025 Hawker Awards",
+    "text": "Warong Pak Sapari's family hawker business was described as 51 years old in NEA's 2025 award announcement.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-006",
+    "theme": "2025 Hawker Awards",
+    "text": "Warong Pak Sapari launched a signature paste product in 2017.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-007",
+    "theme": "2025 Hawker Awards",
+    "text": "NEA identified Ghim Moh Chwee Kueh at stall 01-54 as a 2025 Hawker Heritage Award recipient.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-008",
+    "theme": "2025 Hawker Awards",
+    "text": "NEA identified Bahrakath Mutton Soup at Adam Food Centre as a 2025 Hawker Heritage Award recipient.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-009",
+    "theme": "2025 Hawker Awards",
+    "text": "Ah Kiat Wanton Mee won a 2025 Enterprising Hawker Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-010",
+    "theme": "2025 Hawker Awards",
+    "text": "According to NEA, Ah Kiat Wanton Mee experimented with salted egg in wanton mee.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-011",
+    "theme": "2025 Hawker Awards",
+    "text": "Salt.Singapore at Old Airport Road Food Centre won a 2025 Enterprising Hawker Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-012",
+    "theme": "2025 Hawker Awards",
+    "text": "Rong Xing Yong Tau Fu received a 2025 Outstanding Hawker Mentor Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-013",
+    "theme": "2025 Hawker Awards",
+    "text": "NEA reported that Rong Xing Yong Tau Fu's owner mentored nine aspiring hawkers over roughly a decade.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-014",
+    "theme": "2025 Hawker Awards",
+    "text": "Bukit Canberra Hawker Centre won the 2025 Favourite Hawker Centre Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-015",
+    "theme": "2025 Hawker Awards",
+    "text": "Bukit Canberra Hawker Centre was the inaugural recipient of the Healthier Dining Hawker Centre Award.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-016",
+    "theme": "2025 Hawker Awards",
+    "text": "The 2025 Healthier Dining Hawker Centre Award was developed in collaboration with the Health Promotion Board.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-017",
+    "theme": "2025 Hawker Awards",
+    "text": "NEA's 2025 awards listed Rong Xing Yong Tau Fu at Tanjong Pagar Plaza Market and Food Centre, stall 02-04.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-018",
+    "theme": "2025 Hawker Awards",
+    "text": "The 2025 NEA award list identifies Long Ding Seafood at Kampung Admiralty Hawker Centre, stall 02-12.",
+    "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by NEA 2025 hawker award announcement; see primary source."
+  },
+  {
+    "id": "FACT-V21-019",
+    "theme": "Local services",
+    "text": "The official CHAS clinic locator supports searching clinics by name, address or postal code.",
+    "sourceUrl": "https://www.chas.sg/clinic-locator",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by CHAS official locator; see primary source."
+  },
+  {
+    "id": "FACT-V21-020",
+    "theme": "Local services",
+    "text": "The CHAS clinic locator cautions that individual clinic hours may vary and that some clinics require appointments.",
+    "sourceUrl": "https://www.chas.sg/clinic-locator",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by CHAS official locator; see primary source."
+  },
+  {
+    "id": "FACT-V21-021",
+    "theme": "Local services",
+    "text": "The Health Sciences Authority publishes a geospatial directory of registered retail pharmacies.",
+    "sourceUrl": "https://data.gov.sg/datasets/d_bb92615f43de22933e4479558b1f6c36/view",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by HSA registry metadata; see primary source."
+  },
+  {
+    "id": "FACT-V21-022",
+    "theme": "Local services",
+    "text": "Singapore Food Agency provides a searchable SAFE-grade and licensing track-record lookup for food establishments.",
+    "sourceUrl": "https://www.sfa.gov.sg/tools-and-resources/track-records",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "status": "verified",
+    "verifiedOn": "2026-10-11",
+    "reviewMethod": "primary-source-check",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "evidenceNote": "Specific factual statement presented by SFA official SAFE lookup; see primary source."
   }
 ]
