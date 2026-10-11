@@ -3,6 +3,7 @@ import {appText} from './lib/i18n-apps-v280.mjs';
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {appContentTranslation} from './lib/i18n-app-content-v312.mjs';
 import {serviceNote} from './lib/i18n-service-safety-v315.mjs';
+import {appStatus} from './lib/i18n-app-status-v315.mjs';
 /* SGBuddy V2.4 — Everyday Singapore apps. Curated publisher links; not an app installer. */
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
@@ -53,7 +54,7 @@ function card(a){
   android?'<a href="'+esc(android)+'" target="_blank" rel="noopener noreferrer">Google Play ↗</a>':''].filter(Boolean).join('');
  const translatedPrereq=serviceNote(currentLocale(),a,'accountNeeded');
  const translatedNote=serviceNote(currentLocale(),a,'notes');
- const originalTitle=currentLocale()==='en'?'Original English':'English original';
+ const originalTitle=appStatus(currentLocale(),'original');
  const modeNames=(a.modes||[]).map(m=>m==='visitor'?'Visitor':m==='executive'?'Business':m[0].toUpperCase()+m.slice(1)).join(' · ');
  return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(taxonomyLabel(currentLocale(),a.category))+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
  '<p class="app-guide-description"'+(appContentTranslation(currentLocale(),a,'summary')?' data-content-localized="true"':'')+'>'+esc(translated(a,'summary'))+'</p>'+
@@ -63,7 +64,7 @@ function card(a){
  '<p class="app-guide-metadata">'+(mobile?tr('Mobile app','手机应用'):tr('Web service · no app needed','网页服务，无须安装'))+' · '+esc(a.importance)+' · '+esc(modeNames)+'</p>'+
  '<div class="app-guide-links">'+actions+'</div>'+
  (mobile&&!ios&&!android?'<p class="app-guide-unverified">'+esc(tr('No direct store link checked: download through the publisher to avoid lookalikes.','没有已核实的应用商店链接；请从官方服务商下载以防仿冒。'))+'</p>':'')+
- '<p class="app-guide-review">Curated '+esc(a.cataloguedOn||'date unavailable')+' · Confirm availability with publisher</p></article>';
+ '<p class="app-guide-review">'+esc(appStatus(currentLocale(),'review',{date:a.cataloguedOn||'date unavailable'}))+'</p></article>';
 }
 function render(){
  if(!loaded)return;
@@ -82,8 +83,8 @@ function render(){
   const modeDiff=Number(b.modes.includes(who))-Number(a.modes.includes(who));
   return modeDiff||rank(b)-rank(a)||a.name.localeCompare(b.name);
  });
- $('#appLibraryCount').textContent=zh()?(rows.length+' 项匹配 · '+apps.length+' 项官方应用与服务 · '+saved.size+' 项已收藏。仅显示核实过的应用商店链接。'):(rows.length+' matched · '+apps.filter(a=>a.kind==='mobile-app').length+' mobile app candidates · '+apps.filter(a=>a.kind==='web-service').length+' useful web services · '+saved.size+' on my shortlist. Only confirmed store links are displayed.');
- $('#appLibraryCards').innerHTML=rows.length?rows.slice(0,limit).map(card).join(''):'<div class="app-guide-empty">'+esc(tr('Nothing matches. Try another category, switch to All apps, or clear the search.','没有匹配的应用，请更换分类或清除搜索。'))+'</div>';
+ $('#appLibraryCount').textContent=appStatus(currentLocale(),'count',{matched:rows.length,mobile:apps.filter(a=>a.kind==='mobile-app').length,web:apps.filter(a=>a.kind==='web-service').length,saved:saved.size});
+ $('#appLibraryCards').innerHTML=rows.length?rows.slice(0,limit).map(card).join(''):'<div class="app-guide-empty">'+esc(appStatus(currentLocale(),'empty'))+'</div>';
  $('#appLibraryMore').hidden=rows.length<=limit;
  $('#appLibraryMore').textContent=tr('Show more apps','显示更多应用')+' · '+Math.min(rows.length,limit)+' / '+rows.length;
 }
@@ -157,5 +158,5 @@ Promise.all([
  const button=doc.querySelector('[data-discover-tab="apps"]');
  activate(button?.getAttribute('aria-selected')==='true');
  doc.dispatchEvent(new CustomEvent('sgbuddy:app-library-ready',{detail:{total:apps.length,web:apps.filter(a=>a.kind==='web-service').length}}));
-}).catch(()=>{$('#appLibraryCount').textContent='App directory could not load. Other SGBuddy discovery sections remain available.'});
+}).catch(()=>{$('#appLibraryCount').textContent=appStatus(currentLocale(),'unavailable')});
 })();
