@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-11",
+  "policy": "Official external-provider references and mobile app recommendations only. No live ratings, reservations, restaurant inventory, prices, dietary claims, promotions or payment execution.",
+  "additions": [
+    {
+      "id": "V26-APP-001",
+      "name": "Burpple",
+      "category": "Food & dining",
+      "publisher": "Burpple",
+      "summary": "Browse Singapore food reviews, photos, guides and optional Burpple Beyond dining offers.",
+      "purpose": "Find food reviews and optional 1-for-1 dining deals",
+      "accountNeeded": "A Burpple account for personal features; Burpple Beyond requires a paid membership and participating merchant",
+      "notes": "Read the original reviews and current deal rules on Burpple. Beyond is a membership within Burpple, not a separate app. No SGBuddy reviews have been imported.",
+      "sourceUrl": "https://burpple.com/sg/",
+      "kind": "mobile-app",
+      "importance": "Recommended",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "BU",
+      "ios": "https://apps.apple.com/sg/app/burpple-food-reviews-deals/id511999255",
+      "android": "https://play.google.com/store/apps/details?id=com.burpple.app",
+      "downloadEvidence": "specific-store-link-reviewed",
+      "cataloguedOn": "2026-10-11"
+    },
+    {
+      "id": "V26-APP-002",
+      "name": "Chope",
+      "category": "Food & dining",
+      "publisher": "Chope",
+      "summary": "Find participating restaurants and continue to the provider for restaurant table reservations.",
+      "purpose": "Restaurant reservations",
+      "accountNeeded": "Provider account or booking details may be required; reservation and cancellation rules vary",
+      "notes": "Availability is not checked or booked inside SGBuddy. Grab Dine Out now handles many dining-deal offers; confirm changing Chope loyalty rules with the provider.",
+      "sourceUrl": "https://www.chope.co/",
+      "kind": "mobile-app",
+      "importance": "Recommended",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "CH",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-page-only",
+      "cataloguedOn": "2026-10-11"
+    },
+    {
+      "id": "V26-APP-003",
+      "name": "treatsure",
+      "category": "Food & dining",
+      "publisher": "treatsure",
+      "summary": "Rescue surplus food from participating Singapore hotels, eateries and grocers, subject to current stock.",
+      "purpose": "Hotel buffet-in-a-box and surplus grocery rescue",
+      "accountNeeded": "App account and payment for eligible orders; pickup or delivery conditions vary",
+      "notes": "Official treatsure site links to the iOS and Google Play listings. Surplus food stock, pickup hours and partner participation change.",
+      "sourceUrl": "https://treatsure.co/",
+      "kind": "mobile-app",
+      "importance": "Recommended",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "TR",
+      "ios": "https://apps.apple.com/sg/app/treatsure/id1273827294",
+      "android": "https://play.google.com/store/apps/details?id=com.treatsure.treatsureapp",
+      "downloadEvidence": "specific-store-link-reviewed",
+      "cataloguedOn": "2026-10-11"
+    },
+    {
+      "id": "V26-WEB-001",
+      "name": "Jiak Simi? Food Wheel",
+      "category": "Food & dining",
+      "publisher": "Howard Toh / hj.sg",
+      "summary": "Spin a simple Singapore food wheel when you cannot decide what to eat.",
+      "purpose": "Fun random makan inspiration",
+      "accountNeeded": "No account stated on linked web tool; check availability",
+      "notes": "The wheel suggests foods, not verified nearby stalls or dietary-suitable meals.",
+      "sourceUrl": "https://apps.hj.sg/JiakSimi/",
+      "kind": "web-service",
+      "importance": "Situational",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "JS",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-service-web",
+      "cataloguedOn": "2026-10-11"
+    }
+  ],
+  "enhancements": [
+    {
+      "id": "V24-APP-014",
+      "name": "Grab",
+      "category": "Food & delivery",
+      "purpose": "GrabFood delivery, pickup and Grab Dine Out offers",
+      "summary": "Grab's main Singapore app combines transport with food delivery, pickup and participating dine-in deals.",
+      "notes": "GrabFood and Grab Dine Out are features within Grab; discount and merchant availability vary. Booking is not confirmed by opening a provider page.",
+      "sourceUrl": "https://www.grab.com/sg/food/"
+    },
+    {
+      "id": "V24-APP-025",
+      "name": "foodpanda",
+      "category": "Food & delivery",
+      "purpose": "Restaurant and grocery delivery",
+      "summary": "Order from participating Singapore restaurants and grocery merchants.",
+      "notes": "Delivery radius, fees, promotions and times depend on address and merchant.",
+      "sourceUrl": "https://www.foodpanda.sg/"
+    },
+    {
+      "id": "V24-APP-026",
+      "name": "Eatigo",
+      "category": "Food & dining",
+      "purpose": "Table bookings with time-dependent dining discounts",
+      "summary": "Browse eligible off-peak restaurant reservations, with provider-advertised discounts up to 50% where available.",
+      "notes": "Discounts depend on time, restaurant and provider conditions. SGBuddy does not see live tables or book reservations.",
+      "sourceUrl": "https://eatigo.com/en/regions/27"
+    },
+    {
+      "id": "V24-APP-037",
+      "name": "Fave",
+      "category": "Food & dining",
+      "purpose": "Restaurant vouchers, rewards and merchant offers",
+      "summary": "Explore merchant-specific dining vouchers and rewards where offered.",
+      "notes": "Redemptions, taxes, service charges and cashback terms depend on each merchant. Do not assume GST/service-charge waivers.",
+      "sourceUrl": "https://myfave.com/singapore"
+    }
+  ],
+  "services": [
+    {
+      "id": "reviews",
+      "title": "Reviews & food guides",
+      "label": "Reviews",
+      "purpose": "Discover local food reviews and curated eating guides",
+      "providerIds": [
+        "V26-APP-001"
+      ],
+      "caution": "Reviews belong to the provider. SGBuddy does not copy ratings, photos or customer comments."
+    },
+    {
+      "id": "wheel",
+      "title": "Can't decide?",
+      "label": "Food wheel",
+      "purpose": "Spin for inspiration or let Merli pick from SGBuddy listings",
+      "providerIds": [
+        "V26-WEB-001"
+      ],
+      "caution": "A random dish is not proof it is on sale near you or suitable for dietary restrictions."
+    },
+    {
+      "id": "reservations",
+      "title": "Tables & dining deals",
+      "label": "Tables & deals",
+      "purpose": "Compare official booking/deal providers and continue directly to them",
+      "providerIds": [
+        "V26-APP-002",
+        "V24-APP-026",
+        "V26-APP-001",
+        "V24-APP-014",
+        "V24-APP-037"
+      ],
+      "caution": "Opening a partner website is not a confirmed reservation. Always check terms, table time, tax and service charges."
+    },
+    {
+      "id": "delivery",
+      "title": "Delivery & pickup",
+      "label": "Delivery",
+      "purpose": "Use existing Grab or foodpanda account to view current food delivery choices",
+      "providerIds": [
+        "V24-APP-014",
+        "V24-APP-025"
+      ],
+      "caution": "No delivery availability or estimated times are sourced by SGBuddy."
+    },
+    {
+      "id": "rescue",
+      "title": "Save surplus food",
+      "label": "Food rescue",
+      "purpose": "Discover hotel buffet surplus and rescue groceries with treatsure",
+      "providerIds": [
+        "V26-APP-003"
+      ],
+      "caution": "Pickup windows, stock and availability vary by merchant."
+    }
+  ],
+  "foodAiResearch": {
+    "name": "SMU FoodAI / Zespri Meal Decoder",
+    "status": "research-only",
+    "publicLaunch": false,
+    "sourceUrl": "https://news.smu.edu.sg/news/2026/10/09/plate-pixel-better-nutrition-smu-backed-meal-decoder-tool-transforms-downtown",
+    "note": "Zespri's public campaign ran 7 September–4 October 2026. No currently available consumer integration or clinical-grade nutrition assessment is claimed."
+  }
+}
