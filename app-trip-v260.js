@@ -43,6 +43,7 @@ if(core&&discover){
    '<div class="trip-add-panel"><label>'+escapeHTML(s.search)+'<input id="tripSearch" type="search" autocomplete="off" placeholder="Marina Bay, Chinatown, hawker centre…" value="'+escapeHTML(query)+'"/></label><div id="tripSearchResults" class="trip-search-results">'+searchMarkup()+'</div><form id="tripCustomForm" class="trip-custom-form"><strong>'+escapeHTML(s.manual)+'</strong><input name="customName" maxlength="140" required aria-label="'+escapeHTML(s.customName)+'" placeholder="'+escapeHTML(s.customName)+'"/><input name="customArea" maxlength="180" aria-label="'+escapeHTML(s.customArea)+'" placeholder="'+escapeHTML(s.customArea)+'"/><button type="submit" class="secondary">'+escapeHTML(s.addCustom)+'</button></form></div></section>'+
    '<div class="trip-export"><button type="button" class="primary" id="tripShare">'+escapeHTML(s.copy)+'</button><button type="button" class="secondary" id="tripDownload">'+escapeHTML(s.download)+'</button><button type="button" class="secondary" id="tripBrowse">'+escapeHTML(s.directory)+'</button></div>':'<p class="trip-empty">'+escapeHTML(s.noTrip)+'</p>')+
    '<p class="trip-helper" id="tripMessage" role="status">'+escapeHTML(message||s.saved)+'</p><p class="trip-warning">'+escapeHTML(s.warning)+'</p>';
+  doc.dispatchEvent(new CustomEvent('sgbuddy:trip-rendered'));
  }
  function add(place,day=selectedDay){
   let trip=active();if(!trip){if(data.trips.length>=MAX_TRIPS){message=text().limit;render();return}trip=newTrip('My Singapore trip',localDay(),3);data.trips.push(trip);data.activeId=trip.id;selectedDay=0;day=0}
@@ -86,5 +87,23 @@ if(core&&discover){
    $('#tripMessage').textContent=message;return;
   }
  });
+ window.SGBUDDY_TRIP_API={
+  getActive:()=>active(),
+  importCopy:incoming=>{
+   if(data.trips.length>=MAX_TRIPS)return {ok:false,message:text().limit};
+   if(!incoming?.days?.length||incoming.days.length>MAX_DAYS)return {ok:false,message:'Invalid trip'};
+   const copy=newTrip(incoming.name,incoming.startDate,incoming.days.length);
+   for(let day=0;day<copy.days.length;day++){
+    for(const stop of incoming.days[day]){
+     if(!addStop(copy,day,stop.place))return {ok:false,message:'Cannot import duplicate or invalid stop'};
+     const target=copy.days[day].at(-1);
+     editStop(target,'time',stop.time);editStop(target,'note',stop.note);editStop(target,'done',stop.done);
+    }
+   }
+   data.trips.push(copy);data.activeId=copy.id;selectedDay=0;query='';message='';if(!save()){data.trips.pop();data.activeId=data.trips[0]?.id||null;return {ok:false,message:text().saveFailed}}
+   render();return {ok:true,tripId:copy.id};
+  },
+  open:()=>{doc.getElementById('navPlaces')?.click();doc.getElementById('discoverTab-trip')?.click()}
+ };
  render();
 }
