@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm ci --ignore-scripts
+      - run: npm install --ignore-scripts --no-package-lock --no-audit --no-fund
       - name: Try fresh official data pull (report only, do not commit or deploy)
         run: node scripts/build-official-library.mjs || echo "Official-location refresh failed; inspect report."
       - name: Try healthcare and essential services pull (report only)
