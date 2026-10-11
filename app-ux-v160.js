@@ -340,7 +340,7 @@ if(discover)observeLibrary.observe(discover,{childList:true});
   set('.ux-move-links [data-ux-scroll="v110CompareCard"]','↗ '+l.compare);
   set('.ux-departures-heading h2',l.departures);set('.ux-departures-heading p',l.transportCopy);
   set('#placesSection h2',l.nearbyEssentials);
-  set('[data-ux-go="money"]','⇄ '+l.moneyTools);set('[data-ux-go="saved"]','☆ '+l.savedTools);
+  set('[data-ux-go="money"]','⇄ '+l.moneyTools);set('.ux-move-links [data-ux-go="saved"]','☆ '+l.savedTools);
   set('[data-ux-nearby]',l.nearMe);
   for(const b of $('.ux-detail-button'))b.textContent=l.details;
   const empty=$('#uxSavedContent .ux-saved-empty');if(empty)empty.textContent=l.emptySaved;
