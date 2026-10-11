@@ -3,6 +3,9 @@
    Optional: --out=/tmp/content-coverage.json writes report for CI artifact upload. */
 import fs from 'node:fs';
 import {LOCALES} from '../lib/i18n-v280.mjs';
+import {MERLI_MESSAGE_KEYS,MERLI_MESSAGES} from '../lib/i18n-merli-replies-v315.mjs';
+import {APP_STATUS_KEYS,APP_STATUS} from '../lib/i18n-app-status-v315.mjs';
+import {SERVICE_NOTE_IDS,SERVICE_NOTE_PACK} from '../lib/i18n-service-safety-v315.mjs';
 import {CONTENT_TAXONOMY_KEYS,CONTENT_TAXONOMY} from '../lib/i18n-content-taxonomy-v310.mjs';
 import {LOCALIZED_FACTS,factTranslation} from '../lib/i18n-facts-v310.mjs';
 import {NATURE_FACTS} from '../lib/i18n-nature-v311.mjs';
@@ -34,6 +37,8 @@ const report={
  sourceCounts:{publishedVerifiedFacts:facts.length,appDescriptions:apps.length,dishDescriptions:dishes.length,stallNotes:stalls.length,discoverPlaces:discover.places.length},
  taxonomyDimensions:Object.fromEntries(dimensions.map(([name,values])=>[name,values.length])),
  taxonomySourceKeys:CONTENT_TAXONOMY_KEYS.length,
+ applicationMessageScope:{merliBuiltIn:MERLI_MESSAGE_KEYS.length,appDynamicStatuses:APP_STATUS_KEYS.length,sourceLockedHighRiskServices:SERVICE_NOTE_IDS.length,totalCoreApps:apps.length},
+ untranslatedDynamicSurfaces:['raw route advisor responses','weather and transport widget errors','remaining eligibility and publisher notes','long-form Merli responses not covered by built-in templates'],
  missingDefinitions,
  locales:{},
  translationPolicy:'Reviewed source-ID records and fixed taxonomy labels only; nontranslated descriptions remain in original English. Official names, addresses, links, prices and certification are never changed.'
@@ -50,6 +55,9 @@ for(const {code} of LOCALES){
   fallbackVerifiedFacts:code==='en'?0:facts.length-translatedFacts,
   taxonomyEntries:CONTENT_TAXONOMY_KEYS.length-missingTaxonomy.length,
   taxonomyMissing:missingTaxonomy,
+  builtInMerliReplies:Object.keys(MERLI_MESSAGES[code]||{}).length,
+  appStatusMessages:Object.keys(APP_STATUS[code]||{}).length,
+  sourceLockedServiceDisclosures:code==='en'?SERVICE_NOTE_IDS.length:SERVICE_NOTE_IDS.filter(id=>Boolean(SERVICE_NOTE_PACK[code]?.[id]?.notes&&SERVICE_NOTE_PACK[code]?.[id]?.accountNeeded)).length,
   pretranslatedAppSummaries:code==='en'?apps.length:translatedApps,
   fallbackAppSummaries:code==='en'?0:apps.length-translatedApps,
   pretranslatedDishDescriptions:code==='en'?dishes.length:translatedDishes,
