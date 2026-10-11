@@ -40,7 +40,7 @@ const captions={
  host.id='sgbOnDeviceTranslation';host.className='sgb-translation-option card';
  host.innerHTML='<button type="button" id="sgbEnableLocalTranslation"></button><button type="button" id="sgbShowOriginal" hidden></button><small id="sgbTranslationStatus" role="status"></small>';
  const action=host.querySelector('#sgbEnableLocalTranslation'),reverse=host.querySelector('#sgbShowOriginal'),status=host.querySelector('#sgbTranslationStatus');
- const library=doc.querySelector('#merliKnowledgeLibrary')||doc.getElementById('discoverHub');
+ const library=doc.getElementById('discoverHub');
  library?.appendChild(host);
  function update(){
   const l=lang(),local=cap();
