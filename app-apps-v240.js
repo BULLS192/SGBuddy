@@ -129,12 +129,21 @@ doc.addEventListener('sgbuddy:language',()=>{translateGuide();render()});
 Promise.all([
  fetch('/data/everyday-apps-v240.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('App directory unavailable');return r.json()}),
  fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{apps:[]}).catch(()=>({apps:[]})),
- fetch('/data/travel-essentials-v250.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{catalogue:[]}).catch(()=>({catalogue:[]}))
-]).then(([data,legacy,travel])=>{
+ fetch('/data/travel-essentials-v250.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{catalogue:[]}).catch(()=>({catalogue:[]})),
+ fetch('/data/dining-services-v261.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{additions:[],enhancements:[]}).catch(()=>({additions:[],enhancements:[]}))
+]).then(([data,legacy,travel,dining])=>{
  const valid=a=>a.id&&a.name&&safeUrl(a.sourceUrl)&&Array.isArray(a.modes);
  const original=Array.isArray(data.catalogue)?data.catalogue.filter(valid):[];
  const extra=Array.isArray(travel.catalogue)?travel.catalogue.filter(valid):[];
- apps=[...original,...extra];
+ const additions=Array.isArray(dining.additions)?dining.additions.filter(valid):[];
+ const enhancements=new Map((Array.isArray(dining.enhancements)?dining.enhancements:[]).filter(x=>x.id&&safeUrl(x.sourceUrl)).map(x=>[x.id,x]));
+ const known=new Set();
+ apps=[...original,...extra,...additions].filter(a=>{if(known.has(a.id))return false;known.add(a.id);return true})
+  .map(a=>{
+   const extra=enhancements.get(a.id);if(!extra)return a;
+   // Grab remains under Transport & mobility so its core ride function isn't lost.
+   return {...a,...extra,category:a.name==='Grab'?a.category:extra.category};
+  });
  const cats=[...new Set(apps.map(a=>a.category))].sort();
  $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
  migrateSaved(Array.isArray(legacy.apps)?legacy.apps:[]);
