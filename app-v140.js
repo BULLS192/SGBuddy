@@ -22,7 +22,7 @@ widget.innerHTML=
 '<header class="buddy-header">'+art+'<div><strong id="buddyTitle">Merli</strong><small id="merliPersonaNote">Your little Singapore buddy</small></div><button id="buddyClose" type="button" aria-label="Close Merli">×</button></header>'+
 '<div id="buddyReply" class="buddy-reply" role="status" aria-live="polite">Hi, I’m Merli! 🫶 Need a hand getting around or discovering Singapore?</div>'+
 '<div id="merliEvidence" class="merli-evidence" hidden><a id="merliSource" href="https://www.nea.gov.sg" target="_blank" rel="noopener noreferrer">Read official source ↗</a><button type="button" id="merliSaveFact" hidden>☆ Save this fact</button></div>'+
-'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button><button type="button" data-buddy-action="home">🏠 Saved place</button></div>'+
+'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="essentials">📚 Essentials</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button><button type="button" data-buddy-action="home">🏠 Saved place</button></div>'+
 '<form id="buddyAskForm"><input id="buddyAskInput" type="text" maxlength="160" autocomplete="off" aria-label="Ask Merli" placeholder="Ask Merli about Singapore…" /><button type="submit">Ask</button></form>'+
 '<p class="buddy-note">Merli uses SGBuddy data and checked sources, not generative AI. Live information may be delayed.</p></section>';
 document.body.appendChild(widget);
@@ -86,7 +86,7 @@ function factTip(){
 }
 function navigateDiscover(tab){
  navigateTo('places');const button=$('[data-discover-tab="'+tab+'"]');if(button)button.click();
- const label={eat:'food',do:'activities',shop:'shops',apps:'useful apps'}[tab];
+ const label={eat:'food',do:'activities',shop:'shops',apps:'useful apps',essentials:'libraries, community clubs and sports facilities'}[tab];
  say('I’ve opened '+label+' in Discover for your '+persona()+' mode. Check individual listings before visiting.','navigation');
 }
 function airReply(){
@@ -119,7 +119,7 @@ function act(a){
  if(a==='saved')return openFacts(true);
  if(a==='weather')return airReply();
  if(a==='transit')return say(askAdvisor?.('When is my next train?')||'Open Move for bus and MRT details.','navigation');
- if(['eat','do','shop','apps'].includes(a))return navigateDiscover(a);
+ if(['eat','do','shop','apps','essentials'].includes(a))return navigateDiscover(a);
 }
 widget.addEventListener('click',e=>{
  const action=e.target.closest('[data-buddy-action]');if(action)act(action.dataset.buddyAction);
@@ -144,6 +144,7 @@ $('#buddyAskForm').addEventListener('submit',e=>{
  else if(/food|eat|hawker|restaurant|hungry|lunch|dinner/.test(q))act('eat');
  else if(/shop|mall|market|buy/.test(q))act('shop');
  else if(/\bapp|download/.test(q))act('apps');
+ else if(/library|libraries|community club|sports centre|sports center|public pool|swimming pool|gymnasium/.test(q))act('essentials');
  else if(/fact|history|did you know|surprise|interesting|tell me something/.test(q))act('fact');
  else if(/visit|tour|attraction|museum|park|see|activity/.test(q))act('do');
  else say('Try asking about bus and MRT timing, Singapore facts, favourite places, air quality, things to do or where to eat.');
