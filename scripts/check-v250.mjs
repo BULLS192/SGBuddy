@@ -41,7 +41,7 @@ assert.ok(apps.includes('translated(a,')&&apps.includes('sgbuddy:language'),'App
 assert.ok(discover.includes("['travel','Travel prep']")&&discover.includes("'travelEssentials'"),'Discover tab not wired');
 assert.ok(nav.includes("tab==='travel'"),'Legacy Discover list must hide when Travel Prep shown');
 assert.ok(boot.includes("import('/app-travel-v250.js')")&&/2\.(5|6)\.[0-9]+/.test(boot),'Travel module not loaded');
-assert.ok(html.includes('travel-v250.css')&&/v2\.(5|6)\.0/.test(html),'CSS or version missing');
+assert.ok(html.includes('travel-v250.css')&&/v2\.(5|6)\.[0-9]+/.test(html),'CSS or version missing');
 for(const asset of ['/app-travel-v250.js','/travel-v250.css','/data/travel-essentials-v250.json'])assert.ok(sw.includes(asset),'PWA cache missing '+asset);
 assert.ok(/sgbuddy-shell-v5[2-9]/.test(sw),'PWA cache must refresh');
 for(const sel of ['[hidden]','data-ux-theme="light"','focus-visible','max-width:480px'])assert.ok(css.includes(sel),'Missing visual/accessible state '+sel);
