@@ -1,0 +1,33 @@
+name: Build SGBuddy Official Source Library
+on:
+  push:
+    branches: [feature/sgbuddy-v2-library-at-scale]
+    paths:
+      - 'scripts/build-official-library.mjs'
+      - '.github/workflows/library-build-v200.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/sgbuddy-v2-library-at-scale
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Import official geospatial datasets
+        run: node scripts/build-official-library.mjs
+      - name: Commit reviewed-source snapshot to development branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/official-places-v200.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(library): refresh official-source venue snapshot"
+            git push origin HEAD:feature/sgbuddy-v2-library-at-scale
+          fi
