@@ -1,3 +1,5 @@
+import {shellLocale} from './lib/i18n-shell-v281.mjs';
+import {TRAVEL_UI} from './lib/i18n-v280.mjs';
 /* SGBuddy UX Waves 1–3 — progressive enhancement over the V1.4 product. */
 (()=>{
 'use strict';
@@ -288,7 +290,7 @@ function decorateCurated(){
  const title=card.querySelector('h3')?.textContent||'';
  const row=catalog.places.find(p=>p.name===title);
  if(!row)return;
- const button=document.createElement('button');button.className='ux-detail-button';button.type='button';button.dataset.uxDetailCurated=row.id;button.textContent='Details';
+ const button=document.createElement('button');button.className='ux-detail-button';button.type='button';button.dataset.uxDetailCurated=row.id;button.textContent=shellLocale(window.SGBUDDY_LANGUAGE).details;
  (card.querySelector('.discover-actions')||card).appendChild(button);
  });
 }
@@ -308,7 +310,7 @@ function renderSaved(){
  for(const id of index){if(!id.startsWith('INDEX:'))continue;const source=(core.state.v110Places||[]).find(p=>placeIndexKey(p.name)===id);
  rows.push({kind:'index',id:source?.name||id.slice(6),name:source?.name||id.slice(6),note:source?.category||'Saved nearby place'});
  }
- el.innerHTML=rows.length?rows.map(r=>'<article class="ux-saved-item card"><strong>'+esc(r.name)+'</strong><small>'+esc(r.note)+'</small><button type="button" data-ux-open-saved="'+esc(r.kind)+'" data-ux-saved-id="'+esc(r.id)+'">Open details →</button></article>').join(''):'<div class="ux-saved-empty">Nothing saved yet. Use the ☆ icons in Explore or Near me to create your collection.</div>';
+ el.innerHTML=rows.length?rows.map(r=>'<article class="ux-saved-item card"><strong>'+esc(r.name)+'</strong><small>'+esc(r.note)+'</small><button type="button" data-ux-open-saved="'+esc(r.kind)+'" data-ux-saved-id="'+esc(r.id)+'">Open details →</button></article>').join(''):'<div class="ux-saved-empty">'+esc(shellLocale(window.SGBUDDY_LANGUAGE).emptySaved)+'</div>';
 }
 document.addEventListener('sgbuddy:knowledge-saved',renderSaved);
 document.addEventListener('sgbuddy:persona',()=>{renderSaved();syncKnowledge()});
@@ -316,6 +318,39 @@ window.addEventListener('storage',e=>{if([savedKey,discoverKey].includes(e.key))
 // When Merli's library arrives after its source-linked fetch, retain one facts result surface.
 const observeLibrary=new MutationObserver(()=>syncKnowledge());
 if(discover)observeLibrary.observe(discover,{childList:true});
+
+ // Scope: translate interface labels, never source-owned place names or live measurements.
+ function translateShell(){
+  const language=window.SGBUDDY_LANGUAGE||'en',l=shellLocale(language);
+  const set=(query,text)=>{const e=$(query);if(e&&typeof text==='string')e.textContent=text};
+  set('.ux-home-title h2',l.homeTitle);set('.ux-home-title p',l.homeCopy);
+  for(const [target,keys] of Object.entries({move:['planTrip','routes'],eat:['findFood','foodSubtitle'],nearby:['nearMe','nearSubtitle'],places:['explore','discoverSubtitle'],saved:['savedTools','savedCopy']})){
+   const b=$('.ux-primary-shortcuts [data-ux-go="'+target+'"]');
+   if(b){if(b.querySelector('strong'))b.querySelector('strong').textContent=l[keys[0]];if(b.querySelector('small'))b.querySelector('small').textContent=l[keys[1]];}
+  }
+  set('#uxViewConditions',l.fullConditions);
+  set('.ux-saved-header h2',l.savedTitle);set('.ux-saved-header p',l.savedCopy);
+  set('#uxSavedView > section.card:nth-of-type(1) .label',l.favourites);set('#uxSavedView > section.card:nth-of-type(1) h3',l.savedTopics);
+  set('#uxSavedView > section.card:nth-of-type(2) .label',l.journeys);set('#uxSavedView > section.card:nth-of-type(2) p',l.savedTransport);
+  set('#uxSavedView [data-ux-go="move"]',l.openDepartures);
+  set('.ux-move-intro h2',l.moveTitle);set('.ux-move-intro p:not(#uxPersonaJourney)',l.moveCopy);
+  set('#travelSection .planner-title-row h3',l.whereGoing);
+  set('.ux-move-links [data-ux-scroll="transportSection"]','🚇 '+l.trains);
+  set('.ux-move-links [data-ux-scroll="cardsView"]','🚌 '+l.buses);
+  set('.ux-move-links [data-ux-scroll="v110CompareCard"]','↗ '+l.compare);
+  set('.ux-departures-heading h2',l.departures);set('.ux-departures-heading p',l.transportCopy);
+  set('#placesSection h2',l.nearbyEssentials);
+  set('[data-ux-go="money"]','⇄ '+l.moneyTools);set('[data-ux-go="saved"]','☆ '+l.savedTools);
+  set('[data-ux-nearby]',l.nearMe);
+  for(const b of $('.ux-detail-button'))b.textContent=l.details;
+  const empty=$('#uxSavedContent .ux-saved-empty');if(empty)empty.textContent=l.emptySaved;
+  let note=$('#uxLocaleCoverage');
+  if(!note){note=document.createElement('p');note.id='uxLocaleCoverage';note.className='ux-locale-coverage';$('.ux-home-title')?.appendChild(note);}
+  if(note){note.hidden=language==='en';note.textContent=language==='zh-CN'?'部分旧有地点、交通及实时资讯仍是英文。':TRAVEL_UI[language]?.legacy||'Some live data and older listings remain in English.';}
+ }
+ document.addEventListener('sgbuddy:language',()=>{translateShell();renderSaved()});
+ document.addEventListener('sgbuddy:persona',()=>queueMicrotask(translateShell));
+ translateShell();
 activeNav('today');
 window.__SGBUDDY_UX_WAVES__='1-3';
 })();
