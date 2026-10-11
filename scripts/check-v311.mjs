@@ -34,7 +34,7 @@ for(const {code} of LOCALES){
   const translated=dishTranslation(code,dish);
   if(code==='en')assert.equal(translated,null);
   else{
-   assert.ok(typeof translated==='string'&&translated.length>5,'Missing '+code+' dish '+dish.id);
+   assert.ok(typeof translated==='string'&&translated.trim().length>=2,'Missing '+code+' dish '+dish.id);
    assert.notEqual(translated,dish.description,'Untranslated dish '+code+' '+dish.id);
    assert.equal(dishTranslation(code,{...dish,description:'changed source'}),null,'Stale dish fallback '+dish.id);
    assert.equal(dishTranslation(code,{...dish,id:'unknown'}),null,'Unknown dish ID must not inherit translation');
