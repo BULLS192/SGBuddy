@@ -29,5 +29,7 @@ jobs:
           git add data/official-places-v200.json
           if ! git diff --cached --quiet; then
             git commit -m "data(library): refresh official-source venue snapshot"
+            git fetch origin feature/sgbuddy-v2-library-at-scale
+            git rebase origin/feature/sgbuddy-v2-library-at-scale
             git push origin HEAD:feature/sgbuddy-v2-library-at-scale
           fi
