@@ -26,7 +26,7 @@ const historical=svc.places.filter(p=>p.category==='Supermarket (historical lice
 assert.ok(historical.length>=470);
 assert.ok(historical.every(p=>p.operatingStatus==='unverified'&&p.lat===null&&p.lon===null),'Never invent current status or GIS for historical licences');
 assert.ok(svc.places.filter(p=>p.category==='CHAS clinic').every(p=>p.operatingStatus==='unverified'),'Do not assert clinic current participation');
-for(const str of ['data/operator-listings-v220.json','operator-listed','Supermarket (historical licence)','sourceFilter===\\'operator\\'','current CHAS locator','sourceCoverageAsOf','sourceCheckedOn'])assert.ok(app.includes(str),'Discover trust UI missing '+str);
+for(const str of ['data/operator-listings-v220.json','operator-listed','Supermarket (historical licence)',"sourceFilter==='operator'",'current CHAS locator','sourceCoverageAsOf','sourceCheckedOn'])assert.ok(app.includes(str),'Discover trust UI missing '+str);
 assert.ok(app.includes("liveBrandPostal.has('shengsiong|'"),'Retired Sheng Siong licence branch collision must be suppressed');
 assert.ok(food.includes('Menu-published branch:')&&food.includes('locationSpecific&&x.venueAddress'),'Vendor menu branch applicability disclaimer missing');
 const chiew=menu.items.filter(m=>m.vendor==='Chiew Kee Soya Sauce Chicken');
