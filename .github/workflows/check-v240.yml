@@ -1,0 +1,40 @@
+name: SGBuddy V2.4 Everyday Apps Library QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.4-everyday-apps-library]
+  pull_request:
+    paths:
+      - 'data/everyday-apps-v240.json'
+      - 'app-apps-v240.js'
+      - 'everyday-apps-v240.css'
+      - 'app-v090.js'
+      - 'app-v120.js'
+      - 'scripts/check-v240.mjs'
+      - 'scripts/apps-quality-v240.mjs'
+      - 'scripts/check-all.mjs'
+      - 'sw.js'
+      - 'index.html'
+      - '.github/workflows/check-v240.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate all SGBuddy waves
+        run: npm run check
+      - name: Upload app and publisher-link review queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-v240-app-library-review
+          path: |
+            reports/apps-quality-v240.json
+            reports/apps-quality-v240.md
+            reports/apps-review-v240.csv
+          retention-days: 30
