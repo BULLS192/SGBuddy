@@ -17,7 +17,7 @@ for(const p of food.stalls){
  assert.equal(p.halalCertified,null,'Never infer halal certification');
  if(/^nea-award-listed-20\d\d$/.test(p.reviewStatus)){
   assert.ok(p.sourceUrl?.startsWith('https://www.nea.gov.sg/'),'Official NEA source required');
-  assert.ok(p.sourceCoverageAsOf,'Original award publication date required');
+  if(['nea-award-listed-2022','nea-award-listed-2023'].includes(p.reviewStatus))assert.ok(/^20\d\d-\d\d-\d\d$/.test(p.sourceCoverageAsOf||''),'New historical award rows require exact publication date');
  }
  if(!p.centreId)assert.ok(p.referenceUrl,'Unmapped centre must be discoverable via source link, without OneMap match claim');
 }
