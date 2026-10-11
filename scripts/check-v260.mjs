@@ -32,7 +32,8 @@ const bad=hydrate({activeId:'bogus',trips:[null,{name:'bad',startDate:'yesterday
 assert.ok(bad.trips.length<=MAX_TRIPS,'Hydration should cap trips');
 assert.equal(hydrate({activeId:'bad',trips:[{name:'bogus',startDate:'not-date',days:[[]]}]}).activeId,null);
 const ui=read('app-trip-v260.js'),dis=read('app-v120.js'),travel=read('app-travel-v250.js'),ux=read('app-ux-v160.js'),html=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js'),css=read('trip-v260.css');
-for(const s of ['sgbuddy:trip-add-place','sgbuddy:discover-places-ready','sgbuddy:discover-tab','sgbuddy:language','tripCreateForm','tripCustomForm','tripShare','tripDownload','tripDelete','data-trip-time','data-trip-note','data-trip-day','data-trip-transfer',STORE_KEY])assert.ok(ui.includes(s),'Missing My Trip integration '+s);
+for(const s of ['sgbuddy:trip-add-place','sgbuddy:discover-places-ready','sgbuddy:discover-tab','sgbuddy:language','tripCreateForm','tripCustomForm','tripShare','tripDownload','tripDelete','data-trip-time','data-trip-note','data-trip-day','data-trip-transfer'])assert.ok(ui.includes(s),'Missing My Trip integration '+s);
+assert.equal(STORE_KEY,'sgbuddy-my-trips-v260');
 assert.ok(dis.includes("['trip','My Trip']")&&dis.includes('data-trip-add-place')&&dis.includes('myTripPlanner')&&dis.includes('sgbuddy:discover-places-ready'),'Discover integration incomplete');
 assert.ok(ux.includes("tab==='trip'"),'Legacy Explore results must hide');
 assert.ok(travel.includes("trip:'My Trip'")&&travel.includes("trip:'我的行程'")&&travel.includes('data-travel-trip'),'Travel Prep not integrated');
