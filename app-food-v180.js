@@ -6,12 +6,12 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
 const key='sgbuddy-stall-saved-v1';
 let saved=new Set();try{const arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr))saved=new Set(arr.filter(x=>typeof x==='string').slice(0,300))}catch{}
-let stalls=[],dishes=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',term='',onlySaved=false,limit=16,initialised=false;
+let stalls=[],dishes=[],menus=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',term='',onlySaved=false,limit=16,initialised=false;
 const host=$('#discoverHub');if(!host)return;
 const sec=document.createElement('section');sec.id='foodExplorer';sec.className='card food-explorer';sec.hidden=true;
 sec.innerHTML='<div class="label">SGBUDDY FOOD LIBRARY</div><h3>What shall we eat?</h3>'+
 '<p class="food-note">Explore Singapore dishes and hawker-stall research leads. Stall operating status, opening hours, menu prices, halal certification and vegetarian options are <strong>not verified</strong>. Verify halal certification against <a href="https://halal.muis.gov.sg/halal/establishments" target="_blank" rel="noopener noreferrer">MUIS’s official directory ↗</a>.</p>'+
-'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button></div>'+
+'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button><button type="button" data-food-view="menus" aria-pressed="false">Vendor-listed menus</button></div>'+
 '<div class="food-controls"><input id="foodSearch" type="search" placeholder="Search stall, dish or hawker centre" aria-label="Search the food library"/>'+
 '<select id="foodArea" aria-label="Filter food by area"><option value="all">All areas</option></select>'+
 '<select id="foodCuisine" aria-label="Filter by cuisine"><option value="all">All cuisines</option></select>'+
@@ -40,25 +40,33 @@ function cardDish(x){
  '<p>'+esc(x.description)+'</p><p class="food-warning">Dish guide only: vendors, ingredients, allergens, prices and certification vary.</p>'+
  '<button type="button" data-search-dish="'+esc(x.name)+'">Find stall leads for this dish ↗</button></article>';
 }
+function cardMenu(x){
+ const link=allowedUrl(x.sourceUrl),price=x.priceSgd!=null?' · Published SGD $'+Number(x.priceSgd).toFixed(2):' · Price unlisted';
+ return '<article class="card food-stall"><div class="label">'+esc(x.vendor)+' · first-party listing</div><h4>'+esc(x.name)+'</h4>'+
+  '<p>Listed '+esc(x.observedOn)+price+'</p>'+
+  '<p class="food-warning">Availability, dietary details and current price are not confirmed. A vendor-listed item is not necessarily a hawker stall.</p>'+
+  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Original vendor menu ↗</a>':'')+'</article>';
+}
 function render(){
  if(!initialised)return;
  const q=term.trim().toLowerCase();
- const rows=tab==='stalls'?stalls.filter(x=>
+ const rows=tab==='menus'?menus.filter(x=>!q||(x.name+' '+x.vendor).toLowerCase().includes(q)):tab==='stalls'?stalls.filter(x=>
   (area==='all'||x.area===area)&&(cuisine==='all'||x.cuisine===cuisine)&&
   (meal==='all'||x.meal===meal)&&(dish==='all'||(x.dishes||[]).includes(dish))&&
   (!onlySaved||saved.has(x.id))&&
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
   (meal==='all'||x.meal===meal)&&(!q||(x.name+' '+x.cuisine+' '+x.description).toLowerCase().includes(q)));
- $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':'Singapore food and drink styles')+' · '+Math.min(rows.length,limit)+' shown';
- $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
+ $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':tab==='dishes'?'Singapore food and drink styles':'vendor-published menu items, not live availability')+' · '+Math.min(rows.length,limit)+' shown';
+ $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
  $('#foodLoadMore').hidden=rows.length<=limit;
  $('#foodSavedOnly').closest('label').hidden=tab!=='stalls';
  $('#foodArea').hidden=tab!=='stalls';
  $('#foodDish').hidden=tab!=='stalls';
+ $('#foodCuisine').hidden=tab==='menus';$('#foodMeal').hidden=tab==='menus';
 }
 function setView(next){
- tab=next==='dishes'?'dishes':'stalls';limit=16;
+ tab=['stalls','dishes','menus'].includes(next)?next:'stalls';limit=16;
  for(const x of sec.querySelectorAll('[data-food-view]'))x.setAttribute('aria-pressed',String(x.dataset.foodView===tab));
  $('#foodCuisine').value='all';cuisine='all';$('#foodMeal').value='all';meal='all';$('#foodDish').value='all';dish='all';
  render();
@@ -95,10 +103,12 @@ document.addEventListener('sgbuddy:discover-tab',e=>{sec.hidden=e.detail.tab!=='
 const eat=$('[data-discover-tab="eat"]');sec.hidden=!eat||eat.getAttribute('aria-selected')!=='true';
 Promise.all([
  fetch('/data/food-stalls-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('stalls unavailable');return r.json()}),
- fetch('/data/singapore-dishes-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('dish guide unavailable');return r.json()})
-]).then(([a,b])=>{
+ fetch('/data/singapore-dishes-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('dish guide unavailable');return r.json()}),
+ fetch('/data/vendor-menus-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]}))
+]).then(([a,b,c])=>{
  stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>['research-candidate','nea-award-listed-2025'].includes(x.reviewStatus)):[];
  dishes=Array.isArray(b.dishes)?b.dishes:[];
+ menus=Array.isArray(c.items)?c.items.filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl)):[];
  options('#foodArea',[...new Set(stalls.map(x=>x.area))]);
  options('#foodCuisine',[...new Set([...stalls,...dishes].map(x=>x.cuisine))]);
  options('#foodMeal',[...new Set([...stalls,...dishes].map(x=>x.meal))]);
