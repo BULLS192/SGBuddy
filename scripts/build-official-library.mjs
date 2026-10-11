@@ -88,7 +88,7 @@ function record(p,f,d,sourceRow){
  const status=getField(p,'STATUS');
  return {
   id:'SGO-'+digest,
-  name,kind:d.kind,kinds:[d.kind],area:road||'Singapore',category:d.label,
+  name,kind:d.kind,kinds:[d.kind],area:'Singapore',street:road||null,category:d.label,
   modes:d.mode,lat:Number(location.lat.toFixed(7)),lon:Number(location.lon.toFixed(7)),
   address:address||null,postal:/^\d{6}$/.test(postal)?postal:null,
   sourceDatasetId:d.id,sourceAgency:d.agency,sourceRecordId:sourceId,
