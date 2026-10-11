@@ -1,7 +1,7 @@
 /* SGBuddy V2.5 — accessible bilingual Travel Prep, dark and light palettes */
 #travelEssentials[hidden],#everydayApps[hidden],.discover-search-row[hidden],#discoverQuality[hidden],#discoverStatus[hidden]{display:none!important}
 .sgb-language-picker{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:.77rem;color:var(--muted,#b9c9d7)}
-.sgb-language-picker select{max-width:115px;min-height:38px;border-radius:10px;border:1px solid rgba(142,176,204,.42);background:var(--card,#123048);color:inherit;padding:6px 7px;font:inherit;font-size:.84rem;cursor:pointer}
+.sgb-language-picker select{max-width:190px;min-width:120px;min-height:38px;border-radius:10px;border:1px solid rgba(142,176,204,.42);background:var(--card,#123048);color:inherit;padding:6px 7px;font:inherit;font-size:.84rem;cursor:pointer}
 .travel-essentials-v250{min-width:0;padding:22px!important;margin-bottom:20px}
 .travel-prep-head h3{font-size:clamp(1.45rem,3vw,2.1rem);letter-spacing:-.02em;line-height:1.22;margin:7px 0 10px}
 .travel-prep-head p{color:var(--muted,#b8c9d7);max-width:72ch;line-height:1.55;margin:0 0 18px}
@@ -29,6 +29,6 @@ html[data-ux-theme="light"] .travel-prep-card a{color:#145a86}
 html[data-ux-theme="light"] .travel-prep-sections button{background:#edf6f6;color:#155b54;border-color:#bbd9d5}
 html[data-ux-theme="light"] .travel-prep-sections button[aria-pressed="true"]{background:#11665e;color:white;border-color:#11665e}
 html[data-ux-theme="light"] .travel-prep-checklist{background:#f4f9fb;border-color:#d1e0e9}
-@media(max-width:760px){.sgb-language-picker>span{display:none}.sgb-language-picker select{max-width:92px}.travel-essentials-v250{padding:16px!important}}
-@media(max-width:480px){.sgb-language-picker select{max-width:85px;min-height:36px;font-size:.75rem;padding:5px}.travel-prep-grid{grid-template-columns:1fr}.travel-prep-checks{grid-template-columns:1fr}}
+@media(max-width:760px){.sgb-language-picker>span{display:none}.sgb-language-picker select{max-width:146px;min-width:116px}.travel-essentials-v250{padding:16px!important}}
+@media(max-width:480px){.sgb-language-picker select{max-width:138px;min-width:112px;min-height:36px;font-size:.75rem;padding:5px}.travel-prep-grid{grid-template-columns:1fr}.travel-prep-checks{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.travel-essentials-v250 *{transition:none!important}}
