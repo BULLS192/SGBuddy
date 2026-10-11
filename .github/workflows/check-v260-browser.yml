@@ -1,0 +1,39 @@
+name: SGBuddy V2.6 My Trip Browser QA
+on:
+  pull_request:
+    paths:
+      - 'app-trip-v260.js'
+      - 'lib/trip-v260.mjs'
+      - 'app-v120.js'
+      - 'app-ux-v160.js'
+      - 'app-travel-v250.js'
+      - 'trip-v260.css'
+      - 'scripts/browser-qa-v260.mjs'
+      - '.github/workflows/check-v260-browser.yml'
+  push:
+    branches: [feature/sgbuddy-v2.6-my-trip]
+permissions:
+  contents: read
+jobs:
+  my-trip-chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test itinerary model
+        run: node scripts/check-v260.mjs
+      - name: Install Chromium test tools
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local SGBuddy
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-http.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-http.log
+          exit 1
+      - name: Test interactive itinerary flows
+        run: node scripts/browser-qa-v260.mjs
