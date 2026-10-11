@@ -1,6 +1,7 @@
 /* SGBuddy food exploration: stall leads + dish vocabulary, no unverified claims as facts. */
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {dishTranslation} from './lib/i18n-dishes-v311.mjs';
+import {stallNoteTranslation} from './lib/i18n-stall-notes-v311.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const locale=()=>window.SGBUDDY_LANGUAGE||'en';
@@ -32,9 +33,10 @@ function options(selector,values){
 }
 function cardStall(x){
  const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),guide=x.reviewStatus==='guide-listed-2026',roundup=x.reviewStatus==='cna-guide-2026',award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
+ const translatedWarning=stallNoteTranslation(locale(),x);
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
  '<p>'+(guide?'MICHELIN 2026 address listing':roundup?'2026 guide selection (centre named; stall unit unknown)':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning">'+(guide?'2026 guide-listed name and address; trading today and current menu unverified':roundup?'2026 guide list; centre from CNA; exact stall number and current operation not confirmed':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
+ '<p class="food-warning"'+(translatedWarning?' data-content-localized="true"':'')+'>'+esc(translatedWarning||((guide?'2026 guide-listed name and address; trading today and current menu unverified':roundup?'2026 guide list; centre from CNA; exact stall number and current operation not confirmed':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown'))+'</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':roundup?'CNA 2026 selection':'NEA historical award')+' ↗</a>':'')+
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
