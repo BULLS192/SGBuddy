@@ -18,7 +18,7 @@ assert.equal(Object.keys(STALL_NOTE_SOURCE).length,93,'Source-locked research no
 assert.equal(STALL_NOTE_KEYS.length,5,'Expected five unique historic research disclosures');
 for(const x of stalls)assert.equal(STALL_NOTE_SOURCE[x.id],x.notes,'Stall source note changed: '+x.id);
 assert.equal(Object.keys(NATURE_FACTS).length,16,'Expected 16 newly translated nature facts');
-assert.equal(translatedFactCount,38,'Verified fact coverage should advance to 38 with source-locked water records');
+assert.equal(translatedFactCount,152,'All 152 verified facts must be represented in source-locked packs');
 assert.equal(Object.keys(LOCALIZED_FACTS).length,10,'Keep existing 10 source-verified translations intact');
 assert.equal(new Set(Object.keys(NATURE_FACTS).concat(Object.keys(LOCALIZED_FACTS))).size,26,'No duplicate source IDs');
 for(const row of dishes)assert.equal(DISH_SOURCE_DESCRIPTIONS[row.id],row.description,'Dish source changed: '+row.id);
