@@ -1,0 +1,38 @@
+name: SGBuddy V2.9 Multi-language UI Coverage
+on:
+  push:
+    branches: [feature/sgbuddy-v2.9-broad-localization]
+  pull_request:
+    paths:
+      - 'lib/i18n-interface-v290.mjs'
+      - 'app-i18n-v290.js'
+      - 'app-v090.js'
+      - 'sw.js'
+      - 'scripts/check-v290.mjs'
+      - 'scripts/browser-qa-v290.mjs'
+      - '.github/workflows/check-v290-browser.yml'
+permissions:
+  contents: read
+jobs:
+  multilingual-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run full regression suite
+        run: npm run check
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-i18n-v290.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-i18n-v290.log
+          exit 1
+      - name: Validate twelve-language interface in browser
+        run: node scripts/browser-qa-v290.mjs
