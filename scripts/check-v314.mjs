@@ -20,7 +20,7 @@ for(const app of combined){
  }
 }
 for(const {code} of LOCALES){
- assert.equal(Object.keys(EXTRA_APP_LOCALIZED[code]||{}).length,10,'Missing '+code+' app descriptions');
+ assert.equal(Object.keys(EXTRA_APP_LOCALIZED[code]||{}).length,code==='en'?0:10,'Missing '+code+' app descriptions');
  for(const app of combined){
   for(const field of ['summary','purpose']){
    const localized=appContentTranslation(code,app,field);
