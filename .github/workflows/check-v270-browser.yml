@@ -1,0 +1,38 @@
+name: SGBuddy V2.7 Share Links QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.7-trip-sharing]
+  pull_request:
+    paths:
+      - 'app-share-v270.js'
+      - 'app-trip-v260.js'
+      - 'lib/trip-share-v270.mjs'
+      - 'trip-share-v270.css'
+      - 'scripts/browser-qa-v270.mjs'
+      - 'scripts/check-v270.mjs'
+      - '.github/workflows/check-v270-browser.yml'
+permissions:
+  contents: read
+jobs:
+  share-chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate share links and file format
+        run: node scripts/check-v270.mjs
+      - name: Install browser dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve SGBuddy locally
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v270-http.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v270-http.log
+          exit 1
+      - name: Exercise sharing and cross-device import
+        run: node scripts/browser-qa-v270.mjs
