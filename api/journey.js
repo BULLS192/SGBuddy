@@ -3,6 +3,8 @@ import { planJourney, searchJourneyPlaces, compareJourneyModes } from '../lib/jo
 import { listPersonaPlaces } from '../lib/catalog-db.js';
 import { searchSingaporeAddresses, hasOneMapCredentials } from '../lib/onemap.js';
 
+import {handleDiscoverAddress} from '../lib/discover-address-endpoint.js';
+
 const etaCache=new Map();
 const ETA_TTL=5*60*1000;
 async function pool(items,limit,worker){
@@ -37,6 +39,8 @@ export default async function handler(req,res){
       return res.status(r.ok?200:r.status).json(p);
     }catch(error){return res.status(502).json({ok:false,error:error.message||'Place sync unavailable'})}
   }
+
+  if(action==='discover-address')return handleDiscoverAddress(req,res);
 
   if(!hasLtaKey()) return res.status(503).json({error:'LTA data is not configured',code:'NO_LTA_KEY'});
 

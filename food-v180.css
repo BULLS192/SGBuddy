@@ -1,0 +1,24 @@
+/* SGBuddy V1.8 food library and OneMap address checks */
+.food-explorer{margin:14px 0 22px;padding:20px!important}
+.food-explorer h3{font-size:1.4rem;margin:6px 0 10px}
+.food-note,.food-warning,.discover-address-note{font-size:12px;line-height:1.5;color:var(--muted,#9db0be)}
+.food-view-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 12px}
+.food-view-tabs button,.food-card-actions button,.food-stall>button{border-radius:11px;background:#163b54;color:#e6f6ff;border:1px solid #4c7592;padding:9px 11px;cursor:pointer}
+.food-view-tabs button[aria-pressed="true"]{background:#c2e9ff;color:#092d46;font-weight:700}
+.food-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(165px,100%),1fr));gap:9px;margin:10px 0}
+.food-controls input,.food-controls select{padding:9px;width:100%;max-width:100%;border:1px solid #5c8195;border-radius:10px;min-height:40px}
+.food-controls .food-saved{display:flex;gap:7px;align-items:center;min-height:40px;font-size:12px}
+.food-controls .food-saved input{width:auto;min-height:auto}
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(255px,100%),1fr));gap:10px}
+.food-stall{padding:16px!important;margin:0;min-width:0;display:flex;flex-direction:column;gap:8px}
+.food-stall h4{font-size:1.05rem;margin:0}.food-stall p{margin:0;font-size:12px;line-height:1.55}
+.food-card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.food-card-actions a{color:#94dcff;font-size:12px}.food-card-actions button{font-size:12px}
+.food-stall .food-address{font-size:11px;color:#acddf9}
+#foodLoadMore{margin:16px auto 0;display:block}#foodLoadMore[hidden],#foodExplorer[hidden]{display:none!important}
+.food-count{font-size:12px;color:var(--muted,#9db0be);margin:8px 0 12px}
+.discover-actions button[data-verify-address]{font-size:12px}
+.discover-address-result{margin-top:9px}.discover-address-note{margin:2px 0}
+.discover-address-result a{color:#93d8ff;font-size:12px}
+@media(max-width:560px){.food-explorer{padding:12px!important}.food-controls{grid-template-columns:1fr 1fr}.food-controls #foodSearch{grid-column:1/-1}.food-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.food-explorer *{animation:none!important;transition:none!important}}

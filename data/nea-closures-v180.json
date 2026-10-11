@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-10",
+  "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/overview",
+  "note": "Official NEA closure-schedule snapshot, not a live closure API. Centre names aligned editorially to SGBuddy place IDs; confirm published dates before travel.",
+  "closures": [
+    {
+      "centreId": "SGP-1022",
+      "name": "Bukit Timah Market & Food Centre",
+      "start": "2024-10-01",
+      "end": "2029-12-31",
+      "reason": "Redevelopment (tentative reopening timing)"
+    },
+    {
+      "centreId": "SGP-1069",
+      "name": "Kim Keat Palm Market & Food Centre",
+      "start": "2026-09-14",
+      "end": "2026-12-13",
+      "reason": "Repairs and redecoration"
+    },
+    {
+      "centreId": "SGP-1025",
+      "name": "Clementi West Street 2 Market & Food Centre",
+      "start": "2026-09-14",
+      "end": "2026-12-27",
+      "reason": "Repairs and redecoration"
+    },
+    {
+      "centreId": "SGP-0017",
+      "name": "Changi Village Hawker Centre",
+      "start": "2026-10-01",
+      "end": "2026-10-15",
+      "reason": "Repairs and redecoration"
+    }
+  ]
+}

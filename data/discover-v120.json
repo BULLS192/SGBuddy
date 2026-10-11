@@ -4681,6 +4681,78 @@
         "Shop"
       ],
       "editorialNote": "Directory candidate; name and venue existence need individual validation. Verify exact address, opening hours, prices and current operations before use."
+    },
+    {
+      "id": "SGP-2267",
+      "name": "Ghim Moh Market & Food Centre",
+      "kind": "Eat",
+      "area": "Queenstown",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "The NEA 2025 awards list mentions a stall in this hawker centre. This is historic evidence, not a live venue-status confirmation."
+    },
+    {
+      "id": "SGP-2268",
+      "name": "Bedok 538 Market & Food Centre",
+      "kind": "Eat",
+      "area": "Bedok",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "The NEA 2025 awards list mentions a stall in this hawker centre. This is historic evidence, not a live venue-status confirmation."
+    },
+    {
+      "id": "SGP-2269",
+      "name": "Tanjong Pagar Plaza Market & Food Centre",
+      "kind": "Eat",
+      "area": "Tanjong Pagar",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "The NEA 2025 awards list mentions a stall in this hawker centre. This is historic evidence, not a live venue-status confirmation."
+    },
+    {
+      "id": "SGP-2270",
+      "name": "Kampung Admiralty Hawker Centre",
+      "kind": "Eat",
+      "area": "Woodlands",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
+      "status": "curated-preview",
+      "kinds": [
+        "Eat"
+      ],
+      "editorialNote": "The NEA 2025 awards list mentions a stall in this hawker centre. This is historic evidence, not a live venue-status confirmation."
     }
   ],
   "apps": [

@@ -1886,5 +1886,447 @@
     "reviewMethod": "primary-source-check",
     "verifiedOn": "2026-10-10",
     "evidenceNote": "NParks parks: Bedok Town Park cycling"
+  },
+  {
+    "id": "FACT-HAW-001",
+    "theme": "Hawker heritage",
+    "text": "NEA and the National Heritage Board jointly researched the heritage of 12 selected hawker centres.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA official page: 12 selected centres"
+  },
+  {
+    "id": "FACT-HAW-002",
+    "theme": "Hawker heritage",
+    "text": "Adam Food Centre was a popular lunchtime stop for on-duty policemen in the 1980s.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage snippet: Adam Food Centre 1980s"
+  },
+  {
+    "id": "FACT-HAW-003",
+    "theme": "Hawker heritage",
+    "text": "Blocks 2 and 3 Changi Village Road were built during Changi Village estate redevelopment.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage snippet: Changi Village Road redevelopment"
+  },
+  {
+    "id": "FACT-HAW-004",
+    "theme": "Hawker heritage",
+    "text": "Chinatown Complex Market was built in 1981 to house Chinatown's remaining street hawkers.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage snippet: Chinatown Complex 1981"
+  },
+  {
+    "id": "FACT-HAW-005",
+    "theme": "Hawker heritage",
+    "text": "NEA describes Chinatown Complex Market as having around 700 stalls.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage: approximate 700 stall count"
+  },
+  {
+    "id": "FACT-HAW-006",
+    "theme": "Hawker heritage",
+    "text": "The Chinese name tek kah for Tekka reflects wild bamboo once growing in the area.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage: tek kah wild bamboo"
+  },
+  {
+    "id": "FACT-HAW-007",
+    "theme": "Hawker heritage",
+    "text": "People's Park Food Centre's original hawker shelter stood near Pearl's Hill.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA heritage: shelter near Pearl's Hill"
+  },
+  {
+    "id": "FACT-CUL-001",
+    "theme": "Hawker culture",
+    "text": "Singapore's hawker culture was added to UNESCO's intangible heritage list on 16 December 2020.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA Hawker Culture: inscription date"
+  },
+  {
+    "id": "FACT-CUL-002",
+    "theme": "Hawker culture",
+    "text": "Hawker Culture in Singapore was Singapore's first inscription on UNESCO's intangible cultural heritage list.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB UNESCO inscription: Singapore's first"
+  },
+  {
+    "id": "FACT-CUL-003",
+    "theme": "Hawker culture",
+    "text": "Singapore ratified UNESCO's 2003 Convention for the Safeguarding of Intangible Cultural Heritage on 22 February 2018.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB UNESCO ratification date"
+  },
+  {
+    "id": "FACT-CUL-004",
+    "theme": "Hawker culture",
+    "text": "UNESCO's evaluation body recommended the hawker culture nomination for inscription on 16 November 2020.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB UNESCO nomination recommendation"
+  },
+  {
+    "id": "FACT-CUL-005",
+    "theme": "Hawker culture",
+    "text": "Hawker culture's UNESCO inscription was announced at the 15th session of the intergovernmental committee.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB UNESCO 15th committee session"
+  },
+  {
+    "id": "FACT-CUL-006",
+    "theme": "Hawker culture",
+    "text": "Singapore's hawker culture nomination involved NEA, NHB and the Federation of Merchants' Associations.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB inter-agency cultural nomination"
+  },
+  {
+    "id": "FACT-CUL-007",
+    "theme": "Hawker culture",
+    "text": "Singapore's UNESCO hawker culture nomination file was submitted in March 2019.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NHB hawker culture two-year nomination process"
+  },
+  {
+    "id": "FACT-CUL-008",
+    "theme": "Hawker culture",
+    "text": "NEA describes hawker centres as shared community dining spaces for people from different walks of life.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA official Hawker Culture: community dining"
+  },
+  {
+    "id": "FACT-CUL-009",
+    "theme": "Hawker culture",
+    "text": "Singapore hawker dishes have been shaped by the culinary cultures of immigrant communities.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA official Hawker Culture: immigrant influences"
+  },
+  {
+    "id": "FACT-HST-001",
+    "theme": "Hawker history",
+    "text": "The hawker-centre resettlement programme was completed in 1986.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA community-hub history 1970s–1986"
+  },
+  {
+    "id": "FACT-HST-002",
+    "theme": "Hawker history",
+    "text": "Singapore stopped building new hawker centres after completion of the original resettlement programme in 1986.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA community-hub history: halted new builds"
+  },
+  {
+    "id": "FACT-HST-003",
+    "theme": "Hawker history",
+    "text": "By 2011 Singapore's changing housing and dining patterns renewed the need for more hawker centres.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA community-hub history: demand by 2011"
+  },
+  {
+    "id": "FACT-HST-004",
+    "theme": "Hawker history",
+    "text": "Hawker centres built from the 1970s provided street vendors with shared water and sewerage infrastructure.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA community-hub history: facilities"
+  },
+  {
+    "id": "FACT-HST-005",
+    "theme": "Hawker history",
+    "text": "Hawker centres built during the resettlement era provided electrical supply for relocated vendors.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA community-hub history: electrification"
+  },
+  {
+    "id": "FACT-FST-001",
+    "theme": "Hawker celebrations",
+    "text": "SG HawkerFest 2020 was held at 29 selected Singapore hawker centres.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA HawkerFest: 29 participating centres"
+  },
+  {
+    "id": "FACT-FST-002",
+    "theme": "Hawker celebrations",
+    "text": "SG HawkerFest's activities ran over three weekends from late December 2020 into January 2021.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA HawkerFest: three weekends"
+  },
+  {
+    "id": "FACT-FST-003",
+    "theme": "Hawker celebrations",
+    "text": "More than 13,000 people participated in SG HawkerFest's UNESCO inscription celebration.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA HawkerFest: participation over 13,000"
+  },
+  {
+    "id": "FACT-FST-004",
+    "theme": "Hawker celebrations",
+    "text": "More than 18,000 dining vouchers were given out through SG HawkerFest.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA HawkerFest: vouchers >18,000"
+  },
+  {
+    "id": "FACT-FST-005",
+    "theme": "Hawker celebrations",
+    "text": "NEA's SG HawkerFest gathered more than 7,000 public survey responses on future hawker-centre features.",
+    "modes": [
+      "resident",
+      "visitor",
+      "executive",
+      "student"
+    ],
+    "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+    "status": "verified",
+    "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+    "reviewMethod": "primary-source-check",
+    "verifiedOn": "2026-10-10",
+    "evidenceNote": "NEA HawkerFest: more than 7000 responses"
   }
 ]

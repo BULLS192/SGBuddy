@@ -1,22 +1,22 @@
 {
   "schemaVersion": 3,
   "publishedOn": "2026-10-10",
-  "verifiedCount": 104,
+  "verifiedCount": 130,
   "facts": [
     {
       "id": "FACT-00001",
       "theme": "Hawker heritage",
       "text": "Chomp Chomp Food Centre opened in 1972.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Chomp Chomp opened in 1972",
       "status": "verified"
     },
@@ -24,16 +24,16 @@
       "id": "FACT-00002",
       "theme": "Hawker heritage",
       "text": "Chomp Chomp's name is an English adaptation of the older Teochew Tiong Tiong.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: name adapted from Teochew Tiong Tiong",
       "status": "verified"
     },
@@ -41,16 +41,16 @@
       "id": "FACT-00003",
       "theme": "Hawker heritage",
       "text": "Tiong Tiong means loyalty and righteousness in Teochew.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Tiong Tiong means loyalty and righteousness",
       "status": "verified"
     },
@@ -58,16 +58,16 @@
       "id": "FACT-00004",
       "theme": "Hawker heritage",
       "text": "East Coast Lagoon Food Village was built on reclaimed land.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: East Coast Lagoon built on reclaimed land",
       "status": "verified"
     },
@@ -75,16 +75,16 @@
       "id": "FACT-00005",
       "theme": "Hawker heritage",
       "text": "East Coast Lagoon Food Village opened as a hawker centre in 1978.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: East Coast Lagoon opened in 1978",
       "status": "verified"
     },
@@ -92,16 +92,16 @@
       "id": "FACT-00006",
       "theme": "Hawker heritage",
       "text": "Geylang Serai Market was opened in 1964 by then Prime Minister Lee Kuan Yew.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Geylang Serai opened 1964 by Lee Kuan Yew",
       "status": "verified"
     },
@@ -109,16 +109,16 @@
       "id": "FACT-00007",
       "theme": "Hawker heritage",
       "text": "Geylang Serai Market was rebuilt in 2009.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Geylang Serai rebuilt 2009",
       "status": "verified"
     },
@@ -126,16 +126,16 @@
       "id": "FACT-00008",
       "theme": "Hawker heritage",
       "text": "Geylang Serai Market's rebuilt architecture draws on Malay cultural heritage.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: architecture inspired by Malay community culture",
       "status": "verified"
     },
@@ -143,16 +143,16 @@
       "id": "FACT-00009",
       "theme": "Hawker heritage",
       "text": "Maxwell Food Centre was a site of a post-war low-cost meals programme.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Maxwell former low-cost meals programme",
       "status": "verified"
     },
@@ -160,16 +160,16 @@
       "id": "FACT-00010",
       "theme": "Hawker heritage",
       "text": "Newton Food Centre was the first Singapore hawker centre built with a garden setting.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Newton first garden-setting hawker centre",
       "status": "verified"
     },
@@ -177,16 +177,16 @@
       "id": "FACT-00011",
       "theme": "Hawker heritage",
       "text": "Old Airport Road Food Centre was completed in 1973.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Old Airport Road completed 1973",
       "status": "verified"
     },
@@ -194,16 +194,16 @@
       "id": "FACT-00012",
       "theme": "Hawker heritage",
       "text": "People's Park Food Centre began as a hawker shelter in 1923.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: People's Park began hawker shelter 1923",
       "status": "verified"
     },
@@ -211,16 +211,16 @@
       "id": "FACT-00013",
       "theme": "Hawker heritage",
       "text": "By 1940 the People's Park market was Singapore's largest fresh-produce market.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: People's Park Singapore's largest fresh produce market by 1940",
       "status": "verified"
     },
@@ -228,16 +228,16 @@
       "id": "FACT-00014",
       "theme": "Hawker heritage",
       "text": "Tekka Market was built in 1915.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Tekka built 1915",
       "status": "verified"
     },
@@ -245,16 +245,16 @@
       "id": "FACT-00015",
       "theme": "Hawker heritage",
       "text": "Tekka Market was previously called Kandang Kerbau Market.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Tekka formerly Kandang Kerbau",
       "status": "verified"
     },
@@ -262,16 +262,16 @@
       "id": "FACT-00016",
       "theme": "Hawker heritage",
       "text": "Kandang Kerbau means buffalo enclosure in Malay.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Kandang Kerbau Malay for buffalo enclosure",
       "status": "verified"
     },
@@ -279,16 +279,16 @@
       "id": "FACT-00017",
       "theme": "Hawker heritage",
       "text": "Tiong Bahru Market opened in 1951 under the name Seng Poh Road Market.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: Tiong Bahru Market opened 1951 as Seng Poh Road Market",
       "status": "verified"
     },
@@ -296,16 +296,16 @@
       "id": "FACT-00018",
       "theme": "Hawker heritage",
       "text": "The old Tiong Bahru Market was used for public meetings and political rallies.",
-      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NEA: old Tiong Bahru Market held meetings and political rallies",
       "status": "verified"
     },
@@ -313,16 +313,16 @@
       "id": "FACT-00020",
       "theme": "National symbols",
       "text": "Singapore's national flower is Vanda Miss Joaquim.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: Vanda Miss Joaquim is national flower",
       "status": "verified"
     },
@@ -330,16 +330,16 @@
       "id": "FACT-00022",
       "theme": "National symbols",
       "text": "Vanda Miss Joaquim is a cross between Vanda hookeriana and Vanda teres.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks: historical record of Vanda hookeriana x Vanda teres",
       "status": "verified"
     },
@@ -347,16 +347,16 @@
       "id": "FACT-00023",
       "theme": "National symbols",
       "text": "Vanda Miss Joaquim is named after Agnes Joaquim.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks: Vanda Miss Joaquim arose in Agnes Joaquim's garden",
       "status": "verified"
     },
@@ -364,16 +364,16 @@
       "id": "FACT-BOT-001",
       "theme": "Botanic heritage",
       "text": "The Singapore Botanic Gardens began at their present Tanglin site in 1859.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: 1859 establishment at Tanglin",
       "status": "verified"
     },
@@ -381,16 +381,16 @@
       "id": "FACT-BOT-002",
       "theme": "Botanic heritage",
       "text": "Sir Stamford Raffles established an experimental garden on Fort Canning Hill in 1822.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Raffles experimental garden on Government Hill in 1822",
       "status": "verified"
     },
@@ -398,16 +398,16 @@
       "id": "FACT-BOT-003",
       "theme": "Botanic heritage",
       "text": "The first botanical and experimental garden at Fort Canning effectively closed in 1829.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: first site effectively closed 1829",
       "status": "verified"
     },
@@ -415,16 +415,16 @@
       "id": "FACT-BOT-004",
       "theme": "Botanic heritage",
       "text": "An agricultural society revived a 2.8-hectare portion of the early gardens in 1836.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: 1836 society revival",
       "status": "verified"
     },
@@ -432,16 +432,16 @@
       "id": "FACT-BOT-005",
       "theme": "Botanic heritage",
       "text": "The Tanglin gardens began on a 23-hectare tract of former plantation land.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: original 23 hectares at Tanglin",
       "status": "verified"
     },
@@ -449,16 +449,16 @@
       "id": "FACT-BOT-006",
       "theme": "Botanic heritage",
       "text": "Hoo Ah Kay, also known as Whampoa, was one of the founders who provided land for the Botanic Gardens.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Whampoa tract at Tanglin",
       "status": "verified"
     },
@@ -466,16 +466,16 @@
       "id": "FACT-BOT-007",
       "theme": "Botanic heritage",
       "text": "Lawrence Niven designed the Botanic Gardens' early English landscape-style grounds.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Lawrence Niven landscape",
       "status": "verified"
     },
@@ -483,16 +483,16 @@
       "id": "FACT-BOT-008",
       "theme": "Botanic heritage",
       "text": "Burkill Hall stands on land added to the Botanic Gardens in 1866.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: 1866 expansion and house",
       "status": "verified"
     },
@@ -500,16 +500,16 @@
       "id": "FACT-BOT-009",
       "theme": "Botanic heritage",
       "text": "Henry James Murton became superintendent of the Botanic Gardens in 1875.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Murton appointed 1875",
       "status": "verified"
     },
@@ -517,16 +517,16 @@
       "id": "FACT-BOT-010",
       "theme": "Botanic heritage",
       "text": "Henry Nicholas Ridley arrived at the Singapore Botanic Gardens in 1888.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Ridley arrived 1888",
       "status": "verified"
     },
@@ -534,16 +534,16 @@
       "id": "FACT-BOT-011",
       "theme": "Botanic heritage",
       "text": "The Singapore Botanic Gardens helped develop the regional plantation rubber industry.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Ridley's rubber research",
       "status": "verified"
     },
@@ -551,16 +551,16 @@
       "id": "FACT-BOT-012",
       "theme": "Botanic heritage",
       "text": "In 1928, the Botanic Gardens established laboratories for orchid breeding and hybridisation.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Holttum's 1928 laboratories",
       "status": "verified"
     },
@@ -568,16 +568,16 @@
       "id": "FACT-BOT-013",
       "theme": "Botanic heritage",
       "text": "The National Orchid Garden grew from an earlier orchid enclosure at the Botanic Gardens.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Purseglove's Orchid Enclosure",
       "status": "verified"
     },
@@ -585,16 +585,16 @@
       "id": "FACT-BOT-014",
       "theme": "Botanic heritage",
       "text": "Singapore Botanic Gardens became a UNESCO World Heritage Site in 2015.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: UNESCO inscription 2015",
       "status": "verified"
     },
@@ -602,16 +602,16 @@
       "id": "FACT-BOT-015",
       "theme": "Botanic heritage",
       "text": "Singapore Botanic Gardens covers 82 hectares.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks About page: gardens 82 hectares",
       "status": "verified"
     },
@@ -619,16 +619,16 @@
       "id": "FACT-BOT-016",
       "theme": "Botanic heritage",
       "text": "The Botanic Gardens' Learning Forest and Gallop Extension increased its total area to 82 hectares.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: expansions to 82 hectares",
       "status": "verified"
     },
@@ -636,16 +636,16 @@
       "id": "FACT-BOT-017",
       "theme": "Botanic heritage",
       "text": "The Singapore Botanic Gardens Seed Bank was introduced in 2019.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: Seed Bank 2019",
       "status": "verified"
     },
@@ -653,33 +653,390 @@
       "id": "FACT-BOT-018",
       "theme": "Botanic heritage",
       "text": "Lee Kuan Yew launched Singapore's first Tree Planting campaign in 1963.",
-      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sbg.nparks.gov.sg/about/our-history/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks history: first Tree Planting campaign 1963",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-001",
+      "theme": "Hawker culture",
+      "text": "Singapore's hawker culture was added to UNESCO's intangible heritage list on 16 December 2020.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA Hawker Culture: inscription date",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-002",
+      "theme": "Hawker culture",
+      "text": "Hawker Culture in Singapore was Singapore's first inscription on UNESCO's intangible cultural heritage list.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB UNESCO inscription: Singapore's first",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-003",
+      "theme": "Hawker culture",
+      "text": "Singapore ratified UNESCO's 2003 Convention for the Safeguarding of Intangible Cultural Heritage on 22 February 2018.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB UNESCO ratification date",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-004",
+      "theme": "Hawker culture",
+      "text": "UNESCO's evaluation body recommended the hawker culture nomination for inscription on 16 November 2020.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB UNESCO nomination recommendation",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-005",
+      "theme": "Hawker culture",
+      "text": "Hawker culture's UNESCO inscription was announced at the 15th session of the intergovernmental committee.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB UNESCO 15th committee session",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-006",
+      "theme": "Hawker culture",
+      "text": "Singapore's hawker culture nomination involved NEA, NHB and the Federation of Merchants' Associations.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB inter-agency cultural nomination",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-007",
+      "theme": "Hawker culture",
+      "text": "Singapore's UNESCO hawker culture nomination file was submitted in March 2019.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nhb.gov.sg/what-we-do/our-work/sector-development/unesco/hawker-culture-in-singapore",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NHB hawker culture two-year nomination process",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-008",
+      "theme": "Hawker culture",
+      "text": "NEA describes hawker centres as shared community dining spaces for people from different walks of life.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA official Hawker Culture: community dining",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-CUL-009",
+      "theme": "Hawker culture",
+      "text": "Singapore hawker dishes have been shaped by the culinary cultures of immigrant communities.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA official Hawker Culture: immigrant influences",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-FST-001",
+      "theme": "Hawker celebrations",
+      "text": "SG HawkerFest 2020 was held at 29 selected Singapore hawker centres.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA HawkerFest: 29 participating centres",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-FST-002",
+      "theme": "Hawker celebrations",
+      "text": "SG HawkerFest's activities ran over three weekends from late December 2020 into January 2021.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA HawkerFest: three weekends",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-FST-003",
+      "theme": "Hawker celebrations",
+      "text": "More than 13,000 people participated in SG HawkerFest's UNESCO inscription celebration.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA HawkerFest: participation over 13,000",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-FST-004",
+      "theme": "Hawker celebrations",
+      "text": "More than 18,000 dining vouchers were given out through SG HawkerFest.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA HawkerFest: vouchers >18,000",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-FST-005",
+      "theme": "Hawker celebrations",
+      "text": "NEA's SG HawkerFest gathered more than 7,000 public survey responses on future hawker-centre features.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/hawker-culture/celebration-of-hawker-culture",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA HawkerFest: more than 7000 responses",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-001",
+      "theme": "Hawker heritage",
+      "text": "NEA and the National Heritage Board jointly researched the heritage of 12 selected hawker centres.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA official page: 12 selected centres",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-002",
+      "theme": "Hawker heritage",
+      "text": "Adam Food Centre was a popular lunchtime stop for on-duty policemen in the 1980s.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage snippet: Adam Food Centre 1980s",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-003",
+      "theme": "Hawker heritage",
+      "text": "Blocks 2 and 3 Changi Village Road were built during Changi Village estate redevelopment.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage snippet: Changi Village Road redevelopment",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-004",
+      "theme": "Hawker heritage",
+      "text": "Chinatown Complex Market was built in 1981 to house Chinatown's remaining street hawkers.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage snippet: Chinatown Complex 1981",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-005",
+      "theme": "Hawker heritage",
+      "text": "NEA describes Chinatown Complex Market as having around 700 stalls.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage: approximate 700 stall count",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-006",
+      "theme": "Hawker heritage",
+      "text": "The Chinese name tek kah for Tekka reflects wild bamboo once growing in the area.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage: tek kah wild bamboo",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HAW-007",
+      "theme": "Hawker heritage",
+      "text": "People's Park Food Centre's original hawker shelter stood near Pearl's Hill.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/programmes-and-grants/heritage-of-our-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA heritage: shelter near Pearl's Hill",
       "status": "verified"
     },
     {
       "id": "FACT-HIS-001",
       "theme": "Singapore history",
       "text": "Singapore became a self-governing state in 1959.",
-      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "SG101: self-governance 1959",
       "status": "verified"
     },
@@ -687,16 +1044,16 @@
       "id": "FACT-HIS-002",
       "theme": "Singapore history",
       "text": "From 1960 through 1963, Singapore celebrated National Day on 3 June.",
-      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "SG101: 3 June National Day dates",
       "status": "verified"
     },
@@ -704,16 +1061,16 @@
       "id": "FACT-HIS-003",
       "theme": "Singapore history",
       "text": "Zubir Said composed Majulah Singapura for the reopening of Victoria Theatre in 1958.",
-      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "SG101: anthem composition 1958",
       "status": "verified"
     },
@@ -721,16 +1078,16 @@
       "id": "FACT-HIS-004",
       "theme": "Singapore history",
       "text": "Majulah Singapura was adapted into Singapore's National Anthem in 1959.",
-      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "SG101: anthem adopted 1959",
       "status": "verified"
     },
@@ -738,33 +1095,118 @@
       "id": "FACT-HIS-005",
       "theme": "Singapore history",
       "text": "Voting became compulsory in Singapore for the first time in 1959.",
-      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.sg101.gov.sg/resources/archives/identity-singapore-self-governance/",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "SG101: compulsory voting 1959",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HST-001",
+      "theme": "Hawker history",
+      "text": "The hawker-centre resettlement programme was completed in 1986.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA community-hub history 1970s–1986",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HST-002",
+      "theme": "Hawker history",
+      "text": "Singapore stopped building new hawker centres after completion of the original resettlement programme in 1986.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA community-hub history: halted new builds",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HST-003",
+      "theme": "Hawker history",
+      "text": "By 2011 Singapore's changing housing and dining patterns renewed the need for more hawker centres.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA community-hub history: demand by 2011",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HST-004",
+      "theme": "Hawker history",
+      "text": "Hawker centres built from the 1970s provided street vendors with shared water and sewerage infrastructure.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA community-hub history: facilities",
+      "status": "verified"
+    },
+    {
+      "id": "FACT-HST-005",
+      "theme": "Hawker history",
+      "text": "Hawker centres built during the resettlement era provided electrical supply for relocated vendors.",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "sourceUrl": "https://www.nea.gov.sg/our-services/hawker-management/socially-conscious-enterprise-hawker-centres",
+      "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
+      "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
+      "evidenceNote": "NEA community-hub history: electrification",
       "status": "verified"
     },
     {
       "id": "FACT-MRT-001",
       "theme": "Transport heritage",
       "text": "Singapore's first MRT line was the North-South Line.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: NSL is Singapore's first MRT line",
       "status": "verified"
     },
@@ -772,16 +1214,16 @@
       "id": "FACT-MRT-002",
       "theme": "Transport heritage",
       "text": "The MRT began operations in 1987 with five stations between Yio Chu Kang and Toa Payoh.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: 1987 service with five stations",
       "status": "verified"
     },
@@ -789,16 +1231,16 @@
       "id": "FACT-MRT-003",
       "theme": "Transport heritage",
       "text": "The North-South MRT Line runs for about 45 kilometres.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: line length 45 km",
       "status": "verified"
     },
@@ -806,16 +1248,16 @@
       "id": "FACT-MRT-004",
       "theme": "Transport heritage",
       "text": "The North-South MRT Line has 27 stations according to LTA's 2026 overview.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: NSL 27 stations",
       "status": "verified"
     },
@@ -823,16 +1265,16 @@
       "id": "FACT-MRT-005",
       "theme": "Transport heritage",
       "text": "Marina South Pier MRT station was added to the North-South Line in 2014.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: 2014 1 km extension",
       "status": "verified"
     },
@@ -840,16 +1282,16 @@
       "id": "FACT-MRT-006",
       "theme": "Transport heritage",
       "text": "Canberra MRT station was added between Yishun and Sembawang in 2019.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: Canberra station 2019",
       "status": "verified"
     },
@@ -857,16 +1299,16 @@
       "id": "FACT-MRT-007",
       "theme": "Transport heritage",
       "text": "Jurong East MRT station gained two additional platforms in 2012.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: Jurong East 2012 additional platforms",
       "status": "verified"
     },
@@ -874,16 +1316,16 @@
       "id": "FACT-MRT-008",
       "theme": "Transport heritage",
       "text": "Dhoby Ghaut became Singapore's first interchange serving three MRT lines.",
-      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/getting_around/public_transport/rail_network/north_south_line.html",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "LTA: Dhoby Ghaut first three-line interchange",
       "status": "verified"
     },
@@ -891,16 +1333,16 @@
       "id": "FACT-NAT-001",
       "theme": "Nature & parks",
       "text": "Bukit Timah Nature Reserve covers about 163 hectares.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: Bukit Timah 163ha",
       "status": "verified"
     },
@@ -908,16 +1350,16 @@
       "id": "FACT-NAT-002",
       "theme": "Nature & parks",
       "text": "Bukit Timah Nature Reserve was established as a forest reserve in 1883.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: gazetted forest reserve in 1883",
       "status": "verified"
     },
@@ -925,16 +1367,16 @@
       "id": "FACT-NAT-003",
       "theme": "Nature & parks",
       "text": "Around half of Bukit Timah Nature Reserve contains primary forest.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: primary forest proportion",
       "status": "verified"
     },
@@ -942,16 +1384,16 @@
       "id": "FACT-NAT-004",
       "theme": "Nature & parks",
       "text": "Sungei Buloh was opened as a nature park in 1993.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: Sungei Buloh initial opening",
       "status": "verified"
     },
@@ -959,16 +1401,16 @@
       "id": "FACT-NAT-005",
       "theme": "Nature & parks",
       "text": "Sungei Buloh was officially gazetted as a nature reserve in 2002.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: gazettement in 2002",
       "status": "verified"
     },
@@ -976,16 +1418,16 @@
       "id": "FACT-NAT-006",
       "theme": "Nature & parks",
       "text": "Sungei Buloh was named Singapore's first ASEAN Heritage Park in 2003.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: ASEAN Heritage Park 2003",
       "status": "verified"
     },
@@ -993,16 +1435,16 @@
       "id": "FACT-NAT-007",
       "theme": "Nature & parks",
       "text": "Sungei Buloh Wetland Reserve covers approximately 202 hectares.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature reserves: expansion to 202 ha",
       "status": "verified"
     },
@@ -1010,16 +1452,16 @@
       "id": "FACT-NAT-008",
       "theme": "Nature & parks",
       "text": "Singapore has four nature reserves protected under the Parks and Trees Act.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks: four nature reserves protected by Parks and Trees Act",
       "status": "verified"
     },
@@ -1027,16 +1469,16 @@
       "id": "FACT-NAT-009",
       "theme": "Nature & parks",
       "text": "NParks identifies 20 nature areas in Singapore.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks: 20 nature areas",
       "status": "verified"
     },
@@ -1044,16 +1486,16 @@
       "id": "FACT-NAT-010",
       "theme": "Nature & parks",
       "text": "NParks identifies Kent Ridge Park as part of Singapore's nature areas.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Kent Ridge Park",
       "status": "verified"
     },
@@ -1061,16 +1503,16 @@
       "id": "FACT-NAT-011",
       "theme": "Nature & parks",
       "text": "NParks identifies Kranji Mangrove as a nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Kranji Mangrove",
       "status": "verified"
     },
@@ -1078,16 +1520,16 @@
       "id": "FACT-NAT-012",
       "theme": "Nature & parks",
       "text": "NParks identifies Mount Faber Park as a nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Mount Faber Park",
       "status": "verified"
     },
@@ -1095,16 +1537,16 @@
       "id": "FACT-NAT-013",
       "theme": "Nature & parks",
       "text": "NParks identifies Pasir Ris Nature Area as one of Singapore's nature areas.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Pasir Ris",
       "status": "verified"
     },
@@ -1112,16 +1554,16 @@
       "id": "FACT-NAT-014",
       "theme": "Nature & parks",
       "text": "NParks identifies Pulau Ubin Nature Area as a protected nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Pulau Ubin",
       "status": "verified"
     },
@@ -1129,16 +1571,16 @@
       "id": "FACT-NAT-015",
       "theme": "Nature & parks",
       "text": "NParks lists Sentosa Nature Area among Singapore's nature areas.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Sentosa",
       "status": "verified"
     },
@@ -1146,16 +1588,16 @@
       "id": "FACT-NAT-016",
       "theme": "Nature & parks",
       "text": "NParks lists Sisters' Islands Marine Nature Area among Singapore's nature areas.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Sisters' Islands",
       "status": "verified"
     },
@@ -1163,16 +1605,16 @@
       "id": "FACT-NAT-017",
       "theme": "Nature & parks",
       "text": "NParks lists Singapore Botanic Gardens Rainforest as a nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Botanic Gardens Rainforest",
       "status": "verified"
     },
@@ -1180,16 +1622,16 @@
       "id": "FACT-NAT-018",
       "theme": "Nature & parks",
       "text": "NParks identifies Telok Blangah Hill Park as a nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Telok Blangah Hill",
       "status": "verified"
     },
@@ -1197,16 +1639,16 @@
       "id": "FACT-NAT-019",
       "theme": "Nature & parks",
       "text": "NParks identifies Bukit Batok Nature Area as a nature area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Bukit Batok",
       "status": "verified"
     },
@@ -1214,16 +1656,16 @@
       "id": "FACT-NAT-020",
       "theme": "Nature & parks",
       "text": "NParks identifies Dairy Farm Nature Area as part of Bukit Timah Nature Area.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Dairy Farm",
       "status": "verified"
     },
@@ -1231,16 +1673,16 @@
       "id": "FACT-NAT-021",
       "theme": "Nature & parks",
       "text": "NParks identifies Chestnut Nature Area in Singapore.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Chestnut",
       "status": "verified"
     },
@@ -1248,16 +1690,16 @@
       "id": "FACT-NAT-022",
       "theme": "Nature & parks",
       "text": "NParks identifies Kranji Reservoir Marshes as one of its nature highlights.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/when-visiting-parks/about-parks-nature-reserves-pcns",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks nature areas list: Kranji Reservoir Marshes",
       "status": "verified"
     },
@@ -1265,16 +1707,16 @@
       "id": "FACT-NAT-023",
       "theme": "Nature & parks",
       "text": "East Coast Park supports cycling and inline skating activities.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks Parks for nature enthusiasts: East Coast Park cycling and skating",
       "status": "verified"
     },
@@ -1282,16 +1724,16 @@
       "id": "FACT-NAT-024",
       "theme": "Nature & parks",
       "text": "East Coast Park has barbecue and camping amenities.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks Parks for nature enthusiasts: East Coast Park barbecue and camping",
       "status": "verified"
     },
@@ -1299,16 +1741,16 @@
       "id": "FACT-NAT-025",
       "theme": "Nature & parks",
       "text": "Fort Canning Park features nature walks and heritage activities.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Fort Canning nature and heritage",
       "status": "verified"
     },
@@ -1316,16 +1758,16 @@
       "id": "FACT-NAT-026",
       "theme": "Nature & parks",
       "text": "The Singapore Botanic Gardens is described by NParks as a destination for family activities and nature walks.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Botanic Gardens activities",
       "status": "verified"
     },
@@ -1333,16 +1775,16 @@
       "id": "FACT-NAT-027",
       "theme": "Nature & parks",
       "text": "Sungei Buloh Wetland Reserve is a destination for birdwatching.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Sungei Buloh birdwatching",
       "status": "verified"
     },
@@ -1350,16 +1792,16 @@
       "id": "FACT-NAT-028",
       "theme": "Nature & parks",
       "text": "Sungei Buloh Wetland Reserve has wildlife photography activities.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Sungei Buloh photography",
       "status": "verified"
     },
@@ -1367,16 +1809,16 @@
       "id": "FACT-NAT-029",
       "theme": "Nature & parks",
       "text": "Admiralty Park supports family-friendly activities and nature walks.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Admiralty Park activities",
       "status": "verified"
     },
@@ -1384,16 +1826,16 @@
       "id": "FACT-NAT-030",
       "theme": "Nature & parks",
       "text": "Ann Siang Hill Park combines nature and heritage attractions.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Ann Siang Hill Park activities",
       "status": "verified"
     },
@@ -1401,16 +1843,16 @@
       "id": "FACT-NAT-031",
       "theme": "Nature & parks",
       "text": "Bedok Reservoir Park offers water sports activities.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Bedok Reservoir water sports",
       "status": "verified"
     },
@@ -1418,16 +1860,16 @@
       "id": "FACT-NAT-032",
       "theme": "Nature & parks",
       "text": "Bedok Town Park allows cycling and inline skating.",
-      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.nparks.gov.sg/visit/parks/nature",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "NParks parks: Bedok Town Park cycling",
       "status": "verified"
     },
@@ -1435,16 +1877,16 @@
       "id": "FACT-SYM-001",
       "theme": "National symbols",
       "text": "Singapore's National Flag has red above white in two equal horizontal sections.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: First Schedule flag description",
       "status": "verified"
     },
@@ -1452,16 +1894,16 @@
       "id": "FACT-SYM-002",
       "theme": "National symbols",
       "text": "The Singapore flag has a white crescent and five white stars arranged in a circle.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: First Schedule flag canton",
       "status": "verified"
     },
@@ -1469,16 +1911,16 @@
       "id": "FACT-SYM-003",
       "theme": "National symbols",
       "text": "The Singapore flag has a width-to-length ratio of 2:3.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: First Schedule flag proportions",
       "status": "verified"
     },
@@ -1486,16 +1928,16 @@
       "id": "FACT-SYM-004",
       "theme": "National symbols",
       "text": "Singapore's State Crest features a lion and a tiger supporting a shield.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: Coat of Arms description",
       "status": "verified"
     },
@@ -1503,16 +1945,16 @@
       "id": "FACT-SYM-005",
       "theme": "National symbols",
       "text": "The tiger on Singapore's State Crest represents historical links with Malaysia.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: State Crest symbolism",
       "status": "verified"
     },
@@ -1520,16 +1962,16 @@
       "id": "FACT-SYM-006",
       "theme": "National symbols",
       "text": "The lion on Singapore's State Crest represents Singapore as the Lion City.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: State Crest symbolism",
       "status": "verified"
     },
@@ -1537,16 +1979,16 @@
       "id": "FACT-SYM-007",
       "theme": "National symbols",
       "text": "The motto on Singapore's State Crest is Majulah Singapura.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: State Crest motto",
       "status": "verified"
     },
@@ -1554,16 +1996,16 @@
       "id": "FACT-SYM-008",
       "theme": "National symbols",
       "text": "The public seal of Singapore is kept by the President.",
-      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://sso.agc.gov.sg/Act/NSA2022?WholeDoc=1",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "National Symbols Act: public seal provision",
       "status": "verified"
     },
@@ -1571,16 +2013,16 @@
       "id": "FACT-WAT-001",
       "theme": "Water innovation",
       "text": "NEWater is high-grade recycled water produced from treated used water.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: NEWater process",
       "status": "verified"
     },
@@ -1588,16 +2030,16 @@
       "id": "FACT-WAT-002",
       "theme": "Water innovation",
       "text": "PUB set up a team to test water-reclamation membrane technology in 1998.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: NEWater research 1998",
       "status": "verified"
     },
@@ -1605,16 +2047,16 @@
       "id": "FACT-WAT-003",
       "theme": "Water innovation",
       "text": "A NEWater demonstration plant commissioned in 2000 could produce 10,000 cubic metres per day.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: 2000 demonstration plant capacity",
       "status": "verified"
     },
@@ -1622,16 +2064,16 @@
       "id": "FACT-WAT-004",
       "theme": "Water innovation",
       "text": "NEWater was introduced to the Singapore public at the National Day Parade on 9 August 2002.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: NEWater NDP launch",
       "status": "verified"
     },
@@ -1639,16 +2081,16 @@
       "id": "FACT-WAT-005",
       "theme": "Water innovation",
       "text": "The first two NEWater plants opened at Bedok and Kranji in 2003.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: Bedok and Kranji plants",
       "status": "verified"
     },
@@ -1656,16 +2098,16 @@
       "id": "FACT-WAT-006",
       "theme": "Water innovation",
       "text": "NEWater purification includes microfiltration or ultrafiltration.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: NEWater first purification stage",
       "status": "verified"
     },
@@ -1673,16 +2115,16 @@
       "id": "FACT-WAT-007",
       "theme": "Water innovation",
       "text": "Reverse osmosis is the second stage in PUB's NEWater treatment process.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: second purification stage",
       "status": "verified"
     },
@@ -1690,16 +2132,16 @@
       "id": "FACT-WAT-008",
       "theme": "Water innovation",
       "text": "Ultraviolet disinfection is the third stage in PUB's NEWater treatment process.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: third purification stage",
       "status": "verified"
     },
@@ -1707,16 +2149,16 @@
       "id": "FACT-WAT-009",
       "theme": "Water innovation",
       "text": "NEWater is used primarily for industrial processes and air-conditioning cooling.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: NEWater non-potable uses",
       "status": "verified"
     },
@@ -1724,16 +2166,16 @@
       "id": "FACT-WAT-010",
       "theme": "Water innovation",
       "text": "During dry periods, Singapore adds NEWater to reservoirs for indirect potable use.",
-      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/Public/WaterLoop/OurWaterStory/NEWater",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: indirect potable use",
       "status": "verified"
     },
@@ -1741,16 +2183,16 @@
       "id": "FACT-WAT-011",
       "theme": "Water innovation",
       "text": "Singapore's SingSpring Desalination Plant opened in 2005.",
-      "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: 2005 fourth National Tap",
       "status": "verified"
     },
@@ -1758,16 +2200,16 @@
       "id": "FACT-WAT-012",
       "theme": "Water innovation",
       "text": "The Singapore River clean-up was launched in 1977.",
-      "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
       "modes": [
         "resident",
         "visitor",
         "executive",
         "student"
       ],
-      "verifiedOn": "2026-10-10",
+      "sourceUrl": "https://www.pub.gov.sg/AboutUs/Pub60",
       "reviewedBy": "SGBuddy editorial — AI-assisted official-source review",
       "reviewMethod": "primary-source-check",
+      "verifiedOn": "2026-10-10",
       "evidenceNote": "PUB: river clean-up 1977",
       "status": "verified"
     }
