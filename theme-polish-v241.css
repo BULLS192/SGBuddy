@@ -1,0 +1,106 @@
+/* V2.4.1: cohesive contrast across the light appearance used by iOS Safari/PWA.
+   Legacy dark component literals must not inherit light-theme text variables. */
+html[data-ux-theme="light"]{
+  --sg-light-action:#11665e;
+  --sg-light-action-hover:#0b574f;
+  --sg-light-ink:#183044;
+  --sg-light-muted:#4d6375;
+  --sg-light-border:#cbdde5;
+}
+html[data-ux-theme="light"] .mode-pill{
+  background:#e6f3f1;color:#14564e;border:1px solid #b5d7d0;
+}
+html[data-ux-theme="light"] .version-badge,
+html[data-ux-theme="light"] .native-badge,
+html[data-ux-theme="light"] .badge,
+html[data-ux-theme="light"] .sync-badge:not(.error):not(.synced){
+  background:#e6f3f1;color:#12584f;border-color:#b4d7d0;opacity:1;
+}
+html[data-ux-theme="light"] .sync-badge.synced{
+  background:#e0f4ec;color:#126046;border-color:#a3d6bb;
+}
+html[data-ux-theme="light"] .sync-badge.error{
+  background:#fff0ee;color:#95392e;border-color:#e5b4ad;
+}
+html[data-ux-theme="light"] .manual button,
+html[data-ux-theme="light"] .advisor-form button,
+html[data-ux-theme="light"] .primary,
+html[data-ux-theme="light"] .saved-stop-form button,
+html[data-ux-theme="light"] .next-up-action{
+  background:var(--sg-light-action);color:#ffffff;border:1px solid var(--sg-light-action);
+}
+html[data-ux-theme="light"] .manual button:hover,
+html[data-ux-theme="light"] .primary:hover{
+  background:var(--sg-light-action-hover);
+}
+html[data-ux-theme="light"] .secondary{
+  background:#ecf4f7;color:#17495e;border:1px solid #c4dce6;
+}
+html[data-ux-theme="light"] .secondary:hover{background:#e1eef2}
+html[data-ux-theme="light"] .bottom-nav [data-nav-target].active{
+  background:#11665e;color:#fff;border-radius:13px;
+}
+html[data-ux-theme="light"] .bottom-nav [data-nav-target].active span,
+html[data-ux-theme="light"] .bottom-nav [data-nav-target].active svg{
+  color:#fff;stroke:currentColor;
+}
+html[data-ux-theme="light"] .bottom-nav [data-nav-target]:not(.active){
+  color:#526779;
+}
+html[data-ux-theme="light"] .app-guide-links a,
+html[data-ux-theme="light"] .discover-actions a,
+html[data-ux-theme="light"] .food-card-actions a,
+html[data-ux-theme="light"] .food-stall > a,
+html[data-ux-theme="light"] .discover-address-result a{
+  color:#145a86;text-decoration:underline;text-underline-offset:3px;
+}
+html[data-ux-theme="light"] .app-guide-links a{
+  border-color:#bbd4e3;background:#f1f7fb;
+}
+html[data-ux-theme="light"] .app-guide-item{
+  background:#f9fcfe;border-color:#d1e0e9;color:var(--sg-light-ink);
+}
+html[data-ux-theme="light"] .app-guide-monogram{
+  background:#e2f1f0;color:#145a52;border-color:#c0ddd7;
+}
+html[data-ux-theme="light"] .app-guide-category,
+html[data-ux-theme="light"] .app-guide-purpose,
+html[data-ux-theme="light"] .app-guide-prereq,
+html[data-ux-theme="light"] .app-guide-metadata,
+html[data-ux-theme="light"] .app-guide-review,
+html[data-ux-theme="light"] .app-guide-unverified{
+  color:var(--sg-light-muted);
+}
+html[data-ux-theme="light"] .app-guide-packs button,
+html[data-ux-theme="light"] .food-view-tabs button,
+html[data-ux-theme="light"] .food-card-actions button{
+  background:#edf6f6;color:#155b54;border-color:#bbd9d5;
+}
+html[data-ux-theme="light"] .app-guide-packs button[aria-pressed="true"],
+html[data-ux-theme="light"] .food-view-tabs button[aria-pressed="true"]{
+  background:#11665e;color:#fff;border-color:#11665e;
+}
+html[data-ux-theme="light"] .app-guide-controls input,
+html[data-ux-theme="light"] .app-guide-controls select,
+html[data-ux-theme="light"] .food-controls input,
+html[data-ux-theme="light"] .food-controls select{
+  background:#fff;color:var(--sg-light-ink);border-color:var(--sg-light-border);
+}
+html[data-ux-theme="light"] .ux-merli-suggestions button,
+html[data-ux-theme="light"] .ux-merli-more{
+  color:#fff;
+}
+html[data-ux-theme="light"] .timing-toggle,
+html[data-ux-theme="light"] .view-switch{
+  background:#eef4f7;border-color:#cbdde5;
+}
+html[data-ux-theme="light"] .timing-toggle button.active,
+html[data-ux-theme="light"] .view-switch button.active{
+  background:#11665e;color:#fff;
+}
+html[data-ux-theme="light"] .source-row{color:var(--sg-light-muted)}
+/* Dark appearance remains unchanged. Supported touch interactions stay 44px+. */
+@media(max-width:640px){
+  .bottom-nav [data-nav-target]{min-height:57px}
+  .mode-pill{min-height:44px}
+}
