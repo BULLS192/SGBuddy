@@ -5,11 +5,15 @@ import {shellLocale} from '../lib/i18n-shell-v281.mjs';
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},locale:'en-SG',colorScheme:'light'});
 await context.addInitScript(()=>{localStorage.setItem('sgc-persona-onboarded','1');localStorage.setItem('sgc-location-choice','not-now');localStorage.setItem('sgc-mode','visitor')});
-const page=await context.newPage(),errors=[];
+const page=await context.newPage(),errors=[],consoleLines=[],failedRequests=[];
+page.on('console',m=>consoleLines.push(m.type()+': '+m.text()));
+page.on('requestfailed',r=>failedRequests.push(r.url()+': '+r.failure()?.errorText));
 page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v2.8.1',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v2.8.1',{timeout:9000}).catch(async e=>{
+   console.error('V2.8.1 STARTUP DIAGNOSTICS',JSON.stringify({version:await page.locator('#appVersion').textContent().catch(()=>null),errors,consoleLines,failedRequests}));throw e;
+ });
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2000}).catch(()=>{});if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  assert.equal(await page.locator('#sgbLanguage option').count(),12,'All 12 languages visible');
  for(const {code} of LOCALES){
