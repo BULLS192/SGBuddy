@@ -40,4 +40,5 @@ const summary=[
 ].join('\n')+'\n';
 fs.writeFileSync('reports/operator-source-audit-v220.md',summary);
 if(process.env.GITHUB_STEP_SUMMARY)fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,summary);
+console.log('Operator source outcomes:',JSON.stringify(checks.sources));
 console.log('Operator web audit:',JSON.stringify(counters));
