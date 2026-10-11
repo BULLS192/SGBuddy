@@ -115,9 +115,14 @@ Promise.all([
  fetch('/data/guide-stalls-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stalls:[]}).catch(()=>({stalls:[]})),
  fetch('/data/operator-menus-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{hawkerMenus:[],vendorMenus:[]}).catch(()=>({hawkerMenus:[],vendorMenus:[]}))
 ]).then(([a,b,c,guide,operatorMenu])=>{
- stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>(x.reviewStatus==='research-candidate'||/^nea-award-listed-20\d\d$/.test(x.reviewStatus))):[];
+ const guideRows=Array.isArray(guide.stalls)?guide.stalls.filter(x=>x.reviewStatus==='guide-listed-2026'&&allowedUrl(x.sourceUrl)&&x.postal):[];
+ const oldRows=Array.isArray(a.stalls)?a.stalls.filter(x=>(x.reviewStatus==='research-candidate'||/^nea-award-listed-20\d\d$/.test(x.reviewStatus))):[];
+ const normaliseName=s=>String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+ const guideNames=new Set(guideRows.map(x=>normaliseName(x.name)));
+ stalls=[...guideRows,...oldRows.filter(x=>!guideNames.has(normaliseName(x.name)))];
  dishes=Array.isArray(b.dishes)?b.dishes:[];
- menus=Array.isArray(c.items)?c.items.filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl)):[];
+ menus=[...(Array.isArray(c.items)?c.items:[]),...(Array.isArray(operatorMenu.vendorMenus)?operatorMenu.vendorMenus:[])].filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl));
+ hawkerMenus=Array.isArray(operatorMenu.hawkerMenus)?operatorMenu.hawkerMenus.filter(x=>x.stallId&&x.dishName&&allowedUrl(x.sourceUrl)&&x.stallSpecificAvailabilityVerified===false):[];
  options('#foodArea',[...new Set(stalls.map(x=>x.area))]);
  options('#foodCuisine',[...new Set([...stalls,...dishes].map(x=>x.cuisine))]);
  options('#foodMeal',[...new Set([...stalls,...dishes].map(x=>x.meal))]);
