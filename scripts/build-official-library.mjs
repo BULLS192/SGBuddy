@@ -39,7 +39,7 @@ function coords(geom){
 }
 function goodCoords(c){return c&&c.lat>=1.12&&c.lat<=1.48&&c.lon>=103.58&&c.lon<=104.12}
 function canonicalName(p,kind){
- let name=getField(p,'NAME');
+ let name=getField(p,'VENUE')||getField(p,'NAME');
  if(/^(kml_\d+|\d+|nil|unknown)$/i.test(name)||!name)name=getField(p,'ADDRESSBUILDINGNAME');
  if(!name||name.length<4||name.length>120)return '';
  // Avoid parks administrative parcels, generic street geometry and invalid records.
@@ -81,7 +81,7 @@ function record(p,f,d,sourceRow){
  const digest=crypto.createHash('sha256').update(d.code+':'+normalized+':'+sourceId).digest('hex').slice(0,12);
  const block=getField(p,'ADDRESSBLOCKHOUSENUMBER');
  const road=getField(p,'ADDRESSSTREETNAME');
- const postal=getField(p,'ADDRESSPOSTALCODE')||getField(p,'POSTALCODE');
+ const postal=getField(p,'ADDRESSPOSTALCODE')||getField(p,'POSTALCODE')||getField(p,'POSTAL_CODE');
  const building=getField(p,'ADDRESSBUILDINGNAME');
  const a= getField(p,'ADDRESS')||[block,road].filter(Boolean).join(' ');
  const address=[a,/^\d{6}$/.test(postal)?'Singapore '+postal:''].filter(Boolean).join(', ');
