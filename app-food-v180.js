@@ -1,5 +1,6 @@
 /* SGBuddy food exploration: stall leads + dish vocabulary, no unverified claims as facts. */
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
+import {dishTranslation} from './lib/i18n-dishes-v311.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const locale=()=>window.SGBUDDY_LANGUAGE||'en';
@@ -40,7 +41,7 @@ function cardStall(x){
 }
 function cardDish(x){
  return '<article class="card food-stall"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.meal)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>'+esc(x.description)+'</p><p class="food-warning">Dish guide only: vendors, ingredients, allergens, prices and certification vary.</p>'+
+ '<p'+(dishTranslation(locale(),x)?' data-content-localized="true"':'')+'>'+esc(dishTranslation(locale(),x)||x.description)+'</p><p class="food-warning">Dish guide only: vendors, ingredients, allergens, prices and certification vary.</p>'+
  '<button type="button" data-search-dish="'+esc(x.name)+'">Find stall leads for this dish ↗</button></article>';
 }
 function cardMenu(x){
@@ -65,7 +66,7 @@ function render(){
   (!onlySaved||saved.has(x.id))&&
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
-  (meal==='all'||x.meal===meal)&&(!q||(x.name+' '+x.cuisine+' '+x.description).toLowerCase().includes(q)));
+  (meal==='all'||x.meal===meal)&&(!q||[x.name,x.cuisine,x.description,taxonomyLabel(locale(),x.cuisine),dishTranslation(locale(),x)||''].join(' ').toLowerCase().includes(q)));
  $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':tab==='dishes'?'Singapore food and drink styles':tab==='hawker-menus'?'operator hawker menu items, outlet availability unverified':'vendor-published menu items, not live availability')+' · '+Math.min(rows.length,limit)+' shown';
  $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:tab==='hawker-menus'?cardHawkerMenu:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
  $('#foodLoadMore').hidden=rows.length<=limit;
