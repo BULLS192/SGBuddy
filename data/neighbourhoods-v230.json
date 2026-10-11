@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-11",
+  "matchingPolicy": "Textual address/place-name matches only, without geocoding or extrapolating from broad region labels. Not a verification of proximity, catchment or travel times.",
+  "neighbourhoods": [
+    {
+      "id": "NBR-001",
+      "name": "Ang Mo Kio",
+      "region": "North East",
+      "aliases": [
+        "ang mo kio"
+      ]
+    },
+    {
+      "id": "NBR-002",
+      "name": "Bedok",
+      "region": "East",
+      "aliases": [
+        "bedok",
+        "simpang bedok",
+        "kaki bukit"
+      ]
+    },
+    {
+      "id": "NBR-003",
+      "name": "Bishan",
+      "region": "Central",
+      "aliases": [
+        "bishan",
+        "clover way"
+      ]
+    },
+    {
+      "id": "NBR-004",
+      "name": "Bukit Batok",
+      "region": "West",
+      "aliases": [
+        "bukit batok"
+      ]
+    },
+    {
+      "id": "NBR-005",
+      "name": "Bukit Merah",
+      "region": "Central",
+      "aliases": [
+        "bukit merah",
+        "redhill",
+        "beo crescent"
+      ]
+    },
+    {
+      "id": "NBR-006",
+      "name": "Chinatown",
+      "region": "Central",
+      "aliases": [
+        "chinatown",
+        "smith street",
+        "maxwell",
+        "upper cross street",
+        "hong lim"
+      ]
+    },
+    {
+      "id": "NBR-007",
+      "name": "Clementi",
+      "region": "West",
+      "aliases": [
+        "clementi"
+      ]
+    },
+    {
+      "id": "NBR-008",
+      "name": "Geylang",
+      "region": "East",
+      "aliases": [
+        "geylang",
+        "aljunied"
+      ]
+    },
+    {
+      "id": "NBR-009",
+      "name": "Ghim Moh",
+      "region": "West",
+      "aliases": [
+        "ghim moh"
+      ]
+    },
+    {
+      "id": "NBR-010",
+      "name": "Hougang",
+      "region": "North East",
+      "aliases": [
+        "hougang"
+      ]
+    },
+    {
+      "id": "NBR-011",
+      "name": "Joo Chiat",
+      "region": "East",
+      "aliases": [
+        "joo chiat",
+        "katong"
+      ]
+    },
+    {
+      "id": "NBR-012",
+      "name": "Jurong West",
+      "region": "West",
+      "aliases": [
+        "jurong west"
+      ]
+    },
+    {
+      "id": "NBR-013",
+      "name": "Kallang",
+      "region": "Central",
+      "aliases": [
+        "kallang",
+        "boon keng"
+      ]
+    },
+    {
+      "id": "NBR-014",
+      "name": "Marine Parade",
+      "region": "East",
+      "aliases": [
+        "marine parade"
+      ]
+    },
+    {
+      "id": "NBR-015",
+      "name": "Newton",
+      "region": "Central",
+      "aliases": [
+        "newton",
+        "clemenceau"
+      ]
+    },
+    {
+      "id": "NBR-016",
+      "name": "Orchard",
+      "region": "Central",
+      "aliases": [
+        "orchard",
+        "lucky plaza"
+      ]
+    },
+    {
+      "id": "NBR-017",
+      "name": "Pasir Ris",
+      "region": "East",
+      "aliases": [
+        "pasir ris"
+      ]
+    },
+    {
+      "id": "NBR-018",
+      "name": "Punggol",
+      "region": "North East",
+      "aliases": [
+        "punggol",
+        "edgefield plains"
+      ]
+    },
+    {
+      "id": "NBR-019",
+      "name": "Sembawang",
+      "region": "North",
+      "aliases": [
+        "sembawang",
+        "canberra"
+      ]
+    },
+    {
+      "id": "NBR-020",
+      "name": "Sengkang",
+      "region": "North East",
+      "aliases": [
+        "sengkang",
+        "anchorvale",
+        "compassvale",
+        "fernvale"
+      ]
+    },
+    {
+      "id": "NBR-021",
+      "name": "Tampines",
+      "region": "East",
+      "aliases": [
+        "tampines"
+      ]
+    },
+    {
+      "id": "NBR-022",
+      "name": "Tiong Bahru",
+      "region": "Central",
+      "aliases": [
+        "tiong bahru"
+      ]
+    },
+    {
+      "id": "NBR-023",
+      "name": "Toa Payoh",
+      "region": "Central",
+      "aliases": [
+        "toa payoh"
+      ]
+    },
+    {
+      "id": "NBR-024",
+      "name": "Woodlands",
+      "region": "North",
+      "aliases": [
+        "woodlands",
+        "marsiling"
+      ]
+    },
+    {
+      "id": "NBR-025",
+      "name": "Yishun",
+      "region": "North",
+      "aliases": [
+        "yishun"
+      ]
+    },
+    {
+      "id": "NBR-026",
+      "name": "Changi",
+      "region": "East",
+      "aliases": [
+        "changi",
+        "airport boulevard",
+        "jewel"
+      ]
+    }
+  ]
+}
