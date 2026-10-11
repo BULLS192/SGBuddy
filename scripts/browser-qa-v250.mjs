@@ -15,6 +15,9 @@ const awaitVisible=selector=>page.locator(selector).waitFor({state:'visible',tim
 try {
  await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v2.5.0',{timeout:30000});
+ const location=page.locator('#locationSheet');
+ await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
+ if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
  await awaitVisible('#discoverHub');
  await page.locator('[data-discover-tab="travel"]').click();
