@@ -46,6 +46,7 @@ try{
  assert.ok((await page.locator('#foodServiceResults').textContent()).includes('treatsure'),'Food rescue service missing');
  await page.locator('[data-discover-tab="apps"]').click();
  await page.locator('#everydayApps').waitFor({state:'visible'});
+ await page.locator('[data-app-view="all"]').click();
  await page.waitForFunction(()=>Number.parseInt(document.querySelector('#appLibraryCount')?.textContent||'0',10)>=79,{timeout:16000});
  await page.locator('#appLibrarySearch').fill('Burpple');
  assert.ok((await page.locator('#appLibraryCards').textContent()).includes('Burpple'));
