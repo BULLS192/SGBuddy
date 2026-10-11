@@ -1,0 +1,9 @@
+/* V3 translation affordance: subtle, accessible, opt-in and mobile safe. */
+.sgb-translation-option{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.75rem 1rem;margin:.7rem 0 1rem;border:1px solid var(--border,rgba(120,143,166,.28));border-radius:14px}
+.sgb-translation-option[hidden]{display:none!important}
+.sgb-translation-option button{appearance:none;min-height:40px;max-width:100%;padding:.45rem .8rem;border-radius:10px;border:1px solid var(--border,rgba(120,143,166,.32));background:var(--surface,#102239);color:var(--text,#f5f9fc);cursor:pointer;font:inherit;font-size:.83rem}
+.sgb-translation-option button:focus-visible{outline:2px solid var(--accent,#6bb9ff);outline-offset:2px}
+.sgb-translation-option button:disabled{opacity:.6;cursor:default}
+.sgb-translation-option small{flex-basis:100%;font-size:.75rem;line-height:1.5;color:var(--muted,#b7c4d4)}
+.sgb-translation-option small:empty{display:none}
+@media(max-width:420px){.sgb-translation-option{padding:.65rem}.sgb-translation-option button{width:100%}}
