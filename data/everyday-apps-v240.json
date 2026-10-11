@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updatedOn": "2026-10-11",
   "title": "Everyday Singapore Apps & Digital Services",
-  "editorialPolicy": "Curated links to first-party publishers. Store deep-links appear only when individually researched; otherwise the official publisher site is the safest place to obtain an app. Listings are not endorsements, official affiliations, account eligibility guarantees, verified live offers, or claims of installation. Check prices, permissions, provider and region.",
+  "editorialPolicy": "Curated on 11 October 2026. A first-party publisher link identifies where to check an app; it does not mean the app listing, supported OS version, fees or eligibility were revalidated independently. Exact store URLs are included only when specifically identified. No paid placements or account data collected.",
   "serviceDistinction": "Web-only services are not apps and display Open official service, not Download.",
   "catalogue": [
     {
@@ -26,9 +26,9 @@
       "android": "https://play.google.com/store/apps/details?id=sg.ndi.sp",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-002",
@@ -51,9 +51,9 @@
       "android": "https://play.google.com/store/apps/details?id=sg.gov.app.mol",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "L"
+      "monogram": "L",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-003",
@@ -76,9 +76,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "H"
+      "monogram": "H",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-004",
@@ -102,9 +102,9 @@
       "android": "https://play.google.com/store/apps/details?id=sg.gov.ica.mobile.app",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "MM"
+      "monogram": "MM",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-005",
@@ -127,9 +127,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-006",
@@ -151,9 +151,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "CM"
+      "monogram": "CM",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-007",
@@ -177,9 +177,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "M"
+      "monogram": "M",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-008",
@@ -202,9 +202,9 @@
       "android": "https://play.google.com/store/apps/details?id=sg.parking.streetsmart",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "P"
+      "monogram": "P",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-009",
@@ -228,9 +228,9 @@
       "android": null,
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-010",
@@ -254,9 +254,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "M"
+      "monogram": "M",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-011",
@@ -278,9 +278,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "NM"
+      "monogram": "NM",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-012",
@@ -289,7 +289,7 @@
       "publisher": "Sport Singapore",
       "summary": "Book ActiveSG public sports facilities, pools and programmes.",
       "sourceUrl": "https://www.activesgcircle.gov.sg/myactivesg-plus",
-      "kind": "mobile-app",
+      "kind": "web-service",
       "importance": "Recommended",
       "modes": [
         "resident",
@@ -297,14 +297,14 @@
       ],
       "accountNeeded": "ActiveSG account; service may run as mobile web",
       "purpose": "Public sport and fitness bookings",
-      "notes": "Publisher describes a digital booking service. Confirm whether a standalone app is needed.",
+      "notes": "MyActiveSG+ is a publisher-provided web booking service. No separate app is required to use the linked portal.",
       "ios": null,
       "android": null,
-      "downloadEvidence": "publisher-page-only",
+      "downloadEvidence": "publisher-service-web",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "M"
+      "monogram": "M",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-013",
@@ -326,9 +326,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "H3"
+      "monogram": "H3",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-014",
@@ -352,9 +352,9 @@
       "android": "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "G"
+      "monogram": "G",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-015",
@@ -378,9 +378,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "G"
+      "monogram": "G",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-016",
@@ -404,9 +404,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "CZ"
+      "monogram": "CZ",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-017",
@@ -430,9 +430,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "T"
+      "monogram": "T",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-018",
@@ -456,9 +456,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "R"
+      "monogram": "R",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-019",
@@ -482,9 +482,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "GM"
+      "monogram": "GM",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-020",
@@ -508,9 +508,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "C"
+      "monogram": "C",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-021",
@@ -534,9 +534,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "M"
+      "monogram": "M",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-022",
@@ -559,9 +559,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "A"
+      "monogram": "A",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-023",
@@ -583,9 +583,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "G"
+      "monogram": "G",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-024",
@@ -607,9 +607,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "B"
+      "monogram": "B",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-025",
@@ -633,9 +633,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "F"
+      "monogram": "F",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-026",
@@ -659,9 +659,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "E"
+      "monogram": "E",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-027",
@@ -685,9 +685,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "O"
+      "monogram": "O",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-028",
@@ -709,9 +709,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "FG"
+      "monogram": "FG",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-029",
@@ -734,9 +734,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "YR"
+      "monogram": "YR",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-030",
@@ -759,9 +759,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "L"
+      "monogram": "L",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-031",
@@ -784,9 +784,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-032",
@@ -808,9 +808,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "C"
+      "monogram": "C",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-033",
@@ -832,9 +832,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "AS"
+      "monogram": "AS",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-034",
@@ -856,9 +856,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "I"
+      "monogram": "I",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-035",
@@ -880,9 +880,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "WS"
+      "monogram": "WS",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-036",
@@ -904,9 +904,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-037",
@@ -929,9 +929,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "F"
+      "monogram": "F",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-038",
@@ -954,9 +954,9 @@
       "android": null,
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "DD"
+      "monogram": "DD",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-039",
@@ -979,9 +979,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "DP"
+      "monogram": "DP",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-040",
@@ -1004,9 +1004,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "OD"
+      "monogram": "OD",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-041",
@@ -1029,9 +1029,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "UT"
+      "monogram": "UT",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-042",
@@ -1054,9 +1054,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "TB"
+      "monogram": "TB",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-043",
@@ -1079,9 +1079,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "GB"
+      "monogram": "GB",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-044",
@@ -1105,9 +1105,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "W"
+      "monogram": "W",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-045",
@@ -1131,9 +1131,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "R"
+      "monogram": "R",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-046",
@@ -1156,9 +1156,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "Y"
+      "monogram": "Y",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-047",
@@ -1182,9 +1182,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "GW"
+      "monogram": "GW",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-048",
@@ -1206,9 +1206,9 @@
       "android": "https://play.google.com/store/apps/details?id=sg.com.singaporepower.spservices",
       "downloadEvidence": "specific-store-link-reviewed",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "SA"
+      "monogram": "SA",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-049",
@@ -1230,9 +1230,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "M"
+      "monogram": "M",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-050",
@@ -1254,9 +1254,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-051",
@@ -1278,9 +1278,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "MA"
+      "monogram": "MA",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-052",
@@ -1302,9 +1302,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "AM"
+      "monogram": "AM",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-053",
@@ -1328,9 +1328,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "W"
+      "monogram": "W",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-054",
@@ -1354,9 +1354,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "K"
+      "monogram": "K",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-055",
@@ -1380,9 +1380,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "T"
+      "monogram": "T",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-056",
@@ -1405,9 +1405,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "CA"
+      "monogram": "CA",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-057",
@@ -1430,9 +1430,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-058",
@@ -1455,9 +1455,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "S"
+      "monogram": "S",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-059",
@@ -1481,9 +1481,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "GT"
+      "monogram": "GT",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-060",
@@ -1506,9 +1506,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "PS"
+      "monogram": "PS",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-061",
@@ -1531,9 +1531,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "9"
+      "monogram": "9",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-062",
@@ -1555,9 +1555,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "DA"
+      "monogram": "DA",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-063",
@@ -1579,9 +1579,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "W"
+      "monogram": "W",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-064",
@@ -1604,9 +1604,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "D"
+      "monogram": "D",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-APP-065",
@@ -1629,9 +1629,9 @@
       "android": null,
       "downloadEvidence": "publisher-page-only",
       "editorialStatus": "curated",
-      "sourceReviewedOn": "2026-10-11",
       "regionalAvailability": "Singapore focused; check store/eligibility on device",
-      "monogram": "L"
+      "monogram": "L",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-WEB-001",
@@ -1649,10 +1649,10 @@
       "purpose": "Household vouchers",
       "notes": "Claim only via official go.gov.sg/cdcv route. Avoid SMS and phishing lookalikes.",
       "editorialStatus": "official-web-service",
-      "sourceReviewedOn": "2026-10-11",
       "ios": null,
       "android": null,
-      "monogram": "CV"
+      "monogram": "CV",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-WEB-002",
@@ -1671,10 +1671,10 @@
       "purpose": "Report neighbourhood issues",
       "notes": "Do not download a lookalike standalone app; check LifeSG's current OneService integration.",
       "editorialStatus": "official-web-service",
-      "sourceReviewedOn": "2026-10-11",
       "ios": null,
       "android": null,
-      "monogram": "OS"
+      "monogram": "OS",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-WEB-003",
@@ -1693,10 +1693,10 @@
       "purpose": "Community courses and facilities",
       "notes": "Website/service, not claimed to be a native standalone mobile app.",
       "editorialStatus": "official-web-service",
-      "sourceReviewedOn": "2026-10-11",
       "ios": null,
       "android": null,
-      "monogram": "PA"
+      "monogram": "PA",
+      "cataloguedOn": "2026-10-11"
     },
     {
       "id": "V24-WEB-004",
@@ -1716,15 +1716,15 @@
       "purpose": "Training and upskilling",
       "notes": "Website/service; no native app download assumed.",
       "editorialStatus": "publisher-reference",
-      "sourceReviewedOn": "2026-10-11",
       "ios": null,
       "android": null,
-      "monogram": "SF"
+      "monogram": "SF",
+      "cataloguedOn": "2026-10-11"
     }
   ],
   "counts": {
-    "mobileApps": 65,
-    "webServices": 4,
+    "mobileApps": 64,
+    "webServices": 5,
     "total": 69,
     "reviewedStoreLinks": 8
   },
