@@ -1,0 +1,40 @@
+name: SGBuddy Weekly Library Freshness
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [feature/sgbuddy-v2.1-services-food-freshness]
+    paths:
+      - 'scripts/library-freshness-v210.mjs'
+      - '.github/workflows/library-freshness-v210.yml'
+permissions:
+  contents: read
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts
+      - name: Try fresh official data pull (report only, do not commit or deploy)
+        run: node scripts/build-official-library.mjs || echo "Official-location refresh failed; inspect report."
+      - name: Try healthcare and essential services pull (report only)
+        run: node scripts/build-services-v210.mjs || echo "Service-location refresh failed; inspect report."
+      - name: Try historical supermarket table (non-critical)
+        run: node scripts/build-supermarkets-v210.mjs || echo "Legacy supermarket dataset unavailable; keep unknown, do not fabricate."
+      - name: Generate source coverage, staleness and record-diff reports
+        run: node scripts/library-freshness-v210.mjs
+      - name: Upload report and source snapshots for editorial review
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-source-freshness
+          path: |
+            reports/library-freshness-v210.json
+            reports/library-freshness-v210.md
+            data/services-v210.json
+            data/official-places-v200.json
+          retention-days: 30
