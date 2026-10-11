@@ -17,7 +17,7 @@ Status: V3.1 development branch, not a complete multilingual library.
 | Published verified facts | 152 | 26 |
 | Core Everyday Apps summary/purpose entries | 69 | 0 |
 | Singapore dish descriptions | 82 | 82 |
-| Hawker-stall research notes | 93 | 0 |
+| Hawker-stall research notes | 93 | 93 |
 | Content taxonomy display names | 36 | 36 |
 | Discover curated place names | 271 | Proper names remain original by design |
 
@@ -26,7 +26,7 @@ These are initial counts and do not include extra app entries or operator listin
 ## Next batch: content packs rather than runtime translation
 
 1. Expand reviewed fact templates/records from 26 to all 152 published facts, grounded by immutable source IDs and source-text checks.
-2. Create reviewable record/field translations for 69 core app summaries and purposes and remaining source-owned stall notes. All 82 dish descriptions now have source-locked translations; 70 originals intentionally remain generic food-culture descriptors. Distinguish factual statements from labels.
+2. Create reviewable record/field translations for 69 core app summaries and purposes. The 93 historical stall source notes are covered; separately sourced operator/vendor notes still require review. All 82 dish descriptions now have source-locked translations; 70 originals intentionally remain generic food-culture descriptors. Distinguish factual statements from labels.
 3. Attach a source revision, locale, translation state (`reviewed`, `pending`, `stale`) and original text for each translated record.
 4. Ensure multilingual search indexes include translated text without altering canonical search terms.
 5. Build QA enforcing required locale coverage for newly approved translations; do not block display of already-verified original English data in unsupported locales.
@@ -49,4 +49,6 @@ No database or paid translation API is needed for this reviewable static-pack ap
 - Added reviewed descriptions for **82/82 Singapore dish records** using 13 distinct, exact-match original phrases. The 70 original generic `Singapore food-culture exploration term` descriptions are faithfully localized as generic descriptions, **not** rewritten into unsupported ingredient, recipe or dietary claims.
 - Integrated translated dish descriptions into Food Explorer's cards and multilingual search. Original dish names, operator links, prices and dietary flags remain unchanged.
 - Updated source freshness audits and 12-language Chromium tests, including local-language phrase search.
-- Core app summaries (69 entries), stall research notes (93 entries) and remaining 126 published facts are still untranslated. Do not advertise full content coverage.
+- Core app summaries (69 entries) and remaining 126 published facts are still untranslated. All 93 historical stall notes are translated with source-locked fallbacks. Do not advertise full content coverage.
+
+- Extended the second batch to **93/93 research-stall notes**, from five reviewed original warnings, across all 11 non-English languages. Where applicable, Food Explorer displays these translated historical cautions instead of generic English warnings, preserving uncertainty about trading, menu and certifications.
