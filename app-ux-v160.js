@@ -193,7 +193,7 @@ if(discover&&placeView){
 function setExplore(tab){
  selectedExplore=tab;
  if(!discover)return;
- const isNearby=tab==='nearby',isFacts=tab==='facts',isApps=tab==='apps'||tab==='travel';
+ const isNearby=tab==='nearby',isFacts=tab==='facts',isApps=tab==='apps'||tab==='travel'||tab==='trip';
  setHidden(nearby,!isNearby);
  const results=$('#discoverResults'),status=$('#discoverStatus'),searchRow=$('.discover-search-row');
  setHidden(results,isNearby||isFacts||isApps);
