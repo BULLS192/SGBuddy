@@ -1,0 +1,63 @@
+/* SGBuddy V2.6 — responsive My Trip panel */
+.my-trip-v260[hidden]{display:none!important}
+.my-trip-v260{min-width:0;padding:24px!important;overflow-wrap:anywhere}
+.trip-heading .label{font-size:.72rem;letter-spacing:.12em}
+.trip-heading h3{font-size:clamp(1.4rem,2.4vw,2rem);margin:8px 0}
+.trip-heading p,.trip-privacy,.trip-warning,.trip-helper{line-height:1.6;font-size:.88rem;color:var(--muted,#b6c9da)}
+.trip-privacy,.trip-warning{padding:12px 14px;border-radius:12px;background:rgba(114,164,187,.075);border:1px solid rgba(151,190,210,.20);margin:15px 0}
+.my-trip-v260 details{margin:16px 0;border:1px solid var(--line,#344459);padding:12px 16px;border-radius:14px}
+.my-trip-v260 summary{cursor:pointer;font-weight:800;min-height:28px}
+.trip-new-form,.trip-custom-form{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin-top:14px}
+.my-trip-v260 label{display:grid;gap:5px;font-size:.83rem;color:var(--muted,#b6c9da);font-weight:650}
+.my-trip-v260 input,.my-trip-v260 select,.my-trip-v260 textarea{box-sizing:border-box;max-width:100%;width:100%;color:var(--text,#e8f4f7);background:rgba(9,30,48,.72);border:1px solid var(--line,#35516d);border-radius:10px;padding:10px 11px;font:inherit;min-height:42px}
+.my-trip-v260 textarea{resize:vertical;min-height:70px}
+.trip-new-form>label{min-width:160px;flex:1 1 165px}.trip-new-form>button{min-height:42px}
+.trip-active{display:flex;align-items:end;gap:12px;margin:18px 0;flex-wrap:wrap}
+.trip-active>label{flex:1;min-width:160px}.trip-delete{min-height:42px}
+.trip-day-tabs{display:flex;gap:8px;overflow-x:auto;padding:3px 0 12px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.trip-day-tabs button{flex:0 0 auto;white-space:nowrap;scroll-snap-align:start;min-height:43px;border:1px solid var(--line,#35516d);border-radius:999px;background:rgba(91,138,173,.10);color:var(--text,#e8f4f7);padding:8px 13px;font:inherit;font-size:.85rem;cursor:pointer}
+.trip-day-tabs button[aria-pressed="true"]{color:#fff;background:#11665e;border-color:#11665e}
+.trip-day-tabs span{opacity:.8}
+.trip-day-panel{border:1px solid var(--line,#35516d);padding:18px;border-radius:16px;min-width:0}
+.trip-day-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.trip-day-head h4{font-size:1.15rem;margin:0}
+.trip-day-head span{font-size:.78rem;color:var(--muted,#b6c9da)}
+.trip-stops{display:grid;gap:12px}
+.trip-empty{padding:23px 12px;text-align:center;border:1px dashed var(--line,#35516d);border-radius:12px;color:var(--muted,#b6c9da)}
+.trip-stop{min-width:0;padding:16px;border-radius:14px;border:1px solid rgba(155,185,210,.27);background:rgba(98,148,174,.06)}
+.trip-stop-head{display:flex;align-items:flex-start;gap:10px}
+.trip-stop-index{flex:none;width:29px;height:29px;border-radius:100%;background:#125c58;color:#fff;display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.trip-stop-name{min-width:0;flex:1}
+.trip-stop-name h4{font-size:1.02rem;margin:0 0 4px}
+.trip-stop-name p{font-size:.79rem;color:var(--muted,#b6c9da);margin:0 0 10px}
+.trip-done{display:flex!important;align-items:center;gap:5px!important;white-space:nowrap}
+.trip-done input{width:20px;min-height:20px;accent-color:#167c72}
+.trip-stop-edit{display:grid;grid-template-columns:minmax(100px,150px) minmax(0,1fr);gap:12px;margin-top:9px}
+.trip-stop-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.trip-stop-actions button{min-height:38px;padding:7px 11px}
+.trip-stop-actions button[disabled]{opacity:.38;cursor:not-allowed}
+.trip-stop-actions a{color:#8dcdf7;text-underline-offset:3px;font-size:.85rem;margin-right:auto}
+.trip-transfer{display:flex!important;align-items:center;gap:6px!important}
+.trip-transfer select{width:60px!important;min-height:38px!important;padding:5px!important}
+.trip-remove{margin-left:auto}
+.trip-add-panel{display:grid;gap:12px;margin-top:18px;border-top:1px solid var(--line,#35516d);padding-top:18px}
+.trip-search-results{display:grid;gap:8px}
+.trip-search-result{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:10px;background:rgba(122,166,192,.08);border:1px solid rgba(155,185,210,.20)}
+.trip-search-result div{display:grid;min-width:0;gap:4px}
+.trip-search-result small{color:var(--muted,#b6c9da)}
+.trip-search-result button{min-height:38px;flex:none}
+.trip-custom-form{border-top:1px solid var(--line,#35516d);padding-top:10px}
+.trip-custom-form strong{flex:1 1 100%;font-size:.85rem}
+.trip-custom-form input{flex:1 1 145px;width:auto;min-width:0}
+.trip-export{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}
+.trip-export button{flex:1 1 145px;min-height:44px}
+.my-trip-v260 button:focus-visible,.my-trip-v260 a:focus-visible,.my-trip-v260 input:focus-visible,.my-trip-v260 select:focus-visible,.my-trip-v260 textarea:focus-visible,.my-trip-v260 summary:focus-visible,.discover-item [data-trip-add-place]:focus-visible{outline:3px solid #7bc4ff;outline-offset:2px}
+html[data-ux-theme="light"] .my-trip-v260 input,html[data-ux-theme="light"] .my-trip-v260 select,html[data-ux-theme="light"] .my-trip-v260 textarea{background:#fff;color:#173248;border-color:#b7cbd6}
+html[data-ux-theme="light"] .trip-stop,html[data-ux-theme="light"] .trip-search-result{background:#f8fcfe;border-color:#d1e0e9}
+html[data-ux-theme="light"] .trip-privacy,html[data-ux-theme="light"] .trip-warning{background:#f4f9fb;border-color:#d1e0e9}
+html[data-ux-theme="light"] .trip-heading p,html[data-ux-theme="light"] .trip-privacy,html[data-ux-theme="light"] .trip-warning,html[data-ux-theme="light"] .trip-helper,html[data-ux-theme="light"] .trip-stop-name p,html[data-ux-theme="light"] .trip-day-head span,html[data-ux-theme="light"] .trip-empty,html[data-ux-theme="light"] .my-trip-v260 label,html[data-ux-theme="light"] .trip-search-result small{color:#4d6375}
+html[data-ux-theme="light"] .trip-day-tabs button:not([aria-pressed="true"]){background:#f4f9fb;color:#29475c}
+html[data-ux-theme="light"] .trip-stop-actions a{color:#145a86}
+@media(max-width:680px){.my-trip-v260{padding:15px!important}.trip-day-panel{padding:12px}.trip-stop{padding:12px}.trip-stop-edit{grid-template-columns:1fr}.trip-search-result{align-items:stretch;flex-direction:column}.trip-search-result button{width:100%}.trip-done span{font-size:.73rem}}
+@media(max-width:400px){.trip-stop-head{flex-wrap:wrap}.trip-done{margin-left:39px}.trip-remove{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.my-trip-v260 *{scroll-behavior:auto!important;transition:none!important}}
