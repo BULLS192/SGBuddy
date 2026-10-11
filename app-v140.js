@@ -1,7 +1,10 @@
 /* SGBuddy v1.4 — Merli, source-aware Singapore companion. No AI API or user history server. */
+import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
+import {factTranslation} from './lib/i18n-facts-v310.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const {state,navigateTo,askAdvisor}=core;
+const locale=()=>window.SGBUDDY_LANGUAGE||'en';
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[ch]));
 const url=s=>{try{let u=new URL(String(s));return u.protocol==='https:'?u.href:''}catch{return ''}};
@@ -64,7 +67,7 @@ function filtered(){
  (status==='all'||f.status===status)&&
  (topic==='all'||f.theme===topic)&&
  (!savedOnly||saved.has(f.id))&&
- (!q||(f.text+' '+f.theme).toLowerCase().includes(q)));
+ (!q||[f.text,f.theme,taxonomyLabel(locale(),f.theme),factTranslation(locale(),f)||''].join(' ').toLowerCase().includes(q)));
 }
 function openFacts(savedFilter=false){
  navigateTo('places');
@@ -82,7 +85,7 @@ function factTip(){
  if(!next){recent.clear();next=choices[randomCursor++%choices.length]}
  recent.add(next.id);
  try{sessionStorage.setItem('merli-fact-recent-v1',JSON.stringify([...recent].slice(-75)))}catch{}
- say('Merli’s tip: '+next.text,'success',next.sourceUrl,next);
+ say('Merli’s tip: '+(factTranslation(locale(),next)||next.text),'success',next.sourceUrl,next);
 }
 function navigateDiscover(tab){
  navigateTo('places');const button=$('[data-discover-tab="'+tab+'"]');if(button)button.click();
@@ -158,8 +161,8 @@ function renderLibrary(){
  $('#sgbFactCount').textContent=checked+' checked against official sources · '+(rows.length-checked)+' review pending · displaying '+show.length+' of '+rows.length+' matching records';
  list.innerHTML=show.map(f=>{
    const link=url(f.sourceUrl),yes=saved.has(f.id);
-   return '<article class="card sgb-fact" data-fact-id="'+esc(f.id)+'"><span class="label">'+esc(f.theme)+'</span>'+
-    '<p>'+esc(f.text)+'</p><div class="sgb-fact-foot"><span class="merli-status '+(f.status==='verified'?'checked':'pending')+'">'+(f.status==='verified'?'Official-source checked (AI-assisted)':'Review pending')+'</span>'+
+   return '<article class="card sgb-fact" data-fact-id="'+esc(f.id)+'"><span class="label">'+esc(taxonomyLabel(locale(),f.theme))+'</span>'+
+    '<p'+(factTranslation(locale(),f)?' data-content-localized="true"':'')+'>'+esc(factTranslation(locale(),f)||f.text)+'</p><div class="sgb-fact-foot"><span class="merli-status '+(f.status==='verified'?'checked':'pending')+'">'+(f.status==='verified'?'Official-source checked (AI-assisted)':'Review pending')+'</span>'+
     (link?'<a href="'+esc(link)+'" rel="noopener noreferrer" target="_blank">Original source ↗</a>':'')+
     '<button class="secondary merli-save" type="button" data-merli-save="'+esc(f.id)+'" aria-pressed="'+yes+'">'+(yes?'★ Saved':'☆ Save')+'</button></div></article>';
  }).join('')||'<div class="card sgb-fact">No facts match these filters. Try clearing search, mode or saved-only.</div>';
@@ -177,7 +180,7 @@ function mountLibrary(){
  '<p id="sgbFactCount" class="sgb-fact-count" role="status"></p><div id="sgbFactList" class="sgb-fact-list"></div>'+
  '<button id="merliLoadMore" class="secondary merli-more" type="button" hidden>Show more facts</button>';
  discover.insertAdjacentElement('beforeend',sec);
- $('#sgbFactTopic').insertAdjacentHTML('beforeend',[...new Set(facts.map(f=>f.theme))].sort().map(t=>'<option value="'+esc(t)+'">'+esc(t)+'</option>').join(''));
+ $('#sgbFactTopic').insertAdjacentHTML('beforeend',[...new Set(facts.map(f=>f.theme))].sort().map(t=>'<option value="'+esc(t)+'">'+esc(taxonomyLabel(locale(),t))+'</option>').join(''));
  $('#sgbFactTopic').addEventListener('change',e=>{topic=e.target.value;limit=16;renderLibrary()});
  $('#merliFactStatus').addEventListener('change',e=>{status=e.target.value;limit=16;renderLibrary()});
  $('#sgbFactQuery').addEventListener('input',e=>{search=e.target.value;limit=16;renderLibrary()});
@@ -185,6 +188,7 @@ function mountLibrary(){
  $('#merliLoadMore').addEventListener('click',()=>{limit+=16;renderLibrary()});
  sec.addEventListener('click',e=>{const b=e.target.closest('[data-merli-save]');if(!b)return;const id=b.dataset.merliSave;saved.has(id)?saved.delete(id):saved.add(id);writeSaved();renderLibrary()});
  document.addEventListener('sgbuddy:persona',()=>{greeting();limit=16;renderLibrary()});
+document.addEventListener('sgbuddy:language',()=>{for(const option of $('#sgbFactTopic')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(locale(),option.value);renderLibrary()});
  document.addEventListener('sgbuddy:knowledge-saved',()=>{saved=readSaved();renderLibrary()});
  document.addEventListener('sgbuddy:discover-tab',e=>{activeTab=e.detail.tab;sec.hidden=activeTab!=='facts';if(activeTab==='facts')renderLibrary()});
  renderLibrary();
