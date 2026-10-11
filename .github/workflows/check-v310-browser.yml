@@ -8,6 +8,7 @@ on:
       - 'lib/i18n-facts-v310.mjs'
       - 'lib/i18n-nature-v311.mjs'
       - 'lib/i18n-dishes-v311.mjs'
+      - 'lib/i18n-stall-notes-v311.mjs'
       - 'app-v120.js'
       - 'app-v140.js'
       - 'app-food-v180.js'
