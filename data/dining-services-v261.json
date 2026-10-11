@@ -59,7 +59,7 @@
       "summary": "Rescue surplus food from participating Singapore hotels, eateries and grocers, subject to current stock.",
       "purpose": "Hotel buffet-in-a-box and surplus grocery rescue",
       "accountNeeded": "App account and payment for eligible orders; pickup or delivery conditions vary",
-      "notes": "Food rescue stock, timing and participating outlets change. Always check the treatsure app.",
+      "notes": "Official treatsure site links to the iOS and Google Play listings. Surplus food stock, pickup hours and partner participation change.",
       "sourceUrl": "https://treatsure.co/",
       "kind": "mobile-app",
       "importance": "Recommended",
@@ -70,9 +70,9 @@
         "student"
       ],
       "monogram": "TR",
-      "ios": null,
-      "android": null,
-      "downloadEvidence": "publisher-page-only",
+      "ios": "https://apps.apple.com/sg/app/treatsure/id1273827294",
+      "android": "https://play.google.com/store/apps/details?id=com.treatsure.treatsureapp",
+      "downloadEvidence": "specific-store-link-reviewed",
       "cataloguedOn": "2026-10-11"
     },
     {
