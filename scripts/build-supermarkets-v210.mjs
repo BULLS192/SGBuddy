@@ -1,7 +1,26 @@
 /** Import historic NEA supermarket-licence registry, retaining address without inventing coords. */
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-import {parse} from 'csv-parse/sync';
+function parseCsv(input){
+ const text=String(input||'').replace(/^\uFEFF/,'');
+ const rows=[];let row=[],value='',quoted=false;
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+  if(quoted){
+   if(c==='"'&&text[i+1]==='"'){value+='"';i++}
+   else if(c==='"')quoted=false;
+   else value+=c;
+  }else if(c==='"')quoted=true;
+  else if(c===','){row.push(value);value=''}
+  else if(c==='\n'){row.push(value.replace(/\r$/,''));rows.push(row);row=[];value=''}
+  else value+=c;
+ }
+ if(value||row.length){row.push(value);rows.push(row)}
+ if(!rows.length)return [];
+ const keys=rows.shift().map(x=>x.trim());
+ return rows.filter(r=>r.some(Boolean)).map(r=>Object.fromEntries(keys.map((k,i)=>[k,r[i]||''])));
+}
+
 const datasetId='d_11edd0117280c5776651d7891114c88c';
 const sourceUrl='https://data.gov.sg/datasets/'+datasetId+'/view';
 const urls=[
@@ -20,7 +39,7 @@ async function pull(){
    if(!download||new URL(download).protocol!=='https:'){last='no download link';continue}
    const rr=await fetch(download,{signal:AbortSignal.timeout(50000)});if(!rr.ok){last='download '+rr.status;continue}
    const text=await rr.text();
-   return parse(text,{columns:true,skip_empty_lines:true,bom:true,relax_quotes:true});
+   return parseCsv(text);
   }catch(e){last=String(e.message||e)}
  }
  throw Error('NEA legacy supermarket table not retrievable: '+last);
