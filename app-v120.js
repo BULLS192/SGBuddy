@@ -330,6 +330,6 @@
     document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,operator:operatorPlaces.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
-  window.__SGBUDDY_CLIENT_VERSION__='2.4.1';
-  if($('#appVersion'))$('#appVersion').textContent='v2.4.1';
+  window.__SGBUDDY_CLIENT_VERSION__='2.4.2';
+  if($('#appVersion'))$('#appVersion').textContent='v2.4.2';
 })();
