@@ -1,31 +1,36 @@
 /* SGBuddy V2.6 — My Trip: local, editable itinerary. No cloud sync or booking. */
 import {STORE_KEY,MAX_TRIPS,MAX_DAYS,newTrip,dayDate,validPlace,addStop,moveStop,moveDay,editStop,hydrate,shareText} from './lib/trip-v260.mjs';
+import {normalizeLocale} from './lib/i18n-v280.mjs';
+import {translatedTrip} from './lib/i18n-trip-v280.mjs';
 const core=window.SGBUDDY_CORE,doc=document,discover=doc.getElementById('discoverHub');
 if(core&&discover){
  const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
  const $=s=>doc.querySelector(s);
- const lang=()=>window.SGBUDDY_LANGUAGE==='zh-CN'?'zh':'en';
+ const lang=()=>normalizeLocale(window.SGBUDDY_LANGUAGE);
  const labels={
  en:{title:'My Trip',intro:'Build a flexible day-by-day Singapore itinerary from SGBuddy places or add your own stop.',device:'Trips are saved on this device only, not synced to your account. Export a copy before clearing browser data or changing devices.',create:'Create trip',newTrip:'New trip',name:'Trip name',start:'Start date',days:'Days',choose:'Current trip',delete:'Delete trip',add:'Add to Day',day:'Day',empty:'No stops yet. Search the directory or add a custom stop below.',search:'Find a place in SGBuddy',searchHint:'Type at least 2 letters to search the place directory.',searchWait:'Loading directory. You can add a custom stop.',manual:'Add your own stop',customName:'Place or activity name',customArea:'Area / address (optional)',addCustom:'Add custom stop',note:'Notes',time:'Time (optional)',remove:'Remove',up:'Move up',down:'Move down',copy:'Share / copy plan',download:'Download .txt',noTrip:'Start by creating a trip, or add a place from Discover to make a three-day draft.',saved:'Saved on this device',saveFailed:'Could not save: device storage is full or unavailable.',added:'Added to your plan',exists:'Already in this day, or day is full.',limit:'Maximum of eight trips per device.',confirm:'Delete this trip and all its planned stops?',warning:'Planning guide only — opening hours, entrance locations and prices may change. Stops do not create reservations. Journey times are not estimated.',notVerified:'Location and opening hours have not been verified.',map:'Search on Maps ↗',moveTo:'Move to day',selectDay:'Selected day',copied:'Itinerary copied to clipboard.',notCopied:'Sharing is unavailable; use Download .txt instead.',directory:'Explore places',selected:'Planned stops',visit:'Visited'},
  zh:{title:'我的行程',intro:'使用 SGBuddy 地点或自定义活动，安排新加坡每日行程。',device:'行程仅储存在本设备，不会同步到帐户。清除浏览器数据或更换设备前请导出备份。',create:'建立行程',newTrip:'新行程',name:'行程名称',start:'开始日期',days:'天数',choose:'当前行程',delete:'删除行程',add:'加入第',day:'第',empty:'尚无安排。请搜索地点或添加自定义活动。',search:'搜索 SGBuddy 地点',searchHint:'输入至少两个字母搜索地点资料库。',searchWait:'地点资料库载入中；您仍可添加自定义活动。',manual:'添加自定义活动',customName:'地点或活动名称',customArea:'地区／地址（选填）',addCustom:'添加活动',note:'备注',time:'时间（选填）',remove:'移除',up:'上移',down:'下移',copy:'分享／复制行程',download:'下载 .txt',noTrip:'先建立行程，或从探索添加地点自动建立三日草稿。',saved:'已保存在本设备',saveFailed:'无法保存：本设备储存空间可能不足。',added:'已加入行程',exists:'当日已有此地点，或已达上限。',limit:'每台设备最多储存八个行程。',confirm:'确定删除此行程和所有地点？',warning:'此功能仅供规划。营业时间、入口和价格可能变化，行程不等于预订，也不提供预计车程。',notVerified:'地点或营业时间尚未核实。',map:'在地图上搜索 ↗',moveTo:'移至第',selectDay:'所选日期',copied:'行程已复制。',notCopied:'无法分享，请使用下载 .txt。',directory:'浏览地点',selected:'已规划地点',visit:'已完成'}
  };
- const text=()=>labels[lang()],localDay=()=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day};
+ const text=()=>translatedTrip(lang(),labels.en,labels.zh),localDay=()=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day};
  let data;try{data=hydrate(JSON.parse(localStorage.getItem(STORE_KEY)||'{}'))}catch{data=hydrate({})}
  let selectedDay=0,showPanel=false,catalogue=window.SGBUDDY_DISCOVER_PLACES||null,message='',query='';
  const host=doc.createElement('section');host.id='myTripPlanner';host.className='card my-trip-v260';host.hidden=true;host.setAttribute('role','tabpanel');host.setAttribute('aria-labelledby','discoverTab-trip');
  discover.insertBefore(host,$('#discoverResults'));
  const active=()=>data.trips.find(t=>t.id===data.activeId)||null;
  const save=()=>{try{localStorage.setItem(STORE_KEY,JSON.stringify(data));doc.dispatchEvent(new CustomEvent('sgbuddy:trip-updated',{detail:{total:data.trips.length}}));return true}catch{message=text().saveFailed;return false}};
- const fmt=(date)=>{try{return new Intl.DateTimeFormat(lang()==='zh'?'zh-CN':'en-SG',{month:'short',day:'numeric',weekday:'short',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'))}catch{return date}};
+ const fmt=(date)=>{try{return new Intl.DateTimeFormat(lang()==='en'?'en-SG':lang(),{month:'short',day:'numeric',weekday:'short',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'))}catch{return date}};
  const directions=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([p.name,p.address||p.area,'Singapore'].filter(Boolean).join(', '));
- const formatDay=(i,trip)=>lang()==='zh'?'第'+(i+1)+'天 · '+fmt(dayDate(trip.startDate,i)):'Day '+(i+1)+' · '+fmt(dayDate(trip.startDate,i));
+ const formatDay=(i,trip)=>{
+   const n=i+1,language=lang(),day=language==='zh-CN'||language==='zh-TW'?'第'+n+'天':language==='ja'?n+'日目':language==='ko'?n+'일차':language==='th'?'วันที่ '+n:text().day+' '+n;
+   return day+' · '+fmt(dayDate(trip.startDate,i));
+  };
  const options=trip=>trip.days.map((_,i)=>'<option value="'+i+'" '+(selectedDay===i?'selected':'')+'>'+escapeHTML(formatDay(i,trip))+'</option>').join('');
  function searchMarkup(){
   const s=text();
   if(!catalogue)return '<p class="trip-helper">'+escapeHTML(s.searchWait)+'</p>';
   const q=query.trim().toLowerCase();if(q.length<2)return '<p class="trip-helper">'+escapeHTML(s.searchHint)+'</p>';
   const rows=catalogue.filter(p=>p&&p.id&&p.name&&[p.name,p.area,p.category,p.address].join(' ').toLowerCase().includes(q)).slice(0,8);
-  return rows.length?rows.map(p=>'<div class="trip-search-result"><div><strong>'+escapeHTML(p.name)+'</strong><small>'+escapeHTML([p.area,p.category].filter(Boolean).join(' · '))+'</small></div><button class="secondary" type="button" data-trip-add-search="'+escapeHTML(p.id)+'">'+escapeHTML(s.add)+' '+(selectedDay+1)+'</button></div>').join(''):'<p class="trip-helper">No matching places · Try a different name</p>';
+  return rows.length?rows.map(p=>'<div class="trip-search-result"><div><strong>'+escapeHTML(p.name)+'</strong><small>'+escapeHTML([p.area,p.category].filter(Boolean).join(' · '))+'</small></div><button class="secondary" type="button" data-trip-add-search="'+escapeHTML(p.id)+'">'+escapeHTML(s.add)+' '+(selectedDay+1)+'</button></div>').join(''):'<p class="trip-helper">'+escapeHTML(({en:'No matching places · Try a different name','zh-CN':'没有匹配地点，请尝试其他名称','zh-TW':'沒有符合的地點，請換個名稱',ms:'Tiada tempat sepadan · Cuba nama lain',id:'Tidak ada tempat cocok · Coba nama lain',ja:'該当する場所がありません。別の名前をお試しください。',ko:'검색 결과가 없습니다. 다른 이름을 시도하세요.',th:'ไม่พบสถานที่ ลองชื่ออื่น',vi:'Không tìm thấy địa điểm · Thử tên khác',fr:'Aucun lieu trouvé · Essayez un autre nom',es:'No hay lugares · Prueba otro nombre','pt-BR':'Nenhum local encontrado · Tente outro nome'})[lang()]||'No matching places')+'</p>';
  }
  function stopMarkup(trip,stop,index){
   const s=text(),p=stop.place,canUp=index>0,canDown=index<trip.days[selectedDay].length-1;
