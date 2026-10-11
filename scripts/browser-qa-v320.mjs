@@ -32,6 +32,15 @@ try{
  });
  for(const {code} of LOCALES){
   await page.locator('#sgbLanguage').selectOption(code);
+  // The Today screen refreshes asynchronously; isolate locale rendering from network state.
+  await page.evaluate(()=>{
+   const state=window.SGBUDDY_CORE.state;
+   state.weather={area:'Singapore',summary:'',conditions:{humidityPct:null,rainfallMm:null,temperatureC:27},rain:false,dataQuality:{unavailableSignals:['rainfall']},travelRisk:{level:'low'},airQuality:{psi24h:{overall:42},pm25OneHour:{value:17}}};
+   window.SGBUDDY_CORE.renderEnvironment();
+   state.v110Places=[{name:'Test Place',category:'Library',kind:'library',sourceKey:'nlb_libraries_geo',personaScore:98,distanceM:130,address:'Singapore'}];
+   state.v110LoadedPersona=state.mode;
+   window.SGBUDDY_PLACE_INDEX_RENDERER();
+  });
   await textIs('#envHeadline',runtimeText(code,'weatherConditions',{area:'Singapore'}));
   await textIs('#envHumidity',runtimeText(code,'unavailable'));
   await page.waitForFunction(expect=>document.querySelector('#envDetails')?.textContent?.includes(expect),runtimeText(code,'psiExplanation'),{timeout:12000});
