@@ -36,7 +36,9 @@ try{
  assert.equal(await page.locator('[data-trip-note="0"]').inputValue(),'Lunch plans');
  await page.locator('[data-trip-transfer="0"]').selectOption('2');
  assert.equal(await page.locator('.trip-stop').count(),0,'Moving across days clears the source day');
+ console.log('Transferred days',await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips.map(t=>({name:t.name,days:t.days.map(d=>d.map(s=>s.place.name))}))));
  await page.locator('[data-trip-day="2"]').click();
+ console.log('After Day 3',await page.locator('.trip-day-tabs button').evaluateAll(bs=>bs.map(b=>[b.dataset.tripDay,b.getAttribute('aria-pressed')])),await page.locator('.trip-stops').textContent());
  assert.equal(await page.locator('.trip-stop').count(),1,'Moved stop should appear on day 3');
  await page.locator('#tripCreateDetails summary').click();
  await page.locator('#tripNewName').fill('Second trip');
