@@ -6,18 +6,18 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
 const key='sgbuddy-stall-saved-v1';
 let saved=new Set();try{const arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr))saved=new Set(arr.filter(x=>typeof x==='string').slice(0,300))}catch{}
-let stalls=[],dishes=[],menus=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',awardYear='all',term='',onlySaved=false,limit=16,initialised=false;
+let stalls=[],dishes=[],menus=[],hawkerMenus=[],tab='stalls',area='all',cuisine='all',meal='all',dish='all',awardYear='all',term='',onlySaved=false,limit=16,initialised=false;
 const host=$('#discoverHub');if(!host)return;
 const sec=document.createElement('section');sec.id='foodExplorer';sec.className='card food-explorer';sec.hidden=true;
 sec.innerHTML='<div class="label">SGBUDDY FOOD LIBRARY</div><h3>What shall we eat?</h3>'+
 '<p class="food-note">Explore Singapore dishes and hawker-stall research leads. Stall operating status, opening hours, menu prices, halal certification and vegetarian options are <strong>not verified</strong>. Verify halal certification against <a href="https://halal.muis.gov.sg/halal/establishments" target="_blank" rel="noopener noreferrer">MUIS’s official directory ↗</a>.</p>'+
-'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button><button type="button" data-food-view="menus" aria-pressed="false">Vendor-listed menus</button></div>'+
+'<div class="food-view-tabs" role="group" aria-label="Food library views"><button type="button" data-food-view="stalls" aria-pressed="true">Hawker stalls</button><button type="button" data-food-view="dishes" aria-pressed="false">Singapore dishes</button><button type="button" data-food-view="menus" aria-pressed="false">Vendor-listed menus</button><button type="button" data-food-view="hawker-menus" aria-pressed="false">Hawker brand menu</button></div>'+
 '<div class="food-controls"><input id="foodSearch" type="search" placeholder="Search stall, dish or hawker centre" aria-label="Search the food library"/>'+
 '<select id="foodArea" aria-label="Filter food by area"><option value="all">All areas</option></select>'+
 '<select id="foodCuisine" aria-label="Filter by cuisine"><option value="all">All cuisines</option></select>'+
 '<select id="foodMeal" aria-label="Filter by meal"><option value="all">Any meal</option></select>'+
 '<select id="foodDish" aria-label="Filter by dish"><option value="all">Any dish</option></select>'+ 
-'<select id="foodAwardYear" aria-label="Filter historical award year"><option value="all">All evidence years</option><option value="2025">NEA 2025</option><option value="2024">NEA 2024</option><option value="2023">NEA 2023</option><option value="2022">NEA 2022</option><option value="editorial">Editorial leads</option></select>'+
+'<select id="foodAwardYear" aria-label="Filter historical award year"><option value="all">All evidence years</option><option value="2026">MICHELIN 2026</option><option value="2025">NEA 2025</option><option value="2024">NEA 2024</option><option value="2023">NEA 2023</option><option value="2022">NEA 2022</option><option value="editorial">Editorial leads</option></select>'+
 '<label class="food-saved"><input id="foodSavedOnly" type="checkbox"/> Saved stalls only</label></div>'+
 '<p class="food-count" role="status" id="foodCount">Loading food research leads…</p>'+
 '<div id="foodCards" class="food-grid"></div><button type="button" class="secondary" id="foodLoadMore" hidden>Show more</button>';
@@ -28,12 +28,12 @@ function options(selector,values){
  field.insertAdjacentHTML('beforeend',values.filter(Boolean).sort().map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
 }
 function cardStall(x){
- const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
+ const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),guide=x.reviewStatus==='guide-listed-2026',award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(x.cuisine)+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>'+(award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning">'+(award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
+ '<p>'+(guide?'MICHELIN 2026 address listing':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
+ '<p class="food-warning">'+(guide?'2026 guide-listed name and address; trading today and current menu unverified':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
- (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">NEA historical award ↗</a>':'')+
+ (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':'NEA historical award')+ ↗</a>':'')+
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
@@ -53,7 +53,7 @@ function render(){
  const q=term.trim().toLowerCase();
  const rows=tab==='menus'?menus.filter(x=>!q||(x.name+' '+x.vendor).toLowerCase().includes(q)):tab==='stalls'?stalls.filter(x=>
   (area==='all'||x.area===area)&&(cuisine==='all'||x.cuisine===cuisine)&&
-  (meal==='all'||x.meal===meal)&&(dish==='all'||(x.dishes||[]).includes(dish))&&(awardYear==='all'||(awardYear==='editorial'?!x.reviewStatus.startsWith('nea-award-listed-'):x.reviewStatus==='nea-award-listed-'+awardYear))&&
+  (meal==='all'||x.meal===meal)&&(dish==='all'||(x.dishes||[]).includes(dish))&&(awardYear==='all'||(awardYear==='editorial'?x.reviewStatus==='research-candidate':awardYear==='2026'?x.reviewStatus==='guide-listed-2026':x.reviewStatus==='nea-award-listed-'+awardYear))&&
   (!onlySaved||saved.has(x.id))&&
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
