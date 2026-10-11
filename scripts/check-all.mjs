@@ -28,6 +28,7 @@ run('lib/i18n-content-taxonomy-v310.mjs');
 run('lib/i18n-facts-v310.mjs');
 run('lib/i18n-nature-v311.mjs');
 run('lib/i18n-dishes-v311.mjs');
+run('lib/i18n-stall-notes-v311.mjs');
 run('scripts/localization-report-v310.mjs');
 run('scripts/check-v311.mjs');
 run('scripts/browser-qa-v311.mjs');
