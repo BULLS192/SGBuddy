@@ -342,7 +342,7 @@ if(discover)observeLibrary.observe(discover,{childList:true});
   set('#placesSection h2',l.nearbyEssentials);
   set('[data-ux-go="money"]','⇄ '+l.moneyTools);set('.ux-move-links [data-ux-go="saved"]','☆ '+l.savedTools);
   set('[data-ux-nearby]',l.nearMe);
-  for(const b of $('.ux-detail-button'))b.textContent=l.details;
+  for(const b of $$('.ux-detail-button'))b.textContent=l.details;
   const empty=$('#uxSavedContent .ux-saved-empty');if(empty)empty.textContent=l.emptySaved;
   let note=$('#uxLocaleCoverage');
   if(!note){note=document.createElement('p');note.id='uxLocaleCoverage';note.className='ux-locale-coverage';$('.ux-home-title')?.appendChild(note);}
