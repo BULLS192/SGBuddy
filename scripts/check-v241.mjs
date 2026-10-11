@@ -29,6 +29,6 @@ assert.ok(persona.includes("'Everyday apps'")&&persona.includes(",'apps']"),'One
 assert.ok(persona.includes("active==='places'?'Discover'"),'Accessible skip link must use Discover');
 assert.ok(discover.includes("['apps','Everyday apps']"),'Apps category missing');
 assert.ok(html.includes('theme-polish-v241.css'),'Theme hotfix must load after prior styles');
-assert.ok(worker.includes('/theme-polish-v241.css')&&worker.includes('sgbuddy-shell-v51'),'Installed PWA hotfix cache missing');
-assert.ok(boot.includes("2.4.1")&&!boot.includes('2.4.0-preview'),'Production version badge must not say preview');
-console.log('SGBuddy V2.4.1 theme/navigation hotfix PASS: WCAG AA contrast pairs, Discover navigation, apps shortcut and PWA refresh');
+assert.ok(worker.includes('/theme-polish-v241.css')&&worker.includes('sgbuddy-shell-v52'),'Installed PWA hotfix cache missing');
+assert.ok(boot.includes("2.4.2")&&!boot.includes('2.4.0-preview'),'Production version badge must not say preview');
+console.log('SGBuddy V2.4.2 theme/navigation hotfix PASS: WCAG AA contrast pairs, Discover navigation, apps shortcut and PWA refresh');
