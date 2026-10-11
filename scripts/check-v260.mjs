@@ -40,6 +40,6 @@ assert.ok(travel.includes("trip:'My Trip'")&&travel.includes("trip:'我的行程
 assert.ok(boot.includes("import('/app-trip-v260.js')")&&/(?:2\.(6|7|8|9)|3\.(0|1))\.[0-9]+/.test(boot),'V2.6 version/import missing');
 assert.ok(html.includes('trip-v260.css')&&/v(?:2\.(6|7|8|9)|3\.(0|1))\.[0-9]+/.test(html));
 for(const asset of ['/app-trip-v260.js','/lib/trip-v260.mjs','/trip-v260.css'])assert.ok(sw.includes(asset),'PWA shell missing '+asset);
-assert.ok(/sgbuddy-shell-v5[4-9]/.test(sw));
+assert.ok(/sgbuddy-shell-v(5[4-9]|6[0-9])/.test(sw));
 for(const v of ['[hidden]','data-ux-theme="light"','max-width:680px','focus-visible'])assert.ok(css.includes(v),'Style missing '+v);
 console.log('SGBuddy V2.6 My Trip PASS: model limits, saved schema, daily edits, bilingual Discover integration and offline PWA.');
