@@ -34,7 +34,7 @@ for(let i=0;i<rows.length;i++){
  const name=find(r,'licensee_name','licensee','licensee name');
  const building=find(r,'building_name'),block=find(r,'block_house_num');
  const street=find(r,'street_name'),postal=find(r,'postal_code');
- if(!name||!street||!/^\\d{6}$/.test(postal))continue;
+ if(!name||!street||!/^\d{6}$/.test(postal))continue;
  const id='SGS-'+crypto.createHash('sha256').update(datasetId+'|'+(license||i)+'|'+postal).digest('hex').slice(0,16);
  shops.push({id,name,kind:'Essentials',kinds:['Essentials'],category:'Supermarket (historical licence)',area:'Singapore',
   street,address:[block,street,'Singapore '+postal].filter(Boolean).join(', '),postal,
