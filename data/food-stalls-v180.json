@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-10-10",
+  "updatedOn": "2026-10-11",
   "status": "editorial-research-leads",
-  "notice": "48 editorial research leads and nine historically documented 2025 NEA award stalls. None are independently confirmed trading today; prices/dietary claims omitted.",
+  "notice": "48 editorial leads, nine 2025 and nine 2024 NEA award-listed stalls; none are confirmed currently trading. Published official award lists are historic evidence, not live menus or tenant registries.",
   "stalls": [
     {
       "id": "STL-0001",
@@ -1170,6 +1170,190 @@
       "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/singapore-hawkers--celebration-and-awards-2025-honours-heritage-and-inspires-the-next-generation-of-culinary-excellence",
       "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Long%20Ding%20Seafood%2C%20Kampung%20Admiralty%20Hawker%20Centre%2C%20Singapore",
       "notes": "NEA 2025 award document lists stall and stall number. This does not confirm tenant still trading in 2026."
+    },
+    {
+      "id": "STL-0058",
+      "name": "Warong Wak Nakem",
+      "centreId": "SGP-1048",
+      "centreName": "Marine Terrace Market & Food Centre",
+      "area": "Marine Parade",
+      "cuisine": "Malay",
+      "dishes": [
+        "Malay cuisine"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#01-311",
+      "award2024": "Hawker Heritage",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Warong%20Wak%20Nakem%2C%20Marine%20Terrace%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0059",
+      "name": "75 Ah Balling Peanut Soup",
+      "centreId": "SGP-1053",
+      "centreName": "One Punggol Hawker Centre",
+      "area": "Punggol",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Glutinous rice balls & peanut soup"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#02-13",
+      "award2024": "Hawker Heritage",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=75%20Ah%20Balling%20Peanut%20Soup%2C%20One%20Punggol%20Hawker%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0060",
+      "name": "Munchi Pancakes",
+      "centreId": "SGP-1053",
+      "centreName": "One Punggol Hawker Centre",
+      "area": "Punggol",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Min jiang kueh & pancakes"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#02-36",
+      "award2024": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Munchi%20Pancakes%2C%20One%20Punggol%20Hawker%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0061",
+      "name": "Izah Rahman Corner",
+      "centreId": "SGP-1047",
+      "centreName": "Marine Parade Central Market & Food Centre",
+      "area": "Marine Parade",
+      "cuisine": "Malay",
+      "dishes": [
+        "Chicken rice, lontong and ayam bakar"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#01-40",
+      "award2024": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Izah%20Rahman%20Corner%2C%20Marine%20Parade%20Central%20Market%20%26%20Food%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0062",
+      "name": "Hakka Leipopo",
+      "centreId": "SGP-1053",
+      "centreName": "One Punggol Hawker Centre",
+      "area": "Punggol",
+      "cuisine": "Hakka",
+      "dishes": [
+        "Hakka lei cha & Hakka yong tau foo"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#02-26",
+      "award2024": "Enterprising Hawker",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Hakka%20Leipopo%2C%20One%20Punggol%20Hawker%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0063",
+      "name": "Mei Ji Fishball Noodle",
+      "centreId": "SGP-1013",
+      "centreName": "Bukit Merah Central Food Centre",
+      "area": "Bukit Merah",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Fishball noodles"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#02-03",
+      "award2024": "Outstanding Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Mei%20Ji%20Fishball%20Noodle%2C%20Bukit%20Merah%20Central%20Food%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0064",
+      "name": "Min Nan Pork Ribs Prawn Noodle",
+      "centreId": "SGP-0003",
+      "centreName": "Tiong Bahru Market",
+      "area": "Tiong Bahru",
+      "cuisine": "Chinese",
+      "dishes": [
+        "Pork ribs prawn noodle"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#02-31",
+      "award2024": "Outstanding Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Min%20Nan%20Pork%20Ribs%20Prawn%20Noodle%2C%20Tiong%20Bahru%20Market%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
+    },
+    {
+      "id": "STL-0065",
+      "name": "Da Po Hainanese Chicken Rice & Curry Chicken Noodle",
+      "centreId": "SGP-0018",
+      "centreName": "Golden Mile Food Centre",
+      "area": "Beach Road",
+      "cuisine": "Hainanese",
+      "dishes": [
+        "Hainanese chicken rice & curry chicken noodles"
+      ],
+      "meal": "Unknown",
+      "stallNumber": "#B1-53",
+      "award2024": "Outstanding Hawker Mentor",
+      "priceSgd": null,
+      "halalCertified": null,
+      "vegetarianAvailable": null,
+      "openingHours": null,
+      "operatingStatus": "unverified",
+      "reviewStatus": "nea-award-listed-2024",
+      "sourceUrl": "https://www.nea.gov.sg/media/news/news/index/favourite-hawker-centre-and-nine-distinguished-hawkers-celebrated-at-singapore-hawkers-seminar-awards-2024",
+      "referenceUrl": "https://www.google.com/maps/search/?api=1&query=Da%20Po%20Hainanese%20Chicken%20Rice%20%26%20Curry%20Chicken%20Noodle%2C%20Golden%20Mile%20Food%20Centre%2C%20Singapore",
+      "notes": "Historical NEA 2024 award listing. Verify that this exact stall still occupies the stated unit, and confirm current trading and menu before visiting."
     }
   ]
 }
