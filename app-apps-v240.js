@@ -51,7 +51,7 @@ function card(a){
  '<p class="app-guide-metadata">'+(mobile?'Mobile app':'Web service · no app needed')+' · '+esc(a.importance)+' · '+esc(modeNames)+'</p>'+
  '<div class="app-guide-links">'+actions+'</div>'+
  (mobile&&!ios&&!android?'<p class="app-guide-unverified">No direct store link checked: download through the publisher to avoid lookalikes.</p>':'')+
- '<p class="app-guide-review">Curated '+esc(a.cataloguedOn||'date unavailable')+' · Confirm availability with publisher+'</p></article>';
+ '<p class="app-guide-review">Curated '+esc(a.cataloguedOn||'date unavailable')+' · Confirm availability with publisher</p></article>';
 }
 function render(){
  if(!loaded)return;
