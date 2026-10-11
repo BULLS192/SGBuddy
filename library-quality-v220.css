@@ -1,16 +1,48 @@
-/* V2.2 directory evidence — restrained, accessible, desktop-first layout */
-.library-quality-v220{margin-top:14px;padding:16px;border:1px solid rgba(128,158,185,.32);border-radius:16px;background:rgba(112,142,170,.065)}
-.library-quality-title{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.library-quality-title strong{font-size:1rem;letter-spacing:-.02em}
-.library-quality-title p,.library-quality-note{font-size:.8rem;line-height:1.55;opacity:.8;margin:5px 0 0}
-.library-quality-title a,.library-quality-note a{font-size:.78rem;white-space:normal;text-underline-offset:3px}
-.library-quality-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:14px 0}
-.library-quality-stats>div{padding:12px 11px;background:rgba(144,167,190,.08);border:1px solid rgba(145,165,185,.18);border-radius:10px;display:flex;flex-direction:column;min-width:0;gap:5px}
-.library-quality-stats strong{font-size:1.3rem;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
-.library-quality-stats span{font-size:.74rem;line-height:1.3;opacity:.84}
-.discover-freshness{font-size:.78rem;line-height:1.45;font-weight:600;letter-spacing:.005em}
-.discover-archive-filter{max-width:240px;font-size:.77rem}
-#discoverFreshnessFilter{min-height:42px;max-width:205px;border-radius:11px;padding:8px;color:inherit;border:1px solid rgba(150,184,213,.45);background:transparent}
+/* Consumer-facing listing disclosure. Editorial quality metrics stay in reports, not Discover UI. */
+.library-quality-v220{
+  margin-top:12px;
+  padding:10px 13px;
+  border:1px solid var(--ux-stroke,rgba(128,158,185,.32));
+  border-radius:12px;
+  background:rgba(112,142,170,.045);
+  font-size:.83rem;
+  line-height:1.55;
+}
+.library-quality-v220[hidden]{display:none!important}
+.library-quality-v220 summary{
+  cursor:pointer;
+  list-style-position:inside;
+  font-weight:650;
+  color:var(--text,#ecf4fa);
+  min-height:32px;
+  display:list-item;
+}
+.library-quality-v220 p{
+  margin:9px 0 0;
+  color:var(--muted,#a6bac9);
+}
+.library-quality-v220 a{
+  color:var(--accent,#63e6be);
+  text-underline-offset:3px;
+}
+.discover-freshness{
+  font-size:.78rem;
+  line-height:1.45;
+  font-weight:600;
+  letter-spacing:.005em;
+}
+.discover-archive-filter{max-width:230px;font-size:.77rem}
 #foodAwardYear{min-height:42px}
-@media(max-width:750px){.library-quality-title{flex-direction:column;gap:5px}.library-quality-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.discover-archive-filter{max-width:100%;width:100%}#discoverFreshnessFilter{max-width:100%;flex:1}}
-@media(prefers-reduced-motion:reduce){.library-quality-v220 *{scroll-behavior:auto!important}}
+html[data-ux-theme="light"] .library-quality-v220{
+  border-color:#d5e3e9;
+  background:#f4f8fa;
+}
+html[data-ux-theme="light"] .library-quality-v220 summary{color:#244354}
+html[data-ux-theme="light"] .library-quality-v220 p{color:#4e6576}
+html[data-ux-theme="light"] .library-quality-v220 a{color:#135d80}
+@media(max-width:750px){
+ .discover-archive-filter{max-width:100%;width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .library-quality-v220 *{scroll-behavior:auto!important}
+}
