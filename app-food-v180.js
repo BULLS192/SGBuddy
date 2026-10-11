@@ -33,7 +33,7 @@ function cardStall(x){
  '<p>'+(guide?'MICHELIN 2026 address listing':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
  '<p class="food-warning">'+(guide?'2026 guide-listed name and address; trading today and current menu unverified':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
- (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':'NEA historical award')+ ↗</a>':'')+
+ (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':'NEA historical award')+' ↗</a>':'')+
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
