@@ -24,6 +24,11 @@ on:
       - 'scripts/check-v313.mjs'
       - 'scripts/browser-qa-v313.mjs'
       - 'scripts/check-v312.mjs'
+      - 'lib/i18n-merli-replies-v315.mjs'
+      - 'lib/i18n-app-status-v315.mjs'
+      - 'lib/i18n-service-safety-v315.mjs'
+      - 'scripts/check-v315.mjs'
+      - 'scripts/browser-qa-v315.mjs'
       - 'scripts/browser-qa-v312.mjs'
       - 'app-v120.js'
       - 'app-v140.js'
@@ -74,3 +79,5 @@ jobs:
         run: node scripts/browser-qa-v312.mjs
       - name: Final 12-language full-source facts and app browser QA
         run: node scripts/browser-qa-v313.mjs
+      - name: Test multilingual Merli and original English safety disclosures
+        run: node scripts/browser-qa-v315.mjs
