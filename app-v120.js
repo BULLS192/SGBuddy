@@ -113,7 +113,7 @@
     const aging=official.filter(p=>sourceAge(p)==='aging').length;
     const recent=official.filter(p=>sourceAge(p)==='recent').length;
     const undated=rows.length-official.length+official.filter(p=>sourceAge(p)==='undated').length;
-    const verifiedLive=rows.filter(p=>p.operatingStatus==='confirmed-open'&&p.operatingVerification?.sourceUrl&&p.operatingVerification?.checkedOn).length;
+    const verifiedLive=rows.filter(p=>p.operatingStatus==='confirmed-open'&&/^https:\/\//.test(p.operatingVerification?.sourceUrl||'')&&Number.isFinite(Date.parse(p.operatingVerification?.checkedOn||''))&&(Date.now()-Date.parse(p.operatingVerification.checkedOn))<=30*86400000).length;
     const box=$('#discoverQuality');if(!box)return;
     box.innerHTML='<div class="library-quality-title"><div><strong>Library quality</strong><p>Source evidence ≠ current business operation. Historical supermarket licences are hidden from search unless enabled.</p></div><a href="https://www.chas.sg/clinic-locator" target="_blank" rel="noopener noreferrer">Current CHAS lookup ↗</a></div>'+
       '<div class="library-quality-stats"><div><strong>'+rows.length.toLocaleString('en-SG')+'</strong><span>Directory records</span></div><div><strong>'+recent+'</strong><span>Source ≤1 year</span></div><div><strong>'+aging+'</strong><span>Source 1–2 years</span></div><div><strong>'+historical+'</strong><span>Source over 2 years</span></div><div><strong>'+undated+'</strong><span>Undated or curated</span></div><div><strong>'+verifiedLive+'</strong><span>Current operation confirmed</span></div></div>'+
@@ -162,7 +162,7 @@
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!isArchived(r)||includeArchive)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!isArchived(r)||includeArchive)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
