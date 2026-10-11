@@ -19,9 +19,9 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#cardsViewButton','cards'],['#mapViewButton','map'],
   ['.saved-buses .saved-bus-head .label','myStops'],
   ['.saved-buses .saved-bus-head h3','favourites'],
-  ['#savedStopForm button','addSaved','custom','Add'],
+  ['#savedStopForm button','add'],
   ['.section-head.subhead h3','nearbyStops'],
-  ['#stopForm button','checkStation','custom','Check'],
+  ['#stopForm button','check'],
   ['#mapView .map-head .label','transportMap'],
   ['#fitMapButton','fitAll'],
   ['#travelSection .planner-title-row .label','route'],
@@ -50,6 +50,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#moneySection .label','money'],
   ['#moneySection h2','rates'],
   ['#fxConvert','convert'],
+  ['#moneyCardsButton','list'],['#moneyMapButton','map'],
   ['#moneyChangerSearchButton','search'],
   ['#accountSection .account-hub-head .label','account'],
   ['#accountHubOpen','accountOpen'],
@@ -95,8 +96,8 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
    const v=input.getAttribute('placeholder')||'';
    if(!v||v===labels[key])continue;
    // The historic English placeholders contain examples; preserve typed input values.
-   if(selector==='#tripFrom' && (v.startsWith('From')||accepted(key,v)))input.placeholder=labels[key]+' — Singapore';
-   else if(selector==='#tripTo' && (v.startsWith('To ')||accepted(key,v)))input.placeholder=labels[key]+' — Jewel, MBS, Zoo…';
+   if(selector==='#tripFrom' && (v.startsWith('From')||dictionaries.some(x=>v.startsWith(x.from+' —'))||accepted(key,v)))input.placeholder=labels[key]+' — Singapore';
+   else if(selector==='#tripTo' && (v.startsWith('To ')||dictionaries.some(x=>v.startsWith(x.to+' —'))||accepted(key,v)))input.placeholder=labels[key]+' — Jewel, MBS, Zoo…';
    else if(selector==='#savedStopInput' && (v.startsWith('Bus stop code')||v.includes('84009')))input.placeholder=labels[key]+' · 84009';
   }
   const money=doc.querySelectorAll('.money-card .money-card-head');
@@ -105,8 +106,10 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   if(money[1]){assign(money[1].querySelector('.label'),'exchangers');assign(money[1].querySelector('h3'),'licensed');}
   const alertTitle=doc.querySelector('#alerts')?.previousElementSibling?.querySelector('h2');
   assign(alertTitle,'disruptions');
+  const savedSectionLabels=doc.querySelectorAll('.saved.card > .label');
+  if(savedSectionLabels.length && setLabel(savedSectionLabels[savedSectionLabels.length-1],'addAnother',labels.addAnother))changes++;
   const staticMap=[
-   ['#dataCorePanel .data-core-head .label','liveData','custom','DATA CORE'],
+   ['#dataCorePanel .data-core-head .label','dataCore','custom','DATA CORE'],
    ['#dataCorePanel .data-core-head h3','liveData'],
    ['#accountSection .account-hub-head .label','account'],
    ['#travelSection .planner-title-row .label','route']
