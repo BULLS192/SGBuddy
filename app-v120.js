@@ -82,10 +82,19 @@
     if(today<row.start||today>row.end)return '';
     return '<p class="discover-closure" role="note">⚠ NEA scheduled closure: '+safe(row.start)+' to '+safe(row.end)+' · '+safe(row.reason)+'. Check current NEA updates before visiting.</p>';
   }
+  function displayPlaceName(place){
+    const raw=String(place.name||'');
+    if(place.sourceAgency==='NLB'&&!/library/i.test(raw))return 'Public library location — '+raw;
+    if(place.sourceAgency==='NParks'){
+      return raw.replace(/\bPK\b/g,'Park').replace(/\bPG\b/g,'Playground').replace(/\bOS\b/g,'Open Space')
+        .toLowerCase().replace(/\b[a-z]/g,m=>m.toUpperCase());
+    }
+    return raw;
+  }
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
-    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
+    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>'+(place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
       '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
@@ -121,7 +130,7 @@
     const key=tab==='apps'?'apps':tab;
     const matcher=cues[current]?.[key];
     const text=[row.name,row.area,row.category].join(' ');
-    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0);
+    return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='official-source-snapshot'?0:30);
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
