@@ -1,3 +1,5 @@
+import {LOCALES,normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
+import {localizedGuide,localizedCheck} from './lib/i18n-guides-v280.mjs';
 /* SGBuddy V2.5 — visitor travel-preparation hub and EN/zh-CN navigation. No booking claims. */
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE,doc=document,host=doc.getElementById('discoverHub');
@@ -14,7 +16,7 @@ const strings={
  error:'Travel guidance is temporarily unavailable. Check official provider websites directly.',
  quick:'Prepare for a visit',quickCopy:'Payments, messaging & eSIM',
  tabs:{eat:'Eat',do:'Things to do',shop:'Shop',essentials:'Essentials',healthcare:'Healthcare',apps:'Everyday apps',travel:'Travel prep',trip:'My Trip',facts:'Did you know?'},
- legacy:'First bilingual release: the travel guidance and primary navigation are translated. Some existing place and app descriptions remain in English while translations are reviewed.'
+ legacy:'Twelve-language release: travel guidance and key navigation are translated. Some older place, account and app descriptions still appear in English while reviewed.'
  },
  zh:{
  language:'语言',travel:'旅行准备',trip:'我的行程',apps:'日常应用',home:'首页',discover:'探索',move:'出行',saved:'收藏',profile:'账户',
@@ -24,24 +26,25 @@ const strings={
  error:'旅行指南暂时无法载入。请直接查阅服务商官方网站。',
  quick:'来新加坡前的准备',quickCopy:'付款、通讯与 eSIM',
  tabs:{eat:'美食',do:'游玩',shop:'购物',essentials:'生活所需',healthcare:'医疗',apps:'日常应用',travel:'旅行准备',trip:'我的行程',facts:'冷知识'},
- legacy:'首阶段双语版本：主要导航及旅行指南已翻译。部分现有地点与应用说明仍为英文，正等待审校。'
+ legacy:'现提供十二种语言，主要导航及旅行指南已翻译。部分旧有地点、账户及应用说明仍为英文，正等待审校。'
  }
 };
 let lang='en',group='payments',catalogue=null;
-try{lang=localStorage.getItem(LANGUAGE_KEY)==='zh-CN'?'zh':'en'}catch{}
+try{lang=normalizeLocale(localStorage.getItem(LANGUAGE_KEY)||'en')}catch{}
 let completed=new Set();
 try{const list=JSON.parse(localStorage.getItem(CHECK_KEY)||'[]');if(Array.isArray(list))completed=new Set(list.filter(v=>typeof v==='string').slice(0,20))}catch{}
-const t=()=>strings[lang],locale=()=>lang==='zh'?'zh-CN':'en';
+const locale=()=>lang;
+const t=()=>lang==='zh-CN'?strings.zh:lang==='en'?strings.en:{...strings.en,...(TRAVEL_UI[lang]||{}),tabs:{...strings.en.tabs,...(TRAVEL_UI[lang]?.tabs||{})}};
 const shell=doc.createElement('section');shell.id='travelEssentials';shell.className='card travel-essentials-v250';shell.hidden=true;shell.setAttribute('role','tabpanel');shell.setAttribute('aria-labelledby','discoverTab-travel');
 doc.getElementById('discoverResults').insertAdjacentElement('beforebegin',shell);
 const actions=doc.querySelector('.topbar .top-actions');
 if(actions){
  const label=doc.createElement('label');label.className='sgb-language-picker';label.setAttribute('for','sgbLanguage');
- label.innerHTML='<span id="sgbLanguageLabel">Language</span><select id="sgbLanguage" aria-label="Choose SGBuddy language"><option value="en">English</option><option value="zh-CN">简体中文</option></select>';
+ label.innerHTML='<span id="sgbLanguageLabel">Language</span><select id="sgbLanguage" aria-label="Choose SGBuddy language">'+LOCALES.map(item=>'<option value="'+esc(item.code)+'">'+esc(item.name)+'</option>').join('')+'</select>';
  actions.insertBefore(label,actions.firstChild);
  label.querySelector('select').value=locale();
  label.querySelector('select').addEventListener('change',e=>{
-  lang=e.target.value==='zh-CN'?'zh':'en';
+  lang=normalizeLocale(e.target.value);
   try{localStorage.setItem(LANGUAGE_KEY,locale())}catch{}
   translate();render();doc.dispatchEvent(new CustomEvent('sgbuddy:language',{detail:{language:locale()}}));
  });
@@ -50,9 +53,9 @@ function translate(){
  const s=t();doc.documentElement.lang=locale();window.SGBUDDY_LANGUAGE=locale();
  const copy=(selector,text)=>{const node=doc.querySelector(selector);if(node)node.textContent=text};
  copy('#sgbLanguageLabel',s.language);
- for(const [id,value] of Object.entries({navToday:s.home,navPlaces:s.discover,navMove:s.move,navMoney:s.saved,navAccount:s.profile}))copy('#'+id+' span',value);
+ for(const [id,value] of Object.entries({navToday:s.home,navPlaces:s.discover,navMove:s.move,navMoney:({"en":"Money","zh-CN":"货币","zh-TW":"金錢","ms":"Wang","id":"Uang","ja":"お金","ko":"금융","th":"การเงิน","vi":"Tiền tệ","fr":"Argent","es":"Dinero","pt-BR":"Dinheiro"})[locale()]||'Money',navAccount:s.profile}))copy('#'+id+' span',value);
  Object.entries(s.tabs).forEach(([id,value])=>copy('[data-discover-tab="'+id+'"]',value));
- copy('#discoverTitle',lang==='zh'?'用自己的方式探索新加坡':'Explore Singapore your way');
+ copy('#discoverTitle',lang==='zh-CN'?'用自己的方式探索新加坡':s.discoverTitle||'Explore Singapore your way');
  copy('#discoverTab-travel',s.travel);
  const shortcut=doc.getElementById('sgbTravelShortcut');
  if(shortcut){shortcut.querySelector('strong').textContent=s.quick;shortcut.querySelector('small').textContent=s.quickCopy}
@@ -69,11 +72,11 @@ function render(){
  shell.innerHTML='<header class="travel-prep-head"><div class="label">'+esc(s.travel)+' · SGBUDDY V2.5</div><h3>'+esc(s.heading)+'</h3><p>'+esc(s.intro)+'</p></header>'+
   '<div class="travel-prep-sections" role="group" aria-label="'+esc(s.travel)+'">'+options.map(([id,label])=>'<button type="button" data-travel-section="'+id+'" aria-pressed="'+String(group===id)+'">'+esc(label)+'</button>').join('')+'</div>'+
   '<div class="travel-prep-grid">'+entries.map(row=>{
-   const text=row[lang]||row.en,href=safeUrl(row.sourceUrl);
+   const text=localizedGuide(row,locale()),href=safeUrl(row.sourceUrl);
    return '<article class="travel-prep-card"><h4>'+esc(text.title)+'</h4><p>'+esc(text.copy)+'</p>'+(href?'<a href="'+esc(href)+'" target="_blank" rel="noopener noreferrer">'+esc(s.source)+'</a>':'')+'</article>';
   }).join('')+'</div>'+
   '<p class="travel-prep-caution">'+esc(s.review)+'</p>'+
-  '<section class="travel-prep-checklist"><h4>'+esc(s.checkTitle)+'</h4><p>'+esc(s.checkCopy)+'</p><div class="travel-prep-checks">'+checks.map(row=>'<label><input type="checkbox" data-prep-check="'+esc(row.id)+'" '+(completed.has(row.id)?'checked':'')+' /><span>'+esc(row[lang]||row.en)+'</span></label>').join('')+'</div></section>'+
+  '<section class="travel-prep-checklist"><h4>'+esc(s.checkTitle)+'</h4><p>'+esc(s.checkCopy)+'</p><div class="travel-prep-checks">'+checks.map(row=>'<label><input type="checkbox" data-prep-check="'+esc(row.id)+'" '+(completed.has(row.id)?'checked':'')+' /><span>'+esc(localizedCheck(row,locale()))+'</span></label>').join('')+'</div></section>'+
   '<p class="travel-prep-locale-note">'+esc(s.legacy)+'</p>'+
   '<div class="travel-prep-actions"><button type="button" class="primary" data-travel-trip>'+esc(s.tripButton)+'</button><button type="button" class="secondary" data-travel-apps>'+esc(s.appsButton)+'</button><button type="button" class="secondary" data-travel-route>'+esc(s.routeButton)+'</button></div>'+
   '<p class="travel-prep-future">'+esc(s.coming)+'</p>';
