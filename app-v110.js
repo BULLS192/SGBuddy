@@ -1,8 +1,18 @@
-import {placeRuntimeText} from './lib/i18n-place-eta-v320.mjs';
 const core=window.SGBUDDY_CORE;
 if(core){
   const {state,$,toast,json,navigateTo,setActiveNav}=core;
-  const lp=(key,parts)=>placeRuntimeText(window.SGBUDDY_LANGUAGE||'en',key,parts);
+  let placeTranslations=null;
+  const fallbackPlaces={walk:'Walk',transit:'Transit',drive:'Drive',ride:'Ride',locate:'Locate to compare travel modes',
+    comparisonUnavailable:'Travel comparison unavailable',compareWays:'Compare ways',
+    takeMe:'Take me there',noPlaces:'No places match this category/search yet.',
+    loadingPlaces:'Loading {mode} places…',comparing:'Comparing…',compare:'Compare',
+    fastest:'Fastest estimate',showMore:'Show more places ({count} remaining)',
+    estimatedWalk:'Estimated walking route',walkingRoute:'Walking route',
+    roadRoute:'Road route',estimatedTime:'Estimated road time',
+    bestFit:'Top fit',strongFit:'Strong fit',useful:'Useful',explore:'Explore'};
+  const lp=(key,parts={})=>placeTranslations?.placeRuntimeText(window.SGBUDDY_LANGUAGE||'en',key,parts)||
+    String(fallbackPlaces[key]||key).replace(/\{(\w+)\}/g,(m,k)=>Object.hasOwn(parts,k)?String(parts[k]):m);
+  import('./lib/i18n-place-eta-v320.mjs').then(mod=>{placeTranslations=mod;try{renderPlaces()}catch{}}).catch(()=>{});
   const qsa=selector=>[...document.querySelectorAll(selector)];
   const VERSION='1.1.0';
   window.__SGBUDDY_CLIENT_VERSION__=VERSION;
