@@ -9,7 +9,7 @@ assert.equal(RUNTIME_KEYS.length,35);
 assert.equal(PLACE_RUNTIME_KEYS.length,22);
 assert.equal(new Set(RUNTIME_KEYS).size,RUNTIME_KEYS.length);
 assert.equal(new Set(PLACE_RUNTIME_KEYS).size,PLACE_RUNTIME_KEYS.length);
-assert.equal(Object.keys(ENGLISH_SOURCE_KEY).length,RUNTIME_KEYS.length-1,'Only deliberately identical canonical email inputs may share a source phrase');
+assert.equal(Object.keys(ENGLISH_SOURCE_KEY).length,RUNTIME_KEYS.length,'Canonical source messages should remain one-to-one');
 for(const {code} of LOCALES){
  assert.equal(Object.keys(RUNTIME_MESSAGES[code]||{}).length,35,code+' account/weather coverage');
  assert.equal(Object.keys(PLACE_RUNTIME_MESSAGES[code]||{}).length,22,code+' ETA label coverage');
