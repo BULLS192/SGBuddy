@@ -37,7 +37,7 @@ try{
  await page.locator('#sgbLanguage').selectOption('fr');
  await page.waitForFunction(()=>document.querySelector('#tripFrom')?.placeholder==='De — Singapore',{timeout:10000});
  // From is coincidentally "De" in both languages; destination label distinguishes them.
- assert.equal((await page.locator('#moneySection h2').textContent()).trim(),coreUi('fr').rates);
+ await page.waitForFunction(text=>document.querySelector('#moneySection h2')?.textContent?.trim()===text,coreUi('fr').rates,{timeout:10000});
  const dim=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
  assert.ok(dim.scroll<=dim.width+8,'Horizontal overflow '+JSON.stringify(dim));
  assert.equal(errs.length,0,'Uncaught errors: '+errs.join(' / '));
