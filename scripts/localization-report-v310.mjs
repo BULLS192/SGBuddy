@@ -9,6 +9,10 @@ import {NATURE_FACTS} from '../lib/i18n-nature-v311.mjs';
 import {WATER_SOURCE_FACTS} from '../lib/i18n-water-v312.mjs';
 import {CIVIC_FACT_SOURCE} from '../lib/i18n-civic-v313.mjs';
 import {PARK_FACT_SOURCE} from '../lib/i18n-parks-v313.mjs';
+import {HISTORY_FACT_SOURCE} from '../lib/i18n-history-v313.mjs';
+import {HERITAGE_FACT_SOURCE} from '../lib/i18n-heritage-v313.mjs';
+import {CULTURE_FACT_SOURCE} from '../lib/i18n-culture-v313.mjs';
+import {AWARD_FACT_SOURCE} from '../lib/i18n-awards-v313.mjs';
 import {APP_SOURCE_FIELDS,appContentTranslation} from '../lib/i18n-app-content-v312.mjs';
 import {DISH_SOURCE_DESCRIPTIONS,dishTranslation} from '../lib/i18n-dishes-v311.mjs';
 import {STALL_NOTE_SOURCE,stallNoteTranslation} from '../lib/i18n-stall-notes-v311.mjs';
@@ -54,7 +58,7 @@ for(const {code} of LOCALES){
   fallbackStallNotes:code==='en'?0:stalls.length-translatedStalls
  };
 }
-const allFactEntries={...LOCALIZED_FACTS,...NATURE_FACTS,...Object.fromEntries(Object.entries(WATER_SOURCE_FACTS).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(CIVIC_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(PARK_FACT_SOURCE).map(([id,source])=>[id,{source}]))};
+const allFactEntries={...LOCALIZED_FACTS,...NATURE_FACTS,...Object.fromEntries(Object.entries(WATER_SOURCE_FACTS).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(CIVIC_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(PARK_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(HISTORY_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(HERITAGE_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(CULTURE_FACT_SOURCE).map(([id,source])=>[id,{source}])),...Object.fromEntries(Object.entries(AWARD_FACT_SOURCE).map(([id,source])=>[id,{source}]))};
 const orphanTranslations=Object.keys(allFactEntries).filter(id=>!facts.some(f=>f.id===id));
 const staleTranslations=Object.keys(allFactEntries).filter(id=>{
  const row=facts.find(f=>f.id===id);return row&&row.text!==allFactEntries[id].source;
