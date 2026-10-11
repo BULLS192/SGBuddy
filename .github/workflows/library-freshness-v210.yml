@@ -32,6 +32,8 @@ jobs:
         run: node scripts/library-quality-v220.mjs
       - name: Generate V2.3 operator, menu and neighbourhood evidence queue
         run: node scripts/library-evidence-v230.mjs
+      - name: Generate V2.4 app and digital-service editorial review queue
+        run: node scripts/apps-quality-v240.mjs
       - name: Upload report and source snapshots for editorial review
         uses: actions/upload-artifact@v4
         with:
@@ -45,6 +47,9 @@ jobs:
             reports/library-evidence-v230.json
             reports/library-evidence-v230.md
             reports/library-review-queue-v230.csv
+            reports/apps-quality-v240.json
+            reports/apps-quality-v240.md
+            reports/apps-review-v240.csv
             data/services-v210.json
             data/official-places-v200.json
           retention-days: 30
