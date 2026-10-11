@@ -29,10 +29,10 @@ function options(selector,values){
 function cardStall(x){
  const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl);
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(x.cuisine)+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>'+(x.reviewStatus==='nea-award-listed-2025'?'NEA 2025 award listing':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning">'+(x.reviewStatus==='nea-award-listed-2025'?'NEA documented in 2025; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
+ '<p>'+(x.reviewStatus==='nea-award-listed-2025'?'NEA 2025 award listing':x.reviewStatus==='nea-award-listed-2024'?'NEA 2024 award listing':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
+ '<p class="food-warning">'+(x.reviewStatus==='nea-award-listed-2025'?'NEA documented in 2025; current trading unverified':x.reviewStatus==='nea-award-listed-2024'?'NEA documented in 2024; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
- (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(x.sourceUrl?'<a href="'+esc(x.sourceUrl)+'" target="_blank" rel="noopener noreferrer">NEA award source ↗</a>':'')+
+ (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(x.sourceUrl?'<a href="'+esc(x.sourceUrl)+'" target="_blank" rel="noopener noreferrer">Official NEA award ↗</a>':'')+
  '<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button></div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
@@ -106,7 +106,7 @@ Promise.all([
  fetch('/data/singapore-dishes-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('dish guide unavailable');return r.json()}),
  fetch('/data/vendor-menus-v210.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]}))
 ]).then(([a,b,c])=>{
- stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>['research-candidate','nea-award-listed-2025'].includes(x.reviewStatus)):[];
+ stalls=Array.isArray(a.stalls)?a.stalls.filter(x=>['research-candidate','nea-award-listed-2025','nea-award-listed-2024'].includes(x.reviewStatus)):[];
  dishes=Array.isArray(b.dishes)?b.dishes:[];
  menus=Array.isArray(c.items)?c.items.filter(x=>x.status==='vendor-website-listed'&&allowedUrl(x.sourceUrl)):[];
  options('#foodArea',[...new Set(stalls.map(x=>x.area))]);
