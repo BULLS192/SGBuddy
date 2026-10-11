@@ -131,13 +131,11 @@
   }
   function appsCard(app){
     const marked=saved.has(app.id);
-    const appName=encodeURIComponent(app.name);
-    const ios='https://apps.apple.com/sg/search?term='+appName;
-    const android='https://play.google.com/store/search?c=apps&q='+appName;
+    const publisherLink=safeUrl(app.publisherUrl);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(app.category)+'</span><h3>'+safe(app.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(app.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>'+(app.status==='publisher-reference'?'Official publisher reference; check account eligibility and installation requirements.':'Suggested app; publisher and store listing still require verification.')+'</p>'+
-      '<div class="discover-actions">'+sourceLink(app.publisherUrl,'Publisher')+sourceLink(ios,'Search iOS')+sourceLink(android,'Search Android')+'</div></article>';
+      '<div class="discover-actions">'+sourceLink(publisherLink,'Official publisher')+'<span class="discover-app-legacy-note">Use publisher links to find authentic app-store downloads.</span>'+'</div></article>';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
