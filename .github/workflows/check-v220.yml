@@ -1,0 +1,46 @@
+name: SGBuddy V2.2 Library Quality QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.2-library-quality-food]
+    paths:
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'library-quality-v220.css'
+      - 'index.html'
+      - 'sw.js'
+      - 'data/**'
+      - 'scripts/**'
+      - '.github/workflows/check-v220.yml'
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'library-quality-v220.css'
+      - 'index.html'
+      - 'sw.js'
+      - 'data/**'
+      - 'scripts/**'
+      - '.github/workflows/check-v220.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all SGBuddy regressions and quality assertions
+        run: npm run check
+      - name: Upload V2.2 quality summary and editorial queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-v220-quality-audit
+          path: |
+            reports/library-quality-v220.json
+            reports/library-quality-v220.md
+            reports/library-verification-queue-v220.csv
+          retention-days: 30
