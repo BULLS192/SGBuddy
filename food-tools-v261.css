@@ -1,0 +1,39 @@
+/* Food V2.6: compact, responsive, source-aware Merli picks and external dining choices */
+.food-tools-v261{margin:18px 0;padding:17px;border:1px solid #334f64;border-radius:18px;background:#10283b;color:#eff7fd;min-width:0}
+.food-tools-heading h4{margin:4px 0 6px;font-size:clamp(1.16rem,2.6vw,1.45rem);letter-spacing:-.02em}
+.food-tools-heading p{font-size:.87rem;line-height:1.55;color:#bbd1de;margin:0 0 15px}
+.food-tools-nav,.food-tools-actions,.food-service-tabs,.food-picked-actions{display:flex;gap:9px;flex-wrap:wrap}
+.food-tools-nav{margin-bottom:14px}
+.food-tools-v261 button{min-height:44px;border:1px solid #668999;border-radius:11px;background:#213d51;color:#ecf6fa;cursor:pointer;padding:8px 14px;font:inherit;font-size:.84rem}
+.food-tools-v261 button[aria-pressed="true"],.food-tools-v261 #foodPickButton{background:#13736d;color:white;border-color:#13736d;font-weight:700}
+.food-tools-v261 button:focus-visible,.food-tools-v261 a:focus-visible,.food-tools-v261 select:focus-visible{outline:3px solid #82c6f5;outline-offset:3px}
+.food-tool-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:4px 0 13px}
+.food-tool-filters label{display:grid;gap:5px;font-size:.81rem;font-weight:650;color:#c9dbe5;min-width:0}
+.food-tool-filters select{width:100%;min-width:0;min-height:44px;border:1px solid #7395a5;background:#19354a;color:#eff8fa;border-radius:10px;padding:10px;font:inherit}
+.food-tool-note{font-size:.8rem;line-height:1.6;color:#b5cbd9;margin:10px 0}
+.food-picked-card{margin-top:14px;background:#183449;border:1px solid #4a697c;border-radius:14px;padding:17px}
+.food-picked-card h4{font-size:1.22rem;margin:6px 0 10px;line-height:1.27}
+.food-picked-card>p{margin:7px 0;font-size:.89rem;line-height:1.55}
+.food-picked-card a,.food-provider-card a{display:inline-flex;align-items:center;min-height:40px;padding:8px 11px;border-radius:10px;border:1px solid #698ca6;color:#b1e2ff;font-size:.82rem;text-decoration:none}
+.food-picked-card a:hover,.food-provider-card a:hover{text-decoration:underline}
+.food-service-tabs{margin:14px 0}
+.food-service-tabs button{padding:8px 11px}
+#foodServiceResults h4{font-size:1.1rem;margin:15px 0 5px}
+.food-provider-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:11px}
+.food-provider-card{background:#1a3447;border:1px solid #45677b;border-radius:13px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.food-provider-card h5{font-size:1rem;margin:0}
+.food-provider-card p{font-size:.83rem;line-height:1.5;margin:0}
+.food-provider-card a{align-self:start;margin-top:auto}
+#foodToolServicesPanel[hidden],#foodToolPickerPanel[hidden]{display:none!important}
+html[data-ux-theme="light"] .food-tools-v261{background:#f7fbfc;color:#1c3748;border-color:#c6dce4}
+html[data-ux-theme="light"] .food-tools-heading p,
+html[data-ux-theme="light"] .food-tool-note,
+html[data-ux-theme="light"] .food-tool-filters label{color:#4c6475}
+html[data-ux-theme="light"] .food-tools-v261 button{background:#eaf3f4;color:#16594f;border-color:#bbd8d6}
+html[data-ux-theme="light"] .food-tools-v261 button[aria-pressed="true"],
+html[data-ux-theme="light"] .food-tools-v261 #foodPickButton{background:#11665e;color:#fff;border-color:#11665e}
+html[data-ux-theme="light"] .food-tool-filters select{background:#fff;color:#223e4f;border-color:#c1d6df}
+html[data-ux-theme="light"] .food-picked-card,html[data-ux-theme="light"] .food-provider-card{background:#fff;color:#233b49;border-color:#cfdee8}
+html[data-ux-theme="light"] .food-picked-card a,html[data-ux-theme="light"] .food-provider-card a{color:#145a86;border-color:#bfd6e4;background:#f3f8fb}
+@media(max-width:630px){.food-tools-v261{padding:13px;margin:14px 0}.food-tool-filters{grid-template-columns:1fr}.food-tools-nav button,.food-tools-actions button{flex:1 1 auto}.food-picked-actions a,.food-picked-actions button{flex:1 1 auto;justify-content:center}.food-provider-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.food-tools-v261 *{transition:none!important;scroll-behavior:auto!important}}

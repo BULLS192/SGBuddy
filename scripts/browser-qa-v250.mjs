@@ -14,7 +14,7 @@ page.on('pageerror',error=>errors.push(error.message));
 const awaitVisible=selector=>page.locator(selector).waitFor({state:'visible',timeout:25000});
 try {
  await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>/^v2\.(5|6)\.0$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
+ await page.waitForFunction(()=>/^v2\.(5|6|7|8)\.0$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
  const location=page.locator('#locationSheet');
  await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
@@ -35,7 +35,7 @@ try {
  assert.equal(await page.locator('#navPlaces span').textContent(),'探索');
  await page.locator('[data-prep-check="phone"]').check();
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>/^v2\.(5|6)\.0$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
+ await page.waitForFunction(()=>/^v2\.(5|6|7|8)\.0$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
  await page.locator('#navPlaces').click();
  await page.locator('[data-discover-tab="travel"]').click();
  await awaitVisible('#travelEssentials');
@@ -43,7 +43,8 @@ try {
  assert.equal(await page.locator('[data-prep-check="phone"]').isChecked(),true,'Checklist persists');
  await page.locator('[data-discover-tab="apps"]').click();
  await awaitVisible('#everydayApps');
- await page.waitForFunction(()=>document.querySelector('#appLibraryCount')?.textContent?.includes('75'),{timeout:15000});
+ await page.locator('[data-app-view="all"]').click();
+ await page.waitForFunction(()=>document.querySelector('#appLibraryCount')?.textContent?.includes('79'),{timeout:15000});
  await page.locator('#appLibrarySearch').fill('WhatsApp');
  assert.ok(await page.locator('#appLibraryCards').textContent().then(t=>t.includes('WhatsApp')),'WhatsApp in app library');
  await page.setViewportSize({width:375,height:812});

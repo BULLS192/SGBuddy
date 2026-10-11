@@ -34,6 +34,8 @@ jobs:
         run: node scripts/library-evidence-v230.mjs
       - name: Generate V2.4 app and digital-service editorial review queue
         run: node scripts/apps-quality-v240.mjs
+      - name: Generate V2.6 food guide coverage and editorial review queue
+        run: node scripts/food-review-v261.mjs
       - name: Upload report and source snapshots for editorial review
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +52,9 @@ jobs:
             reports/apps-quality-v240.json
             reports/apps-quality-v240.md
             reports/apps-review-v240.csv
+            reports/food-discovery-v261.json
+            reports/food-discovery-v261.md
+            reports/food-review-v261.csv
             data/services-v210.json
             data/official-places-v200.json
           retention-days: 30
