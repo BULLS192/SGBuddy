@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-11T01:41:20.398Z",
+  "updatedAt": "2026-10-11T01:44:55.936Z",
   "sourcePolicy": "Official government geospatial source; snapshots may be old. A source record does not confirm operating hours, entry gates, existence today, accessibility, tenant occupancy, stall menus, or prices.",
   "counts": {
-    "sourceRows": 733,
+    "sourceRows": 778,
     "baseCurated": 271,
-    "added": 683,
-    "totalUniqueApprox": 954,
+    "added": 728,
+    "totalUniqueApprox": 999,
     "byKind": {
       "Do": 440,
       "Eat": 109,
-      "Essentials": 134
+      "Essentials": 179
     }
   },
   "sources": [
@@ -50,8 +50,8 @@
       "agency": "Sport Singapore",
       "datasetId": "d_9b87bab59d036a60fad2a91530e10773",
       "records": 45,
-      "accepted": 0,
-      "skipped": 45,
+      "accepted": 45,
+      "skipped": 0,
       "status": "ok"
     }
   ],
@@ -17107,6 +17107,285 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-64e39528949e",
+      "name": "ActiveSG Gym@Ang Mo Kio Community Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Ang Mo Kio Avenue 1",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3668335,
+      "lon": 103.8406681,
+      "address": "795 Ang Mo Kio Avenue 1, Singapore 569976",
+      "postal": "569976",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "322",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-25be337058a7",
+      "name": "ActiveSG Gym@Enabling Village",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Lengkok Bahru",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.2866803,
+      "lon": 103.8137663,
+      "address": "20 Lengkok Bahru, Singapore 159053",
+      "postal": "159053",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "323",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-deb7d22fdd4f",
+      "name": "ActiveSG Gym@Fernvale Square",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Sengkang West Avenue",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.391422,
+      "lon": 103.8731156,
+      "address": "51A Sengkang West Avenue, Singapore 797384",
+      "postal": "797384",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "324",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-6982594991e2",
+      "name": "ActiveSG Gym@Serangoon Central",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Serangoon Central",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3524673,
+      "lon": 103.8721028,
+      "address": "264 Serangoon Central, Singapore 550264",
+      "postal": "550264",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "325",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-4a1dbf9cb979",
+      "name": "ActiveSG Gym@Toa Payoh",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Lorong 1 Toa Payoh",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.337505,
+      "lon": 103.8449054,
+      "address": "127A Lorong 1 Toa Payoh, Singapore 319899",
+      "postal": "319899",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "326",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-51bff3d9a496",
+      "name": "ActiveSG Gym@Toa Payoh West Community Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Lorong 2 Toa Payoh",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3353827,
+      "lon": 103.8448309,
+      "address": "200 Lorong 2 Toa Payoh, Singapore 319642",
+      "postal": "319642",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "327",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-ecb78fed94f7",
+      "name": "ActiveSG Hockey Village @ Boon Lay",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Boon Lay Place",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3477585,
+      "lon": 103.7111799,
+      "address": "88 Boon Lay Place, Singapore 649883",
+      "postal": "649883",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "328",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-fea2473c3579",
+      "name": "ActiveSG Sport Park @ Bedok North",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bedok North Street 2",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3263808,
+      "lon": 103.936716,
+      "address": "3 Bedok North Street 2, Singapore 469643",
+      "postal": "469643",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "321",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-ae5698a58b5e",
+      "name": "ActiveSG Sport Village@Jurong Town",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "International Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3322292,
+      "lon": 103.7202011,
+      "address": "2 International Road, Singapore 619618",
+      "postal": "619618",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "329",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-88bc182c3333",
       "name": "Aljunied CC",
       "kind": "Essentials",
@@ -17200,6 +17479,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-f4ba9bfc0667",
+      "name": "Ang Mo Kio Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Ang Mo Kio Avenue 1",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3633023,
+      "lon": 103.8496668,
+      "address": "1771 Ang Mo Kio Avenue 1, Singapore 569978",
+      "postal": "569978",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "330",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-1b6d6e753aa1",
       "name": "Ayer Rajah CC",
       "kind": "Essentials",
@@ -17262,6 +17572,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-f691dbb864e9",
+      "name": "Bedok Stadium",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bedok North Street 2",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3260987,
+      "lon": 103.9388188,
+      "address": "1 Bedok North Street 2, Singapore 469642",
+      "postal": "469642",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "331",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-f563e4c79e39",
       "name": "Bidadari CC",
       "kind": "Essentials",
@@ -17316,6 +17657,68 @@
       "sourceAgency": "PA",
       "sourceRecordId": "4956",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-21d3206bdef4",
+      "name": "Bishan Clubhouse",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bishan Street 14",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.355075,
+      "lon": 103.8499905,
+      "address": "3 Bishan Street 14, Singapore 579780",
+      "postal": "579780",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "333",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-4100da80e343",
+      "name": "Bishan Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bishan Street 14",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3552826,
+      "lon": 103.8509221,
+      "address": "5 Bishan Street 14, Singapore 579783",
+      "postal": "579783",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "332",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -17572,6 +17975,99 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-358f906ec6de",
+      "name": "Bukit Batok Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bukit Batok Street 22",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3443316,
+      "lon": 103.7479542,
+      "address": "2 Bukit Batok Street 22, Singapore 659581",
+      "postal": "659581",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "334",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-eb3da69770c2",
+      "name": "Bukit Canberra Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Canberra Link",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.4482634,
+      "lon": 103.8227636,
+      "address": "21 Canberra Link, Singapore 756973",
+      "postal": "756973",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "335",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-2d6904c5705e",
+      "name": "Bukit Gombak Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bukit Batok West Avenue 5",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3597995,
+      "lon": 103.7521702,
+      "address": "810 Bukit Batok West Avenue 5, Singapore 659088",
+      "postal": "659088",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "336",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-b2f75aaa147c",
       "name": "Bukit Panjang CC",
       "kind": "Essentials",
@@ -17657,6 +18153,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "4975",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-eda01f4bbccd",
+      "name": "Burghley Squash & Tennis Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Burghley Drive",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3593908,
+      "lon": 103.8604865,
+      "address": "43 Burghley Drive, Singapore 559020",
+      "postal": "559020",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "337",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -17851,6 +18378,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-e032ece0e526",
+      "name": "Choa Chu Kang Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Choa Chu Kang Street 53",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3906662,
+      "lon": 103.7479207,
+      "address": "1 Choa Chu Kang Street 53, Singapore 689236",
+      "postal": "689236",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "338",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-5e155026764d",
       "name": "Chong Pang CC (Temp Office)",
       "kind": "Essentials",
@@ -17967,6 +18525,99 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5027",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-9e37f519a31e",
+      "name": "Clementi Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Clementi Avenue 3",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.311015,
+      "lon": 103.7648614,
+      "address": "518 Clementi Avenue 3, Singapore 129907",
+      "postal": "129907",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "339",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-6b52419c6b7b",
+      "name": "Clementi Stadium",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "West Coast Walk",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3096749,
+      "lon": 103.7624886,
+      "address": "10 West Coast Walk, Singapore 127156",
+      "postal": "127156",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "340",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-48b783af137c",
+      "name": "Delta Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Tiong Bahru Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.2891822,
+      "lon": 103.8199929,
+      "address": "900 Tiong Bahru Road, Singapore 158790",
+      "postal": "158790",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "341",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -18192,6 +18843,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-5288a547e26a",
+      "name": "Geylang East Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Aljunied Avenue 1",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3209777,
+      "lon": 103.8876504,
+      "address": "601 Aljunied Avenue 1, Singapore 389862",
+      "postal": "389862",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "342",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-f3e7241d3a07",
       "name": "Geylang Serai CC",
       "kind": "Essentials",
@@ -18246,6 +18928,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5013",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-57b7878aac96",
+      "name": "Heartbeat@Bedok ActiveSG Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bedok North Street 1",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.326985,
+      "lon": 103.9316206,
+      "address": "11 Bedok North Street 1, Singapore 469662",
+      "postal": "469662",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "343",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -18378,6 +19091,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-e56a554e579c",
+      "name": "Hougang Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Hougang Avenue 4",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3705735,
+      "lon": 103.8880717,
+      "address": "93 Hougang Avenue 4, Singapore 538832",
+      "postal": "538832",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "344",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-ddc9d0acd5b4",
       "name": "Hwi Yoh CC",
       "kind": "Essentials",
@@ -18471,6 +19215,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-38c44b92bdd1",
+      "name": "Jalan Besar Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Tyrwhitt Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3108549,
+      "lon": 103.8599617,
+      "address": "100 Tyrwhitt Road, Singapore 207542",
+      "postal": "207542",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "345",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-7ef014092816",
       "name": "Joo Chiat CC",
       "kind": "Essentials",
@@ -18494,6 +19269,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5031",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-0a5087d3c5a1",
+      "name": "Jurong East Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Jurong East Street 31",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3462156,
+      "lon": 103.7288353,
+      "address": "21 Jurong East Street 31, Singapore 609517",
+      "postal": "609517",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "346",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -18533,6 +19339,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-6039e9fc69bc",
+      "name": "Jurong Lake Gardens ActiveSG Gym & Pool",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Yuan Ching Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3305051,
+      "lon": 103.7256439,
+      "address": "30 Yuan Ching Road, Singapore 618664",
+      "postal": "618664",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "347",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-ddf50caa02e6",
       "name": "Jurong Spring CC",
       "kind": "Essentials",
@@ -18556,6 +19393,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5033",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-dec1620a629a",
+      "name": "Jurong West Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Jurong West Street 93",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3384181,
+      "lon": 103.6937689,
+      "address": "20 Jurong West Street 93, Singapore 648965",
+      "postal": "648965",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "348",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -18595,6 +19463,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-49032aa10f9e",
+      "name": "Kallang Basin Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Geylang Bahru Lane",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3225595,
+      "lon": 103.872491,
+      "address": "21 Geylang Bahru Lane, Singapore 339627",
+      "postal": "339627",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "349",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-a22cd1168d7a",
       "name": "Kallang CC",
       "kind": "Essentials",
@@ -18618,6 +19517,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5035",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-fbfe6be0edfe",
+      "name": "Kallang Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Stadium Boulevard",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3056517,
+      "lon": 103.8787557,
+      "address": "8 Stadium Boulevard, Singapore 397804",
+      "postal": "397804",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "350",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -18773,6 +19703,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5018",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-15273c80dc06",
+      "name": "Katong Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Wilkinson Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3021056,
+      "lon": 103.8860819,
+      "address": "111 Wilkinson Road, Singapore 436752",
+      "postal": "436752",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "351",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -19184,6 +20145,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-c776aef30ab1",
+      "name": "MOE (Evans)",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Evans Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3184619,
+      "lon": 103.8190712,
+      "address": "21 Evans Road, Singapore 259366",
+      "postal": "259366",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "352",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-0985af40c021",
       "name": "Mountbatten CC",
       "kind": "Essentials",
@@ -19548,6 +20540,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5001",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-8c6fee4f433b",
+      "name": "Pasir Ris Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Pasir Ris Central",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3744485,
+      "lon": 103.9518225,
+      "address": "120 Pasir Ris Central, Singapore 519640",
+      "postal": "519640",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "354",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -20021,6 +21044,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-84b81a6e06a7",
+      "name": "Queenstown Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Stirling Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.2968003,
+      "lon": 103.8023885,
+      "address": "473 Stirling Road, Singapore 148948",
+      "postal": "148948",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "355",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-16cea380b223",
       "name": "Radin Mas CC",
       "kind": "Essentials",
@@ -20176,6 +21230,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-5fde0b13b6dc",
+      "name": "Sengkang Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Anchorvale Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3954657,
+      "lon": 103.8857771,
+      "address": "57 Anchorvale Road, Singapore 544964",
+      "postal": "544964",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "356",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-c50058dd4717",
       "name": "Senja-Cashew CC",
       "kind": "Essentials",
@@ -20199,6 +21284,68 @@
       "sourceAgency": "PA",
       "sourceRecordId": "4944",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-fd67f9790228",
+      "name": "Senja-Cashew Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Bukit Panjang Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3815868,
+      "lon": 103.7646596,
+      "address": "101 Bukit Panjang Road, Singapore 679910",
+      "postal": "679910",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "357",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-4332afb4782e",
+      "name": "Serangoon Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Yio Chu Kang Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.357039,
+      "lon": 103.8745939,
+      "address": "35 Yio Chu Kang Road, Singapore 545552",
+      "postal": "545552",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "358",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -20261,6 +21408,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "4946",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-bde17218b653",
+      "name": "St. Wilfred Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "St. Wilfred Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3252269,
+      "lon": 103.861719,
+      "address": "3 St. Wilfred Road, Singapore 327920",
+      "postal": "327920",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "359",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -20478,6 +21656,37 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5037",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-c9c0a9549cf7",
+      "name": "Tampines Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Tampines Walk",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3534962,
+      "lon": 103.9396836,
+      "address": "1 Tampines Walk, Singapore 528523",
+      "postal": "528523",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "353",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
@@ -20889,6 +22098,37 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-54b34bda87b8",
+      "name": "Toa Payoh Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Lorong 6 Toa Payoh",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3306001,
+      "lon": 103.8499868,
+      "address": "301 Lorong 6 Toa Payoh, Singapore 319392",
+      "postal": "319392",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "360",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-e07bcd905f05",
       "name": "Toa Payoh West CC",
       "kind": "Essentials",
@@ -21106,6 +22346,68 @@
       "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
     },
     {
+      "id": "SGO-8504ee31b4d4",
+      "name": "Woodlands SC",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Woodlands Street 13",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.4348954,
+      "lon": 103.7803066,
+      "address": "1 Woodlands Street 13, Singapore 738597",
+      "postal": "738597",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "361",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-f4d210d0500d",
+      "name": "Yan Kit Playfield",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Yan Kit Road",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.2763229,
+      "lon": 103.842195,
+      "address": "5 Yan Kit Road, Singapore 088261",
+      "postal": "088261",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "362",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
       "id": "SGO-6418f2988ab7",
       "name": "Yew Tee CC",
       "kind": "Essentials",
@@ -21160,6 +22462,99 @@
       "sourceAgency": "PA",
       "sourceRecordId": "5012",
       "sourceUrl": "https://data.gov.sg/datasets/d_9de02d3fb33d96da1855f4fbef549a0f/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-0dce6369c25e",
+      "name": "Yio Chu Kang Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Ang Mo Kio Avenue 9",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.3822724,
+      "lon": 103.8457679,
+      "address": "200 Ang Mo Kio Avenue 9, Singapore 569770",
+      "postal": "569770",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "363",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-9a215f6f81c2",
+      "name": "Yishun Sport Centre",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Yishun Avenue 1",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.4120184,
+      "lon": 103.8311774,
+      "address": "101 Yishun Avenue 1, Singapore 769130",
+      "postal": "769130",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "364",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
+      "status": "official-source-snapshot",
+      "operatingStatus": "unverified",
+      "nameInSource": true,
+      "sourceReportedStatus": null,
+      "coordinatesKind": "point",
+      "notes": "Government directory snapshot. Exact public entrance, current operating status, access, hours and fees are not verified."
+    },
+    {
+      "id": "SGO-1b1936a30c71",
+      "name": "Yishun Swimming Complex",
+      "kind": "Essentials",
+      "kinds": [
+        "Essentials"
+      ],
+      "area": "Singapore",
+      "street": "Yishun Avenue 3",
+      "category": "Sports facilities",
+      "modes": [
+        "resident",
+        "student",
+        "visitor",
+        "executive"
+      ],
+      "lat": 1.4240633,
+      "lon": 103.8336924,
+      "address": "351 Yishun Avenue 3, Singapore 769057",
+      "postal": "769057",
+      "sourceDatasetId": "d_9b87bab59d036a60fad2a91530e10773",
+      "sourceAgency": "Sport Singapore",
+      "sourceRecordId": "365",
+      "sourceUrl": "https://data.gov.sg/datasets/d_9b87bab59d036a60fad2a91530e10773/view",
       "status": "official-source-snapshot",
       "operatingStatus": "unverified",
       "nameInSource": true,
