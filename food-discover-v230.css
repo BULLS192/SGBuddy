@@ -1,0 +1,8 @@
+/* SGBuddy V2.3: practical source-aware Singapore discovery */
+#discoverNeighbourhoodFilter{min-height:42px;max-width:210px;border-radius:11px;padding:8px;color:inherit;border:1px solid rgba(150,184,213,.45);background:transparent}
+.discover-freshness{line-height:1.5}
+.food-explorer .food-view-tabs button{min-height:42px}
+.food-explorer .food-stall a{color:#9bdfff;text-decoration:underline;text-underline-offset:3px}
+.food-explorer .food-card-actions{margin-top:auto}
+.library-quality-stats>div{min-width:0;overflow-wrap:anywhere}
+@media(max-width:750px){#discoverNeighbourhoodFilter{max-width:100%;min-width:0;flex:1}.food-explorer .food-view-tabs{gap:6px}.food-explorer .food-view-tabs button{flex:1;min-width:max-content}}
