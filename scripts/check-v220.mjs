@@ -25,7 +25,7 @@ assert.ok(menus.items.every(x=>x.availabilityCurrent===false&&x.halalCertified==
 for(const marker of ['discoverQuality','discoverFreshnessFilter','discoverIncludeArchive','renderQuality','sourceCoverageAsOf','operatingVerification','isArchived','Current operating status not verified','https://www.chas.sg/clinic-locator','https://www.sfa.gov.sg/tools-and-resources/track-records']){
  assert.ok(page.includes(marker),'Discover quality UX missing '+marker);
 }
-for(const marker of ['foodAwardYear','nea-award-listed-20','data-stall-address','Current operating','award']){
+for(const marker of ['foodAwardYear','nea-award-listed-20','data-stall-address','current trading unverified','award']){
  assert.ok(foodUi.includes(marker),'Food evidence UX missing '+marker);
 }
 assert.ok(html.includes('library-quality-v220.css')&&sw.includes('library-quality-v220.css'),'V2.2 quality UI missing from page or PWA shell');
