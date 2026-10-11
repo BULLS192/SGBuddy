@@ -120,7 +120,7 @@ import {EXPLAINERS,explainer} from './lib/i18n-explainers-v300.mjs';
   if(explainMatch(key,before)&&before!==next)node.textContent=next;
  }
  function caution(){
-  const original=doc.querySelector('#foodExplorer > .food-note');if(!original)return;
+  const original=doc.querySelector('#foodExplorer > .food-note, #sgbFoodOriginalWarning .food-note');if(!original)return;
   let translated=doc.getElementById('sgbFoodLocalizedWarning');
   let details=doc.getElementById('sgbFoodOriginalWarning');
   if(!translated){
@@ -130,14 +130,14 @@ import {EXPLAINERS,explainer} from './lib/i18n-explainers-v300.mjs';
    const summary=doc.createElement('summary');summary.textContent='English original / 原文';
    original.insertAdjacentElement('beforebegin',details);details.appendChild(summary);details.appendChild(original);
   }
-  translated.textContent=explainer(code(),'foodNote');
-  const official=doc.createElement('a');official.href='https://halal.muis.gov.sg/halal/establishments';official.target='_blank';official.rel='noopener noreferrer';official.textContent=' MUIS ↗';
-  translated.appendChild(official);
-  details.hidden=code()==='en';translated.hidden=code()==='en';
-  original.hidden=code()!=='en';
-  if(code()==='en'){original.hidden=false}
-  // Official source disclaimer stays available under details in every locale.
-  if(code()!=='en'){original.hidden=false}
+  if(translated.dataset.locale!==code()){
+   translated.textContent=explainer(code(),'foodNote');
+   const official=doc.createElement('a');official.href='https://halal.muis.gov.sg/halal/establishments';official.target='_blank';official.rel='noopener noreferrer';official.textContent=' MUIS ↗';
+   translated.appendChild(official);translated.dataset.locale=code();
+  }
+  translated.hidden=code()==='en';
+  details.hidden=false;details.open=code()==='en';
+  original.hidden=false;
  }
  function localize(){
   for(const [selector,key,mode] of selectors){const el=doc.querySelector(selector);assign(el,key,mode);}
