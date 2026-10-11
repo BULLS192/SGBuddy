@@ -1,7 +1,8 @@
 /* SGBuddy V3: first-party UI strings for every supported locale.
    Proper names, addresses, source facts and user entries are NOT overwritten. */
 import {extendedUi,EXTENDED_UI,EXTENDED_KEYS} from './lib/i18n-extended-v300.mjs';
-import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
+import {normalizeLocale} from './lib/i18n-v280.mjs';
+import {EXPLAINERS,explainer} from './lib/i18n-explainers-v300.mjs';
 (()=>{
  'use strict';
  const doc=document;
@@ -109,11 +110,40 @@ import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
    if(current!==next)el.textContent=next;
   }
  }
+ const english=EXPLAINERS.en;
+ const explainMatch=(key,actual)=>Object.values(EXPLAINERS).some(bundle=>bundle[key]===actual);
+ function explain(selector,key,mode='text'){
+  const node=doc.querySelector(selector);if(!node)return;
+  const next=explainer(code(),key);
+  if(mode==='placeholder'){const before=node.getAttribute('placeholder')||'';if(explainMatch(key,before)&&before!==next)node.placeholder=next;return}
+  const before=node.textContent?.trim()||'';
+  if(explainMatch(key,before)&&before!==next)node.textContent=next;
+ }
+ function caution(){
+  const original=doc.querySelector('#foodExplorer > .food-note');if(!original)return;
+  let translated=doc.getElementById('sgbFoodLocalizedWarning');
+  let details=doc.getElementById('sgbFoodOriginalWarning');
+  if(!translated){
+   translated=doc.createElement('p');translated.id='sgbFoodLocalizedWarning';translated.className='food-note';
+   original.insertAdjacentElement('beforebegin',translated);
+   details=doc.createElement('details');details.id='sgbFoodOriginalWarning';details.className='sgb-original-warning';
+   const summary=doc.createElement('summary');summary.textContent='English original / 原文';
+   original.insertAdjacentElement('beforebegin',details);details.appendChild(summary);details.appendChild(original);
+  }
+  translated.textContent=explainer(code(),'foodNote');
+  const official=doc.createElement('a');official.href='https://halal.muis.gov.sg/halal/establishments';official.target='_blank';official.rel='noopener noreferrer';official.textContent=' MUIS ↗';
+  translated.appendChild(official);
+  details.hidden=code()==='en';translated.hidden=code()==='en';
+  original.hidden=code()!=='en';
+  if(code()==='en'){original.hidden=false}
+  // Official source disclaimer stays available under details in every locale.
+  if(code()!=='en'){original.hidden=false}
+ }
  function localize(){
   for(const [selector,key,mode] of selectors){const el=doc.querySelector(selector);assign(el,key,mode);}
   for(const [selector,key,mode] of textSlots)for(const el of doc.querySelectorAll(selector))assign(el,key,mode);
   const search=doc.getElementById('sgbFactQuery');
-  if(search && search.placeholder==='Search facts…')search.placeholder=ui().discoverIntro;
+  // Fact search has a dedicated translation in the explainer catalogue.
   // Stable machine-readable values remain in English; only rendered labels change.
   for(const [container,selector] of selection)for(const el of doc.querySelectorAll(container+' '+selector)){
     if(el.matches('[data-food-view],[data-app-view]'))continue;
@@ -123,6 +153,12 @@ import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
       if(matches(key,value)){assign(el,key);break;}
     }
   }
+  explain('#buddyReply','greeting');
+  explain('#merliKnowledgeLibrary > h3','knowledgeTitle');
+  explain('#merliKnowledgeLibrary > p','knowledgeIntro');
+  explain('#merliLoadMore','moreFacts');
+  explain('#sgbFactQuery','factSearch','placeholder');
+  caution();
   doc.documentElement.lang=code();
  }
  let queued=false;
