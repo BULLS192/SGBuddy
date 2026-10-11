@@ -1,0 +1,49 @@
+name: SGBuddy V3.1 Source-Aware Content Localization
+on:
+  push:
+    branches: [feature/sgbuddy-v3.1-content-l10n]
+  pull_request:
+    paths:
+      - 'lib/i18n-content-taxonomy-v310.mjs'
+      - 'lib/i18n-facts-v310.mjs'
+      - 'app-v120.js'
+      - 'app-v140.js'
+      - 'app-food-v180.js'
+      - 'app-apps-v240.js'
+      - 'app-device-translate-v300.js'
+      - 'scripts/check-v310.mjs'
+      - 'scripts/browser-qa-v310.mjs'
+      - 'scripts/localization-report-v310.mjs'
+      - '.github/workflows/check-v310-browser.yml'
+permissions:
+  contents: read
+jobs:
+  content-localization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Full regression and localization audit
+        run: npm run check
+      - name: Publish coverage audit
+        run: node scripts/localization-report-v310.mjs --out=localization-coverage-v310.json --json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-localization-coverage-v310
+          path: localization-coverage-v310.json
+          retention-days: 14
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local site
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v310.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v310.log
+          exit 1
+      - name: Test 12-language facts and taxonomy in mobile Chromium
+        run: node scripts/browser-qa-v310.mjs
