@@ -12,7 +12,7 @@
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
-  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all';
+  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all',categoryFilter='all';
   const addressCache=new Map();
   let officialClosures=new Map();
   const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['apps','Useful apps'],['facts','Did you know?']];
@@ -32,7 +32,7 @@
       tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
-    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option></select></div>',
+    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option></select><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
     '<p id="discoverStatus" class="discover-status" role="status">Loading curated Singapore content…</p></section>',
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
@@ -54,7 +54,7 @@
   }
   function changeTab(next){
     if(!tabs.some(([id])=>id===next))return;
-    tab=next;showAll=false;visibleCount=24;areaFilter='all';sourceFilter='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';if($('#discoverSourceFilter'))$('#discoverSourceFilter').value='all';
+    tab=next;showAll=false;visibleCount=24;areaFilter='all';sourceFilter='all';categoryFilter='all';if($('#discoverCategoryFilter'))$('#discoverCategoryFilter').value='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';if($('#discoverSourceFilter'))$('#discoverSourceFilter').value='all';
     host.querySelectorAll('[data-discover-tab]').forEach(b=>{
       const active=b.dataset.discoverTab===tab;
       b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));
@@ -125,7 +125,7 @@
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -147,7 +147,7 @@
       return;
     }
     const rows=orderedRows(tab==='apps'?catalog.apps:catalog.places.filter(p=>(p.kinds||[p.kind]).includes(directoryKinds[tab])));
-    $('#discoverStatus').textContent=rows.length+' curated '+(tab==='apps'?'app':'place')+' entries · '+rows.filter(matchesMode).length+' matches for '+persona+' · Listing details require verification';
+    $('#discoverStatus').textContent=rows.length+' '+(tab==='apps'?'app':'place')+' records · '+rows.filter(matchesMode).length+' matches for '+persona+' · Listing details require verification';
     const visible=rows.slice(0,visibleCount);
     results.innerHTML='<div class="discover-grid">'+visible.map(tab==='apps'?appsCard:dirCard).join('')+'</div>'+
       (!rows.length?'<div class="card discover-empty">No matches. Change your search or Saved only filter.</div>':'')+
@@ -179,6 +179,7 @@
   $('#discoverSavedOnly').addEventListener('change',e=>{savedOnly=e.target.checked;visibleCount=24;showAll=false;factIndex=0;render()});
   $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;visibleCount=24;showAll=false;render()});
   $('#discoverSourceFilter').addEventListener('change',e=>{sourceFilter=e.target.value;visibleCount=24;render()});
+  $('#discoverCategoryFilter').addEventListener('change',e=>{categoryFilter=e.target.value;visibleCount=24;render()});
   document.addEventListener('sgbuddy:knowledge-saved',()=>{
     try{const rows=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(rows))saved=new Set(rows.filter(x=>typeof x==='string'))}catch{}
     render();
@@ -272,6 +273,8 @@
     catalog={...data,places:[...data.places,...unique],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
     const areas=[...new Set(catalog.places.map(p=>p.area).filter(Boolean))].sort();
     $('#discoverAreaFilter').insertAdjacentHTML('beforeend',areas.map(a=>'<option value="'+safe(a)+'">'+safe(a)+'</option>').join(''));
+    const kinds=[...new Set(catalog.places.map(p=>p.category||p.kind).filter(Boolean))].sort();
+    $('#discoverCategoryFilter').insertAdjacentHTML('beforeend',kinds.map(k=>'<option value="'+safe(k)+'">'+safe(k)+'</option>').join(''));
     loaded=true;render();
     document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,sources:officialFeed?.sources||[]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
