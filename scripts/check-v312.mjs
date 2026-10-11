@@ -11,7 +11,7 @@ assert.equal(facts.length,152);
 assert.equal(apps.length,69);
 assert.equal(APP_LOCALIZATION_ORDER.length,15);
 assert.equal(Object.keys(WATER_SOURCE_FACTS).length,12);
-assert.equal(translatedFactCount,38);
+assert.equal(translatedFactCount,152);
 const appIds=new Set, factIds=new Set;
 for(const app of apps){assert.ok(!appIds.has(app.id),'duplicate app '+app.id);appIds.add(app.id);}
 for(const fact of facts){assert.ok(!factIds.has(fact.id),'duplicate fact '+fact.id);factIds.add(fact.id);}
@@ -55,5 +55,5 @@ for(const part of ['appContentTranslation(currentLocale(),a','data-content-local
 assert.ok(appUi.includes("appContentTranslation(currentLocale(),a,'summary')||''"),'Localized app search missing');
 assert.ok(factsUi.includes('waterFactTranslation(locale,record)'),'Water facts not connected to actual pages');
 for(const path of ['/lib/i18n-app-content-v312.mjs','/lib/i18n-water-v312.mjs'])assert.ok(sw.includes(path),'Missing offline file '+path);
-for(const part of ['APP_SOURCE_FIELDS','WATER_SOURCE_FACTS','translatedApps','fallbackAppSummaries','staleAppDescriptions'])assert.ok(audit.includes(part),'Unaccounted coverage '+part);
+for(const part of ['COMPLETE_APP_SOURCES','WATER_SOURCE_FACTS','translatedApps','fallbackAppSummaries','staleAppDescriptions'])assert.ok(audit.includes(part),'Unaccounted coverage '+part);
 console.log('V3.1-C PASS: source-verified 38 facts and 15 core app summary/purpose records across 12 languages, source mismatch fallback, app search and offline cache.');
