@@ -26,7 +26,7 @@ function icon(name){
 }
 const navData=[
  ['navToday','today','Home','home'],
- ['navPlaces','places','Explore','explore'],
+ ['navPlaces','places','Discover','explore'],
  ['navMove','move','Move','move'],
  ['navMoney','saved','Saved','saved'],
  ['navAccount','account','Profile','profile']
@@ -193,19 +193,19 @@ if(discover&&placeView){
 function setExplore(tab){
  selectedExplore=tab;
  if(!discover)return;
- const isNearby=tab==='nearby',isFacts=tab==='facts';
+ const isNearby=tab==='nearby',isFacts=tab==='facts',isApps=tab==='apps';
  setHidden(nearby,!isNearby);
  const results=$('#discoverResults'),status=$('#discoverStatus'),searchRow=$('.discover-search-row');
- setHidden(results,isNearby||isFacts);
- setHidden(status,isNearby||isFacts);
- setHidden(searchRow,isNearby||isFacts);
+ setHidden(results,isNearby||isFacts||isApps);
+ setHidden(status,isNearby||isFacts||isApps);
+ setHidden(searchRow,isNearby||isFacts||isApps);
  const nearTab=$('[data-ux-nearby]');
  if(nearTab){nearTab.classList.toggle('ux-active',isNearby);nearTab.setAttribute('aria-selected',String(isNearby));nearTab.tabIndex=isNearby?0:-1}
  if(isNearby)$$('[data-discover-tab]').forEach(b=>{b.setAttribute('aria-selected','false');b.classList.remove('active');b.tabIndex=-1});
  syncKnowledge();
 }
 const back=document.createElement('div');back.className='ux-move-links';
-back.innerHTML='<button type="button" data-ux-go="places">← Back to Explore</button>';
+back.innerHTML='<button type="button" data-ux-go="places">← Back to Discover</button>';
 $('#moneySection')?.insertAdjacentElement('beforebegin',back);
 // Save from nearby official places without modifying the underlying Place Index.
 function placeIndexKey(name){return 'INDEX:'+String(name||'').normalize('NFKC').trim().toLocaleLowerCase('en-SG')}

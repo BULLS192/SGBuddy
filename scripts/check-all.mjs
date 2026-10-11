@@ -22,6 +22,7 @@ execFileSync(process.execPath,['scripts/check-v210.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v220.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v230.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v240.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v241.mjs'],{stdio:'inherit'});
 run('scripts/build-services-v210.mjs');
 run('scripts/build-supermarkets-v210.mjs');
 run('scripts/library-freshness-v210.mjs');

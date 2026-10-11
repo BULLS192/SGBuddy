@@ -8,7 +8,7 @@ assert.ok(bootstrap.includes("import('/app-v140.js')).then(()=>import('/app-ux-v
 assert.ok(sw.includes('/app-ux-v160.js')&&sw.includes('/ux-v160.css'),'Offline shell must contain UX assets');
 const version=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
 assert.ok(version>=41,'Service worker cache must advance beyond the baseline (v41+)');
-for(const label of ['Home','Explore','Move','Saved','Profile']){
+for(const label of ['Home','Discover','Move','Saved','Profile']){
  assert.ok(ui.includes("'"+label+"'"),'Missing bottom destination '+label);
 }
 for(const landmark of ['uxHomeSummary','uxExtraConditions','uxNearby','uxSavedView','uxPlaceDialog','uxDialogRoute','v110CompareCard','data-ux-go','sgbuddy:discover-tab','sgbuddy:knowledge-saved']){
