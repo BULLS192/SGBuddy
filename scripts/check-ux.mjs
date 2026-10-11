@@ -6,7 +6,8 @@ const html=read('index.html'),sw=read('sw.js'),legacy=read('app-v140.js');
 assert.ok(html.includes('/ux-v160.css'),'UX stylesheet missing from HTML');
 assert.ok(bootstrap.includes("import('/app-v140.js')).then(()=>import('/app-ux-v160.js')"),'UX enhancement must load after Merli');
 assert.ok(sw.includes('/app-ux-v160.js')&&sw.includes('/ux-v160.css'),'Offline shell must contain UX assets');
-assert.match(sw,/sgbuddy-shell-v4[1-9]/,'Service worker cache must advance beyond the baseline');
+const version=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
+assert.ok(version>=41,'Service worker cache must advance beyond the baseline (v41+)');
 for(const label of ['Home','Explore','Move','Saved','Profile']){
  assert.ok(ui.includes("'"+label+"'"),'Missing bottom destination '+label);
 }

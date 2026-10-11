@@ -15,7 +15,7 @@
   let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all',categoryFilter='all',freshnessFilter='all',includeArchive=false,neighbourhoodFilter='all',neighbourhoods=[];
   const addressCache=new Map();
   let officialClosures=new Map();
-  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Useful apps'],['facts','Did you know?']];
+  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Everyday apps'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop',essentials:'Essentials',healthcare:'Healthcare'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
   const view=$('.v1-view[data-view="places"]');
@@ -29,7 +29,7 @@
     '<p id="discoverPersonaCopy">Recommendations tailored to your SGBuddy mode.</p></div>',
     '<span id="discoverPersonaBadge" class="sync-badge"></span></div>',
     '<div class="discover-tabs" role="tablist" aria-label="Discover categories">',
-      tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
+      tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="'+(id==='apps'?'everydayApps':'discoverResults')+'" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
     '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option><option value="operator">First-party operator</option></select><select id="discoverNeighbourhoodFilter" aria-label="Filter Discover by neighbourhood"><option value="all">All neighbourhoods</option></select><select id="discoverFreshnessFilter" aria-label="Filter by source freshness"><option value="all">All source ages</option><option value="recent">Source ≤ 1 year</option><option value="aging">Source 1–2 years</option><option value="historical">Source over 2 years</option><option value="undated">Undated or curated</option></select><label class="discover-save-filter discover-archive-filter"><input id="discoverIncludeArchive" type="checkbox"/> Include historical supermarket licences</label><select id="discoverCategoryFilter" aria-label="Filter by place type"><option value="all">All place types</option></select></div>',
@@ -131,13 +131,11 @@
   }
   function appsCard(app){
     const marked=saved.has(app.id);
-    const appName=encodeURIComponent(app.name);
-    const ios='https://apps.apple.com/sg/search?term='+appName;
-    const android='https://play.google.com/store/search?c=apps&q='+appName;
+    const publisherLink=safeUrl(app.publisherUrl);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(app.category)+'</span><h3>'+safe(app.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(app.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>'+(app.status==='publisher-reference'?'Official publisher reference; check account eligibility and installation requirements.':'Suggested app; publisher and store listing still require verification.')+'</p>'+
-      '<div class="discover-actions">'+sourceLink(app.publisherUrl,'Publisher')+sourceLink(ios,'Search iOS')+sourceLink(android,'Search Android')+'</div></article>';
+      '<div class="discover-actions">'+sourceLink(publisherLink,'Official publisher')+'<span class="discover-app-legacy-note">Use publisher links to find authentic app-store downloads.</span>'+'</div></article>';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
@@ -335,6 +333,6 @@
     document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,operator:operatorPlaces.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
-  window.__SGBUDDY_CLIENT_VERSION__='2.3.0-preview';
-  if($('#appVersion'))$('#appVersion').textContent='v2.3.0-preview';
+  window.__SGBUDDY_CLIENT_VERSION__='2.4.0-preview';
+  if($('#appVersion'))$('#appVersion').textContent='v2.4.0-preview';
 })();
