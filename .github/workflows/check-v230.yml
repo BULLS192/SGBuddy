@@ -1,0 +1,37 @@
+name: SGBuddy V2.3 Food, Operator and Neighbourhood QA
+on:
+  push:
+    branches: [feature/sgbuddy-v2.3-food-neighbourhood-evidence]
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'data/**'
+      - 'scripts/**'
+      - 'index.html'
+      - 'sw.js'
+      - 'food-discover-v230.css'
+      - '.github/workflows/check-v230.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run previous waves and V2.3 evidence regression
+        run: npm run check
+      - name: Upload editorial quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-v230-library-quality
+          path: |
+            reports/library-evidence-v230.json
+            reports/library-evidence-v230.md
+            reports/library-review-queue-v230.csv
+          retention-days: 30
