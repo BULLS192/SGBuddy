@@ -9,10 +9,12 @@ import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
  const code=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
  const languageTables=Object.values(EXTENDED_UI);
  const selectors=[
-  ['#buddyLauncher > span','askMerli'],
+  ['#buddyLauncher > span:last-child','askMerli'],
   ['#merliPersonaNote','merliSubtitle'],
   ['#buddyAskForm button','askButton'],
+  ['#merliKnowledgeLibrary .sgb-library-controls option[value="all"]','discoverAllTypes'],
   ['#merliSaveFact','saveFact','icon'],
+  ['#merliKnowledgeLibrary .merli-save','save','icon'],
   ['#merliSource','readSource','link'],
   ['.buddy-note','merliNote'],
   ['[data-buddy-action="fact"]','merliTip','icon'],
@@ -23,6 +25,7 @@ import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
   ['#discoverQuality summary','discoverAbout'],
   ['#foodExplorer > .label','foodLibrary'],
   ['#foodExplorer > h3','foodTitle'],
+  ['#foodExplorer .food-note','foodGuideOnly','skip'],
   ['[data-food-view="stalls"]','foodStalls'],
   ['[data-food-view="dishes"]','foodDishes'],
   ['[data-food-view="menus"]','vendorMenus'],
