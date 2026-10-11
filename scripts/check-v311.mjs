@@ -18,7 +18,7 @@ assert.equal(Object.keys(STALL_NOTE_SOURCE).length,93,'Source-locked research no
 assert.equal(STALL_NOTE_KEYS.length,5,'Expected five unique historic research disclosures');
 for(const x of stalls)assert.equal(STALL_NOTE_SOURCE[x.id],x.notes,'Stall source note changed: '+x.id);
 assert.equal(Object.keys(NATURE_FACTS).length,16,'Expected 16 newly translated nature facts');
-assert.equal(translatedFactCount,26,'Verified fact coverage should advance from 10 to 26');
+assert.equal(translatedFactCount,38,'Verified fact coverage should advance to 38 with source-locked water records');
 assert.equal(Object.keys(LOCALIZED_FACTS).length,10,'Keep existing 10 source-verified translations intact');
 assert.equal(new Set(Object.keys(NATURE_FACTS).concat(Object.keys(LOCALIZED_FACTS))).size,26,'No duplicate source IDs');
 for(const row of dishes)assert.equal(DISH_SOURCE_DESCRIPTIONS[row.id],row.description,'Dish source changed: '+row.id);
@@ -69,4 +69,4 @@ assert.ok(food.includes('stallNoteTranslation(locale(),x)'),'Stall safety notes 
 assert.ok(facts.includes('natureFactTranslation(locale,record)'),'Existing fact UI should use new facts automatically');
 for(const path of ['/lib/i18n-dishes-v311.mjs','/lib/i18n-nature-v311.mjs','/lib/i18n-stall-notes-v311.mjs'])assert.ok(sw.includes(path),'Offline locale pack missing '+path);
 assert.ok(report.includes('fallbackDishDescriptions')&&report.includes('NATURE_FACTS'),'Coverage report has not been updated');
-console.log('V3.1-B PASS: 82/82 dish descriptions, 93/93 stall research notes and 26/152 verified facts translated into 11 non-English languages; exact source, names, dates and fallback preserved.');
+console.log('V3.1-B PASS: 82/82 dish descriptions and 93/93 stall research notes translated; 38/152 verified facts including V3.1-C water history into 11 non-English languages; exact source, names, dates and fallback preserved.');
