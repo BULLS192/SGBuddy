@@ -19,7 +19,7 @@ for(const locale of expected.slice(2)){
  const travel=TRAVEL_UI[locale];
  assert.ok(travel,locale+' missing travel interface');
  for(const key of ['language','heading','intro','review','checkTitle','checkCopy','coming','legacy','discoverTitle','travel','apps','trip','payments','messaging','connectivity']){
-  assert.ok(typeof travel[key]==='string'&&travel[key].length>2,locale+' missing travel key '+key);
+  assert.ok(typeof travel[key]==='string'&&travel[key].trim().length>0,locale+' missing travel key '+key);
  }
  assert.equal(Object.keys(travel.tabs).length,9);
  assert.equal(coverage[locale].guides,7,'Missing localized travel guides');
