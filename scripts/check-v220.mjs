@@ -22,13 +22,15 @@ for(const p of food.stalls){
  if(!p.centreId)assert.ok(p.referenceUrl,'Unmapped centre must be discoverable via source link, without OneMap match claim');
 }
 assert.ok(menus.items.every(x=>x.availabilityCurrent===false&&x.halalCertified===null),'Vendor listings must not be presented as live verified stock');
-for(const marker of ['discoverQuality','discoverFreshnessFilter','discoverIncludeArchive','renderQuality','sourceCoverageAsOf','operatingVerification','isArchived','Current operating status not verified','https://www.chas.sg/clinic-locator','https://www.sfa.gov.sg/tools-and-resources/track-records']){
+for(const marker of ['discoverQuality','discoverIncludeArchive','sourceCoverageAsOf','sourceAge','friendlyDate','freshnessLabel','isArchived','About these listings','Details may have changed','Show older supermarket listings','https://www.chas.sg/clinic-locator','https://www.sfa.gov.sg/tools-and-resources/track-records']){
  assert.ok(page.includes(marker),'Discover quality UX missing '+marker);
 }
 for(const marker of ['foodAwardYear','nea-award-listed-20','data-stall-address','current trading unverified','award']){
  assert.ok(foodUi.includes(marker),'Food evidence UX missing '+marker);
 }
 assert.ok(html.includes('library-quality-v220.css')&&sw.includes('library-quality-v220.css'),'V2.2 quality UI missing from page or PWA shell');
+assert.ok(!page.includes('All source ages')&&!page.includes('discoverFreshnessFilter')&&!page.includes('renderQuality()'),'Technical source-age dashboard and filter must not appear in consumer Discover');
+assert.ok(!page.includes('library-quality-stats'),'Consumer app should not render editorial audit metrics');
 const report=read('scripts/library-quality-v220.mjs');
 for(const item of ['library-verification-queue-v220.csv','invalidOperatingClaims','archivalSupermarkets','sourceCoverageAsOf'])assert.ok(report.includes(item),'Review pipeline missing '+item);
 execFileSync(process.execPath,['scripts/library-quality-v220.mjs'],{stdio:'inherit'});
