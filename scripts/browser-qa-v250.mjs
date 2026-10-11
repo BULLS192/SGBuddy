@@ -43,7 +43,8 @@ try {
  assert.equal(await page.locator('[data-prep-check="phone"]').isChecked(),true,'Checklist persists');
  await page.locator('[data-discover-tab="apps"]').click();
  await awaitVisible('#everydayApps');
- await page.waitForFunction(()=>document.querySelector('#appLibraryCount')?.textContent?.includes('75'),{timeout:15000});
+ await page.locator('[data-app-view="all"]').click();
+ await page.waitForFunction(()=>document.querySelector('#appLibraryCount')?.textContent?.includes('79'),{timeout:15000});
  await page.locator('#appLibrarySearch').fill('WhatsApp');
  assert.ok(await page.locator('#appLibraryCards').textContent().then(t=>t.includes('WhatsApp')),'WhatsApp in app library');
  await page.setViewportSize({width:375,height:812});
