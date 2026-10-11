@@ -13,12 +13,12 @@ for(const url of urls){
   try{r=await fetch(url,{headers:{'user-agent':'SGBuddy source audit bot (read only)'},signal:controller.signal,redirect:'follow'})}finally{clearTimeout(timeout)}
   if(!r.ok){state.set(url,{status:'http-error',httpStatus:r.status});continue}
   const html=await r.text();
-  state.set(url,{status:'fetched',httpStatus:r.status,body:html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' '),bytes:html.length});
+  state.set(url,{status:'fetched',httpStatus:r.status,rawHtml:html,body:html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' '),bytes:html.length});
  }catch(e){state.set(url,{status:'unavailable',reason:String(e.message||e).slice(0,120)})}
 }
 const results=bundle.places.map(p=>{
  const source=state.get(p.sourceUrl);
- const postalVisible=source?.status==='fetched'&&new RegExp('(?:\\b|Singapore\\s*)'+p.postal+'\\b').test(source.body);
+ const postalVisible=source?.status==='fetched'&&(new RegExp('(?:\\b|Singapore\\s*)'+p.postal+'\\b').test(source.body)||source.rawHtml.includes(p.postal));
  const reportedHoursVisible=!!(p.sourceReportedHours&&source?.status==='fetched');
  return {id:p.id,name:p.name,postal:p.postal,sourceUrl:p.sourceUrl,sourceStatus:source?.status||'unavailable',postalVisibleOnOperatorPage:Boolean(postalVisible),
   locationCheckStatus:postalVisible?'operator-postcode-present':'manual-review-needed',hoursNotAudited:reportedHoursVisible,operatingStatus:'NOT_VERIFIED_LIVE'};
