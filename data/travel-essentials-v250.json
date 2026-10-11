@@ -1,0 +1,296 @@
+{
+  "schemaVersion": "2.5.0",
+  "updatedOn": "2026-10-11",
+  "editorialPolicy": "Curated official publisher links only. App eligibility, merchant acceptance, SIM plans and booking availability are not live verified.",
+  "catalogue": [
+    {
+      "id": "V25-APP-001",
+      "name": "WhatsApp",
+      "category": "Messaging & communication",
+      "publisher": "WhatsApp / Meta",
+      "summary": "Message hotels, local contacts and businesses using their published WhatsApp contact.",
+      "purpose": "Messaging, calls and group coordination",
+      "accountNeeded": "Phone number for registration, plus mobile data or Wi-Fi",
+      "notes": "Only use verified business numbers.",
+      "sourceUrl": "https://www.whatsapp.com/download/mobile",
+      "kind": "mobile-app",
+      "importance": "Essential",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "WH",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-page-only",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "通过正式公布的联系方式与酒店、本地朋友和商家沟通。",
+        "purpose": "聊天、通话及群组协调",
+        "accountNeeded": "注册时需要电话号码，以及移动数据或 Wi-Fi"
+      }
+    },
+    {
+      "id": "V25-APP-002",
+      "name": "WeChat (Weixin)",
+      "category": "Messaging & communication",
+      "publisher": "Tencent",
+      "summary": "Chat with contacts who already use WeChat; Weixin Pay is a separate feature.",
+      "purpose": "Messaging and optional eligible payment features",
+      "accountNeeded": "Registered WeChat account; wallet eligibility is separate",
+      "notes": "Not all Singapore merchants accept Weixin Pay; account restrictions apply.",
+      "sourceUrl": "https://www.wechat.com/",
+      "kind": "mobile-app",
+      "importance": "Situational",
+      "modes": [
+        "resident",
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "WE",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-page-only",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "与已使用微信的朋友联系；微信支付是另一项独立功能。",
+        "purpose": "通讯及符合条件的支付功能",
+        "accountNeeded": "微信账户；支付资格需另行确认"
+      }
+    },
+    {
+      "id": "V25-APP-003",
+      "name": "Alipay",
+      "category": "Banking & payments",
+      "publisher": "Alipay",
+      "summary": "An optional wallet for eligible travellers who already have an Alipay account.",
+      "purpose": "Participating merchant payments where both wallet and merchant support it",
+      "accountNeeded": "Eligible, verified Alipay account",
+      "notes": "Alipay+ acceptance is not universal wallet compatibility. Carry a backup card.",
+      "sourceUrl": "https://render.alipay.com/p/s/download",
+      "kind": "mobile-app",
+      "importance": "Situational",
+      "modes": [
+        "visitor",
+        "executive"
+      ],
+      "monogram": "AL",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-page-only",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "适用于已经持有符合资格支付宝账户的游客。",
+        "purpose": "在钱包与商户都支持的场合支付",
+        "accountNeeded": "符合资格并完成验证的支付宝账户"
+      }
+    },
+    {
+      "id": "V25-WEB-001",
+      "name": "Singtel hi! Tourist SIM / eSIM",
+      "category": "Travel & visitor",
+      "publisher": "Singtel",
+      "summary": "Compare Singapore visitor SIM and eSIM options, including local numbers and regional data.",
+      "purpose": "Visitor connectivity",
+      "accountNeeded": "Check passport/ID registration and eSIM device compatibility",
+      "notes": "Validity, voice/SMS, prices and roaming change; check the operator.",
+      "sourceUrl": "https://www.singtel.com/personal/products-services/mobile/prepaid-plans/hi-tourist",
+      "kind": "web-service",
+      "importance": "Recommended",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "SI",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-service-web",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "比较新加坡游客 SIM/eSIM、本地号码和区域流量。",
+        "purpose": "旅行通讯",
+        "accountNeeded": "按要求进行证件登记，并确认设备兼容性"
+      }
+    },
+    {
+      "id": "V25-WEB-002",
+      "name": "StarHub Tourist SIM / eSIM",
+      "category": "Travel & visitor",
+      "publisher": "StarHub",
+      "summary": "Compare tourist SIM and data-only visitor eSIM services.",
+      "purpose": "Visitor connectivity, with or without a Singapore number",
+      "accountNeeded": "Passport/ID verification and unlocked eSIM-capable device if relevant",
+      "notes": "Some data-only eSIMs do not include calls, SMS or a local number.",
+      "sourceUrl": "https://www.starhub.com/personal/mobile/tourist-sim.html",
+      "kind": "web-service",
+      "importance": "Recommended",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "ST",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-service-web",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "比较 StarHub 游客 SIM 卡及纯数据 eSIM。",
+        "purpose": "旅行通讯与上网",
+        "accountNeeded": "护照/证件登记及兼容且未锁网的手机"
+      }
+    },
+    {
+      "id": "V25-WEB-003",
+      "name": "M1 Tourist SIM / eSIM",
+      "category": "Travel & visitor",
+      "publisher": "M1",
+      "summary": "Review tourist prepaid SIM and eSIM purchase, registration and collection options.",
+      "purpose": "Tourist prepaid connectivity",
+      "accountNeeded": "Approved identity document; compatible device for eSIM",
+      "notes": "Registration and collection depend on the chosen plan; confirm with M1.",
+      "sourceUrl": "https://ibuyprepaid.m1.com.sg/",
+      "kind": "web-service",
+      "importance": "Situational",
+      "modes": [
+        "visitor",
+        "executive",
+        "student"
+      ],
+      "monogram": "M1",
+      "ios": null,
+      "android": null,
+      "downloadEvidence": "publisher-service-web",
+      "cataloguedOn": "2026-10-11",
+      "zh": {
+        "summary": "了解 M1 游客预付费 SIM/eSIM 的购买、登记和领取。",
+        "purpose": "旅行上网与通讯",
+        "accountNeeded": "有效证件，eSIM 另需设备兼容"
+      }
+    }
+  ],
+  "guides": [
+    {
+      "id": "V25-GUIDE-01",
+      "group": "payments",
+      "en": {
+        "title": "Cards and contactless wallets",
+        "copy": "Keep an eligible contactless card or Apple Pay / Google Wallet available; verify merchant acceptance and overseas fees."
+      },
+      "zh": {
+        "title": "备妥银行卡及非接触式支付",
+        "copy": "保留可用的非接触式银行卡或 Apple Pay／Google 钱包；确认商户支持及海外手续费。"
+      },
+      "sourceUrl": "https://www.visitsingapore.com/travel-guide-tips/travelling-to-singapore/"
+    },
+    {
+      "id": "V25-GUIDE-02",
+      "group": "payments",
+      "en": {
+        "title": "Alipay / Weixin Pay at participating merchants",
+        "copy": "Wallet eligibility and merchant acceptance both matter. Alipay+ and SGQR logos alone do not guarantee your wallet will work."
+      },
+      "zh": {
+        "title": "在支持的商户使用支付宝／微信支付",
+        "copy": "账户资格及商户支持缺一不可。Alipay+ 或 SGQR 标志不保证您的钱包能够支付。"
+      },
+      "sourceUrl": "https://www.alipayplus.com/sg/"
+    },
+    {
+      "id": "V25-GUIDE-03",
+      "group": "payments",
+      "en": {
+        "title": "PayNow, NETS and SGQR",
+        "copy": "Local payment systems may need a participating Singapore bank or supported app. Do not assume visitors can instantly use PayNow."
+      },
+      "zh": {
+        "title": "PayNow、NETS 及 SGQR",
+        "copy": "本地支付系统可能需要新加坡参与银行账户或指定应用；游客不一定能立即使用 PayNow。"
+      },
+      "sourceUrl": "https://www.abs.org.sg/consumer-banking/pay-now"
+    },
+    {
+      "id": "V25-GUIDE-04",
+      "group": "messaging",
+      "en": {
+        "title": "WhatsApp for hotel and local contacts",
+        "copy": "Contact a business only through its officially published number. Calls and chats need data or Wi-Fi."
+      },
+      "zh": {
+        "title": "使用 WhatsApp 与酒店和本地联系人沟通",
+        "copy": "仅通过商家正式公布的号码联系；通话及聊天需要网络。"
+      },
+      "sourceUrl": "https://www.whatsapp.com/download/mobile"
+    },
+    {
+      "id": "V25-GUIDE-05",
+      "group": "messaging",
+      "en": {
+        "title": "WeChat for familiar contacts",
+        "copy": "Keep WeChat if your party already uses it. Weixin Pay is a separate service with eligibility limits."
+      },
+      "zh": {
+        "title": "使用微信联系熟悉的朋友",
+        "copy": "如同行者使用微信可继续使用；微信支付需另行符合资格。"
+      },
+      "sourceUrl": "https://www.wechat.com/"
+    },
+    {
+      "id": "V25-GUIDE-06",
+      "group": "connectivity",
+      "en": {
+        "title": "Choose a local number or data-only eSIM",
+        "copy": "Data-only eSIMs may not provide SMS or local calls. Compare stay length, data, hotspot, roaming and expiry."
+      },
+      "zh": {
+        "title": "选择本地号码或纯数据 eSIM",
+        "copy": "纯数据 eSIM 可能不提供短信或本地通话。比较天数、流量、热点、漫游及有效期。"
+      },
+      "sourceUrl": "https://www.starhub.com/personal/mobile/tourist-sim.html"
+    },
+    {
+      "id": "V25-GUIDE-07",
+      "group": "connectivity",
+      "en": {
+        "title": "Check your phone before purchasing",
+        "copy": "Confirm eSIM support, carrier unlock, installation timing and passport/ID registration requirements."
+      },
+      "zh": {
+        "title": "购买前检查手机",
+        "copy": "确认 eSIM 支持、是否锁网、安装时限及护照／证件登记规定。"
+      },
+      "sourceUrl": "https://www.singtel.com/personal/singtel-blog/hi-tourist-esim-sim-singapore"
+    }
+  ],
+  "checklist": [
+    {
+      "id": "phone",
+      "en": "Check eSIM compatibility and carrier lock",
+      "zh": "检查 eSIM 兼容性和运营商锁定"
+    },
+    {
+      "id": "plan",
+      "en": "Choose data plan and decide if you need a local number",
+      "zh": "选择流量套餐并确定是否需要本地号码"
+    },
+    {
+      "id": "wallet",
+      "en": "Prepare a backup card or accepted wallet",
+      "zh": "准备备用银行卡或受支持的钱包"
+    },
+    {
+      "id": "contact",
+      "en": "Check official accommodation contact details",
+      "zh": "核实住宿方官方联系方式"
+    },
+    {
+      "id": "booking",
+      "en": "Keep arrival, ticket and booking links in one place",
+      "zh": "集中保存抵达、门票及预订链接"
+    }
+  ]
+}

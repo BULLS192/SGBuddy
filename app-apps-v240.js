@@ -6,6 +6,9 @@ if(!host||!results)return;
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=value=>{try{const u=new URL(String(value||''));return u.protocol==='https:'?u.href:''}catch{return ''}};
 const localKey='sgbuddy-app-bookmarks-v240',legacyKey='sgbuddy-discover-saved-v1';
+const zh=()=>window.SGBUDDY_LANGUAGE==='zh-CN';
+const tr=(en,cn)=>zh()?cn:en;
+const translated=(a,key)=>zh()&&a.zh?.[key]?a.zh[key]:a[key];
 let saved=new Set(),apps=[],loaded=false,term='',category='all',view='recommended',download='all',limit=20;
 try{const items=JSON.parse(localStorage.getItem(localKey)||'[]');if(Array.isArray(items))saved=new Set(items.filter(x=>typeof x==='string').slice(0,300))}catch{}
 const panel=doc.createElement('section');panel.id='everydayApps';panel.className='card everyday-apps-v240';panel.hidden=true;panel.setAttribute('aria-label','Everyday Singapore mobile app and digital service directory');
@@ -44,9 +47,9 @@ function card(a){
   android?'<a href="'+esc(android)+'" target="_blank" rel="noopener noreferrer">Google Play ↗</a>':''].filter(Boolean).join('');
  const modeNames=(a.modes||[]).map(m=>m==='visitor'?'Visitor':m==='executive'?'Business':m[0].toUpperCase()+m.slice(1)).join(' · ');
  return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(a.category)+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
- '<p class="app-guide-description">'+esc(a.summary)+'</p>'+
- '<p class="app-guide-purpose"><strong>Use it for:</strong> '+esc(a.purpose)+'</p>'+
- '<p class="app-guide-prereq"><strong>Before you use it:</strong> '+esc(a.accountNeeded||'See publisher requirements')+'</p>'+
+ '<p class="app-guide-description">'+esc(translated(a,'summary'))+'</p>'+
+ '<p class="app-guide-purpose"><strong>'+tr('Use it for:','用途：')+'</strong> '+esc(translated(a,'purpose'))+'</p>'+
+ '<p class="app-guide-prereq"><strong>'+tr('Before you use it:','使用前：')+'</strong> '+esc(translated(a,'accountNeeded')||'See publisher requirements')+'</p>'+
  (a.notes?'<p class="app-guide-note">'+esc(a.notes)+'</p>':'')+
  '<p class="app-guide-metadata">'+(mobile?'Mobile app':'Web service · no app needed')+' · '+esc(a.importance)+' · '+esc(modeNames)+'</p>'+
  '<div class="app-guide-links">'+actions+'</div>'+
@@ -65,12 +68,12 @@ function render(){
   if(download==='ios'&&!a.ios)return false;
   if(download==='android'&&!a.android)return false;
   if(download==='web'&&a.kind!=='web-service')return false;
-  return !q||[a.name,a.category,a.publisher,a.summary,a.purpose].join(' ').toLowerCase().includes(q);
+  return !q||[a.name,a.category,a.publisher,a.summary,a.purpose,a.zh?.summary,a.zh?.purpose].join(' ').toLowerCase().includes(q);
  }).sort((a,b)=>{
   const modeDiff=Number(b.modes.includes(who))-Number(a.modes.includes(who));
   return modeDiff||rank(b)-rank(a)||a.name.localeCompare(b.name);
  });
- $('#appLibraryCount').textContent=rows.length+' matched · '+apps.filter(a=>a.kind==='mobile-app').length+' mobile app candidates · '+apps.filter(a=>a.kind==='web-service').length+' useful web services · '+saved.size+' on my shortlist. Only confirmed store links are displayed.';
+ $('#appLibraryCount').textContent=zh()?(rows.length+' 项匹配 · '+apps.length+' 项官方应用与服务 · '+saved.size+' 项已收藏。仅显示核实过的应用商店链接。'):(rows.length+' matched · '+apps.filter(a=>a.kind==='mobile-app').length+' mobile app candidates · '+apps.filter(a=>a.kind==='web-service').length+' useful web services · '+saved.size+' on my shortlist. Only confirmed store links are displayed.');
  $('#appLibraryCards').innerHTML=rows.length?rows.slice(0,limit).map(card).join(''):'<div class="app-guide-empty">Nothing matches. Try another category, switch to All apps, or clear the search.</div>';
  $('#appLibraryMore').hidden=rows.length<=limit;
  $('#appLibraryMore').textContent='Show more · '+Math.min(rows.length,limit)+' of '+rows.length;
@@ -99,15 +102,36 @@ $('#appLibraryCategory').addEventListener('change',e=>{category=e.target.value;l
 $('#appLibraryDownload').addEventListener('change',e=>{download=e.target.value;limit=20;render()});
 doc.addEventListener('sgbuddy:discover-tab',e=>activate(e.detail?.tab==='apps'));
 doc.addEventListener('sgbuddy:persona',render);
+function translateGuide(){
+ const text=(selector,en,cn)=>{const node=$(selector);if(node)node.textContent=tr(en,cn)};
+ text('.app-guide-head .label','THE EVERYDAY SINGAPORE APP GUIDE · V2.5','新加坡日常应用指南 · V2.5');
+ text('.app-guide-head h3','Apps worth having in Singapore','值得在新加坡使用的应用');
+ text('.app-guide-head p','From Singpass and banking to Grab, foodpanda, messaging, payments and visitor eSIM services. Independent recommendations, not paid placements.','涵盖 Singpass、银行、Grab、外卖、通讯、付款和游客 eSIM 服务。独立建议，并非付费推广。');
+ for(const [view,en,cn] of [['recommended','For my mode','适合我的模式'],['essentials','Start here','从这里开始'],['all','All apps','全部应用'],['saved','★ My shortlist','★ 我的收藏']]){
+  text('[data-app-view="'+view+'"]',en,cn);
+ }
+ const inputLabel=(selector,en,cn)=>{const node=$(selector);if(node?.firstChild?.nodeType===Node.TEXT_NODE)node.firstChild.nodeValue=tr(en,cn)};
+ inputLabel('.app-guide-controls label:nth-child(1)','Search apps','搜索应用');
+ inputLabel('.app-guide-controls label:nth-child(2)','Category','分类');
+ inputLabel('.app-guide-controls label:nth-child(3)','Download options','下载选项');
+ text('.app-guide-safety','Install only from official publishers or individually verified store links. SGBuddy never asks for bank passwords, Singpass credentials or OTPs. Availability, eligibility and merchant acceptance can change.','请只从官方发行商或经核实的应用商店链接安装。SGBuddy 绝不会索取银行密码、Singpass 凭证或一次性验证码。应用资格及商户受理情况可能变化。');
+ text('#appLibraryMore','Show more apps','显示更多应用');
+ const input=$('#appLibrarySearch');if(input)input.placeholder=tr('Singpass, groceries, food, taxis, payments...','Singpass、购物、美食、打车、付款…');
+}
+doc.addEventListener('sgbuddy:language',()=>{translateGuide();render()});
 Promise.all([
  fetch('/data/everyday-apps-v240.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('App directory unavailable');return r.json()}),
- fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{apps:[]}).catch(()=>({apps:[]}))
-]).then(([data,legacy])=>{
- apps=Array.isArray(data.catalogue)?data.catalogue.filter(a=>a.id&&a.name&&safeUrl(a.sourceUrl)&&Array.isArray(a.modes)):[];
+ fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{apps:[]}).catch(()=>({apps:[]})),
+ fetch('/data/travel-essentials-v250.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{catalogue:[]}).catch(()=>({catalogue:[]}))
+]).then(([data,legacy,travel])=>{
+ const valid=a=>a.id&&a.name&&safeUrl(a.sourceUrl)&&Array.isArray(a.modes);
+ const original=Array.isArray(data.catalogue)?data.catalogue.filter(valid):[];
+ const extra=Array.isArray(travel.catalogue)?travel.catalogue.filter(valid):[];
+ apps=[...original,...extra];
  const cats=[...new Set(apps.map(a=>a.category))].sort();
  $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
  migrateSaved(Array.isArray(legacy.apps)?legacy.apps:[]);
- loaded=true;render();
+ loaded=true;translateGuide();render();
  const button=doc.querySelector('[data-discover-tab="apps"]');
  activate(button?.getAttribute('aria-selected')==='true');
  doc.dispatchEvent(new CustomEvent('sgbuddy:app-library-ready',{detail:{total:apps.length,web:apps.filter(a=>a.kind==='web-service').length}}));

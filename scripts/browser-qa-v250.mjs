@@ -1,0 +1,56 @@
+import assert from 'node:assert/strict';
+import { chromium } from 'playwright';
+
+const origin='http://127.0.0.1:8765';
+const browser=await chromium.launch({headless:true});
+const errors=[];
+const context=await browser.newContext({viewport:{width:1280,height:900},locale:'en-SG'});
+await context.addInitScript(()=>{
+  localStorage.setItem('sgc-persona-onboarded','1');
+  localStorage.setItem('sgc-mode','visitor');
+});
+const page=await context.newPage();
+page.on('pageerror',error=>errors.push(error.message));
+const awaitVisible=selector=>page.locator(selector).waitFor({state:'visible',timeout:25000});
+try {
+ await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v2.5.0',{timeout:30000});
+ const location=page.locator('#locationSheet');
+ await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
+ if(await location.isVisible())await page.locator('#notNowLocationButton').click();
+ await page.locator('#navPlaces').click();
+ await awaitVisible('#discoverHub');
+ await page.locator('[data-discover-tab="travel"]').click();
+ await awaitVisible('#travelEssentials');
+ await page.waitForFunction(()=>document.querySelectorAll('#travelEssentials .travel-prep-card').length>=2,{timeout:15000});
+ assert.equal(await page.locator('#travelEssentials .travel-prep-card').count(),3,'Payments guide cards');
+ await page.locator('[data-travel-section="messaging"]').click();
+ assert.equal(await page.locator('#travelEssentials .travel-prep-card').count(),2,'Messaging guide cards');
+ await page.locator('[data-travel-section="connectivity"]').click();
+ assert.equal(await page.locator('#travelEssentials .travel-prep-card').count(),2,'Connectivity guide cards');
+ assert.ok(await page.locator('#travelEssentials a[href^="https://"]').count()>=2,'Official links present');
+ await page.locator('#sgbLanguage').selectOption('zh-CN');
+ assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN','HTML language');
+ assert.match(await page.locator('.travel-prep-head h3').textContent(),/新加坡/);
+ assert.equal(await page.locator('#navPlaces span').textContent(),'探索');
+ await page.locator('[data-prep-check="phone"]').check();
+ await page.reload({waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v2.5.0',{timeout:30000});
+ await page.locator('#navPlaces').click();
+ await page.locator('[data-discover-tab="travel"]').click();
+ await awaitVisible('#travelEssentials');
+ assert.equal(await page.locator('#sgbLanguage').inputValue(),'zh-CN','Language selection persists');
+ assert.equal(await page.locator('[data-prep-check="phone"]').isChecked(),true,'Checklist persists');
+ await page.locator('[data-discover-tab="apps"]').click();
+ await awaitVisible('#everydayApps');
+ await page.waitForFunction(()=>document.querySelector('#appLibraryCount')?.textContent?.includes('75'),{timeout:15000});
+ await page.locator('#appLibrarySearch').fill('WhatsApp');
+ assert.ok(await page.locator('#appLibraryCards').textContent().then(t=>t.includes('WhatsApp')),'WhatsApp in app library');
+ await page.setViewportSize({width:375,height:812});
+ await page.locator('[data-discover-tab="travel"]').click();
+ await awaitVisible('#travelEssentials');
+ const dimension=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,card:document.querySelector('#travelEssentials').getBoundingClientRect().width}));
+ assert.ok(dimension.card>250&&dimension.card<=dimension.width+8,'Travel card width mobile');
+ assert.ok(!errors.length,'Browser JavaScript errors: '+errors.join(' / '));
+ console.log('V2.5 CHROMIUM PASS: Travel Prep tabs, bilingual UI, checklist persistence, app catalogue, 375px layout.');
+} finally {await browser.close();}

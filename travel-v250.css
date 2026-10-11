@@ -1,0 +1,34 @@
+/* SGBuddy V2.5 — accessible bilingual Travel Prep, dark and light palettes */
+#travelEssentials[hidden],#everydayApps[hidden],.discover-search-row[hidden],#discoverQuality[hidden],#discoverStatus[hidden]{display:none!important}
+.sgb-language-picker{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:.77rem;color:var(--muted,#b9c9d7)}
+.sgb-language-picker select{max-width:115px;min-height:38px;border-radius:10px;border:1px solid rgba(142,176,204,.42);background:var(--card,#123048);color:inherit;padding:6px 7px;font:inherit;font-size:.84rem;cursor:pointer}
+.travel-essentials-v250{min-width:0;padding:22px!important;margin-bottom:20px}
+.travel-prep-head h3{font-size:clamp(1.45rem,3vw,2.1rem);letter-spacing:-.02em;line-height:1.22;margin:7px 0 10px}
+.travel-prep-head p{color:var(--muted,#b8c9d7);max-width:72ch;line-height:1.55;margin:0 0 18px}
+.travel-prep-sections{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px}
+.travel-prep-sections button{min-height:44px;padding:10px 16px;border:1px solid rgba(150,187,209,.43);border-radius:999px;color:inherit;background:rgba(116,154,184,.09);font:inherit;cursor:pointer}
+.travel-prep-sections button[aria-pressed="true"]{background:#ccebe9;color:#143e42;border-color:#ccebe9;font-weight:750}
+.travel-prep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px}
+.travel-prep-card{border:1px solid rgba(149,188,217,.27);border-radius:15px;padding:17px;display:flex;flex-direction:column;gap:11px;min-width:0;background:rgba(125,161,188,.07)}
+.travel-prep-card h4{font-size:1.04rem;line-height:1.35;margin:0}
+.travel-prep-card p{font-size:.91rem;line-height:1.6;margin:0;color:var(--muted,#b7ccdc)}
+.travel-prep-card a{display:inline-flex;align-items:center;min-height:42px;margin-top:auto;align-self:start;font-weight:650;color:#96d4fb;text-decoration:underline;text-underline-offset:3px}
+.travel-prep-caution,.travel-prep-locale-note,.travel-prep-future{font-size:.84rem;line-height:1.55;color:var(--muted,#b6c9da);margin:14px 0}
+.travel-prep-checklist{margin:20px 0 14px;padding:17px;border:1px solid rgba(149,188,217,.25);border-radius:15px;background:rgba(111,152,175,.06)}
+.travel-prep-checklist h4{font-size:1.06rem;margin:0 0 6px}.travel-prep-checklist>p{font-size:.82rem;color:var(--muted,#b6c9da);margin:0 0 10px}
+.travel-prep-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(310px,100%),1fr));gap:7px}
+.travel-prep-checks label{display:flex;gap:11px;align-items:flex-start;padding:9px 4px;cursor:pointer;line-height:1.35;font-size:.9rem}
+.travel-prep-checks input{width:20px;height:20px;margin:0;flex:none;accent-color:#0f8277}
+.travel-prep-actions{display:flex;gap:10px;flex-wrap:wrap}.travel-prep-actions button{min-height:44px;flex:1 1 180px}
+.travel-essentials-v250 a:focus-visible,.travel-essentials-v250 button:focus-visible,.travel-essentials-v250 input:focus-visible,.sgb-language-picker select:focus-visible{outline:3px solid #7bc4ff;outline-offset:3px}
+html[data-ux-theme="light"] .sgb-language-picker{color:#354f60}
+html[data-ux-theme="light"] .sgb-language-picker select{color:#183044;background:#fff;border-color:#b7cbd6}
+html[data-ux-theme="light"] .travel-prep-card{background:#f9fcfe;border-color:#d1e0e9}
+html[data-ux-theme="light"] .travel-prep-card p,html[data-ux-theme="light"] .travel-prep-head p,html[data-ux-theme="light"] .travel-prep-caution,html[data-ux-theme="light"] .travel-prep-locale-note,html[data-ux-theme="light"] .travel-prep-future,html[data-ux-theme="light"] .travel-prep-checklist>p{color:#4d6375}
+html[data-ux-theme="light"] .travel-prep-card a{color:#145a86}
+html[data-ux-theme="light"] .travel-prep-sections button{background:#edf6f6;color:#155b54;border-color:#bbd9d5}
+html[data-ux-theme="light"] .travel-prep-sections button[aria-pressed="true"]{background:#11665e;color:white;border-color:#11665e}
+html[data-ux-theme="light"] .travel-prep-checklist{background:#f4f9fb;border-color:#d1e0e9}
+@media(max-width:760px){.sgb-language-picker>span{display:none}.sgb-language-picker select{max-width:92px}.travel-essentials-v250{padding:16px!important}}
+@media(max-width:480px){.sgb-language-picker select{max-width:85px;min-height:36px;font-size:.75rem;padding:5px}.travel-prep-grid{grid-template-columns:1fr}.travel-prep-checks{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.travel-essentials-v250 *{transition:none!important}}
