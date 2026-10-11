@@ -14,8 +14,8 @@ Status: V3.1 development branch, not a complete multilingual library.
 
 | Segment | Existing records | Pretranslated in V3.1 for non-English locales |
 | --- | ---: | ---: |
-| Published verified facts | 152 | 38 |
-| Core Everyday Apps summary/purpose entries | 69 | 15 |
+| Published verified facts | 152 | 152 |
+| Core Everyday Apps summary/purpose entries | 69 | 69 |
 | Singapore dish descriptions | 82 | 82 |
 | Hawker-stall research notes | 93 | 93 |
 | Content taxonomy display names | 36 | 36 |
@@ -25,8 +25,8 @@ These are initial counts and do not include extra app entries or operator listin
 
 ## Next batch: content packs rather than runtime translation
 
-1. Expand reviewed fact templates/records from 38 to all 152 published facts, grounded by immutable source IDs and source-text checks.
-2. Translate the remaining 54 core app summaries and purposes plus eligibility fields where accurate, with publisher-verified source revisions. The 93 historical stall source notes are covered; separately sourced operator/vendor notes still require review. All 82 dish descriptions now have source-locked translations; 70 originals intentionally remain generic food-culture descriptors. Distinguish factual statements from labels.
+1. Maintain source-locked localizations for all 152 published facts, grounded by immutable source IDs and source-text checks.
+2. The 69 core app summary and purpose records are translated. Eligibility, account requirements, provider-owned content and public-service conditions require separate source-aware translation. The 93 historical stall source notes are covered; separately sourced operator/vendor notes still require review. All 82 dish descriptions now have source-locked translations; 70 originals intentionally remain generic food-culture descriptors. Distinguish factual statements from labels.
 3. Attach a source revision, locale, translation state (`reviewed`, `pending`, `stale`) and original text for each translated record.
 4. Ensure multilingual search indexes include translated text without altering canonical search terms.
 5. Build QA enforcing required locale coverage for newly approved translations; do not block display of already-verified original English data in unsupported locales.
@@ -60,3 +60,11 @@ No database or paid translation API is needed for this reviewable static-pack ap
 - Eligibility, banking requirements, publisher store links and account conditions remain canonical English, rather than risking an unchecked translation of sensitive eligibility details. The app source pack checks both summary and purpose for changes and falls back to English if either is edited.
 - Multilingual app search includes translated summary and purpose strings. Automated audit now counts stale and untranslated app descriptions.
 - **114 verified facts and 54 core app summary/purpose records** remain to be localized in a later reviewed batch; travel and dining integrations are counted separately from the 69 core-app entries. Do not claim 100% coverage.
+
+## V3.1 core-catalogue coverage gate
+
+- All **152/152 source-verified Singapore facts** now have authored translations into all 11 non-English languages (English remains source of truth). Nine source-locked packs cover history, botany, environment, transit, civic symbols, HawkerFest and 2025 awards. New and modified facts fall back to their original published text until localized.
+- All **69/69 core Everyday Apps** have authored localized **summary and purpose** fields in all 11 non-English languages. Five static ID-keyed packs preserve original publisher name, URLs, eligibility and source revisions.
+- Coverage check `scripts/check-v313.mjs` fails on missing IDs, missing translations, duplicate records, changed published source, protected year changes and missing offline modules; browser test `scripts/browser-qa-v313.mjs` switches all 12 languages and verifies both ends of the directory plus original sources and responsive layout.
+- **Important remaining gaps:** These counts do not mean all SGBuddy text is localized. Core app `accountNeeded` and `notes`, additional 6 travel apps plus 4 dining services, operator menus, provider descriptions, dynamic transport/weather/errors, and longer Merli replies require further treatment. Some existing guides are localized separately in V2.8. Do not state 100% product coverage until those surfaces are checked.
+- The translations are authored and source-matched, but are not independently certified by native-speaking professional reviewers. Legal, eligibility and healthcare phrasing should receive native review before those critical fields are substituted.
