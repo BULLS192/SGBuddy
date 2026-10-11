@@ -46,13 +46,22 @@ function canonicalName(p,kind){
  if(kind==='Do'&&/^(unnamed|parcel|road reserve|roadside|green verge|landscape plot)/i.test(name))return '';
  return name;
 }
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function pull(dataset){
  const poll='https://api-open.data.gov.sg/v1/public/api/datasets/'+dataset.id+'/poll-download';
+ let response;
+ for(let attempt=0;attempt<5;attempt++){
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),25000);
+  try{response=await fetch(poll,{headers:{Accept:'application/json'},signal:controller.signal})}finally{clearTimeout(timeout)}
+  if(response.status!==429)break;
+  const delay=36000+(attempt*12000);
+  console.warn(dataset.code+' rate limited; waiting '+delay+'ms before retry '+(attempt+1));
+  await sleep(delay);
+ }
+ if(!response?.ok)throw Error('poll '+(response?.status??'unavailable'));
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),60000);
  try{
-  const r=await fetch(poll,{headers:{Accept:'application/json'},signal:controller.signal});
-  if(!r.ok)throw Error('poll '+r.status);
-  const payload=await r.json();
+  const payload=await response.json();
   if(payload.code!==0||!payload.data?.url)throw Error('poll payload invalid '+JSON.stringify(payload).slice(0,250));
   const target=new URL(payload.data.url);
   if(target.protocol!=='https:')throw Error('insecure source download');
@@ -104,6 +113,7 @@ for(const d of DATASETS){
   }
   log.push({agency:d.agency,datasetId:d.id,records:features.length,accepted,skipped,status:'ok'});
   console.log(d.code+' '+accepted+' records accepted of '+features.length);
+  await sleep(15000);
  }catch(e){log.push({agency:d.agency,datasetId:d.id,status:'failed',error:String(e.message||e).slice(0,230)});console.warn(d.code+' failed',e.message)}
 }
 const ok=log.filter(x=>x.status==='ok').length;
