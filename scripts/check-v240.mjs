@@ -48,7 +48,7 @@ assert.ok(discover.includes("['apps','Everyday apps']"),'New app section tab lab
 assert.ok(discover.includes("'everydayApps'"),'Tab aria-controls must match V2.4');
 assert.ok(html.includes('everyday-apps-v240.css'),'App styles missing');
 for(const s of ['/app-apps-v240.js','/everyday-apps-v240.css','/data/everyday-apps-v240.json'])assert.ok(sw.includes(s),'PWA shell misses '+s);
-assert.ok(sw.includes('sgbuddy-shell-v50'),'Installed PWA should refresh assets');
+assert.ok(Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0)>=50,'Installed PWA should refresh assets');
 assert.ok(css.includes('[hidden]'),'Hidden legacy app list can not show simultaneously');
 execFileSync(process.execPath,['scripts/apps-quality-v240.mjs'],{stdio:'inherit'});
 const report=JSON.parse(read('reports/apps-quality-v240.json'));
