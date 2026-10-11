@@ -28,6 +28,8 @@ jobs:
         run: node scripts/build-supermarkets-v210.mjs || echo "Legacy supermarket dataset unavailable; keep unknown, do not fabricate."
       - name: Generate source coverage, staleness and record-diff reports
         run: node scripts/library-freshness-v210.mjs
+      - name: Generate V2.2 evidence quality and manual verification queue
+        run: node scripts/library-quality-v220.mjs
       - name: Upload report and source snapshots for editorial review
         uses: actions/upload-artifact@v4
         with:
@@ -35,6 +37,9 @@ jobs:
           path: |
             reports/library-freshness-v210.json
             reports/library-freshness-v210.md
+            reports/library-quality-v220.json
+            reports/library-quality-v220.md
+            reports/library-verification-queue-v220.csv
             data/services-v210.json
             data/official-places-v200.json
           retention-days: 30
