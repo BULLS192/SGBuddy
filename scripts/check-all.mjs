@@ -16,6 +16,8 @@ run('lib/discover-geo.js');
 run('scripts/publish-facts.mjs');
 execFileSync(process.execPath,['scripts/check-discover.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-food-v180.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-library-v200.mjs'],{stdio:'inherit'});
+run('scripts/build-official-library.mjs');
 run('scripts/verify-directory.mjs');
 run('scripts/sync-nea-hawkers.mjs');
 execFileSync(process.execPath,['scripts/check-buddy.mjs'],{stdio:'inherit'});
