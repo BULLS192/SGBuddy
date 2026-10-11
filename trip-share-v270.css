@@ -1,0 +1,25 @@
+/* SGBuddy V2.7 — share UI, accessible in dark/light and on phones. */
+.trip-share-v270{display:grid;gap:13px;margin:22px 0 10px;border:1px solid rgba(146,185,208,.36);border-radius:17px;padding:19px;background:rgba(72,127,152,.075);min-width:0}
+.trip-share-v270 h4{margin:6px 0 8px;font-size:1.15rem}
+.trip-share-v270 h5{margin:8px 0;font-size:1rem}
+.trip-share-v270 header p{color:var(--muted,#bbcbdb);line-height:1.55;font-size:.88rem}
+.trip-share-buttons,.trip-incoming-actions{display:flex;gap:9px;flex-wrap:wrap}
+.trip-share-buttons button,.trip-incoming-actions button{min-height:44px;flex:1 1 140px}
+.trip-file-input{display:none!important}
+.trip-share-warning{font-size:.81rem;line-height:1.6;padding:12px 14px;border-left:3px solid #7fb8d8;margin:0;background:rgba(90,139,165,.085);color:var(--muted,#bbcbdb)}
+.trip-share-link{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:end;gap:8px}
+.trip-share-link label{min-width:0;display:grid;gap:5px}
+.trip-share-link input{width:100%;min-width:0}
+.trip-share-link button{min-height:43px}
+.trip-incoming{border:1px solid #57897f;border-radius:14px;padding:14px;background:rgba(25,106,88,.11)}
+.trip-incoming>strong{font-size:.77rem;letter-spacing:.07em;color:#89dbbd}
+.trip-incoming p{font-size:.86rem;color:var(--muted,#bbcbdb);margin:6px 0 13px}
+.trip-share-v270 button:focus-visible,.trip-share-v270 input:focus-visible{outline:3px solid #7bc4ff;outline-offset:2px}
+html[data-ux-theme="light"] .trip-share-v270{background:#f8fbfc;border-color:#ccdee9}
+html[data-ux-theme="light"] .trip-incoming{background:#eef8f4;border-color:#90baaa}
+html[data-ux-theme="light"] .trip-incoming>strong{color:#135e47}
+html[data-ux-theme="light"] .trip-share-v270 header p,html[data-ux-theme="light"] .trip-incoming p,html[data-ux-theme="light"] .trip-share-warning{color:#496274}
+html[data-ux-theme="light"] .trip-share-warning{background:#edf5f8}
+@media(max-width:660px){.trip-share-v270{padding:13px}.trip-share-link{grid-template-columns:1fr 1fr}.trip-share-link label{grid-column:1/-1}.trip-share-link button{width:100%}}
+@media(max-width:390px){.trip-share-buttons button{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.trip-share-v270 *{transition:none!important}}
