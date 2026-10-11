@@ -4,8 +4,11 @@ import {readFileSync} from 'node:fs';
 import {LOCALES} from '../lib/i18n-v280.mjs';
 import {dishTranslation} from '../lib/i18n-dishes-v311.mjs';
 import {factTranslation} from '../lib/i18n-facts-v310.mjs';
+import {stallNoteTranslation} from '../lib/i18n-stall-notes-v311.mjs';
 const dishes=JSON.parse(readFileSync('data/singapore-dishes-v180.json','utf8')).dishes;
 const facts=JSON.parse(readFileSync('data/facts-published.json','utf8')).facts;
+const stalls=JSON.parse(readFileSync('data/food-stalls-v180.json','utf8')).stalls;
+const historic=stalls.find(x=>x.id==='STL-0079');
 const chicken=dishes.find(x=>x.id==='DISH-0001'),generic=dishes.find(x=>x.id==='DISH-0004');
 const nature=facts.find(x=>x.id==='FACT-NAT-011');
 assert.ok(chicken&&generic&&nature);
@@ -49,6 +52,16 @@ try{
  await page.locator('#foodSearch').fill(genericSource);
  assert.ok((await page.locator('#foodCards .food-stall').count())>=5,'Generic food-culture term translated search should find multiple dishes');
  await page.locator('#foodSearch').fill('');
+ // Historical award notes must state that today's trading, menu, address and halal status are unverified.
+ await page.locator('[data-food-view="stalls"]').click();
+ await page.locator('#foodSearch').fill(historic.name);
+ await page.locator('[data-stall-id="STL-0079"]').waitFor({state:'attached',timeout:15000});
+ for(const {code} of LOCALES){
+  await page.locator('#sgbLanguage').selectOption(code);
+  await textIs('#foodCards [data-stall-id="STL-0079"] .food-warning',stallNoteTranslation(code,historic)||'NEA documented in 2022; current trading unverified · Prices and dietary certification unknown');
+  if(code!=='en')assert.equal(await page.locator('#foodCards [data-stall-id="STL-0079"] .food-warning').getAttribute('data-content-localized'),'true');
+ }
+ await page.locator('#foodSearch').fill('');
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v3.1.0');
@@ -56,5 +69,5 @@ try{
  const sizes=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));
  assert.ok(sizes.scroll<=sizes.width+8,'Mobile overflow '+JSON.stringify(sizes));
  assert.deepEqual(errors,[],'Unexpected page errors');
- console.log('V3.1-B CHROMIUM PASS: all 12 languages, new nature facts, 82-dish category, localized description search, source URLs, refresh persistence.');
+ console.log('V3.1-B CHROMIUM PASS: all 12 languages, new nature facts, 82 dish descriptions, 93 historic stall safety notes, source URLs and localized search.');
 }finally{await browser.close()}
