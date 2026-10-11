@@ -56,4 +56,4 @@ assert.ok(appUi.includes("appContentTranslation(currentLocale(),a,'summary')||''
 assert.ok(factsUi.includes('waterFactTranslation(locale,record)'),'Water facts not connected to actual pages');
 for(const path of ['/lib/i18n-app-content-v312.mjs','/lib/i18n-water-v312.mjs'])assert.ok(sw.includes(path),'Missing offline file '+path);
 for(const part of ['COMPLETE_APP_SOURCES','WATER_SOURCE_FACTS','translatedApps','fallbackAppSummaries','staleAppDescriptions'])assert.ok(audit.includes(part),'Unaccounted coverage '+part);
-console.log('V3.1-C PASS: source-verified 38 facts and 15 core app summary/purpose records across 12 languages, source mismatch fallback, app search and offline cache.');
+console.log('V3.1-C PASS: source-verified 40 facts and 15 core app summary/purpose records across 12 languages, source mismatch fallback, app search and offline cache.');
