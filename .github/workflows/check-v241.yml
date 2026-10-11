@@ -1,0 +1,29 @@
+name: SGBuddy V2.4.1 Light Theme and Navigation QA
+on:
+  push:
+    branches: [fix/sgbuddy-v241-light-theme-discover]
+  pull_request:
+    paths:
+      - 'theme-polish-v241.css'
+      - 'app-ux-v160.js'
+      - 'app-ux-v170.js'
+      - 'app-v090.js'
+      - 'app-v120.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'scripts/check-v241.mjs'
+      - 'scripts/check-all.mjs'
+      - '.github/workflows/check-v241.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all SGBuddy regression and contrast tests
+        run: npm run check
