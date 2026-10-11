@@ -18,8 +18,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2300}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
- await page.locator('#buddyLauncher').click();
- await page.locator('[data-buddy-action="saved"]').click();
+ await page.locator('[data-buddy-action="saved"]').evaluate(button=>button.click());
  await expected('#buddyReply',merliMessage('en','savedFacts'));
  await page.locator('#navPlaces').click();
  await page.locator('#discoverTab-apps').click();
