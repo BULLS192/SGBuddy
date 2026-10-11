@@ -4,6 +4,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 const catalog=JSON.parse(read('data/operator-listings-v220.json'));
 const svc=JSON.parse(read('data/services-v210.json'));
 const menu=JSON.parse(read('data/vendor-menus-v210.json'));
+const hawkerMenu=JSON.parse(read('data/hawker-menus-v220.json'));
 const app=read('app-v120.js'),food=read('app-food-v180.js'),sw=read('sw.js'),index=read('index.html');
 assert.equal(catalog.places.length,17,'First-party branch dataset changed unexpectedly');
 assert.equal(catalog.counts.operatorSupermarkets,15);
@@ -31,6 +32,10 @@ assert.ok(app.includes("liveBrandPostal.has('shengsiong|'"),'Retired Sheng Siong
 assert.ok(food.includes('Menu-published branch:')&&food.includes('locationSpecific&&x.venueAddress'),'Vendor menu branch applicability disclaimer missing');
 const chiew=menu.items.filter(m=>m.vendor==='Chiew Kee Soya Sauce Chicken');
 assert.equal(chiew.length,10);
+assert.equal(hawkerMenu.items.length,5);
+assert.ok(hawkerMenu.items.every(x=>x.stallId==='STL-0001'&&x.priceSgd===null&&x.stallSpecificAvailabilityVerified===false&&x.sourceUrl.startsWith('https://www.tiantianchickenrice.com.sg/')));
+assert.ok(food.includes('cardHawkerMenu')&&food.includes('/data/hawker-menus-v220.json'));
+assert.ok(sw.includes('/data/hawker-menus-v220.json'));
 assert.ok(chiew.every(x=>x.locationSpecific&&x.venueAddress==='32 Upper Cross Street, Singapore 058339'),'Chiew Kee branch menu must not be generalized to another site');
 for(const str of ['/data/operator-listings-v220.json','/verification-v220.css'])assert.ok(sw.includes(str));
 assert.ok(index.includes('/verification-v220.css'));
