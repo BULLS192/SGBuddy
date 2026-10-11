@@ -1,6 +1,8 @@
 /* SGBuddy food exploration: stall leads + dish vocabulary, no unverified claims as facts. */
+import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
+const locale=()=>window.SGBUDDY_LANGUAGE||'en';
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
@@ -25,11 +27,11 @@ const res=$('#discoverResults');if(res)res.insertAdjacentElement('beforebegin',s
 function persist(){try{localStorage.setItem(key,JSON.stringify([...saved].slice(0,300)))}catch{}}
 function options(selector,values){
  const field=$(selector);
- field.insertAdjacentHTML('beforeend',values.filter(Boolean).sort().map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
+ field.insertAdjacentHTML('beforeend',values.filter(Boolean).sort().map(s=>'<option value="'+esc(s)+'">'+esc(taxonomyLabel(locale(),s))+'</option>').join(''));
 }
 function cardStall(x){
  const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),guide=x.reviewStatus==='guide-listed-2026',roundup=x.reviewStatus==='cna-guide-2026',award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
- return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(x.cuisine)+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
+ return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
  '<p>'+(guide?'MICHELIN 2026 address listing':roundup?'2026 guide selection (centre named; stall unit unknown)':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
  '<p class="food-warning">'+(guide?'2026 guide-listed name and address; trading today and current menu unverified':roundup?'2026 guide list; centre from CNA; exact stall number and current operation not confirmed':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
@@ -37,7 +39,7 @@ function cardStall(x){
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
- return '<article class="card food-stall"><div class="label">'+esc(x.cuisine)+' · '+esc(x.meal)+'</div><h4>'+esc(x.name)+'</h4>'+
+ return '<article class="card food-stall"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.meal)+'</div><h4>'+esc(x.name)+'</h4>'+
  '<p>'+esc(x.description)+'</p><p class="food-warning">Dish guide only: vendors, ingredients, allergens, prices and certification vary.</p>'+
  '<button type="button" data-search-dish="'+esc(x.name)+'">Find stall leads for this dish ↗</button></article>';
 }
@@ -107,6 +109,7 @@ bind('#foodArea','area');bind('#foodCuisine','cuisine');bind('#foodMeal','meal')
 $('#foodSearch').addEventListener('input',e=>{term=e.target.value;limit=16;render()});
 $('#foodLoadMore').addEventListener('click',()=>{limit+=16;render()});
 document.addEventListener('sgbuddy:discover-tab',e=>{sec.hidden=e.detail.tab!=='eat';if(!sec.hidden)render()});
+document.addEventListener('sgbuddy:language',()=>{for(const sel of ['#foodCuisine','#foodArea','#foodMeal','#foodDish'])for(const option of $(sel)?.options||[])if(!['all','any'].includes(option.value))option.textContent=taxonomyLabel(locale(),option.value);render()});
 const eat=$('[data-discover-tab="eat"]');sec.hidden=!eat||eat.getAttribute('aria-selected')!=='true';
 Promise.all([
  fetch('/data/food-stalls-v180.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('stalls unavailable');return r.json()}),
