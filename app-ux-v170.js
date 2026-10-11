@@ -12,7 +12,7 @@ const MODES={
  resident:{
   label:'Resident',title:'Your everyday Singapore',description:'Quick answers for everyday places, routes and neighbourhood essentials.',
   prompt:'Find hawker food, healthcare, parks or the best route home.',
-  shortcuts:[['⌖','Near me','Clinics, shops and essentials','nearby'],['♨','Find food','Neighbourhood hawkers','eat'],['↗','Get moving','Buses, MRT and routes','move'],['☆','My saved','Familiar places and trips','saved']],
+  shortcuts:[['⌖','Near me','Clinics, shops and essentials','nearby'],['♨','Find food','Neighbourhood hawkers','eat'],['↗','Get moving','Buses, MRT and routes','move'],['▦','Everyday apps','Singpass, Grab, banking and delivery','apps']],
   discover:'Discover local favourites and everyday services, with nearby essentials one tap away.',
   search:'Search hawker centres, parks or neighbourhoods',journey:'Your nearby departures and regular routes are ready when you are.',
   merli:['eat','transit','fact'],merliIntro:'Ask me about hawker food, transport and Singapore facts.'
@@ -44,7 +44,7 @@ const MODES={
  new_in_sg:{
   label:'New in SG',title:'Settle in, one day at a time',description:'Find practical services and learn the routes you will use most.',
   prompt:'Discover your new neighbourhood and learn how to get around.',
-  shortcuts:[['⌖','Essentials nearby','Groceries, clinics and parks','nearby'],['♨','Local food','Hawker centres and markets','eat'],['↗','Learn the routes','Buses, MRT and walking','move'],['☆','Save favourites','Start building your routine','saved']],
+  shortcuts:[['⌖','Essentials nearby','Groceries, clinics and parks','nearby'],['♨','Local food','Hawker centres and markets','eat'],['↗','Learn the routes','Buses, MRT and walking','move'],['▦','Everyday apps','Essential tools for Singapore life','apps']],
   discover:'Useful local places and services first while you settle in.',
   search:'Search supermarkets, clinics or neighbourhoods',journey:'Save home and familiar stops to make everyday travel easier.',
   merli:['home','transit','apps'],merliIntro:'I can help you get home, learn public transport and find useful apps.'
@@ -256,7 +256,7 @@ function updateSkip(){
  const active=nav.querySelector('[data-nav-target].active')?.dataset.navTarget||'today';
  const anchors={today:'todaySection',places:'discoverTitle',move:'travelSection',saved:'uxSavedView',account:'accountSection'};
  skip.setAttribute('href','#'+(anchors[active]||anchors.today));
- skip.textContent='Skip to '+(active==='today'?'Home':active==='places'?'Explore':active==='move'?'Move':active==='saved'?'Saved':'Profile');
+ skip.textContent='Skip to '+(active==='today'?'Home':active==='places'?'Discover':active==='move'?'Move':active==='saved'?'Saved':'Profile');
 }
 updateSkip();
 if(nav)new MutationObserver(updateSkip).observe(nav,{attributes:true,subtree:true,attributeFilter:['class']});
