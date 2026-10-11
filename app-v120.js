@@ -1,5 +1,7 @@
 /* SGBuddy v1.2 — Discover and regional air-quality presentation.
    Data is a versioned, source-linked static catalog; never a live opening-hours feed. */
+import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
+import {factTranslation} from './lib/i18n-facts-v310.mjs';
 (function(){
   'use strict';
   const core=window.SGBUDDY_CORE;
@@ -9,6 +11,7 @@
   const safe=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[ch]));
   const safeUrl=value=>{try{const u=new URL(String(value));return u.protocol==='https:'?u.href:''}catch{return ''}};
   const storeKey='sgbuddy-discover-saved-v1';
+  const locale=()=>window.SGBUDDY_LANGUAGE||'en';
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
@@ -122,7 +125,7 @@
   function dirCard(place){
     const marked=saved.has(place.id);
     const map=newMapsLink(place);
-    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(place.category||place.kind)+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
+    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(taxonomyLabel(locale(),place.category||place.kind))+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p class="discover-freshness">'+safe(freshnessLabel(place))+'</p><p>'+(place.status==='operator-listed'?(place.sourceReportedHours?'Hours shown by business: '+safe(place.sourceReportedHours)+'. ':'')+'Check current opening hours and availability with the business.':place.status==='official-source-snapshot'?'Check current hours, services and address before visiting.':'Please confirm location and opening hours before visiting.')+(place.kind==='Healthcare'?' Clinic services and CHAS participation may change.':'')+'</p>'+publishedClosure(place)+
       '<div class="discover-actions"><button type="button" class="secondary" data-trip-add-place="'+safe(place.id)+'">+ My Trip</button>'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='operator-listed'?'Business website':place.status==='official-source-snapshot'?'Official information':'More details')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
@@ -130,15 +133,15 @@
   function appsCard(app){
     const marked=saved.has(app.id);
     const publisherLink=safeUrl(app.publisherUrl);
-    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(app.category)+'</span><h3>'+safe(app.name)+'</h3></div>'+
+    return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(taxonomyLabel(locale(),app.category))+'</span><h3>'+safe(app.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(app.name)+'">'+(marked?'★':'☆')+'</button></div>'+
       '<p>'+(app.status==='publisher-reference'?'Official publisher reference; check account eligibility and installation requirements.':'Suggested app; publisher and store listing still require verification.')+'</p>'+
       '<div class="discover-actions">'+sourceLink(publisherLink,'Official publisher')+'<span class="discover-app-legacy-note">Use publisher links to find authentic app-store downloads.</span>'+'</div></article>';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
-    return '<article class="card discover-fact"><div class="label">'+safe(fact.theme)+' · '+(fact.status==='verified'?'Official-source checked':'Editorial review pending')+'</div>'+
-      '<h3>Did you know?</h3><p>'+safe(fact.text)+'</p>'+
+    return '<article class="card discover-fact"><div class="label">'+safe(taxonomyLabel(locale(),fact.theme))+' · '+(fact.status==='verified'?'Official-source checked':'Editorial review pending')+'</div>'+
+      '<h3>Did you know?</h3><p'+(factTranslation(locale(),fact)?' data-content-localized="true"':'')+'>'+safe(factTranslation(locale(),fact)||fact.text)+'</p>'+
       '<div class="discover-actions">'+sourceLink(fact.sourceUrl,'Read original source')+
       '<button type="button" class="secondary" data-next-discover-fact>Another fact ↻</button>'+
       '<button type="button" class="secondary" data-save-discover="'+safe(fact.id)+'" aria-pressed="'+String(marked)+'">'+(marked?'★ Saved':'☆ Save')+'</button></div></article>';
@@ -167,7 +170,7 @@
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
     const superseded=new Set(catalog.places.filter(p=>p.status==='operator-listed'&&p.operator==='Sheng Siong').map(p=>p.postal));
-    return rows.filter(r=>(!isArchived(r)||includeArchive)&&!(isArchived(r)&&superseded.has(r.postal))&&matchesNeighbourhood(r)&&(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':sourceFilter==='operator'?r.status==='operator-listed':!['official-source-snapshot','operator-listed'].includes(r.status)))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!isArchived(r)||includeArchive)&&!(isArchived(r)&&superseded.has(r.postal))&&matchesNeighbourhood(r)&&(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':sourceFilter==='operator'?r.status==='operator-listed':!['official-source-snapshot','operator-listed'].includes(r.status)))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text,taxonomyLabel(locale(),r.category||r.kind),factTranslation(locale(),r)||''].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -183,7 +186,7 @@
       :state.mode==='new_in_sg'?'Start with everyday essentials and explore your new neighbourhood.'
       :'Neighbourhood favourites, everyday conveniences and Singapore discoveries.';
     if(tab==='facts'){
-      const candidates=catalog.facts.filter(f=>(!savedOnly||saved.has(f.id))&&(!q||[f.theme,f.text].join(' ').toLowerCase().includes(q))&&matchesMode(f));
+      const candidates=catalog.facts.filter(f=>(!savedOnly||saved.has(f.id))&&(!q||[f.theme,f.text,taxonomyLabel(locale(),f.theme),factTranslation(locale(),f)||''].join(' ').toLowerCase().includes(q))&&matchesMode(f));
       if(factIndex>=candidates.length)factIndex=0;
       $('#discoverStatus').textContent=candidates.filter(f=>f.status==='verified').length+' source-checked · '+candidates.filter(f=>f.status!=='verified').length+' review pending · independently reviewed target: 10,000';
       results.innerHTML=candidates.length?factsCard(candidates[factIndex]):'<div class="card discover-empty">No matching source-reviewed facts yet. Try clearing the search or Saved only.</div>';
@@ -238,6 +241,7 @@
     changeTab(next);$('#discoverTab-'+next).focus();
   });
   document.addEventListener('sgbuddy:persona',render);
+  document.addEventListener('sgbuddy:language',render);
   function category(psi){
     return psi<=50?'Good':psi<=100?'Moderate':psi<=200?'Unhealthy':psi<=300?'Very unhealthy':'Hazardous';
   }
