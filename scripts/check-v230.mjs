@@ -49,7 +49,7 @@ for(const x of nbs.neighbourhoods){
  assert.ok(x.name&&x.id&&x.aliases.length,'Empty neighbourhood');
  assert.ok(x.aliases.every(s=>s.length>=4));
 }
-for(const token of ['operator-listings-v230.json','neighbourhoods-v230.json','discoverNeighbourhoodFilter','sourceCheckedOn','operator-listed','superseded','matchesNeighbourhood','First-party operator'])assert.ok(ui.includes(token),'Missing operator UX: '+token);
+for(const token of ['operator-listings-v230.json','neighbourhoods-v230.json','discoverNeighbourhoodFilter','sourceCheckedOn','operator-listed','superseded','matchesNeighbourhood','Business website'])assert.ok(ui.includes(token),'Missing operator UX: '+token);
 for(const token of ['guide-stalls-v230.json','operator-menus-v230.json','hawker-menus','guide-listed-2026','MICHELIN 2026','cardHawkerMenu','stallSpecificAvailabilityVerified'])assert.ok(food.includes(token),'Missing food UX: '+token);
 for(const path of ['/data/operator-listings-v230.json','/data/guide-stalls-v230.json','/data/operator-menus-v230.json','/data/neighbourhoods-v230.json','/food-discover-v230.css'])assert.ok(sw.includes(path),'Offline cache missing '+path);
 assert.ok(page.includes('food-discover-v230.css'));
