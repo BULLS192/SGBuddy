@@ -12,11 +12,11 @@
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
-  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all';
+  let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all';
   const addressCache=new Map();
   let officialClosures=new Map();
-  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['apps','Useful apps'],['facts','Did you know?']];
-  const directoryKinds={eat:'Eat',do:'Do',shop:'Shop'};
+  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['apps','Useful apps'],['facts','Did you know?']];
+  const directoryKinds={eat:'Eat',do:'Do',shop:'Shop',essentials:'Essentials'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
   const view=$('.v1-view[data-view="places"]');
   if(!view)return;
@@ -32,7 +32,7 @@
       tabs.map(([id,label])=>'<button type="button" role="tab" id="discoverTab-'+id+'" data-discover-tab="'+id+'" aria-controls="discoverResults" aria-selected="'+(id===tab?'true':'false')+'" class="'+(id===tab?'active':'')+'">'+label+'</button>').join(''),
     '</div>',
     '<div class="discover-search-row"><input id="discoverSearch" type="search" autocomplete="off" placeholder="Search places, neighbourhoods or apps" aria-label="Search Discover"/>',
-    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select></div>',
+    '<label class="discover-save-filter"><input id="discoverSavedOnly" type="checkbox"/> Saved only</label><select id="discoverAreaFilter" aria-label="Filter Discover by area"><option value="all">All Singapore areas</option></select><select id="discoverSourceFilter" aria-label="Filter by source"><option value="all">All source types</option><option value="official">Government catalogued</option><option value="curated">Curated leads</option></select></div>',
     '<p id="discoverStatus" class="discover-status" role="status">Loading curated Singapore content…</p></section>',
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
@@ -49,12 +49,12 @@
     return href?'<a href="'+safe(href)+'" target="_blank" rel="noopener noreferrer">'+safe(label||'Source')+' ↗</a>':'';
   }
   function newMapsLink(place){
-    const q=place.name+', '+place.area+', Singapore';
+    const q=place.name+', '+(place.address||place.area||'Singapore')+', Singapore';
     return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
   }
   function changeTab(next){
     if(!tabs.some(([id])=>id===next))return;
-    tab=next;showAll=false;areaFilter='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';
+    tab=next;showAll=false;visibleCount=24;areaFilter='all';sourceFilter='all';if($('#discoverAreaFilter'))$('#discoverAreaFilter').value='all';if($('#discoverSourceFilter'))$('#discoverSourceFilter').value='all';
     host.querySelectorAll('[data-discover-tab]').forEach(b=>{
       const active=b.dataset.discoverTab===tab;
       b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));
@@ -66,6 +66,7 @@
   }
   function directoryAddressStatus(place){
     const value=addressCache.get(place.id);
+    if(!value&&place.status==='official-source-snapshot')return '<p class="discover-address-note">'+(place.address?'📍 Government source address: '+safe(place.address):'No street address in government source')+' · Not OneMap-confirmed · Entrance may differ.</p>';
     if(!value)return '<p class="discover-address-note">Full street address not checked in OneMap.</p>';
     if(value.status==='loading')return '<p class="discover-address-note" role="status">Checking OneMap address…</p>';
     if(value.status==='address-matched'&&value.address){
@@ -86,8 +87,8 @@
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe((place.kinds||[place.kind]).join(' / '))+' · '+safe(place.area)+'</span><h3>'+safe(place.name)+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p>Curated location · Opening hours, availability and entrance fees have not been verified.</p>'+publishedClosure(place)+
-      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button></div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
+      '<p>'+(place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
+      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
     const marked=saved.has(app.id);
@@ -124,7 +125,7 @@
   }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(!q||[r.name,r.area,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    return rows.filter(r=>(!savedOnly||saved.has(r.id))&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -147,10 +148,10 @@
     }
     const rows=orderedRows(tab==='apps'?catalog.apps:catalog.places.filter(p=>(p.kinds||[p.kind]).includes(directoryKinds[tab])));
     $('#discoverStatus').textContent=rows.length+' curated '+(tab==='apps'?'app':'place')+' entries · '+rows.filter(matchesMode).length+' matches for '+persona+' · Listing details require verification';
-    const visible=showAll?rows:rows.slice(0,24);
+    const visible=rows.slice(0,visibleCount);
     results.innerHTML='<div class="discover-grid">'+visible.map(tab==='apps'?appsCard:dirCard).join('')+'</div>'+
       (!rows.length?'<div class="card discover-empty">No matches. Change your search or Saved only filter.</div>':'')+
-      (!showAll&&rows.length>visible.length?'<button class="secondary discover-more" type="button" id="discoverMore">Show all '+rows.length+'</button>':'');
+      (rows.length>visible.length?'<button class="secondary discover-more" type="button" id="discoverMore">Show 24 more · '+visible.length+' of '+rows.length+'</button>':'');
   }
   host.addEventListener('click',event=>{
     const addressButton=event.target.closest('[data-verify-address]');
@@ -172,11 +173,12 @@
     const saver=event.target.closest('[data-save-discover]');
     if(saver){const id=saver.dataset.saveDiscover;saved.has(id)?saved.delete(id):saved.add(id);persist();render();return}
     if(event.target.closest('[data-next-discover-fact]')){factIndex++;render();return}
-    if(event.target.closest('#discoverMore')){showAll=true;render();}
+    if(event.target.closest('#discoverMore')){visibleCount=Math.min(visibleCount+24,1500);render();}
   });
-  $('#discoverSearch').addEventListener('input',()=>{factIndex=0;showAll=false;render()});
-  $('#discoverSavedOnly').addEventListener('change',e=>{savedOnly=e.target.checked;showAll=false;factIndex=0;render()});
-  $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;showAll=false;render()});
+  $('#discoverSearch').addEventListener('input',()=>{factIndex=0;visibleCount=24;showAll=false;render()});
+  $('#discoverSavedOnly').addEventListener('change',e=>{savedOnly=e.target.checked;visibleCount=24;showAll=false;factIndex=0;render()});
+  $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;visibleCount=24;showAll=false;render()});
+  $('#discoverSourceFilter').addEventListener('change',e=>{sourceFilter=e.target.value;visibleCount=24;render()});
   document.addEventListener('sgbuddy:knowledge-saved',()=>{
     try{const rows=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(rows))saved=new Set(rows.filter(x=>typeof x==='string'))}catch{}
     render();
@@ -257,16 +259,21 @@
   Promise.all([
     fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Catalog response '+r.status);return r.json()}),
     fetch('/data/facts-published.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('/data/nea-closures-v180.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
-  ]).then(([data,published,closureFeed])=>{
+    fetch('/data/nea-closures-v180.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/data/official-places-v200.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([data,published,closureFeed,officialFeed])=>{
     officialClosures=new Map((Array.isArray(closureFeed?.closures)?closureFeed.closures:[]).map(x=>[x.centreId,x]));
     for(const field of ['places','apps','facts'])if(!Array.isArray(data[field]))throw new Error('Invalid '+field+' catalog');
     const checked=Array.isArray(published?.facts)?published.facts.filter(f=>f.status==='verified'):[];
     const ids=new Set(checked.map(f=>f.id));
-    catalog={...data,facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
-    const areas=[...new Set(data.places.map(p=>p.area).filter(Boolean))].sort();
+    const sourcePlaces=Array.isArray(officialFeed?.places)?officialFeed.places.filter(p=>p.status==='official-source-snapshot'&&p.name&&p.id&&p.kind&&p.sourceUrl):[];
+    const names=new Set(data.places.map(p=>String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'')));
+    const unique=sourcePlaces.filter(p=>{const key=String(p.name).toLowerCase().replace(/[^a-z0-9]/g,'');if(names.has(key))return false;names.add(key);return true});
+    catalog={...data,places:[...data.places,...unique],facts:[...checked,...data.facts.filter(f=>!ids.has(f.id))]};
+    const areas=[...new Set(catalog.places.map(p=>p.area).filter(Boolean))].sort();
     $('#discoverAreaFilter').insertAdjacentHTML('beforeend',areas.map(a=>'<option value="'+safe(a)+'">'+safe(a)+'</option>').join(''));
     loaded=true;render();
+    document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,sources:officialFeed?.sources||[]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
   }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
   window.__SGBUDDY_CLIENT_VERSION__='1.2.0-dev';
