@@ -42,10 +42,13 @@ function cardDish(x){
 }
 function cardMenu(x){
  const link=allowedUrl(x.sourceUrl),price=x.priceSgd!=null?' · Published SGD $'+Number(x.priceSgd).toFixed(2):' · Price unlisted';
+ const maps=x.locationSpecific&&x.venueAddress?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.venueAddress):'';
  return '<article class="card food-stall"><div class="label">'+esc(x.vendor)+' · first-party listing</div><h4>'+esc(x.name)+'</h4>'+
-  '<p>Listed '+esc(x.observedOn)+price+'</p>'+
-  '<p class="food-warning">Availability, dietary details and current price are not confirmed. A vendor-listed item is not necessarily a hawker stall.</p>'+
-  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Original vendor menu ↗</a>':'')+'</article>';
+  '<p>Website reviewed '+esc(x.observedOn)+price+'</p>'+
+  (maps?'<p class="food-source-branch">Menu-published branch: '+esc(x.venueAddress)+'</p>':'<p class="food-source-branch">Not verified for every branch.</p>')+
+  '<p class="food-warning">This is not a live menu. Item availability, prices, allergens and halal status need checking directly with the vendor.</p>'+
+  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">First-party menu ↗</a>':'')+
+  (maps?'<a href="'+esc(maps)+'" target="_blank" rel="noopener noreferrer">Published branch directions ↗</a>':'')+'</article>';
 }
 function render(){
  if(!initialised)return;
