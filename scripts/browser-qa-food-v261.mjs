@@ -7,7 +7,7 @@ const page=await context.newPage(),errors=[];
 page.on('pageerror',error=>errors.push(error.message));
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.0.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
  const sheet=page.locator('#locationSheet');
  await sheet.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await sheet.isVisible())await page.locator('#notNowLocationButton').click();
@@ -32,7 +32,7 @@ try{
  await save.click();
  assert.equal(await save.getAttribute('aria-pressed'),'true','Save pick should persist selected state');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.0.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
  await page.locator('#navPlaces').click();
  await page.locator('[data-discover-tab="eat"]').click();
  await page.locator('#foodPickSaved').click();

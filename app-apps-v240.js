@@ -1,5 +1,9 @@
 import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
 import {appText} from './lib/i18n-apps-v280.mjs';
+import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
+import {appContentTranslation} from './lib/i18n-app-content-v312.mjs';
+import {serviceNote} from './lib/i18n-service-safety-v315.mjs';
+import {appStatus} from './lib/i18n-app-status-v315.mjs';
 /* SGBuddy V2.4 — Everyday Singapore apps. Curated publisher links; not an app installer. */
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
@@ -11,7 +15,7 @@ const localKey='sgbuddy-app-bookmarks-v240',legacyKey='sgbuddy-discover-saved-v1
 const currentLocale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE);
 const zh=()=>currentLocale()==='zh-CN';
 const tr=(en,cn)=>appText(currentLocale(),en,cn);
-const translated=(a,key)=>zh()&&a.zh?.[key]?a.zh[key]:a[key];
+const translated=(a,key)=>appContentTranslation(currentLocale(),a,key)||(zh()&&a.zh?.[key]?a.zh[key]:a[key]);
 let saved=new Set(),apps=[],loaded=false,term='',category='all',view='recommended',download='all',limit=20;
 try{const items=JSON.parse(localStorage.getItem(localKey)||'[]');if(Array.isArray(items))saved=new Set(items.filter(x=>typeof x==='string').slice(0,300))}catch{}
 const panel=doc.createElement('section');panel.id='everydayApps';panel.className='card everyday-apps-v240';panel.hidden=true;panel.setAttribute('aria-label','Everyday Singapore mobile app and digital service directory');
@@ -48,16 +52,19 @@ function card(a){
  const actions=[source?'<a href="'+esc(source)+'" target="_blank" rel="noopener noreferrer">'+(mobile?tr('Official publisher ↗','官方发行商 ↗'):tr('Open official service ↗','打开官方服务 ↗'))+'</a>':'',
   ios?'<a href="'+esc(ios)+'" target="_blank" rel="noopener noreferrer">iPhone App Store ↗</a>':'',
   android?'<a href="'+esc(android)+'" target="_blank" rel="noopener noreferrer">Google Play ↗</a>':''].filter(Boolean).join('');
+ const translatedPrereq=serviceNote(currentLocale(),a,'accountNeeded');
+ const translatedNote=serviceNote(currentLocale(),a,'notes');
+ const originalTitle=appStatus(currentLocale(),'original');
  const modeNames=(a.modes||[]).map(m=>m==='visitor'?'Visitor':m==='executive'?'Business':m[0].toUpperCase()+m.slice(1)).join(' · ');
- return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(a.category)+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
- '<p class="app-guide-description">'+esc(translated(a,'summary'))+'</p>'+
- '<p class="app-guide-purpose"><strong>'+tr('Use it for:','用途：')+'</strong> '+esc(translated(a,'purpose'))+'</p>'+
- '<p class="app-guide-prereq"><strong>'+tr('Before you use it:','使用前：')+'</strong> '+esc(translated(a,'accountNeeded')||tr('See publisher requirements','查看服务商要求'))+'</p>'+
- (a.notes?'<p class="app-guide-note">'+esc(a.notes)+'</p>':'')+
+ return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(taxonomyLabel(currentLocale(),a.category))+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
+ '<p class="app-guide-description"'+(appContentTranslation(currentLocale(),a,'summary')?' data-content-localized="true"':'')+'>'+esc(translated(a,'summary'))+'</p>'+
+ '<p class="app-guide-purpose"'+(appContentTranslation(currentLocale(),a,'purpose')?' data-content-localized="true"':'')+'><strong>'+tr('Use it for:','用途：')+'</strong> '+esc(translated(a,'purpose'))+'</p>'+
+ '<div class="app-guide-prereq"'+(translatedPrereq?' data-content-localized="true"':'')+'><strong>'+tr('Before you use it:','使用前：')+'</strong> '+esc(translatedPrereq||translated(a,'accountNeeded')||tr('See publisher requirements','查看服务商要求'))+(translatedPrereq?'<details class="app-guide-english-original"><summary>'+esc(originalTitle)+'</summary><p lang="en">'+esc(a.accountNeeded)+'</p></details>':'')+'</div>'+ 
+ (a.notes?'<p class="app-guide-note"'+(translatedNote?' data-content-localized="true"':'')+'>'+esc(translatedNote||a.notes)+'</p>'+(translatedNote?'<details class="app-guide-english-original"><summary>'+esc(originalTitle)+'</summary><p lang="en">'+esc(a.notes)+'</p></details>':''):'')+
  '<p class="app-guide-metadata">'+(mobile?tr('Mobile app','手机应用'):tr('Web service · no app needed','网页服务，无须安装'))+' · '+esc(a.importance)+' · '+esc(modeNames)+'</p>'+
  '<div class="app-guide-links">'+actions+'</div>'+
  (mobile&&!ios&&!android?'<p class="app-guide-unverified">'+esc(tr('No direct store link checked: download through the publisher to avoid lookalikes.','没有已核实的应用商店链接；请从官方服务商下载以防仿冒。'))+'</p>':'')+
- '<p class="app-guide-review">Curated '+esc(a.cataloguedOn||'date unavailable')+' · Confirm availability with publisher</p></article>';
+ '<p class="app-guide-review">'+esc(appStatus(currentLocale(),'review',{date:a.cataloguedOn||'date unavailable'}))+'</p></article>';
 }
 function render(){
  if(!loaded)return;
@@ -71,13 +78,13 @@ function render(){
   if(download==='ios'&&!a.ios)return false;
   if(download==='android'&&!a.android)return false;
   if(download==='web'&&a.kind!=='web-service')return false;
-  return !q||[a.name,a.category,a.publisher,a.summary,a.purpose,a.zh?.summary,a.zh?.purpose].join(' ').toLowerCase().includes(q);
+  return !q||[a.name,a.category,taxonomyLabel(currentLocale(),a.category),a.publisher,a.summary,a.purpose,a.zh?.summary,a.zh?.purpose,appContentTranslation(currentLocale(),a,'summary')||'',appContentTranslation(currentLocale(),a,'purpose')||''].join(' ').toLowerCase().includes(q);
  }).sort((a,b)=>{
   const modeDiff=Number(b.modes.includes(who))-Number(a.modes.includes(who));
   return modeDiff||rank(b)-rank(a)||a.name.localeCompare(b.name);
  });
- $('#appLibraryCount').textContent=zh()?(rows.length+' 项匹配 · '+apps.length+' 项官方应用与服务 · '+saved.size+' 项已收藏。仅显示核实过的应用商店链接。'):(rows.length+' matched · '+apps.filter(a=>a.kind==='mobile-app').length+' mobile app candidates · '+apps.filter(a=>a.kind==='web-service').length+' useful web services · '+saved.size+' on my shortlist. Only confirmed store links are displayed.');
- $('#appLibraryCards').innerHTML=rows.length?rows.slice(0,limit).map(card).join(''):'<div class="app-guide-empty">'+esc(tr('Nothing matches. Try another category, switch to All apps, or clear the search.','没有匹配的应用，请更换分类或清除搜索。'))+'</div>';
+ $('#appLibraryCount').textContent=appStatus(currentLocale(),'count',{matched:rows.length,mobile:apps.filter(a=>a.kind==='mobile-app').length,web:apps.filter(a=>a.kind==='web-service').length,saved:saved.size});
+ $('#appLibraryCards').innerHTML=rows.length?rows.slice(0,limit).map(card).join(''):'<div class="app-guide-empty">'+esc(appStatus(currentLocale(),'empty'))+'</div>';
  $('#appLibraryMore').hidden=rows.length<=limit;
  $('#appLibraryMore').textContent=tr('Show more apps','显示更多应用')+' · '+Math.min(rows.length,limit)+' / '+rows.length;
 }
@@ -125,7 +132,7 @@ function translateGuide(){
  note.hidden=!note.textContent;
  if(!note.isConnected)panel.querySelector('.app-guide-safety')?.insertAdjacentElement('afterend',note);
 }
-doc.addEventListener('sgbuddy:language',()=>{translateGuide();render()});
+doc.addEventListener('sgbuddy:language',()=>{translateGuide();for(const option of $('#appLibraryCategory')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(currentLocale(),option.value);render()});
 Promise.all([
  fetch('/data/everyday-apps-v240.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('App directory unavailable');return r.json()}),
  fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{apps:[]}).catch(()=>({apps:[]})),
@@ -145,11 +152,11 @@ Promise.all([
    return {...a,...extra,category:a.name==='Grab'?a.category:extra.category};
   });
  const cats=[...new Set(apps.map(a=>a.category))].sort();
- $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
+ $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(taxonomyLabel(currentLocale(),s))+'</option>').join(''));
  migrateSaved(Array.isArray(legacy.apps)?legacy.apps:[]);
  loaded=true;translateGuide();render();
  const button=doc.querySelector('[data-discover-tab="apps"]');
  activate(button?.getAttribute('aria-selected')==='true');
  doc.dispatchEvent(new CustomEvent('sgbuddy:app-library-ready',{detail:{total:apps.length,web:apps.filter(a=>a.kind==='web-service').length}}));
-}).catch(()=>{$('#appLibraryCount').textContent='App directory could not load. Other SGBuddy discovery sections remain available.'});
+}).catch(()=>{$('#appLibraryCount').textContent=appStatus(currentLocale(),'unavailable')});
 })();

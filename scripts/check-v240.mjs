@@ -40,7 +40,7 @@ assert.ok(apps.find(x=>x.name==='Grab').android);
 assert.ok(apps.find(x=>x.name==='foodpanda').sourceUrl.includes('foodpanda.sg'));
 for(const marker of ['everydayApps','appLibrarySearch','appLibraryCategory','appLibraryDownload','data-app-view','data-app-save','sgbuddy-app-bookmarks-v240','sgbuddy:discover-tab','sgbuddy:persona','only confirmed store links','Official publisher','open-now']){
  if(marker==='open-now')continue;
- assert.ok(source.toLowerCase().includes(marker.toLowerCase()),'V2.4 app UI missing '+marker);
+ assert.ok((source+read('lib/i18n-app-status-v315.mjs')).toLowerCase().includes(marker.toLowerCase()),'V2.4 app UI missing '+marker);
 }
 assert.ok(source.includes('Never')||source.includes('never')||source.includes('OTP'),'Missing phishing guidance');
 assert.ok(main.includes("import('/app-apps-v240.js')"),'V2.4 module must load after Discover');

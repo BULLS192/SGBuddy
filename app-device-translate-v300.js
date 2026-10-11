@@ -67,7 +67,7 @@ const captions={
    let processed=0;
    for(const node of doc.querySelectorAll(targets.join(','))){
     if(processed>=220||revision!==epoch||lang()!==targetLang)break;
-    if(node.closest('[hidden],.hidden'))continue;
+    if(node.closest('[hidden],.hidden')||node.dataset.contentLocalized==='true')continue;
     const src=original(node);if(!src)continue;
     processed++;
     const key=targetLang+'\0'+src;let text=translations.get(key);

@@ -34,8 +34,8 @@ const ui=readFileSync('app-share-v270.js','utf8'),app=readFileSync('app-trip-v26
 for(const keyword of ['tripMakeLink','tripCopyLink','tripSystemShare','tripExportJson','tripImportJson','tripImportShared','tripDismissShared','sgbuddy:trip-rendered'])assert.ok(ui.includes(keyword),'Share UI missing '+keyword);
 assert.equal(SHARE_PARAM,'sgtrip');
 assert.ok(app.includes('SGBUDDY_TRIP_API')&&app.includes('importCopy')&&app.includes('sgbuddy:trip-rendered'),'Safe import API missing');
-assert.ok(boot.includes("import('/app-share-v270.js')")&&boot.includes('3.0.0'));
-assert.ok(html.includes('v3.0.0')&&html.includes('/trip-share-v270.css'));
-assert.ok(sw.includes('/app-share-v270.js')&&sw.includes('/lib/trip-share-v270.mjs')&&sw.includes('/trip-share-v270.css')&&sw.includes('sgbuddy-shell-v59'));
+assert.ok(boot.includes("import('/app-share-v270.js')")&&boot.includes('3.1.0'));
+assert.ok(html.includes('v3.1.0')&&html.includes('/trip-share-v270.css'));
+assert.ok(sw.includes('/app-share-v270.js')&&sw.includes('/lib/trip-share-v270.mjs')&&sw.includes('/trip-share-v270.css')&&sw.includes('sgbuddy-shell-v60'));
 assert.ok(css.includes('data-ux-theme="light"')&&css.includes('max-width:660px')&&css.includes('focus-visible'));
 console.log('SGBuddy V2.7 sharing model PASS: Unicode, data limits, link safety, portable files, collaboration copy model, PWA integration.');
