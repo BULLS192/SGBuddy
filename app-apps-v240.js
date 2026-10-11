@@ -1,5 +1,6 @@
 import {normalizeLocale,TRAVEL_UI} from './lib/i18n-v280.mjs';
 import {appText} from './lib/i18n-apps-v280.mjs';
+import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 /* SGBuddy V2.4 — Everyday Singapore apps. Curated publisher links; not an app installer. */
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
@@ -49,7 +50,7 @@ function card(a){
   ios?'<a href="'+esc(ios)+'" target="_blank" rel="noopener noreferrer">iPhone App Store ↗</a>':'',
   android?'<a href="'+esc(android)+'" target="_blank" rel="noopener noreferrer">Google Play ↗</a>':''].filter(Boolean).join('');
  const modeNames=(a.modes||[]).map(m=>m==='visitor'?'Visitor':m==='executive'?'Business':m[0].toUpperCase()+m.slice(1)).join(' · ');
- return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(a.category)+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
+ return '<article class="app-guide-item" data-app-id="'+esc(a.id)+'"><div class="app-guide-card-top"><span aria-hidden="true" class="app-guide-monogram">'+esc(a.monogram||a.name.slice(0,2).toUpperCase())+'</span><div><span class="app-guide-category">'+esc(taxonomyLabel(currentLocale(),a.category))+'</span><h4>'+esc(a.name)+'</h4></div><button type="button" class="app-guide-save '+(marked?'active':'')+'" data-app-save="'+esc(a.id)+'" aria-label="'+(marked?'Remove ':'Save ')+esc(a.name)+' '+(marked?'from':'to')+' my app shortlist" aria-pressed="'+marked+'">'+(marked?'★':'☆')+'</button></div>'+
  '<p class="app-guide-description">'+esc(translated(a,'summary'))+'</p>'+
  '<p class="app-guide-purpose"><strong>'+tr('Use it for:','用途：')+'</strong> '+esc(translated(a,'purpose'))+'</p>'+
  '<p class="app-guide-prereq"><strong>'+tr('Before you use it:','使用前：')+'</strong> '+esc(translated(a,'accountNeeded')||tr('See publisher requirements','查看服务商要求'))+'</p>'+
@@ -71,7 +72,7 @@ function render(){
   if(download==='ios'&&!a.ios)return false;
   if(download==='android'&&!a.android)return false;
   if(download==='web'&&a.kind!=='web-service')return false;
-  return !q||[a.name,a.category,a.publisher,a.summary,a.purpose,a.zh?.summary,a.zh?.purpose].join(' ').toLowerCase().includes(q);
+  return !q||[a.name,a.category,taxonomyLabel(currentLocale(),a.category),a.publisher,a.summary,a.purpose,a.zh?.summary,a.zh?.purpose].join(' ').toLowerCase().includes(q);
  }).sort((a,b)=>{
   const modeDiff=Number(b.modes.includes(who))-Number(a.modes.includes(who));
   return modeDiff||rank(b)-rank(a)||a.name.localeCompare(b.name);
@@ -125,7 +126,7 @@ function translateGuide(){
  note.hidden=!note.textContent;
  if(!note.isConnected)panel.querySelector('.app-guide-safety')?.insertAdjacentElement('afterend',note);
 }
-doc.addEventListener('sgbuddy:language',()=>{translateGuide();render()});
+doc.addEventListener('sgbuddy:language',()=>{translateGuide();for(const option of $('#appLibraryCategory')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(currentLocale(),option.value);render()});
 Promise.all([
  fetch('/data/everyday-apps-v240.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('App directory unavailable');return r.json()}),
  fetch('/data/discover-v120.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{apps:[]}).catch(()=>({apps:[]})),
@@ -145,7 +146,7 @@ Promise.all([
    return {...a,...extra,category:a.name==='Grab'?a.category:extra.category};
   });
  const cats=[...new Set(apps.map(a=>a.category))].sort();
- $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join(''));
+ $('#appLibraryCategory').insertAdjacentHTML('beforeend',cats.map(s=>'<option value="'+esc(s)+'">'+esc(taxonomyLabel(currentLocale(),s))+'</option>').join(''));
  migrateSaved(Array.isArray(legacy.apps)?legacy.apps:[]);
  loaded=true;translateGuide();render();
  const button=doc.querySelector('[data-discover-tab="apps"]');
