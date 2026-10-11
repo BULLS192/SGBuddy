@@ -126,8 +126,8 @@
     const map=newMapsLink(place);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(place.category||place.kind)+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
       '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p class="discover-freshness">'+safe(freshnessLabel(place))+' · Current operating status not verified</p><p>'+(place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot'+(place.sourceCoverageAsOf?' (source coverage '+safe(place.sourceCoverageAsOf)+')':'')+' · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+(place.kind==='Healthcare'?' Clinic registration, CHAS participation and services must be checked with the provider.':'')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
-      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
+      '<p class="discover-freshness">'+safe(freshnessLabel(place))+' · Current operating status not verified</p><p>'+(place.status==='operator-listed'?'Published by '+safe(place.operator||'operator')+'. '+(place.sourceReportedHours?'Operator hours: '+safe(place.sourceReportedHours)+' (check before travel). ':'')+'Availability unverified. ':place.status==='official-source-snapshot'?'Listed in '+safe(place.sourceAgency||'an official government')+' directory snapshot'+(place.sourceCoverageAsOf?' (source coverage '+safe(place.sourceCoverageAsOf)+')':'')+' · NOT live operational confirmation.': 'Curated lead · Individually unverified.')+(place.kind==='Healthcare'?' Clinic registration, CHAS participation and services must be checked with the provider.':'')+' Hours, accessibility and fees may change.</p>'+publishedClosure(place)+
+      '<div class="discover-actions">'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='operator-listed'?'Operator location page':place.status==='official-source-snapshot'?'Government dataset':'Category reference')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
     const marked=saved.has(app.id);
@@ -162,9 +162,16 @@
     const text=[row.name,row.area,row.category].join(' ');
     return (matchesMode(row)?100:0)+(matcher?.test(text)?24:0)+(row.status==='operator-listed'?70:row.status==='official-source-snapshot'?0:30);
   }
+  function matchesNeighbourhood(r){
+    if(neighbourhoodFilter==='all')return true;
+    const nb=neighbourhoods.find(n=>n.id===neighbourhoodFilter);if(!nb)return true;
+    const hay=[r.name,r.area,r.address,r.street].filter(Boolean).join(' ').toLowerCase();
+    return (nb.aliases||[]).some(term=>hay.includes(term.toLowerCase()));
+  }
   function orderedRows(rows){
     const q=($('#discoverSearch')?.value||'').toLowerCase().trim();
-    return rows.filter(r=>(!isArchived(r)||includeArchive)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':r.status!=='official-source-snapshot'))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
+    const superseded=new Set(catalog.places.filter(p=>p.status==='operator-listed'&&p.operator==='Sheng Siong').map(p=>p.postal));
+    return rows.filter(r=>(!isArchived(r)||includeArchive)&&!(isArchived(r)&&superseded.has(r.postal))&&matchesNeighbourhood(r)&&(!savedOnly||saved.has(r.id))&&(freshnessFilter==='all'||sourceAge(r)===freshnessFilter)&&(areaFilter==='all'||r.area===areaFilter)&&(sourceFilter==='all'||(sourceFilter==='official'?r.status==='official-source-snapshot':sourceFilter==='operator'?r.status==='operator-listed':!['official-source-snapshot','operator-listed'].includes(r.status)))&&(categoryFilter==='all'||(r.category||r.kind)===categoryFilter)&&(!q||[r.name,r.area,r.street,r.address,r.postal,r.kind,r.category,r.theme,r.text].join(' ').toLowerCase().includes(q)))
       .sort((a,b)=>audienceScore(b)-audienceScore(a)||(a.name||a.text||'').localeCompare(b.name||b.text||''));
   }
   function render(){
@@ -220,6 +227,7 @@
   $('#discoverAreaFilter').addEventListener('change',e=>{areaFilter=e.target.value;visibleCount=24;showAll=false;render()});
   $('#discoverSourceFilter').addEventListener('change',e=>{sourceFilter=e.target.value;visibleCount=24;render()});
   $('#discoverCategoryFilter').addEventListener('change',e=>{categoryFilter=e.target.value;visibleCount=24;render()});
+  $('#discoverNeighbourhoodFilter').addEventListener('change',e=>{neighbourhoodFilter=e.target.value;visibleCount=24;render()});
   $('#discoverFreshnessFilter').addEventListener('change',e=>{freshnessFilter=e.target.value;visibleCount=24;render()});
   $('#discoverIncludeArchive').addEventListener('change',e=>{includeArchive=e.target.checked;visibleCount=24;render()});
   document.addEventListener('sgbuddy:knowledge-saved',()=>{
