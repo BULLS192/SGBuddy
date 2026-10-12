@@ -27,7 +27,7 @@ async function check(viewport){
    },{note:v312Text(code,'savedNearby'),action:v312Text(code,'openDetails')},{timeout:7500});
    assert.equal((await page.locator('#uxSavedContent .ux-saved-item strong').first().textContent()).trim(),'Test Saved Venue');
    await page.evaluate(()=>{
-    window.renderJourney({origin:{label:'Pasir Ris MRT'},destination:{label:'Marina Bay'},
+    window.SGBUDDY_CORE.renderJourney({origin:{label:'Pasir Ris MRT'},destination:{label:'Marina Bay'},
       options:[{id:'rail-route-test',mode:'rail',recommended:true,title:'EWL → City Hall',
         totalMinutes:24,walkMinutes:4,transfers:1,timingMode:'depart-at',
         arrivalAt:'2026-10-12T20:00:00+08:00',weatherAware:true,steps:[]}],
