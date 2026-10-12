@@ -143,7 +143,7 @@ const audit={
  previouslySuggestedEstimate:{approximate:70,verified:false,includeInMeasurement:false},
  locales:reports,
  classifiedEligibleEntries:measuredRows.length+registeredCount,
- identifiedEditorialUnknown:{uniqueTextFields:unresolvedRecords.length,recordOccurrences:unresolvedRecords.reduce((a,x)=>a+x.occurrences,0),byFile:Object.fromEntries(dataFiles.map(file=>[file,unresolvedRecords.filter(x=>x.file===file).length])),examples:unresolvedRecords.slice(0,60).map(({file,field,recordId,original,occurrences})=>({file,field,recordId,excerpt:original.slice(0,140),occurrences}))},
+ identifiedEditorialUnknown:{uniqueTextFields:unresolvedRecords.length,recordOccurrences:unresolvedRecords.reduce((a,x)=>a+x.occurrences,0),byFile:Object.fromEntries(dataFiles.map(file=>[file,unresolvedRecords.filter(x=>x.file===file).length])),reviewQueue:unresolvedRecords.map(({file,field,recordId,fieldPath,original,occurrences})=>({file,field,recordId,fieldPath,excerpt:original.slice(0,220),occurrences})),examples:unresolvedRecords.slice(0,60).map(({file,field,recordId,original,occurrences})=>({file,field,recordId,excerpt:original.slice(0,140),occurrences}))},
  sourceOwnedProtectedFieldCounts:protectedSummary,
  executableTextAudit:{groups:dynamicInventory,policy:dynamicAuditPolicy},
  unclassifiedJsAudit:{scannedAppFiles:previousJS.scannedFiles.length,likelyOutputLiteralCandidates:previousJS.candidateCount,needsManualClassification:previousJS.untriagedCount,scopeNote:'V3.7 scanner includes archived builds. V3.8 splits active UI and backend candidates, but neither count is an untranslated denominator.'},
