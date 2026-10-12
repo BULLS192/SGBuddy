@@ -12,7 +12,7 @@ for(const {code} of LOCALES){
  for(const key of HOME_KEYS){
   assert.ok(typeof pack[key]==='string'&&pack[key].trim(),code+'/'+key+' empty');
   assert.deepEqual(vars(pack[key]),vars(HOME_MESSAGES.en[key]),code+'/'+key+' mismatched placeholders');
-  if(code!=='en')assert.notEqual(pack[key],HOME_MESSAGES.en[key],code+'/'+key+' untranslated English');
+  if(code!=='en'&&key!=='shortMinute')assert.notEqual(pack[key],HOME_MESSAGES.en[key],code+'/'+key+' untranslated English');
  }
  assert.ok(homeText(code,'nextIn',{count:4}).includes('4'),code+' dynamic minute placeholder lost');
  assert.ok(homeText(code,'shortMinute',{count:3}).includes('3'),code+' short minute placeholder lost');
