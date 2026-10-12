@@ -1,3 +1,7 @@
+import {normalizeLocale} from './lib/i18n-v280.mjs';
+import {contextMode} from './lib/i18n-context-v370.mjs';
+import {homeText} from './lib/i18n-home-v311.mjs';
+import {homeShortcut} from './lib/i18n-shortcuts-v311.mjs';
 /* SGBuddy UX 4–6: persona-led experiences, contextual Merli and accessible feedback.
    Progressive enhancement only. No extra data providers or generative AI. */
 (()=>{
@@ -52,6 +56,9 @@ const MODES={
 };
 const safeMode=()=>Object.prototype.hasOwnProperty.call(MODES,state.mode)?state.mode:'resident';
 const cfg=()=>MODES[safeMode()];
+const locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
+const modeLabel=()=>contextMode(locale(),safeMode(),'label');
+const contextual=(field)=>contextMode(locale(),safeMode(),field);
 const readLocal=(store,key)=>{try{return store.getItem(key)}catch{return null}};
 const writeLocal=(store,key,val)=>{try{store.setItem(key,val)}catch{}};
 const section=$('.v1-view[data-view="today"]');
@@ -96,19 +103,22 @@ if(explore){
 function renderPersona(){
  const c=cfg();
  const heading=title?.querySelector('h2'),sub=title?.querySelector('p');
- if(heading)heading.textContent=c.title;
- if(sub)sub.textContent=c.description;
- if($('#uxPersonaName'))$('#uxPersonaName').textContent=c.label+' mode';
- if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=c.prompt;
- if($('#uxAccountMode'))$('#uxAccountMode').textContent=c.label;
- if($('#uxPersonaJourney'))$('#uxPersonaJourney').textContent=c.journey;
- if($('#uxExploreMode'))$('#uxExploreMode').textContent='Exploring as '+c.label;
- if($('#uxExploreHint'))$('#uxExploreHint').textContent=c.discover;
- if($('#discoverSearch'))$('#discoverSearch').placeholder=c.search;
- if($('#placeSearch'))$('#placeSearch').placeholder=c.search;
- if(grid)grid.innerHTML=c.shortcuts.map(([symbol,name,summary,target])=>
-  '<button class="ux-shortcut" type="button" data-ux-go="'+target+'"><span class="ux-shortcut-icon" aria-hidden="true">'+symbol+'</span><span class="ux-shortcut-copy"><strong>'+escapeText(name)+'</strong><small>'+escapeText(summary)+'</small></span></button>'
- ).join('');
+ if(heading)heading.textContent=contextual('title');
+ if(sub)sub.textContent=contextual('copy');
+ if($('#uxPersonaName'))$('#uxPersonaName').textContent=contextual('panelLabel');
+ if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=contextual('copy');
+ if($('#uxAccountMode'))$('#uxAccountMode').textContent=modeLabel();
+ if($('#uxPersonaJourney'))$('#uxPersonaJourney').textContent=contextual('copy');
+ if($('#uxExploreMode'))$('#uxExploreMode').textContent=homeText(locale(),'exploringAs',{mode:modeLabel()});
+ if($('#uxExploreHint'))$('#uxExploreHint').textContent=contextual('placesCopy');
+ if($('#discoverSearch'))$('#discoverSearch').placeholder=homeText(locale(),'searchHint');
+ if($('#placeSearch'))$('#placeSearch').placeholder=homeText(locale(),'searchHint');
+ if(grid)grid.innerHTML=c.shortcuts.map(([symbol,name,summary,target])=>{
+  const entry=homeShortcut(locale(),target)||{title:name,description:summary};
+  return '<button class="ux-shortcut" type="button" data-ux-go="'+target+'"><span class="ux-shortcut-icon" aria-hidden="true">'+symbol+'</span><span class="ux-shortcut-copy"><strong>'+escapeText(entry.title)+'</strong><small>'+escapeText(entry.description)+'</small></span></button>';
+ }).join('');
+ for(const id of ['#uxChangeMode','#uxAccountChangeMode','#uxExploreModeChange'])if($(id))$(id).textContent=homeText(locale(),'changeMode');
+ if($('#uxMerliHomeAsk'))$('#uxMerliHomeAsk').textContent=homeText(locale(),'merliAsk');
  updateMerli();
  updateHint();
 }
@@ -151,17 +161,20 @@ function updateMerli(){
  if(!merliContext||!panel)return;
  const mode=cfg(),reading=validAir(),elevated=reading!==null&&reading>100;
  const actions=merliSuggestions();
- $('#uxMerliHeadline').textContent=elevated?'Check Singapore air quality':mode.label+' · Ask Merli';
- $('#uxMerliCopy').textContent=elevated?'The latest available 24-hour PSI reading may affect prolonged outdoor plans. Open air quality to confirm the NEA guidance.':mode.merliIntro;
- $('#uxMerliSuggestions').innerHTML=actions.map(x=>
- '<button type="button" data-ux-merli="'+x+'">'+escapeText(buddyLabels[x]||x)+'</button>').join('');
+ $('#uxMerliHeadline').textContent=elevated?homeText(locale(),'merliAir'):modeLabel()+' · '+homeText(locale(),'merliAsk');
+ $('#uxMerliCopy').textContent=elevated?homeText(locale(),'merliAirCopy'):contextual('placesCopy');
+ const targetMap={eat:'eat',do:'do',shop:'nearby',apps:'apps',weather:null,transit:'move',fact:null,saved:'saved',home:'saved'};
+ $('#uxMerliSuggestions').innerHTML=actions.map(x=>{
+  const match=homeShortcut(locale(),targetMap[x]);
+  return '<button type="button" data-ux-merli="'+x+'">'+escapeText(match?.title||(x==='weather'?homeText(locale(),'merliAir'):buddyLabels[x]||x))+'</button>';
+ }).join('');
  const all=panel.querySelector('.buddy-chips');
  if(all){
   all.hidden=!showAllMerli;
   all.querySelectorAll('button').forEach(b=>{b.hidden=false});
  }
  if(merliMore){
-  merliMore.textContent=showAllMerli?'Hide extra actions':'More ways Merli can help';
+  merliMore.textContent=homeText(locale(),showAllMerli?'merliLess':'merliMore');
   merliMore.setAttribute('aria-expanded',String(showAllMerli));
  }
 }
@@ -180,8 +193,9 @@ if(shortcuts){
 function updateHint(){
  if(!hint)return;
  hint.hidden=dismissed;
- $('#uxMerliHomeTitle').textContent='Merli · '+cfg().label+' tips';
- $('#uxMerliHomeCopy').textContent=cfg().merliIntro;
+ $('#uxMerliHomeTitle').textContent=homeText(locale(),'merliTips',{mode:modeLabel()});
+ $('#uxMerliHomeCopy').textContent=contextual('placesCopy');
+ if($('#uxMerliHomeAsk'))$('#uxMerliHomeAsk').textContent=homeText(locale(),'merliAsk');
 }
 // Nearby places use existing verified Place Index sources; mode-specific cues only
 // re-rank the fetched entries and never invent destinations or attributes.
@@ -256,7 +270,8 @@ function updateSkip(){
  const active=nav.querySelector('[data-nav-target].active')?.dataset.navTarget||'today';
  const anchors={today:'todaySection',places:'discoverTitle',move:'travelSection',saved:'uxSavedView',account:'accountSection'};
  skip.setAttribute('href','#'+(anchors[active]||anchors.today));
- skip.textContent='Skip to '+(active==='today'?'Home':active==='places'?'Discover':active==='move'?'Move':active==='saved'?'Saved':'Profile');
+ const name=nav.querySelector('[data-nav-target="'+active+'"] span')?.textContent||active;
+ skip.textContent=homeText(locale(),'skipTo',{target:name});
 }
 updateSkip();
 if(nav)new MutationObserver(updateSkip).observe(nav,{attributes:true,subtree:true,attributeFilter:['class']});
@@ -273,6 +288,7 @@ window.addEventListener('online',signalNetwork);
 window.addEventListener('offline',signalNetwork);
 signalNetwork();
 document.addEventListener('sgbuddy:persona',()=>queueMicrotask(renderPersona));
+document.addEventListener('sgbuddy:language',()=>queueMicrotask(()=>{renderPersona();updateSkip()}));
 document.addEventListener('sgbuddy:weather',updateMerli);
 renderPersona();
 window.__SGBUDDY_UX_WAVES__='1-6';

@@ -11,6 +11,7 @@ run('app-v130.js');
 run('app-v140.js');
 run('app-ux-v160.js');
 run('app-ux-v170.js');
+for(const p of ['app-i18n-home-v311.js','lib/i18n-home-v311.mjs','lib/i18n-shortcuts-v311.mjs','lib/i18n-weather-codes-v311.mjs','scripts/browser-qa-v3110.mjs'])run(p);
 run('app-food-v180.js');
 run('app-food-tools-v261.js');
 run('app-share-v270.js');
@@ -86,6 +87,7 @@ execFileSync(process.execPath,['scripts/localization-review-v360.mjs'],{stdio:'i
 execFileSync(process.execPath,['scripts/check-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v390.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v3110.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/localization-inventory-v340.mjs'],{stdio:'inherit'});
