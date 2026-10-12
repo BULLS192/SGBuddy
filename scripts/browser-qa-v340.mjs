@@ -57,6 +57,8 @@ try{
   const details=await page.locator('#envDetails').textContent();
   assert.ok(details.includes('Provider warning'),code+' weather source data');
   assert.ok(details.includes(dynamicText(code,'pm25Explanation')),code+' PM2.5 label');
+  await page.evaluate(()=>window.SGBUDDY_OPEN_MERLI?.());
+  await page.locator('#buddyPanel').waitFor({state:'visible',timeout:12000});
   await page.locator('[data-buddy-action="help"]').click();await equal('#buddyReply',dynamicText(code,'merliCapability'));
   await page.locator('[data-buddy-action="privacy"]').click();await equal('#buddyReply',dynamicText(code,'merliPrivacy'));
   await page.locator('[data-buddy-action="bookings"]').click();await equal('#buddyReply',dynamicText(code,'merliBooking'));
