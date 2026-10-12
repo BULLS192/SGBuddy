@@ -26,6 +26,7 @@ async function test(viewport){
     const sources={changeMode:'Change mode',residentPrompt:'Find hawker food, healthcare, parks or the best route home.',askMerli:'Ask Merli',merliPrompt:'Ask me about hawker food, transport and Singapore facts.',departureImminent:'A departure is imminent',departureCopy:'Prioritized from nearby and saved transport.',locationPrivacy:'Using your current location · not stored in cloud',locationNear:'Near you'};
     for(const [selector,key] of anchors){const el=document.querySelector(selector);if(!el)throw Error('Missing: '+selector);el.textContent=sources[key]}
     window.SGBUDDY_HOME_I18N.refresh();
+    document.dispatchEvent(new Event('sgbuddy:language'));
    },anchors);
    const latest={
     changeMode:homeText311(code,'changeMode'),
@@ -38,7 +39,11 @@ async function test(viewport){
     locationNear:homeText311(code,'nearYou')
    };
    const expected=anchors.map(([selector,key])=>({selector,value:latest[key]}));
-   await page.waitForFunction(items=>items.every(({selector,value})=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:6000});
+   await page.waitForFunction(items=>items.every(({selector,value})=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:6000}).catch(async error=>{
+    const diff=await page.evaluate(items=>items.filter(({selector,value})=>document.querySelector(selector)?.textContent?.trim()!==value).map(({selector,value})=>({selector,expected:value,actual:document.querySelector(selector)?.textContent?.trim()})),expected);
+    console.error('V3.10 / V3.11 HOME BINDING MISMATCH',JSON.stringify({code,diff}));
+    throw error;
+   });
    const shortcuts=['shortcutNearby','shortcutNearbyCopy','shortcutEat','shortcutEatCopy','shortcutMove','shortcutMoveCopy','shortcutApps','shortcutAppsCopy'];
    const expectedShortcuts=shortcuts.map(key=>homeText311(code,key));
    try{
