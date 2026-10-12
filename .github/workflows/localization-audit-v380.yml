@@ -1,0 +1,47 @@
+name: SGBuddy V3.8 Full-Repository Localization Inventory
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit-app-v380.mjs'
+      - 'scripts/audit-dynamic-v380.mjs'
+      - 'scripts/check-v380.mjs'
+      - 'scripts/classify-localization-v390.mjs'
+      - 'scripts/check-v390.mjs'
+      - 'docs/localization-audit-v380.md'
+      - '.github/workflows/localization-audit-v380.yml'
+      - 'lib/i18n-*.mjs'
+      - 'data/*.json'
+      - 'index.html'
+      - 'app*.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 12-locale cross-app scope, ownership and denominator
+        run: node scripts/check-v380.mjs
+      - name: Export categorized app-wide localization inventory
+        run: |
+          node scripts/audit-app-v380.mjs --out=localization-v380.json
+          node scripts/audit-app-v380.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-localization-v380-inventory
+          path: localization-v380.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Export V3.9 individual UI and editorial classification
+        run: node scripts/classify-localization-v390.mjs --out=localization-v390.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-localization-v390-classifications
+          path: localization-v390.json
+          if-no-files-found: error
+          retention-days: 14
