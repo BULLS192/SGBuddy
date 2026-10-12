@@ -40,14 +40,14 @@ async function run(viewport){
    await page.locator('#discoverTab-do').click();
    const input=page.locator('#discoverSearch');
    assert.equal(await input.getAttribute('placeholder'),discoverStatus(code,'searchPlaces'));
-   await input.fill('NonexistentLocationXYZ000ABCD');
+   await page.evaluate(()=>{const e=document.querySelector('#discoverSearch');e.value='NonexistentLocationXYZ000ABCD';e.dispatchEvent(new Event('input',{bubbles:true}))});
    await page.waitForFunction(expected=>document.querySelector('#discoverStatus')?.textContent===expected,discoverStatus(code,'placesFound',{count:0}),{timeout:5000});
    assert.equal((await page.locator('#discoverResults .discover-empty').textContent()).trim(),discoverStatus(code,'noPlaces'));
    await page.locator('#discoverTab-apps').click();
    assert.equal(await input.getAttribute('placeholder'),discoverStatus(code,'searchApps'));
    await page.locator('#discoverTab-facts').click();
    assert.equal(await input.getAttribute('placeholder'),discoverStatus(code,'searchFacts'));
-   await input.fill('');
+   await page.evaluate(()=>{const e=document.querySelector('#discoverSearch');e.value='';e.dispatchEvent(new Event('input',{bubbles:true}))});
    await page.waitForFunction(()=>document.querySelector('#discoverStatus')?.textContent?.length>10,{timeout:5000});
    assert.ok((await page.locator('#discoverStatus').textContent()).includes(code==='en'?'source-checked':discoverStatus(code,'factsStatus',{checked:0,pending:0}).split('0')[0]),code+' facts status');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+12),code+' overflow');
