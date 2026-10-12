@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
-import {homeText} from '../lib/i18n-home-v310.mjs';
+import {homeText,homeShortcutText} from '../lib/i18n-home-v310.mjs';
 const browser=await chromium.launch({headless:true});
 const anchors=[['#uxChangeMode','changeMode'],['#uxPersonaDescription','residentPrompt'],['#uxMerliHomeAsk','askMerli'],['#uxMerliHomeCopy','merliPrompt'],['#nextUpTitle','departureImminent'],['#nextUpCopy','departureCopy'],['#locationStatus','locationPrivacy'],['#placeLabel','locationNear']];
 async function test(viewport){
@@ -26,6 +26,12 @@ async function test(viewport){
    },anchors);
    const expected=anchors.map(([selector,key])=>({selector,value:homeText(code,key)}));
    await page.waitForFunction(items=>items.every(({selector,value})=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:6000});
+   const shortcuts=['nearTitle','nearCopy','foodTitle','foodCopy','moveTitle','moveCopy','appsTitle','appsCopy'];
+   const expectedShortcuts=shortcuts.map(key=>homeShortcutText(code,key));
+   await page.waitForFunction(values=>{
+    const cards=[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
+    return cards.length===4&&cards.flatMap(card=>[card.querySelector('strong')?.textContent,card.querySelector('small')?.textContent]).every((str,i)=>str===values[i]);
+   },expectedShortcuts,{timeout:6500});
    const mode=await page.locator('#uxPersonaName').textContent();
    assert.ok(!mode.includes('Resident mode')||code==='en',code+' failed to translate mode');
   }

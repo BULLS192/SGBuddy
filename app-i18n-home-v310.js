@@ -1,6 +1,6 @@
 /* V3.10 first-party homepage localization fix. Explicit anchors, exact source values.
  * Dynamic transport names, measured temperatures, provider notices and user values are never translated. */
-import {HOME_KEYS,HOME_MESSAGES,homeText} from './lib/i18n-home-v310.mjs';
+import {HOME_KEYS,HOME_MESSAGES,homeText,HOME_SHORTCUTS,homeShortcutText} from './lib/i18n-home-v310.mjs';
 import {CONTEXT_MESSAGES,contextMode} from './lib/i18n-context-v370.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
 (()=>{
@@ -8,6 +8,8 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
  const doc=document, lang=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
  const known=Object.fromEntries(HOME_KEYS.map(key=>[key,new Set(Object.values(HOME_MESSAGES).map(row=>row[key]))]));
  const targets=[
+  ['.manual.card > div .label','stationLabel'],
+  ['.manual.card > div h3','stationHeading'],
   ['#railForm .label','stationLabel'],
   ['#railForm h3','stationHeading'],
   ['#transportSection .rail-search .label','stationLabel'],
@@ -90,6 +92,22 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
    if(known.weatherDetails.has(current))change(el,['weatherDetails']);
   }
   persona();
+  // Scoped resident shortcut cards only; preserve route names and provider content.
+  if((window.SGBUDDY_CORE?.state?.mode||'resident')==='resident'){
+   const pairs=[['nearTitle','nearCopy'],['foodTitle','foodCopy'],['moveTitle','moveCopy'],['appsTitle','appsCopy']];
+   const buttons=[...doc.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
+   for(let i=0;i<buttons.length;i++){
+    for(const [selector,key] of [['strong',pairs[i][0]],['small',pairs[i][1]]]){
+     const el=buttons[i].querySelector(selector);if(!el)continue;
+     const current=el.textContent.trim(),prior=state.get(el);
+     const knownValues=Object.values(HOME_SHORTCUTS).map(row=>row[key]);
+     if(!knownValues.includes(current)&&!(prior?.key===key&&prior.rendered===current))continue;
+     const next=homeShortcutText(lang(),key);
+     if(current!==next)el.textContent=next;
+     state.set(el,{key,rendered:next});
+    }
+   }
+  }
  }
  function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;apply()})}
  for(const evt of ['sgbuddy:language','sgbuddy:persona','sgbuddy:weather','sgbuddy:translations-ready','sgbuddy:transport','sgbuddy:location'])
