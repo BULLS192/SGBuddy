@@ -57,8 +57,8 @@ for(const [file,parts] of [
 const browser=load('app-device-translate-v300.js');
 assert.ok(browser.includes("node.dataset.contentLocalized==='true'"),'Reviewed content must never be machine-retranslated');
 const sw=load('sw.js'),boot=load('app-v090.js'),html=load('index.html');
-assert.ok(sw.includes('sgbuddy-shell-v64'),'Installed PWA requires cache bust');
+assert.ok(sw.includes('sgbuddy-shell-v66'),'Installed PWA requires cache bust');
 for(const path of ['/lib/i18n-content-taxonomy-v310.mjs','/lib/i18n-facts-v310.mjs'])
  assert.ok(sw.includes(path),'Missing offline content pack '+path);
-assert.ok(boot.includes("='3.5.0'")&&html.includes('v3.5.0'),'Release version must agree');
+assert.ok(boot.includes("='3.7.0'")&&html.includes('v3.7.0'),'Release version must agree');
 console.log('V3.1 CONTENT PACK PASS: 12 languages, 36 taxonomy labels, 10 source-locked facts, search/render integration and source integrity.');
