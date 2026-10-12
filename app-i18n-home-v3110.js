@@ -71,7 +71,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
  function applyCore(node,key){
   if(!node)return;
   const text=(node.textContent||'').trim();
-  if(coreVariants[key].has(text)){
+  if([...coreVariants[key]].some(value=>value.toLocaleLowerCase()===text.toLocaleLowerCase())){
    const next=coreUi(locale())[key];
    if(next!==text)node.textContent=next;
   }
