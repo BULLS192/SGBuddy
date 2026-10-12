@@ -597,7 +597,8 @@ function renderAccountHub(){
  badge.textContent=signedIn?(state.accountStatus==='syncing'?rt('syncing'):rt('synced')):dt('accountLocal','Local');
  badge.className='sync-badge'+(signedIn?' synced':'');
 }
-document.addEventListener('sgbuddy:language',()=>{renderAccountHub();renderEnvironment()});
+// Run after the locale selector and other legacy renderers finish their synchronous work.
+document.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{renderAccountHub();renderEnvironment()}));
 document.addEventListener('sgbuddy:translations-ready',()=>{renderAccountHub();renderEnvironment()});
 async function initTravelLivingWave(){renderEnvironment();renderFeaturedPlaces();renderAccountHub();initFxSelects();await convertFx();await loadMoneyChangers({query:'Orchard'})}
 $('#placeSearch')?.addEventListener('input',renderFeaturedPlaces);$('#placesBackHotel')?.addEventListener('click',()=>{if(!state.places.hotel)return toast('Save your hotel first.');$('#tripTo').value=state.places.hotel;navigateTo('travel')});$('#fxConvert')?.addEventListener('click',convertFx);$('#fxAmount')?.addEventListener('keydown',e=>{if(e.key==='Enter')convertFx()});$('#fxSwap')?.addEventListener('click',()=>{const from=$('#fxFrom'),to=$('#fxTo'),v=from.value;from.value=to.value;to.value=v;convertFx()});$('#moneyChangerSearchButton')?.addEventListener('click',()=>loadMoneyChangers({query:$('#moneyChangerSearch').value.trim()}));$('#moneyChangerSearch')?.addEventListener('keydown',e=>{if(e.key==='Enter')loadMoneyChangers({query:e.target.value.trim()})});$('#moneyChangerNearMe')?.addEventListener('click',moneyNearMe);$('#accountHubOpen')?.addEventListener('click',openAccountSheet);

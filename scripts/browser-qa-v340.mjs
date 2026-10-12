@@ -56,7 +56,11 @@ try{
   assert.equal(await page.locator('#v110CompareDestination').inputValue(),'Marina Bay Sands',code+' destination');
   const details=await page.locator('#envDetails').textContent();
   assert.ok(details.includes('Provider warning'),code+' weather source data');
-  assert.ok(details.includes(dynamicText(code,'pm25Explanation')),code+' PM2.5 label');
+  const expectedPm=dynamicText(code,'pm25Explanation');
+  await page.waitForFunction(expected=>document.querySelector('#envDetails')?.textContent?.includes(expected),expectedPm,{timeout:6500}).catch(async error=>{
+   console.error('V3.4 PM2.5 DIAGNOSTICS',JSON.stringify({locale:code,details:await page.locator('#envDetails').textContent(),expected:expectedPm,current:await page.evaluate(()=>window.SGBUDDY_LANGUAGE)}));
+   throw error;
+  });
   await page.evaluate(()=>window.SGBUDDY_OPEN_MERLI?.());
   await page.locator('#buddyPanel').waitFor({state:'visible',timeout:12000});
   // UX v1.7 keeps all secondary Merli chips under the More actions disclosure.
