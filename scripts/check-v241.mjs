@@ -26,7 +26,7 @@ assert.ok(ux.includes("['navPlaces','places','Discover','explore']"),'Nav Discov
 assert.ok(ux.includes('isApps=tab===\'apps\''),'Apps need separate tab visibility');
 assert.ok(ux.includes('setHidden(results,isNearby||isFacts||isApps)'),'Legacy app results should not duplicate V2.4 guide');
 assert.ok(persona.includes("'Everyday apps'")&&persona.includes(",'apps']"),'One-tap app shortcut missing for resident');
-assert.ok(persona.includes("active==='places'?'Discover'"),'Accessible skip link must use Discover');
+assert.ok(persona.includes("skip.textContent=homeText(locale(),'skipTo'")&&persona.includes("places:'discoverTitle'"),'Accessible skip link must localize the current Discover target');
 assert.ok(discover.includes("['apps','Everyday apps']"),'Apps category missing');
 assert.ok(html.includes('theme-polish-v241.css'),'Theme hotfix must load after prior styles');
 assert.ok(worker.includes('/theme-polish-v241.css')&&/sgbuddy-shell-v(5[3-9]|[6-9][0-9])/.test(worker),'Installed PWA hotfix cache missing');
