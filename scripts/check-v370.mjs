@@ -29,11 +29,11 @@ for(const selector of ['#modeText','#personaFocusTitle','#personaFocusCopy','#jo
 for(const token of ['SGBUDDY_CONTEXT_I18N','sgbuddy:language','MutationObserver','CONTEXT_MESSAGES','sourceOwned','matchTemplate','recommended'])
  assert.ok(bridge.includes(token),'Missing reactivity '+token);
 assert.ok(read('app-v090.js').includes("import('/app-i18n-context-v370.js')"));
-assert.ok(read('app-v090.js').includes("='3.11.0'"));
-assert.ok(read('index.html').includes('v3.11.0'));
+assert.ok(read('app-v090.js').includes("='3.12.0'"));
+assert.ok(read('index.html').includes('v3.12.0'));
 const sw=read('sw.js');
 for(const asset of ['/app-i18n-context-v370.js','/lib/i18n-context-v370.mjs'])assert.ok(sw.includes(asset),'Offline asset '+asset);
-assert.ok(sw.includes('sgbuddy-shell-v68'));
+assert.ok(sw.includes('sgbuddy-shell-v69'));
 assert.ok(read('scripts/inspect-js-localization-v370.mjs').includes('untriagedCount'));
 assert.ok(read('scripts/export-native-review-v370.mjs').includes("status:'pending'"));
 const review=read('docs/native-review-v370.csv').trim().split('\n');
