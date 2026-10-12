@@ -227,25 +227,56 @@ if(core){
     '<div id="v110CompareResults" class="compare-results"><div class="empty-inline">Use Locate, enter a destination, then compare the available travel options.</div></div>';
   $('#transportSection')?.insertAdjacentElement('afterend',compare);
 
+  const dt=(key,english,fields={})=>window.SGBUDDY_DYNAMIC_I18N?.text(key,fields)||
+    String(english).replace(/\{(\w+)\}/g,(m,k)=>Object.hasOwn(fields,k)?String(fields[k]):m);
+  let lastComparison=null;
   function modeCard(label,badge,time,meta,cost,note,fast){
-    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+badge+'</span><strong>'+label+'</strong></div>'+(fast?'<b>'+lp('fastest')+'</b>':'')+'</div><div class="compare-time">'+time+'</div><div class="compare-meta">'+meta+'</div>'+(cost?'<div class="compare-cost">'+cost+'</div>':'')+'<small>'+note+'</small></article>';
+    // Source-owned result details are plain text. Never inject route/operator HTML.
+    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+escText(badge)+'</span><strong>'+escText(label)+'</strong></div>'+(fast?'<b>'+escText(lp('fastest'))+'</b>':'')+'</div><div class="compare-time">'+escText(time)+'</div><div class="compare-meta">'+escText(meta)+'</div>'+(cost?'<div class="compare-cost">'+escText(cost)+'</div>':'')+'<small>'+escText(note||'')+'</small></article>';
+  }
+  function renderComparison(payload,destination){
+    const p=payload,host=$('#v110CompareResults');if(!host)return;
+    const minutes=count=>dt('minute','{count} min',{count});
+    const cards=[];
+    if(p.walking){
+      const x=p.walking;
+      cards.push(modeCard(lp('walk'),'🚶',minutes(x.minutes),(x.routed?lp('walkingRoute'):lp('estimatedWalk'))+' · '+distance(x.distanceM),dt('noFare','No fare'),x.note,p.fastestEstimate==='walk'));
+    }
+    if(p.publicTransport){
+      const x=p.publicTransport;
+      const transfers=dt(x.transfers===1?'transferOne':'transferMany',x.transfers===1?'{count} transfer':'{count} transfers',{count:x.transfers});
+      cards.push(modeCard(lp('transit'),'▰',minutes(x.minutes),(x.title||dt('routeDefault','Route'))+' · '+dt('walkingMinute','{count} min walk',{count:x.walkMinutes})+' · '+transfers,dt('adultFare','Approx. SGD {amount} adult card fare',{amount:Number(x.fareEstimateSgd||0).toFixed(2)}),x.note,p.fastestEstimate==='public'));
+    }
+    if(p.drive){
+      const x=p.drive;
+      cards.push(modeCard(lp('drive'),'🚗',minutes(x.minutes),(x.routed?lp('roadRoute'):lp('estimatedTime'))+' · '+(x.distanceM?distance(x.distanceM):dt('distanceMissing','distance unavailable'))+' · '+dt('parkingAllowance','includes {count} min parking/walk',{count:x.parkingAllowanceMinutes}),dt('parkingUnpriced','Fuel and parking not estimated'),x.note,p.fastestEstimate==='drive'));
+    }
+    if(p.rideshare){
+      const x=p.rideshare;
+      cards.push(modeCard(lp('ride'),'↗',dt('minute','{count} min',{count:x.minutesLow+'–'+x.minutesHigh}),(x.routed?lp('roadRoute'):lp('estimatedTime'))+' · '+dt('pickupAllowance','includes {low}–{high} min pickup',{low:x.pickupLowMinutes,high:x.pickupHighMinutes}),x.taxiMeterBaselineSgd?dt('meterBaseline','Meter baseline approx. SGD {amount} before extras',{amount:Number(x.taxiMeterBaselineSgd).toFixed(2)}):dt('providerFare','Check provider app for fare'),x.note,p.fastestEstimate==='rideshare'));
+    }
+    // p.disclaimer and notes are preserved verbatim; only our labels are localized.
+    host.innerHTML=cards.join('')+'<div class="compare-disclaimer">'+escText(p.disclaimer||'')+'</div><button id="v110OpenTransitRoute" class="secondary full" type="button">Open detailed public-transport route</button>';
+    $('#v110OpenTransitRoute')?.addEventListener('click',()=>{if($('#tripTo'))$('#tripTo').value=destination;$('#planTrip')?.click();$('#travelSection')?.scrollIntoView({behavior:'smooth',block:'start'})});
+    window.SGBUDDY_SYSTEM_I18N?.refresh();
   }
   async function compareWays(){
-    const input=$('#v110CompareDestination'),dest=input?.value.trim();if(!dest)return toast('Add a destination first.');
-    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){toast('Use Locate first so SGBuddy can compare from where you are.');return}
-    const button=$('#v110CompareButton'),host=$('#v110CompareResults');button.disabled=true;button.textContent=lp('comparing');host.innerHTML='<div class="empty-inline">Comparing walk, public transport and road options…</div>';
+    const input=$('#v110CompareDestination'),dest=input?.value.trim();
+    if(!dest)return toast(dt('needDestination','Add a destination first.'));
+    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){toast(dt('needLocation','Use Locate first so SGBuddy can compare from where you are.'));return}
+    const button=$('#v110CompareButton'),host=$('#v110CompareResults');
+    lastComparison=null;button.disabled=true;button.textContent=lp('comparing');
+    host.innerHTML='<div class="empty-inline">Comparing walk, public transport and road options…</div>';
     try{
       const p=await json('/api/journey?action=compare&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&to='+encodeURIComponent(dest));
-      const cards=[];
-      if(p.walking){const x=p.walking;cards.push(modeCard('Walk','🚶',x.minutes+' min',(x.routed?'Walking route':'Estimated walking route')+' · '+distance(x.distanceM),'No fare',x.note,p.fastestEstimate==='walk'))}
-      if(p.publicTransport){const x=p.publicTransport;cards.push(modeCard('Public transport','▰',x.minutes+' min',(x.title||'Route')+' · '+x.walkMinutes+' min walk · '+x.transfers+' transfer'+(x.transfers===1?'':'s'),'Approx. SGD '+Number(x.fareEstimateSgd||0).toFixed(2)+' adult card fare',x.note,p.fastestEstimate==='public'))}
-      if(p.drive){const x=p.drive;cards.push(modeCard('Drive','🚗',x.minutes+' min',(x.routed?'Road-routed':'Estimated')+' · '+(x.distanceM?distance(x.distanceM):'distance unavailable')+' · includes '+x.parkingAllowanceMinutes+' min parking/walk','Fuel and parking not estimated',x.note,p.fastestEstimate==='drive'))}
-      if(p.rideshare){const x=p.rideshare;cards.push(modeCard('Taxi / rideshare','↗',x.minutesLow+'–'+x.minutesHigh+' min',(x.routed?'Road-routed':'Estimated')+' · includes '+x.pickupLowMinutes+'–'+x.pickupHighMinutes+' min pickup',x.taxiMeterBaselineSgd?'Meter baseline approx. SGD '+Number(x.taxiMeterBaselineSgd).toFixed(2)+' before extras':'Check provider app for fare',x.note,p.fastestEstimate==='rideshare'))}
-      host.innerHTML=cards.join('')+'<div class="compare-disclaimer">'+escText(p.disclaimer||'')+'</div><button id="v110OpenTransitRoute" class="secondary full" type="button">Open detailed public-transport route</button>';
-      $('#v110OpenTransitRoute')?.addEventListener('click',()=>{if($('#tripTo'))$('#tripTo').value=dest;$('#planTrip')?.click();$('#travelSection')?.scrollIntoView({behavior:'smooth',block:'start'})});
-    }catch(error){host.innerHTML='<div class="empty-inline error-state">'+escText(error.message)+'</div>'}
-    finally{button.disabled=false;button.textContent=lp('compare')}
+      lastComparison={p,dest};renderComparison(p,dest);
+    }catch(error){
+      // API/provider-owned error content is not translated; escape untrusted HTML.
+      host.innerHTML='<div class="empty-inline error-state">'+escText(error.message)+'</div>';
+    }finally{button.disabled=false;button.textContent=lp('compare')}
   }
+  document.addEventListener('sgbuddy:language',()=>{if(lastComparison)renderComparison(lastComparison.p,lastComparison.dest)});
+  document.addEventListener('sgbuddy:translations-ready',()=>{if(lastComparison)renderComparison(lastComparison.p,lastComparison.dest)});
   $('#v110CompareButton')?.addEventListener('click',compareWays);
   $('#v110CompareDestination')?.addEventListener('keydown',e=>{if(e.key==='Enter')compareWays()});
 
