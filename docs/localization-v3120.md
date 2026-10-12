@@ -8,7 +8,7 @@ Development branch from released V3.11: b76b46dd3f0e2f570cfac8632e6392661381b81a
 
 - `node scripts/check-v3120.mjs` — complete per-language keys, field interpolation and wiring.
 - `node scripts/check-all.mjs` — existing complete static regression suite plus new assertions.
-- Existing V3.11 browser tests remain active; browser QA for the new generated surfaces is required before production.
+- Existing V3.11 browser tests remain active; `node scripts/browser-qa-v3120.mjs` checks generated screens in 12 languages at mobile/desktop widths. Native review remains pending.
 
 ## Remaining audit gaps
 
