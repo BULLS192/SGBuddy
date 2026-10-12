@@ -23,8 +23,8 @@ assert.ok(app.includes('new MutationObserver(schedule)'),'Dynamic UI changes mus
 assert.ok(app.includes('doc.documentElement.lang=locale'),'HTML lang attribute must update');
 assert.ok(!app.includes("['#navMoney'"),'Do not recreate the Saved/Money navigation regression');
 assert.ok(app.includes("['#fxConvert','convert']")&&app.includes("['#planTrip','planWith']"),'Core controls not translated');
-assert.ok(boot.includes("import('/app-i18n-v290.js')")&&boot.includes("3.5.0"),'V2.9 module not loaded');
-assert.ok(html.includes('v3.5.0'));
+assert.ok(boot.includes("import('/app-i18n-v290.js')")&&boot.includes("3.6.0"),'V2.9 module not loaded');
+assert.ok(html.includes('v3.6.0'));
 for(const asset of ['/app-i18n-v290.js','/lib/i18n-interface-v290.mjs'])assert.ok(sw.includes(asset),'Offline localization asset missing '+asset);
-assert.ok(sw.includes('sgbuddy-shell-v64'),'Installed PWA must refresh');
+assert.ok(sw.includes('sgbuddy-shell-v65'),'Installed PWA must refresh');
 console.log('SGBuddy V2.9 PASS: 12 locale dictionaries, 59 UI keys each, dynamic UI updates, Saved/Money isolation and PWA cache.');
