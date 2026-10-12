@@ -28,5 +28,5 @@ for(const locale of locales){
 assert.equal(report.locales.en.byArea.authoredUiCatalogue.total,393);
 assert.ok(report.repositoryScope.activeApiJsFiles>=1);
 assert.ok(report.identifiedEditorialUnknown.byFile['data/services-v210.json']>=0);
-assert.ok(readFileSync('docs/localization-audit-v380.md','utf8').includes('not the entire app'));
+assert.ok(readFileSync('docs/localization-audit-v380.md','utf8').includes('globalWholeAppCompletionPercent'));
 console.log('V3.8 AUDIT PASS: '+report.classifiedEligibleEntries+' classified source-authored items across 12 locales; '+report.identifiedEditorialUnknown.uniqueTextFields+' editorial fields awaiting review; global percentage intentionally null.');
