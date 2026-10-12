@@ -4,6 +4,8 @@ import { readdirSync } from 'node:fs';
 function run(file){ execFileSync(process.execPath,['--check',file],{stdio:'inherit'}); }
 execFileSync(process.execPath,['scripts/check-ui.mjs'],{stdio:'inherit'});
 run('app-v090.js');
+run('merli-avatar-v3111.js');
+execFileSync(process.execPath,['scripts/check-merli-v3111.mjs'],{stdio:'inherit'});
 run('app-v100.js');
 run('app-v110.js');
 run('app-v120.js');
