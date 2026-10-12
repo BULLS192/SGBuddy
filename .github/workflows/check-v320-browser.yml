@@ -51,6 +51,10 @@ on:
       - 'lib/i18n-ux-v311.mjs'
       - 'app-i18n-ux-v311.js'
       - 'scripts/check-v311-ux.mjs'
+      - 'lib/i18n-v312.mjs'
+      - 'app-i18n-v312.js'
+      - 'scripts/check-v3120.mjs'
+      - 'scripts/browser-qa-v3120.mjs'
       - 'lib/i18n-home-v311.mjs'
       - 'lib/i18n-weather-home-v311.mjs'
       - 'app-i18n-home-v311.js'
@@ -100,3 +104,6 @@ jobs:
         run: node scripts/browser-qa-v310-home.mjs
       - name: V3.11 home screen 12-locale mobile and desktop runtime QA
         run: node scripts/browser-qa-v3110.mjs
+
+      - name: V3.12 generated Saved, trip and journey localization QA
+        run: node scripts/browser-qa-v3120.mjs

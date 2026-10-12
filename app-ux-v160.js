@@ -305,12 +305,12 @@ function renderSaved(){
  const record=catalog?.places?.find(p=>p.id===id)||catalog?.apps?.find(a=>a.id===id)||catalog?.facts?.find(f=>f.id===id);
  if(!record)continue;
  const kind=id.startsWith('FACT')?'fact':id.startsWith('APP')?'app':'place';
- rows.push({kind,id,name:record.name||record.text||'Singapore fact',note:kind==='fact'?'Verified/source-reviewed fact':record.area||record.category||'Saved item'});
+ rows.push({kind,id,name:record.name||record.text||window.SGBUDDY_V312?.text(window.SGBUDDY_LANGUAGE,'savedFact')||'Singapore fact',note:kind==='fact'?(window.SGBUDDY_V312?.text(window.SGBUDDY_LANGUAGE,'verifiedFact')||'Verified/source-reviewed fact'):record.area||record.category||(window.SGBUDDY_V312?.text(window.SGBUDDY_LANGUAGE,'savedItem')||'Saved item')});
  }
  for(const id of index){if(!id.startsWith('INDEX:'))continue;const source=(core.state.v110Places||[]).find(p=>placeIndexKey(p.name)===id);
- rows.push({kind:'index',id:source?.name||id.slice(6),name:source?.name||id.slice(6),note:source?.category||'Saved nearby place'});
+ rows.push({kind:'index',id:source?.name||id.slice(6),name:source?.name||id.slice(6),note:source?.category||(window.SGBUDDY_V312?.text(window.SGBUDDY_LANGUAGE,'savedNearby')||'Saved nearby place')});
  }
- el.innerHTML=rows.length?rows.map(r=>'<article class="ux-saved-item card"><strong>'+esc(r.name)+'</strong><small>'+esc(r.note)+'</small><button type="button" data-ux-open-saved="'+esc(r.kind)+'" data-ux-saved-id="'+esc(r.id)+'">Open details →</button></article>').join(''):'<div class="ux-saved-empty">'+esc(shellLocale(window.SGBUDDY_LANGUAGE).emptySaved)+'</div>';
+ el.innerHTML=rows.length?rows.map(r=>'<article class="ux-saved-item card"><strong>'+esc(r.name)+'</strong><small>'+esc(r.note)+'</small><button type="button" data-ux-open-saved="'+esc(r.kind)+'" data-ux-saved-id="'+esc(r.id)+'">'+esc(window.SGBUDDY_V312?.text(window.SGBUDDY_LANGUAGE,'openDetails')||'Open details →')+'</button></article>').join(''):'<div class="ux-saved-empty">'+esc(shellLocale(window.SGBUDDY_LANGUAGE).emptySaved)+'</div>';
 }
 document.addEventListener('sgbuddy:knowledge-saved',renderSaved);
 document.addEventListener('sgbuddy:persona',()=>{renderSaved();syncKnowledge()});

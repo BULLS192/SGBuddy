@@ -11,6 +11,8 @@ run('app-v110.js');
 run('app-v120.js');
 run('app-v130.js');
 run('app-v140.js');
+run('app-i18n-v312.js');
+run('lib/i18n-v312.mjs');
 run('app-ux-v160.js');
 run('app-ux-v170.js');
 run('app-i18n-ux-v311.js');
@@ -95,6 +97,7 @@ execFileSync(process.execPath,['scripts/check-v310-home.mjs'],{stdio:'inherit'})
 execFileSync(process.execPath,['scripts/check-v310-weather.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v311-ux.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3110.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v3120.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});
