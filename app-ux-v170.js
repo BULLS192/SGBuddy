@@ -112,8 +112,8 @@ if(explore){
 function renderPersona(){
  const c=cfg();
  const heading=title?.querySelector('h2'),sub=title?.querySelector('p');
- if(heading)heading.textContent=contextual('title');
- if(sub)sub.textContent=contextual('copy');
+ // Keep the existing shell-localized homepage heading/subtitle; that surface
+ // already has complete 12-locale coverage and should not be overwritten here.
  if($('#uxPersonaName'))$('#uxPersonaName').textContent=contextual('panelLabel');
  if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=contextual('copy');
  if($('#uxAccountMode'))$('#uxAccountMode').textContent=modeLabel();
