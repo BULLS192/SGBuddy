@@ -27,7 +27,7 @@ async function check(viewport){
     ['#uxMerliHomeCopy',homeText(code,'merliResident')],
     ['#uxMerliHomeAsk',homeText(code,'askMerli')],
     ['#uxExtraConditions > summary',homeText(code,'weatherInsights')],
-    ['#transportSection .manual.card > div:first-child h3',homeText(code,'stationName')],
+    ['section.manual.card > div:first-child h3',homeText(code,'stationName')],
     ['#todaySection .hero-row > div:first-child .label',homeText(code,'currentContext')],
     ['#todaySection .hero-grid > div:nth-child(2) .metric-label',homeText(code,'railStatus')]
    ];

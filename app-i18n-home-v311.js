@@ -10,8 +10,8 @@ import {contextMode} from './lib/i18n-context-v370.mjs';
  const doc=document, locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
  const variants=Object.fromEntries(HOME_KEYS.map(key=>[key,new Set(Object.values(HOME_MESSAGES).map(pack=>pack[key]))]));
  const sources=[
-  ['#transportSection .manual.card > div:first-child .label','stationEyebrow'],
-  ['#transportSection .manual.card > div:first-child h3','stationName'],
+  ['section.manual.card > div:first-child .label','stationEyebrow'],
+  ['section.manual.card > div:first-child h3','stationName'],
   ['#railForm button','stationCheck'],
   ['#todaySection .hero-row > div:first-child .label','currentContext'],
   ['#placeLabel','nearYou'],
