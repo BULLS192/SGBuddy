@@ -30,6 +30,14 @@ try{
   await equals('#v110CompareCard > p',systemText(code,'compareDescription'));
   await page.waitForFunction(expected=>document.querySelector('#v110CompareDestination')?.placeholder===expected,systemText(code,'comparePlaceholder'),{timeout:14000});
   await equals('#v110PlaceSort option[value="best"]',systemText(code,'sortBest'));
+  await page.evaluate(source=>{document.querySelector('#profileId').textContent=source},SYSTEM_ENGLISH.notLinked);
+  await equals('#profileId',systemText(code,'notLinked'));
+  await page.evaluate(source=>{document.querySelector('#v110CompareResults .empty-inline').textContent=source},SYSTEM_ENGLISH.compareEmpty);
+  await equals('#v110CompareResults .empty-inline',systemText(code,'compareEmpty'));
+  // Provider/device-owned IDs cannot be rewritten even if the locale changes.
+  await page.evaluate(()=>{document.querySelector('#profileId').textContent='SG-CUSTOM-4829';window.SGBUDDY_SYSTEM_I18N.refresh()});
+  await page.waitForTimeout(50);
+  assert.equal(await page.locator('#profileId').textContent(),'SG-CUSTOM-4829','Preserve profile ID '+code);
   // Simulate the legacy device-sync renderer: exact first-party messages
   // should translate, but raw account/user information must remain intact.
   await page.evaluate(original=>{
@@ -58,6 +66,24 @@ try{
  await page.waitForFunction(()=>Boolean(window.SGBUDDY_SYSTEM_I18N),{timeout:14000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Locale must persist across reloads');
  await equals('#accountSheetTitle',systemText('pt-BR','accountTitle'));
+ // Exercise all twelve dictionaries at desktop width as well as on mobile.
+ const desktopContext=await browser.newContext({viewport:{width:1366,height:900},locale:'en-SG'});
+ await desktopContext.addInitScript(()=>{
+  localStorage.setItem('sgc-persona-onboarded','1');
+  localStorage.setItem('sgc-mode','visitor');
+  localStorage.setItem('sgc-location-choice','not-now');
+ });
+ const desktop=await desktopContext.newPage();
+ desktop.on('pageerror',error=>errors.push('desktop: '+error.message));
+ await desktop.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
+ await desktop.waitForFunction(()=>Boolean(window.SGBUDDY_SYSTEM_I18N)&&!!document.querySelector('#v110CompareCard'),{timeout:30000});
+ for(const {code} of LOCALES){
+  await desktop.locator('#sgbLanguage').selectOption(code);
+  await desktop.waitForFunction(expected=>document.querySelector('#accountSheetTitle')?.textContent?.trim()===expected,systemText(code,'accountTitle'),{timeout:14000});
+  await desktop.waitForFunction(expected=>document.querySelector('#v110CompareCard .compare-head h3')?.textContent?.trim()===expected,systemText(code,'compareHeadline'),{timeout:14000});
+  assert.equal(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+8),true,'Desktop horizontal overflow '+code);
+ }
+ await desktopContext.close();
  assert.deepEqual(errors,[],'Browser threw uncaught exceptions');
- console.log('V3.3 CHROMIUM PASS: 12 languages, signed-out account information, compare panel, sorting, dynamic cloud note, safe user input, responsive layout, original provider text and reload persistence.');
+ console.log('V3.3 CHROMIUM PASS: all 12 languages at mobile and desktop widths, account/compare UI, unlinked profile label, preserved profile IDs, source-locked empty states, dynamic cloud note, safe inputs, no horizontal overflow, original provider text and reload persistence.');
 }finally{await browser.close()}

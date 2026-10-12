@@ -21,6 +21,9 @@ for(const key of ['accountTitle','accountIntro','accountVerificationNote','accou
 for(const key of ['compareTitle','compareHeadline','compareDescription','comparePlaceholder','sortBest','sortNearest'])assert.ok(bridge.includes("'"+key+"'"),'Unbound place UI phrase '+key);
 for(const selector of ['#profileDescription','#profileSyncBadge','#v110CompareResults .empty-inline','#v110OpenTransitRoute'])assert.ok(bridge.includes(selector),'Missing first-party dynamic text binding '+selector);
 assert.ok(bridge.includes('SYSTEM_SOURCE_KEYS[current]'),'Dynamic messages must use exact source lookup');
+assert.ok(bridge.includes("'#profileId','notLinked'"),'Unbound legacy unlinked-profile state');
+assert.ok(compare.includes(SYSTEM_ENGLISH.compareEmpty),'Transport comparison empty message differs from source-locked catalogue');
+assert.ok(!SYSTEM_ENGLISH.compareEmpty.includes('three modes'),'Comparison must not promise three modes when four may be available');
 assert.ok(!bridge.includes('document.body.innerHTML'),'Do not blindly translate all page contents');
 for(const key of ['accountTitle','accountIntro','accountVerificationNote','accountOfflineNote'])assert.ok(html.includes(SYSTEM_ENGLISH[key]),'Published account original unexpectedly changed '+key);
 for(const key of ['compareTitle','compareHeadline','compareDescription','comparePlaceholder'])assert.ok(compare.includes(SYSTEM_ENGLISH[key]),'Original compare UI text unexpectedly changed '+key);

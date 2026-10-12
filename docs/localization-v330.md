@@ -17,7 +17,7 @@ The new app module `app-i18n-system-v330.js` is loaded after the existing app UI
 ## Coverage reports
 
 - `node scripts/localization-report-v310.mjs --json` measures known source-locked content categories, including verified facts, core-app summaries, food descriptions and historical stall notes.
-- `node scripts/localization-inventory-v330.mjs --json` reports exact, **per-locale completeness of nine declared first-party message packs**, together with a review queue of candidate English-only app literals.
+- `node scripts/localization-inventory-v330.mjs --json` reports exact, **per-locale completeness of nine declared first-party message packs**, together with counts of entries unchanged from English (a review queue, not automatic proof of missing translation) and candidate English-only app literals.
 - `node scripts/localization-inventory-v330.mjs --out=artifacts/coverage.json` emits a machine-readable report. Create the destination directory before running it.
 
 **Neither report measures overall app translation percentage.** Uncatalogued UI fragments, error payloads, dynamic third-party content, server responses, long-form Merli output and native-speaker accuracy have not been assigned a defensible denominator. Do not promote a manually estimated 65%, 80% or 100% as a measured production-wide figure. The V3.3 report is the baseline for systematic completion.
@@ -31,7 +31,7 @@ node scripts/check-all.mjs
 node scripts/browser-qa-v330.mjs
 ```
 
-The browser test uses mobile Chromium and a local HTTP server on port 8765; it checks all 12 locales, account and comparison UI, source-locked device sync, original vendor errors, unaltered entered destinations, mobile overflow and locale persistence after reload. CI runs the test in the existing V3.2/V3.3 browser workflow.
+The browser test uses mobile and desktop Chromium viewports and a local HTTP server on port 8765; it checks all 12 locales, account and comparison UI, the localized unlinked-profile label without changing real IDs, source-locked device sync, original vendor errors, unaltered entered destinations, viewport overflow and locale persistence after reload. The compare prompt no longer incorrectly promises only three modes when four may be returned. CI runs the test in the existing V3.2/V3.3 browser workflow.
 
 ## Beyond this wave
 

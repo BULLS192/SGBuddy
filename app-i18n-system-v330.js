@@ -17,6 +17,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#accountSyncButton','accountSyncAction'],
   ['#accountHubOpen','accountHubOpen'],
   ['#accountHubCopy','accountHubIntro'],
+  ['#profileId','notLinked'],
   ['#v110CompareCard .compare-head .label','compareTitle'],
   ['#v110CompareCard .compare-head h3','compareHeadline'],
   ['#v110CompareCard > p','compareDescription'],
@@ -55,7 +56,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
  }
  doc.addEventListener('sgbuddy:language',schedule);
  doc.addEventListener('sgbuddy:persona',schedule);
- const targets=['#accountSheet','#accountSection','#v110CompareCard','#v110PlaceFilters','#profileDescription','#profileSyncBadge'];
+ const targets=['#accountSheet','#accountSection','#v110CompareCard','#v110PlaceFilters','#profileDescription','#profileSyncBadge','#profileId'];
  for(const selector of targets){const target=doc.querySelector(selector);if(target)new MutationObserver(schedule).observe(target,{childList:true,subtree:true,characterData:true,attributes:false})}
  // The comparison card can be mounted after translations initialize.
  // v1.1 mounts synchronously before this module, but expose refresh for future additions.

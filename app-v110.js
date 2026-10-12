@@ -224,7 +224,7 @@ if(core){
   compare.innerHTML='<div class="compare-head"><div><div class="label">COMPARE WAYS TO GO</div><h3>Walk · transit · drive · ride</h3></div><span class="reference-badge">Planning</span></div>'+
     '<p>Compare walking, public transport, driving and taxi/rideshare. SGBuddy highlights the fastest practical estimate and labels estimated road/walking data when OneMap routing is not configured.</p>'+
     '<div class="compare-input-row"><input id="v110CompareDestination" autocomplete="off" placeholder="Where are you going?"/><button id="v110CompareButton" class="primary" type="button">Compare</button></div>'+
-    '<div id="v110CompareResults" class="compare-results"><div class="empty-inline">Use Locate, enter a destination, then compare all three modes.</div></div>';
+    '<div id="v110CompareResults" class="compare-results"><div class="empty-inline">Use Locate, enter a destination, then compare the available travel options.</div></div>';
   $('#transportSection')?.insertAdjacentElement('afterend',compare);
 
   function modeCard(label,badge,time,meta,cost,note,fast){

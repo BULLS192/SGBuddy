@@ -30,12 +30,17 @@ for(const {code} of LOCALES){
  for(const pack of packs){
   const dictionary=pack.get(code)||{};
   const missing=pack.keys.filter(key=>!String(dictionary[key]||'').trim());
-  byPack[pack.name]={defined:pack.keys.length,translated:pack.keys.length-missing.length,missing};
+  // Identical strings may be intentional names/technical terms or untranslated text.
+  // Flag for human review rather than treating these as confirmed untranslated.
+  const english=pack.get('en')||{};
+  const unchangedEnglish=code==='en'?[]:pack.keys.filter(key=>String(dictionary[key]||'').trim()===String(english[key]||'').trim());
+  byPack[pack.name]={defined:pack.keys.length,translated:pack.keys.length-missing.length,missing,unchangedEnglish};
  }
  const values=Object.values(byPack);
  completeness[code]={
   byPack,declaredKeys:values.reduce((a,x)=>a+x.defined,0),
   filledKeys:values.reduce((a,x)=>a+x.translated,0),
+  unchangedEnglishKeys:values.reduce((a,x)=>a+x.unchangedEnglish.length,0),
   missingKeys:values.flatMap(x=>x.missing)
  };
 }
@@ -86,7 +91,7 @@ if(process.argv.includes('--json'))process.stdout.write(output);
 else {
  console.log('SGBuddy V3.3 LOCALIZATION INVENTORY (scoped, not full-app coverage)');
  console.log('Key groups: '+packs.map(x=>x.name+':'+x.keys.length).join(', '));
- console.log('Each locale registered: '+completeness.en.filledKeys+' / '+completeness.en.declaredKeys+' keys.');
+ for(const code of report.locales){const r=completeness[code];console.log(code+': '+r.filledKeys+'/'+r.declaredKeys+' registered keys; '+r.unchangedEnglishKeys+' identical-to-English entries for human review');}
  console.log('Unresolved first-party literal review examples: '+samples.length+' (not a global denominator).');
  console.log('This inventory DOES NOT justify a whole-product translation percentage.');
 }
