@@ -14,7 +14,7 @@ page.on('pageerror',error=>errors.push(error.message));
 const awaitVisible=selector=>page.locator(selector).waitFor({state:'visible',timeout:25000});
 try {
  await page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>/^v(?:2\.(5|6|7|8|9)|3\.(0|1|2|3))\.[0-9]+$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
+ await page.waitForFunction(()=>/^v(?:2\.(5|6|7|8|9)|3\.(0|1|2|3|4))\.[0-9]+$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
  const location=page.locator('#locationSheet');
  await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
@@ -35,7 +35,7 @@ try {
  assert.equal(await page.locator('#navPlaces span').textContent(),'探索');
  await page.locator('[data-prep-check="phone"]').check();
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>/^v(?:2\.(5|6|7|8|9)|3\.(0|1|2|3))\.[0-9]+$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
+ await page.waitForFunction(()=>/^v(?:2\.(5|6|7|8|9)|3\.(0|1|2|3|4))\.[0-9]+$/.test(document.querySelector('#appVersion')?.textContent||''),{timeout:30000});
  await page.locator('#navPlaces').click();
  await page.locator('[data-discover-tab="travel"]').click();
  await awaitVisible('#travelEssentials');

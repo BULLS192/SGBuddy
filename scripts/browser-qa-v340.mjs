@@ -40,6 +40,7 @@ try{
   window.SGBUDDY_CORE.state.weather={area:'Singapore',summary:'Provider summary',airQuality:{region:'South'},travelRisk:{level:'watch',message:'Provider warning'}};
   document.dispatchEvent(new Event('sgbuddy:translations-ready'));
  });
+ await page.locator('#navMove').click();
  await page.locator('#v110CompareDestination').fill('Marina Bay Sands');
  await page.locator('#v110CompareButton').click();
  await page.waitForFunction(()=>document.querySelectorAll('#v110CompareResults .compare-mode').length===4,{timeout:16000});
