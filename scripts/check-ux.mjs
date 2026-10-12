@@ -4,7 +4,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 const ui=read('app-ux-v160.js'),css=read('ux-v160.css'),bootstrap=read('app-v090.js');
 const html=read('index.html'),sw=read('sw.js'),legacy=read('app-v140.js');
 assert.ok(html.includes('/ux-v160.css'),'UX stylesheet missing from HTML');
-assert.ok(bootstrap.includes("import('/app-v140.js')).then(()=>import('/app-ux-v160.js')"),'UX enhancement must load after Merli');
+assert.ok(bootstrap.includes("import('/app-v140.js')).then(()=>import('/app-i18n-v312.js')).then(()=>import('/app-ux-v160.js')"),'UX enhancement must load after Merli');
 assert.ok(sw.includes('/app-ux-v160.js')&&sw.includes('/ux-v160.css'),'Offline shell must contain UX assets');
 const version=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
 assert.ok(version>=41,'Service worker cache must advance beyond the baseline (v41+)');
