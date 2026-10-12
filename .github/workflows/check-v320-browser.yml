@@ -41,6 +41,12 @@ on:
       - 'scripts/browser-qa-v390.mjs'
       - 'scripts/check-v390.mjs'
       - 'scripts/classify-localization-v390.mjs'
+      - 'lib/i18n-home-v311.mjs'
+      - 'lib/i18n-weather-home-v311.mjs'
+      - 'app-i18n-home-v311.js'
+      - 'app-ux-v170.js'
+      - 'scripts/check-v3110.mjs'
+      - 'scripts/browser-qa-v3110.mjs'
       - 'scripts/inspect-js-localization-v370.mjs'
       - 'scripts/export-native-review-v370.mjs'
 permissions:
@@ -80,3 +86,5 @@ jobs:
         run: node scripts/browser-qa-v370.mjs
       - name: V3.9 twelve-language fallback and source-protection Chromium QA
         run: node scripts/browser-qa-v390.mjs
+      - name: V3.11 home screen 12-locale mobile and desktop runtime QA
+        run: node scripts/browser-qa-v3110.mjs
