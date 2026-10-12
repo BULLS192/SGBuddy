@@ -4,6 +4,7 @@ import {LOCALES} from '../lib/i18n-v280.mjs';
 import {contextMode} from '../lib/i18n-context-v370.mjs';
 import {homeText} from '../lib/i18n-home-v311.mjs';
 import {weatherTerm} from '../lib/i18n-weather-home-v311.mjs';
+import {uxText} from '../lib/i18n-ux-v311.mjs';
 const browser=await chromium.launch({headless:true});
 async function check(viewport){
  const ctx=await browser.newContext({viewport,locale:'en-SG'});
@@ -35,6 +36,19 @@ async function check(viewport){
     const diff=await page.evaluate(rows=>rows.filter(([selector,expected])=>document.querySelector(selector)?.textContent?.trim()!==expected).map(([selector,expected])=>({selector,expected,actual:document.querySelector(selector)?.textContent?.trim()})),checks);
     console.error('V3.11 HOME MISMATCH',JSON.stringify({code,viewport,diff,errors}));throw error;
    });
+   for(const [selector,key] of [['#uxMerliMore','moreWays'],['#uxAccountContext','accountContext'],['#uxAccountCopy','accountCopy']]){
+    assert.equal((await page.locator(selector).textContent()).trim(),uxText(code,key),code+'/'+key);
+   }
+   assert.equal(await page.locator('#uxMerliSuggestions').getAttribute('aria-label'),uxText(code,'suggestedActions'));
+   assert.equal(await page.locator('#uxMerliHomeDismiss').getAttribute('aria-label'),uxText(code,'dismissTip'));
+   await page.locator('#uxMerliMore').click();
+   assert.equal((await page.locator('#uxMerliMore').textContent()).trim(),uxText(code,'hideExtra'));
+   await page.locator('#uxMerliMore').click();
+   for(const mode of ['visitor','executive','student','resident']){
+    await page.evaluate(value=>{window.SGBUDDY_CORE.state.mode=value;document.dispatchEvent(new Event('sgbuddy:persona'))},mode);
+    await page.waitForFunction(expected=>document.querySelector('#uxPersonaName')?.textContent?.includes(expected),contextMode(code,mode,'label'),{timeout:4500});
+    assert.equal((await page.locator('#uxMerliMore').textContent()).trim(),uxText(code,'moreWays'));
+   }
    const shortcuts=await page.locator('.ux-primary-shortcuts .ux-shortcut').count();
    assert.equal(shortcuts,4,'Four resident-mode quick actions '+code);
    await page.waitForFunction(expected=>document.querySelector('[data-ux-go="apps"] .ux-shortcut-copy strong')?.textContent===expected,homeText(code,'shortcutApps'),{timeout:5000});

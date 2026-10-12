@@ -53,6 +53,7 @@ const MODES={
 const safeMode=()=>Object.prototype.hasOwnProperty.call(MODES,state.mode)?state.mode:'resident';
 const cfg=()=>MODES[safeMode()];
 const language=()=>window.SGBUDDY_LANGUAGE||'en';
+const ut=key=>window.SGBUDDY_UX_LOCALE?.uxText?.(language(),key)||'';
 const ht=(key,fields)=>window.SGBUDDY_HOME_LOCALE?.homeText?.(language(),key,fields)||'';
 const modeText=field=>window.SGBUDDY_HOME_LOCALE?.contextMode?.(language(),safeMode(),field)||
   cfg()[{label:'label',title:'title',copy:'description',placesCopy:'prompt',panelCopy:'journey',placesTitle:'search'}[field]]||'';
@@ -82,7 +83,7 @@ if(section&&title){
 const account=$('#accountSection');
 if(account){
  personaSummary=document.createElement('section');personaSummary.className='ux-persona-preferences';
- personaSummary.innerHTML='<div><span class="label">YOUR CONTEXT</span><strong id="uxAccountMode"></strong><p>Recommendations follow your chosen mode. Your other saved preferences remain intact.</p></div><button type="button" id="uxAccountChangeMode">Change mode</button>';
+ personaSummary.innerHTML='<div><span class="label" id="uxAccountContext">YOUR CONTEXT</span><strong id="uxAccountMode"></strong><p id="uxAccountCopy">Recommendations follow your chosen mode. Your other saved preferences remain intact.</p></div><button type="button" id="uxAccountChangeMode">Change mode</button>';
  account.appendChild(personaSummary);
  $('#uxAccountChangeMode').addEventListener('click',openMode);
 }
@@ -108,6 +109,9 @@ function renderPersona(){
  if($('#uxPersonaName'))$('#uxPersonaName').textContent=label+(ht('modeSuffix')||' mode');
  if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=modeText('placesCopy');
  if($('#uxAccountMode'))$('#uxAccountMode').textContent=label;
+ if($('#uxAccountContext'))$('#uxAccountContext').textContent=ut('accountContext');
+ if($('#uxAccountCopy'))$('#uxAccountCopy').textContent=ut('accountCopy');
+ banner?.setAttribute('aria-label',ut('currentMode'));
  if($('#uxPersonaJourney'))$('#uxPersonaJourney').textContent=modeText('panelCopy');
  if($('#uxExploreMode'))$('#uxExploreMode').textContent=label;
  if($('#uxExploreHint'))$('#uxExploreHint').textContent=modeText('placesCopy');
@@ -125,7 +129,7 @@ function renderPersona(){
 }
 const panel=$('#buddyPanel');
 let merliContext=null,merliMore=null,showAllMerli=false;
-const buddyLabels={eat:'Find food',do:'Discover activities',shop:'Find shops',apps:'Useful apps',weather:'Air quality',transit:'Next train',fact:'Singapore fact',saved:'Saved facts',home:'Saved place'};
+const buddyKeys={eat:'findFood',do:'discoverActivities',shop:'findShops',apps:'usefulApps',weather:'airQuality',transit:'nextTrain',fact:'singaporeFact',saved:'savedFacts',home:'savedPlace'};
 if(panel){
  const group=panel.querySelector('.buddy-chips');
  merliContext=document.createElement('div');
@@ -162,17 +166,19 @@ function updateMerli(){
  if(!merliContext||!panel)return;
  const mode=cfg(),reading=validAir(),elevated=reading!==null&&reading>100;
  const actions=merliSuggestions();
- $('#uxMerliHeadline').textContent=elevated?'Check Singapore air quality':modeText('label')+' · '+(ht('askMerli')||'Ask Merli');
- $('#uxMerliCopy').textContent=elevated?'The latest available 24-hour PSI reading may affect prolonged outdoor plans. Open air quality to confirm the NEA guidance.':merliIntro();
+ $('#uxMerliHeadline').textContent=elevated?ut('airTitle'):modeText('label')+' · '+(ht('askMerli')||'Ask Merli');
+ $('#uxMerliCopy').textContent=elevated?ut('airCopy'):merliIntro();
  $('#uxMerliSuggestions').innerHTML=actions.map(x=>
- '<button type="button" data-ux-merli="'+x+'">'+escapeText(buddyLabels[x]||x)+'</button>').join('');
+ '<button type="button" data-ux-merli="'+x+'">'+escapeText(ut(buddyKeys[x])||x)+'</button>').join('');
  const all=panel.querySelector('.buddy-chips');
  if(all){
   all.hidden=!showAllMerli;
   all.querySelectorAll('button').forEach(b=>{b.hidden=false});
  }
+ $('#uxMerliSuggestions')?.setAttribute('aria-label',ut('suggestedActions'));
+ panel.querySelector('.buddy-chips')?.setAttribute('aria-label',ut('allActions'));
  if(merliMore){
-  merliMore.textContent=showAllMerli?'Hide extra actions':'More ways Merli can help';
+  merliMore.textContent=ut(showAllMerli?'hideExtra':'moreWays');
   merliMore.setAttribute('aria-expanded',String(showAllMerli));
  }
 }
@@ -194,6 +200,7 @@ function updateHint(){
  $('#uxMerliHomeTitle').textContent='Merli · '+modeText('label')+ht('merliTips');
  $('#uxMerliHomeCopy').textContent=merliIntro();
  $('#uxMerliHomeAsk').textContent=ht('askMerli');
+ $('#uxMerliHomeDismiss')?.setAttribute('aria-label',ut('dismissTip'));
 }
 // Nearby places use existing verified Place Index sources; mode-specific cues only
 // re-rank the fetched entries and never invent destinations or attributes.
