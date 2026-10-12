@@ -31,7 +31,7 @@ for(const {code} of LOCALES){
  assert.equal(translatedPsi(code,'145 · Unknown status'),'145 · Unknown status');
 }
 const ux=read('app-ux-v170.js'),home=read('app-i18n-home-v311.js'),boot=read('app-v090.js'),sw=read('sw.js');
-for(const k of ['homeShortcut(locale(),target)','contextual(\'title\')','sgbuddy:language','homeText(locale(),\'merliTips\''])
+for(const k of ['homeShortcut(locale(),target)','contextual(\'panelLabel\')','sgbuddy:language','homeText(locale(),\'merliTips\''])
  assert.ok(ux.includes(k),'Persona runtime: '+k);
 assert.ok(home.includes('MutationObserver')&&home.includes('PSI_CATEGORIES')&&home.includes('#nextUpTitle'));
 assert.ok(boot.includes("import('/app-i18n-home-v311.js')"),'Bootstrap missing');
