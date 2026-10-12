@@ -5,6 +5,7 @@
 import {HOME_KEYS,HOME_MESSAGES,homeText} from './lib/i18n-home-v3110.mjs';
 import {CORE_UI,coreUi} from './lib/i18n-interface-v290.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
+import {RUNTIME_MESSAGES,runtimeText} from './lib/i18n-runtime-v320.mjs';
 (()=>{
  'use strict';
  const doc=document,locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
@@ -26,6 +27,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#uxMerliHomeAsk','askMerli'],
   ['#uxChangeMode','changeMode'],
   ['#uxExploreModeChange','changeMode'],
+  ['#uxExtraConditions summary','weatherSection'],
   ['.ux-primary-shortcuts [data-ux-go="nearby"] strong','nearName'],
   ['.ux-primary-shortcuts [data-ux-go="nearby"] small','nearCopy'],
   ['.ux-primary-shortcuts [data-ux-go="eat"] strong','foodName'],
@@ -92,6 +94,51 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
    const found=text.match(expr);if(!found)continue;
    const next=homeText(locale(),'cloudyDay')+' · '+found[1]+'% '+homeText(locale(),'humidity')+' · '+found[2]+' mm '+homeText(locale(),'rain');
    if(next!==text)node.textContent=next;
+   return;
+  }
+ }
+ function applyPsiCategory(){
+  const node=doc.querySelector('#envPsi');if(!node)return;
+  const match=(node.textContent||'').trim().match(/^([0-9]{1,3}) · (.+)$/);
+  if(!match)return;
+  const keys=['psiGood','psiModerate','psiUnhealthy','psiVeryUnhealthy','psiHazardous'];
+  const key=keys.find(k=>packs.some(pack=>pack[k]===match[2]));
+  if(!key)return;
+  const next=match[1]+' · '+homeText(locale(),key);
+  if(node.textContent!==next)node.textContent=next;
+ }
+ function applyUpdated(){
+  const node=doc.querySelector('#updatedAt');if(!node)return;
+  const current=(node.textContent||'').trim();
+  for(const pack of Object.values(RUNTIME_MESSAGES)){
+   const template=pack.weatherUpdated;
+   if(!template||!template.includes('{time}'))continue;
+   const pattern=new RegExp('^'+escapes(template).replace('\\{time\\}','(.+?)')+'  for(const [selector,...keys] of slots)for(const node of doc.querySelectorAll(selector))applyOne(node,keys);
+  for(const [selector,key] of fromCore)applyCore(doc.querySelector(selector),key);
+  applyStationAction();
+  applyWeatherLabel();
+  applyPsiCategory();
+  applyUpdated();
+ }
+ let scheduled=false;
+ function schedule(){
+  if(scheduled)return;scheduled=true;
+  requestAnimationFrame(()=>{scheduled=false;try{apply()}catch(e){console.warn('Home locale update',e?.message)}});
+ }
+ for(const event of ['sgbuddy:language','sgbuddy:persona','sgbuddy:weather','sgbuddy:translations-ready','sgbuddy:location','sgbuddy:transport'])doc.addEventListener(event,schedule);
+ // Dynamically rendered widgets can overwrite captions after locale changes.
+ // Observe only explicit first-party UI hosts, never all of main/document body.
+ for(const selector of ['#todaySection','#nextUpCard','.manual.card','.ux-home-title','#uxPersonaBanner','.ux-primary-shortcuts','#uxMerliHint','#uxExtraConditions']){
+  const root=doc.querySelector(selector);if(root)new MutationObserver(schedule).observe(root,{subtree:true,childList:true,characterData:true});
+ }
+ window.SGBUDDY_HOME_I18N={locale,refresh:schedule,keys:HOME_KEYS.length};
+ schedule();
+})();
+);
+   const match=current.match(pattern);
+   if(!match||!/^[0-2]?\\d:[0-5]\\d(?:\\s*(?:AM|PM))?$/i.test(match[1]))continue;
+   const next=runtimeText(locale(),'weatherUpdated',{time:match[1]});
+   if(next!==current)node.textContent=next;
    return;
   }
  }

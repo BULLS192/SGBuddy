@@ -3,6 +3,7 @@ import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
 import {HOME_MESSAGES,homeText} from '../lib/i18n-home-v3110.mjs';
 import {CORE_UI} from '../lib/i18n-interface-v290.mjs';
+import {runtimeText} from '../lib/i18n-runtime-v320.mjs';
 const browser=await chromium.launch({headless:true});
 const surfaces=[
  ['#todaySection .hero-row .label','context'],
@@ -64,6 +65,17 @@ async function run(width,height){
       {code,core:CORE_UI[code]},{timeout:6000});
    const weather=homeText(code,'cloudyDay')+' · 59% '+homeText(code,'humidity')+' · 0.0 mm '+homeText(code,'rain');
    await page.waitForFunction(expected=>document.querySelector('#weatherLabel')?.textContent===expected,weather,{timeout:6000});
+   await page.evaluate(()=>{
+    document.querySelector('#uxExtraConditions summary').textContent='Weather, air quality & daily insights';
+    document.querySelector('#envPsi').textContent='148 · Unhealthy';
+    document.querySelector('#updatedAt').textContent='Updated 02:29 PM';
+    window.SGBUDDY_HOME_I18N.refresh();
+   });
+   await page.waitForFunction(({section,psi,updated})=>
+     document.querySelector('#uxExtraConditions summary')?.textContent===section &&
+     document.querySelector('#envPsi')?.textContent===psi &&
+     document.querySelector('#updatedAt')?.textContent===updated,
+     {section:homeText(code,'weatherSection'),psi:'148 · '+homeText(code,'psiUnhealthy'),updated:runtimeText(code,'weatherUpdated',{time:'02:29 PM'})},{timeout:6000});
    await page.evaluate(()=>{
     document.querySelector('#nextUpTitle').textContent='Next useful departure in 7 min';
     document.querySelector('#nextUpAction').textContent='3 min';

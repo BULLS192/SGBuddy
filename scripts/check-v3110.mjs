@@ -5,7 +5,7 @@ import {CORE_UI} from '../lib/i18n-interface-v290.mjs';
 import {HOME_KEYS,HOME_MESSAGES,homeText} from '../lib/i18n-home-v3110.mjs';
 const vars=s=>[...String(s).matchAll(/\{(\w+)\}/g)].map(m=>m[1]).sort();
 assert.equal(LOCALES.length,12);
-assert.equal(HOME_KEYS.length,32);
+assert.equal(HOME_KEYS.length,38);
 for(const {code} of LOCALES){
  const pack=HOME_MESSAGES[code];
  assert.deepEqual(Object.keys(pack||{}),HOME_KEYS,code+' missing/incorrect keys');
@@ -19,7 +19,7 @@ for(const {code} of LOCALES){
  assert.ok(CORE_UI[code]?.stationName,code+' missing station name');
 }
 const script=readFileSync('app-i18n-home-v3110.js','utf8');
-for(const anchor of ['#todaySection .hero-row .label','#nextUpTitle','#uxPersonaDescription','#uxMerliHomeTitle','#locationStatus','#railForm button','#weatherLabel','#placeLabel'])
+for(const anchor of ['#uxExtraConditions summary','#todaySection .hero-row .label','#nextUpTitle','#uxPersonaDescription','#uxMerliHomeTitle','#locationStatus','#railForm button','#weatherLabel','#placeLabel'])
  assert.ok(script.includes(anchor),'Missing screenshot surface '+anchor);
 assert.ok(script.includes('known=Object.fromEntries')&&script.includes('MutationObserver')&&script.includes('sourceTemplates'),'Source-locked reactive coverage required');
 const boot=readFileSync('app-v090.js','utf8');

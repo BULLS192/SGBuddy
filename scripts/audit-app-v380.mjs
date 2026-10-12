@@ -33,8 +33,8 @@ const review360=jsonFrom('scripts/localization-review-v360.mjs');
 const previousJS=jsonFrom('scripts/inspect-js-localization-v370.mjs');
 function jsonFrom(command){return JSON.parse(execFileSync(process.execPath,[command,'--json'],{encoding:'utf8',maxBuffer:20*1024*1024}));}
 const baseKeys=registered.completion.en.declaredKeys;
-const registeredCount=baseKeys+later.reviewedUniqueKeys+review360.newCataloguedKeys+52+12+32;
-assert.equal(registeredCount,437,'Registered dictionary baseline changed: update audit for new translation pack');
+const registeredCount=baseKeys+later.reviewedUniqueKeys+review360.newCataloguedKeys+52+12+38;
+assert.equal(registeredCount,443,'Registered dictionary baseline changed: update audit for new translation pack');
 const publishedSourceIds=new Set();
 const measuredRows=[];
 const add=(bucket,id,original,check,origin)=> {
@@ -112,7 +112,7 @@ function infoFor(locale){
  }
  const registry=registered.completion[locale]||{};
  const registeredFilled=(registry.filledKeys||0)+(later.locales?.[locale]?.registeredFilled??(registry.filledKeys||0)+later.reviewedUniqueKeys)-(registry.filledKeys||0)+
-  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52+12+32;
+  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52+12+38;
  // Only count populating registered messages, not native-speaker quality or runtime reach.
  packs.authoredUiCatalogue={total:registeredCount,confirmedLocalized:english?registeredCount:registeredFilled,knownSourceFallback:registeredCount-registeredFilled};
  const total=Object.values(packs).reduce((n,p)=>n+p.total,0);
