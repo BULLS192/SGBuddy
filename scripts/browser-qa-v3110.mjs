@@ -63,7 +63,10 @@ try{
      window.SGBUDDY_HOME_I18N.refresh();
     },{pairs,source});
     const expected=pairs.map(([selector,key,pack])=>[selector,pack==='core'?CORE_UI[code][key]:homeText(code,key)]);
-    await page.waitForFunction(data=>data.every(([selector,value])=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:8000});
+    await page.waitForFunction(data=>data.every(([selector,value])=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:8000}).catch(async error=>{
+     const different=await page.evaluate(rows=>rows.map(([selector,value])=>({selector,expected:value,actual:document.querySelector(selector)?.textContent?.trim()})).filter(x=>x.expected!==x.actual),expected);
+     throw Error('V3.11 mismatch '+code+' at width '+width+': '+JSON.stringify(different)+'; '+error.message);
+    });
     assert.equal((await page.locator('#nextUpTitle').textContent()).trim(),homeText(code,'imminent'));
     assert.equal((await page.locator('#nextUpCopy').textContent()).trim(),homeText(code,'nearSaved'));
     assert.ok((await page.locator('#uxMerliHomeTitle').textContent()).includes(homeText(code,'merliTips')),'Merli mode title '+code);

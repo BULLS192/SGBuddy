@@ -18,6 +18,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#todaySection .hero-grid > div:nth-child(2) .metric-label','railStatus','home'],
   ['#todaySection .hero-grid > div:nth-child(3) .metric-label','roadIncidents','home'],
   ['#nextUpCard .next-up-head .label','nextUp','home'],
+  ['#uxExtraConditions summary','weatherMore','home'],
   ['#uxChangeMode','changeMode','home'],
   ['#uxAccountChangeMode','changeMode','home'],
   ['#uxExploreModeChange','changeMode','home'],
@@ -74,7 +75,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
    }
    return;
   }
-  canWrite(node,key,source==='core'?CORE_UI[lang()][key]:homeText(lang(),key),variantsFor(key,source));
+  canWrite(node,key,source==='core'?CORE_UI[lang()][key]:homeText(lang(),key),[...variantsFor(key,source),...(key==='checkStation'?['Check']:[])]);
  }
  const nextUp=()=>{
   const node=doc.querySelector('#nextUpTitle'),copy=doc.querySelector('#nextUpCopy');
