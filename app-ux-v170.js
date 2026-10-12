@@ -1,7 +1,3 @@
-import {normalizeLocale} from './lib/i18n-v280.mjs';
-import {contextMode} from './lib/i18n-context-v370.mjs';
-import {homeText} from './lib/i18n-home-v311.mjs';
-import {homeShortcut} from './lib/i18n-shortcuts-v311.mjs';
 /* SGBuddy UX 4–6: persona-led experiences, contextual Merli and accessible feedback.
    Progressive enhancement only. No extra data providers or generative AI. */
 (()=>{
@@ -56,7 +52,20 @@ const MODES={
 };
 const safeMode=()=>Object.prototype.hasOwnProperty.call(MODES,state.mode)?state.mode:'resident';
 const cfg=()=>MODES[safeMode()];
-const locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
+const locale=()=>window.SGBUDDY_LANGUAGE||'en';
+let localePacks=null;
+const contextMode=(code,mode,field)=>localePacks?.context?.contextMode(code,mode,field)||({
+ label:MODES[mode].label,title:MODES[mode].title,copy:MODES[mode].description,
+ panelLabel:MODES[mode].label+' mode',placesCopy:MODES[mode].merliIntro
+}[field]||MODES[mode].description);
+const homeText=(code,key,fields={})=>localePacks?.home?.homeText(code,key,fields)||({
+ changeMode:'Change mode',merliAsk:'Ask Merli',merliTips:'Merli · '+(fields.mode||'')+' tips',
+ merliAir:'Check Singapore air quality',merliAirCopy:'Check the latest available NEA 24-hour PSI reading.',
+ merliMore:'More ways Merli can help',merliLess:'Hide extra actions',
+ exploringAs:'Exploring as '+(fields.mode||''),searchHint:'Search places and services',
+ skipTo:'Skip to '+(fields.target||'')
+}[key]||key);
+const homeShortcut=(code,target)=>localePacks?.shortcuts?.homeShortcut(code,target)||null;
 const modeLabel=()=>contextMode(locale(),safeMode(),'label');
 const contextual=(field)=>contextMode(locale(),safeMode(),field);
 const readLocal=(store,key)=>{try{return store.getItem(key)}catch{return null}};
@@ -289,6 +298,13 @@ window.addEventListener('offline',signalNetwork);
 signalNetwork();
 document.addEventListener('sgbuddy:persona',()=>queueMicrotask(renderPersona));
 document.addEventListener('sgbuddy:language',()=>queueMicrotask(()=>{renderPersona();updateSkip()}));
+Promise.all([
+ import('./lib/i18n-context-v370.mjs'),import('./lib/i18n-home-v311.mjs'),
+ import('./lib/i18n-shortcuts-v311.mjs')
+]).then(([context,home,shortcuts])=>{
+ localePacks={context,home,shortcuts};renderPersona();updateSkip();
+}).catch(error=>console.warn('V3.11 locale packs',error?.message));
+
 document.addEventListener('sgbuddy:weather',updateMerli);
 renderPersona();
 window.__SGBUDDY_UX_WAVES__='1-6';
