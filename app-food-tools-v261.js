@@ -1,3 +1,4 @@
+import {extendedUi} from './lib/i18n-extended-v300.mjs';
 /* SGBuddy V2.6 Food Wave — Merli's food picker & trusted provider handoffs.
    Random suggestions are from dated, source-linked editorial candidates, NOT live menus. */
 (()=>{'use strict';
@@ -5,7 +6,7 @@
  if(!core||!host)return;
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const safeUrl=value=>{try{const u=new URL(String(value||''));return u.protocol==='https:'&&!u.username&&!u.password?u.href:''}catch{return ''}};
- const zh=()=>window.SGBUDDY_LANGUAGE==='zh-CN',tr=(en,cn)=>zh()?cn:en;
+ const ui=()=>extendedUi(window.SGBUDDY_LANGUAGE||'en');
  const key='sgbuddy-food-picks-v261';
  let saved=new Set();try{const arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr))saved=new Set(arr.filter(x=>typeof x==='string').slice(0,100))}catch{}
  let picks=[],platforms=[],sections=[],area='all',craving='any',section='reviews',lastId=null,chosen=null,loaded=false;
@@ -66,11 +67,13 @@
    }).join('')+'</div><p class="food-tool-note">'+esc(group.caution||'Check conditions with the provider.')+'</p>';
  }
  function renderLanguage(){
-  $('#foodToolsTitle').textContent=tr('Not sure what to eat?','不知道吃什么？');
-  $('#foodToolsSubtitle').textContent=tr('Let Merli pick from 2026 guide-listed stall leads, or choose a dining service.','让 Merli 从 2026 年美食指南的摊位中挑选，或查看订位与餐饮服务。');
-  $('#foodToolPicker').textContent=tr('✨ Pick for me','✨ 帮我选');
-  $('#foodToolServices').textContent=tr('Reviews, deals & delivery','评论、优惠与外送');
-  $('#foodPickButton').textContent=tr('✨ Merli, pick my meal','✨ Merli，帮我选餐');
+  // Single-source, authored 12-locale labels. Do not overwrite provider content.
+  const labels=ui();
+  $('#foodToolsTitle').textContent=labels.foodToolsTitle;
+  $('#foodToolPicker').textContent='✨ '+labels.foodPicker;
+  $('#foodToolServices').textContent=labels.foodServices;
+  $('#foodPickButton').textContent='✨ '+labels.foodPickButton;
+  $('#foodPickSaved').textContent='★ '+labels.foodMyPicks;
  }
  dock.addEventListener('click',e=>{
   const nav=e.target.closest('[data-food-tool]');if(nav){sectionButton(nav.dataset.foodTool);return}

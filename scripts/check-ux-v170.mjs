@@ -8,7 +8,9 @@ const merli=read('app-v140.js'),discover=read('app-v120.js'),nearby=read('app-v1
 assert.doesNotThrow(()=>new Function(ui),'UX v170 module has a syntax error');
 assert.doesNotThrow(()=>execFileSync(process.execPath,['--check','app-ux-v160.js'],{stdio:'pipe'}),'UX v160 module has a syntax error');
 assert.ok(page.includes('href="/ux-v170.css"'),'UX v170 stylesheet missing');
-assert.ok(bootstrap.includes("import('/app-ux-v160.js')).then(()=>import('/app-ux-v170.js')"),'UX modules must load after V1.4 Merli');
+const ordered=["import('/app-v140.js')","import('/app-ux-v160.js')","import('/app-i18n-ux-v311.js')","import('/app-ux-v170.js')"];
+let cursor=-1;
+for(const marker of ordered){const at=bootstrap.indexOf(marker,cursor+1);assert.ok(at>cursor,'UX modules and localization must load in order: '+marker);cursor=at;}
 const cacheVersion=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
 assert.ok(cacheVersion>=43,'PWA cache version must not regress');
 for(const asset of ['/ux-v160.css','/ux-v170.css','/app-ux-v160.js','/app-ux-v170.js']){
