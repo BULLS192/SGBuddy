@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+const run=()=>JSON.parse(execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:25*1024*1024}));
+const report=run();
+assert.equal(report.version,'3.8.0');
+assert.equal(report.globalWholeAppCompletionPercent,null,'Do not invent overall translation percentage');
+assert.equal(report.previouslySuggestedEstimate.verified,false);
+assert.equal(report.repositoryScope.dataFiles,16);
+assert.ok(report.repositoryScope.activeAppScripts.includes('app-v090.js'),'Production boot must be scanned');
+assert.ok(report.repositoryScope.activeAppScripts.includes('app-i18n-context-v370.js'),'V3.7 i18n runtime must be scanned');
+assert.ok(report.repositoryScope.archivedAppScripts.includes('app-v042.js'),'Retired client builds are excluded from active app counts');
+assert.ok(report.staticHtml.initialTextNodesCandidateCount>0);
+assert.ok(report.identifiedEditorialUnknown.uniqueTextFields>0);
+assert.equal(report.nativeSpeakerReview.v370StringCells,572);
+const locales=['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'];
+for(const locale of locales){
+ const item=report.locales[locale];
+ assert.ok(item,locale+' missing');
+ assert.equal(item.knownAuthoredInventory.total,report.classifiedEligibleEntries,locale+' inconsistent classified denominator');
+ const counts=Object.values(item.byArea);
+ assert.equal(counts.reduce((n,v)=>n+v.total,0),item.knownAuthoredInventory.total);
+ assert.equal(counts.reduce((n,v)=>n+v.confirmedLocalized,0),item.knownAuthoredInventory.filledOrLocalized);
+ assert.equal(counts.reduce((n,v)=>n+v.knownSourceFallback,0),item.knownAuthoredInventory.knownFallbacks);
+ if(locale==='en')assert.equal(item.knownAuthoredInventory.percentOfClassifiedItems,null);
+ else assert.ok(Number.isFinite(item.knownAuthoredInventory.percentOfClassifiedItems));
+}
+assert.equal(report.locales.en.byArea.authoredUiCatalogue.total,393);
+assert.ok(report.repositoryScope.activeApiJsFiles>=1);
+assert.ok(report.identifiedEditorialUnknown.byFile['data/services-v210.json']>=0);
+assert.ok(readFileSync('docs/localization-audit-v380.md','utf8').includes('not the entire app'));
+console.log('V3.8 AUDIT PASS: '+report.classifiedEligibleEntries+' classified source-authored items across 12 locales; '+report.identifiedEditorialUnknown.uniqueTextFields+' editorial fields awaiting review; global percentage intentionally null.');
