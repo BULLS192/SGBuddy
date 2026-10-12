@@ -84,7 +84,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   for(const [sel,...keys] of [...targets,...structural])
    doc.querySelectorAll(sel).forEach(el=>change(el,keys));
   // The following stable home labels are unique within the Today's context block.
-  for(const el of doc.querySelectorAll('#todaySection .label,#todaySection h3')){
+  for(const el of doc.querySelectorAll('#todaySection .label,#todaySection h3,#todaySection .metric-label')){
    const current=(el.textContent||'').trim();
    if(known.contextLabel.has(current))change(el,['contextLabel']);
    if(known.railStatus.has(current))change(el,['railStatus']);
