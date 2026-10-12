@@ -33,7 +33,15 @@ async function trial(width,height){
     document.dispatchEvent(new Event('sgbuddy:language'));
     window.SGBUDDY_SCREEN_I18N?.refresh();
    },{entries:primary,source:AUDIT_ENGLISH});
-   await page.waitForFunction(({entries,expected})=>entries.every(x=>document.querySelector(x.selector)?.textContent?.trim()===expected[x.key]),{entries:primary,expected:Object.fromEntries(AUDIT_KEYS.map(k=>[k,auditText(code,k)]))},{timeout:14000});
+   const values={entries:primary,expected:Object.fromEntries(AUDIT_KEYS.map(k=>[k,auditText(code,k)]))};
+   await page.waitForFunction(({entries,expected})=>entries.every(x=>document.querySelector(x.selector)?.textContent?.trim()===expected[x.key]),values,{timeout:5000}).catch(async error=>{
+    const diff=await page.evaluate(({entries,expected})=>entries.filter(x=>document.querySelector(x.selector)?.textContent?.trim()!==expected[x.key]).map(x=>({
+     selector:x.selector,screen:x.screen,key:x.key,
+     actual:document.querySelector(x.selector)?.textContent?.trim()?.slice(0,130),expected:expected[x.key]?.slice(0,130)
+    })),values);
+    console.error('V3.5 SCREEN MISMATCH',JSON.stringify({code,width,unmatched:diff}));
+    throw error;
+   });
    // More/Less is one dynamic button, not two simultaneous DOM nodes.
    await page.evaluate(source=>{document.querySelector('#uxMerliMore').textContent=source;window.SGBUDDY_SCREEN_I18N.refresh()},AUDIT_ENGLISH.merliLess);
    await page.waitForFunction(expected=>document.querySelector('#uxMerliMore')?.textContent?.trim()===expected,auditText(code,'merliLess'),{timeout:14000});
