@@ -40,6 +40,10 @@ on:
       - 'app-i18n-fallback-v390.js'
       - 'scripts/browser-qa-v390.mjs'
       - 'scripts/check-v390.mjs'
+      - 'lib/i18n-home-v311.mjs'
+      - 'app-i18n-home-v311.js'
+      - 'scripts/check-v3110.mjs'
+      - 'scripts/browser-qa-v3110.mjs'
       - 'scripts/classify-localization-v390.mjs'
       - 'scripts/inspect-js-localization-v370.mjs'
       - 'scripts/export-native-review-v370.mjs'
@@ -80,3 +84,7 @@ jobs:
         run: node scripts/browser-qa-v370.mjs
       - name: V3.9 twelve-language fallback and source-protection Chromium QA
         run: node scripts/browser-qa-v390.mjs
+      - name: V3.11 Home multilingual translation integrity
+        run: node scripts/check-v3110.mjs
+      - name: V3.11 screenshot-derived 12-locale home browser QA
+        run: node scripts/browser-qa-v3110.mjs
