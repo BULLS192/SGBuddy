@@ -18,14 +18,13 @@ import {PSI_CATEGORIES,PSI_MESSAGES,translatedPsi} from './lib/i18n-psi-v311.mjs
   ['#railForm','stationPrompt','closest','.manual h3'],
   ['#railForm button','check'],
   ['#placeLabel','near'],
-  ['#locationStatus','locationPrivate','locationUnset'],
+  ['#locationStatus','locationPrivate'],
   ['#nextUpCard .next-up-head .label','next'],
   ['#nextUpTitle','imminent','soon','makeYours','nextIn'],
   ['#nextUpCopy','nearSaved','savedOnly','allowLoc'],
   ['#nextUpAction','setup','now','minute'],
   ['#uxExtraConditions summary','weatherAir'],
   ['#uxViewConditions','fullConditions'],
-  ['#sourceBadge','sourceLive','sourceMixed','sourceDemo'],
   ['#updatedAt','updated']
  ];
  const variants=Object.fromEntries(HOME_KEYS.map(k=>[k,new Set(all.map(a=>a[k]))]));

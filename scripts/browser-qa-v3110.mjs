@@ -19,7 +19,6 @@ const tests=[
  ['#nextUpTitle','imminent'],
  ['#nextUpCopy','nearSaved'],
  ['#nextUpAction','minute'],
- ['#sourceBadge','sourceLive'],
  ['#updatedAt','updated'],
  ['#uxExtraConditions summary','weatherAir'],
  ['#uxViewConditions','fullConditions']
@@ -50,7 +49,6 @@ async function run(width,height){
      '#nextUpTitle':'A departure is imminent',
      '#nextUpCopy':'Prioritized from nearby and saved transport.',
      '#nextUpAction':'3 min',
-     '#sourceBadge':'LIVE GOVERNMENT DATA',
      '#updatedAt':'Updated 02:29 PM',
      '#uxExtraConditions summary':'Weather, air quality & daily insights',
      '#uxViewConditions':'Full conditions →',
