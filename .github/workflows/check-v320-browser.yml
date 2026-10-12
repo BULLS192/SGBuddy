@@ -32,6 +32,12 @@ on:
       - 'scripts/check-v360.mjs'
       - 'scripts/localization-review-v360.mjs'
       - 'scripts/browser-qa-v360.mjs'
+      - 'lib/i18n-context-v370.mjs'
+      - 'app-i18n-context-v370.js'
+      - 'scripts/check-v370.mjs'
+      - 'scripts/browser-qa-v370.mjs'
+      - 'scripts/inspect-js-localization-v370.mjs'
+      - 'scripts/export-native-review-v370.mjs'
 permissions:
   contents: read
 jobs:
@@ -65,3 +71,5 @@ jobs:
         run: node scripts/browser-qa-v350.mjs
       - name: V3.6 Classifications and safe dynamic translation Chromium QA
         run: node scripts/browser-qa-v360.mjs
+      - name: V3.7 twelve-language context and source-protection Chromium QA
+        run: node scripts/browser-qa-v370.mjs
