@@ -1,6 +1,18 @@
 const core=window.SGBUDDY_CORE;
 if(core){
   const {state,$,toast,json,navigateTo,setActiveNav}=core;
+  let placeTranslations=null;
+  const fallbackPlaces={walk:'Walk',transit:'Transit',drive:'Drive',ride:'Ride',locate:'Locate to compare travel modes',
+    comparisonUnavailable:'Travel comparison unavailable',compareWays:'Compare ways',
+    takeMe:'Take me there',noPlaces:'No places match this category/search yet.',
+    loadingPlaces:'Loading {mode} places…',comparing:'Comparing…',compare:'Compare',
+    fastest:'Fastest estimate',showMore:'Show more places ({count} remaining)',
+    estimatedWalk:'Estimated walking route',walkingRoute:'Walking route',
+    roadRoute:'Road route',estimatedTime:'Estimated road time',
+    bestFit:'Top fit',strongFit:'Strong fit',useful:'Useful',explore:'Explore'};
+  const lp=(key,parts={})=>placeTranslations?.placeRuntimeText(window.SGBUDDY_LANGUAGE||'en',key,parts)||
+    String(fallbackPlaces[key]||key).replace(/\{(\w+)\}/g,(m,k)=>Object.hasOwn(parts,k)?String(parts[k]):m);
+  import('./lib/i18n-place-eta-v320.mjs').then(mod=>{placeTranslations=mod;try{renderPlaces()}catch{}}).catch(()=>{});
   const qsa=selector=>[...document.querySelectorAll(selector)];
   const VERSION='1.1.0';
   window.__SGBUDDY_CLIENT_VERSION__=VERSION;
@@ -40,7 +52,7 @@ if(core){
   }
   const SOURCE_LABELS={nea_hawker_geo:'NEA',nea_market_food_geo:'NEA',nparks_parks_geo:'NParks',nlb_libraries_geo:'NLB',pa_community_clubs_geo:"People's Association",moh_chas_geo:'MOH',moh_polyclinics_geo:'MOH',hsa_pharmacies_geo:'HSA',ecda_childcare_geo:'ECDA',sport_sg_facilities_geo:'SportSG'};
   function placeSource(row){return row.metadata?.official?(SOURCE_LABELS[row.sourceKey]||'Singapore government')+' · official data':'SGBuddy curated'}
-  function fitLabel(score){return score>=90?'Top fit':score>=75?'Strong fit':score>=55?'Useful':'Explore'}
+  function fitLabel(score){return score>=90?lp('bestFit'):score>=75?lp('strongFit'):score>=55?lp('useful'):lp('explore')}
   function modeLabel(mode){return mode==='rail'?'MRT/LRT':mode==='bus'?'bus':mode==='mixed'?'bus + rail':'public transport'}
   function visiblePlaces(){
     const rows=state.v110Places.filter(r=>categoryMatch(r,state.v110PlaceFilter));
@@ -75,17 +87,17 @@ if(core){
   }
   function renderMobility(el,row,item){
     if(!el)return;
-    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){el.innerHTML='<span class="v110-mobility-locate">◎ Locate to compare travel modes</span>';return}
+    if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){el.innerHTML='<span class="v110-mobility-locate">◎ '+lp('locate')+'</span>';return}
     const fallbackWalk=estimatedWalk(row?.distanceM);
     const walk=item?.walking||fallbackWalk,pt=item?.publicTransport||null,drive=item?.drive||null,ride=item?.rideshare||null;
     const fastest=item?.fastestEstimate||(walk&&(!pt||walk.minutes<=pt.minutes)?'walk':pt?'public':null);
     const chips=[
-      walk&&mobilityChip('🚶','Walk',walk.minutes+' min',fastest==='walk',(walk.routed?'Walking route':'Estimated walking route')+' · '+distance(walk.distanceM)),
-      pt&&mobilityChip(pt.routeMode==='rail'?'🚆':pt.routeMode==='mixed'?'🚉':'🚌','Transit',pt.minutes+' min',fastest==='public',pt.title||'Public transport'),
-      drive&&mobilityChip('🚗','Drive',(drive.routed?'':'~')+drive.minutes+' min',fastest==='drive',(drive.routed?'Road route':'Estimated road time')+' · '+distance(drive.distanceM)),
-      ride&&mobilityChip('🚕','Ride',(ride.routed?'':'~')+ride.minutesLow+'–'+ride.minutesHigh+' min',fastest==='rideshare','Taxi / rideshare including pickup allowance')
+      walk&&mobilityChip('🚶',lp('walk'),walk.minutes+' min',fastest==='walk',(walk.routed?lp('walkingRoute'):lp('estimatedWalk'))+' · '+distance(walk.distanceM)),
+      pt&&mobilityChip(pt.routeMode==='rail'?'🚆':pt.routeMode==='mixed'?'🚉':'🚌',lp('transit'),pt.minutes+' min',fastest==='public',pt.title||'Public transport'),
+      drive&&mobilityChip('🚗',lp('drive'),(drive.routed?'':'~')+drive.minutes+' min',fastest==='drive',(drive.routed?lp('roadRoute'):lp('estimatedTime'))+' · '+distance(drive.distanceM)),
+      ride&&mobilityChip('🚕',lp('ride'),(ride.routed?'':'~')+ride.minutesLow+'–'+ride.minutesHigh+' min',fastest==='rideshare','Taxi / rideshare including pickup allowance')
     ].filter(Boolean);
-    el.innerHTML=chips.join('')||'<span class="v110-mobility-locate">Travel comparison unavailable</span>';
+    el.innerHTML=chips.join('')||'<span class="v110-mobility-locate">'+lp('comparisonUnavailable')+'</span>';
   }
   async function loadPlaceEtas(rows){
     const elements=[...document.querySelectorAll('[data-v110-modes-name]')],rowMap=new Map(rows.map(row=>[row.name,row]));
@@ -113,11 +125,11 @@ if(core){
         '<p>'+escText(placeDescription(row))+'</p>'+
         '<div class="v110-mode-strip" data-v110-modes-name="'+escText(row.name)+'">'+(Number.isFinite(state.lat)&&Number.isFinite(state.lon)?mobilityChip('🚶','Walk',(estimatedWalk(row.distanceM)?.minutes||'—')+' min',true,'Estimated walking time · '+distance(estimatedWalk(row.distanceM)?.distanceM)):'<span class="v110-mobility-locate">◎ Locate to compare travel modes</span>')+'</div>'+
         '<div class="place-intel"><span>'+escText(placeSource(row))+'</span>'+(row.distanceM!=null?'<span>◎ '+distance(row.distanceM)+'</span>':'')+'</div>'+
-        '<div class="place-card-actions"><button class="secondary v110-compare-place" data-place-name="'+escText(row.name)+'" type="button">Compare ways</button><button class="primary place-route" data-featured-place="'+escText(row.name)+'" type="button">Take me there</button></div>'+
+        '<div class="place-card-actions"><button class="secondary v110-compare-place" data-place-name="'+escText(row.name)+'" type="button">'+lp('compareWays')+'</button><button class="primary place-route" data-featured-place="'+escText(row.name)+'" type="button">'+lp('takeMe')+'</button></div>'+
       '</article>';
     }).join('');
-    const more=rows.length>shown.length?'<button id="v110ShowMorePlaces" class="secondary full v110-show-more" type="button">Show more places ('+(rows.length-shown.length)+' remaining)</button>':'';
-    grid.innerHTML=(cards||'<div class="card empty">No places match this category/search yet.</div>')+more;
+    const more=rows.length>shown.length?'<button id="v110ShowMorePlaces" class="secondary full v110-show-more" type="button">'+lp('showMore',{count:rows.length-shown.length})+'</button>':'';
+    grid.innerHTML=(cards||'<div class="card empty">'+lp('noPlaces')+'</div>')+more;
     loadPlaceEtas(shown);
     if(!$('#placesMapCard')?.classList.contains('hidden'))renderMap();
   }
@@ -137,7 +149,7 @@ if(core){
     const grid=$('#placesGrid');
     if(grid){
       grid.classList.add('v110-results-loading');
-      if(!preserveScroll)grid.innerHTML='<div class="card empty">Loading '+escText(persona().label)+' places…</div>';
+      if(!preserveScroll)grid.innerHTML='<div class="card empty">'+lp('loadingPlaces',{mode:escText(persona().label)})+'</div>';
     }
     try{
       const payload=await json('/api/journey?'+params.toString());
@@ -180,6 +192,7 @@ if(core){
   document.addEventListener('change',e=>{if(e.target?.id==='v110PlaceSort'){const y=window.scrollY;state.v110PlaceSort=e.target.value;renderPlaces();requestAnimationFrame(()=>window.scrollTo({top:y,behavior:'instant'}))}});
   document.addEventListener('sgbuddy:persona',e=>{state.v110Places=[];state.v110LoadedPersona='';state.v110PlaceRequestId++;const grid=$('#placesGrid');if(grid)grid.innerHTML='<div class="card empty">Switching to '+escText(persona().label)+' places…</div>';loadPlaces({resetFilter:true})});
   document.addEventListener('sgbuddy:location',()=>loadPlaces());
+  document.addEventListener('sgbuddy:language',()=>{renderPlaces();const button=$('#v110CompareButton');if(button&&!button.disabled)button.textContent=lp('compare');});
 
   function ensureMap(){
     const host=$('#placesMap');if(!host||!window.L)return false;
@@ -215,12 +228,12 @@ if(core){
   $('#transportSection')?.insertAdjacentElement('afterend',compare);
 
   function modeCard(label,badge,time,meta,cost,note,fast){
-    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+badge+'</span><strong>'+label+'</strong></div>'+(fast?'<b>Fastest estimate</b>':'')+'</div><div class="compare-time">'+time+'</div><div class="compare-meta">'+meta+'</div>'+(cost?'<div class="compare-cost">'+cost+'</div>':'')+'<small>'+note+'</small></article>';
+    return '<article class="compare-mode '+(fast?'fastest':'')+'"><div class="compare-mode-head"><div><span>'+badge+'</span><strong>'+label+'</strong></div>'+(fast?'<b>'+lp('fastest')+'</b>':'')+'</div><div class="compare-time">'+time+'</div><div class="compare-meta">'+meta+'</div>'+(cost?'<div class="compare-cost">'+cost+'</div>':'')+'<small>'+note+'</small></article>';
   }
   async function compareWays(){
     const input=$('#v110CompareDestination'),dest=input?.value.trim();if(!dest)return toast('Add a destination first.');
     if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon)){toast('Use Locate first so SGBuddy can compare from where you are.');return}
-    const button=$('#v110CompareButton'),host=$('#v110CompareResults');button.disabled=true;button.textContent='Comparing…';host.innerHTML='<div class="empty-inline">Comparing walk, public transport and road options…</div>';
+    const button=$('#v110CompareButton'),host=$('#v110CompareResults');button.disabled=true;button.textContent=lp('comparing');host.innerHTML='<div class="empty-inline">Comparing walk, public transport and road options…</div>';
     try{
       const p=await json('/api/journey?action=compare&lat='+encodeURIComponent(state.lat)+'&lon='+encodeURIComponent(state.lon)+'&to='+encodeURIComponent(dest));
       const cards=[];
@@ -231,7 +244,7 @@ if(core){
       host.innerHTML=cards.join('')+'<div class="compare-disclaimer">'+escText(p.disclaimer||'')+'</div><button id="v110OpenTransitRoute" class="secondary full" type="button">Open detailed public-transport route</button>';
       $('#v110OpenTransitRoute')?.addEventListener('click',()=>{if($('#tripTo'))$('#tripTo').value=dest;$('#planTrip')?.click();$('#travelSection')?.scrollIntoView({behavior:'smooth',block:'start'})});
     }catch(error){host.innerHTML='<div class="empty-inline error-state">'+escText(error.message)+'</div>'}
-    finally{button.disabled=false;button.textContent='Compare'}
+    finally{button.disabled=false;button.textContent=lp('compare')}
   }
   $('#v110CompareButton')?.addEventListener('click',compareWays);
   $('#v110CompareDestination')?.addEventListener('keydown',e=>{if(e.key==='Enter')compareWays()});
