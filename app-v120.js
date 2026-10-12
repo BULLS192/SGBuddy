@@ -1,6 +1,7 @@
 /* SGBuddy v1.2 — Discover and regional air-quality presentation.
    Data is a versioned, source-linked static catalog; never a live opening-hours feed. */
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
+import {discoverStatus} from './lib/i18n-discover-status-v400.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 (function(){
   'use strict';
@@ -12,6 +13,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   const safeUrl=value=>{try{const u=new URL(String(value));return u.protocol==='https:'?u.href:''}catch{return ''}};
   const storeKey='sgbuddy-discover-saved-v1';
   const locale=()=>window.SGBUDDY_LANGUAGE||'en';
+  const uiStatus=(key,fields={})=>discoverStatus(locale(),key,fields);
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
@@ -63,7 +65,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
       b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));
       b.tabIndex=active?0:-1;
     });
-    $('#discoverSearch').placeholder=tab==='apps'?'Search app names and purposes':tab==='facts'?'Search Singapore facts':'Search places or neighbourhoods';
+    $('#discoverSearch').placeholder=uiStatus(tab==='apps'?'searchApps':tab==='facts'?'searchFacts':'searchPlaces');
     render();
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-tab',{detail:{tab}}));
   }
@@ -140,7 +142,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
-    return '<article class="card discover-fact"><div class="label">'+safe(taxonomyLabel(locale(),fact.theme))+' · '+(fact.status==='verified'?'Official-source checked':'Editorial review pending')+'</div>'+
+    return '<article class="card discover-fact"><div class="label">'+safe(taxonomyLabel(locale(),fact.theme))+' · '+uiStatus(fact.status==='verified'?'checked':'pending')+'</div>'+
       '<h3>Did you know?</h3><p'+(factTranslation(locale(),fact)?' data-content-localized="true"':'')+'>'+safe(factTranslation(locale(),fact)||fact.text)+'</p>'+
       '<div class="discover-actions">'+sourceLink(fact.sourceUrl,'Read original source')+
       '<button type="button" class="secondary" data-next-discover-fact>Another fact ↻</button>'+
@@ -177,6 +179,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     if(!loaded)return;
     const listingInfo=$('#discoverQuality');if(listingInfo)listingInfo.hidden=tab==='apps'||tab==='facts';
     const results=$('#discoverResults'),q=($('#discoverSearch')?.value||'').trim().toLowerCase();
+    $('#discoverSearch').placeholder=uiStatus(tab==='apps'?'searchApps':tab==='facts'?'searchFacts':'searchPlaces');
     const persona=profiles[state.mode]||'Resident';
     $('#discoverPersonaBadge').textContent=persona+' mode';
     $('#discoverPersonaCopy').textContent=state.mode==='student'
@@ -188,16 +191,16 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     if(tab==='facts'){
       const candidates=catalog.facts.filter(f=>(!savedOnly||saved.has(f.id))&&(!q||[f.theme,f.text,taxonomyLabel(locale(),f.theme),factTranslation(locale(),f)||''].join(' ').toLowerCase().includes(q))&&matchesMode(f));
       if(factIndex>=candidates.length)factIndex=0;
-      $('#discoverStatus').textContent=candidates.filter(f=>f.status==='verified').length+' source-checked · '+candidates.filter(f=>f.status!=='verified').length+' review pending · independently reviewed target: 10,000';
-      results.innerHTML=candidates.length?factsCard(candidates[factIndex]):'<div class="card discover-empty">No matching source-reviewed facts yet. Try clearing the search or Saved only.</div>';
+      $('#discoverStatus').textContent=uiStatus('factsStatus',{checked:candidates.filter(f=>f.status==='verified').length,pending:candidates.filter(f=>f.status!=='verified').length});
+      results.innerHTML=candidates.length?factsCard(candidates[factIndex]):'<div class="card discover-empty">'+safe(uiStatus('noFacts'))+'</div>';
       return;
     }
     const rows=orderedRows(tab==='apps'?catalog.apps:catalog.places.filter(p=>(p.kinds||[p.kind]).includes(directoryKinds[tab])));
-    $('#discoverStatus').textContent=rows.length+' '+(tab==='apps'?'apps':'places')+' found';
+    $('#discoverStatus').textContent=uiStatus(tab==='apps'?'appsFound':'placesFound',{count:rows.length});
     const visible=rows.slice(0,visibleCount);
     results.innerHTML='<div class="discover-grid">'+visible.map(tab==='apps'?appsCard:dirCard).join('')+'</div>'+
-      (!rows.length?'<div class="card discover-empty">No matches. Change your search or Saved only filter.</div>':'')+
-      (rows.length>visible.length?'<button class="secondary discover-more" type="button" id="discoverMore">Show 24 more · '+visible.length+' of '+rows.length+'</button>':'');
+      (!rows.length?'<div class="card discover-empty">'+safe(uiStatus('noPlaces'))+'</div>':'')+
+      (rows.length>visible.length?'<button class="secondary discover-more" type="button" id="discoverMore">'+safe(uiStatus('more',{shown:visible.length,count:rows.length}))+'</button>':'');
   }
   host.addEventListener('click',event=>{
     const addressButton=event.target.closest('[data-verify-address]');

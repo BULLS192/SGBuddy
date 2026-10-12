@@ -47,6 +47,7 @@ for(const path of ['lib/i18n-audit-v350.mjs','app-i18n-audit-v350.js','scripts/c
 for(const path of ['lib/i18n-classified-v360.mjs','app-i18n-classified-v360.js','scripts/check-v360.mjs','scripts/browser-qa-v360.mjs','scripts/localization-review-v360.mjs'])run(path);
 for(const path of ['lib/i18n-context-v370.mjs','app-i18n-context-v370.js','scripts/check-v370.mjs','scripts/browser-qa-v370.mjs','scripts/inspect-js-localization-v370.mjs','scripts/export-native-review-v370.mjs'])run(path);
 for(const path of ['lib/i18n-fallback-v390.mjs','app-i18n-fallback-v390.js','scripts/classify-localization-v390.mjs','scripts/check-v390.mjs','scripts/browser-qa-v390.mjs'])run(path);
+for(const file of ['lib/i18n-food-status-v400.mjs','lib/i18n-discover-status-v400.mjs','scripts/check-v400.mjs','scripts/browser-qa-v400.mjs'])run(file);
 run('scripts/browser-qa-v312.mjs');
 run('scripts/localization-report-v310.mjs');
 run('scripts/check-v311.mjs');
@@ -85,6 +86,7 @@ execFileSync(process.execPath,['scripts/check-v360.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/localization-review-v360.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v390.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v400.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/localization-inventory-v340.mjs'],{stdio:'inherit'});

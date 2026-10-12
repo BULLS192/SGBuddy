@@ -1,3 +1,4 @@
+import {foodStatus} from './lib/i18n-food-status-v400.mjs';
 /* SGBuddy V2.6 Food Wave — Merli's food picker & trusted provider handoffs.
    Random suggestions are from dated, source-linked editorial candidates, NOT live menus. */
 (()=>{'use strict';
@@ -79,7 +80,7 @@
   const fav=e.target.closest('[data-food-pick-save]');if(fav){const id=fav.dataset.foodPickSave;saved.has(id)?saved.delete(id):saved.add(id);save();renderPicked();return}
   if(e.target.closest('#foodPickSaved')){
    const ids=[...saved],only=ids.map(id=>picks.find(p=>p.id===id)).filter(Boolean);
-   $('#foodPickResult').innerHTML=only.length?only.map(pickedCard).join(''):'<p class="food-tool-note">No saved picks yet. Try Merli’s suggestion and save what interests you.</p>';
+   $('#foodPickResult').innerHTML=only.length?only.map(pickedCard).join(''):'<p class="food-tool-note">'+esc(foodStatus(window.SGBUDDY_LANGUAGE||'en','foodPickerEmpty'))+'</p>';
    $('#foodPickSaved').setAttribute('aria-pressed','true');return;
   }
  });

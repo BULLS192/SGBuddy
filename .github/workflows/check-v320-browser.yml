@@ -41,6 +41,14 @@ on:
       - 'scripts/browser-qa-v390.mjs'
       - 'scripts/check-v390.mjs'
       - 'scripts/classify-localization-v390.mjs'
+      - 'lib/i18n-food-status-v400.mjs'
+      - 'lib/i18n-discover-status-v400.mjs'
+      - 'scripts/check-v400.mjs'
+      - 'scripts/browser-qa-v400.mjs'
+      - 'app-food-v180.js'
+      - 'app-food-tools-v261.js'
+      - 'app-v120.js'
+      - 'sw.js'
       - 'scripts/inspect-js-localization-v370.mjs'
       - 'scripts/export-native-review-v370.mjs'
 permissions:
@@ -80,3 +88,5 @@ jobs:
         run: node scripts/browser-qa-v370.mjs
       - name: V3.9 twelve-language fallback and source-protection Chromium QA
         run: node scripts/browser-qa-v390.mjs
+      - name: V4.0 food and Discover locale switching and source-protection browser QA
+        run: node scripts/browser-qa-v400.mjs
