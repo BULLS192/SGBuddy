@@ -112,7 +112,7 @@ function infoFor(locale){
  }
  const registry=registered.completion[locale]||{};
  const registeredFilled=(registry.filledKeys||0)+(later.locales?.[locale]?.registeredFilled??(registry.filledKeys||0)+later.reviewedUniqueKeys)-(registry.filledKeys||0)+
-  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52+12;
+  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52+12+46;
  // Only count populating registered messages, not native-speaker quality or runtime reach.
  packs.authoredUiCatalogue={total:registeredCount,confirmedLocalized:english?registeredCount:registeredFilled,knownSourceFallback:registeredCount-registeredFilled};
  const total=Object.values(packs).reduce((n,p)=>n+p.total,0);
