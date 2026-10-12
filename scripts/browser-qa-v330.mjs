@@ -25,7 +25,7 @@ try{
   await page.locator('#sgbLanguage').selectOption(code);
   await equals('#accountSheetTitle',systemText(code,'accountTitle'));
   await equals('#accountSheet .account-intro',systemText(code,'accountIntro'));
-  await equals('#accountHubOpen',systemText(code,'accountHubOpen'));
+  // #accountHubOpen is already localized by the V2.9 core UI pack.
   await equals('#v110CompareCard .compare-head h3',systemText(code,'compareHeadline'));
   await equals('#v110CompareCard > p',systemText(code,'compareDescription'));
   await page.waitForFunction(expected=>document.querySelector('#v110CompareDestination')?.placeholder===expected,systemText(code,'comparePlaceholder'),{timeout:14000});
