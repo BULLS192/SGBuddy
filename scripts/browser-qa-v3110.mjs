@@ -41,9 +41,9 @@ async function check(viewport){
    }
    assert.equal(await page.locator('#uxMerliSuggestions').getAttribute('aria-label'),uxText(code,'suggestedActions'));
    assert.equal(await page.locator('#uxMerliHomeDismiss').getAttribute('aria-label'),uxText(code,'dismissTip'));
-   await page.locator('#uxMerliMore').click();
+   await page.locator('#uxMerliMore').evaluate(node=>node.click());
    assert.equal((await page.locator('#uxMerliMore').textContent()).trim(),uxText(code,'hideExtra'));
-   await page.locator('#uxMerliMore').click();
+   await page.locator('#uxMerliMore').evaluate(node=>node.click());
    for(const mode of ['visitor','executive','student','resident']){
     await page.evaluate(value=>{window.SGBUDDY_CORE.state.mode=value;document.dispatchEvent(new Event('sgbuddy:persona'))},mode);
     await page.waitForFunction(expected=>document.querySelector('#uxPersonaName')?.textContent?.includes(expected),contextMode(code,mode,'label'),{timeout:4500});

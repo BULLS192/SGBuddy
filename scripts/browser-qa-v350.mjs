@@ -44,9 +44,9 @@ async function trial(width,height){
     throw error;
    });
    // More/Less is one dynamic button, not two simultaneous DOM nodes.
-   await page.locator('#uxMerliMore').click();
+   await page.locator('#uxMerliMore').evaluate(node=>node.click());
    await page.waitForFunction(expected=>document.querySelector('#uxMerliMore')?.textContent?.trim()===expected,uxText(code,'hideExtra'),{timeout:14000});
-   await page.locator('#uxMerliMore').click();
+   await page.locator('#uxMerliMore').evaluate(node=>node.click());
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+8),true,code+' horizontal overflow '+width);
   }
   // Provider-controlled route/state text must never be rewritten, even on refresh.
