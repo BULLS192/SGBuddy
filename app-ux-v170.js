@@ -103,9 +103,8 @@ if(explore){
 }
 function renderPersona(){
  const c=cfg(),which=safeMode(),label=modeText('label');
- const heading=title?.querySelector('h2'),sub=title?.querySelector('p');
- if(heading)heading.textContent=modeText('title');
- if(sub)sub.textContent=modeText('copy');
+ // Existing V2.8 shell localization owns the home headline and intro.
+ // Do not overwrite them with mode-specific English during re-render.
  if($('#uxPersonaName'))$('#uxPersonaName').textContent=label+(ht('modeSuffix')||' mode');
  if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=modeText('placesCopy');
  if($('#uxAccountMode'))$('#uxAccountMode').textContent=label;
