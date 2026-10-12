@@ -17,6 +17,11 @@ on:
       - 'scripts/check-v330.mjs'
       - 'scripts/browser-qa-v330.mjs'
       - 'scripts/localization-inventory-v330.mjs'
+      - 'lib/i18n-dynamic-v340.mjs'
+      - 'app-i18n-dynamic-v340.js'
+      - 'scripts/check-v340.mjs'
+      - 'scripts/browser-qa-v340.mjs'
+      - 'scripts/localization-inventory-v340.mjs'
 permissions:
   contents: read
 jobs:
@@ -44,3 +49,5 @@ jobs:
         run: node scripts/browser-qa-v320.mjs
       - name: Twelve-language account and comparison UX QA
         run: node scripts/browser-qa-v330.mjs
+      - name: V3.4 Dynamic translation mobile and desktop QA
+        run: node scripts/browser-qa-v340.mjs

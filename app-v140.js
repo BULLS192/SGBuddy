@@ -2,6 +2,7 @@
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 import {merliMessage} from './lib/i18n-merli-replies-v315.mjs';
+import {dynamicText} from './lib/i18n-dynamic-v340.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const {state,navigateTo,askAdvisor}=core;
@@ -26,7 +27,7 @@ widget.innerHTML=
 '<header class="buddy-header">'+art+'<div><strong id="buddyTitle">Merli</strong><small id="merliPersonaNote">Your little Singapore buddy</small></div><button id="buddyClose" type="button" aria-label="Close Merli">×</button></header>'+
 '<div id="buddyReply" class="buddy-reply" role="status" aria-live="polite">Hi, I’m Merli! 🫶 Need a hand getting around or discovering Singapore?</div>'+
 '<div id="merliEvidence" class="merli-evidence" hidden><a id="merliSource" href="https://www.nea.gov.sg" target="_blank" rel="noopener noreferrer">Read official source ↗</a><button type="button" id="merliSaveFact" hidden>☆ Save this fact</button></div>'+
-'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="essentials">📚 Essentials</button><button type="button" data-buddy-action="healthcare">🩺 Clinics</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button><button type="button" data-buddy-action="home">🏠 Saved place</button></div>'+
+'<div class="buddy-chips"><button type="button" data-buddy-action="fact">✨ Merli’s tip</button><button type="button" data-buddy-action="saved">★ Saved facts</button><button type="button" data-buddy-action="eat">🍜 Eat</button><button type="button" data-buddy-action="do">🌿 Do</button><button type="button" data-buddy-action="shop">🛍️ Shop</button><button type="button" data-buddy-action="apps">📱 Apps</button><button type="button" data-buddy-action="essentials">📚 Essentials</button><button type="button" data-buddy-action="healthcare">🩺 Clinics</button><button type="button" data-buddy-action="weather">🌤️ Air quality</button><button type="button" data-buddy-action="transit">🚇 Next train</button><button type="button" data-buddy-action="home">🏠 Saved place</button><button type="button" data-buddy-action="help">❔ Help</button><button type="button" data-buddy-action="privacy">🔒 Privacy</button><button type="button" data-buddy-action="bookings">🎟️ Bookings</button></div>'+
 '<form id="buddyAskForm"><input id="buddyAskInput" type="text" maxlength="160" autocomplete="off" aria-label="Ask Merli" placeholder="Ask Merli about Singapore…" /><button type="submit">Ask</button></form>'+
 '<p class="buddy-note">Merli uses SGBuddy data and checked sources, not generative AI. Live information may be delayed.</p></section>';
 document.body.appendChild(widget);
@@ -37,8 +38,9 @@ function mood(name='speaking'){
 }
 let activeFact=null;
 let lastLocalReply=null;
+let lastDynamicKey=null;
 function say(message,visual='speaking',source='',fact=null){
- lastLocalReply=null;
+ lastLocalReply=null;lastDynamicKey=null;
  $('#buddyReply').textContent=message;
  const link=url(source),e=$('#merliEvidence'),a=$('#merliSource'),btn=$('#merliSaveFact');
  e.hidden=!link;
@@ -52,6 +54,14 @@ function sayLocalized(key,params={},visual='speaking',source='',fact=null){
  say(merliMessage(locale(),key,params),visual,source,fact);
  lastLocalReply={key,params,visual,source,fact};
 }
+function sayDynamic(key){say(dynamicText(locale(),key));lastDynamicKey=key}
+function translateNewChips(){
+ for(const [action,key] of [['help','merliHelpChip'],['privacy','merliPrivacyChip'],['bookings','merliBookingChip']]){
+  const button=widget.querySelector('[data-buddy-action="'+action+'"]');
+  if(button){const emoji=action==='help'?'❔ ':action==='privacy'?'🔒 ':'🎟️ ';button.textContent=emoji+dynamicText(locale(),key)}
+ }
+}
+translateNewChips();
 function persona(){return state.mode==='new_in_sg'?'resident':state.mode||'resident'}
 function greeting(){
  const key={resident:'personaResident',visitor:'personaVisitor',executive:'personaExecutive',student:'personaStudent'}[persona()]||'personaResident';
@@ -125,6 +135,9 @@ function toSavedPlace(){
  sayLocalized('tripStarted',{},'navigation');
 }
 function act(a){
+ if(a==='help')return sayDynamic('merliCapability');
+ if(a==='privacy')return sayDynamic('merliPrivacy');
+ if(a==='bookings')return sayDynamic('merliBooking');
  if(a==='fact')return factTip();
  if(a==='home')return toSavedPlace();
  if(a==='saved')return openFacts(true);
@@ -144,7 +157,10 @@ $('#merliSaveFact').addEventListener('click',()=>{
 $('#buddyAskForm').addEventListener('submit',e=>{
  e.preventDefault();const input=$('#buddyAskInput'),raw=input.value.trim(),q=raw.toLowerCase();
  if(!q)return;
- if(/^(take|get|bring) me (back )?(home|to my hotel|to my house)|^(go|route) (home|to (home|my hotel))$/.test(q))act('home');
+ if(/^(help|what can you do|aide|ayuda|ajuda|帮助|幫助|bantuan|trợ giúp|도움|助けて|ช่วย)/i.test(q))act('help');
+ else if(/^(privacy|privacidade|privacidad|confidentialité|隐私|隱私|個人情報|개인정보|ความเป็นส่วนตัว|quyền riêng tư)/i.test(q))act('privacy');
+ else if(/^(booking|bookings|reservation|reserve|réservation|reserva|reserves|预订|預訂|予約|예약|จอง|đặt chỗ)/i.test(q))act('bookings');
+ else if(/^(take|get|bring) me (back )?(home|to my hotel|to my house)|^(go|route) (home|to (home|my hotel))$/.test(q))act('home');
  else if(/next.*train|next.*bus|train.*time|bus.*time|train problems|rail status|mrt|should i leave|leave now|^(get|take|bring) me to |^how do i get to |^route to |is it raining|umbrella/.test(q)){
   say(typeof askAdvisor==='function'?askAdvisor(raw):'Please open Move for transport details.','navigation');
  }else if(/air quality|psi|pm2|pollution|weather/.test(q))act('weather');
@@ -196,7 +212,7 @@ function mountLibrary(){
  $('#merliLoadMore').addEventListener('click',()=>{limit+=16;renderLibrary()});
  sec.addEventListener('click',e=>{const b=e.target.closest('[data-merli-save]');if(!b)return;const id=b.dataset.merliSave;saved.has(id)?saved.delete(id):saved.add(id);writeSaved();renderLibrary()});
  document.addEventListener('sgbuddy:persona',()=>{greeting();limit=16;renderLibrary()});
-document.addEventListener('sgbuddy:language',()=>{for(const option of $('#sgbFactTopic')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(locale(),option.value);greeting();if(lastLocalReply){const {key,params}=lastLocalReply;const values=lastLocalReply.fact&&key==='tip'?{text:factTranslation(locale(),lastLocalReply.fact)||lastLocalReply.fact.text}:params;$('#buddyReply').textContent=merliMessage(locale(),key,values)+(key==='airLast'||key==='airOfficial'?' '+merliMessage(locale(),'airSeeToday'):'');lastLocalReply.params=values;}renderLibrary()});
+document.addEventListener('sgbuddy:language',()=>{translateNewChips();if(lastDynamicKey)$('#buddyReply').textContent=dynamicText(locale(),lastDynamicKey);for(const option of $('#sgbFactTopic')?.options||[])if(option.value!=='all')option.textContent=taxonomyLabel(locale(),option.value);greeting();if(lastLocalReply){const {key,params}=lastLocalReply;const values=lastLocalReply.fact&&key==='tip'?{text:factTranslation(locale(),lastLocalReply.fact)||lastLocalReply.fact.text}:params;$('#buddyReply').textContent=merliMessage(locale(),key,values)+(key==='airLast'||key==='airOfficial'?' '+merliMessage(locale(),'airSeeToday'):'');lastLocalReply.params=values;}renderLibrary()});
  document.addEventListener('sgbuddy:knowledge-saved',()=>{saved=readSaved();renderLibrary()});
  document.addEventListener('sgbuddy:discover-tab',e=>{activeTab=e.detail.tab;sec.hidden=activeTab!=='facts';if(activeTab==='facts')renderLibrary()});
  renderLibrary();
