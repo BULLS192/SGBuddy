@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
+import {dynamicText} from '../lib/i18n-dynamic-v340.mjs';
 import {runtimeText} from '../lib/i18n-runtime-v320.mjs';
 import {placeRuntimeText} from '../lib/i18n-place-eta-v320.mjs';
 const browser=await chromium.launch({headless:true});
@@ -43,7 +44,7 @@ try{
   });
   await textIs('#envHeadline',runtimeText(code,'weatherConditions',{area:'Singapore'}));
   await textIs('#envHumidity',runtimeText(code,'unavailable'));
-  await page.waitForFunction(expect=>document.querySelector('#envDetails')?.textContent?.includes(expect),runtimeText(code,'psiExplanation'),{timeout:12000});
+  await page.waitForFunction(expect=>document.querySelector('#envDetails')?.textContent?.includes(expect),dynamicText(code,'pm25Explanation'),{timeout:12000});
   assert.ok((await page.locator('#envDetails').textContent()).includes(runtimeText(code,'sensorsUnavailable',{sensors:'rainfall'})),code+' missing source-aware sensor caveat');
   await textIs('#accountSyncBadge',runtimeText(code,'offline'));
   await textIs('#placesGrid .v110-place-card .place-fit',placeRuntimeText(code,'bestFit'));
