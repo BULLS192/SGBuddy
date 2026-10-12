@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
-import {homeText,homeShortcutText} from '../lib/i18n-home-v310.mjs';
-import {localizedWeatherLabel,localizedPsiLabel} from '../lib/i18n-weather-display-v310.mjs';
+import {homeText as homeText311} from '../lib/i18n-home-v311.mjs';
+import {contextMode} from '../lib/i18n-context-v370.mjs';
+import {weatherTerm} from '../lib/i18n-weather-home-v311.mjs';
+
 const browser=await chromium.launch({headless:true});
 const anchors=[['#uxChangeMode','changeMode'],['#uxPersonaDescription','residentPrompt'],['#uxMerliHomeAsk','askMerli'],['#uxMerliHomeCopy','merliPrompt'],['#nextUpTitle','departureImminent'],['#nextUpCopy','departureCopy'],['#locationStatus','locationPrivacy'],['#placeLabel','locationNear']];
 async function test(viewport){
@@ -25,10 +27,20 @@ async function test(viewport){
     for(const [selector,key] of anchors){const el=document.querySelector(selector);if(!el)throw Error('Missing: '+selector);el.textContent=sources[key]}
     window.SGBUDDY_HOME_I18N.refresh();
    },anchors);
-   const expected=anchors.map(([selector,key])=>({selector,value:homeText(code,key)}));
+   const latest={
+    changeMode:homeText311(code,'changeMode'),
+    residentPrompt:contextMode(code,'resident','placesCopy'),
+    askMerli:homeText311(code,'askMerli'),
+    merliPrompt:homeText311(code,'merliResident'),
+    departureImminent:homeText311(code,'imminent'),
+    departureCopy:homeText311(code,'prioritizedNearby'),
+    locationPrivacy:homeText311(code,'locationPrivacy'),
+    locationNear:homeText311(code,'nearYou')
+   };
+   const expected=anchors.map(([selector,key])=>({selector,value:latest[key]}));
    await page.waitForFunction(items=>items.every(({selector,value})=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:6000});
-   const shortcuts=['nearTitle','nearCopy','foodTitle','foodCopy','moveTitle','moveCopy','appsTitle','appsCopy'];
-   const expectedShortcuts=shortcuts.map(key=>homeShortcutText(code,key));
+   const shortcuts=['shortcutNearby','shortcutNearbyCopy','shortcutEat','shortcutEatCopy','shortcutMove','shortcutMoveCopy','shortcutApps','shortcutAppsCopy'];
+   const expectedShortcuts=shortcuts.map(key=>homeText311(code,key));
    try{
     await page.waitForFunction(values=>{
      const cards=[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
@@ -43,8 +55,8 @@ async function test(viewport){
     document.querySelector('#envPsi').textContent='148 · Unhealthy';
     window.SGBUDDY_WEATHER_DISPLAY_I18N.refresh();
    });
-   const weatherExpected=localizedWeatherLabel(code,'Partly Cloudy (Day) · 59% humidity · 0.0 mm rain');
-   const psiExpected=localizedPsiLabel(code,'148 · Unhealthy');
+   const weatherExpected=weatherTerm(code,'Partly Cloudy (Day)')+' · 59% '+weatherTerm(code,'humidity')+' · 0.0 mm '+weatherTerm(code,'rain');
+   const psiExpected='148 · '+weatherTerm(code,'Unhealthy');
    await page.waitForFunction(({weather,psi})=>
     document.querySelector('#weatherLabel')?.textContent===weather&&
     document.querySelector('#envPsi')?.textContent===psi,
