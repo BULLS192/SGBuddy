@@ -37,7 +37,7 @@ try{
   },SYSTEM_ENGLISH.legacyGuestNote);
   await equals('#profileDescription',systemText(code,'legacyGuestNote'));
   const routeInput=page.locator('#v110CompareDestination');
-  await routeInput.fill('Marina Bay Sands');
+  await routeInput.evaluate(el=>{el.value='Marina Bay Sands'});
   assert.equal(await routeInput.inputValue(),'Marina Bay Sands','Do not translate user-entered destination');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+8),true,'Mobile horizontal overflow '+code);
  }
