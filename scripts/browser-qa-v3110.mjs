@@ -31,7 +31,10 @@ async function check(viewport){
     ['#todaySection .hero-row > div:first-child .label',homeText(code,'currentContext')],
     ['#todaySection .hero-grid > div:nth-child(2) .metric-label',homeText(code,'railStatus')]
    ];
-   await page.waitForFunction(rows=>rows.every(([selector,expected])=>document.querySelector(selector)?.textContent?.trim()===expected),checks,{timeout:9000});
+   await page.waitForFunction(rows=>rows.every(([selector,expected])=>document.querySelector(selector)?.textContent?.trim()===expected),checks,{timeout:9000}).catch(async error=>{
+    const diff=await page.evaluate(rows=>rows.filter(([selector,expected])=>document.querySelector(selector)?.textContent?.trim()!==expected).map(([selector,expected])=>({selector,expected,actual:document.querySelector(selector)?.textContent?.trim()})),checks);
+    console.error('V3.11 HOME MISMATCH',JSON.stringify({code,viewport,diff,errors}));throw error;
+   });
    const shortcuts=await page.locator('.ux-primary-shortcuts .ux-shortcut').count();
    assert.equal(shortcuts,4,'Four resident-mode quick actions '+code);
    await page.waitForFunction(expected=>document.querySelector('[data-ux-go="apps"] .ux-shortcut-copy strong')?.textContent===expected,homeText(code,'shortcutApps'),{timeout:5000});
