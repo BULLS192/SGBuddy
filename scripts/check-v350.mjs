@@ -25,7 +25,7 @@ assert.ok(f('app-v090.js').includes("import('/app-i18n-audit-v350.js')"));
 assert.ok(f('index.html').includes('v3.9.0'));
 assert.ok(f('app-v090.js').includes("='3.9.0'"));
 const sw=f('sw.js');
-assert.ok(sw.includes('sgbuddy-shell-v67'),'PWA cache must advance to v64');
+assert.ok(sw.includes('sgbuddy-shell-v68'),'PWA cache must advance to v64');
 for(const path of ['/lib/i18n-audit-v350.mjs','/app-i18n-audit-v350.js'])assert.ok(sw.includes(path),'Missing offline authored text asset '+path);
 const audit=f('scripts/coverage-audit-v350.mjs');
 for(const k of ['wholeApplicationCoveragePercent:null','protectedIds','htmlReviewQueue','reviewedWeightedPoints','reviewedScreenPopulationPercent'])assert.ok(audit.includes(k),k+' audit classification must be explicit');
