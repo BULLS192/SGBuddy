@@ -63,6 +63,6 @@ const sw=read('sw.js'),bootstrap=read('app-v090.js'),html=read('index.html');
 for(const asset of ['i18n-v280.mjs','i18n-guides-v280.mjs','i18n-trip-v280.mjs','i18n-apps-v280.mjs']){
  assert.ok(sw.includes('/lib/'+asset),'Missing offline shell asset '+asset);
 }
-assert.ok(sw.includes('sgbuddy-shell-v68'),'PWA should invalidate stale cached assets');
-assert.ok(bootstrap.includes("='3.11.0'")&&html.includes('v3.11.0'),'Version mismatch');
+assert.ok(sw.includes('sgbuddy-shell-v69'),'PWA should invalidate stale cached assets');
+assert.ok(bootstrap.includes("='3.11.1'")&&html.includes('v3.11.1'),'Version mismatch');
 console.log('SGBuddy V2.8 12 locales PASS: 10 new UI packs, 70 guide translations, 50 arrival steps, 440 trip labels, 210 app UI labels, cached modules, preserved EN/zh-CN.');
