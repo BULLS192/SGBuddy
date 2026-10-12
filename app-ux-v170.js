@@ -1,5 +1,3 @@
-import {contextMode} from './lib/i18n-context-v370.mjs';
-import {homeText} from './lib/i18n-home-v311.mjs';
 /* SGBuddy UX 4–6: persona-led experiences, contextual Merli and accessible feedback.
    Progressive enhancement only. No extra data providers or generative AI. */
 (()=>{
@@ -55,11 +53,12 @@ const MODES={
 const safeMode=()=>Object.prototype.hasOwnProperty.call(MODES,state.mode)?state.mode:'resident';
 const cfg=()=>MODES[safeMode()];
 const language=()=>window.SGBUDDY_LANGUAGE||'en';
-const ht=(key,fields)=>homeText(language(),key,fields);
-const modeText=field=>contextMode(language(),safeMode(),field);
+const ht=(key,fields)=>window.SGBUDDY_HOME_LOCALE?.homeText?.(language(),key,fields)||'';
+const modeText=field=>window.SGBUDDY_HOME_LOCALE?.contextMode?.(language(),safeMode(),field)||
+  cfg()[{label:'label',title:'title',copy:'description',placesCopy:'prompt',panelCopy:'journey',placesTitle:'search'}[field]]||'';
 const shortcutNames={nearby:'Nearby',eat:'Eat',move:'Move',apps:'Apps',do:'Do',money:'Money',saved:'Saved'};
 const merliTexts={resident:'merliResident',visitor:'merliVisitor',executive:'merliExecutive',student:'merliStudent',new_in_sg:'merliNew'};
-const merliIntro=()=>ht(merliTexts[safeMode()]||'merliResident');
+const merliIntro=()=>ht(merliTexts[safeMode()]||'merliResident')||cfg().merliIntro;
 
 const readLocal=(store,key)=>{try{return store.getItem(key)}catch{return null}};
 const writeLocal=(store,key,val)=>{try{store.setItem(key,val)}catch{}};
@@ -107,7 +106,7 @@ function renderPersona(){
  const heading=title?.querySelector('h2'),sub=title?.querySelector('p');
  if(heading)heading.textContent=modeText('title');
  if(sub)sub.textContent=modeText('copy');
- if($('#uxPersonaName'))$('#uxPersonaName').textContent=label+ht('modeSuffix');
+ if($('#uxPersonaName'))$('#uxPersonaName').textContent=label+(ht('modeSuffix')||' mode');
  if($('#uxPersonaDescription'))$('#uxPersonaDescription').textContent=modeText('placesCopy');
  if($('#uxAccountMode'))$('#uxAccountMode').textContent=label;
  if($('#uxPersonaJourney'))$('#uxPersonaJourney').textContent=modeText('panelCopy');
@@ -119,7 +118,7 @@ function renderPersona(){
   const button=$(id);if(button)button.textContent=ht('changeMode');
  }
  if(grid)grid.innerHTML=c.shortcuts.map(([symbol,name,summary,target])=>{
-  const type=shortcutNames[target],displayName=type?ht('shortcut'+type):name,description=type?ht('shortcut'+type+'Copy'):summary;
+  const type=shortcutNames[target],displayName=type?(ht('shortcut'+type)||name):name,description=type?(ht('shortcut'+type+'Copy')||summary):summary;
   return '<button class="ux-shortcut" type="button" data-ux-go="'+target+'"><span class="ux-shortcut-icon" aria-hidden="true">'+symbol+'</span><span class="ux-shortcut-copy"><strong>'+escapeText(displayName)+'</strong><small>'+escapeText(description)+'</small></span></button>';
  }).join('');
  updateMerli();
@@ -164,7 +163,7 @@ function updateMerli(){
  if(!merliContext||!panel)return;
  const mode=cfg(),reading=validAir(),elevated=reading!==null&&reading>100;
  const actions=merliSuggestions();
- $('#uxMerliHeadline').textContent=elevated?'Check Singapore air quality':modeText('label')+' · '+ht('askMerli');
+ $('#uxMerliHeadline').textContent=elevated?'Check Singapore air quality':modeText('label')+' · '+(ht('askMerli')||'Ask Merli');
  $('#uxMerliCopy').textContent=elevated?'The latest available 24-hour PSI reading may affect prolonged outdoor plans. Open air quality to confirm the NEA guidance.':merliIntro();
  $('#uxMerliSuggestions').innerHTML=actions.map(x=>
  '<button type="button" data-ux-merli="'+x+'">'+escapeText(buddyLabels[x]||x)+'</button>').join('');
@@ -288,6 +287,7 @@ window.addEventListener('offline',signalNetwork);
 signalNetwork();
 document.addEventListener('sgbuddy:persona',()=>queueMicrotask(renderPersona));
 document.addEventListener('sgbuddy:language',()=>queueMicrotask(renderPersona));
+document.addEventListener('sgbuddy:translations-ready',()=>queueMicrotask(renderPersona));
 document.addEventListener('sgbuddy:weather',updateMerli);
 renderPersona();
 window.__SGBUDDY_UX_WAVES__='1-6';

@@ -4,6 +4,7 @@
 import {HOME_KEYS,HOME_ENGLISH,HOME_MESSAGES,homeText} from './lib/i18n-home-v311.mjs';
 import {WEATHER_MESSAGES,weatherTerm} from './lib/i18n-weather-home-v311.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
+import {contextMode} from './lib/i18n-context-v370.mjs';
 (()=>{
  'use strict';
  const doc=document, locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
@@ -116,6 +117,8 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   const root=doc.querySelector(selector);
   if(root)new MutationObserver(schedule).observe(root,{childList:true,subtree:true,characterData:true});
  }
+ window.SGBUDDY_HOME_LOCALE={homeText,contextMode};
  window.SGBUDDY_HOME_I18N={locale,keys:HOME_KEYS.length,refresh:schedule};
+ doc.dispatchEvent(new Event('sgbuddy:translations-ready'));
  schedule();
 })();
