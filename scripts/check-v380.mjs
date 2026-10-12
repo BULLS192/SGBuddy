@@ -25,7 +25,7 @@ for(const locale of locales){
  if(locale==='en')assert.equal(item.knownAuthoredInventory.percentOfClassifiedItems,null);
  else assert.ok(Number.isFinite(item.knownAuthoredInventory.percentOfClassifiedItems));
 }
-assert.equal(report.locales.en.byArea.authoredUiCatalogue.total,393);
+assert.equal(report.locales.en.byArea.authoredUiCatalogue.total,405);
 assert.ok(report.repositoryScope.activeApiJsFiles>=1);
 assert.ok(report.identifiedEditorialUnknown.byFile['data/services-v210.json']>=0);
 assert.ok(readFileSync('docs/localization-audit-v380.md','utf8').includes('globalWholeAppCompletionPercent'));

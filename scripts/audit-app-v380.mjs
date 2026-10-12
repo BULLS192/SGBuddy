@@ -33,8 +33,8 @@ const review360=jsonFrom('scripts/localization-review-v360.mjs');
 const previousJS=jsonFrom('scripts/inspect-js-localization-v370.mjs');
 function jsonFrom(command){return JSON.parse(execFileSync(process.execPath,[command,'--json'],{encoding:'utf8',maxBuffer:20*1024*1024}));}
 const baseKeys=registered.completion.en.declaredKeys;
-const registeredCount=baseKeys+later.reviewedUniqueKeys+review360.newCataloguedKeys+52;
-assert.equal(registeredCount,393,'Registered dictionary baseline changed: update audit for new translation pack');
+const registeredCount=baseKeys+later.reviewedUniqueKeys+review360.newCataloguedKeys+52+12;
+assert.equal(registeredCount,405,'Registered dictionary baseline changed: update audit for new translation pack');
 const publishedSourceIds=new Set();
 const measuredRows=[];
 const add=(bucket,id,original,check,origin)=> {
@@ -112,7 +112,7 @@ function infoFor(locale){
  }
  const registry=registered.completion[locale]||{};
  const registeredFilled=(registry.filledKeys||0)+(later.locales?.[locale]?.registeredFilled??(registry.filledKeys||0)+later.reviewedUniqueKeys)-(registry.filledKeys||0)+
-  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52;
+  (review360.locales?.find(x=>x.locale===locale)?.populated??review360.newCataloguedKeys)+52+12;
  // Only count populating registered messages, not native-speaker quality or runtime reach.
  packs.authoredUiCatalogue={total:registeredCount,confirmedLocalized:english?registeredCount:registeredFilled,knownSourceFallback:registeredCount-registeredFilled};
  const total=Object.values(packs).reduce((n,p)=>n+p.total,0);
@@ -143,7 +143,7 @@ const audit={
  previouslySuggestedEstimate:{approximate:70,verified:false,includeInMeasurement:false},
  locales:reports,
  classifiedEligibleEntries:measuredRows.length+registeredCount,
- identifiedEditorialUnknown:{uniqueTextFields:unresolvedRecords.length,recordOccurrences:unresolvedRecords.reduce((a,x)=>a+x.occurrences,0),byFile:Object.fromEntries(dataFiles.map(file=>[file,unresolvedRecords.filter(x=>x.file===file).length])),examples:unresolvedRecords.slice(0,60).map(({file,field,recordId,original,occurrences})=>({file,field,recordId,excerpt:original.slice(0,140),occurrences}))},
+ identifiedEditorialUnknown:{uniqueTextFields:unresolvedRecords.length,recordOccurrences:unresolvedRecords.reduce((a,x)=>a+x.occurrences,0),byFile:Object.fromEntries(dataFiles.map(file=>[file,unresolvedRecords.filter(x=>x.file===file).length])),reviewQueue:unresolvedRecords.map(({file,field,recordId,fieldPath,original,occurrences})=>({file,field,recordId,fieldPath,excerpt:original.slice(0,220),occurrences})),examples:unresolvedRecords.slice(0,60).map(({file,field,recordId,original,occurrences})=>({file,field,recordId,excerpt:original.slice(0,140),occurrences}))},
  sourceOwnedProtectedFieldCounts:protectedSummary,
  executableTextAudit:{groups:dynamicInventory,policy:dynamicAuditPolicy},
  unclassifiedJsAudit:{scannedAppFiles:previousJS.scannedFiles.length,likelyOutputLiteralCandidates:previousJS.candidateCount,needsManualClassification:previousJS.untriagedCount,scopeNote:'V3.7 scanner includes archived builds. V3.8 splits active UI and backend candidates, but neither count is an untranslated denominator.'},
