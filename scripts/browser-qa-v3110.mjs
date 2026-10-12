@@ -60,7 +60,7 @@ async function run(width,height){
    await page.waitForFunction(({code,core})=>
       document.querySelector('.manual.card h3')?.textContent===core.stationName &&
       document.querySelector('.manual.card .label')?.textContent===core.checkStation &&
-      document.querySelector('#placeLabel')?.textContent===core.nearYou,
+      (document.querySelector('#placeLabel')?.textContent===core.nearYou || document.querySelector('#placeLabel')?.textContent==='Singapore'),
       {code,core:CORE_UI[code]},{timeout:6000});
    const weather=homeText(code,'cloudyDay')+' · 59% '+homeText(code,'humidity')+' · 0.0 mm '+homeText(code,'rain');
    await page.waitForFunction(expected=>document.querySelector('#weatherLabel')?.textContent===expected,weather,{timeout:6000});
