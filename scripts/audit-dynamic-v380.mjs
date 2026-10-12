@@ -49,7 +49,7 @@ for(const [group,files] of Object.entries(groups)){
   }
  }
  const unique=[...new Map(hits.map(x=>[x.file+':'+x.line+':'+x.kind,x])).values()];
- summary[group]={files,filesScanned:files.length,outputCandidates:unique.length,samples:unique.slice(0,35)};
+ summary[group]={files,filesScanned:files.length,outputCandidates:unique.length,reviewQueue:group==='archivedClient'?[]:unique,samples:unique.slice(0,35)};
 }
 export const dynamicInventory=summary;
 export const dynamicAuditPolicy='All outputCandidates require source/visibility/locale classification. No literal is assumed untranslated. Archived-client candidates are NOT current screen coverage; backend and libraries may own provider data.';

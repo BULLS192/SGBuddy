@@ -5,6 +5,8 @@ on:
       - 'scripts/audit-app-v380.mjs'
       - 'scripts/audit-dynamic-v380.mjs'
       - 'scripts/check-v380.mjs'
+      - 'scripts/classify-localization-v390.mjs'
+      - 'scripts/check-v390.mjs'
       - 'docs/localization-audit-v380.md'
       - '.github/workflows/localization-audit-v380.yml'
       - 'lib/i18n-*.mjs'
@@ -33,5 +35,13 @@ jobs:
         with:
           name: sgbuddy-localization-v380-inventory
           path: localization-v380.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Export V3.9 individual UI and editorial classification
+        run: node scripts/classify-localization-v390.mjs --out=localization-v390.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-localization-v390-classifications
+          path: localization-v390.json
           if-no-files-found: error
           retention-days: 14
