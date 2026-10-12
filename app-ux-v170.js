@@ -183,7 +183,7 @@ function updateMerli(){
   all.querySelectorAll('button').forEach(b=>{b.hidden=false});
  }
  if(merliMore){
-  merliMore.textContent=homeText(locale(),showAllMerli?'merliLess':'merliMore');
+  merliMore.textContent=showAllMerli?'Hide extra actions':'More ways Merli can help'; // V3.5 owns the localized toggle
   merliMore.setAttribute('aria-expanded',String(showAllMerli));
  }
 }
