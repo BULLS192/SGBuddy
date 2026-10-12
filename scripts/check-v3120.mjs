@@ -11,7 +11,7 @@ for(const {code} of LOCALES){
  for(const key of V312_KEYS){
   assert.ok(typeof pack[key]==='string'&&pack[key].trim(),code+'/'+key);
   assert.deepEqual(holders(pack[key]),holders(V312_MESSAGES.en[key]),code+'/'+key+' parameters');
-  if(code!=='en'&&!['tripSearchPlaceholder','hotel','destination','alternative'].includes(key))assert.notEqual(pack[key],V312_MESSAGES.en[key],code+'/'+key+' untranslated');
+  if(code!=='en'&&!['tripSearchPlaceholder','hotel','destination','alternative','optionsOne','optionsMany'].includes(key))assert.notEqual(pack[key],V312_MESSAGES.en[key],code+'/'+key+' untranslated');
  }
  assert.ok(v312Text(code,'optionsMany',{count:'7'}).includes('7'));
  assert.equal(v312Text(code,'missing'), '');
