@@ -80,3 +80,5 @@ jobs:
         run: node scripts/browser-qa-v370.mjs
       - name: V3.9 twelve-language fallback and source-protection Chromium QA
         run: node scripts/browser-qa-v390.mjs
+      - name: V3.11 Home multilingual translation integrity
+        run: node scripts/check-v3110.mjs
