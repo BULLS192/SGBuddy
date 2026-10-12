@@ -1,4 +1,4 @@
-name: SGBuddy V3.2 Runtime Language Coverage
+name: SGBuddy V3.2–V3.3 Multilingual Runtime Coverage
 on:
   push:
     branches: [feature/sgbuddy-v3.2-runtime-l10n]
@@ -12,6 +12,11 @@ on:
       - 'scripts/check-v320.mjs'
       - 'scripts/browser-qa-v320.mjs'
       - '.github/workflows/check-v320-browser.yml'
+      - 'lib/i18n-system-v330.mjs'
+      - 'app-i18n-system-v330.js'
+      - 'scripts/check-v330.mjs'
+      - 'scripts/browser-qa-v330.mjs'
+      - 'scripts/localization-inventory-v330.mjs'
 permissions:
   contents: read
 jobs:
@@ -37,3 +42,5 @@ jobs:
           exit 1
       - name: Twelve-language account, weather and ETA browser QA
         run: node scripts/browser-qa-v320.mjs
+      - name: Twelve-language account and comparison UX QA
+        run: node scripts/browser-qa-v330.mjs
