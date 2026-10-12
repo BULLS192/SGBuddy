@@ -26,7 +26,7 @@ node scripts/check-all.mjs
 
 ## Native-speaker review handoff
 
-`scripts/export-native-review-v370.mjs --out=v370-human-review.csv` creates **572 review rows** (52 messages × 11 non-English locales), each with exact source English, candidate translation, locale, message key, risk tag, status, reviewer, review date and notes. Every entry is **pending**; no human editor has approved these strings. The earlier `docs/native-review-v360.csv` 33 checkboxes likewise remain pending.
+`scripts/export-native-review-v370.mjs --out=v370-human-review.csv` creates **572 review rows** (52 messages × 11 non-English locales), each with exact source English, candidate translation, locale, message key, risk tag, status, reviewer, review date and notes. The ready-to-review `docs/native-review-v370.csv` contains these 572 candidates in a spreadsheet-friendly form. Every entry is **pending**; no human editor has approved these strings. The earlier `docs/native-review-v360.csv` 33 checkboxes likewise remain pending.
 
 Native-speaker reviewers should check context, UI fit, cultural nuance, ambiguity, transport and air quality accuracy, screen reader accessibility, finance terminology and placeholder preservation. The automated QA checks populated strings and placeholder consistency, not native language quality. A high-trust release needs human approval and real-device/PWA cache upgrade testing.
 

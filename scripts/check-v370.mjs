@@ -36,4 +36,8 @@ for(const asset of ['/app-i18n-context-v370.js','/lib/i18n-context-v370.mjs'])as
 assert.ok(sw.includes('sgbuddy-shell-v66'));
 assert.ok(read('scripts/inspect-js-localization-v370.mjs').includes('untriagedCount'));
 assert.ok(read('scripts/export-native-review-v370.mjs').includes("status:'pending'"));
+const review=read('docs/native-review-v370.csv').trim().split('\n');
+assert.equal(review.length,573,'Expected 572 pending candidate-review rows plus header');
+assert.ok(review[0].includes('reviewer')&&review[0].includes('proposed_translation'),'Missing native-speaker review fields');
+assert.ok(review.slice(1).every(row=>row.includes(',"pending",')),'Do not mark non-native review as approved');
 console.log('V3.7 STATIC PASS: 12 locales, 5 personas, 9 context fields, 7 global tokens, source-safe dynamic reactivity and PWA v66.');
