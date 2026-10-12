@@ -63,9 +63,9 @@ for(const marker of ['foodToolsV261','foodPickArea','foodPickCraving','foodPickB
 assert.ok(picker.includes('Math.random')&&picker.includes('lastId'),'Random picker must avoid immediate duplicate');
 assert.ok(!picker.includes('foodAiResearch')&&!picker.includes('innerHTML=review'),'Research-only FoodAI or scraped reviews must not show in consumer UI');
 assert.ok(boot.includes("import('/app-trip-v260.js')")&&boot.includes("import('/app-food-tools-v261.js')"),'Food tools must load after trip builder');
-assert.ok(boot.includes('3.6.0')&&html.includes('v3.6.0'));
+assert.ok(boot.includes('3.7.0')&&html.includes('v3.7.0'));
 for(const f of ['/app-food-tools-v261.js','/food-tools-v261.css','/data/food-leads-v261.json','/data/dining-services-v261.json'])assert.ok(sw.includes(f),'Installed PWA missing '+f);
-assert.ok(sw.includes('sgbuddy-shell-v65'),'PWA version not bumped');
+assert.ok(sw.includes('sgbuddy-shell-v66'),'PWA version not bumped');
 assert.ok(html.includes('/food-tools-v261.css'));
 for(const x of ['data-ux-theme="light"','max-width:630px','focus-visible','min-height:44px'])assert.ok(css.includes(x),'Responsive/light accessibility selector missing '+x);
 execFileSync(process.execPath,['scripts/food-review-v261.mjs'],{stdio:'inherit'});
