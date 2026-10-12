@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
 import {homeText,homeShortcutText} from '../lib/i18n-home-v310.mjs';
+import {localizedWeatherLabel,localizedPsiLabel} from '../lib/i18n-weather-display-v310.mjs';
 const browser=await chromium.launch({headless:true});
 const anchors=[['#uxChangeMode','changeMode'],['#uxPersonaDescription','residentPrompt'],['#uxMerliHomeAsk','askMerli'],['#uxMerliHomeCopy','merliPrompt'],['#nextUpTitle','departureImminent'],['#nextUpCopy','departureCopy'],['#locationStatus','locationPrivacy'],['#placeLabel','locationNear']];
 async function test(viewport){
@@ -15,7 +16,7 @@ async function test(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>Boolean(window.SGBUDDY_HOME_I18N),{timeout:35000});
+  await page.waitForFunction(()=>Boolean(window.SGBUDDY_HOME_I18N)&&Boolean(window.SGBUDDY_WEATHER_DISPLAY_I18N),{timeout:35000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.evaluate(anchors=>{
@@ -28,10 +29,26 @@ async function test(viewport){
    await page.waitForFunction(items=>items.every(({selector,value})=>document.querySelector(selector)?.textContent?.trim()===value),expected,{timeout:6000});
    const shortcuts=['nearTitle','nearCopy','foodTitle','foodCopy','moveTitle','moveCopy','appsTitle','appsCopy'];
    const expectedShortcuts=shortcuts.map(key=>homeShortcutText(code,key));
-   await page.waitForFunction(values=>{
-    const cards=[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
-    return cards.length===4&&cards.flatMap(card=>[card.querySelector('strong')?.textContent,card.querySelector('small')?.textContent]).every((str,i)=>str===values[i]);
-   },expectedShortcuts,{timeout:6500});
+   try{
+    await page.waitForFunction(values=>{
+     const cards=[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
+     return cards.length===4&&cards.flatMap(card=>[card.querySelector('strong')?.textContent,card.querySelector('small')?.textContent]).every((str,i)=>str===values[i]);
+    },expectedShortcuts,{timeout:3500});
+   }catch(error){
+    const actual=await page.evaluate(()=>[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,5).map(card=>[card.querySelector('strong')?.textContent,card.querySelector('small')?.textContent]));
+    throw Error('Shortcut localization '+code+' expected '+JSON.stringify(expectedShortcuts)+' actual '+JSON.stringify(actual)+': '+error.message);
+   }
+   await page.evaluate(()=>{
+    document.querySelector('#weatherLabel').textContent='Partly Cloudy (Day) · 59% humidity · 0.0 mm rain';
+    document.querySelector('#envPsi').textContent='148 · Unhealthy';
+    window.SGBUDDY_WEATHER_DISPLAY_I18N.refresh();
+   });
+   const weatherExpected=localizedWeatherLabel(code,'Partly Cloudy (Day) · 59% humidity · 0.0 mm rain');
+   const psiExpected=localizedPsiLabel(code,'148 · Unhealthy');
+   await page.waitForFunction(({weather,psi})=>
+    document.querySelector('#weatherLabel')?.textContent===weather&&
+    document.querySelector('#envPsi')?.textContent===psi,
+    {weather:weatherExpected,psi:psiExpected},{timeout:6500});
    const mode=await page.locator('#uxPersonaName').textContent();
    assert.ok(!mode.includes('Resident mode')||code==='en',code+' failed to translate mode');
   }
