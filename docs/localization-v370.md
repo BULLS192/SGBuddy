@@ -7,7 +7,7 @@
 V3.6 left nine first-party UI targets for deeper source-aware localization:
 `#modeText`, `#personaFocusTitle`, `#personaFocusCopy`, `#journeyMapTitle`, `#personaPanelLabel`, `#personaPanelTitle`, `#personaPanelCopy`, `#placesPersonaHint`, `#dataCoreStatus`.
 
-V3.7 adds the related first-party Places heading (`#placesSection h2`). Five personas × nine owned strings, plus seven global message templates/states, are authored in all 12 languages: **52 new keys per locale**. The registered catalogue becomes **393 populated first-party keys per language**, **4,716 entries including English**, across 14 packs. This is **not** a whole-application translation percentage.
+V3.7 adds the related first-party Places heading (`#placesSection h2`). Five personas × nine owned strings, plus seven global message templates/states, are authored in all 12 languages: **52 new keys per locale**. The registered catalogue becomes **393 populated first-party keys per language**, **4,716 entries including English**, across 13 packs. This is **not** a whole-application translation percentage.
 
 The runtime only replaces known strings from exact first-party English and registered localized values. Route titles after `Recommended · ` are preserved verbatim, as are addresses, provider warnings, prices, account identifiers and user input. Places ranking summaries interpolate a numeric result count and localized, enumerated persona copy; they never translate arbitrary provider content or trigger network requests. Translations update on language changes, persona changes and re-rendered content.
 
