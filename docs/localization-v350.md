@@ -4,7 +4,7 @@
 
 ## What is translated in this wave
 
-A **source-locked set of 23 additional first-party texts** covers eight audited UI zones: Home (trip status and conditions), Move (empty route status), Discover (back to hotel), Saved (device pairing), Money (near-me and FX empty state), Account (sync diagnostics and sign-out), onboarding (persona/location/install prompts), and Merli (welcome and More/Less controls).
+A **source-locked set of 22 additional first-party texts** covers eight audited UI zones: Home (trip status and conditions), Move (empty route status), Discover (back to hotel), Saved (device pairing), Money (near-me and FX empty state), Account (sync diagnostics and sign-out), onboarding (persona/location/install prompts), and Merli (More/Less controls; earlier welcome translation retained).
 
 All 12 supported locales are populated. All translations are manually authored, with **no blanket DOM translation**. Unknown text from live route services, weather sources, registered providers, financial rates, user input, personal identifiers and official statements remains unchanged. Dynamic statuses are updated only when they match the known first-party English source text or a previously translated version of the same key.
 
@@ -12,9 +12,9 @@ This patch also updates the offline shell to `sgbuddy-shell-v64`.
 
 ## Auditing methodology — avoid a misleading global number
 
-The previous ten first-party dictionaries contain **300 populated message keys per locale**. V3.5 introduces 23, for **323 declared authored keys per locale**, across 11 catalogues, 3,876 entries including English.
+The previous ten first-party dictionaries contain **300 populated message keys per locale**. V3.5 introduces 22, for **322 declared authored keys per locale**, across 11 catalogues, 3,864 entries including English.
 
-`scripts/coverage-audit-v350.mjs` measures the **23 explicitly reviewed text slots**, grouped by eight functional UI zones, with fixed editorial weights (1=secondary, 2=primary). The resulting `reviewedScreenPopulationPercent` measures whether a message exists for the locale **in that reviewed sample only**. It does NOT measure semantic accuracy, native-speaker approval, entire screen completeness or application-wide multilingual coverage. English is baseline and cannot be counted as translated.
+`scripts/coverage-audit-v350.mjs` measures the **22 explicitly reviewed text slots**, grouped by eight functional UI zones, with fixed editorial weights (1=secondary, 2=primary). The resulting `reviewedScreenPopulationPercent` measures whether a message exists for the locale **in that reviewed sample only**. It does NOT measure semantic accuracy, native-speaker approval, entire screen completeness or application-wide multilingual coverage. English is baseline and cannot be counted as translated.
 
 The report includes:
 - Per-screen slot counts, editorial weight, per-locale authored message population, unchanged-English review candidates.
