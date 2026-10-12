@@ -18,7 +18,7 @@ async function test(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>Boolean(window.SGBUDDY_HOME_I18N)&&Boolean(window.SGBUDDY_WEATHER_DISPLAY_I18N),{timeout:35000});
+  await page.waitForFunction(()=>Boolean(window.SGBUDDY_HOME_I18N),{timeout:35000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.evaluate(anchors=>{
@@ -58,7 +58,7 @@ async function test(viewport){
    await page.evaluate(()=>{
     document.querySelector('#weatherLabel').textContent='Partly Cloudy (Day) · 59% humidity · 0.0 mm rain';
     document.querySelector('#envPsi').textContent='148 · Unhealthy';
-    window.SGBUDDY_WEATHER_DISPLAY_I18N.refresh();
+    window.SGBUDDY_HOME_I18N.refresh();
    });
    const weatherExpected=weatherTerm(code,'Partly Cloudy (Day)')+' · 59% '+weatherTerm(code,'humidity')+' · 0.0 mm '+weatherTerm(code,'rain');
    const psiExpected='148 · '+weatherTerm(code,'Unhealthy');

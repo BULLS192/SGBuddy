@@ -14,7 +14,10 @@ for(const text of ['#uxPersonaDescription','#uxMerliHomeTitle','#uxMerliHomeCopy
  assert.ok(bridge.includes(text),'Missing first-party reactive anchor '+text);
 assert.ok(bridge.includes("current===d.modes[mode].label+' mode'"));
 const boot=readFileSync('app-v090.js','utf8');
-assert.ok(boot.includes("import('/app-i18n-home-v310.js')"));
+// The V3.10 message catalogue remains regression-tested, but V3.11 owns
+// these DOM anchors to avoid two observers racing after rerenders.
+assert.ok(boot.includes("import('/app-i18n-home-v311.js')"));
+assert.ok(!boot.includes("import('/app-i18n-home-v310.js')"));
 const sw=readFileSync('sw.js','utf8');
 for(const asset of ['/app-i18n-home-v310.js','/lib/i18n-home-v310.mjs'])assert.ok(sw.includes(asset));
 assert.ok(sw.includes('sgbuddy-shell-v68'));
