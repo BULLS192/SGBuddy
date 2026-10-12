@@ -16,7 +16,7 @@ const create=async()=>{
 try{
  const a=await create(),b=await create();
  await a.page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
- await a.page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
+ await a.page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.3.0',{timeout:30000});
  await a.page.locator('#navPlaces').click();await a.page.locator('[data-discover-tab="trip"]').click();
  await a.page.locator('#tripNewName').fill('Singapore weekend');
  await a.page.locator('#tripStartDate').fill('2027-01-01');
