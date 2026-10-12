@@ -41,6 +41,13 @@ on:
       - 'scripts/browser-qa-v390.mjs'
       - 'scripts/check-v390.mjs'
       - 'scripts/classify-localization-v390.mjs'
+      - 'lib/i18n-home-v310.mjs'
+      - 'lib/i18n-weather-display-v310.mjs'
+      - 'app-i18n-home-v310.js'
+      - 'app-i18n-weather-display-v310.js'
+      - 'scripts/check-v310-home.mjs'
+      - 'scripts/check-v310-weather.mjs'
+      - 'scripts/browser-qa-v310-home.mjs'
       - 'lib/i18n-home-v311.mjs'
       - 'lib/i18n-weather-home-v311.mjs'
       - 'app-i18n-home-v311.js'
@@ -86,5 +93,7 @@ jobs:
         run: node scripts/browser-qa-v370.mjs
       - name: V3.9 twelve-language fallback and source-protection Chromium QA
         run: node scripts/browser-qa-v390.mjs
+      - name: V3.10 screenshot surface 12-language Chromium QA
+        run: node scripts/browser-qa-v310-home.mjs
       - name: V3.11 home screen 12-locale mobile and desktop runtime QA
         run: node scripts/browser-qa-v3110.mjs
