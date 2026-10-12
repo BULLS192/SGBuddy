@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
 import {AUDIT_KEYS,AUDIT_SURFACES,AUDIT_ENGLISH,auditText} from '../lib/i18n-audit-v350.mjs';
+import {uxText} from '../lib/i18n-ux-v311.mjs';
 const browser=await chromium.launch({headless:true});
 const primary=Object.entries(AUDIT_SURFACES).flatMap(([screen,slots])=>slots.map(([selector,key,weight])=>({screen,selector,key,weight}))).filter(x=>x.key!=='merliLess');
 const context=async(width,height)=>{
@@ -33,7 +34,7 @@ async function trial(width,height){
     document.dispatchEvent(new Event('sgbuddy:language'));
     window.SGBUDDY_SCREEN_I18N?.refresh();
    },{entries:primary,source:AUDIT_ENGLISH});
-   const values={entries:primary,expected:Object.fromEntries(AUDIT_KEYS.map(k=>[k,auditText(code,k)]))};
+   const values={entries:primary,expected:{...Object.fromEntries(AUDIT_KEYS.map(k=>[k,auditText(code,k)])),merliMore:uxText(code,'moreWays')}};
    await page.waitForFunction(({entries,expected})=>entries.every(x=>document.querySelector(x.selector)?.textContent?.trim()===expected[x.key]),values,{timeout:5000}).catch(async error=>{
     const diff=await page.evaluate(({entries,expected})=>entries.filter(x=>document.querySelector(x.selector)?.textContent?.trim()!==expected[x.key]).map(x=>({
      selector:x.selector,screen:x.screen,key:x.key,
@@ -43,8 +44,9 @@ async function trial(width,height){
     throw error;
    });
    // More/Less is one dynamic button, not two simultaneous DOM nodes.
-   await page.evaluate(source=>{document.querySelector('#uxMerliMore').textContent=source;window.SGBUDDY_SCREEN_I18N.refresh()},AUDIT_ENGLISH.merliLess);
-   await page.waitForFunction(expected=>document.querySelector('#uxMerliMore')?.textContent?.trim()===expected,auditText(code,'merliLess'),{timeout:14000});
+   await page.locator('#uxMerliMore').click();
+   await page.waitForFunction(expected=>document.querySelector('#uxMerliMore')?.textContent?.trim()===expected,uxText(code,'hideExtra'),{timeout:14000});
+   await page.locator('#uxMerliMore').click();
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+8),true,code+' horizontal overflow '+width);
   }
   // Provider-controlled route/state text must never be rewritten, even on refresh.
