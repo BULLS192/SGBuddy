@@ -97,15 +97,16 @@ import {RUNTIME_MESSAGES,runtimeText} from './lib/i18n-runtime-v320.mjs';
    return;
   }
  }
+
  function applyPsiCategory(){
   const node=doc.querySelector('#envPsi');if(!node)return;
-  const match=(node.textContent||'').trim().match(/^([0-9]{1,3}) · (.+)$/);
-  if(!match)return;
+  const found=(node.textContent||'').trim().match(/^([0-9]{1,3}) · (.+)$/);
+  if(!found)return;
   const keys=['psiGood','psiModerate','psiUnhealthy','psiVeryUnhealthy','psiHazardous'];
-  const key=keys.find(k=>packs.some(pack=>pack[k]===match[2]));
+  const key=keys.find(k=>packs.some(pack=>pack[k]===found[2]));
   if(!key)return;
-  const next=match[1]+' · '+homeText(locale(),key);
-  if(node.textContent!==next)node.textContent=next;
+  const next=found[1]+' · '+homeText(locale(),key);
+  if(next!==node.textContent)node.textContent=next;
  }
  function applyUpdated(){
   const node=doc.querySelector('#updatedAt');if(!node)return;
@@ -113,7 +114,16 @@ import {RUNTIME_MESSAGES,runtimeText} from './lib/i18n-runtime-v320.mjs';
   for(const pack of Object.values(RUNTIME_MESSAGES)){
    const template=pack.weatherUpdated;
    if(!template||!template.includes('{time}'))continue;
-   const pattern=new RegExp('^'+escapes(template).replace('\\{time\\}','(.+?)')+'  for(const [selector,...keys] of slots)for(const node of doc.querySelectorAll(selector))applyOne(node,keys);
+   const expr=new RegExp('^'+escapes(template).replace('\\{time\\}','(.+?)')+'$');
+   const found=current.match(expr);
+   if(!found||!/^[0-2]?\d:[0-5]\d(?:\s*(?:AM|PM))?$/i.test(found[1]))continue;
+   const next=runtimeText(locale(),'weatherUpdated',{time:found[1]});
+   if(next!==current)node.textContent=next;
+   return;
+  }
+ }
+ function apply(){
+  for(const [selector,...keys] of slots)for(const node of doc.querySelectorAll(selector))applyOne(node,keys);
   for(const [selector,key] of fromCore)applyCore(doc.querySelector(selector),key);
   applyStationAction();
   applyWeatherLabel();
@@ -129,34 +139,6 @@ import {RUNTIME_MESSAGES,runtimeText} from './lib/i18n-runtime-v320.mjs';
  // Dynamically rendered widgets can overwrite captions after locale changes.
  // Observe only explicit first-party UI hosts, never all of main/document body.
  for(const selector of ['#todaySection','#nextUpCard','.manual.card','.ux-home-title','#uxPersonaBanner','.ux-primary-shortcuts','#uxMerliHint','#uxExtraConditions']){
-  const root=doc.querySelector(selector);if(root)new MutationObserver(schedule).observe(root,{subtree:true,childList:true,characterData:true});
- }
- window.SGBUDDY_HOME_I18N={locale,refresh:schedule,keys:HOME_KEYS.length};
- schedule();
-})();
-);
-   const match=current.match(pattern);
-   if(!match||!/^[0-2]?\\d:[0-5]\\d(?:\\s*(?:AM|PM))?$/i.test(match[1]))continue;
-   const next=runtimeText(locale(),'weatherUpdated',{time:match[1]});
-   if(next!==current)node.textContent=next;
-   return;
-  }
- }
- function apply(){
-  for(const [selector,...keys] of slots)for(const node of doc.querySelectorAll(selector))applyOne(node,keys);
-  for(const [selector,key] of fromCore)applyCore(doc.querySelector(selector),key);
-  applyStationAction();
-  applyWeatherLabel();
- }
- let scheduled=false;
- function schedule(){
-  if(scheduled)return;scheduled=true;
-  requestAnimationFrame(()=>{scheduled=false;try{apply()}catch(e){console.warn('Home locale update',e?.message)}});
- }
- for(const event of ['sgbuddy:language','sgbuddy:persona','sgbuddy:weather','sgbuddy:translations-ready','sgbuddy:location','sgbuddy:transport'])doc.addEventListener(event,schedule);
- // Dynamically rendered widgets can overwrite captions after locale changes.
- // Observe only explicit first-party UI hosts, never all of main/document body.
- for(const selector of ['#todaySection','#nextUpCard','.manual.card','.ux-home-title','#uxPersonaBanner','.ux-primary-shortcuts','#uxMerliHint']){
   const root=doc.querySelector(selector);if(root)new MutationObserver(schedule).observe(root,{subtree:true,childList:true,characterData:true});
  }
  window.SGBUDDY_HOME_I18N={locale,refresh:schedule,keys:HOME_KEYS.length};
