@@ -31,11 +31,10 @@ import {contextMode} from './lib/i18n-context-v370.mjs';
   ['#nextUpAction','now']
  ];
  const prior=new WeakMap();
- const legacySource={'nextSetupCopy':'Allow location or use your saved stops and stations so SGBuddy can prioritize what matters to you.'};
  const escapeRe=s=>String(s).replace(/[.*+?^$\{\}()|[\]\\]/g,'\\$&');
  function replacement(node,key){
   const current=(node.textContent||'').trim(),last=prior.get(node);
-  if(!variants[key].has(current)&&legacySource[key]!==current&&
+  if(!variants[key].has(current)&&
     !(last?.key===key&&last?.rendered===current))return false;
   const next=homeText(locale(),key);
   if(current!==next)node.textContent=next;
