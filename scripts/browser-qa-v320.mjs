@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
+import {dynamicText} from '../lib/i18n-dynamic-v340.mjs';
 import {runtimeText} from '../lib/i18n-runtime-v320.mjs';
 import {placeRuntimeText} from '../lib/i18n-place-eta-v320.mjs';
 const browser=await chromium.launch({headless:true});
@@ -17,7 +18,7 @@ async function textIs(selector,value){
 }
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.7.0',{timeout:30000});
  const modal=page.locator('#locationSheet');
  await modal.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await modal.isVisible())await page.locator('#notNowLocationButton').click();
@@ -43,7 +44,7 @@ try{
   });
   await textIs('#envHeadline',runtimeText(code,'weatherConditions',{area:'Singapore'}));
   await textIs('#envHumidity',runtimeText(code,'unavailable'));
-  await page.waitForFunction(expect=>document.querySelector('#envDetails')?.textContent?.includes(expect),runtimeText(code,'psiExplanation'),{timeout:12000});
+  await page.waitForFunction(expect=>document.querySelector('#envDetails')?.textContent?.includes(expect),dynamicText(code,'pm25Explanation'),{timeout:12000});
   assert.ok((await page.locator('#envDetails').textContent()).includes(runtimeText(code,'sensorsUnavailable',{sensors:'rainfall'})),code+' missing source-aware sensor caveat');
   await textIs('#accountSyncBadge',runtimeText(code,'offline'));
   await textIs('#placesGrid .v110-place-card .place-fit',placeRuntimeText(code,'bestFit'));
@@ -55,7 +56,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.1.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v3.7.0',{timeout:30000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Language preference not persisted');
  assert.deepEqual(errors,[],'Unexpected browser runtime exceptions');
  console.log('V3.2 MOBILE PASS: 12 locales for account sync, weather, sensor/PM2.5 disclaimers, place ranking/ETA actions, journey required-destination error, persisted language and responsive layout.');
