@@ -20,9 +20,10 @@ async function run(viewport){
   await page.waitForSelector('#foodMeal option[value="Breakfast"]',{state:'attached',timeout:20000});
   await page.waitForSelector('#discoverCategoryFilter option[value="Supermarket — operator locator"]',{state:'attached',timeout:20000});
   await page.waitForSelector('#foodCards .food-stall h4',{state:'attached',timeout:16000});
-  const sourceName=await page.locator('#foodCards .food-stall h4').first().textContent();
   const originalWarning=await page.locator('#sgbFoodOriginalWarning .food-note').textContent();
   await page.locator('#foodMeal').selectOption('Breakfast');
+  await page.waitForFunction(()=>document.querySelector('#foodCards .food-stall h4'),{timeout:8500});
+  const sourceName=await page.locator('#foodCards .food-stall h4').first().textContent();
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.waitForFunction(x=>document.documentElement.lang===x,code,{timeout:9500});
