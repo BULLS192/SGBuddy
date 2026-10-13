@@ -31,6 +31,7 @@ assert.ok(sw.includes("url.origin!==self.location.origin")&&sw.includes("url.pat
 assert.ok(sw.includes("key.startsWith('sgbuddy-shell-v')"));
 assert.ok(sw.includes("SHELL_PATHS.has(url.pathname)"));
 for(const file of ['/app-offline-v480.js','/offline-v480.css','/lib/offline-packs-v480.mjs','/lib/offline-i18n-v480.mjs'])assert.ok(sw.includes(file));
+assert.ok(sw.includes('c.addAll([...new Set(SHELL)])'),'precache must deduplicate assets before atomic install');
 assert.ok(!sw.includes("keys.filter(k=>k!==CACHE)"),'must preserve downloaded packs');
 assert.ok(html.includes('/offline-v480.css'));
 assert.ok(boot.includes("import('/app-offline-v480.js')"));
