@@ -117,6 +117,8 @@ execFileSync(process.execPath,['scripts/check-v411.mjs'],{stdio:'inherit'});
 for(const path of ['lib/i18n-home-surface-v412.mjs','app-i18n-home-surface-v412.js','scripts/check-v412.mjs','scripts/browser-qa-v412.mjs'])run(path);
 execFileSync(process.execPath,['scripts/check-v412.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v413.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v413-air.mjs'],{stdio:'inherit'});
+for(const qa of ['scripts/browser-qa-v413-air.mjs','scripts/browser-qa-v413-outages.mjs'])run(qa);
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});
