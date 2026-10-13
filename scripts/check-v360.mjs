@@ -19,8 +19,8 @@ for(const sensitive of HTML_CLASSIFICATION.providerOwned)assert.ok(!app.includes
 for(const name of ['/lib/i18n-classified-v360.mjs','/app-i18n-classified-v360.js'])assert.ok(sw.includes(name),'Offline cache missing '+name);
 assert.ok(sw.includes('sgbuddy-shell-v75'));
 assert.ok(boot.includes("import('/app-i18n-classified-v360.js')"),'Bootstrap must load V3.6');
-assert.ok(boot.includes("='4.2.0'"),'Client version must advance');
-assert.ok(read('index.html').includes('v4.2.0'));
+assert.ok(boot.includes("='4.11.0'"),'Client version must advance');
+assert.ok(read('index.html').includes('v4.11.0'));
 const csv=read('docs/native-review-v360.csv').trim().split('\n');
 assert.equal(csv.length,34,'11 locales × 3 domains plus CSV header');
 assert.ok(csv[0].includes('status')&&csv[0].includes('reviewer'));

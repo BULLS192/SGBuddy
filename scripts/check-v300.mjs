@@ -29,5 +29,5 @@ for(const path of ['/app-i18n-v300.js','/app-device-translate-v300.js','/lib/i18
  assert.ok(sw.includes(path),'Missing PWA cache entry '+path);
 assert.ok(sw.includes('sgbuddy-shell-v75'),'Must bust installed shell cache');
 assert.ok(boot.includes("import('/app-i18n-v300.js')")&&boot.includes("import('/app-device-translate-v300.js')"),'Modules not loaded sequentially');
-assert.ok(boot.includes("='4.2.0'")&&html.includes('v4.2.0'),'Version badge inconsistent');
+assert.ok(boot.includes("='4.11.0'")&&html.includes('v4.11.0'),'Version badge inconsistent');
 console.log('V3.0 STATIC I18N PASS: 12 locales × '+(CORE_LABEL_KEYS.length+EXTENDED_KEYS.length+EXPLAINER_KEYS.length)+' reviewed interface strings; original-source safeguards, on-device opt-in and offline cache.');

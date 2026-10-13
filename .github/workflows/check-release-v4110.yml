@@ -1,0 +1,30 @@
+name: SGBuddy V4.11 Production Release Gate
+on:
+  pull_request:
+    paths:
+      - 'app-v090.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'scripts/check-release-v4110.mjs'
+      - 'scripts/check-unified-rc.mjs'
+      - '.github/workflows/check-release-v4110.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node scripts/check-release-v4110.mjs
+          node scripts/check-unified-rc.mjs
+          node scripts/check-v411.mjs
+          node scripts/check-v4100.mjs
+          node scripts/check-v490.mjs
+          node scripts/check-v480.mjs
+          node scripts/check-events-v470.mjs

@@ -29,8 +29,8 @@ for(const selector of ['#modeText','#personaFocusTitle','#personaFocusCopy','#jo
 for(const token of ['SGBUDDY_CONTEXT_I18N','sgbuddy:language','MutationObserver','CONTEXT_MESSAGES','sourceOwned','matchTemplate','recommended'])
  assert.ok(bridge.includes(token),'Missing reactivity '+token);
 assert.ok(read('app-v090.js').includes("import('/app-i18n-context-v370.js')"));
-assert.ok(read('app-v090.js').includes("='4.2.0'"));
-assert.ok(read('index.html').includes('v4.2.0'));
+assert.ok(read('app-v090.js').includes("='4.11.0'"));
+assert.ok(read('index.html').includes('v4.11.0'));
 const sw=read('sw.js');
 for(const asset of ['/app-i18n-context-v370.js','/lib/i18n-context-v370.mjs'])assert.ok(sw.includes(asset),'Offline asset '+asset);
 assert.ok(sw.includes('sgbuddy-shell-v75'));
