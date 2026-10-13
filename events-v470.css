@@ -1,0 +1,28 @@
+/* SGBuddy V4.7 event discovery */
+.events-panel{padding:20px;margin:16px 0 22px;scroll-margin-top:88px}
+.events-header h2{font-size:clamp(1.3rem,3vw,1.7rem);margin:5px 0}
+.events-header p{font-size:.9rem;opacity:.75;line-height:1.5}
+.events-filter-label{font-size:.78rem;opacity:.75;margin:16px 0 8px}
+.events-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.events-filters button{font:inherit;font-size:.82rem;border-radius:20px;padding:7px 12px;cursor:pointer;background:transparent;color:inherit;border:1px solid rgba(148,181,212,.35)}
+.events-filters button.active{background:#2276bd;color:white;border-color:#2276bd}
+.events-list{display:grid;gap:12px}
+.events-item{min-width:0;padding:15px;border:1px solid rgba(142,172,205,.25);border-radius:15px}
+.events-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.events-item h3{font-size:1.07rem;margin:5px 0 8px;overflow-wrap:anywhere}
+.events-category{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;opacity:.68}
+.events-access{font-size:.71rem;padding:6px 9px;border-radius:20px;flex-shrink:0;background:rgba(67,136,183,.22)}
+.events-date{font-size:.88rem;font-weight:700}
+.events-venue,.events-summary,.events-proof{font-size:.84rem;line-height:1.5;opacity:.79;margin:7px 0}
+.events-proof{font-size:.75rem;opacity:.69}
+.events-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.events-actions button{font:inherit;font-size:.83rem;padding:8px 13px;border-radius:10px;cursor:pointer;color:inherit;background:rgba(43,123,188,.18);border:1px solid rgba(131,173,219,.5)}
+.events-actions a{font-size:.82rem;color:inherit;text-align:right;text-underline-offset:3px}
+.events-disclaimer{margin:14px 0 0;font-size:.77rem;line-height:1.6;opacity:.7}
+.events-empty{padding:18px;border:1px dashed rgba(142,172,205,.3);border-radius:13px;font-size:.86rem;opacity:.82}
+.events-quick{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;margin:14px 0}
+.events-quick>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.events-quick strong{font-size:1rem}
+.events-quick small{font-size:.8rem;opacity:.7}
+.events-quick button{color:inherit;background:rgba(43,123,188,.18);border:1px solid rgba(131,173,219,.5);border-radius:11px;padding:10px;cursor:pointer;white-space:nowrap}
+@media(max-width:420px){.events-panel{padding:15px}.events-quick{flex-direction:column;align-items:flex-start}.events-item-head{flex-direction:column;gap:4px}}
