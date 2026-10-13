@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const a=JSON.parse(readFileSync('data/event-approvals-v490.json','utf8'));
+assert.equal(a.schemaVersion,1);
+assert.ok(Array.isArray(a.approvals)&&a.approvals.length===0,'V4.9 begins with zero unreviewed auto-approvals');
+const gate=readFileSync('scripts/publish-reviewed-events-v490.mjs','utf8');
+for(const condition of ['sourceVerified','publicAdmissionVerified','publicListingRightsVerified','publicActivityVerified','decision','reviewedBy','row.startDate','validateEvent','--publish'])assert.ok(gate.includes(condition),condition);
+const publicationWorkflow=readFileSync('.github/workflows/events-refresh-v470.yml','utf8');
+assert.ok(!publicationWorkflow.includes('publish-reviewed-events-v490.mjs'),'Daily refresh must never auto-publish candidates');
+console.log('V4.9 editorial sign-off gate QA passed: no auto-publication or promotion leakage.');
