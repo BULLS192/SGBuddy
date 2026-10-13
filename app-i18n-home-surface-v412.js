@@ -11,8 +11,8 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#weatherLabel',['weatherLoading']],
   ['#locationStatus',['locationOff','locationNotSet','locationUnsupported','locationUnavailable','locationDenied','locationDeniedSearch','locationFailure','locationFinding','locationPersonalize']],
   ['#uxHumidity',['unavailable']],
-  ['#tripIntelTitle',['riskTitleLow','riskTitleWatch','riskTitleHigh','checkingTravel']],
-  ['#tripIntelCopy',['riskCopyLow','riskCopyWatch','riskCopyHigh','combiningSignals']],
+  ['#tripIntelTitle',['riskTitleLow','riskTitleWatch','riskTitleHigh']],
+  ['#tripIntelCopy',['riskCopyLow','riskCopyWatch','riskCopyHigh']],
   ['#tripIntelLevel',['riskLow','riskWatch','riskHigh']],
   ['#envRiskBadge',['riskLow','riskWatch','riskHigh','riskUnknown']],
   // V4.11 already owns the Trip Intelligence heading; avoid competing translations.
@@ -21,7 +21,6 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#environmentCard .environment-grid > div:nth-child(2) > span:nth-child(2)',['humidity']],
   ['#environmentCard .environment-grid > div:nth-child(3) > span:nth-child(2)',['rain5']],
   ['#environmentCard .environment-grid > div:nth-child(4) > span:nth-child(2)',['wind']],
-  ['#planAroundConditions',['planAround']],
   ['#envForecast',['loadingConditions']]
  ];
  function apply(){
