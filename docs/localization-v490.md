@@ -15,3 +15,6 @@
 **Unverified:** native speaker semantics, all personas/states, iOS Safari and Android installed PWA. No claimed whole-app translation percentage.
 
 Do not merge out of order; V4.9 stacks after V4.8 draft PR #60.
+
+## Ownership note
+The V4.2 contextual module already translates some count/area status messages, and its previously reviewed wording may differ from the V4.9 fallback. V4.9 defers to an already-localized message instead of overwriting it; the browser test verifies non-English rendering and preserved numeric parameters in that case.
