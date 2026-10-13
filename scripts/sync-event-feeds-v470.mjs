@@ -40,7 +40,8 @@ for(const feed of configuration.feeds){
  }
 }
 const approvedIds=new Set(configuration.feeds.map(x=>x.sourceId));
-const reviewed=normalizeReview(retained.filter(c=>approvedIds.has(c.sourceId)),today);
+// Preserve all other sources: venue HTML candidates must not be erased by the feed-only job.
+const reviewed=normalizeReview(retained,today);
 console.log('Official publisher feed review: '+JSON.stringify(outcomes));
 console.log('Pending manual review: '+reviewed.length);
 if(probe){console.log('Probe mode; no writes.');process.exit(0)}
