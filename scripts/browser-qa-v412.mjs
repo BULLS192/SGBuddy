@@ -16,7 +16,7 @@ async function run(width,height){
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
   await page.waitForFunction(()=>!!window.SGBUDDY_V412&&document.querySelector('#appVersion')?.textContent==='v4.11.0',{timeout:35000});
-  const selectors={weatherLoading:'#weatherLabel',locationOff:'#locationStatus',riskTitleLow:'#tripIntelTitle',riskCopyLow:'#tripIntelCopy',riskLow:'#tripIntelLevel',riskUnknown:'#envRiskBadge',temperature:'#environmentCard .environment-grid > div:nth-child(1) > span:nth-child(2)',humidity:'#environmentCard .environment-grid > div:nth-child(2) > span:nth-child(2)',rain5:'#environmentCard .environment-grid > div:nth-child(3) > span:nth-child(2)',wind:'#environmentCard .environment-grid > div:nth-child(4) > span:nth-child(2)',conditionsHeading:'#environmentCard .environment-head .label',tripHeading:'#tripIntelligence .trip-intelligence-head .label'};
+  const selectors={weatherLoading:'#weatherLabel',locationOff:'#locationStatus',riskTitleLow:'#tripIntelTitle',riskCopyLow:'#tripIntelCopy',riskLow:'#tripIntelLevel',riskUnknown:'#envRiskBadge',temperature:'#environmentCard .environment-grid > div:nth-child(1) > span:nth-child(2)',humidity:'#environmentCard .environment-grid > div:nth-child(2) > span:nth-child(2)',rain5:'#environmentCard .environment-grid > div:nth-child(3) > span:nth-child(2)',wind:'#environmentCard .environment-grid > div:nth-child(4) > span:nth-child(2)',conditionsHeading:'#environmentCard .environment-head .label'};
   const baselineName=await page.locator('#placeLabel').textContent();
   const baselinePsi=await page.locator('#environmentCard .environment-grid > div:nth-child(5) > span:nth-child(2)').textContent();
   for(const {code} of LOCALES){
@@ -30,6 +30,8 @@ async function run(width,height){
    // A renderer may write an English source again; the scoped observer must restore it.
    await page.evaluate(()=>{document.querySelector('#tripIntelTitle').textContent='Conditions look good';});
    await page.waitForFunction(want=>document.querySelector('#tripIntelTitle')?.textContent?.trim()===want,home412Text(code,'riskTitleLow'),{timeout:6000});
+   const tripHeading=await page.locator('#tripIntelligence .trip-intelligence-head .label').textContent();
+   if(code!=='en')assert.notEqual(tripHeading.trim(),'TRIP INTELLIGENCE','legacy heading localization regressed');
    assert.equal(await page.locator('#placeLabel').textContent(),baselineName,'geographic identifier overwritten');
    assert.equal(await page.locator('#environmentCard .environment-grid > div:nth-child(5) > span:nth-child(2)').textContent(),baselinePsi,'PSI unit overwritten');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'overflow '+code+' '+width);

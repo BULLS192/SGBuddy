@@ -15,7 +15,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   ['#tripIntelCopy',['riskCopyLow','riskCopyWatch','riskCopyHigh','combiningSignals']],
   ['#tripIntelLevel',['riskLow','riskWatch','riskHigh']],
   ['#envRiskBadge',['riskLow','riskWatch','riskHigh','riskUnknown']],
-  ['#tripIntelligence .trip-intelligence-head .label',['tripHeading']],
+  // V4.11 already owns the Trip Intelligence heading; avoid competing translations.
   ['#environmentCard .environment-head .label',['conditionsHeading']],
   ['#environmentCard .environment-grid > div:nth-child(1) > span:nth-child(2)',['temperature']],
   ['#environmentCard .environment-grid > div:nth-child(2) > span:nth-child(2)',['humidity']],
