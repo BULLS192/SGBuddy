@@ -62,6 +62,9 @@ on:
       - 'app-v120.js'
       - 'scripts/check-v400.mjs'
       - 'scripts/browser-qa-v400.mjs'
+      - 'lib/i18n-directory-v410.mjs'
+      - 'scripts/check-v410.mjs'
+      - 'scripts/browser-qa-v410.mjs'
       - 'sw.js'
       - 'lib/i18n-home-v311.mjs'
       - 'lib/i18n-weather-home-v311.mjs'
@@ -117,3 +120,5 @@ jobs:
         run: node scripts/browser-qa-v3120.mjs
       - name: V4.0 Food and Discover 12-locale browser QA (development candidate)
         run: node scripts/browser-qa-v400.mjs
+      - name: V4.1 directory cards and context 12-locale browser QA
+        run: node scripts/browser-qa-v410.mjs

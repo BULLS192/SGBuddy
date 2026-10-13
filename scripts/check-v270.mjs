@@ -36,6 +36,6 @@ assert.equal(SHARE_PARAM,'sgtrip');
 assert.ok(app.includes('SGBUDDY_TRIP_API')&&app.includes('importCopy')&&app.includes('sgbuddy:trip-rendered'),'Safe import API missing');
 assert.ok(boot.includes("import('/app-share-v270.js')")&&boot.includes('3.12.0'));
 assert.ok(html.includes('v3.12.0')&&html.includes('/trip-share-v270.css'));
-assert.ok(sw.includes('/app-share-v270.js')&&sw.includes('/lib/trip-share-v270.mjs')&&sw.includes('/trip-share-v270.css')&&sw.includes('sgbuddy-shell-v71'));
+assert.ok(sw.includes('/app-share-v270.js')&&sw.includes('/lib/trip-share-v270.mjs')&&sw.includes('/trip-share-v270.css')&&sw.includes('sgbuddy-shell-v72'));
 assert.ok(css.includes('data-ux-theme="light"')&&css.includes('max-width:660px')&&css.includes('focus-visible'));
 console.log('SGBuddy V2.7 sharing model PASS: Unicode, data limits, link safety, portable files, collaboration copy model, PWA integration.');

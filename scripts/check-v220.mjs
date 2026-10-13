@@ -4,7 +4,7 @@ import {execFileSync} from 'node:child_process';
 const read=p=>fs.readFileSync(p,'utf8');
 const food=JSON.parse(read('data/food-stalls-v180.json'));
 const menus=JSON.parse(read('data/vendor-menus-v210.json'));
-const page=read('app-v120.js'),foodUi=read('app-food-v180.js'),foodPack=read('lib/i18n-food-status-v400.mjs'),html=read('index.html'),sw=read('sw.js');
+const page=read('app-v120.js'),foodUi=read('app-food-v180.js'),foodPack=read('lib/i18n-food-status-v400.mjs'),directoryPack=read('lib/i18n-directory-v410.mjs'),html=read('index.html'),sw=read('sw.js');
 const ids=new Set();
 assert.ok(food.stalls.length>=90,'V2.2 NEA food expansion missing');
 const historical=food.stalls.filter(x=>/^nea-award-listed-20\d\d$/.test(x.reviewStatus));
@@ -23,7 +23,7 @@ for(const p of food.stalls){
 }
 assert.ok(menus.items.every(x=>x.availabilityCurrent===false&&x.halalCertified===null),'Vendor listings must not be presented as live verified stock');
 for(const marker of ['discoverQuality','discoverIncludeArchive','sourceCoverageAsOf','sourceAge','friendlyDate','freshnessLabel','isArchived','About these listings','Details may have changed','Show older supermarket listings','https://www.chas.sg/clinic-locator','https://www.sfa.gov.sg/tools-and-resources/track-records']){
- assert.ok(page.includes(marker),'Discover quality UX missing '+marker);
+ assert.ok(page.includes(marker)||directoryPack.includes(marker),'Discover quality UX missing '+marker);
 }
 for(const marker of ['foodAwardYear','nea-award-listed-20','data-stall-address','current trading unverified','award']){
  assert.ok(foodUi.includes(marker)||foodPack.includes(marker),'Food evidence UX missing '+marker);
