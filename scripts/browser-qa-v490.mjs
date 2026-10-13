@@ -42,7 +42,11 @@ async function check(viewport){
     throw Error(code+' '+viewport.width+' accessibility '+JSON.stringify(actual));
    });
    await page.waitForFunction(expected=>document.querySelector('#foodPickNote')?.textContent===expected,
-    runtimeV490Text(code,'pickerLoaded',{count:7,areas:3}),{timeout:8500});
+    runtimeV490Text(code,'pickerLoaded',{count:7,areas:3}),{timeout:3500}).catch(async()=>{
+    const actual=await page.locator('#foodPickNote').textContent();
+    const state=await page.evaluate(()=>({lang:window.SGBUDDY_LANGUAGE,loaded:!!window.SGBUDDY_RUNTIME_V490}));
+    throw Error('V4.9 picker count '+code+' '+viewport.width+' actual='+JSON.stringify(actual)+' wanted='+JSON.stringify(runtimeV490Text(code,'pickerLoaded',{count:7,areas:3}))+' state='+JSON.stringify(state)+' errors='+JSON.stringify(errors));
+   });
    assert.equal(await page.locator('#foodPickArea').inputValue(),candidate.id,'Area changed '+code);
    assert.equal(await page.locator('#foodPickCraving').inputValue(),'rice','Craving changed '+code);
    assert.equal(await area.locator('option').filter({hasText:candidate.label}).first().textContent(),candidate.label,'Source area name changed '+code);
