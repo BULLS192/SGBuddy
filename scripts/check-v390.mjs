@@ -21,8 +21,8 @@ for(const selector of ['#foodPickNote','.food-address','#foodCount','#discoverSt
 assert.ok(source.includes('prior=new WeakMap()')&&source.includes('MutationObserver'));
 const boot=readFileSync('app-v090.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-fallback-v390.js')"));
-assert.ok(boot.includes("='4.11.0'"));
-assert.ok(readFileSync('index.html','utf8').includes('v4.11.0'));
+assert.ok(boot.includes("='4.12.0'"));
+assert.ok(readFileSync('index.html','utf8').includes('v4.12.0'));
 const worker=readFileSync('sw.js','utf8');
 assert.ok(worker.includes('sgbuddy-shell-v76'));
 for(const filename of ['/app-i18n-fallback-v390.js','/lib/i18n-fallback-v390.mjs'])
