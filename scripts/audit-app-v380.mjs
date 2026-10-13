@@ -18,7 +18,7 @@ import {dynamicInventory,dynamicAuditPolicy} from './audit-dynamic-v380.mjs';
 const json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const read=file=>fs.readFileSync(file,'utf8');
 const list=folder=>fs.readdirSync(folder).sort();
-const sourceOwnedCalendarSnapshots=['data/holidays-2026-2027-v460.json','data/event-sources-v470.json','data/events-intake-v470.json','data/events-v470.json','data/event-feeds-v470.json','data/events-review-queue-v470.json','data/event-venue-sources-v490.json'];
+const sourceOwnedCalendarSnapshots=['data/holidays-2026-2027-v460.json','data/event-sources-v470.json','data/events-intake-v470.json','data/events-v470.json','data/event-feeds-v470.json','data/events-review-queue-v470.json','data/event-venue-sources-v490.json','data/events-curation-v490.json'];
 // Holidays and organiser names are source-owned facts, not authored editorial strings.
 // Keep the V3.8 translation denominator stable; report excluded datasets separately.
 const dataFiles=list('data').filter(n=>n.endsWith('.json')).map(n=>'data/'+n).filter(path=>!sourceOwnedCalendarSnapshots.includes(path));
