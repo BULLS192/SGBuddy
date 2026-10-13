@@ -32,7 +32,8 @@ for(const item of menu.items){
 }
 assert.ok(food.stalls.length>=57,'Legacy hawker-stall data lost');
 assert.ok(facts.facts.length>=152,'Source-checked Singapore facts expansion missing');
-for(const x of ['healthcare','services-v210.json','sourceCoverageAsOf','Check current CHAS participation','Supermarket'])assert.ok(ui.includes(x),'Discover missing '+x);
+const directoryPack=read('lib/i18n-directory-v410.mjs');
+for(const x of ['healthcare','services-v210.json','sourceCoverageAsOf','Check current CHAS participation','Supermarket'])assert.ok(ui.includes(x)||directoryPack.includes(x),'Discover missing '+x);
 for(const x of ['data-food-view="menus"','cardMenu','vendor-menus-v210.json'])assert.ok(foodui.includes(x),'Vendor menu UX missing '+x);
 assert.ok(buddy.includes("act('healthcare')"),'Merli healthcare intent missing');
 for(const file of ['/data/services-v210.json','/data/vendor-menus-v210.json'])assert.ok(sw.includes(file),'Offline asset missing '+file);
