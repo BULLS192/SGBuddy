@@ -36,7 +36,7 @@ jobs:
       - run: node scripts/check-v413.mjs
       - run: node scripts/check-release-v4120.mjs
       - run: node scripts/check-v480.mjs
-      - run: node scripts/check-v470.mjs
+      - run: node scripts/check-events-v470.mjs
   persona-browser:
     strategy:
       fail-fast: false
