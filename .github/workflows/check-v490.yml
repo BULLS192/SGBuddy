@@ -1,0 +1,47 @@
+name: SGBuddy V4.9 Official Venue Discovery QA
+on:
+  pull_request:
+    paths:
+      - 'data/event-venue-sources-v490.json'
+      - 'data/event-sources-v470.json'
+      - 'lib/events-public-html-v490.mjs'
+      - 'scripts/check-event-venues-v490.mjs'
+      - 'scripts/sync-event-venues-v490.mjs'
+      - 'scripts/sync-event-feeds-v470.mjs'
+      - 'scripts/check-v490.mjs'
+      - 'scripts/browser-qa-v490.mjs'
+      - 'data/events-intake-v470.json'
+      - 'data/events-v470.json'
+      - 'lib/events-content-v480.mjs'
+      - '.github/workflows/check-v490.yml'
+      - '.github/workflows/events-refresh-v470.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate dates, robots, admission and source boundaries
+        run: |
+          node scripts/check-event-venues-v490.mjs
+          node scripts/check-events-v470.mjs
+          node scripts/check-v480.mjs
+      - name: Probe official venue sources (no publication)
+        run: node scripts/sync-event-venues-v490.mjs
+      - name: Preview official event discovery into unapproved review queue
+        run: |
+          node scripts/sync-event-feeds-v470.mjs --write
+          node scripts/sync-event-venues-v490.mjs --write
+      - name: Upload review-only candidate snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-v490-unapproved-events
+          path: data/events-review-queue-v470.json
+          retention-days: 5
+          if-no-files-found: error
