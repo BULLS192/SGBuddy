@@ -13,6 +13,7 @@ import {FALLBACK_SOURCE,FALLBACK_KEYS} from '../lib/i18n-fallback-v390.mjs';
 import {FOOD_STATUS_MESSAGES} from '../lib/i18n-food-status-v400.mjs';
 import {DISCOVER_STATUS_MESSAGES} from '../lib/i18n-discover-status-v400.mjs';
 import {DIRECTORY_V410_MESSAGES} from '../lib/i18n-directory-v410.mjs';
+import {CONTEXTUAL_V420_MESSAGES} from '../lib/i18n-contextual-v420.mjs';
 const raw=execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:30*1024*1024});
 const report=JSON.parse(raw);
 const englishKnown=new Set([
@@ -25,7 +26,8 @@ const englishKnown=new Set([
  ...Object.values(FALLBACK_SOURCE),
  ...Object.values(FOOD_STATUS_MESSAGES.en),
  ...Object.values(DISCOVER_STATUS_MESSAGES.en),
- ...Object.values(DIRECTORY_V410_MESSAGES.en)
+ ...Object.values(DIRECTORY_V410_MESSAGES.en),
+ ...Object.values(CONTEXTUAL_V420_MESSAGES.en)
 ].filter(s=>typeof s==='string'));
 const knownTemplates=Object.values(FALLBACK_SOURCE).filter(s=>s.includes('{count}')||s.includes('{areas}'));
 const canonicalRegex=template=>new RegExp('^'+String(template).replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\\\{(?:count|areas)\\\}/g,'[0-9]+')+'$');

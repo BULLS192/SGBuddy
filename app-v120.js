@@ -4,6 +4,7 @@ import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {discoverStatus} from './lib/i18n-discover-status-v400.mjs';
 import {directoryText} from './lib/i18n-directory-v410.mjs';
 import {contextMode} from './lib/i18n-context-v370.mjs';
+import {contextualText} from './lib/i18n-contextual-v420.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 (function(){
   'use strict';
@@ -17,6 +18,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   const locale=()=>window.SGBUDDY_LANGUAGE||'en';
   const uiStatus=(key,fields={})=>discoverStatus(locale(),key,fields);
   const d=(key,fields={})=>directoryText(locale(),key,fields);
+  const ctx=(key,fields={})=>contextualText(locale(),key,fields);
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
@@ -45,6 +47,11 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     '<div id="discoverResults" class="discover-results" role="tabpanel" aria-live="polite"></div>'
   ].join('');
   view.insertBefore(host,view.firstChild);
+  function localizeStaticFilters(){
+    for(const [selector,key] of [['#discoverSourceFilter option[value="official"]','sourceOfficial'],['#discoverSourceFilter option[value="curated"]','sourceCurated'],['#discoverSourceFilter option[value="operator"]','sourceOperator'],['#discoverNeighbourhoodFilter option[value="all"]','allNeighbourhoods'],['#discoverCategoryFilter option[value="all"]','allPlaceTypes']]){const item=$(selector);if(item)item.textContent=ctx(key)}
+    const archive=$('.discover-archive-filter');const copy=[...(archive?.childNodes||[])].find(x=>x.nodeType===3&&x.textContent.trim());if(copy)copy.textContent=' '+ctx('archiveFilter');
+  }
+  localizeStaticFilters();
   const navLabel=$('#navPlaces span');if(navLabel)navLabel.textContent='Discover';
   const placesLabel=$('#placesSection .label');if(placesLabel)placesLabel.textContent='MORE NEARBY PLACES';
   const placesTitle=$('#placesSection h2');if(placesTitle)placesTitle.textContent='Nearby essentials';
@@ -241,7 +248,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     changeTab(next);$('#discoverTab-'+next).focus();
   });
   document.addEventListener('sgbuddy:persona',render);
-  document.addEventListener('sgbuddy:language',render);
+  document.addEventListener('sgbuddy:language',()=>{localizeStaticFilters();render()});
   function category(psi){
     return psi<=50?'Good':psi<=100?'Moderate':psi<=200?'Unhealthy':psi<=300?'Very unhealthy':'Hazardous';
   }

@@ -8,6 +8,6 @@ for(const [id,key] of [['foodToolsTitle','foodToolsTitle'],['foodToolPicker','fo
 assert.ok(!file.includes("window.SGBUDDY_LANGUAGE==='zh-CN'"),'Remove two-language conditional');
 for(const {code} of LOCALES)for(const key of ['foodToolsTitle','foodPicker','foodServices','foodPickButton','foodMyPicks'])
  assert.ok(extendedUi(code)[key]?.trim(),code+' missing '+key);
-assert.ok(file.includes("doc.addEventListener('sgbuddy:language',renderLanguage)"));
+assert.ok(file.includes("doc.addEventListener('sgbuddy:language',()=>{renderLanguage();"));
 assert.ok(file.includes('esc(x.name)')&&file.includes('safeUrl(x.sourceUrl)'),'Preserve provider title and source URLs');
 console.log('V3.10 PASS: Food discovery action labels now use the existing 12-locale authored dictionary, with source-owned values preserved.');

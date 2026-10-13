@@ -34,10 +34,10 @@ for(const part of [
 ])assert.ok(source.includes(part),'Missing V4.1 runtime/source-lock: '+part);
 assert.ok(!source.includes("'Hours shown by business: '"),'English-only reported hours remain');
 assert.ok(!source.includes("'Official publisher reference; check"),'English-only publisher status remains');
-for(const name of ['sgbuddy-shell-v73','/lib/i18n-directory-v410.mjs','/lib/i18n-food-status-v400.mjs','/lib/i18n-discover-status-v400.mjs','/merli-avatar-v3111.js'])assert.ok(sw.includes(name),'PWA asset missing: '+name);
+for(const name of ['sgbuddy-shell-v74','/lib/i18n-directory-v410.mjs','/lib/i18n-food-status-v400.mjs','/lib/i18n-discover-status-v400.mjs','/merli-avatar-v3111.js'])assert.ok(sw.includes(name),'PWA asset missing: '+name);
 assert.ok(readFileSync('app-v090.js','utf8').includes("='4.1.0'"),'V4.1 development must preserve production release badge until promotion');
 const audit=JSON.parse(execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:30*1024*1024}));
 assert.equal(audit.globalWholeAppCompletionPercent,null,'Do not claim unaudited whole-app completion');
-assert.equal(audit.locales.en.byArea.authoredUiCatalogue.total,523);
+assert.equal(audit.locales.en.byArea.authoredUiCatalogue.total,553);
 for(const {code} of LOCALES)assert.equal(audit.locales[code].knownAuthoredInventory.total,audit.classifiedEligibleEntries);
 console.log('V4.1 STATIC PASS: 45 source-locked card/context messages × 12 locales, 540 authored entries; app and PWA integrity, source safety, audit scope.');

@@ -3,10 +3,12 @@ import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 import {merliMessage} from './lib/i18n-merli-replies-v315.mjs';
 import {dynamicText} from './lib/i18n-dynamic-v340.mjs';
+import {contextualText} from './lib/i18n-contextual-v420.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const {state,navigateTo,askAdvisor}=core;
 const locale=()=>window.SGBUDDY_LANGUAGE||'en';
+const ctx=(key,fields={})=>contextualText(locale(),key,fields);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[ch]));
 const url=s=>{try{let u=new URL(String(s));return u.protocol==='https:'?u.href:''}catch{return ''}};
@@ -182,14 +184,14 @@ function renderLibrary(){
  const list=$('#sgbFactList');if(!list)return;
  const rows=filtered(),show=rows.slice(0,limit);
  const checked=rows.filter(x=>x.status==='verified').length;
- $('#sgbFactCount').textContent=checked+' checked against official sources · '+(rows.length-checked)+' review pending · displaying '+show.length+' of '+rows.length+' matching records';
+ $('#sgbFactCount').textContent=ctx('merliCount',{checked,pending:rows.length-checked,shown:show.length,total:rows.length});
  list.innerHTML=show.map(f=>{
    const link=url(f.sourceUrl),yes=saved.has(f.id);
    return '<article class="card sgb-fact" data-fact-id="'+esc(f.id)+'"><span class="label">'+esc(taxonomyLabel(locale(),f.theme))+'</span>'+
-    '<p'+(factTranslation(locale(),f)?' data-content-localized="true"':'')+'>'+esc(factTranslation(locale(),f)||f.text)+'</p><div class="sgb-fact-foot"><span class="merli-status '+(f.status==='verified'?'checked':'pending')+'">'+(f.status==='verified'?'Official-source checked (AI-assisted)':'Review pending')+'</span>'+
-    (link?'<a href="'+esc(link)+'" rel="noopener noreferrer" target="_blank">Original source ↗</a>':'')+
+    '<p'+(factTranslation(locale(),f)?' data-content-localized="true"':'')+'>'+esc(factTranslation(locale(),f)||f.text)+'</p><div class="sgb-fact-foot"><span class="merli-status '+(f.status==='verified'?'checked':'pending')+'">'+ctx(f.status==='verified'?'merliChecked':'merliPending')+'</span>'+
+    (link?'<a href="'+esc(link)+'" rel="noopener noreferrer" target="_blank">'+esc(ctx('merliOriginalSource'))+' ↗</a>':'')+
     '<button class="secondary merli-save" type="button" data-merli-save="'+esc(f.id)+'" aria-pressed="'+yes+'">'+(yes?'★ Saved':'☆ Save')+'</button></div></article>';
- }).join('')||'<div class="card sgb-fact">No facts match these filters. Try clearing search, mode or saved-only.</div>';
+ }).join('')||'<div class="card sgb-fact">'+esc(ctx('merliEmpty'))+'</div>';
  $('#merliLoadMore').hidden=rows.length<=limit;
 }
 function mountLibrary(){
