@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {extractSquarespaceCandidates,extractRssCandidates,normalizeReview,fromFeed} from '../lib/events-feeds-v480.mjs';
+const src={id:'suntec-json',sourceId:'suntec-convention',format:'squarespace-json',publicPage:'https://www.suntecsingapore.com/visit-events',venue:'Suntec'};
+const fixture={items:[{title:'Art Week',startDate:1792224000000,endDate:1792310400000,fullUrl:'/visit-events/art-week',body:'Public fair'},{title:'Private Meeting',startDate:1792224000000,fullUrl:'/visit-events/private-meeting',body:'Private event'}]};
+const v=extractSquarespaceCandidates(fixture,src,'2026-10-13');
+assert.equal(v.length,1);
+assert.equal(v[0].status,'needs-review');
+assert.match(v[0].sourceUrl,/art-week/);
+assert.equal(fromFeed(JSON.stringify(fixture),src,'2026-10-13','application/json').length,1);
+assert.throws(()=>fromFeed('<html></html>',src,'2026-10-13','text/html'),/Expected official JSON/);
+const rss='<rss><channel><item><title>Public Event</title><link>https://www.nea.gov.sg/events/public</link><description>Event Date: 2026-10-17</description><pubDate>Tue, 13 Oct 2026</pubDate></item><item><title>Old News</title><link>https://www.nea.gov.sg/old</link><pubDate>Tue, 13 Oct 2026</pubDate></item></channel></rss>';
+const nea={id:'nea-events-rss',sourceId:'nea',format:'rss',publicPage:'https://www.nea.gov.sg/rss/rss-feeds',venue:'Singapore'};
+const r=extractRssCandidates(rss,nea,'2026-10-13');
+assert.equal(r.length,1);
+assert.equal(r[0].startDate,'2026-10-17');
+assert.equal(normalizeReview([...r,...r],'2026-10-13').length,1);
+const cfg=JSON.parse(readFileSync('data/event-feeds-v470.json','utf8'));
+const registry=JSON.parse(readFileSync('data/event-sources-v470.json','utf8'));
+assert.ok(cfg.feeds.some(f=>f.format==='rss')&&cfg.feeds.some(f=>f.format==='squarespace-json'));
+for(const feed of cfg.feeds){assert.equal(feed.mode,'review-only');assert.ok(registry.sources.some(s=>s.id===feed.sourceId));}
+console.log('V4.8 source adapters pass: Squarespace JSON + official RSS, private and undated exclusions.');

@@ -308,6 +308,15 @@
       "area": "islandwide",
       "ingestionStatus": "candidate",
       "refreshTargetHours": 24
+    },
+    {
+      "id": "nea",
+      "name": "National Environment Agency",
+      "category": "community",
+      "url": "https://www.nea.gov.sg/rss/rss-feeds",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
     }
   ]
 }
