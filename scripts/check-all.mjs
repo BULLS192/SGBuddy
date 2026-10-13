@@ -110,6 +110,8 @@ for(const file of ['lib/i18n-food-discover-v450.mjs','app-i18n-food-discover-v45
 execFileSync(process.execPath,['scripts/check-v450.mjs'],{stdio:'inherit'});
 for(const file of ['lib/i18n-runtime-v490.mjs','app-i18n-runtime-v490.js','scripts/check-v490.mjs','scripts/browser-qa-v490.mjs'])run(file);
 execFileSync(process.execPath,['scripts/check-v490.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-categories-v4100.mjs','app-i18n-categories-v4100.js','scripts/check-v4100.mjs','scripts/browser-qa-v4100.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v4100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});

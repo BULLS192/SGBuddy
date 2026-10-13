@@ -18,6 +18,10 @@ on:
       - 'app-i18n-runtime-v490.js'
       - 'scripts/check-v490.mjs'
       - 'scripts/browser-qa-v490.mjs'
+      - 'lib/i18n-categories-v4100.mjs'
+      - 'app-i18n-categories-v4100.js'
+      - 'scripts/check-v4100.mjs'
+      - 'scripts/browser-qa-v4100.mjs'
       - 'app-food-tools-v261.js'
       - 'app-v090.js'
       - 'app-v120.js'
@@ -55,6 +59,8 @@ jobs:
         run: node scripts/browser-qa-v450.mjs
       - name: V4.9 dynamic Food and accessibility browser QA
         run: node scripts/browser-qa-v490.mjs
+      - name: V4.10 Discover category values and Account/Food localization browser QA
+        run: node scripts/browser-qa-v4100.mjs
       - name: 12-language, 18-screen, two-viewport rendered audit
         run: node scripts/browser-audit-v430.mjs --screenshots --out-dir=artifacts/localization-v430
       - name: Write coverage summary to GitHub Actions
