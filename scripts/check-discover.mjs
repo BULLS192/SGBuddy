@@ -61,8 +61,11 @@ const renderer=discover.slice(airStart,airEnd);
 const simulateAir=weather=>{
   const elements=Object.fromEntries(['v120AirPanel','v120AirStatus','v120AirUpdated','v120AirAdvisory'].map(id=>[id,{textContent:'',innerHTML:'',className:''}]));
   const fakeState={weather};
-  new Function('state','
-    fakeState,s=>elements[s.slice(1)],String,iso=>iso||'Not provided',
+  // Existing historical test evaluates the draw function out of context.
+  // Inject the new first-party translation function without mocking source readings.
+  const translatedRenderer=renderer.replaceAll(String.fromCharCode(36)+'(', 'lookup(');
+  new Function('state','lookup','safe','dateText','category','airValue','airT',translatedRenderer+';drawAirQuality()')(
+    fakeState,selector=>elements[selector.slice(1)],String,iso=>iso||'Not provided',
     n=>n<=50?'Good':n<=100?'Moderate':'Unhealthy',
     raw=>raw==null?null:Number(raw),
     key=>air413Text('en',key)
