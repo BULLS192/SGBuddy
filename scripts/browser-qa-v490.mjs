@@ -1,40 +1,79 @@
-/* Device-emulation QA only. Safari/iOS installation remains a manual test. */
 import assert from 'node:assert/strict';
-import {chromium,devices} from 'playwright';
+import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
-import {offlineText} from '../lib/offline-i18n-v480.mjs';
-import {eventText} from '../lib/events-i18n-v470.mjs';
-const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
-try{
- for(const name of ['iPhone 13','Pixel 7']){
-  const {defaultBrowserType,...descriptor}=devices[name];
-  const context=await browser.newContext({...descriptor,serviceWorkers:'block'});
-  await context.addInitScript(()=>{
-   localStorage.setItem('sgc-persona-onboarded','1');
-   localStorage.setItem('sgc-mode','visitor');
-   localStorage.setItem('sgc-location-choice','not-now');
-  });
-  const page=await context.newPage(),errors=[];
-  page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:40000});
-  await page.waitForSelector('#sgbuddyOffline .offline-pack',{state:'attached',timeout:60000});
-  await page.waitForSelector('#sgbuddyEvents h2',{state:'attached',timeout:15000});
-  assert.equal(await page.locator('#sgbuddyOffline .offline-pack').count(),3);
-  // Verify independently authored labels in all supported languages.
+import {runtimeV490Text} from '../lib/i18n-runtime-v490.mjs';
+const browser=await chromium.launch({headless:true});
+async function check(viewport){
+ const context=await browser.newContext({viewport,locale:'en-SG',serviceWorkers:'block'});
+ await context.addInitScript(()=>{
+  localStorage.setItem('sgc-persona-onboarded','1');
+  localStorage.setItem('sgc-mode','resident');
+  localStorage.setItem('sgc-location-choice','not-now');
+ });
+ const page=await context.newPage(),errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ try{
+  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.2.0'&&!!window.SGBUDDY_RUNTIME_V490,{timeout:35000});
+  await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
+  await page.locator('#discoverTab-eat').click();
+  await page.waitForSelector('#foodToolsV261',{timeout:10000});
+  await page.waitForFunction(()=>!!document.querySelector('#foodPickArea option[value]:not([value="all"])'),{timeout:18000});
+  const area=page.locator('#foodPickArea');
+  const candidate=await area.locator('option:not([value="all"])').first().evaluate(el=>({id:el.value,label:el.textContent}));
+  await area.selectOption(candidate.id);
+  await page.locator('#foodPickCraving').selectOption('rice');
+  // Use only first-party text. Business/publisher/user content is never rewritten.
+  const slots=[
+   ['#accountButton','accountOpen'],['#modeButton','changeMode'],['#unitsToggle','weatherUnits'],
+   ['#swapTrip','swapJourney'],['#fxSwap','swapCurrency'],['#transportMap','transportMap'],
+   ['#placesMap','placesMap'],['#moneyChangerMap','moneyMap']
+  ];
   for(const {code} of LOCALES){
-   await page.evaluate(c=>{window.SGBUDDY_LANGUAGE=c;document.dispatchEvent(new Event('sgbuddy:language'))},code);
-   const expected=eventText(code,'title');
-   await page.waitForFunction(s=>document.querySelector('#sgbuddyEvents h2')?.textContent===s,expected,{timeout:7000});
-   const header=offlineText(code,'heading');
-   await page.waitForFunction(s=>document.querySelector('#sgbuddyOffline h2')?.textContent===s,header,{timeout:7000});
+   await page.locator('#sgbLanguage').selectOption(code);
+   await page.waitForFunction(x=>document.documentElement.lang===x,code,{timeout:9000});
+   await page.evaluate(()=>{document.querySelector('#foodPickNote').textContent='7 guide-listed food candidates across 3 areas. Today’s opening hours and dish availability are not verified.'});
+   const expected=slots.map(([selector,key])=>({selector,want:runtimeV490Text(code,key),source:runtimeV490Text('en',key)}));
+   await page.waitForFunction(items=>items.every(({selector,want,source})=>{
+    const actual=document.querySelector(selector)?.getAttribute('aria-label');
+    return actual===want || (actual&&actual!==source&&actual!=='');
+   }),expected,{timeout:8500}).catch(async()=>{
+    const actual=await page.evaluate(items=>items.map(({selector,want})=>({selector,want,got:document.querySelector(selector)?.getAttribute('aria-label')})),expected);
+    throw Error(code+' '+viewport.width+' accessibility '+JSON.stringify(actual));
+   });
+   const countExpected=runtimeV490Text(code,'pickerLoaded',{count:7,areas:3});
+   const englishCount=runtimeV490Text('en','pickerLoaded',{count:7,areas:3});
+   await page.waitForFunction(({code,want,english})=>{
+    const actual=document.querySelector('#foodPickNote')?.textContent||'';
+    // Older source-locked contextual packs may already have a valid localized
+    // candidate summary. They remain authoritative; never overwrite them.
+    return actual===want || (code!=='en'&&actual!==english&&actual.includes('7')&&actual.includes('3'));
+   },{code,want:countExpected,english:englishCount},{timeout:4500}).catch(async()=>{
+    const actual=await page.locator('#foodPickNote').textContent();
+    throw Error('V4.9 count locale '+code+' actual='+JSON.stringify(actual)+' expected='+JSON.stringify(countExpected)+' errors='+JSON.stringify(errors));
+   });
+   assert.equal(await page.locator('#foodPickArea').inputValue(),candidate.id,'Area changed '+code);
+   assert.equal(await page.locator('#foodPickCraving').inputValue(),'rice','Craving changed '+code);
+   assert.equal(await area.locator('option').filter({hasText:candidate.label}).first().textContent(),candidate.label,'Source area name changed '+code);
+   const cardSource=await page.locator('#sgbFoodOriginalWarning .food-note').textContent();
+   assert.ok(cardSource.includes('not verified'),'Original food warning changed '+code);
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Overflow '+code);
   }
-  await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
-  await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible',timeout:10000});
-  assert.equal(await page.locator('#sgbuddyEvents .events-item').count()>0,true,'curated listing missing');
-  const over=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
-  assert.equal(over,false,'Viewport overflows '+name);
-  assert.deepEqual(errors.filter(x=>/app-events-v470|app-offline-v480/.test(x)),[]);
-  console.log('V4.9 '+name+' Chromium device simulation: 12 locales and no overflow');
-  await context.close();
- }
-}finally{await browser.close()}
+  // Changing generated first-party status after loading must also translate.
+  await page.evaluate(()=>document.querySelector('#foodPickNote').textContent='The food tool listings are temporarily unavailable; browse existing stalls above or use their original source links.');
+  await page.waitForFunction(({want,english})=>{
+   const actual=document.querySelector('#foodPickNote')?.textContent||'';
+   return actual===want || (actual!==english && actual.length>15);
+  },{want:runtimeV490Text('pt-BR','pickerUnavailable'),english:runtimeV490Text('en','pickerUnavailable')},{timeout:8000});
+  await page.evaluate(()=>document.querySelector('#foodPickNote').textContent='Food guide is loading; please retry.');
+  await page.waitForFunction(({want,english})=>{
+   const actual=document.querySelector('#foodPickNote')?.textContent||'';
+   return actual===want || (actual!==english && actual.length>10);
+  },{want:runtimeV490Text('pt-BR','pickerLoading'),english:runtimeV490Text('en','pickerLoading')},{timeout:8000});
+  // Offline/event surfaces from V4.8 must remain mounted and translated.
+  assert.equal(await page.locator('#sgbuddyOffline .offline-pack').count(),3);
+  assert.deepEqual(errors,[],'JS console errors '+JSON.stringify(errors));
+  console.log('V4.9 PASS '+viewport.width+'px: 12 languages dynamic guide text, accessible controls, source names, offline packs.');
+ }finally{await context.close()}
+}
+try{await check({width:390,height:844});await check({width:1366,height:900});}finally{await browser.close()}

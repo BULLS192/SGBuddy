@@ -10,7 +10,7 @@ on:
       - 'scripts/sync-event-venues-v490.mjs'
       - 'scripts/sync-event-feeds-v470.mjs'
       - 'scripts/check-v490.mjs'
-      - 'scripts/browser-qa-v490.mjs'
+      - 'scripts/browser-qa-events-v490.mjs'
       - 'data/events-intake-v470.json'
       - 'data/events-v470.json'
       - 'lib/events-content-v480.mjs'
@@ -68,4 +68,4 @@ jobs:
           cat /tmp/sgbuddy-v490.log
           exit 1
       - name: Emulated iPhone & Android app layout and all 12 languages
-        run: node scripts/browser-qa-v490.mjs
+        run: node scripts/browser-qa-events-v490.mjs
