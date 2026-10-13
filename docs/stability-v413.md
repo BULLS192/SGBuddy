@@ -9,6 +9,15 @@
 - `.github/workflows/check-v413.yml` runs isolated static safety checks and two viewport QA jobs. `npm run check` includes the V4.13 static contract.
 - No translation strings were copied into another competing observer. Existing V3.5/V4.11 ownership remains untouched.
 
+## V4.13 second wave — verified expanded localization matrix
+
+- Reused the original observational `scripts/browser-audit-v430.mjs` rather than creating a second translator or observer. It now accepts an opt-in `--persona=resident|visitor|executive|new_in_sg|student` argument. Calling it without a persona retains the V4.3 Visitor baseline.
+- Added **five independent GitHub Actions matrix jobs**, each taking English-vs-11-non-English snapshots across the same 18 screens on 390px and 1366px viewports. Each job emits a persona-specific `coverage.json`, `priority.json`, `triage.csv` and summary as a seven-day artifact.
+- First five-persona run passed **20/20 CI checks**. All sampled screens were observed and no browser errors or overflow occurred. Preliminary per-persona changed-text ranges (before source-token refinement): Visitor 78.4–80.2%; Resident 78.2–80.0%; Executive 78.5–80.1%; New in SG 78.5–80.1%; Student 78.1–80.0%. These are **sampled change rates, not translation completeness or correctness**.
+- Consistent untranslated-first-party candidates for the next wave: **SINGAPORE AIR QUALITY**, **PSI and PM2.5 by region**, and **Air readings unavailable**. Do not mistake exact `Singapore` geographic identity or `24h PSI` / `1-hour PM2.5` technical unit labels for untranslated author copy. A classifier refinement and regression cases now explicitly exclude these exact source-owned tokens without exempting the full Air Quality headings.
+- Static Gates now also exercise the already existing deterministic RSS/official-venue parsers and the event-approval script in dry-run mode. No external feed candidate or approval is published.
+- Reports do not sample every account recovery, live provider failure, data change or physical PWA behavior; `wholeAppTranslationPercent` remains null.
+
 ## SGBuddy release and PR reconciliation (as of 13 Oct 2026)
 
 The V4.10 integration PR #65 and V4.11 release PR #66 included both branches of development: V4.4–V4.11 localization alongside Events, venue discovery and offline packs. Release PR #68 merged into `main` and V4.12.0 is already deployed (Vercel `dpl_4FmxpfM6zvkshYD2kSiLrAUEh1Na`). Nine redundant source PRs #56–#64 have been closed with reconciliation comments, after Git compare verified each head was fully contained in `main` (0 commits behind). Branches, source commits and review history remain available; no separate merge of their obsolete version numbers should occur.
