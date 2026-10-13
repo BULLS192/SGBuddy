@@ -1,0 +1,54 @@
+name: SGBuddy V4.3 Rendered Localization Audit
+on:
+  pull_request:
+    paths:
+      - 'lib/audit-rendered-v430.mjs'
+      - 'scripts/browser-audit-v430.mjs'
+      - 'scripts/check-v430.mjs'
+      - '.github/workflows/check-v430-localization-audit.yml'
+      - 'app-v090.js'
+      - 'app-v120.js'
+      - 'app-food-v180.js'
+      - 'app-v140.js'
+      - 'app-i18n-*.js'
+      - 'lib/i18n-*.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rendered-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify V4.3 classifier and non-fabricated denominators
+        run: node scripts/check-v430.mjs
+      - name: Prepare isolated Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve local SGBuddy
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v430.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v430.log
+          exit 1
+      - name: 12-language, 18-screen, two-viewport rendered audit
+        run: node scripts/browser-audit-v430.mjs --screenshots --out-dir=artifacts/localization-v430
+      - name: Write coverage summary to GitHub Actions
+        if: always()
+        run: |
+          if [ -f artifacts/localization-v430/summary.md ]; then
+            cat artifacts/localization-v430/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload localization evidence and triage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sgbuddy-v430-rendered-audit
+          path: artifacts/localization-v430/
+          if-no-files-found: warn
+          retention-days: 7
