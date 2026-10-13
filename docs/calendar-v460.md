@@ -31,3 +31,6 @@ Dataset snapshot date **13 October 2026**; official consolidated dataset last up
 - Add periodic ingestion/sync diagnostics and notification monitoring, without deploying expensive frequent workflows prematurely.
 - V4.8: downloaded offline essentials packs, cache freshness/capacity management, manual iOS/Android installed PWA testing, and handling for maps/tiles license restrictions.
 - Preserve stacked multilingual fixes and native-speaker review without falsely claiming whole-app coverage.
+
+### Localization inventory integration
+V3.8's existing 16-file authored editorial denominator now explicitly excludes the two new **source-owned factual calendar datasets**; they are recorded in a separate `sourceOwnedCalendarSnapshots` field rather than silently inflating or shrinking translation completion. UI copy is accounted for in V4.6's 12-language dictionary; native proofreading is still required.

@@ -18,7 +18,10 @@ import {dynamicInventory,dynamicAuditPolicy} from './audit-dynamic-v380.mjs';
 const json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const read=file=>fs.readFileSync(file,'utf8');
 const list=folder=>fs.readdirSync(folder).sort();
-const dataFiles=list('data').filter(n=>n.endsWith('.json')).map(n=>'data/'+n);
+const sourceOwnedCalendarSnapshots=['data/holidays-2026-2027-v460.json','data/event-sources-v470.json'];
+// Holidays and organiser names are source-owned facts, not authored editorial strings.
+// Keep the V3.8 translation denominator stable; report excluded datasets separately.
+const dataFiles=list('data').filter(n=>n.endsWith('.json')).map(n=>'data/'+n).filter(path=>!sourceOwnedCalendarSnapshots.includes(path));
 const localeCodes=LOCALES.map(x=>x.code);
 const en='en';
 const source=json('data/facts-published.json');
@@ -137,7 +140,7 @@ while(front.length){
 const activeScripts=[...imported].sort(),archivedScripts=scriptFiles.filter(x=>!imported.has(x));
 const audit={
  version:'3.8.0',
- repositoryScope:{dataFiles:dataFiles.length,dataPaths:dataFiles,appJSFiles:scriptFiles.length,activeAppScripts:activeScripts,archivedAppScripts:archivedScripts,htmlEntry:'index.html',activeApiJsFiles:list('api').filter(x=>x.endsWith('.js')).length},
+ repositoryScope:{dataFiles:dataFiles.length,dataPaths:dataFiles,sourceOwnedCalendarSnapshots:sourceOwnedCalendarSnapshots.filter(file=>fs.existsSync(file)),appJSFiles:scriptFiles.length,activeAppScripts:activeScripts,archivedAppScripts:archivedScripts,htmlEntry:'index.html',activeApiJsFiles:list('api').filter(x=>x.endsWith('.js')).length},
  denominatorPolicy:'Known authored and currently source-locked content only. Other UI text, conditional JS outputs, external/provider content and editorial fields are NOT silently called localized or untranslated.',
  globalWholeAppCompletionPercent:null,
  previouslySuggestedEstimate:{approximate:70,verified:false,includeInMeasurement:false},

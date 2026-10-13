@@ -5,6 +5,8 @@ import {calendarLabel,CALENDAR_MESSAGES} from '../lib/calendar-i18n-v460.mjs';
 const holidays=JSON.parse(readFileSync('data/holidays-2026-2027-v460.json','utf8'));
 const registry=JSON.parse(readFileSync('data/event-sources-v470.json','utf8'));
 const html=readFileSync('index.html','utf8');
+const auditScript=readFileSync('scripts/audit-app-v380.mjs','utf8');
+assert.ok(auditScript.includes('sourceOwnedCalendarSnapshots'),'localization audit must explicitly separate external source snapshots');
 const sw=readFileSync('sw.js','utf8');
 const app=readFileSync('app-v090.js','utf8');
 const items=holidays.holidays;
