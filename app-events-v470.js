@@ -3,6 +3,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
 import {upcomingEvents,weekendWindow,eventFreshness} from './lib/events-v470.mjs';
 import {singaporeDate,formatHolidayDate} from './lib/calendar-v460.mjs';
 import {eventText} from './lib/events-i18n-v470.mjs';
+import {localizedCategory,localizedEventSummary} from './lib/events-content-v480.mjs';
 (()=>{
 'use strict';
 const core=window.SGBUDDY_CORE,places=document.querySelector('.v1-view[data-view="places"]'),home=document.querySelector('.v1-view[data-view="today"]');
@@ -27,9 +28,9 @@ function render(){
   const dates=e.startDate===e.endDate?format(e.startDate):format(e.startDate)+' – '+format(e.endDate);
   const type=t(({free:'admissionFree',ticketed:'ticketed',registration:'registration',check:'checkAdmission'})[e.admission]||'checkAdmission');
   const stale=eventFreshness(e,day)==='review-needed';
-  return '<article class="events-item" data-event-id="'+esc(e.id)+'"><div class="events-item-head"><div><span class="events-category">'+esc(e.category)+'</span><h3>'+esc(e.title)+'</h3></div><span class="events-access">'+esc(type)+'</span></div>'+
+  return '<article class="events-item" data-event-id="'+esc(e.id)+'"><div class="events-item-head"><div><span class="events-category">'+esc(localizedCategory(locale(),e.category))+'</span><h3>'+esc(e.title)+'</h3></div><span class="events-access">'+esc(type)+'</span></div>'+
   '<p class="events-date">'+esc(dates)+'</p><p class="events-venue">'+esc(e.venue)+'</p>'+
-  (locale()==='en'?'<p class="events-summary">'+esc(e.summary)+'</p>':'')+
+  '<p class="events-summary">'+esc(localizedEventSummary(locale(),e))+'</p>'+
   '<p class="events-proof">'+esc(sourceById.get(e.sourceId)||e.sourceId)+' · '+esc(t('checked'))+' '+esc(format(e.verifiedAt))+(stale?' · '+esc(t('review')):'')+'</p>'+
   '<div class="events-actions"><button type="button" data-event-save="'+esc(e.id)+'" aria-pressed="'+saved.has(e.id)+'">'+esc(t(saved.has(e.id)?'saved':'save'))+'</button><a href="'+esc(e.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(t('official'))+'</a></div></article>';
  }).join('');
