@@ -18,7 +18,7 @@ async function check(viewport){
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
   await page.locator('#discoverTab-eat').click();
   await page.waitForFunction(()=>document.querySelector('#discoverCategoryFilter option[value="CHAS clinic"]'),{timeout:20000});
-  await page.waitForSelector('#foodAwardYear option[value="editorial"]',{timeout:12000});
+  await page.waitForSelector('#foodAwardYear option[value="editorial"]',{state:'attached',timeout:12000});
   // Identical machine value must survive locale switches, including rare kinds.
   const selection='CHAS clinic';
   await page.locator('#discoverCategoryFilter').selectOption(selection);
