@@ -6,7 +6,7 @@ const changed=classifyRenderedPair(source,{value:'Toutes les catégories'},'fr')
 assert.equal(changed.status,'changedFromEnglish');
 assert.equal(classifyRenderedPair(source,{value:'All categories'},'fr').status,'unchangedEnglishCandidate');
 assert.equal(classifyRenderedPair(source,undefined,'fr').status,'missingAfterLocaleSwitch');
-assert.equal(classifyRenderedPair({...source,ownership:'review'}, {value:'Options françaises'},'fr').status,'sourceOwnershipReview');
+assert.equal(classifyRenderedPair({...source,ownership:'review'}, {value:'Options françaises'},'fr').status ,'reviewQueueCount');
 assert.equal(classifyRenderedPair({...source,ownership:'protected'},{value:'Different place name'},'fr').status,'sourceProtected');
 assert.equal(classifyRenderedPair({...source,value:'MICHELIN'}, {value:'MICHELIN'},'fr').status,'invariantExcluded');
 const sample=[
