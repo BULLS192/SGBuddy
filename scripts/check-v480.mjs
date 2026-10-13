@@ -35,4 +35,17 @@ assert.ok(!sw.includes("keys.filter(k=>k!==CACHE)"),'must preserve downloaded pa
 assert.ok(html.includes('/offline-v480.css'));
 assert.ok(boot.includes("import('/app-offline-v480.js')"));
 assert.ok(boot.includes("='4.2.0'"),'preserve public release badge');
+import {EVENT_CATEGORY_TEXT,EVENT_DESCRIPTIONS,localizedCategory,localizedEventSummary} from '../lib/events-content-v480.mjs';
+const events=JSON.parse(readFileSync('data/events-v470.json','utf8')).events;
+for(const {code} of LOCALES){
+ assert.equal(Object.keys(EVENT_CATEGORY_TEXT[code]||{}).length,10,'Event category localization: '+code);
+ assert.equal(Object.keys(EVENT_DESCRIPTIONS[code]||{}).length,8,'Event summaries localization: '+code);
+ for(const e of events){
+  assert.ok(localizedCategory(code,e.category)!==e.category||code==='en','English event category leaked: '+code);
+  assert.ok(localizedEventSummary(code,e).length>4,'Missing event summary '+code+': '+e.id);
+ }
+}
+assert.ok(sw.includes('/lib/events-content-v480.mjs'));
+assert.ok(readFileSync('app-events-v470.js','utf8').includes('localizedEventSummary(locale(),e)'));
+
 console.log('V4.8 offline packs validated: '+OFFLINE_PACKS.length+' packs and '+LOCALES.length+' locales.');

@@ -25,7 +25,17 @@ try{
  await page.evaluate(code=>{window.SGBUDDY_LANGUAGE=code;document.dispatchEvent(new Event('sgbuddy:language'))},'fr');
  await page.waitForFunction(()=>/hors ligne/i.test(document.querySelector('#sgbuddyOffline h2')?.textContent||''),null,{timeout:10000});
  await page.evaluate(code=>{window.SGBUDDY_LANGUAGE=code;document.dispatchEvent(new Event('sgbuddy:language'))},'en');
+ // Verify that the downloaded pack survives actual network loss, not merely CacheStorage lookup.
+ await page.evaluate(()=>navigator.serviceWorker?.ready);
+ if(!await page.evaluate(()=>Boolean(navigator.serviceWorker?.controller))){
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,{timeout:30000});
+ }
  await context.setOffline(true);
+ const remote=await page.evaluate(async()=>{
+  try{const r=await fetch('/data/events-v470.json');return {ok:r.ok,count:(await r.json()).events.length}}catch(e){return {ok:false,error:String(e)}}
+ });
+ assert.ok(remote.ok&&remote.count>0,'Actual PWA offline fetch should return cached event dataset');
  const content=await page.evaluate(async()=>{
   const r=await caches.match('/data/events-v470.json');
   return {cached:r?.ok||false,records:r?.ok?(await r.json()).events.length:0};
