@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
+import {contextualText} from '../lib/i18n-contextual-v420.mjs';
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},colorScheme:'light',locale:'en-SG'});
 await context.addInitScript(()=>{localStorage.setItem('sgc-persona-onboarded','1');localStorage.setItem('sgc-mode','resident')});
@@ -27,7 +28,7 @@ try{
  await page.locator('#foodPickResult .food-picked-card').first().waitFor({state:'visible'});
  const suggestion=await page.locator('#foodPickResult').textContent();
  assert.ok(/Toa Payoh/.test(suggestion),'Expected Toa Payoh match');
- assert.ok(/opening hours/.test(suggestion),'Unknown live operation disclaimer required');
+ assert.ok(suggestion.includes(contextualText('en','pickerSafety')),'Unknown live operation disclaimer required');
  const save=page.locator('#foodPickResult [data-food-pick-save]').first();
  await save.click();
  assert.equal(await save.getAttribute('aria-pressed'),'true','Save pick should persist selected state');
