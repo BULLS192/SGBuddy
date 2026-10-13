@@ -15,3 +15,7 @@
 
 ## Caveats and next focus
 Authored translation strings need native-speaker semantic checks. No certified whole-app translation percentage is claimed: many native, conditional and backend-generated messages are still outside the enumerated 28 keys. Proceed with further high-frequency Account/Food/Today messages and V4.3 pending native and PWA reviews. Keep **V3.11.1 Merli avatar hotfix**, **V3.12 Saved/journeys**, and source-protection logic intact.
+
+## Regression ownership correction
+
+V3.3 `SYSTEM_I18N` already exclusively owns `#accountSheetTitle`, the account introduction, password recovery and both account-note elements. V4.4 deliberately leaves those bindings to V3.3 to preserve established locale-switch translations and earlier browser QA. The new dictionary contains candidate synonyms for editorial review, but only selectors not already owned by V3.3 are allowed to run.

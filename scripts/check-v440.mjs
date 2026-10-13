@@ -16,7 +16,7 @@ for(const {code} of LOCALES){
  if(code!=='en')assert.ok(PRIORITY_V440_KEYS.filter(key=>row[key]!==PRIORITY_V440_MESSAGES.en[key]).length>=26,code+' needs proper authored translations');
 }
 const module=readFileSync('app-i18n-priority-v440.js','utf8');
-for(const term of ['#accountSheetTitle','#uxSavedView','#foodCards .food-stall','#discoverQuality','#tripIntelligence','MutationObserver','aria-pressed',"sgbuddy:language"]){
+for(const term of ['#accountSheet','#uxSavedView','#foodCards .food-stall','#discoverQuality','#tripIntelligence','MutationObserver','aria-pressed',"sgbuddy:language"]){
  assert.ok(module.includes(term),'Missing localized surface '+term);
 }
 assert.ok(!module.includes('innerHTML=')&&!module.includes('querySelectorAll("*")'),'Unsafe first-party text scope');

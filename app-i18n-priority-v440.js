@@ -8,17 +8,14 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
  'use strict';
  const locale=()=>normalizeLocale(window.SGBUDDY_LANGUAGE||'en');
  // All text here is authored by SGBuddy; never target whole cards or external data.
+ // Account title, intro, forgot and offline notes are owned by V3.3 SYSTEM_I18N;
+ // do not shadow its source-locked values or break legacy locale-switch behavior.
  const anchors=[
   ['#discoverHub .discover-intro > .label','discoverEyebrow'],
   ['#discoverHub .discover-tabs','discoverCategories','aria-label'],
   ['#discoverQuality summary','discoverAbout'],
   ['#discoverQuality a[href*="chas.sg/clinic-locator"]','discoverChas'],
   ['#discoverQuality a[href*="sfa.gov.sg"]','discoverFoodLic'],
-  ['#accountSheetTitle','accountTitle'],
-  ['#accountSheet .account-intro','accountIntro'],
-  ['#forgotPasswordButton','accountForgot'],
-  ['#accountSignedOut > .account-note','accountNewNote'],
-  ['#accountSignedIn > .account-note','accountOffline'],
   ['#uxSavedView .ux-saved-header h2','savedTitle'],
   ['#uxSavedView .ux-saved-header p','savedIntro'],
   ['#uxSavedView > section.card:nth-of-type(1) > .label','savedEyebrow'],
