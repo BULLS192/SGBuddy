@@ -11,7 +11,7 @@
 
 ## SGBuddy release and PR reconciliation (as of 13 Oct 2026)
 
-The V4.10 integration PR #65 and V4.11 release PR #66 included both branches of development: V4.4–V4.11 localization alongside Events, venue discovery and offline packs. Release PR #68 merged into `main` and V4.12.0 is already deployed (Vercel `dpl_4FmxpfM6zvkshYD2kSiLrAUEh1Na`). Open source PRs #56–#64 have branches that are ancestors of `main`; no separate merge of their obsolete version numbers should occur.
+The V4.10 integration PR #65 and V4.11 release PR #66 included both branches of development: V4.4–V4.11 localization alongside Events, venue discovery and offline packs. Release PR #68 merged into `main` and V4.12.0 is already deployed (Vercel `dpl_4FmxpfM6zvkshYD2kSiLrAUEh1Na`). Nine redundant source PRs #56–#64 have been closed with reconciliation comments, after Git compare verified each head was fully contained in `main` (0 commits behind). Branches, source commits and review history remain available; no separate merge of their obsolete version numbers should occur.
 
 Separate diverged PRs #45, #46, #47 contain competing legacy V3.11 home translators; #11 and #18 contain earlier Discover/library experiments; #4 is the 2.5D Merlion prototype. Preserve unique ideas and review any unpublished behavior deliberately, rather than merging old heads or restoring old service-worker caches. The approved Merli avatar itself is already production code.
 
@@ -25,4 +25,4 @@ Separate diverged PRs #45, #46, #47 contain competing legacy V3.11 home translat
 
 ## Release criteria
 
-All newly introduced GitHub V4.13 CI checks must pass. Recheck all existing regressions and no unsafe event publication. Keep `main` and production untouched until a separately authorized V4.13 promotion. Preserve V4.11 Vercel rollback deployment `dpl_DMcrKam98FAus17cEJB87oW2F4Bd`.
+On the first V4.13 release-candidate workflow, the static job exposed an incorrect historic filename; it was corrected to `scripts/check-events-v470.mjs`. The corrected commit (`1e45540c1495b32aa07a3ea99886b9f842a160c0`) passed 14/14 GitHub checks, including both new persona browser jobs. Subsequent changes must pass again. All newly introduced GitHub V4.13 CI checks must pass. Recheck all existing regressions and no unsafe event publication. Keep `main` and production untouched until a separately authorized V4.13 promotion. Preserve V4.11 Vercel rollback deployment `dpl_DMcrKam98FAus17cEJB87oW2F4Bd`.
