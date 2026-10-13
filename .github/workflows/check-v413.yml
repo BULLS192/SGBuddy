@@ -4,6 +4,11 @@ on:
     paths:
       - 'scripts/check-v413.mjs'
       - 'scripts/browser-qa-v413.mjs'
+      - 'scripts/check-v413-air.mjs'
+      - 'scripts/browser-qa-v413-air.mjs'
+      - 'scripts/browser-qa-v413-outages.mjs'
+      - 'lib/i18n-air-v413.mjs'
+      - 'app-v120.js'
       - 'scripts/browser-audit-v430.mjs'
       - 'scripts/check-all.mjs'
       - 'docs/stability-v413.md'
@@ -35,6 +40,7 @@ jobs:
         with:
           node-version: '22'
       - run: node scripts/check-v413.mjs
+      - run: node scripts/check-v413-air.mjs
       - run: node scripts/check-release-v4120.mjs
       - run: node scripts/check-v480.mjs
       - run: node scripts/check-events-v470.mjs
@@ -104,3 +110,26 @@ jobs:
           path: artifacts/v413-${{ matrix.persona }}/
           if-no-files-found: warn
           retention-days: 7
+
+  air-outage-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve local application
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v413-air.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v413-air.log
+          exit 1
+      - name: Validate source-safe Air Quality translation and stale/cached states
+        run: node scripts/browser-qa-v413-air.mjs
+      - name: Simulate weather/train/traffic outage and recovery
+        run: node scripts/browser-qa-v413-outages.mjs
