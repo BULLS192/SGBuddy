@@ -87,25 +87,3 @@ console.log('SGBuddy v1.2 checks passed:',
   catalog.apps.length+' apps,',
   catalog.facts.length+' source-reviewed facts,',
   'student and NEA support wired.');
-,'safe','dateText','category','airValue','airT',renderer+';drawAirQuality()')(
-    fakeState,s=>elements[s.slice(1)],String,iso=>iso||'Not provided',
-    n=>n<=50?'Good':n<=100?'Moderate':'Unhealthy',
-    raw=>raw==null?null:Number(raw)
-  );
-  return {badge:elements.v120AirStatus.textContent,details:elements.v120AirUpdated.textContent};
-};
-const freshTime=new Date().toISOString();
-const liveAir={psi24h:{overall:55,regions:{central:55},updatedAt:freshTime},pm25OneHour:{regions:{central:16},updatedAt:freshTime},region:'central'};
-assert.equal(simulateAir({airQuality:liveAir,dataQuality:{status:'partial',unavailableSignals:['rainfall']}}).badge,'Official NEA readings','Unrelated weather feed must not downgrade air badge');
-assert.equal(simulateAir({airQuality:{...liveAir,pm25OneHour:null},dataQuality:{status:'partial'}}).badge,'Partial air-quality data');
-assert.equal(simulateAir({airQuality:liveAir,dataQuality:{staleSignals:['pm25']}}).badge,'Cached NEA air readings');
-assert.equal(simulateAir({airQuality:liveAir,source:'device-cache',dataQuality:{status:'partial'}}).badge,'Saved offline readings');
-assert.equal(simulateAir({airQuality:{...liveAir,psi24h:{overall:55,regions:{central:55}}},dataQuality:{status:'complete'}}).badge,'NEA time unconfirmed');
-assert.equal(simulateAir({airQuality:{...liveAir,pm25OneHour:{regions:{central:16},updatedAt:new Date(Date.now()-4*3600000).toISOString()}},dataQuality:{status:'complete'}}).badge,'Delayed NEA readings');
-assert.equal(simulateAir({airQuality:null,dataQuality:{status:'unavailable'}}).badge,'Air readings unavailable');
-
-console.log('SGBuddy v1.2 checks passed:',
-  catalog.places.length+' unique venues,',
-  catalog.apps.length+' apps,',
-  catalog.facts.length+' source-reviewed facts,',
-  'student and NEA support wired.');
