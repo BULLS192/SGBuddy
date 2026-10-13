@@ -27,7 +27,7 @@ for(const feed of configuration.feeds){
   if(!probe){ /* no payload logging in scheduled writes */ }
   else if(feed.format==='squarespace-json'){
    const j=JSON.parse(raw),first=(j.items||j.collection?.items||[])[0]||null;
-   console.log('Publisher shape '+feed.id+': '+JSON.stringify({root:Object.keys(j).slice(0,20),items:j.items?.length||j.collection?.items?.length||0,firstKeys:first?Object.keys(first).slice(0,24):[],structuredKeys:first?.structuredContent?Object.keys(first.structuredContent):[],dates:first?{start:first.startDate,structuredStart:first.structuredContent?.startDate,fullUrl:first.fullUrl}:null}));
+   console.log('Publisher shape '+feed.id+': '+JSON.stringify({root:Object.keys(j).slice(0,20),items:j.items?.length||j.collection?.items?.length||0,upcomingType:typeof j.upcoming,upcomingKeys:j.upcoming&&typeof j.upcoming==='object'?Object.keys(j.upcoming).slice(0,15):[],upcomingLength:j.upcoming?.length,calendarKeys:j.calendarView&&typeof j.calendarView==='object'?Object.keys(j.calendarView).slice(0,20):[],collectionKeys:j.collection&&typeof j.collection==='object'?Object.keys(j.collection).slice(0,20):[],firstKeys:first?Object.keys(first).slice(0,24):[],structuredKeys:first?.structuredContent?Object.keys(first.structuredContent):[],dates:first?{start:first.startDate,structuredStart:first.structuredContent?.startDate,fullUrl:first.fullUrl}:null}));
   }else if(feed.format==='rss'){
    console.log('Publisher shape '+feed.id+': '+JSON.stringify({bytes:raw.length,items:raw.split('<item').length-1,firstItem:raw.slice(raw.indexOf('<item'),raw.indexOf('</item>')+7).slice(0,350)}));
   }
