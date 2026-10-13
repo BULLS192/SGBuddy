@@ -3,7 +3,13 @@ import {chromium} from 'playwright';
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
  for(const width of [390,1366]){
-  const page=await browser.newPage({viewport:{width,height:860},serviceWorkers:'block'});
+  const context=await browser.newContext({viewport:{width,height:860},locale:'en-SG',serviceWorkers:'block'});
+  await context.addInitScript(()=>{
+   localStorage.setItem('sgc-persona-onboarded','1');
+   localStorage.setItem('sgc-mode','visitor');
+   localStorage.setItem('sgc-location-choice','not-now');
+  });
+  const page=await context.newPage();
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
@@ -28,6 +34,7 @@ try{
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2);
   assert.equal(overflow,false,'horizontal overflow at '+width);
   await page.close();
+  await context.close();
   console.log('V4.6 browser QA passed at '+width+'px. First upcoming: '+first+'. Page errors: '+errors.length);
  }
 }finally{await browser.close();}
