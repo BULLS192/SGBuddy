@@ -1,0 +1,67 @@
+name: SGBuddy V4.10 Unified RC Gate
+on:
+  pull_request:
+    paths:
+      - 'scripts/check-unified-rc.mjs'
+      - '.github/workflows/check-unified-rc.yml'
+      - 'app-v090.js'
+      - 'sw.js'
+      - 'app-i18n-runtime-v490.js'
+      - 'app-i18n-categories-v4100.js'
+      - 'app-events-v470.js'
+      - 'app-offline-v480.js'
+      - 'lib/i18n-runtime-v490.mjs'
+      - 'lib/i18n-categories-v4100.mjs'
+      - 'data/events-v470.json'
+      - 'scripts/browser-qa-events-v490.mjs'
+      - 'scripts/browser-qa-v490.mjs'
+      - 'scripts/browser-qa-v4100.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unified-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Release contract — no missing workstream
+        run: node scripts/check-unified-rc.mjs
+      - name: Multilingual, calendar, events, editorial and offline checks
+        run: |
+          node scripts/check-v490.mjs
+          node scripts/check-v4100.mjs
+          node scripts/check-v480.mjs
+          node scripts/check-v460.mjs
+          node scripts/check-events-v470.mjs
+          node scripts/check-event-approval-v490.mjs
+          node scripts/check-event-venues-v490.mjs
+  unified-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium once for both streams
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve release candidate locally
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-rc.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-rc.log
+          exit 1
+      - name: Dynamic Food language QA
+        run: node scripts/browser-qa-v490.mjs
+      - name: Discover category / Account / Food language QA
+        run: node scripts/browser-qa-v4100.mjs
+      - name: Event and offline device-emulation QA
+        run: node scripts/browser-qa-events-v490.mjs
+      - name: Disconnected-calendar pack QA
+        run: node scripts/browser-qa-v480.mjs
