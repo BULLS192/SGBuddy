@@ -466,7 +466,7 @@ async function json(url){
     throw error;
   }
 }
-async function refreshContext(){try{const weatherUrl=Number.isFinite(state.lat)&&Number.isFinite(state.lon)?`/api/weather?lat=${state.lat}&lon=${state.lon}`:'/api/weather';const [train,traffic,weather]=await Promise.all([json('/api/train'),json('/api/traffic'),json(weatherUrl)]);Object.assign(state,{train,traffic,weather});updateHero();return true}catch(e){toast(e.message);return false}}
+async function refreshContext(){try{const weatherUrl=Number.isFinite(state.lat)&&Number.isFinite(state.lon)?`/api/weather?lat=${state.lat}&lon=${state.lon}`:'/api/weather';const [train,traffic,weather]=await Promise.all([json('/api/train'),json('/api/traffic'),json(weatherUrl)]);Object.assign(state,{train,traffic,weather});updateHero();return weather?.source!=='device-cache'}catch(e){toast(e.message);return false}}
 async function loadNearby(lat,lon){const busPromise=json(`/api/nearby?lat=${lat}&lon=${lon}`).then(p=>{state.nearby=p;renderNearby()}).catch(e=>toast('Bus: '+e.message));const railPromise=json(`/api/rail?lat=${lat}&lon=${lon}`).then(p=>{state.rail=p;renderRail()}).catch(e=>toast('MRT: '+e.message));const weatherPromise=json(`/api/weather?lat=${lat}&lon=${lon}`).then(p=>{state.weather=p;updateHero()}).catch(()=>{});await Promise.all([busPromise,railPromise,weatherPromise]);renderNextUp()}
 function setLocationStatus(text){const el=$('#locationStatus');if(el)el.textContent=text}
 function closeLocationSheet(){$('#locationSheet')?.classList.add('hidden')}
