@@ -1,0 +1,52 @@
+name: SGBuddy V4.8 Offline & Source QA
+on:
+  pull_request:
+    paths:
+      - 'app-offline-v480.js'
+      - 'offline-v480.css'
+      - 'lib/offline-*v480.mjs'
+      - 'lib/events-feeds-v480.mjs'
+      - 'data/event-feeds-v470.json'
+      - 'scripts/check-v480.mjs'
+      - 'scripts/check-event-feeds-v480.mjs'
+      - 'scripts/browser-qa-v480.mjs'
+      - 'sw.js'
+      - 'app-v090.js'
+      - 'index.html'
+      - '.github/workflows/check-v480.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  v480-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline and source adapters
+        run: |
+          node scripts/check-v480.mjs
+          node scripts/check-event-feeds-v480.mjs
+          node scripts/check-events-v470.mjs
+  v480-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve SGBuddy
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v480.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v480.log
+          exit 1
+      - name: Downloaded offline content and localization browser QA
+        run: node scripts/browser-qa-v480.mjs
