@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-13",
+  "policy": "Only individually source-verified official event pages; not automatic queue approvals. Venue names and ticket availability are not guaranteed.",
+  "records": [
+    {
+      "id": "plave-tour-2026",
+      "officialSource": "https://www.singaporeexpo.com.sg/events-at-expo/2026-plave-world-tour-keep-it-manic-in-singapore/",
+      "reviewedAt": "2026-10-13",
+      "decision": "curated_from_official_page",
+      "sourceAdmission": "ticketed",
+      "sourceEventDates": "2026-10-17",
+      "notes": "Verify any subsequent changes with organiser."
+    },
+    {
+      "id": "suntec-lego-f1-2026",
+      "officialSource": "https://sunteccity.com.sg/experience-the-thrill",
+      "reviewedAt": "2026-10-13",
+      "decision": "curated_from_official_page",
+      "sourceAdmission": "check",
+      "sourceEventDates": "2026-10-01 to 2026-10-18",
+      "notes": "Activity registration and redemption conditions apply; do not claim all interactions free."
+    },
+    {
+      "id": "caps-cardshow-2026",
+      "officialSource": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
+      "reviewedAt": "2026-10-13",
+      "decision": "curated_from_official_page",
+      "sourceAdmission": "free",
+      "sourceEventDates": "2026-10-31 to 2026-11-01",
+      "notes": "Verify any subsequent changes with organiser."
+    }
+  ]
+}

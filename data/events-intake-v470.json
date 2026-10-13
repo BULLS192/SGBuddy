@@ -161,6 +161,66 @@
       "status": "scheduled",
       "verifiedAt": "2026-10-13",
       "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "plave-tour-2026",
+      "title": "2026 PLAVE World Tour [KEEP IT MANIC] in Singapore",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "venue": "Singapore EXPO · Apex @ EXPO",
+      "sourceId": "expo",
+      "category": "music",
+      "admission": "ticketed",
+      "summary": "PLAVE’s live K-pop concert at the APEX venue.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/2026-plave-world-tour-keep-it-manic-in-singapore/",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "suntec-lego-f1-2026",
+      "title": "F1 LEGO Experience the Thrill",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-18",
+      "venue": "Suntec City",
+      "sourceId": "suntec-city",
+      "category": "family",
+      "admission": "check",
+      "summary": "Life-size LEGO F1 display and race-themed activities; some activities require registration.",
+      "sourceUrl": "https://sunteccity.com.sg/experience-the-thrill",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "caps-cardshow-2026",
+      "title": "CAPS Cardshow",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Singapore EXPO · Hall 6A",
+      "sourceId": "expo",
+      "category": "exhibition",
+      "admission": "free",
+      "summary": "Trading-card and collectibles show with vendors, artists and tournaments.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
     }
   ]
 }
