@@ -1,5 +1,6 @@
 import {extendedUi} from './lib/i18n-extended-v300.mjs';
 import {foodStatus} from './lib/i18n-food-status-v400.mjs';
+import {contextualText} from './lib/i18n-contextual-v420.mjs';
 /* SGBuddy V2.6 Food Wave — Merli's food picker & trusted provider handoffs.
    Random suggestions are from dated, source-linked editorial candidates, NOT live menus. */
 (()=>{'use strict';
@@ -8,9 +9,10 @@ import {foodStatus} from './lib/i18n-food-status-v400.mjs';
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const safeUrl=value=>{try{const u=new URL(String(value||''));return u.protocol==='https:'&&!u.username&&!u.password?u.href:''}catch{return ''}};
  const ui=()=>extendedUi(window.SGBUDDY_LANGUAGE||'en');
+ const ctx=(key,fields={})=>contextualText(window.SGBUDDY_LANGUAGE||'en',key,fields);
  const key='sgbuddy-food-picks-v261';
  let saved=new Set();try{const arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr))saved=new Set(arr.filter(x=>typeof x==='string').slice(0,100))}catch{}
- let picks=[],platforms=[],sections=[],area='all',craving='any',section='reviews',lastId=null,chosen=null,loaded=false;
+ let picks=[],platforms=[],sections=[],area='all',craving='any',section='reviews',lastId=null,chosen=null,loaded=false,lastNotice=null;
  const dock=doc.createElement('section');
  dock.id='foodToolsV261';dock.className='food-tools-v261';dock.setAttribute('aria-label','Singapore food discovery tools');
  dock.innerHTML='<div class="food-tools-heading"><div><div class="label">MERLI MAKAN GUIDE</div><h4 id="foodToolsTitle">Not sure what to eat?</h4><p id="foodToolsSubtitle">Let Merli pick from 2026 guide-listed stall leads, or choose a dining service.</p></div></div>'+
@@ -21,6 +23,7 @@ import {foodStatus} from './lib/i18n-food-status-v400.mjs';
  '<div id="foodToolServicesPanel" hidden><p class="food-tool-note">Explore providers for reviews, bookings, delivery, discounts and food rescue. SGBuddy does not display live reviews, prices or available restaurant tables.</p><div id="foodServiceTabs" class="food-service-tabs"></div><div id="foodServiceResults"></div></div>';
  const before=host.querySelector('.food-view-tabs');if(before)before.insertAdjacentElement('beforebegin',dock);else host.append(dock);
  const $=selector=>dock.querySelector(selector);
+ const notify=(key,fields={})=>{lastNotice={key,fields};$('#foodPickNote').textContent=ctx(key,fields)};
  const norm=name=>String(name||'').toLowerCase().replace(/[^a-z0-9]/g,'');
  const quoteUrl=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' '+(p.centreName||p.area||'')+' Singapore');
  const sortByName=(a,b)=>a.name.localeCompare(b.name);
@@ -32,9 +35,8 @@ import {foodStatus} from './lib/i18n-food-status-v400.mjs';
   const map=safeUrl(p.referenceUrl)||quoteUrl(p),source=safeUrl(p.sourceUrl);
   const favourite=saved.has(p.id);
   return '<article class="food-picked-card"><div class="label">'+esc(label(p))+'</div><h4>'+esc(p.name)+'</h4><p>📍 '+esc(p.centreName||'Centre not provided')+' · '+esc(p.area||'Singapore')+(p.stallNumber?' · '+esc(p.stallNumber):'')+'</p>'+
-   '<p class="food-tool-note">'+(p.stallNumber?'Stall unit as listed by the guide; ':'Exact stall number not independently confirmed; ')+
-   'today’s opening hours, dishes, prices and dietary status must be checked.</p>'+
-   '<div class="food-picked-actions"><a href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">Map search ↗</a>'+
+   '<p class="food-tool-note">'+esc(ctx(p.stallNumber?'pickerStallListed':'pickerStallUnverified'))+' '+esc(ctx('pickerSafety'))+'</p>'+
+   '<div class="food-picked-actions"><a href="'+esc(map)+'" target="_blank" rel="noopener noreferrer">'+esc(ctx('pickerMapSearch'))+' ↗</a>'+
    (source?'<a href="'+esc(source)+'" target="_blank" rel="noopener noreferrer">Read '+esc(p.reviewStatus==='guide-listed-2026'?'MICHELIN':'CNA')+' ↗</a>':'')+
    '<button type="button" data-food-pick-save="'+esc(p.id)+'" aria-pressed="'+String(favourite)+'">'+(favourite?'★ Saved':'☆ Save pick')+'</button></div></article>';
  }
@@ -47,12 +49,12 @@ import {foodStatus} from './lib/i18n-food-status-v400.mjs';
  function makePick(){
   if(!loaded){$('#foodPickNote').textContent='Food guide is loading; please retry.';return}
   const options=candidates();
-  if(!options.length){chosen=null;$('#foodPickResult').innerHTML='';$('#foodPickNote').textContent='No guide-listed match in this area for that craving. Try another area or Surprise me.';return}
+  if(!options.length){chosen=null;$('#foodPickResult').innerHTML='';notify('pickerNoMatch');return}
   const alternatives=options.filter(p=>p.id!==lastId);
   const pool=alternatives.length?alternatives:options;
   const sample=pool[Math.floor(Math.random()*pool.length)];
   chosen=sample;lastId=sample.id;
-  $('#foodPickNote').textContent='Merli picked one of '+options.length+' guide-listed candidates that match your filters. This is not a live restaurant or nutrition recommendation.';
+  notify('pickerCount',{count:options.length});
   renderPicked();
  }
  function renderServices(){
@@ -89,7 +91,7 @@ import {foodStatus} from './lib/i18n-food-status-v400.mjs';
  });
  $('#foodPickArea').addEventListener('change',e=>{area=e.target.value;chosen=null;$('#foodPickResult').innerHTML='';$('#foodPickSaved').setAttribute('aria-pressed','false')});
  $('#foodPickCraving').addEventListener('change',e=>{craving=e.target.value;chosen=null;$('#foodPickResult').innerHTML='';$('#foodPickSaved').setAttribute('aria-pressed','false')});
- doc.addEventListener('sgbuddy:language',renderLanguage);
+ doc.addEventListener('sgbuddy:language',()=>{renderLanguage();renderPicked();if(lastNotice)$('#foodPickNote').textContent=ctx(lastNotice.key,lastNotice.fields)});
  renderLanguage();sectionButton('picker');
  Promise.all([
   fetch('/data/guide-stalls-v230.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stalls:[]}).catch(()=>({stalls:[]})),

@@ -65,6 +65,10 @@ on:
       - 'lib/i18n-directory-v410.mjs'
       - 'scripts/check-v410.mjs'
       - 'scripts/browser-qa-v410.mjs'
+      - 'lib/i18n-contextual-v420.mjs'
+      - 'scripts/check-v420.mjs'
+      - 'scripts/browser-qa-v420.mjs'
+      - 'app-v140.js'
       - 'sw.js'
       - 'lib/i18n-home-v311.mjs'
       - 'lib/i18n-weather-home-v311.mjs'
@@ -122,3 +126,5 @@ jobs:
         run: node scripts/browser-qa-v400.mjs
       - name: V4.1 directory cards and context 12-locale browser QA
         run: node scripts/browser-qa-v410.mjs
+      - name: V4.2 conditional Food, Merli and static filter 12-locale browser QA
+        run: node scripts/browser-qa-v420.mjs

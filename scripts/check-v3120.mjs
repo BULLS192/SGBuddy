@@ -25,5 +25,5 @@ for(const s of ['/app-i18n-v312.js','/lib/i18n-v312.mjs'])assert.ok(sw.includes(
 assert.ok(app.includes("import('/app-i18n-v312.js')"));
 assert.ok(app.includes("='4.1.0'"));
 assert.ok(read('index.html').includes('v4.1.0'));
-assert.ok(sw.includes('sgbuddy-shell-v73'));
+assert.ok(sw.includes('sgbuddy-shell-v74'));
 console.log('V3.12 PASS: 25 generated message keys x 12 locales, interpolation, Saved, recent destinations, journey summary, itinerary placeholders, offline bundle.');

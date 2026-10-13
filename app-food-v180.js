@@ -4,10 +4,12 @@ import {dishTranslation} from './lib/i18n-dishes-v311.mjs';
 import {stallNoteTranslation} from './lib/i18n-stall-notes-v311.mjs';
 import {foodStatus} from './lib/i18n-food-status-v400.mjs';
 import {extendedUi} from './lib/i18n-extended-v300.mjs';
+import {contextualText} from './lib/i18n-contextual-v420.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const locale=()=>window.SGBUDDY_LANGUAGE||'en';
 const status=(name,fields={})=>foodStatus(locale(),name,fields);
+const ctx=(name,fields={})=>contextualText(locale(),name,fields);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
@@ -39,7 +41,7 @@ function cardStall(x){
  const translatedWarning=stallNoteTranslation(locale(),x);
  const warning=(guide?status('guideWarning'):roundup?status('roundupWarning'):award?status('awardWarning',{year:award}):status('editorialWarning'))+' · '+status('priceDietWarning');
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p>'+(guide?'MICHELIN 2026 address listing':roundup?'2026 guide selection (centre named; stall unit unknown)':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
+ '<p>'+esc(ctx(guide?'foodMichelin':roundup?'foodGuideSelection':award?'foodNeaAward':'foodEditorial',{year:award||''}))+' · '+esc(ctx('foodLead',{centre:x.centreName,dishes:(x.dishes||[]).join(', ')}))+(x.stallNumber?' · '+esc(x.stallNumber):'')+'</p>'+
  '<p class="food-warning"'+(translatedWarning?' data-content-localized="true"':'')+'>'+esc(translatedWarning||warning)+'</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':roundup?'CNA 2026 selection':'NEA historical award')+' ↗</a>':'')+
@@ -51,17 +53,17 @@ function cardDish(x){
  '<button type="button" data-search-dish="'+esc(x.name)+'">Find stall leads for this dish ↗</button></article>';
 }
 function cardMenu(x){
- const link=allowedUrl(x.sourceUrl),price=x.priceSgd!=null?' · Published SGD $'+Number(x.priceSgd).toFixed(2):' · Price unlisted';
+ const link=allowedUrl(x.sourceUrl),price=x.priceSgd!=null?' · SGD $'+Number(x.priceSgd).toFixed(2):' · '+ctx('foodPriceUnlisted');
  return '<article class="card food-stall"><div class="label">'+esc(x.vendor)+' · first-party listing</div><h4>'+esc(x.name)+'</h4>'+
-  '<p>Listed '+esc(x.observedOn)+price+'</p>'+
+  '<p>'+esc(ctx('foodListedOn',{date:x.observedOn}))+esc(price)+'</p>'+
   '<p class="food-warning">'+esc(status('vendorWarning'))+'</p>'+
-  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Original vendor menu ↗</a>':'')+'</article>';
+  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">'+esc(ctx('foodVendorMenu'))+' ↗</a>':'')+'</article>';
 }
 function cardHawkerMenu(x){
  const url=allowedUrl(x.sourceUrl);
- return '<article class="card food-stall"><div class="label">First-party hawker brand · '+esc(x.stallName)+'</div><h4>'+esc(x.dishName)+'</h4>'+
+ return '<article class="card food-stall"><div class="label">'+esc(ctx('foodBrand'))+' · '+esc(x.stallName)+'</div><h4>'+esc(x.dishName)+'</h4>'+
  '<p>'+esc(x.description||'')+'</p><p class="food-warning">'+esc(status('hawkerWarning',{centre:x.centreName||'this outlet'}))+'</p>'+
- (url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">View operator menu ↗</a>':'')+'</article>';
+ (url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(ctx('foodOperatorMenu'))+' ↗</a>':'')+'</article>';
 }
 function render(){
  if(!initialised)return;
@@ -98,11 +100,11 @@ sec.addEventListener('click',e=>{
  }
  const addressButton=e.target.closest('[data-stall-address]');if(addressButton){
   const note=addressButton.closest('.food-stall')?.querySelector('.food-address');if(!note)return;
-  note.textContent='Checking the hawker centre with OneMap…';addressButton.disabled=true;
+  note.textContent=ctx('oneMapChecking');addressButton.disabled=true;
   fetch('/api/journey?action=discover-address&id='+encodeURIComponent(addressButton.dataset.stallAddress),{cache:'no-store'})
    .then(r=>r.ok?r.json():Promise.reject(Error('lookup failed')))
    .then(p=>{note.textContent=p.status==='address-matched'&&p.address?status('oneMapMatch',{address:p.address.address}):(p.status==='ambiguous'?status('oneMapAmbiguous'):p.status==='not-configured'?status('oneMapNotConfigured'):status('oneMapNoMatch'))})
-   .catch(()=>{note.textContent='OneMap temporarily unavailable'})
+   .catch(()=>{note.textContent=ctx('oneMapUnavailable')})
    .finally(()=>{addressButton.disabled=false});
   return;
  }
@@ -140,5 +142,5 @@ Promise.all([
  options('#foodMeal',[...new Set([...stalls,...dishes].map(x=>x.meal))]);
  options('#foodDish',[...new Set(stalls.flatMap(x=>x.dishes||[]))]);
  initialised=true;render();
-}).catch(()=>{$('#foodCount').textContent='Food library data could not be loaded; the standard Discover directory is still available.'});
+}).catch(()=>{$('#foodCount').textContent=ctx('foodLoadError')});
 })();
