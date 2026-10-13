@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-13",
+  "warning": "Discovery directory of official organiser calendars, NOT ingested event listings or confirmed API integrations. Verify individual URLs, access rights, event eligibility and freshness before using automated ingestion.",
+  "sources": [
+    {
+      "id": "mom",
+      "name": "MOM / data.gov.sg",
+      "category": "holiday",
+      "url": "https://data.gov.sg/collections/691/view",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "stb",
+      "name": "Visit Singapore",
+      "category": "tourism",
+      "url": "https://www.visitsingapore.com/whats-happening/all-happenings/",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "expo",
+      "name": "Singapore EXPO",
+      "category": "exhibition",
+      "url": "https://www.singaporeexpo.com.sg/events-at-expo/",
+      "area": "east",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 12
+    },
+    {
+      "id": "suntec-convention",
+      "name": "Suntec Singapore Convention Centre",
+      "category": "exhibition",
+      "url": "https://www.suntecsingapore.com/visit-events",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 12
+    },
+    {
+      "id": "mbs-convention",
+      "name": "Marina Bay Sands Expo",
+      "category": "exhibition",
+      "url": "https://www.marinabaysands.com/expo-and-convention/event-directory.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 12
+    },
+    {
+      "id": "mbs-entertainment",
+      "name": "Marina Bay Sands Entertainment",
+      "category": "performance",
+      "url": "https://www.marinabaysands.com/entertainment/shows.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 12
+    },
+    {
+      "id": "sistic",
+      "name": "SISTIC",
+      "category": "ticketing",
+      "url": "https://www.sistic.com.sg/",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "esplanade",
+      "name": "Esplanade",
+      "category": "performance",
+      "url": "https://www.esplanade.com/whats-on",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 12
+    },
+    {
+      "id": "the-kallang",
+      "name": "The Kallang",
+      "category": "sports",
+      "url": "https://www.thekallang.com.sg/en/things-to-do/events.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "gardens",
+      "name": "Gardens by the Bay",
+      "category": "attraction",
+      "url": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "nparks",
+      "name": "NParks",
+      "category": "outdoors",
+      "url": "https://www.nparks.gov.sg/visit/events",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "pa",
+      "name": "People's Association",
+      "category": "community",
+      "url": "https://www.pa.gov.sg/our-programmes/community-sports/latest-happenings/",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "nms",
+      "name": "National Museum of Singapore",
+      "category": "arts",
+      "url": "https://www.nhb.gov.sg/nationalmuseum/whats-on/view-all",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "acm",
+      "name": "Asian Civilisations Museum",
+      "category": "arts",
+      "url": "https://www.nhb.gov.sg/acm/whats-on",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "national-gallery",
+      "name": "National Gallery Singapore",
+      "category": "arts",
+      "url": "https://www.nationalgallery.sg/whats-on",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "artscience",
+      "name": "ArtScience Museum",
+      "category": "arts",
+      "url": "https://www.marinabaysands.com/museum/exhibitions.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "science-centre",
+      "name": "Science Centre Singapore",
+      "category": "family",
+      "url": "https://www.science.edu.sg/whats-on",
+      "area": "west",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "capitalland",
+      "name": "CapitaLand Malls",
+      "category": "mall",
+      "url": "https://www.capitaland.com/sg/en/shop/malls/discover.html",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "vivocity",
+      "name": "VivoCity",
+      "category": "mall",
+      "url": "https://www.vivocity.com.sg/whats-on/mall-happenings",
+      "area": "south",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "suntec-city",
+      "name": "Suntec City Mall",
+      "category": "mall",
+      "url": "https://sunteccity.com.sg/",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "marina-square",
+      "name": "Marina Square",
+      "category": "mall",
+      "url": "https://www.marinasquare.com.sg/",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "jewel",
+      "name": "Jewel Changi Airport",
+      "category": "mall",
+      "url": "https://www.jewelchangiairport.com/en/promotion.html",
+      "area": "east",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "jem",
+      "name": "Jem",
+      "category": "mall",
+      "url": "https://www.jem.sg/whats-new/all-promotions--events/",
+      "area": "west",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "313",
+      "name": "313@somerset",
+      "category": "mall",
+      "url": "https://www.313somerset.com.sg/whats-on/offers/",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "ion",
+      "name": "ION Orchard",
+      "category": "mall",
+      "url": "https://www.ionorchard.com/en.html",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "lendlease",
+      "name": "Lendlease Retail",
+      "category": "mall",
+      "url": "https://www.lendlease.com/retail/sg/",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "orchardcentral",
+      "name": "Orchard Central",
+      "category": "mall",
+      "url": "https://www.orchardcentral.com.sg/",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "paragon",
+      "name": "Paragon",
+      "category": "mall",
+      "url": "https://www.paragon.com.sg/",
+      "area": "central",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "plq",
+      "name": "Paya Lebar Quarter",
+      "category": "mall",
+      "url": "https://www.payalebarquarter.com/",
+      "area": "east",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "jurongpoint",
+      "name": "Jurong Point",
+      "category": "mall",
+      "url": "https://www.jurongpoint.com.sg/",
+      "area": "west",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "causewaypoint",
+      "name": "Causeway Point",
+      "category": "mall",
+      "url": "https://www.causewaypoint.com.sg/",
+      "area": "north",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "wildwildwet",
+      "name": "Wild Wild Wet",
+      "category": "attraction",
+      "url": "https://www.wildwildwet.com/",
+      "area": "east",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "sentosa",
+      "name": "Sentosa",
+      "category": "attraction",
+      "url": "https://www.sentosa.com.sg/en/things-to-do/events/",
+      "area": "south",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    },
+    {
+      "id": "sports-hub",
+      "name": "Sport Singapore",
+      "category": "sports",
+      "url": "https://www.sportsingapore.gov.sg/",
+      "area": "islandwide",
+      "ingestionStatus": "candidate",
+      "refreshTargetHours": 24
+    }
+  ]
+}
