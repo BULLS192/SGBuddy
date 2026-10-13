@@ -25,7 +25,7 @@ async function run(width,height){
    for(const [key,sel] of Object.entries(selectors)){
     const source=HOME_V412.en[key],want=home412Text(code,key);
     await page.evaluate(({sel,source})=>{const x=document.querySelector(sel);if(!x)throw Error('Missing '+sel);x.textContent=source;},{sel,source});
-    await page.waitForFunction(({sel,want})=>document.querySelector(sel)?.textContent?.trim()===want,{sel,want},{timeout:6000});
+    await page.waitForFunction(({sel,want})=>document.querySelector(sel)?.textContent?.trim()===want,{sel,want},{timeout:4500}).catch(async()=>{const got=await page.locator(sel).textContent().catch(()=>'(selector missing)');throw Error('V4.12 locale '+code+' key '+key+' expected '+JSON.stringify(want)+' observed '+JSON.stringify(got)+' at '+sel);});
    }
    // A renderer may write an English source again; the scoped observer must restore it.
    await page.evaluate(()=>{document.querySelector('#tripIntelTitle').textContent='Conditions look good';});
