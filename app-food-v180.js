@@ -2,9 +2,12 @@
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {dishTranslation} from './lib/i18n-dishes-v311.mjs';
 import {stallNoteTranslation} from './lib/i18n-stall-notes-v311.mjs';
+import {foodStatus} from './lib/i18n-food-status-v400.mjs';
+import {extendedUi} from './lib/i18n-extended-v300.mjs';
 (()=>{'use strict';
 const core=window.SGBUDDY_CORE;if(!core)return;
 const locale=()=>window.SGBUDDY_LANGUAGE||'en';
+const status=(name,fields={})=>foodStatus(locale(),name,fields);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
 const allowedUrl=s=>{try{const u=new URL(s);return u.protocol==='https:'?u.href:''}catch{return ''}};
@@ -34,29 +37,30 @@ function options(selector,values){
 function cardStall(x){
  const isSaved=saved.has(x.id),link=allowedUrl(x.referenceUrl),guide=x.reviewStatus==='guide-listed-2026',roundup=x.reviewStatus==='cna-guide-2026',award=x.reviewStatus.match(/^nea-award-listed-(\d{4})$/)?.[1]||null;
  const translatedWarning=stallNoteTranslation(locale(),x);
+ const warning=(guide?status('guideWarning'):roundup?status('roundupWarning'):award?status('awardWarning',{year:award}):status('editorialWarning'))+' · '+status('priceDietWarning');
  return '<article class="card food-stall" data-stall-id="'+esc(x.id)+'"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.area)+'</div><h4>'+esc(x.name)+'</h4>'+
  '<p>'+(guide?'MICHELIN 2026 address listing':roundup?'2026 guide selection (centre named; stall unit unknown)':award?'NEA '+award+' award mention':'Editorial research lead')+' at '+esc(x.centreName)+(x.stallNumber?' · '+esc(x.stallNumber):'')+' · Dish: '+esc((x.dishes||[]).join(', '))+'</p>'+
- '<p class="food-warning"'+(translatedWarning?' data-content-localized="true"':'')+'>'+esc(translatedWarning||((guide?'2026 guide-listed name and address; trading today and current menu unverified':roundup?'2026 guide list; centre from CNA; exact stall number and current operation not confirmed':award?'NEA documented in '+award+'; current trading unverified':'Stall and menu not independently confirmed')+' · Prices and dietary certification unknown'))+'</p>'+
+ '<p class="food-warning"'+(translatedWarning?' data-content-localized="true"':'')+'>'+esc(translatedWarning||warning)+'</p>'+
  '<div class="food-card-actions"><button type="button" data-stall-save="'+esc(x.id)+'" aria-pressed="'+isSaved+'">'+(isSaved?'★ Saved':'☆ Save')+'</button>'+
  (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Search location ↗</a>':'')+(allowedUrl(x.sourceUrl)?'<a href="'+esc(allowedUrl(x.sourceUrl))+'" target="_blank" rel="noopener noreferrer">'+(guide?'MICHELIN 2026 listing':roundup?'CNA 2026 selection':'NEA historical award')+' ↗</a>':'')+
  (x.centreId&&/^SGP-/.test(x.centreId)?'<button type="button" data-stall-address="'+esc(x.centreId)+'">Check centre address</button>':'')+'</div><p class="food-address" role="status"></p></article>';
 }
 function cardDish(x){
  return '<article class="card food-stall"><div class="label">'+esc(taxonomyLabel(locale(),x.cuisine))+' · '+esc(x.meal)+'</div><h4>'+esc(x.name)+'</h4>'+
- '<p'+(dishTranslation(locale(),x)?' data-content-localized="true"':'')+'>'+esc(dishTranslation(locale(),x)||x.description)+'</p><p class="food-warning">Dish guide only: vendors, ingredients, allergens, prices and certification vary.</p>'+
+ '<p'+(dishTranslation(locale(),x)?' data-content-localized="true"':'')+'>'+esc(dishTranslation(locale(),x)||x.description)+'</p><p class="food-warning">'+esc(extendedUi(locale()).foodGuideOnly)+'</p>'+
  '<button type="button" data-search-dish="'+esc(x.name)+'">Find stall leads for this dish ↗</button></article>';
 }
 function cardMenu(x){
  const link=allowedUrl(x.sourceUrl),price=x.priceSgd!=null?' · Published SGD $'+Number(x.priceSgd).toFixed(2):' · Price unlisted';
  return '<article class="card food-stall"><div class="label">'+esc(x.vendor)+' · first-party listing</div><h4>'+esc(x.name)+'</h4>'+
   '<p>Listed '+esc(x.observedOn)+price+'</p>'+
-  '<p class="food-warning">Availability, dietary details and current price are not confirmed. A vendor-listed item is not necessarily a hawker stall.</p>'+
+  '<p class="food-warning">'+esc(status('vendorWarning'))+'</p>'+
   (link?'<a href="'+esc(link)+'" target="_blank" rel="noopener noreferrer">Original vendor menu ↗</a>':'')+'</article>';
 }
 function cardHawkerMenu(x){
  const url=allowedUrl(x.sourceUrl);
  return '<article class="card food-stall"><div class="label">First-party hawker brand · '+esc(x.stallName)+'</div><h4>'+esc(x.dishName)+'</h4>'+
- '<p>'+esc(x.description||'')+'</p><p class="food-warning">Menu appears on the brand website, NOT verified as available at '+esc(x.centreName||'this outlet')+'. No current price, allergen or halal claim.</p>'+
+ '<p>'+esc(x.description||'')+'</p><p class="food-warning">'+esc(status('hawkerWarning',{centre:x.centreName||'this outlet'}))+'</p>'+
  (url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">View operator menu ↗</a>':'')+'</article>';
 }
 function render(){
@@ -69,8 +73,8 @@ function render(){
   (!q||(x.name+' '+x.centreName+' '+x.area+' '+x.cuisine+' '+x.dishes.join(' ')).toLowerCase().includes(q))
  ):dishes.filter(x=>(cuisine==='all'||x.cuisine===cuisine)&&
   (meal==='all'||x.meal===meal)&&(!q||[x.name,x.cuisine,x.description,taxonomyLabel(locale(),x.cuisine),dishTranslation(locale(),x)||''].join(' ').toLowerCase().includes(q)));
- $('#foodCount').textContent=rows.length+' '+(tab==='stalls'?'stall listings (none confirmed operating)':tab==='dishes'?'Singapore food and drink styles':tab==='hawker-menus'?'operator hawker menu items, outlet availability unverified':'vendor-published menu items, not live availability')+' · '+Math.min(rows.length,limit)+' shown';
- $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:tab==='hawker-menus'?cardHawkerMenu:cardDish).join('')||'<div class="card">No entries match those filters. Try a broader cuisine or area.</div>';
+ $('#foodCount').textContent=status(tab==='stalls'?'countStalls':tab==='dishes'?'countDishes':tab==='hawker-menus'?'countHawker':'countVendor',{count:rows.length,shown:Math.min(rows.length,limit)});
+ $('#foodCards').innerHTML=rows.slice(0,limit).map(tab==='stalls'?cardStall:tab==='menus'?cardMenu:tab==='hawker-menus'?cardHawkerMenu:cardDish).join('')||'<div class="card">'+esc(extendedUi(locale()).foodEmpty)+'</div>';
  $('#foodLoadMore').hidden=rows.length<=limit;
  $('#foodSavedOnly').closest('label').hidden=tab!=='stalls';
  $('#foodArea').hidden=tab!=='stalls';
@@ -97,7 +101,7 @@ sec.addEventListener('click',e=>{
   note.textContent='Checking the hawker centre with OneMap…';addressButton.disabled=true;
   fetch('/api/journey?action=discover-address&id='+encodeURIComponent(addressButton.dataset.stallAddress),{cache:'no-store'})
    .then(r=>r.ok?r.json():Promise.reject(Error('lookup failed')))
-   .then(p=>{note.textContent=p.status==='address-matched'&&p.address?('OneMap matched: '+p.address.address+' · Operating status not checked'):(p.status==='ambiguous'?'Ambiguous match; verify this centre manually':p.status==='not-configured'?'OneMap not configured':'No confirmed match yet')})
+   .then(p=>{note.textContent=p.status==='address-matched'&&p.address?status('oneMapMatch',{address:p.address.address}):(p.status==='ambiguous'?status('oneMapAmbiguous'):p.status==='not-configured'?status('oneMapNotConfigured'):status('oneMapNoMatch'))})
    .catch(()=>{note.textContent='OneMap temporarily unavailable'})
    .finally(()=>{addressButton.disabled=false});
   return;

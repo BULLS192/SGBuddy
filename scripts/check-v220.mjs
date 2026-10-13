@@ -4,7 +4,7 @@ import {execFileSync} from 'node:child_process';
 const read=p=>fs.readFileSync(p,'utf8');
 const food=JSON.parse(read('data/food-stalls-v180.json'));
 const menus=JSON.parse(read('data/vendor-menus-v210.json'));
-const page=read('app-v120.js'),foodUi=read('app-food-v180.js'),html=read('index.html'),sw=read('sw.js');
+const page=read('app-v120.js'),foodUi=read('app-food-v180.js'),foodPack=read('lib/i18n-food-status-v400.mjs'),html=read('index.html'),sw=read('sw.js');
 const ids=new Set();
 assert.ok(food.stalls.length>=90,'V2.2 NEA food expansion missing');
 const historical=food.stalls.filter(x=>/^nea-award-listed-20\d\d$/.test(x.reviewStatus));
@@ -26,7 +26,7 @@ for(const marker of ['discoverQuality','discoverIncludeArchive','sourceCoverageA
  assert.ok(page.includes(marker),'Discover quality UX missing '+marker);
 }
 for(const marker of ['foodAwardYear','nea-award-listed-20','data-stall-address','current trading unverified','award']){
- assert.ok(foodUi.includes(marker),'Food evidence UX missing '+marker);
+ assert.ok(foodUi.includes(marker)||foodPack.includes(marker),'Food evidence UX missing '+marker);
 }
 assert.ok(html.includes('library-quality-v220.css')&&sw.includes('library-quality-v220.css'),'V2.2 quality UI missing from page or PWA shell');
 assert.ok(!page.includes('All source ages')&&!page.includes('discoverFreshnessFilter')&&!page.includes('renderQuality()'),'Technical source-age dashboard and filter must not appear in consumer Discover');
