@@ -20,3 +20,9 @@ Existing V4.8 real disconnected-browser tests remain required. V4.9 adds device-
 ## Outstanding
 
 Curation of additional official event sources (CapitaLand mall calendars, VivoCity and MBS directories), native-speaker review for all 12 languages, manual Safari/iOS/Android installed-device QA, publisher rights review, and safe user consent for alerts. Do not assert comprehensive automated event coverage before ingestion outputs are verified.
+
+## Safe publication path
+Candidates remain in a private GitHub Actions review artifact and can only be promoted through `data/event-approvals-v490.json` after an accountable editorial reviewer signs off public attendance eligibility, dates, admission, official source links and publisher listing rights. `node scripts/publish-reviewed-events-v490.mjs` defaults to dry-run; `--publish` stages only matching, explicitly approved future events, and only on a separately reviewed PR. Scheduled refresh **never** invokes the publication action. Event approval manifest starts empty.
+
+## Three newly verified October 2026 listings
+PLAVE World Tour (ticketed, Oct 17); Suntec City LEGO F1 Experience (Oct 1–18, registration may apply); CAPS Cardshow (EXPO Hall 6A, free public entry, Oct 31–Nov 1). All added to first-party curated intake, with translated summaries in 12 app locales and original event identities preserved. Details on official pages should be rechecked before travelling.

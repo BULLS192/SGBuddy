@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'data/event-venue-sources-v490.json'
+      - 'data/event-approvals-v490.json'
       - 'data/event-sources-v470.json'
       - 'lib/events-public-html-v490.mjs'
       - 'scripts/check-event-venues-v490.mjs'
@@ -30,6 +31,8 @@ jobs:
       - name: Validate dates, robots, admission and source boundaries
         run: |
           node scripts/check-event-venues-v490.mjs
+          node scripts/check-event-approval-v490.mjs
+          node scripts/publish-reviewed-events-v490.mjs
           node scripts/check-events-v470.mjs
           node scripts/check-v480.mjs
       - name: Probe official venue sources (no publication)
