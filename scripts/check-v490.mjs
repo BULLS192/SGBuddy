@@ -25,7 +25,7 @@ const boot=readFileSync('app-v090.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-runtime-v490.js')"),'bootstrap not wired');
 assert.ok(boot.includes("import('/app-offline-v480.js')"),'offline boot lost');
 assert.ok(boot.includes("import('/app-events-v470.js')"),'events boot lost');
-assert.ok(boot.includes("='4.11.0'"),'production version not to be changed yet');
+assert.ok(boot.includes("='4.12.0'"),'production version not to be changed yet');
 const sw=readFileSync('sw.js','utf8');
 for(const path of ['/app-i18n-runtime-v490.js','/lib/i18n-runtime-v490.mjs'])assert.ok(sw.includes(path),'offline shell missing '+path);
 assert.ok(sw.includes("sgbuddy-offline-packs-v480"),'offline pack cache lost');
