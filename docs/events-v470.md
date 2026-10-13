@@ -27,3 +27,6 @@ Events must be reconfirmed before travelling. Promotion-only activities and priv
 - Individual-day opening hours and verified prices; source images/rights; personalised Merli suggestions and itinerary linking.
 - All venue/source candidates remain labelled candidate, not live-integrated.
 - Browser QA across all locales, accessibility, Safari iOS/Android installed PWA, manual copy reviews.
+
+## Initial feed-discovery integration
+Suntec's publicly linked iCalendar export convention is connected as a **probe/review-only candidate** (the collection-level endpoint is not yet confirmed). The feed parser rejects explicitly private/cancelled entries and places other dated entries into `data/events-review-queue-v470.json` marked `needs-review`. No candidate is published until public access and event details are verified on the individual official listing. A nightly workflow will probe this only after the project reaches the default branch; feed failures cannot create invented events or turn a failed network check into a verified source. The daily job avoids commits when neither the published snapshot nor review queue changed.

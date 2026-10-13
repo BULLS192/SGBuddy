@@ -3,10 +3,12 @@ on:
   pull_request:
     paths:
       - 'data/events-*v470.json'
+      - 'data/event-feeds-v470.json'
       - 'lib/events-*v470.mjs'
       - 'app-events-v470.js'
       - 'events-v470.css'
       - 'scripts/*events-v470.mjs'
+      - 'scripts/*feeds-v470.mjs'
       - 'scripts/browser-qa-events-v470.mjs'
       - '.github/workflows/check-v470-events.yml'
       - 'app-v090.js'
@@ -27,6 +29,8 @@ jobs:
         run: |
           node scripts/check-events-v470.mjs
           node scripts/refresh-events-v470.mjs --check
+          node scripts/check-event-feeds-v470.mjs
+          node scripts/sync-event-feeds-v470.mjs --probe
   events-browser:
     runs-on: ubuntu-latest
     timeout-minutes: 15
