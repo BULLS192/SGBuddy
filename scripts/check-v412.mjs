@@ -4,7 +4,7 @@ import {LOCALES} from '../lib/i18n-v280.mjs';
 import {HOME_V412_KEYS,HOME_V412,home412Text,home412SourceKey} from '../lib/i18n-home-surface-v412.mjs';
 assert.equal(HOME_V412_KEYS.length,27);
 assert.equal(LOCALES.length,12);
-assert.equal(new Set(HOME_V412_KEYS).size,31);
+assert.equal(new Set(HOME_V412_KEYS).size,27);
 for(const {code} of LOCALES){
  const row=HOME_V412[code];assert.equal(Object.keys(row||{}).length,27,code+' lacks rows');
  for(const k of HOME_V412_KEYS){
