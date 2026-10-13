@@ -54,6 +54,8 @@ function capture(page,scene,viewport,persona){
    return (parts[0]?.startsWith('#')?'':scene.scope+' > ')+parts.join(' > ');
   };
   const ownership=el=>{
+   // The expandable English-original MUIS warning is deliberately retained for verification.
+   if(el.closest('#sgbFoodOriginalWarning,#sgbFoodLocalizedWarning a[href*="muis.gov.sg"]'))return 'protected';
    // Area and neighbourhood names are source place names, not untranslated UI.
    const option=el.closest('option');
    if(option&&['discoverAreaFilter','discoverNeighbourhoodFilter','foodArea','foodPickArea'].includes(option.parentElement?.id)&&!['all','any'].includes(option.value))return 'protected';

@@ -57,3 +57,5 @@ The development audit workflow passed, as did the existing legacy QA triggered f
 ### Source-place-name exclusion refinement
 
 The initial priority ranking showed genuine source-owned neighbourhoods (e.g. Ang Mo Kio, Beach Road) as unchanged English. V4.3 now explicitly classifies non-default area/neighbourhood picker options as source-protected and counts each native option once. These original place names should not be translated simply to improve a percentage. Regenerate the report from the latest commit before quoting per-locale sampled change rates.
+
+The source-checked food warning also retains a deliberately visible **English original** and the official **MUIS** name/link. V4.3 source-protects these UI elements rather than placing them in the untranslated-text action list.
