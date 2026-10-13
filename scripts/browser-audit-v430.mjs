@@ -155,7 +155,6 @@ try{
   conditionalStatesNotExhaustivelyTested:true,wholeAppTranslationPercent:null,
   limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered, server/API error variants and all persona combinations are not exhaustive','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
   absentScreens:missingScreens,clientErrors:errors,
-  byScreenSummary, priorityCandidates,
   evidence:results};
  const unresolved = new Map();
  for(const item of results.filter(x=>x.status==='unchangedEnglishCandidate')){
@@ -177,6 +176,8 @@ try{
    ...priorityCandidates.slice(0,60).map(x=>'| '+x.english.replace(/\|/g,'/').slice(0,105)+' | '+x.locales.length+' | '+x.screens.join(', ').slice(0,90)+' | '+x.examples+' |'),
    '', 'A text string may legitimately be identical in two languages; a native-speaker should adjudicate it before marking untranslated.',''
  ].join('\n');
+ report.byScreenSummary=byScreenSummary;
+ report.priorityCandidates=priorityCandidates;
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
  '**Not a verified whole-app completion percentage.** English baseline: V4.2.0; 12 supported locales, two Chromium viewports, Visitor persona.',
