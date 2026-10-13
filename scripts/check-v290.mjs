@@ -26,5 +26,5 @@ assert.ok(app.includes("['#fxConvert','convert']")&&app.includes("['#planTrip','
 assert.ok(boot.includes("import('/app-i18n-v290.js')")&&boot.includes("3.12.0"),'V2.9 module not loaded');
 assert.ok(html.includes('v3.12.0'));
 for(const asset of ['/app-i18n-v290.js','/lib/i18n-interface-v290.mjs'])assert.ok(sw.includes(asset),'Offline localization asset missing '+asset);
-assert.ok(sw.includes('sgbuddy-shell-v70'),'Installed PWA must refresh');
+assert.ok(sw.includes('sgbuddy-shell-v71'),'Installed PWA must refresh');
 console.log('SGBuddy V2.9 PASS: 12 locale dictionaries, 59 UI keys each, dynamic UI updates, Saved/Money isolation and PWA cache.');
