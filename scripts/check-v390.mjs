@@ -24,7 +24,7 @@ assert.ok(boot.includes("import('/app-i18n-fallback-v390.js')"));
 assert.ok(boot.includes("='4.11.0'"));
 assert.ok(readFileSync('index.html','utf8').includes('v4.11.0'));
 const worker=readFileSync('sw.js','utf8');
-assert.ok(worker.includes('sgbuddy-shell-v75'));
+assert.ok(worker.includes('sgbuddy-shell-v76'));
 for(const filename of ['/app-i18n-fallback-v390.js','/lib/i18n-fallback-v390.mjs'])
  assert.ok(worker.includes(filename),'Offline asset missing '+filename);
 const report=JSON.parse(execFileSync(process.execPath,['scripts/classify-localization-v390.mjs','--json'],{encoding:'utf8',maxBuffer:35*1024*1024}));
