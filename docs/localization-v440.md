@@ -19,3 +19,5 @@ Authored translation strings need native-speaker semantic checks. No certified w
 ## Regression ownership correction
 
 V3.3 `SYSTEM_I18N` already exclusively owns `#accountSheetTitle`, the account introduction, password recovery and both account-note elements. V4.4 deliberately leaves those bindings to V3.3 to preserve established locale-switch translations and earlier browser QA. The new dictionary contains candidate synonyms for editorial review, but only selectors not already owned by V3.3 are allowed to run.
+
+The ACCOUNT and DATA CORE eyebrow labels are already translated by the legacy core UI module (including case-normalized English), so V4.4 does not claim ownership or override them. This prevents duplicate translations while the remaining visible Account-view controls are covered by V4.4.

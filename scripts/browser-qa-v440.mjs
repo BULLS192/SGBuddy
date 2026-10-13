@@ -30,9 +30,7 @@ const check=async viewport=>{
    ['#forgotPasswordButton','accountForgot','text'],
    ['#accountSignedOut > .account-note','accountNewNote','text'],
    ['#accountSignedIn > .account-note','accountOffline','text'],
-   ['#accountSection .account-hub-head .label','accountEyebrow','text'],
    ['#accountHubTitle','accountHubHeading','text'],
-   ['#dataCorePanel .data-core-head .label','accountDataEyebrow','text'],
    ['#dataCorePanel .data-core-head h3','accountDataTitle','text'],
    ['#dataCorePanel .data-core-grid > div:nth-child(1) > span','accountLta','text'],
    ['#dataCorePanel .data-core-grid > div:nth-child(2) > span','accountRail','text'],
@@ -73,7 +71,7 @@ const check=async viewport=>{
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Horizontal overflow '+code+' '+viewport.width);
   }
   assert.deepEqual(errors,[],'Runtime browser errors '+JSON.stringify(errors));
-  console.log('V4.4 PASS: '+viewport.width+'px 12 locales × 26 first-party controls; sourced food and English-original warning preserved.');
+  console.log('V4.4 PASS: '+viewport.width+'px 12 locales × 24 first-party controls; sourced food and English-original warning preserved.');
  }finally{await context.close()}
 };
 try{await check({width:390,height:844});await check({width:1366,height:900});}finally{await browser.close()}
