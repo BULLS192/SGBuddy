@@ -26,7 +26,8 @@ try{
  await page.waitForFunction(()=>/hors ligne/i.test(document.querySelector('#sgbuddyOffline h2')?.textContent||''),null,{timeout:10000});
  await page.evaluate(code=>{window.SGBUDDY_LANGUAGE=code;document.dispatchEvent(new Event('sgbuddy:language'))},'en');
  // Verify that the downloaded pack survives actual network loss, not merely CacheStorage lookup.
- await page.evaluate(()=>navigator.serviceWorker?.ready);
+ await page.evaluate(()=>navigator.serviceWorker.register('/sw.js'));
+ await page.waitForFunction(()=>navigator.serviceWorker.ready.then(reg=>Boolean(reg.active)),null,{timeout:45000});
  if(!await page.evaluate(()=>Boolean(navigator.serviceWorker?.controller))){
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,{timeout:30000});
