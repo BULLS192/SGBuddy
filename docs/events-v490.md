@@ -26,3 +26,6 @@ Candidates remain in a private GitHub Actions review artifact and can only be pr
 
 ## Three newly verified October 2026 listings
 PLAVE World Tour (ticketed, Oct 17); Suntec City LEGO F1 Experience (Oct 1–18, registration may apply); CAPS Cardshow (EXPO Hall 6A, free public entry, Oct 31–Nov 1). All added to first-party curated intake, with translated summaries in 12 app locales and original event identities preserved. Details on official pages should be rechecked before travelling.
+
+## Tested device emulation / outstanding real-device validation
+Chromium Playwright now exercises an iPhone 13-sized and Pixel 7-sized viewport, both with all 12 locale headings, event listings and overflow checks. **Not a replacement for physical Safari iOS or Android PWA testing.** Real test cases: home-screen installation, navigation while airplane mode is enabled, actual cached pack load after application restart, low-storage eviction, cache updates, local saved itinerary retention, reconnection after interruption, no location leakage.

@@ -48,3 +48,24 @@ jobs:
           path: data/events-review-queue-v470.json
           retention-days: 5
           if-no-files-found: error
+
+  device-emulation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve app
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v490.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v490.log
+          exit 1
+      - name: Emulated iPhone & Android app layout and all 12 languages
+        run: node scripts/browser-qa-v490.mjs
