@@ -23,6 +23,14 @@ for(const feed of configuration.feeds){
   if(claimed>feed.maxBytes)throw Error('Feed too large');
   const raw=await response.text();
   if(raw.length>feed.maxBytes)throw Error('Feed exceeds maximum size');
+  // Diagnostics describe only public publisher feed schema, never the full payload.
+  if(!probe){ /* no payload logging in scheduled writes */ }
+  else if(feed.format==='squarespace-json'){
+   const j=JSON.parse(raw),first=(j.items||j.collection?.items||[])[0]||null;
+   console.log('Publisher shape '+feed.id+': '+JSON.stringify({root:Object.keys(j).slice(0,20),items:j.items?.length||j.collection?.items?.length||0,firstKeys:first?Object.keys(first).slice(0,24):[],structuredKeys:first?.structuredContent?Object.keys(first.structuredContent):[],dates:first?{start:first.startDate,structuredStart:first.structuredContent?.startDate,fullUrl:first.fullUrl}:null}));
+  }else if(feed.format==='rss'){
+   console.log('Publisher shape '+feed.id+': '+JSON.stringify({bytes:raw.length,items:(raw.match(/<item\\b/g)||[]).length,firstItem:raw.match(/<item[\\s\\S]*?<\\/item>/)?.[0]?.slice(0,350)}));
+  }
   const candidates=fromFeed(raw,feed,today,type);
   const other=retained.filter(c=>c.sourceId!==feed.sourceId);
   retained.splice(0,retained.length,...other,...candidates);

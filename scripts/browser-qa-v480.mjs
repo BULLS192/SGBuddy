@@ -23,7 +23,7 @@ try{
  });
  for(const p of ['/data/events-v470.json','/data/holidays-2026-2027-v460.json','/data/event-sources-v470.json'])assert.ok(stored.includes(p));
  await page.evaluate(code=>{window.SGBUDDY_LANGUAGE=code;document.dispatchEvent(new Event('sgbuddy:language'))},'fr');
- assert.match(await page.locator('#sgbuddyOffline h2').innerText(),/hors ligne/i);
+ await page.waitForFunction(()=>/hors ligne/i.test(document.querySelector('#sgbuddyOffline h2')?.textContent||''),null,{timeout:10000});
  await page.evaluate(code=>{window.SGBUDDY_LANGUAGE=code;document.dispatchEvent(new Event('sgbuddy:language'))},'en');
  await context.setOffline(true);
  const content=await page.evaluate(async()=>{
