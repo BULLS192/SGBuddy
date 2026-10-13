@@ -26,5 +26,5 @@ assert.ok(shell.includes('/lib/i18n-air-v413.mjs'),'Air Quality translations not
 assert.ok(shell.includes('sgbuddy-offline-packs-v480')&&shell.includes("sgbuddy-shell-v77"),'Unsafe version/cache change before release');
 assert.ok(boot.includes("if(contextOk)toast('Refreshed')"),'Refresh can falsely claim success');
 assert.ok(boot.includes("if(contextOk)toast('All SGBuddy data refreshed')"),'Core diagnostics can falsely claim success');
-assert.ok(boot.includes("updateHero();return true}catch(e){toast(e.message);return false}"),'Refresh must distinguish success from failure');
+assert.ok(boot.includes("updateHero();return weather?.source!=='device-cache'}catch(e){toast(e.message);return false}"),'Refresh must distinguish success from failure');
 console.log('V4.13 Air Quality STATIC PASS: 35 messages × 12 locales and explicit source-safe refresh states.');
