@@ -23,7 +23,7 @@ const read=p=>readFileSync(p,'utf8');
 const discover=read('app-v120.js'),food=read('app-food-v180.js'),picker=read('app-food-tools-v261.js'),merli=read('app-v140.js'),sw=read('sw.js');
 for(const x of ["localizeStaticFilters()","contextualText(locale(),key,fields)","ctx('archiveFilter')","render()"])assert.ok(discover.includes(x),x);
 for(const x of ["ctx('foodLead',{centre:x.centreName,dishes:(x.dishes||[]).join(', ')})","ctx('foodLoadError')","ctx('oneMapChecking')","ctx('foodListedOn',{date:x.observedOn})"])assert.ok(food.includes(x),'Food not localized '+x);
-for(const x of ["ctx('pickerCount',{count:options.length})","ctx('pickerNoMatch')","lastNotice","renderPicked();if(lastNotice)"])assert.ok(picker.includes(x),'Picker not localized '+x);
+for(const x of ["notify('pickerCount',{count:options.length})","notify('pickerNoMatch')","lastNotice","renderPicked();if(lastNotice)"])assert.ok(picker.includes(x),'Picker not localized '+x);
 for(const x of ["ctx('merliCount'","ctx('merliEmpty')","ctx('merliOriginalSource')","factTranslation(locale(),f)||f.text"])assert.ok(merli.includes(x),'Merli not localized '+x);
 for(const x of ['sgbuddy-shell-v74','/lib/i18n-contextual-v420.mjs','/merli-avatar-v3111.js'])assert.ok(sw.includes(x),'Offline shell missing '+x);
 const audit=JSON.parse(execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:35*1024*1024}));
