@@ -36,14 +36,15 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
   const prior=last.get(node);
   // Owned, exact first-party messages only. Never touch unknown provider/user copy.
   if(!known[key].has(current)&&!(prior?.key===key&&prior.rendered===current))return;
+  // Preserve the canonical caution source even when the selected locale is English.
+  // These are authored messages, not operator claims or live data.
+  if((key==='makanCaution'||key==='discoverQualityCaution'||key==='makanServicesIntro')&&!el.dataset.sourceEnglish)el.dataset.sourceEnglish=FOOD_DISCOVER_V450_MESSAGES.en[key];
   const next=foodDiscoverText(locale(),key);
   if(!next||next===current)return;
   if(kind==='aria-label')el.setAttribute('aria-label',next);
   else if(kind==='directText')node.textContent=next;
   else el.textContent=next;
   last.set(node,{key,rendered:next});
-  // Keep English canonical for audit/review without displaying duplicate warnings.
-  if((key==='makanCaution'||key==='discoverQualityCaution'||key==='makanServicesIntro')&&!el.dataset.sourceEnglish)el.dataset.sourceEnglish=FOOD_DISCOVER_V450_MESSAGES.en[key];
  }
  function apply(){
   for(const [selector,key,kind] of bindings){
