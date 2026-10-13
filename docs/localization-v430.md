@@ -53,3 +53,7 @@ The development audit workflow passed, as did the existing legacy QA triggered f
 - It is **not** a whole-app translation completion rate and is **not** comparable with the earlier speculative ~87% figure. Repeated controls, locale-invariant words, unclassified editorial text, conditional states and unreviewed copy remain.
 - The exact, per-locale and per-screen results, English text candidates, source exclusions and screenshots are in the `SGBuddy V4.3 Rendered Localization Audit` workflow artifact. Review its `priority.md` and `triage.csv` before specifying V4.4 translations.
 - **Conclusion:** the older ~87% completion planning estimate should not be treated as established evidence. More localization work may be required than previously assumed; a verified path to 95% must be based on reviewed first-party UI inventory plus additional modes and branches.
+
+### Source-place-name exclusion refinement
+
+The initial priority ranking showed genuine source-owned neighbourhoods (e.g. Ang Mo Kio, Beach Road) as unchanged English. V4.3 now explicitly classifies non-default area/neighbourhood picker options as source-protected and counts each native option once. These original place names should not be translated simply to improve a percentage. Regenerate the report from the latest commit before quoting per-locale sampled change rates.

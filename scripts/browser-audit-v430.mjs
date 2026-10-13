@@ -54,6 +54,9 @@ function capture(page,scene,viewport,persona){
    return (parts[0]?.startsWith('#')?'':scene.scope+' > ')+parts.join(' > ');
   };
   const ownership=el=>{
+   // Area and neighbourhood names are source place names, not untranslated UI.
+   const option=el.closest('option');
+   if(option&&['discoverAreaFilter','discoverNeighbourhoodFilter','foodArea','foodPickArea'].includes(option.parentElement?.id)&&!['all','any'].includes(option.value))return 'protected';
    if(el.closest('.discover-item h3, .food-stall h4, .food-picked-card h4, .food-provider-card h5, .ux-saved-list strong, .place-suggestion strong, .popular-destinations button[data-destination]'))return 'protected';
    if(el.closest('#envSource,#envUpdated,#fxRateMeta,#moneySourceNote,#moneyChangerResults,#accountEmailDisplay,#profileId,#journeyResults,#transportMap,#envTemp,#envHumidity,#envRain,#envWind,#envPsi,#envPm25'))return 'protected';
    if(el.closest('.discover-item,.food-stall,.food-provider-card,.food-picked-card,.sgb-fact,.buddy-reply,.food-address')&&!el.closest('button,[role="button"],.discover-actions a,.food-card-actions a'))return 'review';
@@ -72,8 +75,8 @@ function capture(page,scene,viewport,persona){
   const walker=document.createTreeWalker(host,NodeFilter.SHOW_TEXT);
   while(walker.nextNode()){
    const node=walker.currentNode,el=node.parentElement;
-   if(!el||!visible(el)||exclusion(el))continue;
-   // Keep independent leaf text; avoid duplicate parent+child summaries.
+   if(!el||!visible(el)||exclusion(el)||el.tagName==='OPTION')continue;
+   // Native options are captured exactly once, by their stable values below.
    put(el,'text',node.textContent);
   }
   for(const el of host.querySelectorAll('input,textarea,select,button,a,[role="button"],[aria-label],[title]')){
@@ -82,7 +85,7 @@ function capture(page,scene,viewport,persona){
    // Native <option> nodes are not visible as rectangles, but their select is.
    if(el.tagName==='SELECT')for(const opt of el.options)if(value(opt.textContent)){
     const oKey=path(el)+'|option:'+opt.value;
-    rows.set(oKey,{screen:scene.id,viewport,persona,key:oKey,kind:'option',value:value(opt.textContent),ownership:ownership(el)});
+    rows.set(oKey,{screen:scene.id,viewport,persona,key:oKey,kind:'option',value:value(opt.textContent),ownership:ownership(opt)});
    }
   }
   return {screen:scene.id,observed:true,slots:[...rows.values()].slice(0,950),
