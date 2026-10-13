@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "description": "Approved public calendar export candidates. Automated sync only creates a review queue, not public listings. Suntec collection ICS endpoint is on probation until HTTP verification.",
+  "feeds": [
+    {
+      "id": "suntec-ics",
+      "sourceId": "suntec-convention",
+      "url": "https://www.suntecsingapore.com/visit-events?format=ical",
+      "publicPage": "https://www.suntecsingapore.com/visit-events",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "mode": "review-only",
+      "verification": "unconfirmed_collection_endpoint",
+      "maxBytes": 1500000
+    }
+  ]
+}
