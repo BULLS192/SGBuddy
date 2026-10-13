@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "description": "Editorial sign-off required. Discoveries are never automatically published. Add a specific official-source verified approval in a reviewed PR.",
+  "approvals": []
+}

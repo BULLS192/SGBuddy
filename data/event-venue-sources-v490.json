@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "mode": "review-only",
+  "cadence": "daily",
+  "description": "Bounded discovery of official public venue event pages; robots checked; never auto-publish",
+  "sources": [
+    {
+      "id": "expo-html",
+      "sourceId": "expo",
+      "url": "https://www.singaporeexpo.com.sg/events-at-expo/",
+      "host": "www.singaporeexpo.com.sg",
+      "pathPrefix": "/events-at-expo/",
+      "venue": "Singapore EXPO",
+      "kind": "event",
+      "maxDetails": 10,
+      "maxBytes": 1500000
+    },
+    {
+      "id": "suntec-city-html",
+      "sourceId": "suntec-city",
+      "url": "https://sunteccity.com.sg/events",
+      "host": "sunteccity.com.sg",
+      "pathPrefix": "/events/",
+      "venue": "Suntec City",
+      "kind": "event",
+      "maxDetails": 8,
+      "maxBytes": 1300000
+    },
+    {
+      "id": "313-html",
+      "sourceId": "313",
+      "url": "https://www.313somerset.com.sg/whats-on/offers/",
+      "host": "www.313somerset.com.sg",
+      "pathPrefix": "/whats-on/offers/",
+      "venue": "313@somerset",
+      "kind": "promotion",
+      "maxDetails": 6,
+      "maxBytes": 1300000
+    }
+  ]
+}

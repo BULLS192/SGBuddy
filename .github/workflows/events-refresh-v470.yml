@@ -1,0 +1,34 @@
+name: SGBuddy Daily Events Snapshot Maintenance
+on:
+  schedule:
+    - cron: '27 20 * * *' # 04:27 SGT next day; scheduled actions run on default branch after release
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  expire-events:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retire ended or cancelled events without fabricating new ones
+        run: |
+          node scripts/refresh-events-v470.mjs --report
+          node scripts/refresh-events-v470.mjs --write
+          node scripts/sync-event-feeds-v470.mjs --write
+          node scripts/sync-event-venues-v490.mjs --write
+      - name: Commit only if listings changed
+        run: |
+          if git diff --quiet -- data/events-v470.json data/events-review-queue-v470.json; then
+            echo "No event changes; no commit or deployment"
+            exit 0
+          fi
+          git config user.name "sgbuddy-events-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/events-v470.json data/events-review-queue-v470.json
+          git commit -m "chore(events): maintain event snapshots and feed review queue"
+          git push

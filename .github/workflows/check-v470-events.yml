@@ -1,0 +1,53 @@
+name: SGBuddy V4.7 Events QA
+on:
+  pull_request:
+    paths:
+      - 'data/events-*v470.json'
+      - 'data/event-feeds-v470.json'
+      - 'lib/events-*v470.mjs'
+      - 'app-events-v470.js'
+      - 'events-v470.css'
+      - 'scripts/*events-v470.mjs'
+      - 'scripts/*feeds-v470.mjs'
+      - 'scripts/browser-qa-events-v470.mjs'
+      - '.github/workflows/check-v470-events.yml'
+      - 'app-v090.js'
+      - 'sw.js'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  events-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate verified records, duplicate control and offline integration
+        run: |
+          node scripts/check-events-v470.mjs
+          node scripts/refresh-events-v470.mjs --check
+          node scripts/check-event-feeds-v470.mjs
+          node scripts/sync-event-feeds-v470.mjs --probe
+  events-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve application
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v470.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v470.log
+          exit 1
+      - name: Verify event UX, localization, saved items and mobile layout
+        run: node scripts/browser-qa-events-v470.mjs

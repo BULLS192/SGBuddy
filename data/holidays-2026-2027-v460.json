@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "source": "Ministry of Manpower via data.gov.sg",
+  "sourceUrl": "https://data.gov.sg/datasets/d_8ef23381f9417e4d4254ee8b4dcdb176/view",
+  "sourceDatasetId": "d_8ef23381f9417e4d4254ee8b4dcdb176",
+  "datasetLastPublished": "2026-07-03",
+  "snapshotAsOf": "2026-10-13",
+  "timezone": "Asia/Singapore",
+  "coverage": [
+    2026,
+    2027
+  ],
+  "note": "Official gazetted and observed holiday dates. Check MOM for subsequent amendments.",
+  "holidays": [
+    {
+      "date": "2026-01-01",
+      "name": "New Year's Day",
+      "observed": false
+    },
+    {
+      "date": "2026-02-17",
+      "name": "Chinese New Year",
+      "observed": false
+    },
+    {
+      "date": "2026-02-18",
+      "name": "Chinese New Year",
+      "observed": false
+    },
+    {
+      "date": "2026-03-21",
+      "name": "Hari Raya Puasa",
+      "observed": false
+    },
+    {
+      "date": "2026-04-03",
+      "name": "Good Friday",
+      "observed": false
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Labour Day",
+      "observed": false
+    },
+    {
+      "date": "2026-05-27",
+      "name": "Hari Raya Haji",
+      "observed": false
+    },
+    {
+      "date": "2026-05-31",
+      "name": "Vesak Day",
+      "observed": false
+    },
+    {
+      "date": "2026-06-01",
+      "name": "Vesak Day (Observed)",
+      "observed": true
+    },
+    {
+      "date": "2026-08-09",
+      "name": "National Day",
+      "observed": false
+    },
+    {
+      "date": "2026-08-10",
+      "name": "National Day (Observed)",
+      "observed": true
+    },
+    {
+      "date": "2026-11-08",
+      "name": "Deepavali",
+      "observed": false
+    },
+    {
+      "date": "2026-11-09",
+      "name": "Deepavali (Observed)",
+      "observed": true
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Christmas Day",
+      "observed": false
+    },
+    {
+      "date": "2027-01-01",
+      "name": "New Year's Day",
+      "observed": false
+    },
+    {
+      "date": "2027-02-06",
+      "name": "Chinese New Year",
+      "observed": false
+    },
+    {
+      "date": "2027-02-07",
+      "name": "Chinese New Year",
+      "observed": false
+    },
+    {
+      "date": "2027-02-08",
+      "name": "Chinese New Year (Observed)",
+      "observed": true
+    },
+    {
+      "date": "2027-03-10",
+      "name": "Hari Raya Puasa",
+      "observed": false
+    },
+    {
+      "date": "2027-03-26",
+      "name": "Good Friday",
+      "observed": false
+    },
+    {
+      "date": "2027-05-01",
+      "name": "Labour Day",
+      "observed": false
+    },
+    {
+      "date": "2027-05-17",
+      "name": "Hari Raya Haji",
+      "observed": false
+    },
+    {
+      "date": "2027-05-20",
+      "name": "Vesak Day",
+      "observed": false
+    },
+    {
+      "date": "2027-08-09",
+      "name": "National Day",
+      "observed": false
+    },
+    {
+      "date": "2027-10-28",
+      "name": "Deepavali",
+      "observed": false
+    },
+    {
+      "date": "2027-12-25",
+      "name": "Christmas Day",
+      "observed": false
+    }
+  ]
+}

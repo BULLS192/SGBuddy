@@ -104,6 +104,16 @@ for(const file of ['lib/i18n-directory-v410.mjs','scripts/check-v410.mjs','scrip
 execFileSync(process.execPath,['scripts/check-v410.mjs'],{stdio:'inherit'});
 for(const file of ['lib/i18n-contextual-v420.mjs','scripts/check-v420.mjs','scripts/browser-qa-v420.mjs'])run(file);
 execFileSync(process.execPath,['scripts/check-v420.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-priority-v440.mjs','app-i18n-priority-v440.js','scripts/check-v440.mjs','scripts/browser-qa-v440.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v440.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-food-discover-v450.mjs','app-i18n-food-discover-v450.js','scripts/check-v450.mjs','scripts/browser-qa-v450.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v450.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-runtime-v490.mjs','app-i18n-runtime-v490.js','scripts/check-v490.mjs','scripts/browser-qa-v490.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v490.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-categories-v4100.mjs','app-i18n-categories-v4100.js','scripts/check-v4100.mjs','scripts/browser-qa-v4100.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v4100.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-remaining-v411.mjs','app-i18n-remaining-v411.js','scripts/check-v411.mjs','scripts/browser-qa-v411.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v411.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});

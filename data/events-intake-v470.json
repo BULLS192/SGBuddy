@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "calendarTimezone": "Asia/Singapore",
+  "curatedAsOf": "2026-10-13",
+  "provenanceNote": "Directly verified individual official venue listings on 2026-10-13. Dates inclusive and Singapore-local; treat as snapshots rather than live ticket availability.",
+  "events": [
+    {
+      "id": "art-riot-2026",
+      "title": "ART RIOT 2026: Villains & Ne’er-Do-Wells",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "venue": "Singapore EXPO · Hall 6B",
+      "sourceId": "expo",
+      "category": "arts",
+      "admission": "ticketed",
+      "summary": "Artist market, performances and creative showcases.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/art-riot-2026-villains-and-neer-do-wells/",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "zak-salaam-2026",
+      "title": "Zak Salaam India Expo",
+      "startDate": "2026-10-16",
+      "endDate": "2026-10-25",
+      "venue": "Singapore EXPO · Hall 9",
+      "sourceId": "expo",
+      "category": "culture",
+      "admission": "free",
+      "summary": "Indian products, food and cultural activities.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/zak-salaam-india-expo-oct-2026/",
+      "audiences": [
+        "visitor",
+        "resident"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "hallyucon-2026",
+      "title": "HallyuCon",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "venue": "Suntec Singapore · Hall 405",
+      "sourceId": "suntec-convention",
+      "category": "culture",
+      "admission": "registration",
+      "summary": "K-pop, Korean lifestyle booths, dance and fan experiences.",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hallyu-con",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "fomo-market-2026",
+      "title": "FOMO Weekend Market",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "venue": "Suntec Singapore · Hall 403",
+      "sourceId": "suntec-convention",
+      "category": "market",
+      "admission": "check",
+      "summary": "Local makers, lifestyle booths, shopping and food.",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fomo-weekend-market-2",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "makers-quest-2026",
+      "title": "Makers Quest SG",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "venue": "Suntec Singapore · Level 3 Concourse",
+      "sourceId": "suntec-convention",
+      "category": "arts",
+      "admission": "check",
+      "summary": "Artist-led market inspired by gaming and independent creators.",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/makers-quest-sg-2",
+      "audiences": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "hatcheed-2026",
+      "title": "Hatcheed",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-18",
+      "venue": "Suntec Singapore · Hall 406",
+      "sourceId": "suntec-convention",
+      "category": "family",
+      "admission": "check",
+      "summary": "Maternity, babyhood and family lifestyle discoveries.",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events",
+      "audiences": [
+        "resident",
+        "visitor"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "the-car-expo-2026",
+      "title": "The Car Expo",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "venue": "Singapore EXPO · Halls 5 & 6",
+      "sourceId": "expo",
+      "category": "exhibition",
+      "admission": "free",
+      "summary": "New and pre-owned cars, motoring accessories and lifestyle brands.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-car-expo/",
+      "audiences": [
+        "resident",
+        "visitor",
+        "executive"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "makers-ground-2026",
+      "title": "The Makers Ground @ EXPO",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Singapore EXPO · Foyer 2",
+      "sourceId": "expo",
+      "category": "market",
+      "admission": "free",
+      "summary": "Homegrown makers, crafts, creative stalls and live performances.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-makers-ground-at-expo/",
+      "audiences": [
+        "resident",
+        "visitor",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "plave-tour-2026",
+      "title": "2026 PLAVE World Tour [KEEP IT MANIC] in Singapore",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "venue": "Singapore EXPO · Apex @ EXPO",
+      "sourceId": "expo",
+      "category": "music",
+      "admission": "ticketed",
+      "summary": "PLAVE’s live K-pop concert at the APEX venue.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/2026-plave-world-tour-keep-it-manic-in-singapore/",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "suntec-lego-f1-2026",
+      "title": "F1 LEGO Experience the Thrill",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-18",
+      "venue": "Suntec City",
+      "sourceId": "suntec-city",
+      "category": "family",
+      "admission": "check",
+      "summary": "Life-size LEGO F1 display and race-themed activities; some activities require registration.",
+      "sourceUrl": "https://sunteccity.com.sg/experience-the-thrill",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    },
+    {
+      "id": "caps-cardshow-2026",
+      "title": "CAPS Cardshow",
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Singapore EXPO · Hall 6A",
+      "sourceId": "expo",
+      "category": "exhibition",
+      "admission": "free",
+      "summary": "Trading-card and collectibles show with vendors, artists and tournaments.",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
+      "audiences": [
+        "visitor",
+        "resident",
+        "student"
+      ],
+      "status": "scheduled",
+      "verifiedAt": "2026-10-13",
+      "verificationMethod": "official_venue_page"
+    }
+  ]
+}

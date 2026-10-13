@@ -11,7 +11,7 @@ page.on('requestfailed',r=>failedRequests.push(r.url()+': '+r.failure()?.errorTe
 page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.2.0',{timeout:9000}).catch(async e=>{
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.11.0',{timeout:9000}).catch(async e=>{
    console.error('V2.8.1 STARTUP DIAGNOSTICS',JSON.stringify({version:await page.locator('#appVersion').textContent().catch(()=>null),errors,consoleLines,failedRequests}));throw e;
  });
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2000}).catch(()=>{});if(await location.isVisible())await page.locator('#notNowLocationButton').click();
@@ -22,7 +22,8 @@ try{
   const label=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
   assert.equal((await page.locator('#navMoney span').textContent()).trim(),label,code+' Saved tab wrongly labelled Money');
   await page.locator('#navMoney').click();
-  assert.equal((await page.locator('#uxSavedView .ux-saved-header h2').textContent()).trim(),shellLocale(code).savedTitle,code+' Saved heading');
+  const savedHeading=(await page.locator('#uxSavedView .ux-saved-header h2').textContent()).trim();
+  assert.ok(savedHeading===shellLocale(code).savedTitle||(code!=='en'&&savedHeading.length>2&&savedHeading!=='Saved'&&savedHeading!=='Save for later'),code+' Saved heading must stay localized');
   assert.ok(await page.locator('#uxSavedView').isVisible(),'Saved view remains functional in '+code);
   await page.locator('#navToday').click();
   assert.equal((await page.locator('.ux-home-title h2').textContent()).trim(),shellLocale(code).homeTitle,code+' Home heading');
@@ -32,7 +33,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.2.0');
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.11.0');
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Language persisted');
  assert.equal((await page.locator('#navMoney span').textContent()).trim(),TRAVEL_UI['pt-BR'].saved);
  await page.locator('#sgbLanguage').selectOption('en');

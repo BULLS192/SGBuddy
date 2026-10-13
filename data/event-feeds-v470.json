@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 2,
+  "description": "Confirmed official publisher endpoint locations, but parsing and permission review required before auto-publication. Feed records only populate unapproved review queue. No automatic publication.",
+  "feeds": [
+    {
+      "id": "suntec-json",
+      "sourceId": "suntec-convention",
+      "format": "squarespace-json",
+      "url": "https://www.suntecsingapore.com/visit-events?format=json",
+      "publicPage": "https://www.suntecsingapore.com/visit-events",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "mode": "review-only",
+      "verification": "official_json_reachable_review_candidates_2026-10-13",
+      "maxBytes": 2000000
+    },
+    {
+      "id": "nea-events-rss",
+      "sourceId": "nea",
+      "format": "rss",
+      "url": "https://www.nea.gov.sg/rss/upcoming_events_update",
+      "publicPage": "https://www.nea.gov.sg/rss/rss-feeds",
+      "venue": "Singapore (NEA)",
+      "mode": "review-only",
+      "verification": "official_rss_listed",
+      "maxBytes": 1200000
+    }
+  ]
+}
