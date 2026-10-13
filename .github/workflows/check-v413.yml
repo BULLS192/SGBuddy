@@ -4,6 +4,7 @@ on:
     paths:
       - 'scripts/check-v413.mjs'
       - 'scripts/browser-qa-v413.mjs'
+      - 'scripts/browser-audit-v430.mjs'
       - 'scripts/check-all.mjs'
       - 'docs/stability-v413.md'
       - '.github/workflows/check-v413.yml'
@@ -37,6 +38,10 @@ jobs:
       - run: node scripts/check-release-v4120.mjs
       - run: node scripts/check-v480.mjs
       - run: node scripts/check-events-v470.mjs
+      - run: node scripts/check-v430.mjs
+      - run: node scripts/check-event-feeds-v480.mjs
+      - run: node scripts/check-event-venues-v490.mjs
+      - run: node scripts/publish-reviewed-events-v490.mjs
   persona-browser:
     strategy:
       fail-fast: false
@@ -61,3 +66,41 @@ jobs:
           exit 1
       - name: Verify five personas with 12 locales
         run: node scripts/browser-qa-v413.mjs --${{ matrix.viewport }}
+
+  persona-rendered-audit:
+    strategy:
+      fail-fast: false
+      matrix:
+        persona: [resident, visitor, executive, new_in_sg, student]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve local app
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v413-audit.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v413-audit.log
+          exit 1
+      - name: Record rendered first-party language observations
+        run: node scripts/browser-audit-v430.mjs --persona=${{ matrix.persona }} --out-dir=artifacts/v413-${{ matrix.persona }}
+      - name: Write persona audit summary
+        if: always()
+        run: |
+          if [ -f artifacts/v413-${{ matrix.persona }}/summary.md ]; then
+            cat artifacts/v413-${{ matrix.persona }}/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sgbuddy-v413-audit-${{ matrix.persona }}
+          path: artifacts/v413-${{ matrix.persona }}/
+          if-no-files-found: warn
+          retention-days: 7
