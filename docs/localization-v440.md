@@ -3,9 +3,9 @@
 **Status:** Development candidate stacked on V4.3 audit PR #55. **Production remains V4.2.0**; badge and service worker cache version stay unchanged until authorized release packaging.
 
 ## Implementation
-- First implementation wave driven by V4.3 scored source-locked DOM evidence: **28 authored messages in English plus all 11 non-English locales = 336 entries**.
+- First implementation wave driven by V4.3 scored source-locked DOM evidence: **38 authored messages in English plus all 11 non-English locales = 456 entries**.
 - **Discover:** Singapore Discover heading, category aria label, explanatory listing links.
-- **Account:** device sign-in description, password recovery, email confirmation and offline sync notes.
+- **Account:** 10 newly scoped visible account and data-status labels (refresh/diagnostics, feeds, titles), alongside candidate account-copy translations already owned by V3.3.
 - **Saved:** saved places, apps and facts, transport favourites and departure action copy.
 - **Food:** food library heading, saved-stalls filter, pagination, food stall Save/Saved and map-address action labels.
 - **Today:** trip intelligence and context panel headings.
@@ -14,7 +14,7 @@
 - Browser QA covers 12 languages on 390px mobile and 1366px desktop. Existing V4.3 rendered audit repeats to show measured effect. Service worker adds both new files to precache (cache generation advances only on release).
 
 ## Caveats and next focus
-Authored translation strings need native-speaker semantic checks. No certified whole-app translation percentage is claimed: many native, conditional and backend-generated messages are still outside the enumerated 28 keys. Proceed with further high-frequency Account/Food/Today messages and V4.3 pending native and PWA reviews. Keep **V3.11.1 Merli avatar hotfix**, **V3.12 Saved/journeys**, and source-protection logic intact.
+Authored translation strings need native-speaker semantic checks. No certified whole-app translation percentage is claimed: many native, conditional and backend-generated messages are still outside the enumerated 38 keys. Proceed with further high-frequency Account/Food/Today messages and V4.3 pending native and PWA reviews. Keep **V3.11.1 Merli avatar hotfix**, **V3.12 Saved/journeys**, and source-protection logic intact.
 
 ## Regression ownership correction
 
