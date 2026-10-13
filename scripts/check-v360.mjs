@@ -17,7 +17,7 @@ for(const value of ['SGBUDDY_CLASSIFIED_I18N','MutationObserver','sgbuddy:langua
 for(const unsafe of ['document.body.innerHTML','translateElement','innerHTML=translated'])assert.ok(!app.includes(unsafe),'Unsafe DOM translation '+unsafe);
 for(const sensitive of HTML_CLASSIFICATION.providerOwned)assert.ok(!app.includes('#'+sensitive),'Must leave provider data: '+sensitive);
 for(const name of ['/lib/i18n-classified-v360.mjs','/app-i18n-classified-v360.js'])assert.ok(sw.includes(name),'Offline cache missing '+name);
-assert.ok(sw.includes('sgbuddy-shell-v76'));
+assert.ok(sw.includes('sgbuddy-shell-v77'));
 assert.ok(boot.includes("import('/app-i18n-classified-v360.js')"),'Bootstrap must load V3.6');
 assert.ok(boot.includes("='4.12.0'"),'Client version must advance');
 assert.ok(read('index.html').includes('v4.12.0'));
