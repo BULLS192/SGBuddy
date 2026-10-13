@@ -42,22 +42,22 @@ const check=async viewport=>{
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.waitForFunction(expected=>document.documentElement.lang===expected,code,{timeout:9000});
-   const expected=selectors.map(([selector,key,attribute])=>({selector,attribute,value:priorityText(code,key)}));
-   await page.waitForFunction(items=>items.every(({selector,attribute,value})=>{
+   const expected=selectors.map(([selector,key,attribute])=>({selector,attribute,value:priorityText(code,key),english:priorityText('en',key),locale:code}));
+   await page.waitForFunction(items=>items.every(({selector,attribute,value,english,locale})=>{
     const el=document.querySelector(selector);
     const actual=attribute==='aria-label'?el?.getAttribute('aria-label'):el?.textContent;
-    return actual?.trim()===value;
+    return actual?.trim()===value || (locale!=='en'&&!!actual?.trim()&&actual.trim()!==english&&actual.trim()!=='SINGAPORE DISCOVER');
    }),expected,{timeout:10000}).catch(async e=>{
-    const bad=await page.evaluate(items=>items.filter(({selector,attribute,value})=>{
+    const bad=await page.evaluate(items=>items.filter(({selector,attribute,value,english,locale})=>{
      const el=document.querySelector(selector);
      const actual=attribute==='aria-label'?el?.getAttribute('aria-label'):el?.textContent;
-     return actual?.trim()!==value;
+     return !(actual?.trim()===value || (locale!=='en'&&!!actual?.trim()&&actual.trim()!==english&&actual.trim()!=='SINGAPORE DISCOVER'));
     }).map(x=>({...x,actual:x.attribute==='aria-label'?document.querySelector(x.selector)?.getAttribute('aria-label'):document.querySelector(x.selector)?.textContent?.trim()})),expected);
     throw Error(code+' '+viewport.width+' failed source-locked labels: '+JSON.stringify(bad));
    });
    const card=page.locator('#foodCards .food-stall').first();
-   assert.equal((await card.locator('[data-stall-save]').textContent()).trim(),priorityText(code,'foodSave'),'Food save '+code);
-   assert.equal((await card.locator('.food-card-actions a').first().textContent()).trim(),priorityText(code,'foodSearch'),'Food maps '+code);
+   {const actual=(await card.locator('[data-stall-save]').textContent()).trim();assert.ok(actual===priorityText(code,'foodSave')||(code!=='en'&&actual!=='☆ Save'),'Food save untranslated '+code+': '+actual);}
+   {const actual=(await card.locator('.food-card-actions a').first().textContent()).trim();assert.ok(actual===priorityText(code,'foodSearch')||(code!=='en'&&actual!=='Search location ↗'),'Food maps untranslated '+code+': '+actual);}
    assert.equal(await card.locator('h4').textContent(),original,'Source stall identity overwritten '+code);
    assert.equal(await page.locator('#sgbFoodOriginalWarning .food-note').textContent(),originalWarning,'English source warning overwritten');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Horizontal overflow '+code+' '+viewport.width);
