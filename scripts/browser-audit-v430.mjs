@@ -155,7 +155,28 @@ try{
   conditionalStatesNotExhaustivelyTested:true,wholeAppTranslationPercent:null,
   limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered, server/API error variants and all persona combinations are not exhaustive','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
   absentScreens:missingScreens,clientErrors:errors,
+  byScreenSummary, priorityCandidates,
   evidence:results};
+ const unresolved = new Map();
+ for(const item of results.filter(x=>x.status==='unchangedEnglishCandidate')){
+   const key=item.key+'|'+item.original;
+   const v=unresolved.get(key)||{key:item.key,english:item.original,locales:new Set(),screens:new Set(),viewports:new Set(),examples:0};
+   v.locales.add(item.locale);v.screens.add(item.screen);v.viewports.add(item.viewport);v.examples++;
+   unresolved.set(key,v);
+ }
+ const priorityCandidates=[...unresolved.values()].map(x=>({...x,locales:[...x.locales].sort(),screens:[...x.screens].sort(),viewports:[...x.viewports].sort()}))
+   .sort((a,b)=>b.locales.length-a.locales.length||b.screens.length-a.screens.length||b.examples-a.examples).slice(0,150);
+ const byScreenSummary=Object.fromEntries(Object.entries(summary.byScreen).map(([screen,item])=>[screen,{
+   observedChangeRate:item.observedChangeRatePercent,unchangedEnglish:item.potentialEnglishCount,
+   needsReview:item.reviewQueueCount}]));
+ const priorityMarkdown=[
+   '# V4.3 prioritized English review queue','',
+   'These are unchanged English first-party UI candidates, **not confirmed translation errors**. Source and operator text are excluded from this queue.','',
+   '| Candidate English label | Languages unchanged | Screens | Evidence occurrences |',
+   '|---|---:|---|---:|',
+   ...priorityCandidates.slice(0,60).map(x=>'| '+x.english.replace(/\\|/g,'/').slice(0,105)+' | '+x.locales.length+' | '+x.screens.join(', ').slice(0,90)+' | '+x.examples+' |'),
+   '', 'A text string may legitimately be identical in two languages; a native-speaker should adjudicate it before marking untranslated.',''
+ ].join('\\n');
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
  '**Not a verified whole-app completion percentage.** English baseline: V4.2.0; 12 supported locales, two Chromium viewports, Visitor persona.',
@@ -182,6 +203,10 @@ try{
  writeFileSync(join(output,'coverage.json'),JSON.stringify(report,null,2)+'\n');
  writeFileSync(join(output,'triage.csv'),records);
  writeFileSync(join(output,'summary.md'),md);
+ writeFileSync(join(output,'priority.md'),priorityMarkdown);
+ writeFileSync(join(output,'priority.json'),JSON.stringify(priorityCandidates,null,2)+'\\n');
+ console.log('V4.3 BY SCREEN '+JSON.stringify(byScreenSummary));
+ console.log('V4.3 TOP ENGLISH CANDIDATES '+JSON.stringify(priorityCandidates.slice(0,15)));
  console.log('V4.3 AUDIT SUMMARY '+JSON.stringify({perLocale:Object.fromEntries(languages.map(c=>[c,{
    observedChangeRate:summary.locale[c]?.observedChangeRatePercent,
    unchangedEnglish:summary.locale[c]?.potentialEnglishCount,

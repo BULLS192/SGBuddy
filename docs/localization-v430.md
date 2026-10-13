@@ -44,3 +44,12 @@ node scripts/browser-audit-v430.mjs --out-dir=artifacts/localization-v430 --scre
 ```
 
 Source data is not translated by the audit. No external translation service or personal accounts are accessed.
+
+## First observed run — 13 October 2026
+
+The development audit workflow passed, as did the existing legacy QA triggered for this PR (8/8 in total at initial successful commit).
+
+- Non-English **observed first-party text-change rate** across 18 sampled scenarios, mobile and desktop: **32.1–35.5%**, depending on locale.
+- It is **not** a whole-app translation completion rate and is **not** comparable with the earlier speculative ~87% figure. Repeated controls, locale-invariant words, unclassified editorial text, conditional states and unreviewed copy remain.
+- The exact, per-locale and per-screen results, English text candidates, source exclusions and screenshots are in the `SGBuddy V4.3 Rendered Localization Audit` workflow artifact. Review its `priority.md` and `triage.csv` before specifying V4.4 translations.
+- **Conclusion:** the older ~87% completion planning estimate should not be treated as established evidence. More localization work may be required than previously assumed; a verified path to 95% must be based on reviewed first-party UI inventory plus additional modes and branches.
