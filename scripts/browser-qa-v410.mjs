@@ -37,7 +37,7 @@ async function check(viewport){
    assert.ok(freshness.trim(),'Directory freshness state missing '+code);
    await page.locator('#discoverTab-apps').click();
    const appCard=page.locator('#discoverResults .discover-item').first();
-   await appCard.waitFor({timeout:10000});
+   await appCard.waitFor({state:'attached',timeout:10000});
    assert.equal(await appCard.locator('.discover-app-legacy-note').textContent(),directoryText(code,'publisherDownload'),code+' publisher warning');
    await page.locator('#discoverTab-facts').click();
    const facts=page.locator('#discoverResults .discover-fact');
