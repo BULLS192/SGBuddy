@@ -7,7 +7,10 @@ try{
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
-  await page.waitForSelector('#sgbuddyCalendar .calendar-feature',{timeout:50000});
+  await page.waitForSelector('#sgbuddyCalendar .calendar-feature',{state:'attached',timeout:50000});
+  // Discover is not the default visible view; switch before interactive checks.
+  await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
+  await page.waitForSelector('#sgbuddyCalendar .calendar-feature',{state:'visible',timeout:15000});
   const first=await page.locator('#sgbuddyCalendar .calendar-feature strong').innerText();
   assert.ok(first.length>3,'missing upcoming holiday');
   assert.ok((await page.locator('#sgbuddyCalendar .calendar-source').count())>=10,'missing event directory');
