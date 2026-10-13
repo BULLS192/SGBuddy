@@ -27,7 +27,7 @@ assert.ok(source.includes('sourceLanguage:\'en\'')&&!source.includes('fetch('),'
 assert.ok(runtime.includes('halal.muis.gov.sg/halal/establishments'),'Original MUIS reference must stay');
 for(const path of ['/app-i18n-v300.js','/app-device-translate-v300.js','/lib/i18n-extended-v300.mjs','/lib/i18n-explainers-v300.mjs','/i18n-v300.css'])
  assert.ok(sw.includes(path),'Missing PWA cache entry '+path);
-assert.ok(sw.includes('sgbuddy-shell-v71'),'Must bust installed shell cache');
+assert.ok(sw.includes('sgbuddy-shell-v72'),'Must bust installed shell cache');
 assert.ok(boot.includes("import('/app-i18n-v300.js')")&&boot.includes("import('/app-device-translate-v300.js')"),'Modules not loaded sequentially');
 assert.ok(boot.includes("='3.12.0'")&&html.includes('v3.12.0'),'Version badge inconsistent');
 console.log('V3.0 STATIC I18N PASS: 12 locales × '+(CORE_LABEL_KEYS.length+EXTENDED_KEYS.length+EXPLAINER_KEYS.length)+' reviewed interface strings; original-source safeguards, on-device opt-in and offline cache.');

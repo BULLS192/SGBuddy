@@ -33,7 +33,7 @@ assert.ok(discover.includes('factTranslation(locale(),fact)'),'Preserve source-a
 const app=readFileSync('app-v090.js','utf8');
 assert.ok(app.includes("='3.12.0'")&&readFileSync('index.html','utf8').includes('v3.12.0'));
 const sw=readFileSync('sw.js','utf8');
-for(const asset of ['sgbuddy-shell-v71','/lib/i18n-food-status-v400.mjs','/lib/i18n-discover-status-v400.mjs'])assert.ok(sw.includes(asset),asset);
+for(const asset of ['sgbuddy-shell-v72','/lib/i18n-food-status-v400.mjs','/lib/i18n-discover-status-v400.mjs'])assert.ok(sw.includes(asset),asset);
 const audit=JSON.parse(execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:30*1024*1024}));
 assert.equal(audit.globalWholeAppCompletionPercent,null);
 assert.ok(audit.classifiedEligibleEntries>=934,'Existing verified authored inventory must not decrease');

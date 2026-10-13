@@ -33,7 +33,7 @@ assert.ok(read('app-v090.js').includes("='3.12.0'"));
 assert.ok(read('index.html').includes('v3.12.0'));
 const sw=read('sw.js');
 for(const asset of ['/app-i18n-context-v370.js','/lib/i18n-context-v370.mjs'])assert.ok(sw.includes(asset),'Offline asset '+asset);
-assert.ok(sw.includes('sgbuddy-shell-v71'));
+assert.ok(sw.includes('sgbuddy-shell-v72'));
 assert.ok(read('scripts/inspect-js-localization-v370.mjs').includes('untriagedCount'));
 assert.ok(read('scripts/export-native-review-v370.mjs').includes("status:'pending'"));
 const review=read('docs/native-review-v370.csv').trim().split('\n');

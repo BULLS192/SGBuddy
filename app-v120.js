@@ -2,6 +2,8 @@
    Data is a versioned, source-linked static catalog; never a live opening-hours feed. */
 import {taxonomyLabel} from './lib/i18n-content-taxonomy-v310.mjs';
 import {discoverStatus} from './lib/i18n-discover-status-v400.mjs';
+import {directoryText} from './lib/i18n-directory-v410.mjs';
+import {contextMode} from './lib/i18n-context-v370.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 (function(){
   'use strict';
@@ -14,6 +16,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   const storeKey='sgbuddy-discover-saved-v1';
   const locale=()=>window.SGBUDDY_LANGUAGE||'en';
   const uiStatus=(key,fields={})=>discoverStatus(locale(),key,fields);
+  const d=(key,fields={})=>directoryText(locale(),key,fields);
   let saved=new Set();
   try{const v=JSON.parse(localStorage.getItem(storeKey)||'[]');if(Array.isArray(v))saved=new Set(v.filter(x=>typeof x==='string').slice(0,500))}catch{}
   let catalog={places:[],apps:[],facts:[]};
@@ -71,22 +74,23 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   }
   function directoryAddressStatus(place){
     const value=addressCache.get(place.id);
-    if(!value&&place.status==='operator-listed')return '<p class="discover-address-note">📍 '+safe(place.address||'See business website')+' · Confirm the address before visiting.</p>';
-    if(!value&&place.status==='official-source-snapshot')return '<p class="discover-address-note">'+(place.address?'📍 '+safe(place.address):'Address not available')+' · Confirm directions before travelling.</p>';
-    if(!value)return '<p class="discover-address-note">Check the address before visiting.</p>';
-    if(value.status==='loading')return '<p class="discover-address-note" role="status">Checking OneMap address…</p>';
+    if(!value&&place.status==='operator-listed')return '<p class="discover-address-note">📍 '+safe(place.address||d('seeBusiness'))+' · '+safe(d('confirmAddress'))+'</p>';
+    if(!value&&place.status==='official-source-snapshot')return '<p class="discover-address-note">'+(place.address?'📍 '+safe(place.address):safe(d('missingAddress')))+' · '+safe(d('confirmDirections'))+'</p>';
+    if(!value)return '<p class="discover-address-note">'+safe(d('confirmAddress'))+'</p>';
+    if(value.status==='loading')return '<p class="discover-address-note" role="status">'+safe(d('addressLoading'))+'</p>';
     if(value.status==='address-matched'&&value.address){
       const a=value.address;
       const dest='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a.address||place.name);
-      return '<p class="discover-address-note">📍 '+safe(a.address)+' · '+safe(a.postal||'Postal unknown')+'</p><p class="discover-address-note">Address found on OneMap · Check opening hours with the business</p><a href="'+safe(dest)+'" target="_blank" rel="noopener noreferrer">Directions to matched address ↗</a>';
+      return '<p class="discover-address-note">📍 '+safe(a.address)+' · '+safe(a.postal||d('postalUnknown'))+'</p><p class="discover-address-note">'+safe(d('addressMatched'))+'</p><a href="'+safe(dest)+'" target="_blank" rel="noopener noreferrer">'+safe(d('directionsMatched'))+' ↗</a>';
     }
-    return '<p class="discover-address-note" role="status">'+(value.status==='not-configured'?'OneMap not configured':value.status==='ambiguous'?'Ambiguous address match — no verified coordinates':value.status==='not-found'?'No matching address found':'OneMap temporarily unavailable')+'. Search by name instead.</p>';
+    const status=value.status==='not-configured'?'addressNotConfigured':value.status==='ambiguous'?'addressAmbiguous':value.status==='not-found'?'addressNotFound':'addressUnavailable';
+    return '<p class="discover-address-note" role="status">'+safe(d(status))+' '+safe(d('addressSearchByName'))+'</p>';
   }
   function publishedClosure(place){
     const row=officialClosures.get(place.id);if(!row)return '';
     const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
     if(today<row.start||today>row.end)return '';
-    return '<p class="discover-closure" role="note">⚠ NEA scheduled closure: '+safe(row.start)+' to '+safe(row.end)+' · '+safe(row.reason)+'. Check current NEA updates before visiting.</p>';
+    return '<p class="discover-closure" role="note">⚠ '+safe(d('closure',{start:row.start,end:row.end,reason:row.reason}))+'</p>';
   }
   function displayPlaceName(place){
     const raw=String(place.name||'');
@@ -110,43 +114,42 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   function friendlyDate(iso){
     const timestamp=Date.parse(iso||'');
     return Number.isFinite(timestamp)
-      ?new Intl.DateTimeFormat('en-SG',{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Singapore'}).format(timestamp)
+      ?new Intl.DateTimeFormat(locale()==='en'?'en-SG':locale(),{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Singapore'}).format(timestamp)
       :null;
   }
   function freshnessLabel(place){
-    if(isArchived(place))return 'Historical listing · May no longer be operating';
+    if(isArchived(place))return d('historical');
     if(place.status==='operator-listed'){
       const checked=friendlyDate(place.sourceCheckedOn);
-      return 'Listed by '+(place.operator||'the business')+(checked?' · Checked '+checked:'');
+      return place.operator?d('listedBy',{operator:place.operator})+(checked?' · '+checked:''):d('unconfirmed');
     }
     if(place.status==='official-source-snapshot'){
-      return sourceAge(place)==='recent'?'Listed in a government directory':'Details may have changed · Please check before visiting';
+      return sourceAge(place)==='recent'?d('governmentListed'):d('changed');
     }
-    return 'Listing details not recently confirmed';
+    return d('unconfirmed');
   }
   function dirCard(place){
-    const marked=saved.has(place.id);
-    const map=newMapsLink(place);
+    const marked=saved.has(place.id),map=newMapsLink(place);
+    const warning=(place.status==='operator-listed'?(place.sourceReportedHours?d('reportedHours',{hours:place.sourceReportedHours})+' ':'')+d('operatorWarning'):place.status==='official-source-snapshot'?d('officialWarning'):d('curatedWarning'))+(place.kind==='Healthcare'?' '+d('clinicWarning'):'');
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(taxonomyLabel(locale(),place.category||place.kind))+' · '+safe(place.area)+'</span><h3>'+safe(displayPlaceName(place))+'</h3></div>'+
-      '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(place.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p class="discover-freshness">'+safe(freshnessLabel(place))+'</p><p>'+(place.status==='operator-listed'?(place.sourceReportedHours?'Hours shown by business: '+safe(place.sourceReportedHours)+'. ':'')+'Check current opening hours and availability with the business.':place.status==='official-source-snapshot'?'Check current hours, services and address before visiting.':'Please confirm location and opening hours before visiting.')+(place.kind==='Healthcare'?' Clinic services and CHAS participation may change.':'')+'</p>'+publishedClosure(place)+
-      '<div class="discover-actions"><button type="button" class="secondary" data-trip-add-place="'+safe(place.id)+'">+ My Trip</button>'+sourceLink(map,'Search place by name')+sourceLink(place.sourceUrl,place.status==='operator-listed'?'Business website':place.status==='official-source-snapshot'?'Official information':'More details')+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator','Check current CHAS participation'):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records','Check current licence'):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">Check OneMap address</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
+      '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(place.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+safe(d(marked?'removeAria':'saveAria',{name:place.name}))+'">'+(marked?'★':'☆')+'</button></div>'+
+      '<p class="discover-freshness">'+safe(freshnessLabel(place))+'</p><p>'+safe(warning)+'</p>'+publishedClosure(place)+
+      '<div class="discover-actions"><button type="button" class="secondary" data-trip-add-place="'+safe(place.id)+'">'+safe(d('addTrip'))+'</button>'+sourceLink(map,d('searchPlace'))+sourceLink(place.sourceUrl,d(place.status==='operator-listed'?'businessSite':place.status==='official-source-snapshot'?'officialInfo':'moreDetails'))+(place.category==='CHAS clinic'?sourceLink('https://www.chas.sg/clinic-locator',d('chasCheck')):'' )+(place.category==='Supermarket (historical licence)'?sourceLink('https://www.sfa.gov.sg/tools-and-resources/track-records',d('licenceCheck')):'' )+(place.id.startsWith('SGP-')?'<button type="button" class="secondary" data-verify-address="'+safe(place.id)+'">'+safe(d('verifyAddress'))+'</button>':'')+'</div><div class="discover-address-result">'+directoryAddressStatus(place)+'</div></article>';
   }
   function appsCard(app){
-    const marked=saved.has(app.id);
-    const publisherLink=safeUrl(app.publisherUrl);
+    const marked=saved.has(app.id),publisherLink=safeUrl(app.publisherUrl);
     return '<article class="card discover-item"><div class="discover-item-title"><div><span class="label">'+safe(taxonomyLabel(locale(),app.category))+'</span><h3>'+safe(app.name)+'</h3></div>'+
-      '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+(marked?'Remove saved ':'Save ')+safe(app.name)+'">'+(marked?'★':'☆')+'</button></div>'+
-      '<p>'+(app.status==='publisher-reference'?'Official publisher reference; check account eligibility and installation requirements.':'Suggested app; publisher and store listing still require verification.')+'</p>'+
-      '<div class="discover-actions">'+sourceLink(publisherLink,'Official publisher')+'<span class="discover-app-legacy-note">Use publisher links to find authentic app-store downloads.</span>'+'</div></article>';
+      '<button type="button" class="discover-fav '+(marked?'active':'')+'" data-save-discover="'+safe(app.id)+'" aria-pressed="'+String(marked)+'" aria-label="'+safe(d(marked?'removeAria':'saveAria',{name:app.name}))+'">'+(marked?'★':'☆')+'</button></div>'+
+      '<p>'+safe(d(app.status==='publisher-reference'?'publisherVerified':'publisherUnverified'))+'</p>'+
+      '<div class="discover-actions">'+sourceLink(publisherLink,d('publisherLink'))+'<span class="discover-app-legacy-note">'+safe(d('publisherDownload'))+'</span></div></article>';
   }
   function factsCard(fact){
     const marked=saved.has(fact.id);
     return '<article class="card discover-fact"><div class="label">'+safe(taxonomyLabel(locale(),fact.theme))+' · '+safe(uiStatus(fact.status==='verified'?'checked':'pending'))+'</div>'+
-      '<h3>Did you know?</h3><p'+(factTranslation(locale(),fact)?' data-content-localized="true"':'')+'>'+safe(factTranslation(locale(),fact)||fact.text)+'</p>'+
-      '<div class="discover-actions">'+sourceLink(fact.sourceUrl,'Read original source')+
-      '<button type="button" class="secondary" data-next-discover-fact>Another fact ↻</button>'+
-      '<button type="button" class="secondary" data-save-discover="'+safe(fact.id)+'" aria-pressed="'+String(marked)+'">'+(marked?'★ Saved':'☆ Save')+'</button></div></article>';
+      '<h3>'+safe(d('didYouKnow'))+'</h3><p'+(factTranslation(locale(),fact)?' data-content-localized="true"':'')+'>'+safe(factTranslation(locale(),fact)||fact.text)+'</p>'+
+      '<div class="discover-actions">'+sourceLink(fact.sourceUrl,d('readSource'))+
+      '<button type="button" class="secondary" data-next-discover-fact>'+safe(d('anotherFact'))+' ↻</button>'+
+      '<button type="button" class="secondary" data-save-discover="'+safe(fact.id)+'" aria-pressed="'+String(marked)+'">'+(marked?'★ '+safe(d('saved')):'☆ '+safe(d('save')))+'</button></div></article>';
   }
   /* Ranking is independent of broad audience eligibility. A student listing is
      not automatically a top pick merely because it is tagged Student. */
@@ -180,14 +183,8 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     const listingInfo=$('#discoverQuality');if(listingInfo)listingInfo.hidden=tab==='apps'||tab==='facts';
     const results=$('#discoverResults'),q=($('#discoverSearch')?.value||'').trim().toLowerCase();
     $('#discoverSearch').placeholder=uiStatus(tab==='apps'?'searchApps':tab==='facts'?'searchFacts':'searchPlaces');
-    const persona=profiles[state.mode]||'Resident';
-    $('#discoverPersonaBadge').textContent=persona+' mode';
-    $('#discoverPersonaCopy').textContent=state.mode==='student'
-      ?'Budget-conscious food, study-friendly activities, shopping and practical apps.'
-      :state.mode==='visitor'?'Singapore highlights, neighbourhood culture and useful visitor tools.'
-      :state.mode==='executive'?'Practical stops, dining, shopping and tools for a working day.'
-      :state.mode==='new_in_sg'?'Start with everyday essentials and explore your new neighbourhood.'
-      :'Neighbourhood favourites, everyday conveniences and Singapore discoveries.';
+    $('#discoverPersonaBadge').textContent=contextMode(locale(),state.mode,'label');
+    $('#discoverPersonaCopy').textContent=contextMode(locale(),state.mode,'placesCopy');
     if(tab==='facts'){
       const candidates=catalog.facts.filter(f=>(!savedOnly||saved.has(f.id))&&(!q||[f.theme,f.text,taxonomyLabel(locale(),f.theme),factTranslation(locale(),f)||''].join(' ').toLowerCase().includes(q))&&matchesMode(f));
       if(factIndex>=candidates.length)factIndex=0;
@@ -340,7 +337,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-places-ready',{detail:{places:catalog.places}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:library-ready',{detail:{curated:data.places.length,official:unique.length,total:catalog.places.length,operator:operatorPlaces.length,sources:[...(officialFeed?.sources||[]),...(servicesFeed?.sources||[])]}}));
     document.dispatchEvent(new CustomEvent('sgbuddy:discover-facts-ready',{detail:{verified:checked.length,total:catalog.facts.length}}));
-  }).catch(()=>{$('#discoverStatus').textContent='Discover catalog unavailable. Retry when online.';$('#discoverResults').innerHTML='<div class="card discover-empty">Could not load the curated directory. Existing places and routes remain available below.</div>'});
+  }).catch(()=>{$('#discoverStatus').textContent=d('catalogUnavailable');$('#discoverResults').innerHTML='<div class="card discover-empty">'+safe(d('catalogFallback'))+'</div>'});
   window.__SGBUDDY_CLIENT_VERSION__='2.4.2';
   if($('#appVersion'))$('#appVersion').textContent='v2.4.2';
 })();
