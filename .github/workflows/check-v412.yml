@@ -1,0 +1,46 @@
+name: SGBuddy V4.12 Home Localization Wave
+on:
+  pull_request:
+    paths:
+      - 'app-i18n-home-surface-v412.js'
+      - 'lib/i18n-home-surface-v412.mjs'
+      - 'scripts/check-v412.mjs'
+      - 'scripts/browser-qa-v412.mjs'
+      - '.github/workflows/check-v412.yml'
+      - 'app-v090.js'
+      - 'sw.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-v412.mjs
+      - run: node scripts/check-v411.mjs
+      - run: node scripts/check-v4100.mjs
+      - run: node scripts/check-v480.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve SGBuddy
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-412.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-412.log
+          exit 1
+      - run: node scripts/browser-qa-v412.mjs

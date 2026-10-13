@@ -1,0 +1,30 @@
+name: SGBuddy V4.12 Production Release Gate
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'app-v090.js'
+      - 'sw.js'
+      - 'scripts/check-v412.mjs'
+      - 'scripts/check-release-v4120.mjs'
+      - '.github/workflows/check-release-v4120.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: V4.12 production release contract and regression guards
+        run: |
+          node scripts/check-release-v4120.mjs
+          node scripts/check-v412.mjs
+          node scripts/check-v411.mjs
+          node scripts/check-unified-rc.mjs
+          node scripts/check-v480.mjs
+          node scripts/check-event-approval-v490.mjs

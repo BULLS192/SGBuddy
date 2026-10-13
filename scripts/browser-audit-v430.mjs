@@ -117,7 +117,7 @@ async function runViewport(viewport){
  page.on('pageerror',e=>errors.push({viewport:viewportId,message:e.message.slice(0,240)}));
  try{
   await page.goto(rootUrl,{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.11.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.12.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
   await page.locator('#sgbLanguage').selectOption('en');
   const baselines=new Map();
   for(const scene of scenarios){
@@ -155,7 +155,7 @@ try{
  for(const vp of [{width:390,height:844},{width:1366,height:900}])await runViewport(vp);
  const summary=aggregateRenderedObservations(results);
  const report={...summary,
-  auditDate:new Date().toISOString(),appVersion:'4.11.0',sourceBranch:'V4.3 audit development',personasSampled:['visitor'],
+  auditDate:new Date().toISOString(),appVersion:'4.12.0',sourceBranch:'V4.3 audit development',personasSampled:['visitor'],
   viewportSizes:['390x844','1366x900'],scenariosAttempted:scenarios.map(s=>s.id),
   conditionalStatesNotExhaustivelyTested:true,wholeAppTranslationPercent:null,
   limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered, server/API error variants and all persona combinations are not exhaustive','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
@@ -185,7 +185,7 @@ try{
  report.priorityCandidates=priorityCandidates;
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
- '**Not a verified whole-app completion percentage.** English baseline: V4.11.0; 12 supported locales, two Chromium viewports, Visitor persona.',
+ '**Not a verified whole-app completion percentage.** English baseline: V4.12.0; 12 supported locales, two Chromium viewports, Visitor persona.',
  '',
  '| Locale | Comparable authored text slots | Changed vs English | Unchanged English candidates | Review / uncertain |',
  '|---|---:|---:|---:|---:|',
