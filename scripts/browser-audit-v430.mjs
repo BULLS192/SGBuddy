@@ -174,9 +174,9 @@ try{
    'These are unchanged English first-party UI candidates, **not confirmed translation errors**. Source and operator text are excluded from this queue.','',
    '| Candidate English label | Languages unchanged | Screens | Evidence occurrences |',
    '|---|---:|---|---:|',
-   ...priorityCandidates.slice(0,60).map(x=>'| '+x.english.replace(/\\|/g,'/').slice(0,105)+' | '+x.locales.length+' | '+x.screens.join(', ').slice(0,90)+' | '+x.examples+' |'),
+   ...priorityCandidates.slice(0,60).map(x=>'| '+x.english.replace(/\|/g,'/').slice(0,105)+' | '+x.locales.length+' | '+x.screens.join(', ').slice(0,90)+' | '+x.examples+' |'),
    '', 'A text string may legitimately be identical in two languages; a native-speaker should adjudicate it before marking untranslated.',''
- ].join('\\n');
+ ].join('\n');
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
  '**Not a verified whole-app completion percentage.** English baseline: V4.2.0; 12 supported locales, two Chromium viewports, Visitor persona.',
@@ -204,7 +204,7 @@ try{
  writeFileSync(join(output,'triage.csv'),records);
  writeFileSync(join(output,'summary.md'),md);
  writeFileSync(join(output,'priority.md'),priorityMarkdown);
- writeFileSync(join(output,'priority.json'),JSON.stringify(priorityCandidates,null,2)+'\\n');
+ writeFileSync(join(output,'priority.json'),JSON.stringify(priorityCandidates,null,2)+'\n');
  console.log('V4.3 BY SCREEN '+JSON.stringify(byScreenSummary));
  console.log('V4.3 TOP ENGLISH CANDIDATES '+JSON.stringify(priorityCandidates.slice(0,15)));
  console.log('V4.3 AUDIT SUMMARY '+JSON.stringify({perLocale:Object.fromEntries(languages.map(c=>[c,{
