@@ -6,6 +6,10 @@ on:
       - 'scripts/browser-audit-v430.mjs'
       - 'scripts/check-v430.mjs'
       - '.github/workflows/check-v430-localization-audit.yml'
+      - 'lib/i18n-priority-v440.mjs'
+      - 'app-i18n-priority-v440.js'
+      - 'scripts/check-v440.mjs'
+      - 'scripts/browser-qa-v440.mjs'
       - 'app-v090.js'
       - 'app-v120.js'
       - 'app-food-v180.js'
@@ -36,6 +40,8 @@ jobs:
           for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
           cat /tmp/sgbuddy-v430.log
           exit 1
+      - name: V4.4 priority controls and source-preservation browser QA
+        run: node scripts/browser-qa-v440.mjs
       - name: 12-language, 18-screen, two-viewport rendered audit
         run: node scripts/browser-audit-v430.mjs --screenshots --out-dir=artifacts/localization-v430
       - name: Write coverage summary to GitHub Actions

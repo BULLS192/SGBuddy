@@ -104,6 +104,8 @@ for(const file of ['lib/i18n-directory-v410.mjs','scripts/check-v410.mjs','scrip
 execFileSync(process.execPath,['scripts/check-v410.mjs'],{stdio:'inherit'});
 for(const file of ['lib/i18n-contextual-v420.mjs','scripts/check-v420.mjs','scripts/browser-qa-v420.mjs'])run(file);
 execFileSync(process.execPath,['scripts/check-v420.mjs'],{stdio:'inherit'});
+for(const file of ['lib/i18n-priority-v440.mjs','app-i18n-priority-v440.js','scripts/check-v440.mjs','scripts/browser-qa-v440.mjs'])run(file);
+execFileSync(process.execPath,['scripts/check-v440.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/export-native-review-v370.mjs'],{stdio:'inherit'});
