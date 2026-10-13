@@ -6,7 +6,7 @@ const changed=classifyRenderedPair(source,{value:'Toutes les catégories'},'fr')
 assert.equal(changed.status,'changedFromEnglish');
 assert.equal(classifyRenderedPair(source,{value:'All categories'},'fr').status,'unchangedEnglishCandidate');
 assert.equal(classifyRenderedPair(source,undefined,'fr').status,'missingAfterLocaleSwitch');
-assert.equal(classifyRenderedPair({...source,ownership:'review'}, {value:'Options françaises'},'fr').status ,'reviewQueueCount');
+assert.equal(classifyRenderedPair({...source,ownership:'review'}, {value:'Options françaises'},'fr').status,'sourceOwnershipReview');
 assert.equal(classifyRenderedPair({...source,ownership:'protected'},{value:'Different place name'},'fr').status,'sourceProtected');
 assert.equal(classifyRenderedPair({...source,value:'MICHELIN'}, {value:'MICHELIN'},'fr').status,'invariantExcluded');
 const sample=[
@@ -26,7 +26,7 @@ assert.equal(summary.locale.ja.observedFirstPartySlots,0);
 assert.equal(summary.locale.ja.observedChangeRatePercent,null);
 assert.equal(AUDIT_POLICY.wholeAppTranslationPercent,null);
 const script=readFileSync('scripts/browser-audit-v430.mjs','utf8');
-for(const term of ['capture(page,scene,viewport,persona)','aggregateRenderedObservations(results)','wholeAppTranslationPercent:null','screenshots','triage.csv','summary.md','locale','missingScreens','sourceOwnershipReview'])assert.ok(script.includes(term),'Audit script missing '+term);
+for(const term of ['capture(page,scene,viewport,persona)','aggregateRenderedObservations(results)','wholeAppTranslationPercent:null','screenshots','triage.csv','summary.md','locale','missingScreens','reviewQueueCount'])assert.ok(script.includes(term),'Audit script missing '+term);
 const workflow=readFileSync('.github/workflows/check-v430-localization-audit.yml','utf8');
 for(const term of ['browser-audit-v430.mjs','playwright@1.56.1','actions/upload-artifact@v4','retention-days: 7'])assert.ok(workflow.includes(term),'Audit CI missing '+term);
 console.log('V4.3 STATIC PASS: evidence classification, non-fabricated denominator, locale grouping and artifact workflow');
