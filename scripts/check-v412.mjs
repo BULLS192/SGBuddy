@@ -8,7 +8,7 @@ assert.equal(new Set(HOME_V412_KEYS).size,31);
 for(const {code} of LOCALES){
  const row=HOME_V412[code];assert.equal(Object.keys(row||{}).length,31,code+' lacks rows');
  for(const k of HOME_V412_KEYS){
-  assert.ok(row[k]?.length>1,code+' '+k);
+  assert.ok(typeof row[k]==='string'&&row[k].trim().length>0,code+' '+k); // ideographic badges may be one character
   assert.equal(home412Text(code,k),row[k]);
   assert.equal(home412SourceKey(row[k]),k,'unexpected ambiguous string '+code+' '+k);
  }
