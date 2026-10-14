@@ -46,6 +46,13 @@ async function present(){
    for(const p of OFFLINE_PACKS)details.set(p.id,await inspectOfflinePack(cache,p,last[p.id]));
   }
  }catch{hasCache=false;details=new Map();}
+ const scanRows=freshnessCheck?[...freshnessCheck.values()]:[];
+ const scanTotals={present:0,changed:0,same:0,unknown:0};
+ for(const row of scanRows)for(const field of Object.keys(scanTotals))scanTotals[field]+=row[field];
+ const scanSummary=freshnessCheck?(!scanTotals.present?v416('noPacks'):
+  [scanTotals.changed?v416('changed',{count:scanTotals.changed}):'',
+   scanTotals.same?v416('same',{count:scanTotals.same}):'',
+   scanTotals.unknown?v416('unknown',{count:scanTotals.unknown}):''].filter(Boolean).join(' · ')):'';
  const storage=await estimateOfflineStorage(navigator.storage),mb=n=>(n/1048576).toFixed(1)+' MB';
  const connected=online();
  const buttons=OFFLINE_PACKS.map(p=>{
@@ -60,7 +67,7 @@ async function present(){
  homeTile.innerHTML='<div><strong>'+esc(t('heading'))+'</strong><small>'+esc(connected?t('online'):t('offlineWarning'))+'</small></div><button type="button" id="offlineHomeOpen">'+esc(t('choose'))+'</button>';
  const usage=storage.supported?tx('usage',{used:mb(storage.usage),total:mb(storage.quota)}):'';
  panel.innerHTML='<div class="label">'+esc(t('offline'))+'</div><h2>'+esc(t('heading'))+'</h2><p>'+esc(t('intro'))+'</p>'+
- '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):t('local')))+'</div>'+
+ '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):scanSummary||t('local')))+'</div>'+
  (storage.supported?'<div class="offline-storage">'+esc(usage)+(storage.low?' · '+esc(tx('lowStorage')):'')+'</div>':'')+
  '<div class="offline-readiness"><strong>'+esc(tx('offlineSummary'))+'</strong><small>'+esc(tx('readyCount',{count:readyCount,total:OFFLINE_PACKS.length}))+'</small><small>'+esc(t('disclaimer'))+'</small></div>'+
  '<div class="offline-manager-actions"><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
@@ -78,10 +85,7 @@ async function checkForChanges(){
    probe:file=>fetch(file,{method:'HEAD',cache:'no-store',credentials:'same-origin',redirect:'error'})
   });
   freshnessCheck=new Map(rows.map(row=>[row.id,row]));
-  const totals={present:0,changed:0,same:0,unknown:0};
-  for(const row of rows)for(const key of Object.keys(totals))totals[key]+=row[key];
-  status=!totals.present?v416('noPacks'):[totals.changed?v416('changed',{count:totals.changed}):'',
-   totals.same?v416('same',{count:totals.same}):'',totals.unknown?v416('unknown',{count:totals.unknown}):''].filter(Boolean).join(' · ');
+  status=''; // Derived from scan rows during render so language changes retranslate it.
  }catch{status=v416('unknown',{count:0})}
  busy=null;await present();
 }

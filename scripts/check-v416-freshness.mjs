@@ -4,7 +4,7 @@ import {OFFLINE_CACHE,OFFLINE_PACKS} from '../lib/offline-packs-v480.mjs';
 import {LOCALES} from '../lib/i18n-v280.mjs';
 import {compareOfflineValidators,checkDownloadedPublicPacks} from '../lib/offline-freshness-v416.mjs';
 import {OFFLINE_V416,OFFLINE_V416_KEYS,offline416Text} from '../lib/offline-freshness-i18n-v416.mjs';
-const response=(etag,lastModified,status=200)=>new Response('{"data":[]}',{status,headers:{...(etag?{etag}:{}),...(lastModified?{'last-modified':lastModified}:{})}});
+const response=(etag,lastModified,status=200)=>new Response('{"data":[]}',{status,headers:{'content-type':'application/json',...(etag?{etag}:{}),...(lastModified?{'last-modified':lastModified}:{})}});
 assert.equal(compareOfflineValidators(response('"old"'),response('"new"')),'changed');
 assert.equal(compareOfflineValidators(response('"old"'),response('"old"')),'same');
 assert.equal(compareOfflineValidators(response('W/"old"'),response('W/"new"')),'unknown');
