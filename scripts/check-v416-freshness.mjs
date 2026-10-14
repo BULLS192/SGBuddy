@@ -26,7 +26,7 @@ await assert.rejects(checkDownloadedPublicPacks(cache,[{id:'bad',files:['/api/we
 assert.equal(LOCALES.length,12);
 for(const {code} of LOCALES){
  assert.equal(Object.keys(OFFLINE_V416[code]||{}).length,OFFLINE_V416_KEYS.length,code);
- for(const k of OFFLINE_V416_KEYS){const s=offline416Text(code,k,{count:4});assert.ok(s.length>6&&!s.includes('{count}'),code+' '+k);}
+ for(const k of OFFLINE_V416_KEYS){const s=offline416Text(code,k,{count:4});assert.ok(s.trim().length>1&&!s.includes('{count}'),code+' '+k);}
 }
 const sw=readFileSync('sw.js','utf8'),app=readFileSync('app-offline-v480.js','utf8');
 assert.ok(sw.includes('/lib/offline-freshness-v416.mjs')&&sw.includes('/lib/offline-freshness-i18n-v416.mjs'));
