@@ -46,8 +46,12 @@ async function present(){
  let hasCache='caches' in window,details=new Map();
  try{
   if(hasCache){
-   const cache=await caches.open(OFFLINE_CACHE);
-   for(const p of OFFLINE_PACKS)details.set(p.id,await inspectOfflinePack(cache,p,last[p.id]));
+   // Reading the panel must not create an empty user-download cache.
+   const existing=await caches.keys();
+   if(existing.includes(OFFLINE_CACHE)){
+    const cache=await caches.open(OFFLINE_CACHE);
+    for(const p of OFFLINE_PACKS)details.set(p.id,await inspectOfflinePack(cache,p,last[p.id]));
+   }
   }
  }catch{hasCache=false;details=new Map();}
  const scanRows=freshnessCheck?[...freshnessCheck.values()]:[];
