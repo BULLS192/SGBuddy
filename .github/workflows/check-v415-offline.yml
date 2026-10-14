@@ -1,0 +1,46 @@
+name: SGBuddy V4.15 Offline 2.0 Wave 1
+on:
+  pull_request:
+    paths:
+      - 'app-offline-v480.js'
+      - 'offline-v480.css'
+      - 'lib/offline-resilience-v415.mjs'
+      - 'lib/offline-resilience-i18n-v415.mjs'
+      - 'scripts/check-v415.mjs'
+      - 'scripts/browser-qa-v415.mjs'
+      - 'scripts/check-all.mjs'
+      - 'sw.js'
+      - '.github/workflows/check-v415-offline.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-resilience:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node scripts/check-v415.mjs
+          node scripts/check-v480.mjs
+          node scripts/check-v413.mjs
+  offline-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v415.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v415.log
+          exit 1
+      - run: node scripts/browser-qa-v415.mjs
