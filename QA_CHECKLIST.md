@@ -1,3 +1,29 @@
+# SGBuddy V4.16.0 offline update release acceptance
+
+**Production baseline:** V4.15.0. **Development:** PR #73. No V4.16 production deployment permitted until separately authorized.
+
+## Automated gates (verify exact final SHA)
+- [ ] Node freshness/validator checks, 12-language coverage, safe opt-in and no API probes.
+- [ ] Selective update: only changed/unverified files GET; unchanged stay byte-for-byte intact.
+- [ ] Recover from crash mid-update, quota rollback and malformed downloaded JSON; no personal data changed.
+- [ ] Chromium mobile/desktop: check-only, second user click to update, reconnect without automatic downloads, no layout overflow.
+- [ ] Service-worker shell v81, preserved `sgbuddy-offline-packs-v480` and journal across update, real Chromium offline restart.
+- [ ] All GitHub Actions jobs green for exact final commit; PR remains mergeable.
+
+## Physical PWA acceptance — not certified by emulation
+- [ ] iPhone Safari Add to Home Screen and Android Chrome PWA: install, download Calendar/Essentials/Food, disconnect, force-close/reopen.
+- [ ] Retain saved trip, language, and preferences; check changed/unknown statuses and selective refresh on reconnect only after clicking.
+- [ ] Retry under poor storage, browser denied persistence, corrupted downloaded cache, app restart and update; record physical device/version.
+- [ ] Native-speaker review of new 12-language controls and recovery messages.
+- [ ] Editorial staff verify current approved published event listings and continued protection of unapproved candidates.
+
+## Production promotion (only after separate approval)
+- [ ] Record merge SHA, production deployment ID and 15-minute smoke/rollback plan.
+- [ ] Verify live version 4.16, shell v81, custom domain, runtime errors and unchanged opt-in public cache.
+- [ ] Retain V4.15 deployment `dpl_7FWBeEivtEVZH5mJiVpVoiw5W2eR` as rollback target.
+
+---
+
 # SGBuddy release acceptance checklists
 
 ## V4.15.0 Offline 2.0 release candidate — PR #72

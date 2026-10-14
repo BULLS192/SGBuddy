@@ -25,7 +25,7 @@ async function expectText(selector,expected,reason){
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:40000});
  await page.waitForSelector('#v120AirPanel',{state:'attached',timeout:60000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.15.0',{timeout:45000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.16.0',{timeout:45000});
  await setWeather();
  const originalUrl=await page.locator('#v120AirExtended .discover-actions a').getAttribute('href');
  for(const {code} of LOCALES){

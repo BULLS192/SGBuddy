@@ -2,10 +2,10 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const read=x=>readFileSync(x,'utf8');
 const boot=read('app-v090.js'),html=read('index.html'),sw=read('sw.js');
-assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.15.0'"),'release bootstrap version');
-assert.ok(boot.includes("textContent='v4.15.0'"),'visible version');
-assert.ok(html.includes('v4.15.0'),'html version');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v80'"),'service-worker cache');
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.16.0'"),'release bootstrap version');
+assert.ok(boot.includes("textContent='v4.16.0'"),'visible version');
+assert.ok(html.includes('v4.16.0'),'html version');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v81'"),'service-worker cache');
 for(const module of ['/app-i18n-remaining-v411.js','/app-i18n-categories-v4100.js','/app-i18n-runtime-v490.js','/app-offline-v480.js','/app-events-v470.js','/app-calendar-v460.js']) {
  assert.ok(boot.includes("import('"+module+"')"),module+' not loaded');
  assert.ok(sw.includes("'"+module+"'"),module+' not pre-cached');

@@ -1,0 +1,55 @@
+name: SGBuddy V4.16 Offline Updates Release Candidate
+on:
+  pull_request:
+    paths:
+      - 'app-offline-v480.js'
+      - 'lib/offline-freshness-v416.mjs'
+      - 'lib/offline-freshness-i18n-v416.mjs'
+      - 'lib/offline-transaction-v415.mjs'
+      - 'scripts/check-v416-freshness.mjs'
+      - 'scripts/check-v416-selective.mjs'
+      - 'scripts/check-v416-final.mjs'
+      - 'scripts/browser-qa-v416-complete.mjs'
+      - 'scripts/check-all.mjs'
+      - 'app-v090.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'docs/offline-v416.md'
+      - 'docs/release-v416-rc.md'
+      - 'QA_CHECKLIST.md'
+      - '.github/workflows/check-v416-freshness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freshness-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node scripts/check-v416-freshness.mjs
+          node scripts/check-v416-selective.mjs
+          node scripts/check-v416-final.mjs
+          node scripts/check-v415-transaction.mjs
+          node scripts/check-v415-final.mjs
+  freshness-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v416.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v416.log
+          exit 1
+      - run: node scripts/browser-qa-v416-complete.mjs
