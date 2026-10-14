@@ -3,7 +3,7 @@ import {OFFLINE_CACHE,OFFLINE_PACKS,packDone,validateOfflineRequest} from './lib
 import {offlineText} from './lib/offline-i18n-v480.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
 import {inspectOfflinePack,estimateOfflineStorage} from './lib/offline-resilience-v415.mjs';
-import {durableOfflineUpdate,recoverAllInterruptedPacks} from './lib/offline-transaction-v415.mjs';
+import {durableOfflineUpdate,recoverInterruptedPack} from './lib/offline-transaction-v415.mjs';
 import {offline415Text} from './lib/offline-resilience-i18n-v415.mjs';
 (()=>{
 'use strict';
@@ -16,12 +16,20 @@ const tx=(k,args)=>offline415Text(normalizeLocale(window.SGBUDDY_LANGUAGE||'en')
 const dates=()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}};
 let last=dates(),busy=null,status='';
 const online=()=>navigator.onLine;
+const lock=(id,callback)=>navigator.locks?.request?navigator.locks.request('sgbuddy-offline-'+id,callback):callback();
+// Match the download/remove lock when recovering at boot. Otherwise a second
+// tab could roll back the first tab's still-active transaction.
 const recovery=(async()=>{
  if(!('caches' in window))return [];
- try{return await recoverAllInterruptedPacks(caches,OFFLINE_PACKS)}catch{return [{state:'failed'}]}
+ try{
+  const rows=[];
+  for(const pack of OFFLINE_PACKS){
+   rows.push({id:pack.id,...await lock(pack.id,()=>recoverInterruptedPack(caches,pack))});
+  }
+  return rows;
+ }catch{return [{state:'failed'}]}
 })();
 recovery.then(rows=>{if(rows.some(r=>r.state==='failed'))status=tx('recoveryFailed');else if(rows.some(r=>r.state==='restored'))status=tx('restored');present()});
-const lock=(id,callback)=>navigator.locks?.request?navigator.locks.request('sgbuddy-offline-'+id,callback):callback();
 const panel=document.createElement('section');panel.id='sgbuddyOffline';panel.className='offline-panel card';panel.setAttribute('aria-live','polite');
 const homeTile=document.createElement('section');homeTile.id='sgbuddyOfflineHome';homeTile.className='offline-home card';
 const target=account||home;target.append(panel);
@@ -102,9 +110,20 @@ async function requestPersistence(){
 async function removePack(id){
  const p=OFFLINE_PACKS.find(x=>x.id===id);if(!p||busy)return;
  await recovery;
- const cache=await caches.open(OFFLINE_CACHE);for(const f of p.files)await cache.delete(f);
- const copy={...last};delete copy[id];last=copy;try{localStorage.setItem(key,JSON.stringify(last))}catch{}
- status=t('missing');await present();
+ busy=id;await present();
+ try{
+  // An opt-out must never interleave with a refresh in another browser tab.
+  await lock(id,async()=>{
+   const previous=await recoverInterruptedPack(caches,p);
+   if(previous.state==='failed')throw Error('offline recovery unresolved');
+   const cache=await caches.open(OFFLINE_CACHE);
+   for(const file of p.files)await cache.delete(file);
+  });
+  const copy={...last};delete copy[id];last=copy;
+  try{localStorage.setItem(key,JSON.stringify(last))}catch{}
+  status=t('missing');
+ }catch{status=tx('recoveryFailed')}
+ busy=null;await present();
 }
 panel.addEventListener('click',event=>{
  const d=event.target.closest('[data-offline-download]'),r=event.target.closest('[data-offline-remove]');

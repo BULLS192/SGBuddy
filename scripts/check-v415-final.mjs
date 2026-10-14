@@ -17,9 +17,13 @@ for(const {code} of LOCALES){
 }
 const transaction=read('lib/offline-transaction-v415.mjs'),app=read('app-offline-v480.js'),sw=read('sw.js');
 for(const fragment of ['recoverInterruptedPack','durableOfflineUpdate','TXN_MARKER','journal.put','journal.delete','usableOfflineJson'])assert.ok(transaction.includes(fragment),'Journal safeguard '+fragment);
-for(const fragment of ['durableOfflineUpdate','recoverAllInterruptedPacks','refreshDownloadedPacks','requestPersistence','navigator.storage.persist','visibilitychange','sgbuddy:language'])assert.ok(app.includes(fragment),'Offline UI missing '+fragment);
+for(const fragment of ['durableOfflineUpdate','recoverInterruptedPack','refreshDownloadedPacks','requestPersistence','navigator.storage.persist','visibilitychange','sgbuddy:language'])assert.ok(app.includes(fragment),'Offline UI missing '+fragment);
 assert.ok(app.includes("window.addEventListener('online',()=>{status=tx('reconnected');present()})"),'Reconnect must update UI only, not auto-fetch');
 assert.ok(app.includes('if(!info.present)continue'),'Bulk refresh must not opt into new packs');
+assert.ok(app.includes('await lock(pack.id,()=>recoverInterruptedPack(caches,pack))'),'Concurrent-tab recovery must share per-pack Web Locks');
+assert.ok(app.includes('await lock(id,async()=>{'),'Remove must share per-pack Web Locks');
+assert.ok(read('.github/workflows/check-v415-offline.yml').includes('browser-qa-v415-worker-upgrade.mjs'),'SW upgrade integration test missing');
+assert.ok(read('docs/release-v415-rc.md').includes('sgbuddy-offline-packs-v480'),'Explicit Offline 2.0 release contract missing');
 assert.ok(!app.includes('localStorage.clear(')&&!app.includes('caches.delete(OFFLINE_CACHE)'),'Personal data must survive');
 assert.ok(transaction.includes("const valid=before&&await usableOfflineJson(before)"),'Never journal invalid JSON as valid backup');
 assert.ok(sw.includes('valid')||sw.includes("const data=await stored.clone().json()"),'SW must verify damaged offline data fallback');
