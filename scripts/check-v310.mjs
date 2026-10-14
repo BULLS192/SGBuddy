@@ -60,5 +60,5 @@ const sw=load('sw.js'),boot=load('app-v090.js'),html=load('index.html');
 assert.ok(sw.includes('sgbuddy-shell-v83'),'Installed PWA requires cache bust');
 for(const path of ['/lib/i18n-content-taxonomy-v310.mjs','/lib/i18n-facts-v310.mjs'])
  assert.ok(sw.includes(path),'Missing offline content pack '+path);
-assert.ok(boot.includes("='4.17.0'")&&html.includes('v4.18.0'),'Release version must agree');
+assert.ok(boot.includes("='4.18.0'")&&html.includes('v4.18.0'),'Release version must agree');
 console.log('V3.1 CONTENT PACK PASS: 12 languages, 36 taxonomy labels, 10 source-locked facts, search/render integration and source integrity.');

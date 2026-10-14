@@ -34,7 +34,7 @@ const ui=readFileSync('app-share-v270.js','utf8'),app=readFileSync('app-trip-v26
 for(const keyword of ['tripMakeLink','tripCopyLink','tripSystemShare','tripExportJson','tripImportJson','tripImportShared','tripDismissShared','sgbuddy:trip-rendered'])assert.ok(ui.includes(keyword),'Share UI missing '+keyword);
 assert.equal(SHARE_PARAM,'sgtrip');
 assert.ok(app.includes('SGBUDDY_TRIP_API')&&app.includes('importCopy')&&app.includes('sgbuddy:trip-rendered'),'Safe import API missing');
-assert.ok(boot.includes("import('/app-share-v270.js')")&&boot.includes('4.17.0'));
+assert.ok(boot.includes("import('/app-share-v270.js')")&&boot.includes('4.18.0'));
 assert.ok(html.includes('v4.18.0')&&html.includes('/trip-share-v270.css'));
 assert.ok(sw.includes('/app-share-v270.js')&&sw.includes('/lib/trip-share-v270.mjs')&&sw.includes('/trip-share-v270.css')&&sw.includes('sgbuddy-shell-v83'));
 assert.ok(css.includes('data-ux-theme="light"')&&css.includes('max-width:660px')&&css.includes('focus-visible'));

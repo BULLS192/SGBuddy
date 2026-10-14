@@ -16,7 +16,7 @@ for(const {code} of LOCALES){
 }
 const boot=readFileSync('app-v090.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-food-discover-v450.js')"));
-assert.ok(boot.includes("='4.17.0'"),'release badge should match V4.11');
+assert.ok(boot.includes("='4.18.0'"),'release badge should match V4.11');
 const sw=readFileSync('sw.js','utf8');
 for(const asset of ['/app-i18n-food-discover-v450.js','/lib/i18n-food-discover-v450.mjs'])assert.ok(sw.includes(asset),'missing offline asset '+asset);
 assert.ok(sw.includes('sgbuddy-shell-v83'),'release requires upgraded PWA cache');

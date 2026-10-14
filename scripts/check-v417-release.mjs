@@ -6,7 +6,7 @@ import {LOCALES} from '../lib/i18n-v280.mjs';
 import {DEVICE_KEYS,DEVICE_TEXT} from '../lib/offline-device-i18n-v417.mjs';
 const read=path=>readFileSync(path,'utf8');
 const app=read('app-offline-v480.js'),sw=read('sw.js'),ui=read('index.html'),boot=read('app-v090.js');
-assert.ok(ui.includes('v4.18.0')&&boot.includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'")&&boot.includes("textContent='v4.18.0'"));
+assert.ok(ui.includes('v4.18.0')&&boot.includes("__SGBUDDY_CLIENT_VERSION__='4.18.0'")&&boot.includes("textContent='v4.18.0'"));
 assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v83'"));
 assert.ok(!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 assert.equal(OFFLINE_CACHE,'sgbuddy-offline-packs-v480');

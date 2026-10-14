@@ -7,7 +7,7 @@ for(const file of ['/merli-avatar-v3111.css','/merli-avatar-v3111.js']){
   assert.ok(html.includes(file),'Missing hotfix markup '+file);
   assert.ok(sw.includes(file),'Missing PWA asset '+file);
 }
-assert.ok(html.includes('v4.18.0') && app.includes("'4.17.0'"),'Version not updated');
+assert.ok(html.includes('v4.18.0') && app.includes("'4.18.0'"),'Version not updated');
 assert.ok(sw.includes('sgbuddy-shell-v83'),'PWA cache not refreshed');
 for(const rule of ['.buddy-symbol','.ux-merli-home-hint img','clip-path: circle(50%']){
   assert.ok(css.includes(rule),'Missing avatar styling '+rule);

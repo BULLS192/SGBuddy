@@ -26,7 +26,7 @@ const boot=readFileSync('app-v090.js','utf8'),sw=readFileSync('sw.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-remaining-v411.js')).then(()=>import('/app-i18n-home-surface-v412.js')"),'boot order regression');
 for(const asset of ['/app-i18n-home-surface-v412.js','/lib/i18n-home-surface-v412.mjs'])assert.ok(sw.includes("'"+asset+"'"),'PWA file missing '+asset);
 assert.ok(sw.includes("sgbuddy-offline-packs-v480")&&sw.includes("c.addAll([...new Set(SHELL)])"),'offline safety regression');
-assert.ok(boot.includes("='4.17.0'"),'release badge must match version 4.17.0');
+assert.ok(boot.includes("='4.18.0'"),'release badge must match version 4.18.0');
 const workflow=readFileSync('.github/workflows/check-v412.yml','utf8');
 assert.ok(workflow.includes('scripts/browser-qa-v412.mjs'));
 console.log('V4.12 STATIC PASS: 27 scoped authored Home messages × 12 locales; original source readings protected.');

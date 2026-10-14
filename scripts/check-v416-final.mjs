@@ -15,7 +15,7 @@ for(const {code} of LOCALES){
  for(const key of OFFLINE_V416_KEYS)assert.ok(offline416Text(code,key,{count:1}).length>1,code+' '+key);
 }
 assert.ok(read('index.html').includes('v4.18.0'));
-assert.ok(read('app-v090.js').includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'"));
+assert.ok(read('app-v090.js').includes("__SGBUDDY_CLIENT_VERSION__='4.18.0'"));
 assert.ok(shell.includes("const CACHE = 'sgbuddy-shell-v83'"));
 assert.ok(!shell.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 assert.ok(!shell.includes("key.startsWith('sgbuddy-offline-txn-')"));

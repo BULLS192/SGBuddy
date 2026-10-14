@@ -23,7 +23,7 @@ assert.ok(app.includes('new MutationObserver(schedule)'),'Dynamic UI changes mus
 assert.ok(app.includes('doc.documentElement.lang=locale'),'HTML lang attribute must update');
 assert.ok(!app.includes("['#navMoney'"),'Do not recreate the Saved/Money navigation regression');
 assert.ok(app.includes("['#fxConvert','convert']")&&app.includes("['#planTrip','planWith']"),'Core controls not translated');
-assert.ok(boot.includes("import('/app-i18n-v290.js')")&&boot.includes("4.17.0"),'V2.9 module not loaded');
+assert.ok(boot.includes("import('/app-i18n-v290.js')")&&boot.includes("4.18.0"),'V2.9 module not loaded');
 assert.ok(html.includes('v4.18.0'));
 for(const asset of ['/app-i18n-v290.js','/lib/i18n-interface-v290.mjs'])assert.ok(sw.includes(asset),'Offline localization asset missing '+asset);
 assert.ok(sw.includes('sgbuddy-shell-v83'),'Installed PWA must refresh');

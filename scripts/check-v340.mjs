@@ -28,5 +28,5 @@ const sw=source('sw.js');
 assert.ok(sw.includes('sgbuddy-shell-v83'));
 for(const file of ['/lib/i18n-dynamic-v340.mjs','/app-i18n-dynamic-v340.js'])assert.ok(sw.includes(file),'Missing PWA translation asset '+file);
 assert.ok(app.includes("import('/app-i18n-dynamic-v340.js')"));
-assert.ok(source('index.html').includes('v4.18.0')&&app.includes("='4.17.0'"));
+assert.ok(source('index.html').includes('v4.18.0')&&app.includes("='4.18.0'"));
 console.log('V3.4 PASS: 28 authored runtime keys in all 12 locales, interpolated source identifiers, safe provider output and offline assets.');

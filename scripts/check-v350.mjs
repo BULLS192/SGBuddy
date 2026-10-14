@@ -23,7 +23,7 @@ for(const marker of ['AUDIT_SURFACES','WeakMap','MutationObserver','sgbuddy:lang
 assert.ok(!bridge.includes('document.body.innerHTML'),'Never sweep provider/user-owned DOM');
 assert.ok(f('app-v090.js').includes("import('/app-i18n-audit-v350.js')"));
 assert.ok(f('index.html').includes('v4.18.0'));
-assert.ok(f('app-v090.js').includes("='4.17.0'"));
+assert.ok(f('app-v090.js').includes("='4.18.0'"));
 const sw=f('sw.js');
 assert.ok(sw.includes('sgbuddy-shell-v83'),'PWA cache must advance to v64');
 for(const path of ['/lib/i18n-audit-v350.mjs','/app-i18n-audit-v350.js'])assert.ok(sw.includes(path),'Missing offline authored text asset '+path);

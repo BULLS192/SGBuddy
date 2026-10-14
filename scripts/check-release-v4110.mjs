@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const read=x=>readFileSync(x,'utf8');
 const boot=read('app-v090.js'),html=read('index.html'),sw=read('sw.js');
-assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'"),'release bootstrap version');
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.18.0'"),'release bootstrap version');
 assert.ok(boot.includes("textContent='v4.18.0'"),'visible version');
 assert.ok(html.includes('v4.18.0'),'html version');
 assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v83'"),'service-worker cache');
