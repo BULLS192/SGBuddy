@@ -1,3 +1,19 @@
+# V4.17 real-world device reliability — development Wave 1
+
+**Production currently:** V4.16.0 at `fa051761b97172cde7af06e81e009c95e32f945e`, Vercel `dpl_Az7fv2hyxdknaUieo1HN25NmGLAk`. **V4.17 is development-only.**
+
+- [ ] New static tests and Chromium mobile/desktop tests pass on exact PR commit.
+- [ ] 12-locale device health check accessible and responsive; no diagnostic fetch/personal-trip reads.
+- [ ] HEAD/GET cancellation on poor networks; no unintended downloads; existing rollback protection.
+- [ ] Physical iPhone installed-PWA acceptance (model, Safari/iOS version, offline force-quit/reopen, low storage).
+- [ ] Physical Android installed-PWA acceptance (model, Chrome/Android version, offline force-quit/reopen, low storage).
+- [ ] Translation native-speaker spot checks and events editorial/publication gating review.
+- [ ] Release candidate only after all relevant acceptance. No merge/deploy without separate authorization.
+
+Full device runbook: `docs/v417-device-qa.md`.
+
+---
+
 # SGBuddy V4.16.0 offline update release acceptance
 
 **Production baseline:** V4.15.0. **Development:** PR #73. No V4.16 production deployment permitted until separately authorized.

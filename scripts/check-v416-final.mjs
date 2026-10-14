@@ -24,7 +24,7 @@ for(const path of ['/lib/offline-freshness-v416.mjs','/lib/offline-freshness-i18
 for(const label of ['data-offline-check-changes','data-offline-apply-changes','refreshDownloadedPacks','navigator.storage.persist','planSelectiveOfflineUpdate','filesToUpdate:plan.files'])
  assert.ok(app.includes(label),'missing explicit V4.16 UX '+label);
 assert.ok(app.includes("method:'HEAD'")&&app.includes("redirect:'error'"),'Probe must not download bodies or redirect');
-assert.ok(app.includes("fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})"));
+assert.ok(app.includes("fetchFile:file=>fetchOfflineWithTimeout(file,{cache:'no-store',credentials:'same-origin'})"),'Cancelable offline downloads must keep same-origin and no-store policies');
 assert.ok(app.includes('if(!checked?.present)continue'),'No opt-in to new downloads');
 assert.ok(app.includes('if(!info.present)continue'),'Full refresh must preserve opt-in');
 assert.ok(app.includes('await lock(pack.id,async()=>{'),'Selectively update under per-pack Web Lock');
