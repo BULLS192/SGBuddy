@@ -1,0 +1,23 @@
+name: SGBuddy V4.16 Offline Freshness Wave 1
+on:
+  pull_request:
+    paths:
+      - 'app-offline-v480.js'
+      - 'lib/offline-freshness-v416.mjs'
+      - 'lib/offline-freshness-i18n-v416.mjs'
+      - 'scripts/check-v416-freshness.mjs'
+      - 'sw.js'
+      - '.github/workflows/check-v416-freshness.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-v416-freshness.mjs
+      - run: node scripts/check-v415-final.mjs
