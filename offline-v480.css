@@ -11,3 +11,6 @@
 .offline-manager-actions{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
 .offline-manager-actions button{padding:9px 12px;min-height:40px;border-radius:10px;border:1px solid rgba(117,165,208,.45);background:rgba(40,113,170,.16);color:inherit;font:inherit;cursor:pointer}
 .offline-manager-actions button:disabled{opacity:.45;cursor:default}
+
+/* V4.17: diagnostics are intentionally low emphasis and fully responsive. */
+.offline-device-diagnostics{font-size:.78rem;line-height:1.55;overflow-wrap:anywhere;border:1px solid rgba(143,173,211,.28);border-radius:10px;padding:10px 12px;margin:10px 0}

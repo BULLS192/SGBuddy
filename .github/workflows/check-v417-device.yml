@@ -1,0 +1,53 @@
+name: SGBuddy V4.17 Device Reliability & Editorial QA
+on:
+  pull_request:
+    paths:
+      - 'app-offline-v480.js'
+      - 'lib/offline-device-v417.mjs'
+      - 'lib/offline-device-i18n-v417.mjs'
+      - 'lib/offline-network-v417.mjs'
+      - 'offline-v480.css'
+      - 'sw.js'
+      - 'scripts/check-v417-device.mjs'
+      - 'scripts/browser-qa-v417-device.mjs'
+      - 'scripts/browser-qa-v417-multitab.mjs'
+      - 'scripts/check-v417-editorial.mjs'
+      - 'scripts/check-v417-release.mjs'
+      - 'docs/release-v417-rc.md'
+      - 'lib/offline-tab-lock-v417.mjs'
+      - '.github/workflows/check-v417-device.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  device-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-v417-device.mjs
+      - run: node scripts/check-v417-editorial.mjs
+      - run: node scripts/check-v417-release.mjs
+      - run: node scripts/check-v416-final.mjs
+      - run: node scripts/check-v416-selective.mjs
+  device-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v417.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v417.log
+          exit 1
+      - run: node scripts/browser-qa-v417-device.mjs
+      - run: node scripts/browser-qa-v417-multitab.mjs

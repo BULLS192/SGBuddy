@@ -7,6 +7,10 @@ import {durableOfflineUpdate,recoverInterruptedPack} from './lib/offline-transac
 import {offline415Text} from './lib/offline-resilience-i18n-v415.mjs';
 import {checkDownloadedPublicPacks,planSelectiveOfflineUpdate} from './lib/offline-freshness-v416.mjs';
 import {offline416Text} from './lib/offline-freshness-i18n-v416.mjs';
+import {inspectOfflineDevice} from './lib/offline-device-v417.mjs';
+import {offlineDeviceText} from './lib/offline-device-i18n-v417.mjs';
+import {fetchOfflineWithTimeout} from './lib/offline-network-v417.mjs';
+import {canLockOfflinePacks,withOfflinePackLock} from './lib/offline-tab-lock-v417.mjs';
 (()=>{
 'use strict';
 const core=window.SGBUDDY_CORE,home=document.querySelector('.v1-view[data-view="today"]'),account=document.querySelector('.v1-view[data-view="account"]');
@@ -16,14 +20,16 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const t=k=>offlineText(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),k);
 const tx=(k,args)=>offline415Text(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),k,args);
 const v416=(key,args)=>offline416Text(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),key,args);
+const v417=(key,args)=>offlineDeviceText(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),key,args);
 const dates=()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}};
-let last=dates(),busy=null,status='',freshnessCheck=null;
+let last=dates(),busy=null,status='',freshnessCheck=null,deviceCheck=null;
 const online=()=>navigator.onLine;
-const lock=(id,callback)=>navigator.locks?.request?navigator.locks.request('sgbuddy-offline-'+id,callback):callback();
+const canLock=()=>canLockOfflinePacks(navigator.locks);
+const lock=(id,callback)=>withOfflinePackLock(id,callback,navigator.locks);
 // Match the download/remove lock when recovering at boot. Otherwise a second
 // tab could roll back the first tab's still-active transaction.
 const recovery=(async()=>{
- if(!('caches' in window))return [];
+ if(!('caches' in window)||!canLock())return [];
  try{
   const rows=[];
   for(const pack of OFFLINE_PACKS){
@@ -42,8 +48,12 @@ async function present(){
  let hasCache='caches' in window,details=new Map();
  try{
   if(hasCache){
-   const cache=await caches.open(OFFLINE_CACHE);
-   for(const p of OFFLINE_PACKS)details.set(p.id,await inspectOfflinePack(cache,p,last[p.id]));
+   // Reading the panel must not create an empty user-download cache.
+   const existing=await caches.keys();
+   if(existing.includes(OFFLINE_CACHE)){
+    const cache=await caches.open(OFFLINE_CACHE);
+    for(const p of OFFLINE_PACKS)details.set(p.id,await inspectOfflinePack(cache,p,last[p.id]));
+   }
   }
  }catch{hasCache=false;details=new Map();}
  const scanRows=freshnessCheck?[...freshnessCheck.values()]:[];
@@ -53,15 +63,21 @@ async function present(){
   [scanTotals.changed?v416('changed',{count:scanTotals.changed}):'',
    scanTotals.same?v416('same',{count:scanTotals.same}):'',
    scanTotals.unknown?v416('unknown',{count:scanTotals.unknown}):''].filter(Boolean).join(' · ')):'';
+ const diagnostics=deviceCheck?[deviceCheck.level==='unavailable'?v417('unavailable'):
+ deviceCheck.level==='attention'?v417('attention'):deviceCheck.level==='ready'?
+ v417('ready',{count:deviceCheck.ready,total:deviceCheck.total}):v417('none'),
+ deviceCheck.supported&&!deviceCheck.controlled?v417('uncontrolled'):'',
+ deviceCheck.supported&&!deviceCheck.shellCached?v417('shellMissing'):'',
+ deviceCheck.storage?.low?v417('storagePressure'):'',v417('privacy')].filter(Boolean).join(' · '):'';
  const storage=await estimateOfflineStorage(navigator.storage),mb=n=>(n/1048576).toFixed(1)+' MB';
- const connected=online();
+ const connected=online(),writesSupported=canLock();
  const buttons=OFFLINE_PACKS.map(p=>{
   const info=details.get(p.id)||{valid:0,total:p.files.length,complete:false,damaged:false,partial:false,freshness:'unknown'};
   const when=info.complete&&last[p.id]?new Date(last[p.id]).toLocaleString(normalizeLocale(window.SGBUDDY_LANGUAGE||'en')):'';
   const warning=info.damaged?tx('damaged'):info.partial?tx('incomplete'):info.complete&&info.freshness!=='recent'?tx('stale'):'';
   const scan=freshnessCheck?.get(p.id);
   const scanText=scan?.present?[scan.changed?v416('changed',{count:scan.changed}):'',scan.same?v416('same',{count:scan.same}):'',scan.unknown?v416('unknown',{count:scan.unknown}):''].filter(Boolean).join(' · '):'';
-  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+(scanText?'<small class="offline-integrity">'+esc(scanText)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache||!connected?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
+  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+(scanText?'<small class="offline-integrity">'+esc(scanText)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache||!connected||!writesSupported?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy||!writesSupported?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
  }).join('');
  const readyCount=[...details.values()].filter(x=>x.complete).length;
  homeTile.innerHTML='<div><strong>'+esc(t('heading'))+'</strong><small>'+esc(connected?t('online'):t('offlineWarning'))+'</small></div><button type="button" id="offlineHomeOpen">'+esc(t('choose'))+'</button>';
@@ -70,9 +86,21 @@ async function present(){
  '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):scanSummary||t('local')))+'</div>'+
  (storage.supported?'<div class="offline-storage">'+esc(usage)+(storage.low?' · '+esc(tx('lowStorage')):'')+'</div>':'')+
  '<div class="offline-readiness"><strong>'+esc(tx('offlineSummary'))+'</strong><small>'+esc(tx('readyCount',{count:readyCount,total:OFFLINE_PACKS.length}))+'</small><small>'+esc(t('disclaimer'))+'</small></div>'+
- '<div class="offline-manager-actions"><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-apply-changes '+(busy||!connected||!hasCache||!freshnessCheck||!scanRows.some(row=>row.changed||row.unknown||(row.present&&!details.get(row.id)?.complete))?'disabled':'')+'>'+esc(busy==='applying'?v416('applying'):v416('apply'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
+ (!writesSupported?'<p class="offline-integrity" role="status">'+esc(v417('lockUnavailable'))+'</p>':'')+
+ (deviceCheck?'<div class="offline-device-diagnostics" role="status">'+esc(diagnostics)+'</div>':'')+
+ '<div class="offline-manager-actions"><button type="button" data-offline-device-check '+(busy?'disabled':'')+'>'+esc(busy==='device'?v417('checking'):v417('check'))+'</button><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-apply-changes '+(busy||!connected||!hasCache||!writesSupported||!freshnessCheck||!scanRows.some(row=>row.changed||row.unknown||(row.present&&!details.get(row.id)?.complete))?'disabled':'')+'>'+esc(busy==='applying'?v416('applying'):v416('apply'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||!writesSupported||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
  (typeof navigator.storage?.persist==='function'?'<button type="button" data-offline-persist>'+esc(tx('persistence'))+'</button>':'')+'</div>'+
  '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(v416('note'))+' '+esc(v416('sourceHint'))+' '+esc(t('freshness'))+'</p>';
+}
+async function checkDevice(){
+ if(busy)return;
+ await recovery;busy='device';await present();
+ try{deviceCheck=await inspectOfflineDevice({
+  cacheStorage:caches,storage:navigator.storage,serviceWorker:navigator.serviceWorker,
+  dates:last
+ });}
+ catch{deviceCheck={supported:false,level:'unavailable'};}
+ busy=null;await present();
 }
 async function checkForChanges(){
  if(busy||!online()||!('caches' in window))return;
@@ -82,7 +110,7 @@ async function checkForChanges(){
   const cache=await caches.open(OFFLINE_CACHE);
   const rows=await checkDownloadedPublicPacks(cache,OFFLINE_PACKS,{
    origin:location.origin,
-   probe:file=>fetch(file,{method:'HEAD',cache:'no-store',credentials:'same-origin',redirect:'error'})
+   probe:file=>fetchOfflineWithTimeout(file,{method:'HEAD',cache:'no-store',credentials:'same-origin',redirect:'error'})
   });
   freshnessCheck=new Map(rows.map(row=>[row.id,row]));
   status=''; // Derived from scan rows during render so language changes retranslate it.
@@ -107,7 +135,7 @@ async function applyCheckedChanges(){
      const result=await durableOfflineUpdate(caches,pack,{
       filesToUpdate:plan.files,
       validateFile:file=>validateOfflineRequest(file,location.origin),
-      fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
+      fetchFile:file=>fetchOfflineWithTimeout(file,{cache:'no-store',credentials:'same-origin'})
      });
      // The full-pack download timestamp is intentionally not reset by a subset
      // refresh. This avoids falsely claiming every unchanged file is new.
@@ -120,7 +148,7 @@ async function applyCheckedChanges(){
     updated+=count;
    }catch{errors++}
   }
-  freshnessCheck=null;
+  freshnessCheck=null;deviceCheck=null;
   status=errors?v416('applyFailed'):updated?v416('applied',{count:updated}):v416('applyNone');
  }catch{status=v416('applyFailed')}
  busy=null;await present();
@@ -132,9 +160,9 @@ async function downloadPack(id){
  try{
   await lock(id,()=>durableOfflineUpdate(caches,pack,{
    validateFile:file=>validateOfflineRequest(file,location.origin),
-   fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
+   fetchFile:file=>fetchOfflineWithTimeout(file,{cache:'no-store',credentials:'same-origin'})
   }));
-  freshnessCheck=null;
+  freshnessCheck=null;deviceCheck=null;
   last={...last,[id]:new Date().toISOString()};
   try{localStorage.setItem(key,JSON.stringify(last))}catch{}
   status=t('ready');
@@ -155,9 +183,9 @@ async function refreshDownloadedPacks(){
   try{
    await lock(pack.id,()=>durableOfflineUpdate(caches,pack,{
     validateFile:file=>validateOfflineRequest(file,location.origin),
-    fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
+    fetchFile:file=>fetchOfflineWithTimeout(file,{cache:'no-store',credentials:'same-origin'})
    }));
-   freshnessCheck=null;
+   freshnessCheck=null;deviceCheck=null;
    last={...last,[pack.id]:new Date().toISOString()};
    try{localStorage.setItem(key,JSON.stringify(last))}catch{}
    count++;
@@ -184,7 +212,7 @@ async function removePack(id){
    const cache=await caches.open(OFFLINE_CACHE);
    for(const file of p.files)await cache.delete(file);
   });
-  freshnessCheck=null;
+  freshnessCheck=null;deviceCheck=null;
   const copy={...last};delete copy[id];last=copy;
   try{localStorage.setItem(key,JSON.stringify(last))}catch{}
   status=t('missing');
@@ -193,6 +221,7 @@ async function removePack(id){
 }
 panel.addEventListener('click',event=>{
  const d=event.target.closest('[data-offline-download]'),r=event.target.closest('[data-offline-remove]');
+ if(event.target.closest('[data-offline-device-check]')){checkDevice();return}
  if(event.target.closest('[data-offline-check-changes]')){checkForChanges();return}
  if(event.target.closest('[data-offline-apply-changes]')){applyCheckedChanges();return}
  if(event.target.closest('[data-offline-refresh-all]')){refreshDownloadedPacks();return}
@@ -206,9 +235,14 @@ homeTile.addEventListener('click',event=>{
  requestAnimationFrame(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}));
 });
 document.addEventListener('sgbuddy:language',present);
+// Cross-tab download/removal updates the public pack status, never starts a fetch.
+window.addEventListener('storage',event=>{
+ if(event.key!==key)return;
+ last=dates();freshnessCheck=null;deviceCheck=null;present();
+});
 window.addEventListener('online',()=>{status=tx('reconnected');present()});
 window.addEventListener('offline',()=>{status='';present()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)present()});
 present();
-window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.16',freshnessPreview:'4.16-release-candidate'};
+window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.17',freshnessPreview:'4.17-release-candidate'};
 })();

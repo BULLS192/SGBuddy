@@ -14,7 +14,7 @@ const check=async viewport=>{
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.16.0'&&!!window.SGBUDDY_PRIORITY_V440,{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.17.0'&&!!window.SGBUDDY_PRIORITY_V440,{timeout:35000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
   await page.locator('#discoverTab-eat').click();
   await page.locator('[data-food-view="stalls"]').click();
