@@ -43,7 +43,7 @@ assert.ok(nav.includes("tab==='travel'"),'Legacy Discover list must hide when Tr
 assert.ok(boot.includes("import('/app-travel-v250.js')")&&/(?:2\.(5|6|7|8|9)|3\.(0|1|2|3|4|5|6|7|8|9|10|11|12)|4\.[0-9]+)\.[0-9]+/.test(boot),'Travel module not loaded');
 assert.ok(html.includes('travel-v250.css')&&/v(?:2\.(5|6|7|8|9)|3\.(0|1|2|3|4|5|6|7|8|9|10|11|12)|4\.[0-9]+)\.[0-9]+/.test(html),'CSS or version missing');
 for(const asset of ['/app-travel-v250.js','/travel-v250.css','/data/travel-essentials-v250.json'])assert.ok(sw.includes(asset),'PWA cache missing '+asset);
-assert.ok(/sgbuddy-shell-v(5[2-9]|6[0-9]|7[0-9])/.test(sw),'PWA cache must refresh');
+assert.ok(/sgbuddy-shell-v([5-9][0-9])/.test(sw),'PWA cache must refresh');
 for(const sel of ['[hidden]','data-ux-theme="light"','focus-visible','max-width:480px'])assert.ok(css.includes(sel),'Missing visual/accessible state '+sel);
 execFileSync(process.execPath,['--check','app-travel-v250.js'],{stdio:'inherit'});
 console.log('SGBuddy V2.5 Travel Essentials PASS: 6 source-linked services, 7 bilingual guides, 5 bilingual checklist steps, language picker, navigation and PWA coverage.');

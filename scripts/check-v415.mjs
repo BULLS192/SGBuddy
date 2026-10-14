@@ -58,5 +58,5 @@ assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v80'"),'Production cache key
 assert.ok(sw.includes('/lib/offline-resilience-v415.mjs')&&sw.includes('/lib/offline-resilience-i18n-v415.mjs'));
 assert.ok(sw.includes('sgbuddy-offline-packs-v480')&&!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 const ui=readFileSync('app-offline-v480.js','utf8');
-for(const needle of ['inspectOfflinePack','estimateOfflineStorage','updateOfflinePack','offline415Text'])assert.ok(ui.includes(needle));
+for(const needle of ['inspectOfflinePack','estimateOfflineStorage','durableOfflineUpdate','offline415Text'])assert.ok(ui.includes(needle));
 console.log('V4.15 STATIC PASS: verified JSON and corruption repair, failed-update rollback, quota, freshness, storage, 12 languages, 13 allowed assets.');
