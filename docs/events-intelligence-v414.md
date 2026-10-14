@@ -38,3 +38,11 @@ The user-facing Events panel now offers **region** filtering based solely on the
 Each **published** event has an explicit **Add to My Trip** action. Existing trips receive the event on a day that intersects its official event date range. If no day overlaps, the app creates a separate single-day trip starting on the next valid event day; it never silently inserts an event on an unrelated date. Duplicate/full days and the 8-trip ceiling return errors. Changes remain device-local, and storage failures roll back additions. Trip stops show a direct official source link and retain no promise of ticket availability, bookings or confirmed access.
 
 New `lib/events-explore-v414.mjs`, `lib/events-explore-i18n-v414.mjs`, and Wave 4 static/browser QA prove area/category scope, time-window alignment, duplicate prevention, all 12 locale labels, link origin and offline-safe device storage. Only reviewed `data/events-v470.json` is visible: the 61 review candidates are **not** published. No new ticketing, payment, map-distance or paid-source integrations.
+
+## V4.14.0 release candidate closure
+
+Wave 1 (official event-title provenance), Wave 2 (duplicate safeguards and curated weekend picks), Wave 3 (read-only editorial worklists, evidence and manual approval gates), and Wave 4 (12-locale area/category filters and event-date-aware My Trip) are now implemented in one release branch.
+
+The release-candidate version badge and bootstrap are **V4.14.0** and the service-worker shell is rotated to **sgbuddy-shell-v79**. User-downloaded content remains in independent `sgbuddy-offline-packs-v480`. This is a **staged branch only**, not a production deployment. Verify `node scripts/check-release-v414.mjs`, full CI at the exact release head, and real installed-PWA iOS/Android smoke tests before production promotion. A real V4.14 deployment is still a separate authorized step.
+
+The 61 unapproved discovery candidates and the 11 published curated events remain unchanged; no provider-specific event admission or copyright rights are inferred. Do not claim that the 95%+ whole-app multilingual coverage target, native-speaker review, or real-device acceptance is certified by automated Chromium testing.

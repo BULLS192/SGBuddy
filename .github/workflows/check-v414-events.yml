@@ -14,6 +14,9 @@ on:
       - 'lib/events-explore-i18n-v414.mjs'
       - 'app-trip-v260.js'
       - 'scripts/check-events-v414-wave4.mjs'
+      - 'scripts/check-release-v414.mjs'
+      - 'index.html'
+      - 'app-v090.js'
       - 'scripts/browser-qa-events-v414-wave4.mjs'
       - 'lib/events-editor-v414.mjs'
       - 'lib/events-approval-guard-v414.mjs'
@@ -45,6 +48,7 @@ jobs:
           node scripts/check-events-v414-wave2.mjs
           node scripts/check-events-v414-wave3.mjs
           node scripts/check-events-v414-wave4.mjs
+          node scripts/check-release-v414.mjs
           node scripts/event-editor-worklist-v414.mjs --check
           node scripts/event-editor-worklist-v414.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
           node scripts/check-event-review-v413.mjs
