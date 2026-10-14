@@ -18,7 +18,7 @@ async function equals(selector,expected){
 }
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.14.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.15.0',{timeout:30000});
  await page.waitForFunction(()=>Boolean(window.SGBUDDY_SYSTEM_I18N),{timeout:14000});
  await page.waitForFunction(()=>!!document.querySelector('#v110CompareCard'),{timeout:14000});
  for(const {code} of LOCALES){
@@ -62,7 +62,7 @@ try{
  assert.equal(await page.locator('#v110CompareResults .empty-inline').textContent(),'Provider error: check the fare directly with the operator.');
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.14.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.15.0',{timeout:30000});
  await page.waitForFunction(()=>Boolean(window.SGBUDDY_SYSTEM_I18N),{timeout:14000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Locale must persist across reloads');
  await equals('#accountSheetTitle',systemText('pt-BR','accountTitle'));

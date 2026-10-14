@@ -1,0 +1,40 @@
+/* V4.15 full Offline 2.0 release invariants. */
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {LOCALES} from '../lib/i18n-v280.mjs';
+import {OFFLINE_CACHE,OFFLINE_PACKS} from '../lib/offline-packs-v480.mjs';
+import {OFFLINE_V415_FLOW,OFFLINE_V415_FLOW_KEYS,offline415Text} from '../lib/offline-resilience-i18n-v415.mjs';
+import {TXN_PREFIX,TXN_MARKER} from '../lib/offline-transaction-v415.mjs';
+const read=x=>readFileSync(x,'utf8');
+assert.equal(OFFLINE_PACKS.length,3);
+assert.equal(OFFLINE_PACKS.flatMap(p=>p.files).length,13);
+assert.equal(OFFLINE_CACHE,'sgbuddy-offline-packs-v480');
+assert.equal(LOCALES.length,12);
+assert.equal(OFFLINE_V415_FLOW_KEYS.length,13);
+for(const {code} of LOCALES){
+ assert.equal(Object.keys(OFFLINE_V415_FLOW[code]||{}).length,OFFLINE_V415_FLOW_KEYS.length,code+' Offline status keys');
+ for(const k of OFFLINE_V415_FLOW_KEYS)assert.ok(offline415Text(code,k,{count:2,total:3}).length>5,code+' '+k);
+}
+const transaction=read('lib/offline-transaction-v415.mjs'),app=read('app-offline-v480.js'),sw=read('sw.js');
+for(const fragment of ['recoverInterruptedPack','durableOfflineUpdate','TXN_MARKER','journal.put','journal.delete','usableOfflineJson'])assert.ok(transaction.includes(fragment),'Journal safeguard '+fragment);
+for(const fragment of ['durableOfflineUpdate','recoverInterruptedPack','refreshDownloadedPacks','requestPersistence','navigator.storage.persist','visibilitychange','sgbuddy:language'])assert.ok(app.includes(fragment),'Offline UI missing '+fragment);
+assert.ok(app.includes("window.addEventListener('online',()=>{status=tx('reconnected');present()})"),'Reconnect must update UI only, not auto-fetch');
+assert.ok(app.includes('if(!info.present)continue'),'Bulk refresh must not opt into new packs');
+assert.ok(app.includes('await lock(pack.id,()=>recoverInterruptedPack(caches,pack))'),'Concurrent-tab recovery must share per-pack Web Locks');
+assert.ok(app.includes('await lock(id,async()=>{'),'Remove must share per-pack Web Locks');
+assert.ok(read('.github/workflows/check-v415-offline.yml').includes('browser-qa-v415-worker-upgrade.mjs'),'SW upgrade integration test missing');
+assert.ok(read('docs/release-v415-rc.md').includes('sgbuddy-offline-packs-v480'),'Explicit Offline 2.0 release contract missing');
+assert.ok(!app.includes('localStorage.clear(')&&!app.includes('caches.delete(OFFLINE_CACHE)'),'Personal data must survive');
+assert.ok(transaction.includes("const valid=before&&await usableOfflineJson(before)"),'Never journal invalid JSON as valid backup');
+assert.ok(sw.includes('valid')||sw.includes("const data=await stored.clone().json()"),'SW must verify damaged offline data fallback');
+assert.ok(sw.includes('/lib/offline-transaction-v415.mjs'),'PWA must include transaction module');
+assert.ok(!sw.includes("key.startsWith('sgbuddy-offline-txn-')"),'Shell activation must never clear in-progress transactions');
+assert.ok(!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
+assert.ok(TXN_PREFIX.startsWith('sgbuddy-offline-txn-')&&TXN_MARKER.startsWith('/__sgbuddy_offline_txn_'));
+assert.ok(read('scripts/check-all.mjs').includes("scripts/check-v415-final.mjs"));
+assert.ok(read('.github/workflows/check-v415-offline.yml').includes('browser-qa-v415-complete.mjs'));
+const version=read('app-v090.js'),html=read('index.html');
+assert.ok(version.includes("__SGBUDDY_CLIENT_VERSION__='4.15.0'"),'V4.15 runtime release version');
+assert.ok(html.includes('v4.15.0'),'V4.15 HTML badge');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v80'"),'Rotate shell cache only for release V4.15');
+console.log('V4.15 FULL RELEASE STATIC PASS: 12 locales, 3 public packs/13 assets, persisted recovery, user-triggered refresh, v80 shell and v4.15.0 release.');
