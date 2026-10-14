@@ -22,8 +22,8 @@ for(const {code} of LOCALES){
 const main=readFileSync('app-v090.js','utf8'),ux=readFileSync('app-ux-v170.js','utf8'),script=readFileSync('app-i18n-home-v311.js','utf8'),sw=readFileSync('sw.js','utf8');
 assert.ok(main.includes("import('/app-i18n-home-v311.js')"));
 assert.ok(main.includes("='4.17.0'"));
-assert.ok(readFileSync('index.html','utf8').includes('v4.17.0'));
-assert.ok(sw.includes('sgbuddy-shell-v82'));
+assert.ok(readFileSync('index.html','utf8').includes('v4.18.0'));
+assert.ok(sw.includes('sgbuddy-shell-v83'));
 for(const f of ['/lib/i18n-home-v311.mjs','/lib/i18n-weather-home-v311.mjs','/app-i18n-home-v311.js'])assert.ok(sw.includes(f),f);
 assert.ok(ux.includes("document.addEventListener('sgbuddy:language',()=>queueMicrotask(renderPersona))"));
 assert.ok(ux.includes("window.SGBUDDY_HOME_LOCALE?.contextMode"));

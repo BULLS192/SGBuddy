@@ -24,6 +24,6 @@ for(const s of ['tripNamePlaceholder','tripSearchPlaceholder','defaultTripName']
 for(const s of ['/app-i18n-v312.js','/lib/i18n-v312.mjs'])assert.ok(sw.includes(s));
 assert.ok(app.includes("import('/app-i18n-v312.js')"));
 assert.ok(app.includes("='4.17.0'"));
-assert.ok(read('index.html').includes('v4.17.0'));
-assert.ok(sw.includes('sgbuddy-shell-v82'));
+assert.ok(read('index.html').includes('v4.18.0'));
+assert.ok(sw.includes('sgbuddy-shell-v83'));
 console.log('V3.12 PASS: 25 generated message keys x 12 locales, interpolation, Saved, recent destinations, journey summary, itinerary placeholders, offline bundle.');

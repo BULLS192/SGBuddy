@@ -28,7 +28,7 @@ assert.ok(!bridge.includes('document.body.innerHTML'),'Do not blindly translate 
 for(const key of ['accountTitle','accountIntro','accountVerificationNote','accountOfflineNote'])assert.ok(html.includes(SYSTEM_ENGLISH[key]),'Published account original unexpectedly changed '+key);
 for(const key of ['compareTitle','compareHeadline','compareDescription','comparePlaceholder'])assert.ok(compare.includes(SYSTEM_ENGLISH[key]),'Original compare UI text unexpectedly changed '+key);
 assert.ok(boot.includes("import('/app-i18n-system-v330.js')"),'V3.3 module not loaded');
-assert.ok(boot.includes("='4.17.0'")&&html.includes('v4.17.0'),'Release badge mismatch');
-assert.ok(sw.includes("sgbuddy-shell-v82"),'PWA cache must be updated');
+assert.ok(boot.includes("='4.17.0'")&&html.includes('v4.18.0'),'Release badge mismatch');
+assert.ok(sw.includes("sgbuddy-shell-v83"),'PWA cache must be updated');
 for(const path of ['/app-i18n-system-v330.js','/lib/i18n-system-v330.mjs'])assert.ok(sw.includes(path),'Offline V3.3 translation missing '+path);
 console.log('V3.3 PASS: 30 source-locked first-party messages in 12 languages; UI binding, source integrity, preserved API text and PWA cache v62.');

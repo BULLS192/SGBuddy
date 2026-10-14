@@ -29,7 +29,7 @@ async function test(width,height){
  page.on('pageerror',error=>errors.push(error.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.17.0'&&!!window.SGBUDDY_CLASSIFIED_I18N,{timeout:30000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.18.0'&&!!window.SGBUDDY_CLASSIFIED_I18N,{timeout:30000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    // Controlled reset of only registered first-party UI controls; source/provider

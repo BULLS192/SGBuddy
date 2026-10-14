@@ -5,9 +5,9 @@ import {LOCALES} from '../lib/i18n-v280.mjs';
 const read=path=>readFileSync(path,'utf8');
 const boot=read('app-v090.js'),html=read('index.html'),sw=read('sw.js');
 assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'"),'client release version');
-assert.ok(boot.includes("textContent='v4.17.0'"),'visible version');
-assert.ok(html.includes('id="appVersion"')&&html.includes('v4.17.0'),'HTML release version');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v82'"),'fresh service-worker cache');
+assert.ok(boot.includes("textContent='v4.18.0'"),'visible version');
+assert.ok(html.includes('id="appVersion"')&&html.includes('v4.18.0'),'HTML release version');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v83'"),'fresh service-worker cache');
 assert.ok(boot.includes("import('/app-i18n-remaining-v411.js')).then(()=>import('/app-i18n-home-surface-v412.js')"),'V4.11 + V4.12 boot order');
 for(const asset of ['/app-i18n-remaining-v411.js','/app-i18n-home-surface-v412.js','/lib/i18n-home-surface-v412.mjs','/app-offline-v480.js','/app-events-v470.js','/app-calendar-v460.js']){
  assert.ok(sw.includes("'"+asset+"'"),asset+' not precached');

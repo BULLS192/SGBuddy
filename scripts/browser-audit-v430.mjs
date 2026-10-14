@@ -122,7 +122,7 @@ async function runViewport(viewport){
  page.on('pageerror',e=>errors.push({viewport:viewportId,persona,message:e.message.slice(0,240)}));
  try{
   await page.goto(rootUrl,{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.17.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.18.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
   await page.locator('#sgbLanguage').selectOption('en');
   const baselines=new Map();
   for(const scene of scenarios){
