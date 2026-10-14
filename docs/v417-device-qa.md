@@ -29,3 +29,15 @@ Use non-sensitive sample trips and test only under your own profile. Never send 
 Wave 2: test interrupted/restarted updates across multiple browser tabs and correct defects.
 Wave 3: review multilingual mobile UI/UX and editorial/official-source accuracy with traceable evidence.
 Wave 4: consolidated regression gates, release candidate and real-device signoff. No V4.17 production release without separate authorization.
+
+## Wave 2 implementation notes (development)
+
+Per-pack operations now require a browser-managed **exclusive Web Lock**. If unavailable, all mutations fail closed and the application displays a localized warning; the read-only diagnostic remains usable. A storage-event listener refreshes public downloaded-pack status when another tab completes a download or removal. This does not automatically fetch remote content and leaves personal trip settings untouched.
+
+A two-tab Playwright integration test holds a Calendar lock in one tab while another attempts removal; the removal must not touch the pack until release. It then simulates a transaction journal plus corrupt partial write, reloads the other tab and verifies recovery preserves the exact original bytes and personal local settings. The test includes the unsupported-Web-Locks case.
+
+**Caution:** browser storage eviction, cross-version real installed PWA lifecycle and non-Web-Locks browsers still need physical acceptance. Atomic rollbacks cannot recover a browser-evicted journal, and the interface must never promise otherwise.
+
+## Wave 3 implementation notes (development)
+
+The static editorial gate verifies published event dates, HTTPS source URLs, ID uniqueness, and that pending candidate records are still marked `needs-review`. It does **not** approve any newly discovered event, verify live website availability, or supersede human source/admission/rights checks. All 12 device-control locale keys are covered by static and Chromium checks; native-speaker signoff remains outstanding.

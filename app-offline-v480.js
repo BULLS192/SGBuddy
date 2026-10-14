@@ -10,6 +10,7 @@ import {offline416Text} from './lib/offline-freshness-i18n-v416.mjs';
 import {inspectOfflineDevice} from './lib/offline-device-v417.mjs';
 import {offlineDeviceText} from './lib/offline-device-i18n-v417.mjs';
 import {fetchOfflineWithTimeout} from './lib/offline-network-v417.mjs';
+import {canLockOfflinePacks,withOfflinePackLock} from './lib/offline-tab-lock-v417.mjs';
 (()=>{
 'use strict';
 const core=window.SGBUDDY_CORE,home=document.querySelector('.v1-view[data-view="today"]'),account=document.querySelector('.v1-view[data-view="account"]');
@@ -23,11 +24,12 @@ const v417=(key,args)=>offlineDeviceText(normalizeLocale(window.SGBUDDY_LANGUAGE
 const dates=()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}};
 let last=dates(),busy=null,status='',freshnessCheck=null,deviceCheck=null;
 const online=()=>navigator.onLine;
-const lock=(id,callback)=>navigator.locks?.request?navigator.locks.request('sgbuddy-offline-'+id,callback):callback();
+const canLock=()=>canLockOfflinePacks(navigator.locks);
+const lock=(id,callback)=>withOfflinePackLock(id,callback,navigator.locks);
 // Match the download/remove lock when recovering at boot. Otherwise a second
 // tab could roll back the first tab's still-active transaction.
 const recovery=(async()=>{
- if(!('caches' in window))return [];
+ if(!('caches' in window)||!canLock())return [];
  try{
   const rows=[];
   for(const pack of OFFLINE_PACKS){
@@ -68,14 +70,14 @@ async function present(){
  deviceCheck.supported&&!deviceCheck.shellCached?v417('shellMissing'):'',
  deviceCheck.storage?.low?v417('storagePressure'):'',v417('privacy')].filter(Boolean).join(' · '):'';
  const storage=await estimateOfflineStorage(navigator.storage),mb=n=>(n/1048576).toFixed(1)+' MB';
- const connected=online();
+ const connected=online(),writesSupported=canLock();
  const buttons=OFFLINE_PACKS.map(p=>{
   const info=details.get(p.id)||{valid:0,total:p.files.length,complete:false,damaged:false,partial:false,freshness:'unknown'};
   const when=info.complete&&last[p.id]?new Date(last[p.id]).toLocaleString(normalizeLocale(window.SGBUDDY_LANGUAGE||'en')):'';
   const warning=info.damaged?tx('damaged'):info.partial?tx('incomplete'):info.complete&&info.freshness!=='recent'?tx('stale'):'';
   const scan=freshnessCheck?.get(p.id);
   const scanText=scan?.present?[scan.changed?v416('changed',{count:scan.changed}):'',scan.same?v416('same',{count:scan.same}):'',scan.unknown?v416('unknown',{count:scan.unknown}):''].filter(Boolean).join(' · '):'';
-  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+(scanText?'<small class="offline-integrity">'+esc(scanText)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache||!connected?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
+  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+(scanText?'<small class="offline-integrity">'+esc(scanText)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache||!connected||!writesSupported?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy||!writesSupported?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
  }).join('');
  const readyCount=[...details.values()].filter(x=>x.complete).length;
  homeTile.innerHTML='<div><strong>'+esc(t('heading'))+'</strong><small>'+esc(connected?t('online'):t('offlineWarning'))+'</small></div><button type="button" id="offlineHomeOpen">'+esc(t('choose'))+'</button>';
@@ -84,8 +86,9 @@ async function present(){
  '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):scanSummary||t('local')))+'</div>'+
  (storage.supported?'<div class="offline-storage">'+esc(usage)+(storage.low?' · '+esc(tx('lowStorage')):'')+'</div>':'')+
  '<div class="offline-readiness"><strong>'+esc(tx('offlineSummary'))+'</strong><small>'+esc(tx('readyCount',{count:readyCount,total:OFFLINE_PACKS.length}))+'</small><small>'+esc(t('disclaimer'))+'</small></div>'+
+ (!writesSupported?'<p class="offline-integrity" role="status">'+esc(v417('lockUnavailable'))+'</p>':'')+
  (deviceCheck?'<div class="offline-device-diagnostics" role="status">'+esc(diagnostics)+'</div>':'')+
- '<div class="offline-manager-actions"><button type="button" data-offline-device-check '+(busy?'disabled':'')+'>'+esc(busy==='device'?v417('checking'):v417('check'))+'</button><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-apply-changes '+(busy||!connected||!hasCache||!freshnessCheck||!scanRows.some(row=>row.changed||row.unknown||(row.present&&!details.get(row.id)?.complete))?'disabled':'')+'>'+esc(busy==='applying'?v416('applying'):v416('apply'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
+ '<div class="offline-manager-actions"><button type="button" data-offline-device-check '+(busy?'disabled':'')+'>'+esc(busy==='device'?v417('checking'):v417('check'))+'</button><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-apply-changes '+(busy||!connected||!hasCache||!writesSupported||!freshnessCheck||!scanRows.some(row=>row.changed||row.unknown||(row.present&&!details.get(row.id)?.complete))?'disabled':'')+'>'+esc(busy==='applying'?v416('applying'):v416('apply'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||!writesSupported||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
  (typeof navigator.storage?.persist==='function'?'<button type="button" data-offline-persist>'+esc(tx('persistence'))+'</button>':'')+'</div>'+
  '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(v416('note'))+' '+esc(v416('sourceHint'))+' '+esc(t('freshness'))+'</p>';
 }
@@ -232,6 +235,11 @@ homeTile.addEventListener('click',event=>{
  requestAnimationFrame(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}));
 });
 document.addEventListener('sgbuddy:language',present);
+// Cross-tab download/removal updates the public pack status, never starts a fetch.
+window.addEventListener('storage',event=>{
+ if(event.key!==key)return;
+ last=dates();freshnessCheck=null;deviceCheck=null;present();
+});
 window.addEventListener('online',()=>{status=tx('reconnected');present()});
 window.addEventListener('offline',()=>{status='';present()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)present()});
