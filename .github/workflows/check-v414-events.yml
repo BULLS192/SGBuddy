@@ -10,6 +10,11 @@ on:
       - 'scripts/browser-qa-events-v414.mjs'
       - 'lib/events-identity-v414.mjs'
       - 'lib/events-weekend-v414.mjs'
+      - 'lib/events-editor-v414.mjs'
+      - 'lib/events-approval-guard-v414.mjs'
+      - 'scripts/event-editor-worklist-v414.mjs'
+      - 'scripts/check-events-v414-wave3.mjs'
+      - 'scripts/publish-reviewed-events-v490.mjs'
       - 'app-events-v470.js'
       - 'events-v470.css'
       - 'sw.js'
@@ -33,6 +38,9 @@ jobs:
           node scripts/check-event-venues-v490.mjs
           node scripts/check-events-v414.mjs
           node scripts/check-events-v414-wave2.mjs
+          node scripts/check-events-v414-wave3.mjs
+          node scripts/event-editor-worklist-v414.mjs --check
+          node scripts/event-editor-worklist-v414.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
           node scripts/check-event-review-v413.mjs
           node scripts/event-review-summary-v413.mjs --check
 

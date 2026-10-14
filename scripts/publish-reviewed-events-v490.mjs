@@ -2,6 +2,7 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {singaporeDate} from '../lib/calendar-v460.mjs';
 import {compileEvents,validateEvent} from '../lib/events-v470.mjs';
+import {checkEditorApproval} from '../lib/events-approval-guard-v414.mjs';
 const json=path=>JSON.parse(readFileSync(path,'utf8'));
 const approvalPath='data/event-approvals-v490.json',intakePath='data/events-intake-v470.json',publishedPath='data/events-v470.json';
 const manifest=json(approvalPath),queue=json('data/events-review-queue-v470.json'),sources=json('data/event-sources-v470.json');
@@ -28,6 +29,8 @@ for(const approval of manifest.approvals||[]){
  const event={id:approval.eventId,title:row.title,startDate:row.startDate,endDate:row.endDate,venue:approval.venue||row.venue,sourceId:row.sourceId,category:approval.category,admission:approval.admission,summary:approval.summary,sourceUrl:row.sourceUrl,audiences:approval.audiences,status:'scheduled',verifiedAt:approval.reviewedAt,verificationMethod:'editor_approved_official_page'};
  if(!validateEvent(event,sourceIds)||event.endDate<today){issues.push('Invalid or expired approved event '+row.id);continue}
  if(!Array.isArray(event.audiences)||!event.audiences.length){issues.push('Missing audience list '+row.id);continue}
+ const verdict=checkEditorApproval({approval,row,event,published:intake.events,accepted,sources:sources.sources,day:today});
+ if(verdict.length){issues.push('Additional editorial checks '+row.id+': '+verdict.join(', '));continue}
  accepted.push(event);
 }
 if(issues.length){console.error('Rejected approvals: '+issues.join(' | '));process.exitCode=1}
