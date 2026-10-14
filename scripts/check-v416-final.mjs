@@ -14,9 +14,9 @@ for(const {code} of LOCALES){
  assert.equal(Object.keys(OFFLINE_V416[code]||{}).length,OFFLINE_V416_KEYS.length,code+' locale coverage');
  for(const key of OFFLINE_V416_KEYS)assert.ok(offline416Text(code,key,{count:1}).length>1,code+' '+key);
 }
-assert.ok(read('index.html').includes('v4.17.0'));
+assert.ok(read('index.html').includes('v4.18.0'));
 assert.ok(read('app-v090.js').includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'"));
-assert.ok(shell.includes("const CACHE = 'sgbuddy-shell-v82'"));
+assert.ok(shell.includes("const CACHE = 'sgbuddy-shell-v83'"));
 assert.ok(!shell.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 assert.ok(!shell.includes("key.startsWith('sgbuddy-offline-txn-')"));
 for(const path of ['/lib/offline-freshness-v416.mjs','/lib/offline-freshness-i18n-v416.mjs','/lib/offline-transaction-v415.mjs'])
@@ -35,4 +35,4 @@ for(const label of ['filesToUpdate','selected.length!==pack.files.length','for(c
 assert.ok(read('scripts/check-all.mjs').includes("scripts/check-v416-selective.mjs"));
 assert.ok(read('.github/workflows/check-v416-freshness.yml').includes('browser-qa-v416-complete.mjs'));
 assert.ok(read('docs/release-v416-rc.md').includes('sgbuddy-offline-packs-v480'));
-console.log('V4.16 RELEASE CONTRACT PASS: v4.17.0, shell v81, 13 public JSON files, 12 locales, selective crash-safe writes, manual-only changes.');
+console.log('V4.16 RELEASE CONTRACT PASS: v4.18.0, shell v81, 13 public JSON files, 12 locales, selective crash-safe writes, manual-only changes.');

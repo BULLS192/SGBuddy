@@ -1,3 +1,20 @@
+# V4.18 Events Discovery — Development release acceptance
+
+**Current production:** V4.17.0. **V4.18 status:** development only.
+
+- [ ] All exact-final-commit Node, browser, 12-locale and legacy CI tests pass.
+- [ ] Date windows use Singapore date, exclude expired and unapproved items; text search does not add new sources or fetches.
+- [ ] Editor health report compares published snapshots, pending queue and source registry without auto-approval.
+- [ ] New statuses avoid claiming live ticket availability. Existing local My Trip and saved events retain data.
+- [ ] Service-worker v83 upgrades preserve user opt-in packs, transaction journals and custom app settings.
+- [ ] Human reviews source accuracy/public access/republication permissions for events and verifies all 12 new translations.
+- [ ] Physical Safari iOS and Chrome Android installed-PWA offline restart tests signed off (not covered by Chromium).
+- [ ] Merge, deploy and promote only with separate explicit production approval.
+
+Read `docs/events-v418.md`.
+
+---
+
 # SGBuddy V4.17.0 release-candidate acceptance
 
 **Development PR:** #74 on `feature/sgbuddy-v4.17-device-reliability`. **Production remains V4.16.0** on `main`, deployment `dpl_Az7fv2hyxdknaUieo1HN25NmGLAk`. No V4.17 merge/deploy authorized.
