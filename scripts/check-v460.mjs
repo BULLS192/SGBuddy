@@ -34,6 +34,6 @@ for(const code of locales){
 for(const p of ['/app-calendar-v460.js','/lib/calendar-v460.mjs','/lib/calendar-i18n-v460.mjs','/data/holidays-2026-2027-v460.json','/data/event-sources-v470.json'])assert.ok(sw.includes(p),'offline shell missing '+p);
 assert.ok(html.includes('/calendar-v460.css'));
 assert.ok(app.includes("import('/app-calendar-v460.js')"),'calendar boot missing');
-assert.ok(app.includes("='4.12.0'"),'do not alter production version badge');
-assert.ok(sw.includes('sgbuddy-shell-v77'),'retain current production cache baseline');
+assert.ok(app.includes("='4.13.0'"),'do not alter production version badge');
+assert.ok(sw.includes('sgbuddy-shell-v78'),'retain current production cache baseline');
 console.log('V4.6 holiday/calendar/event-source static QA passed: '+items.length+' holidays, '+registry.sources.length+' candidate sources, '+locales.length+' locales.');

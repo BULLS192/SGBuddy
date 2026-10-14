@@ -22,7 +22,7 @@ async function check(viewport){
  page.on('pageerror',error=>errors.push(error.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.12.0'&&Boolean(window.SGBUDDY_FALLBACK_I18N),{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.13.0'&&Boolean(window.SGBUDDY_FALLBACK_I18N),{timeout:35000});
   for(const {code} of LOCALES){
    const select=page.locator('#sgbLanguage');
    await select.selectOption(code);
