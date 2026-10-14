@@ -30,6 +30,8 @@ try{
   await page.reload({waitUntil:'domcontentloaded',timeout:40000});
   await page.waitForFunction(()=>document.querySelector('[data-offline-pack="calendar"]')?.textContent?.includes('Damaged cache'),null,{timeout:60000});
   assert.equal(await page.locator('[data-offline-pack="calendar"] .offline-pack-info').innerText().then(x=>/Ready offline/.test(x)),false);
+  await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('account'));
+  await page.waitForSelector('#sgbuddyOffline .offline-pack',{state:'visible',timeout:12000});
   await page.locator('[data-offline-download="calendar"]').click();
   await page.waitForFunction(()=>document.querySelector('[data-offline-pack="calendar"]')?.textContent?.includes('Ready offline')&&!document.querySelector('[data-offline-pack="calendar"]')?.textContent?.includes('Damaged cache'),null,{timeout:45000});
   await page.evaluate(()=>{localStorage.setItem('sgbuddy-v480-offline-downloads',JSON.stringify({calendar:'2026-01-01T00:00:00Z'}));});
