@@ -1,0 +1,27 @@
+name: SGBuddy V4.14 Official Events Quality
+on:
+  pull_request:
+    paths:
+      - 'lib/events-public-html-v490.mjs'
+      - 'scripts/check-v414.mjs'
+      - 'scripts/check-event-venues-v490.mjs'
+      - 'scripts/check-all.mjs'
+      - '.github/workflows/check-v414.yml'
+      - 'data/events-review-queue-v470.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-event-titles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-v414.mjs
+      - run: node scripts/check-event-venues-v490.mjs
+      - run: node scripts/check-event-review-v413.mjs
+      - run: node scripts/event-review-summary-v413.mjs --check
+      - run: node scripts/publish-reviewed-events-v490.mjs

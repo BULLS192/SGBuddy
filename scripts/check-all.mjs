@@ -119,6 +119,7 @@ execFileSync(process.execPath,['scripts/check-v412.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v413.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v413-air.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-event-review-v413.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v414.mjs'],{stdio:'inherit'});
 for(const qa of ['scripts/browser-qa-v413-air.mjs','scripts/browser-qa-v413-outages.mjs'])run(qa);
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
