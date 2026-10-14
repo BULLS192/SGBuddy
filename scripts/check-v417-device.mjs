@@ -77,6 +77,6 @@ assert.ok(app.includes('withOfflinePackLock')&&app.includes("window.addEventList
 assert.ok(app.includes('fetchOfflineWithTimeout')&&app.includes("method:'HEAD'"));
 assert.ok(!app.includes('localStorage.clear(')&&!app.includes('caches.delete(OFFLINE_CACHE)'));
 for(const f of ['/lib/offline-device-v417.mjs','/lib/offline-device-i18n-v417.mjs','/lib/offline-network-v417.mjs','/lib/offline-tab-lock-v417.mjs'])assert.ok(sw.includes(f));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v81'"));
-assert.ok(readFileSync('index.html','utf8').includes('v4.17.0'),'No version bump or deployment in development wave');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v82'"));
+assert.ok(readFileSync('index.html','utf8').includes('v4.17.0'),'Release candidate version, development-only');
 console.log('V4.17 DEVICE PASS — local-only, explicit check, all 12 locales, no cache creation, read-only, cancelable requests, preserved production version.');
