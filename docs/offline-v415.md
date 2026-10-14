@@ -9,3 +9,21 @@ Production is V4.14.0. This branch improves CacheStorage integrity and recovery;
 - Retain all 3 opted-in packs, their `sgbuddy-offline-packs-v480` cache, and 12 locales. Add only first-party helper modules to the existing V4.14 PWA shell. Do not rotate the public version until an authorized V4.15 release.
 
 Automated static/browser checks exercise corrupted JSON, recovery, update rollback, quota and multilingual status. Physical iOS/Android PWA testing remains separate.
+
+## Wave 2: crash recovery and stronger cached JSON fallback
+
+A first-party, per-pack transaction journal is stored in `sgbuddy-offline-txn-v415-<pack>`. Every downloaded file is validated before any overwrite, and previous valid copies are staged first. The journal manifest marks the beginning of a recoverable commit. A browser crash during writes is repaired on the next app launch by restoring the prior cache and retaining its old successful-download timestamp. An interrupted initial pack is returned to its prior empty state. Malformed journals are **not** silently discarded after commit: recovery failure remains visible until the user resolves it. A browser storage eviction can still destroy the journal and cannot be reversed.
+
+The service worker now validates downloaded offline JSON before returning it as a disconnected fallback. If corrupt, the shell's published snapshot is used where available; otherwise the request fails clearly. Neither live `/api/` data nor third-party maps are intercepted.
+
+## Wave 3: opt-in reconnect and storage safety
+
+The Offline panel shows `ready / total` packs and a translated offline-readiness explanation. A **Refresh downloaded packs** action runs only after a user click; connecting to Wi-Fi is a notification, never an automatic download. It refreshes only previously opted-in packs, one at a time, with transaction recovery. Per-pack timestamps change only on successful updates. A separate optional **Keep offline data on this device** action invokes `navigator.storage.persist()` only after a user click and reports the browser's decision accurately; not all browsers expose this capability, and no persistence guarantee is claimed.
+
+Web Locks serialize writes to one pack where the browser supports them; other browsers retain per-tab busy guards. Downloads and updates are disabled when disconnected. Saved trips, bookmarks and authentication data are never cleared by the manager.
+
+## Wave 4: regression, readiness and release candidate
+
+New Node tests exercise crash journals, quota rollback, missing/corrupt JSON, stale/unknown timestamps, and all 12 UI locales. New mobile/desktop Chromium tests exercise manual reconnect, download-only opted packs, optional persistence, corrupted-cache fallback, offline restart and recovered data. A release contract checks that all opt-in public packs and user data caches remain isolated from the shell. These tests are not equivalent to real iOS Safari or Android installed-PWA QA.
+
+No release is automatically deployed: the V4.15 branch stays isolated until full green CI and a separately authorized production promotion.

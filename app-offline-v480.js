@@ -2,7 +2,8 @@
 import {OFFLINE_CACHE,OFFLINE_PACKS,packDone,validateOfflineRequest} from './lib/offline-packs-v480.mjs';
 import {offlineText} from './lib/offline-i18n-v480.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
-import {inspectOfflinePack,estimateOfflineStorage,updateOfflinePack} from './lib/offline-resilience-v415.mjs';
+import {inspectOfflinePack,estimateOfflineStorage} from './lib/offline-resilience-v415.mjs';
+import {durableOfflineUpdate,recoverAllInterruptedPacks} from './lib/offline-transaction-v415.mjs';
 import {offline415Text} from './lib/offline-resilience-i18n-v415.mjs';
 (()=>{
 'use strict';
@@ -14,11 +15,19 @@ const t=k=>offlineText(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),k);
 const tx=(k,args)=>offline415Text(normalizeLocale(window.SGBUDDY_LANGUAGE||'en'),k,args);
 const dates=()=>{try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}};
 let last=dates(),busy=null,status='';
+const online=()=>navigator.onLine;
+const recovery=(async()=>{
+ if(!('caches' in window))return [];
+ try{return await recoverAllInterruptedPacks(caches,OFFLINE_PACKS)}catch{return [{state:'failed'}]}
+})();
+recovery.then(rows=>{if(rows.some(r=>r.state==='failed'))status=tx('recoveryFailed');else if(rows.some(r=>r.state==='restored'))status=tx('restored');present()});
+const lock=(id,callback)=>navigator.locks?.request?navigator.locks.request('sgbuddy-offline-'+id,callback):callback();
 const panel=document.createElement('section');panel.id='sgbuddyOffline';panel.className='offline-panel card';panel.setAttribute('aria-live','polite');
 const homeTile=document.createElement('section');homeTile.id='sgbuddyOfflineHome';homeTile.className='offline-home card';
 const target=account||home;target.append(panel);
 home.append(homeTile);
 async function present(){
+ await recovery;
  let hasCache='caches' in window,details=new Map();
  try{
   if(hasCache){
@@ -27,29 +36,33 @@ async function present(){
   }
  }catch{hasCache=false;details=new Map();}
  const storage=await estimateOfflineStorage(navigator.storage),mb=n=>(n/1048576).toFixed(1)+' MB';
+ const connected=online();
  const buttons=OFFLINE_PACKS.map(p=>{
   const info=details.get(p.id)||{valid:0,total:p.files.length,complete:false,damaged:false,partial:false,freshness:'unknown'};
   const when=info.complete&&last[p.id]?new Date(last[p.id]).toLocaleString(normalizeLocale(window.SGBUDDY_LANGUAGE||'en')):'';
   const warning=info.damaged?tx('damaged'):info.partial?tx('incomplete'):info.complete&&info.freshness!=='recent'?tx('stale'):'';
-  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
+  return '<div class="offline-pack" data-offline-pack="'+p.id+'"><div class="offline-pack-info"><strong>'+esc(t(p.id))+'</strong><small>'+info.valid+'/'+info.total+' '+esc(t('files'))+' · '+esc(info.complete?t('ready'):t('missing'))+'</small>'+(when?'<small>'+esc(t('lastDownload'))+': '+esc(when)+'</small>':'')+(warning?'<small class="offline-integrity">'+esc(warning)+'</small>':'')+'</div><div class="offline-pack-actions"><button type="button" data-offline-download="'+p.id+'" '+(busy||!hasCache||!connected?'disabled':'')+'>'+esc(busy===p.id?t('downloading'):info.complete?t('update'):t('download'))+'</button>'+(info.present?'<button type="button" data-offline-remove="'+p.id+'" '+(busy?'disabled':'')+'>'+esc(t('remove'))+'</button>':'')+'</div></div>';
  }).join('');
- const online=navigator.onLine;
- homeTile.innerHTML='<div><strong>'+esc(t('heading'))+'</strong><small>'+esc(online?t('online'):t('offlineWarning'))+'</small></div><button type="button" id="offlineHomeOpen">'+esc(t('choose'))+'</button>';
+ const readyCount=[...details.values()].filter(x=>x.complete).length;
+ homeTile.innerHTML='<div><strong>'+esc(t('heading'))+'</strong><small>'+esc(connected?t('online'):t('offlineWarning'))+'</small></div><button type="button" id="offlineHomeOpen">'+esc(t('choose'))+'</button>';
  const usage=storage.supported?tx('usage',{used:mb(storage.usage),total:mb(storage.quota)}):'';
  panel.innerHTML='<div class="label">'+esc(t('offline'))+'</div><h2>'+esc(t('heading'))+'</h2><p>'+esc(t('intro'))+'</p>'+
- '<div class="offline-status">'+esc(status||(!online?t('offlineWarning'):t('local')))+'</div>'+
+ '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):t('local')))+'</div>'+
  (storage.supported?'<div class="offline-storage">'+esc(usage)+(storage.low?' · '+esc(tx('lowStorage')):'')+'</div>':'')+
- '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(t('disclaimer'))+'</p><p class="offline-disclaimer">'+esc(t('freshness'))+'</p>';
+ '<div class="offline-readiness"><strong>'+esc(tx('offlineSummary'))+'</strong><small>'+esc(tx('readyCount',{count:readyCount,total:OFFLINE_PACKS.length}))+'</small><small>'+esc(t('disclaimer'))+'</small></div>'+
+ '<div class="offline-manager-actions"><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
+ (typeof navigator.storage?.persist==='function'?'<button type="button" data-offline-persist>'+esc(tx('persistence'))+'</button>':'')+'</div>'+
+ '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(t('freshness'))+'</p>';
 }
 async function downloadPack(id){
- const pack=OFFLINE_PACKS.find(p=>p.id===id);if(!pack||busy||!navigator.onLine)return;
+ const pack=OFFLINE_PACKS.find(p=>p.id===id);if(!pack||busy||!online())return;
+ await recovery;
  busy=id;status=t('downloading');await present();
  try{
-  const cache=await caches.open(OFFLINE_CACHE);
-  await updateOfflinePack(cache,pack,{
+  await lock(id,()=>durableOfflineUpdate(caches,pack,{
    validateFile:file=>validateOfflineRequest(file,location.origin),
    fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
-  });
+  }));
   last={...last,[id]:new Date().toISOString()};
   try{localStorage.setItem(key,JSON.stringify(last))}catch{}
   status=t('ready');
@@ -58,14 +71,45 @@ async function downloadPack(id){
  }
  busy=null;await present();
 }
+async function refreshDownloadedPacks(){
+ if(busy||!online()||!('caches' in window))return;
+ await recovery;
+ busy='all';status=tx('refreshingAll');await present();
+ let count=0,errors=0;
+ const previous=await caches.open(OFFLINE_CACHE);
+ for(const pack of OFFLINE_PACKS){
+  const info=await inspectOfflinePack(previous,pack,last[pack.id]);
+  if(!info.present)continue; // never silently opt a user into a new pack
+  try{
+   await lock(pack.id,()=>durableOfflineUpdate(caches,pack,{
+    validateFile:file=>validateOfflineRequest(file,location.origin),
+    fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
+   }));
+   last={...last,[pack.id]:new Date().toISOString()};
+   try{localStorage.setItem(key,JSON.stringify(last))}catch{}
+   count++;
+  }catch{errors++;}
+ }
+ status=count?tx('refreshedAll',{count})+(errors?' · '+t('interrupted'):''):tx(errors?'recoveryFailed':'refreshNone');
+ busy=null;await present();
+}
+async function requestPersistence(){
+ if(busy||typeof navigator.storage?.persist!=='function')return;
+ try{const granted=await navigator.storage.persist();status=tx(granted?'persisted':'persistDenied')}
+ catch{status=tx('persistDenied')}
+ await present();
+}
 async function removePack(id){
  const p=OFFLINE_PACKS.find(x=>x.id===id);if(!p||busy)return;
+ await recovery;
  const cache=await caches.open(OFFLINE_CACHE);for(const f of p.files)await cache.delete(f);
  const copy={...last};delete copy[id];last=copy;try{localStorage.setItem(key,JSON.stringify(last))}catch{}
  status=t('missing');await present();
 }
 panel.addEventListener('click',event=>{
  const d=event.target.closest('[data-offline-download]'),r=event.target.closest('[data-offline-remove]');
+ if(event.target.closest('[data-offline-refresh-all]')){refreshDownloadedPacks();return}
+ if(event.target.closest('[data-offline-persist]')){requestPersistence();return}
  if(d)downloadPack(d.dataset.offlineDownload);
  if(r)removePack(r.dataset.offlineRemove);
 });
@@ -75,8 +119,9 @@ homeTile.addEventListener('click',event=>{
  requestAnimationFrame(()=>panel.scrollIntoView({behavior:'smooth',block:'start'}));
 });
 document.addEventListener('sgbuddy:language',present);
-window.addEventListener('online',present);
-window.addEventListener('offline',present);
+window.addEventListener('online',()=>{status=tx('reconnected');present()});
+window.addEventListener('offline',()=>{status='';present()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)present()});
 present();
-window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE};
+window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.15'};
 })();

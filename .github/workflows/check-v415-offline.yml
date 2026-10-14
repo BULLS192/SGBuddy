@@ -6,6 +6,11 @@ on:
       - 'offline-v480.css'
       - 'lib/offline-resilience-v415.mjs'
       - 'lib/offline-resilience-i18n-v415.mjs'
+      - 'lib/offline-transaction-v415.mjs'
+      - 'scripts/check-v415-transaction.mjs'
+      - 'scripts/check-v415-final.mjs'
+      - 'scripts/browser-qa-v415-complete.mjs'
+      - 'docs/offline-v415.md'
       - 'scripts/check-v415.mjs'
       - 'scripts/browser-qa-v415.mjs'
       - 'scripts/check-all.mjs'
@@ -25,6 +30,8 @@ jobs:
           node-version: '22'
       - run: |
           node scripts/check-v415.mjs
+          node scripts/check-v415-transaction.mjs
+          node scripts/check-v415-final.mjs
           node scripts/check-v480.mjs
           node scripts/check-v413.mjs
   offline-browser:
@@ -44,3 +51,21 @@ jobs:
           cat /tmp/sgbuddy-v415.log
           exit 1
       - run: node scripts/browser-qa-v415.mjs
+
+  offline-complete-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v415-complete.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v415-complete.log
+          exit 1
+      - run: node scripts/browser-qa-v415-complete.mjs

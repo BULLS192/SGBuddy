@@ -4,3 +4,10 @@
 /* V4.15: repair and storage/freshness disclosure. */
 .offline-integrity{opacity:.94!important;line-height:1.5}
 .offline-storage{font-size:.8rem;line-height:1.5;margin:8px 0 14px;padding:9px;border-radius:10px;border:1px solid rgba(143,173,211,.25);overflow-wrap:anywhere}
+
+/* V4.15 complete: compact offline-readiness summary and explicit sync actions. */
+.offline-readiness{display:grid;gap:4px;padding:12px;border-radius:12px;background:rgba(72,131,173,.11);margin:10px 0}
+.offline-readiness strong{font-size:.9rem}.offline-readiness small{font-size:.75rem;line-height:1.45;opacity:.85}
+.offline-manager-actions{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.offline-manager-actions button{padding:9px 12px;min-height:40px;border-radius:10px;border:1px solid rgba(117,165,208,.45);background:rgba(40,113,170,.16);color:inherit;font:inherit;cursor:pointer}
+.offline-manager-actions button:disabled{opacity:.45;cursor:default}
