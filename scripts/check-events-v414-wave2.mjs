@@ -17,7 +17,7 @@ assert.equal(canonicalVenue('Suntec Singapore Convention & Exhibition Centre'),c
 assert.notEqual(canonicalVenue('Suntec Singapore'),canonicalVenue('Singapore EXPO'));
 const fomo=published.events.find(e=>e.id==='fomo-market-2026');
 assert.equal(eventIdentityMatch({...fomo,id:'alternate-name',title:'Food Market',sourceUrl:fomo.sourceUrl+'?utm_source=official'},fomo),'same-official-url');
-assert.equal(eventIdentityMatch({...fomo,id:'other',title:'FOMO Weekend Market',venue:'Suntec Singapore Convention & Exhibition Centre'},fomo),'same-title-venue-dates');
+assert.equal(eventIdentityMatch({...fomo,id:'other',title:'FOMO Weekend Market',venue:'Suntec Singapore Convention & Exhibition Centre',sourceUrl:'https://www.suntecsingapore.com/visit-events/another-official-post'},fomo),'same-title-venue-dates');
 assert.equal(eventIdentityMatch({...fomo,id:'new',sourceUrl:'https://example.com/different',venue:'Singapore EXPO'},fomo),null);
 assert.equal(eventIdentityMatch({...fomo,id:'new',sourceUrl:'https://example.com/different',startDate:'2026-12-01',endDate:'2026-12-02'},fomo),null);
 const a={id:'a',title:'Community Course',sourceUrl:'https://www.suntecsingapore.com/visit-events',venue:'Suntec',startDate:'2026-10-17',endDate:'2026-10-18'};
