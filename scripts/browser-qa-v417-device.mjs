@@ -15,7 +15,7 @@ try{
   const page=await context.newPage();
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:45000});
-  await page.waitForSelector('[data-offline-device-check]',{timeout:65000});
+  await page.waitForSelector('[data-offline-device-check]',{state:'attached',timeout:65000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('account'));
   await page.waitForSelector('#sgbuddyOffline [data-offline-device-check]',{state:'visible'});
   await page.evaluate(()=>{
