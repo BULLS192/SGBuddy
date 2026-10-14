@@ -40,6 +40,7 @@ try{
    assert.equal(await picks.count(),3,'Events lost on language switch '+code);
    assert.ok((await page.locator('#sgbuddyEventsQuick .events-quick-note').textContent()).trim(),'Missing ticket disclaimer');
   }
+  assert.equal(await page.locator('#sgbuddyEventsQuick .events-quick-header').evaluate(el=>getComputedStyle(el).flexDirection),width<=420?'column':'row','Weekend shortcut header alignment '+width);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Homepage overflow at '+width);
   await page.locator('#eventsQuickOpen').click();
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible',timeout:12000});

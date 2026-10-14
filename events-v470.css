@@ -40,3 +40,7 @@
 .events-quick-empty{font-size:.85rem;opacity:.75}
 .events-quick-note{margin:10px 0 0;font-size:.73rem;line-height:1.5;opacity:.66}
 @media(max-width:420px){.events-quick-header{flex-direction:column;align-items:flex-start}.events-quick-picks{grid-template-columns:1fr}}
+
+/* Keep the shortcut header horizontal on desktop despite legacy >div column rule. */
+.events-quick>.events-quick-header{flex-direction:row}
+@media(max-width:420px){.events-quick>.events-quick-header{flex-direction:column;align-items:flex-start}}
