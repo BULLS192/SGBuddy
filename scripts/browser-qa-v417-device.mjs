@@ -40,7 +40,8 @@ try{
    await page.evaluate(c=>{window.SGBUDDY_LANGUAGE=c;document.dispatchEvent(new Event('sgbuddy:language'))},code);
    await page.waitForFunction(({label})=>document.querySelector('[data-offline-device-check]')?.textContent?.includes(label),
     {label:offlineDeviceText(code,'check')},{timeout:12000});
-   assert.ok((await page.locator('.offline-device-diagnostics').textContent()).includes(offlineDeviceText(code,'ready',{count:1,total:3})));
+   await page.waitForFunction(({expected})=>document.querySelector('.offline-device-diagnostics')?.textContent?.includes(expected),
+    {expected:offlineDeviceText(code,'ready',{count:1,total:3})},{timeout:15000});
   }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Unexpected horizontal overflow');
   assert.deepEqual(errors.filter(x=>/offline-device|offline-network|offline-v480/i.test(x)),[]);

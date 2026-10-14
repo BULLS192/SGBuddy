@@ -1,3 +1,32 @@
+# SGBuddy V4.17.0 release-candidate acceptance
+
+**Development PR:** #74 on `feature/sgbuddy-v4.17-device-reliability`. **Production remains V4.16.0** on `main`, deployment `dpl_Az7fv2hyxdknaUieo1HN25NmGLAk`. No V4.17 merge/deploy authorized.
+
+## Automated release gates (verify exact final V4.17 SHA)
+- [ ] All GitHub Actions jobs, existing persona/locale/Events regressions and the V4.17 release contract pass.
+- [ ] Chromium dual-tab write/delete contention is serialized by exclusive Web Locks.
+- [ ] Full-pack rollback journal restores valid JSON after partial write and restart.
+- [ ] No-Web-Locks browsers receive 12-language warning and mutating controls are disabled rather than risking concurrent writes.
+- [ ] Device health check has zero network calls, no personal data access, does not create opt-in caches.
+- [ ] AbortController cancels failed/slow public JSON transfers; 3 opt-in packs/13 JSON files preserved.
+- [ ] Published Events reviewed statically for source/date/ID validity and queue isolation. No automatic queue approvals.
+- [ ] V4.17 runtime badge, `sgbuddy-shell-v82` and unchanged `sgbuddy-offline-packs-v480` confirmed in preview.
+
+## Not eligible for an automated PASS (record physical evidence)
+- [ ] Actual iPhone Safari installed-PWA offline force-close/restart, storage pressure and saved trip/language retention.
+- [ ] Actual Android Chrome installed-PWA same sequence, plus Web Locks compatibility and safe fallback.
+- [ ] Human translator spot-review in 12 locales, with emphasis on mobile and offline errors.
+- [ ] Human editorial verification of current published events, public admission and official source freshness.
+
+## Promotion only on separately authorized release
+- [ ] Verify exact release PR head and merge `main`.
+- [ ] Deploy exact merge SHA to Omnidite Vercel production, verify alias/domain, version 4.17.0, shell v82 and live API behavior.
+- [ ] Confirm unchanged opt-in packs and journal; monitor logs, retain V4.16 deployment `dpl_Az7fv2hyxdknaUieo1HN25NmGLAk` for rollback.
+
+Full contract: `docs/release-v417-rc.md`; on-device test script: `docs/v417-device-qa.md`.
+
+---
+
 # V4.17 real-world device reliability — development Wave 1
 
 **Production currently:** V4.16.0 at `fa051761b97172cde7af06e81e009c95e32f945e`, Vercel `dpl_Az7fv2hyxdknaUieo1HN25NmGLAk`. **V4.17 is development-only.**

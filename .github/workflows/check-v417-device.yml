@@ -12,6 +12,8 @@ on:
       - 'scripts/browser-qa-v417-device.mjs'
       - 'scripts/browser-qa-v417-multitab.mjs'
       - 'scripts/check-v417-editorial.mjs'
+      - 'scripts/check-v417-release.mjs'
+      - 'docs/release-v417-rc.md'
       - 'lib/offline-tab-lock-v417.mjs'
       - '.github/workflows/check-v417-device.yml'
   workflow_dispatch:
@@ -28,6 +30,7 @@ jobs:
           node-version: '22'
       - run: node scripts/check-v417-device.mjs
       - run: node scripts/check-v417-editorial.mjs
+      - run: node scripts/check-v417-release.mjs
       - run: node scripts/check-v416-final.mjs
       - run: node scripts/check-v416-selective.mjs
   device-browser:

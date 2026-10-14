@@ -1,4 +1,4 @@
-/* V4.16.0 release candidate contract: first-party data, no deployment or external network. */
+/* V4.17.0 release candidate contract: first-party data, no deployment or external network. */
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {LOCALES} from '../lib/i18n-v280.mjs';
@@ -6,9 +6,9 @@ import {EVENT_EXPLORE_TEXT,EVENT_EXPLORE_KEYS} from '../lib/events-explore-i18n-
 import {OFFLINE_CACHE} from '../lib/offline-packs-v480.mjs';
 const read=x=>readFileSync(x,'utf8'),json=x=>JSON.parse(read(x));
 const html=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js');
-assert.ok(html.includes('id="appVersion"')&&html.includes('v4.16.0'),'V4.14 visible first paint');
-assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.16.0'")&&boot.includes("textContent='v4.16.0'"),'V4.14 runtime version');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v81'"),'V4.14 service-worker update required');
+assert.ok(html.includes('id="appVersion"')&&html.includes('v4.17.0'),'V4.14 visible first paint');
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.17.0'")&&boot.includes("textContent='v4.17.0'"),'V4.14 runtime version');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v82'"),'V4.14 service-worker update required');
 for(const path of ['/app-events-v470.js','/app-trip-v260.js','/lib/events-v470.mjs','/lib/events-identity-v414.mjs',
  '/lib/events-weekend-v414.mjs','/lib/events-explore-v414.mjs','/lib/events-explore-i18n-v414.mjs','/data/events-v470.json']){
  assert.ok(sw.includes("'"+path+"'"),'Missing PWA shell asset '+path);
@@ -30,4 +30,4 @@ assert.ok(gate.includes('checkEditorApproval')&&gate.includes("process.argv.incl
 const ux=read('app-events-v470.js'),trip=read('app-trip-v260.js');
 for(const token of ['data-event-area','data-event-category','data-event-trip','eventExploreText'])assert.ok(ux.includes(token),'V4.14 Events discovery missing '+token);
 for(const token of ['addEvent:event','matchingEventDay','eventFallbackDate','sourceUrl'])assert.ok(trip.includes(token),'V4.14 My Trip integration missing '+token);
-console.log('V4.16.0 RELEASE CONTRACT PASS: correct badge, v79 PWA shell, 12 locales, region/category/My Trip and editorial-only Events.');
+console.log('V4.17.0 RELEASE CONTRACT PASS: correct badge, v79 PWA shell, 12 locales, region/category/My Trip and editorial-only Events.');

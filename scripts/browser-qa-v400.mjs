@@ -15,7 +15,7 @@ async function run(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.16.0',{timeout:30000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.17.0',{timeout:30000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
   await page.waitForSelector('#discoverTab-eat',{timeout:30000});
   await page.locator('#discoverTab-eat').click();

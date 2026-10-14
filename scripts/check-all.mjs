@@ -132,6 +132,7 @@ execFileSync(process.execPath,['scripts/check-v416-selective.mjs'],{stdio:'inher
 execFileSync(process.execPath,['scripts/check-v416-final.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v417-device.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/check-v417-editorial.mjs'],{stdio:'inherit'});
+execFileSync(process.execPath,['scripts/check-v417-release.mjs'],{stdio:'inherit'});
 for(const qa of ['scripts/browser-qa-v413-air.mjs','scripts/browser-qa-v413-outages.mjs'])run(qa);
 execFileSync(process.execPath,['scripts/check-v3100.mjs'],{stdio:'inherit'});
 execFileSync(process.execPath,['scripts/inspect-js-localization-v370.mjs'],{stdio:'inherit'});
