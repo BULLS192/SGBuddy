@@ -13,3 +13,10 @@ Test: `node scripts/check-events-v414.mjs`. Existing `node scripts/check-event-v
 ## Next wave
 
 Review source-specific candidate accuracy with original event detail pages, enforce de-duplication by official URL, distinguish event vs retailer promotion, and build a curated "This weekend" experience from **approved** records only. Keep 12-language content and offline freshness representation.
+
+## V4.14 Wave 2 — conservative duplicate holds and approved weekend picks
+
+- `lib/events-identity-v414.mjs` implements official URL normalization that ignores marketing parameters but retains meaningful event query parameters. Generic organizer landing URLs are **not** event-unique. Separate identity signals include exact ID, specific official URL, or non-generic matching title + venue root + overlapping Singapore-local dates.
+- Both publisher review queues and publication compiler detect likely duplicates. A review match is flagged `potential-review-duplicate`; a published match remains `potential-already-published`; **nothing is auto-approved or silently merged**. Review summary reports duplicate counts and matching IDs. Previously published records remain unchanged.
+- `lib/events-weekend-v414.mjs` selects a small, diverse, persona-aware set **only from published dated records** that have current verification; unapproved candidates and stale entries cannot surface. `app-events-v470.js` adds three official-link picks to the homepage Events shortcut with existing translated category labels and the source-freshness disclaimer. No reservation or live availability claims.
+- New static `scripts/check-events-v414-wave2.mjs` and mobile/desktop `scripts/browser-qa-events-v414.mjs` exercise duplicate edge cases, queue isolation, locale switching, offline/discover compatibility and source URLs. These checks do not certify real browser platforms or native-speaker quality.

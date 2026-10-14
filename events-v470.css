@@ -26,3 +26,17 @@
 .events-quick small{font-size:.8rem;opacity:.7}
 .events-quick button{color:inherit;background:rgba(43,123,188,.18);border:1px solid rgba(131,173,219,.5);border-radius:11px;padding:10px;cursor:pointer;white-space:nowrap}
 @media(max-width:420px){.events-panel{padding:15px}.events-quick{flex-direction:column;align-items:flex-start}.events-item-head{flex-direction:column;gap:4px}}
+
+/* V4.14: curated weekend ideas. The official source remains the source of truth. */
+.events-quick{display:block;min-width:0}
+.events-quick-header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.events-quick-header>div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.events-quick-picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:9px;list-style:none;margin:12px 0 0;padding:0}
+.events-quick-picks li{min-width:0;border:1px solid rgba(142,172,205,.25);border-radius:12px;padding:10px}
+.events-quick-picks a{display:flex;flex-direction:column;gap:6px;min-width:0;color:inherit;text-decoration:none;text-underline-offset:3px}
+.events-quick-picks a:hover{text-decoration:underline}
+.events-quick-picks strong{font-size:.88rem;line-height:1.3;overflow-wrap:anywhere}
+.events-quick-picks small{font-size:.73rem;line-height:1.45;opacity:.76;white-space:normal}
+.events-quick-empty{font-size:.85rem;opacity:.75}
+.events-quick-note{margin:10px 0 0;font-size:.73rem;line-height:1.5;opacity:.66}
+@media(max-width:420px){.events-quick-header{flex-direction:column;align-items:flex-start}.events-quick-picks{grid-template-columns:1fr}}

@@ -6,6 +6,13 @@ on:
       - 'lib/events-review-v413.mjs'
       - 'scripts/check-event-venues-v490.mjs'
       - 'scripts/check-events-v414.mjs'
+      - 'scripts/check-events-v414-wave2.mjs'
+      - 'scripts/browser-qa-events-v414.mjs'
+      - 'lib/events-identity-v414.mjs'
+      - 'lib/events-weekend-v414.mjs'
+      - 'app-events-v470.js'
+      - 'events-v470.css'
+      - 'sw.js'
       - 'scripts/check-all.mjs'
       - 'docs/events-intelligence-v414.md'
       - '.github/workflows/check-v414-events.yml'
@@ -25,5 +32,24 @@ jobs:
         run: |
           node scripts/check-event-venues-v490.mjs
           node scripts/check-events-v414.mjs
+          node scripts/check-events-v414-wave2.mjs
           node scripts/check-event-review-v413.mjs
           node scripts/event-review-summary-v413.mjs --check
+
+  weekend-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-weekend.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-weekend.log
+          exit 1
+      - run: node scripts/browser-qa-events-v414.mjs

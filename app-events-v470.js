@@ -4,6 +4,7 @@ import {upcomingEvents,weekendWindow,eventFreshness} from './lib/events-v470.mjs
 import {singaporeDate,formatHolidayDate} from './lib/calendar-v460.mjs';
 import {eventText} from './lib/events-i18n-v470.mjs';
 import {localizedCategory,localizedEventSummary} from './lib/events-content-v480.mjs';
+import {selectWeekendPicks} from './lib/events-weekend-v414.mjs';
 (()=>{
 'use strict';
 const core=window.SGBUDDY_CORE,places=document.querySelector('.v1-view[data-view="places"]'),home=document.querySelector('.v1-view[data-view="today"]');
@@ -23,6 +24,7 @@ function render(){
  const day=singaporeDate(),win=weekendWindow(day),mode=core.state?.mode||'visitor';
  const rows=upcomingEvents(payload?.events||[],day,filter,mode),weekend=upcomingEvents(payload?.events||[],day,'weekend',mode);
  const sourceById=new Map(sources.map(s=>[s.id,s.name]));
+ const picks=selectWeekendPicks(payload?.events||[],day,mode,3);
  const chips=filters.map(f=>'<button type="button" data-event-filter="'+f+'" aria-pressed="'+(filter===f)+'" class="'+(filter===f?'active':'')+'">'+esc(t(f))+'</button>').join('');
  const listing=rows.map(e=>{
   const dates=e.startDate===e.endDate?format(e.startDate):format(e.startDate)+' – '+format(e.endDate);
@@ -34,7 +36,9 @@ function render(){
   '<p class="events-proof">'+esc(sourceById.get(e.sourceId)||e.sourceId)+' · '+esc(t('checked'))+' '+esc(format(e.verifiedAt))+(stale?' · '+esc(t('review')):'')+'</p>'+
   '<div class="events-actions"><button type="button" data-event-save="'+esc(e.id)+'" aria-pressed="'+saved.has(e.id)+'">'+esc(t(saved.has(e.id)?'saved':'save'))+'</button><a href="'+esc(e.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(t('official'))+'</a></div></article>';
  }).join('');
- quick.innerHTML='<div><div class="label">'+esc(t('weekend'))+'</div><strong>'+esc(t('title'))+'</strong><small>'+weekend.length+' · '+esc(format(win.start))+' – '+esc(format(win.end))+'</small></div><button type="button" id="eventsQuickOpen">'+esc(t('official'))+'</button>';
+ const pickLinks=picks.map(e=>'<li><a href="'+esc(e.sourceUrl)+'" target="_blank" rel="noopener noreferrer"><strong>'+esc(e.title)+'</strong><small>'+esc(localizedCategory(locale(),e.category))+' · '+esc(format(e.startDate))+' · '+esc(e.venue)+'</small></a></li>').join('');
+ quick.innerHTML='<div class="events-quick-header"><div><div class="label">'+esc(t('weekend'))+'</div><strong>'+esc(t('title'))+'</strong><small>'+weekend.length+' · '+esc(format(win.start))+' – '+esc(format(win.end))+'</small></div><button type="button" id="eventsQuickOpen">'+esc(t('all'))+'</button></div>'+
+ '<ol class="events-quick-picks">'+(pickLinks||'<li class="events-quick-empty">'+esc(t('noEvents'))+'</li>')+'</ol><p class="events-quick-note">'+esc(t('caution'))+'</p>';
  panel.innerHTML='<div class="events-header"><div class="label">'+esc(t('title'))+'</div><h2>'+esc(t('title'))+'</h2><p>'+esc(t('intro'))+'</p></div>'+
  '<div class="events-filter-label">'+esc(t('filter'))+'</div><div class="events-filters" role="group" aria-label="'+esc(t('filter'))+'">'+chips+'</div>'+
  '<div class="events-list">'+(listing||'<div class="events-empty">'+esc(t('noEvents'))+'</div>')+'</div><p class="events-disclaimer">'+esc(t('caution'))+'</p>';

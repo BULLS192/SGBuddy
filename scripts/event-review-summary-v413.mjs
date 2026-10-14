@@ -12,4 +12,4 @@ if(process.argv.includes('--check')){
  }
  console.log('V4.13 EVENTS REVIEW PASS: '+report.total+' candidates, '+report.genericTitles+' generic titles, '+report.promotions+' promotions, zero auto-approvals.');
 }else if(process.argv.includes('--markdown'))console.log(reviewMarkdown(report));
-else console.log(JSON.stringify({day:report.day,total:report.total,bySource:report.bySource,reviewSoon:report.reviewSoon,held:report.held,genericTitles:report.genericTitles,promotions:report.promotions}));
+else console.log(JSON.stringify({day:report.day,total:report.total,bySource:report.bySource,reviewSoon:report.reviewSoon,held:report.held,genericTitles:report.genericTitles,promotions:report.promotions,duplicatePublished:report.duplicatePublished,duplicateReview:report.duplicateReview}));
