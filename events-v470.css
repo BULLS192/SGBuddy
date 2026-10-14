@@ -44,3 +44,15 @@
 /* Keep the shortcut header horizontal on desktop despite legacy >div column rule. */
 .events-quick>.events-quick-header{flex-direction:row}
 @media(max-width:420px){.events-quick>.events-quick-header{flex-direction:column;align-items:flex-start}}
+
+/* V4.14 Wave 4: lightweight regional/category exploration; no inferred GPS distances. */
+.events-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:8px 0}
+.events-scope label{font-size:.79rem;font-weight:650;display:grid;gap:5px;min-width:0}
+.events-scope select{font:inherit;min-width:0;width:100%;min-height:42px;padding:8px 11px;color:inherit;background:var(--surface,#162c41);border:1px solid rgba(148,181,212,.40);border-radius:10px}
+.events-area-note,.events-feedback{font-size:.77rem;line-height:1.5;opacity:.75;margin:8px 0 14px}
+.events-feedback:empty{display:none}
+.events-actions{flex-wrap:wrap}
+.events-actions button{flex:0 1 auto}
+.events-actions a{margin-left:auto}
+@media(max-width:480px){.events-scope{grid-template-columns:1fr}.events-actions button{min-height:42px}}
+html[data-ux-theme="light"] .events-scope select{background:#fff;color:#173248;border-color:#b7cbd6}

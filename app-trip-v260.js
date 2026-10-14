@@ -2,6 +2,8 @@
 import {STORE_KEY,MAX_TRIPS,MAX_DAYS,newTrip,dayDate,validPlace,addStop,moveStop,moveDay,editStop,hydrate,shareText} from './lib/trip-v260.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
 import {translatedTrip} from './lib/i18n-trip-v280.mjs';
+import {matchingEventDay,eventFallbackDate,eventTripPlace} from './lib/events-explore-v414.mjs';
+import {eventExploreText} from './lib/events-explore-i18n-v414.mjs';
 const core=window.SGBUDDY_CORE,doc=document,discover=doc.getElementById('discoverHub');
 if(core&&discover){
  const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
@@ -11,6 +13,7 @@ if(core&&discover){
  en:{title:'My Trip',intro:'Build a flexible day-by-day Singapore itinerary from SGBuddy places or add your own stop.',device:'Trips are saved on this device only, not synced to your account. Export a copy before clearing browser data or changing devices.',create:'Create trip',newTrip:'New trip',name:'Trip name',start:'Start date',days:'Days',choose:'Current trip',delete:'Delete trip',add:'Add to Day',day:'Day',empty:'No stops yet. Search the directory or add a custom stop below.',search:'Find a place in SGBuddy',searchHint:'Type at least 2 letters to search the place directory.',searchWait:'Loading directory. You can add a custom stop.',manual:'Add your own stop',customName:'Place or activity name',customArea:'Area / address (optional)',addCustom:'Add custom stop',note:'Notes',time:'Time (optional)',remove:'Remove',up:'Move up',down:'Move down',copy:'Share / copy plan',download:'Download .txt',noTrip:'Start by creating a trip, or add a place from Discover to make a three-day draft.',saved:'Saved on this device',saveFailed:'Could not save: device storage is full or unavailable.',added:'Added to your plan',exists:'Already in this day, or day is full.',limit:'Maximum of eight trips per device.',confirm:'Delete this trip and all its planned stops?',warning:'Planning guide only — opening hours, entrance locations and prices may change. Stops do not create reservations. Journey times are not estimated.',notVerified:'Location and opening hours have not been verified.',map:'Search on Maps ↗',moveTo:'Move to day',selectDay:'Selected day',copied:'Itinerary copied to clipboard.',notCopied:'Sharing is unavailable; use Download .txt instead.',directory:'Explore places',selected:'Planned stops',visit:'Visited'},
  zh:{title:'我的行程',intro:'使用 SGBuddy 地点或自定义活动，安排新加坡每日行程。',device:'行程仅储存在本设备，不会同步到帐户。清除浏览器数据或更换设备前请导出备份。',create:'建立行程',newTrip:'新行程',name:'行程名称',start:'开始日期',days:'天数',choose:'当前行程',delete:'删除行程',add:'加入第',day:'第',empty:'尚无安排。请搜索地点或添加自定义活动。',search:'搜索 SGBuddy 地点',searchHint:'输入至少两个字母搜索地点资料库。',searchWait:'地点资料库载入中；您仍可添加自定义活动。',manual:'添加自定义活动',customName:'地点或活动名称',customArea:'地区／地址（选填）',addCustom:'添加活动',note:'备注',time:'时间（选填）',remove:'移除',up:'上移',down:'下移',copy:'分享／复制行程',download:'下载 .txt',noTrip:'先建立行程，或从探索添加地点自动建立三日草稿。',saved:'已保存在本设备',saveFailed:'无法保存：本设备储存空间可能不足。',added:'已加入行程',exists:'当日已有此地点，或已达上限。',limit:'每台设备最多储存八个行程。',confirm:'确定删除此行程和所有地点？',warning:'此功能仅供规划。营业时间、入口和价格可能变化，行程不等于预订，也不提供预计车程。',notVerified:'地点或营业时间尚未核实。',map:'在地图上搜索 ↗',moveTo:'移至第',selectDay:'所选日期',copied:'行程已复制。',notCopied:'无法分享，请使用下载 .txt。',directory:'浏览地点',selected:'已规划地点',visit:'已完成'}
  };
+ const evText=key=>eventExploreText(lang(),key);
  const v312=(key,english)=>window.SGBUDDY_V312?.text(lang(),key)||english;
   const text=()=>translatedTrip(lang(),labels.en,labels.zh),localDay=()=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day};
  let data;try{data=hydrate(JSON.parse(localStorage.getItem(STORE_KEY)||'{}'))}catch{data=hydrate({})}
@@ -37,7 +40,7 @@ if(core&&discover){
   const s=text(),p=stop.place,canUp=index>0,canDown=index<trip.days[selectedDay].length-1;
   return '<article class="trip-stop" data-trip-stop="'+index+'"><div class="trip-stop-head"><span class="trip-stop-index">'+(index+1)+'</span><div class="trip-stop-name"><h4>'+escapeHTML(p.name)+'</h4><p>'+escapeHTML([p.area,p.kind].filter(Boolean).join(' · '))+'</p></div><label class="trip-done"><input type="checkbox" data-trip-done="'+index+'" '+(stop.done?'checked':'')+' /><span>'+escapeHTML(s.visit)+'</span></label></div>'+
    '<div class="trip-stop-edit"><label>'+escapeHTML(s.time)+'<input type="time" data-trip-time="'+index+'" value="'+escapeHTML(stop.time)+'" /></label><label>'+escapeHTML(s.note)+'<textarea data-trip-note="'+index+'" maxlength="280" rows="2">'+escapeHTML(stop.note)+'</textarea></label></div>'+
-   '<div class="trip-stop-actions"><a href="'+escapeHTML(directions(p))+'" target="_blank" rel="noopener noreferrer">'+escapeHTML(s.map)+'</a><button type="button" class="secondary" data-trip-up="'+index+'" '+(!canUp?'disabled':'')+' aria-label="'+escapeHTML(s.up)+'">↑</button><button type="button" class="secondary" data-trip-down="'+index+'" '+(!canDown?'disabled':'')+' aria-label="'+escapeHTML(s.down)+'">↓</button><label class="trip-transfer">'+escapeHTML(s.moveTo)+' <select data-trip-transfer="'+index+'" aria-label="'+escapeHTML(s.moveTo)+'"><option value="">—</option>'+trip.days.map((_,d)=>d===selectedDay?'':'<option value="'+d+'">'+(d+1)+'</option>').join('')+'</select></label><button type="button" class="secondary trip-remove" data-trip-remove="'+index+'">'+escapeHTML(s.remove)+'</button></div></article>';
+   '<div class="trip-stop-actions"><a href="'+escapeHTML(directions(p))+'" target="_blank" rel="noopener noreferrer">'+escapeHTML(s.map)+'</a>'+(p.kind==='Event'&&p.sourceUrl?'<a href="'+escapeHTML(p.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+escapeHTML(evText('officialEvent'))+'</a>':'')<button type="button" class="secondary" data-trip-up="'+index+'" '+(!canUp?'disabled':'')+' aria-label="'+escapeHTML(s.up)+'">↑</button><button type="button" class="secondary" data-trip-down="'+index+'" '+(!canDown?'disabled':'')+' aria-label="'+escapeHTML(s.down)+'">↓</button><label class="trip-transfer">'+escapeHTML(s.moveTo)+' <select data-trip-transfer="'+index+'" aria-label="'+escapeHTML(s.moveTo)+'"><option value="">—</option>'+trip.days.map((_,d)=>d===selectedDay?'':'<option value="'+d+'">'+(d+1)+'</option>').join('')+'</select></label><button type="button" class="secondary trip-remove" data-trip-remove="'+index+'">'+escapeHTML(s.remove)+'</button></div></article>';
  }
  function render(){
   const s=text(),trip=active();if(trip&&selectedDay>=trip.days.length)selectedDay=0;
@@ -95,6 +98,30 @@ if(core&&discover){
  });
  window.SGBUDDY_TRIP_API={
   getActive:()=>active(),
+  addEvent:event=>{
+   const place=eventTripPlace(event),when=eventFallbackDate(event,localDay());
+   if(!place||!when)return {ok:false,reason:'invalid'};
+   const previous=active(),prevId=data.activeId,prevSelected=selectedDay;
+   let trip=previous,index=matchingEventDay(trip,event),created=false;
+   if(index<0){
+    if(data.trips.length>=MAX_TRIPS)return {ok:false,reason:'limit'};
+    trip=newTrip(event.title,when,1);
+    data.trips.push(trip);data.activeId=trip.id;selectedDay=0;index=0;created=true;
+   }
+   if(!addStop(trip,index,place)){
+    if(created){data.trips.pop();data.activeId=prevId;selectedDay=prevSelected}
+    return {ok:false,reason:'duplicate'};
+   }
+   selectedDay=index;message=evText(created?'newTrip':'addedTrip');
+   if(!save()){
+    trip.days[index].pop();
+    if(created){data.trips.pop();data.activeId=prevId}
+    selectedDay=prevSelected;
+    render();return {ok:false,reason:'storage'};
+   }
+   render();
+   return {ok:true,created,tripId:trip.id,dayIndex:index};
+  },
   importCopy:incoming=>{
    if(data.trips.length>=MAX_TRIPS)return {ok:false,message:text().limit};
    if(!incoming?.days?.length||incoming.days.length>MAX_DAYS)return {ok:false,message:'Invalid trip'};
