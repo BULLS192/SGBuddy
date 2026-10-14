@@ -1,0 +1,29 @@
+name: SGBuddy V4.14 Events Source Quality
+on:
+  pull_request:
+    paths:
+      - 'lib/events-public-html-v490.mjs'
+      - 'lib/events-review-v413.mjs'
+      - 'scripts/check-event-venues-v490.mjs'
+      - 'scripts/check-events-v414.mjs'
+      - 'scripts/check-all.mjs'
+      - 'docs/events-intelligence-v414.md'
+      - '.github/workflows/check-v414-events.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  events-intelligence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Venue extraction and review-only provenance
+        run: |
+          node scripts/check-event-venues-v490.mjs
+          node scripts/check-events-v414.mjs
+          node scripts/check-event-review-v413.mjs
+          node scripts/event-review-summary-v413.mjs --check
