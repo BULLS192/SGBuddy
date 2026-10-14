@@ -35,3 +35,10 @@ Separate diverged PRs #45, #46, #47 contain competing legacy V3.11 home translat
 ## Release criteria
 
 On the first V4.13 release-candidate workflow, the static job exposed an incorrect historic filename; it was corrected to `scripts/check-events-v470.mjs`. The corrected commit (`1e45540c1495b32aa07a3ea99886b9f842a160c0`) passed 14/14 GitHub checks, including both new persona browser jobs. Subsequent changes must pass again. All newly introduced GitHub V4.13 CI checks must pass. Recheck all existing regressions and no unsafe event publication. Keep `main` and production untouched until a separately authorized V4.13 promotion. Preserve V4.11 Vercel rollback deployment `dpl_DMcrKam98FAus17cEJB87oW2F4Bd`.
+
+## V4.13 third wave — production discovery queue reconciliation and editorial triage
+
+- Production `main` received its ordinary automated candidate-snapshot maintenance commit (`791af6458e720721bbac0f5a3c096c07babc81b2`) on 14 October 2026. The review queue now holds **61 unapproved entries** (49 Suntec Convention, 10 EXPO, 2 313@somerset promotional records); the published event list remains at 11. This is not a 61-event public directory.
+- The V4.13 branch incorporates this main commit while preserving the existing app/QA changes. New pure triage helper classifies generic venue-directory titles, promotions, invitations/convocations, possible duplicates and official-source hostname mismatches; no flags are automatic editorial approvals.
+- The daily GitHub Action now writes a read-only editorial triage summary to its run summary, while the existing scheduled job continues to publish **zero** unapproved discoveries. The V4.13 CI tests synthetic triage cases and checks every checked-in candidate's schema, status and official-host relationship.
+- Editorial follow-up: inspect generic EXPO page titles on the original detail links (some return only `Events @ EXPO`); distinguish public attendance from trade/private functions, verify admission and publication rights, then submit a separately reviewed approval manifest if appropriate.

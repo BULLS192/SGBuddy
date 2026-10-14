@@ -8,6 +8,9 @@ on:
       - 'scripts/browser-qa-v413-air.mjs'
       - 'scripts/browser-qa-v413-outages.mjs'
       - 'lib/i18n-air-v413.mjs'
+      - 'lib/events-review-v413.mjs'
+      - 'scripts/check-event-review-v413.mjs'
+      - 'scripts/event-review-summary-v413.mjs'
       - 'app-v120.js'
       - 'scripts/browser-audit-v430.mjs'
       - 'scripts/check-all.mjs'
@@ -48,6 +51,10 @@ jobs:
       - run: node scripts/check-event-feeds-v480.mjs
       - run: node scripts/check-event-venues-v490.mjs
       - run: node scripts/publish-reviewed-events-v490.mjs
+      - run: node scripts/check-event-review-v413.mjs
+      - run: node scripts/event-review-summary-v413.mjs --check
+      - name: Publish review-only candidate triage summary
+        run: node scripts/event-review-summary-v413.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
   persona-browser:
     strategy:
       fail-fast: false
