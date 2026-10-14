@@ -20,7 +20,9 @@ const cache={match:async f=>stored.get(f),put:async()=>{mutations++},delete:asyn
 const probe=async f=>{calls.push(f);if(f===files[0])return response('"same"');if(f===files[1])return response('"new"');throw Error('network unavailable')};
 const rows=await checkDownloadedPublicPacks(cache,OFFLINE_PACKS,{origin:'https://sgbuddy.omnidite.com',probe});
 assert.deepEqual(rows.map(r=>r.present),[3,0,0]);
-assert.deepEqual(rows[0],{id:'calendar',present:3,same:1,changed:1,unknown:1});
+assert.deepEqual({id:rows[0].id,present:rows[0].present,same:rows[0].same,changed:rows[0].changed,unknown:rows[0].unknown},{id:'calendar',present:3,same:1,changed:1,unknown:1});
+assert.equal(rows[0].items[2].evidence,'damaged');
+assert.equal(rows[0].items[1].file,files[1]);
 assert.equal(calls.length,2,'Corrupt JSON must not be probed as fresh');assert.equal(mutations,0);
 await assert.rejects(checkDownloadedPublicPacks(cache,[{id:'bad',files:['/api/weather']}],{origin:'https://sgbuddy.omnidite.com',probe}),/allowlisted/);
 assert.equal(LOCALES.length,12);
@@ -32,5 +34,5 @@ const sw=readFileSync('sw.js','utf8'),app=readFileSync('app-offline-v480.js','ut
 assert.ok(sw.includes('/lib/offline-freshness-v416.mjs')&&sw.includes('/lib/offline-freshness-i18n-v416.mjs'));
 assert.ok(app.includes('data-offline-check-changes')&&app.includes("method:'HEAD'")&&app.includes("redirect:'error'"));
 assert.ok(!app.includes("window.addEventListener('online',checkForChanges"));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v80'")&&sw.includes('sgbuddy-offline-packs-v480'));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v81'")&&sw.includes('sgbuddy-offline-packs-v480'));
 console.log('V4.16 WAVE 1 PASS — HEAD-only changed/unchanged/unknown comparison; opt-in isolation; no cache writes; 12 locales.');

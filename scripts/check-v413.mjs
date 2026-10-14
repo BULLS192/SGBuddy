@@ -65,9 +65,9 @@ for(const pack of OFFLINE_PACKS){
 }
 assert.equal(filePaths.size,13,'offline pack file count changed; review new sources/rights before release');
 const sw=read('sw.js'),boot=read('app-v090.js'),html=read('index.html');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v80'"),'unexpected release shell');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v81'"),'unexpected release shell');
 assert.ok(sw.includes(OFFLINE_CACHE)&&sw.includes('SHELL_PATHS.has(url.pathname)'),'offline cache fetch safety');
 assert.ok(boot.includes("import('/app-i18n-home-surface-v412.js')"),'V4.12 translations not loaded');
-assert.ok(html.includes('v4.15.0')&&boot.includes('v4.15.0'),'public version unexpected');
+assert.ok(html.includes('v4.16.0')&&boot.includes('v4.16.0'),'public version unexpected');
 assert.ok(sw.includes('/app-events-v470.js')&&sw.includes('/app-offline-v480.js'),'feature assets not in shell');
 console.log('V4.13 STATIC PASS: 12 locales, curated Events, review-only sources, publishing firewall, three safe offline packs and V4.12 boot.');

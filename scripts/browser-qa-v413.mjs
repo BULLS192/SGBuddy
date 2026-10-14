@@ -25,7 +25,7 @@ try{
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:40000});
    await page.waitForFunction(mode=>
     window.SGBUDDY_CORE?.state?.mode===mode&&
-    document.querySelector('#appVersion')?.textContent==='v4.15.0'&&
+    document.querySelector('#appVersion')?.textContent==='v4.16.0'&&
     document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3&&
     !!document.querySelector('#sgbuddyEvents h2')
    ,persona,{timeout:60000});

@@ -4,7 +4,7 @@ const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1280,height:900},locale:'en-SG',acceptDownloads:true});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.addInitScript(()=>{localStorage.setItem('sgc-persona-onboarded','1');localStorage.setItem('sgc-mode','visitor');localStorage.setItem('sgc-location-choice','not-now')});
-const ready=async()=>{await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.15.0',{timeout:30000});await page.locator('#navPlaces').click()};
+const ready=async()=>{await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.16.0',{timeout:30000});await page.locator('#navPlaces').click()};
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});await ready();
  await page.locator('[data-discover-tab="trip"]').click();

@@ -5,7 +5,7 @@ import {normalizeLocale} from './lib/i18n-v280.mjs';
 import {inspectOfflinePack,estimateOfflineStorage} from './lib/offline-resilience-v415.mjs';
 import {durableOfflineUpdate,recoverInterruptedPack} from './lib/offline-transaction-v415.mjs';
 import {offline415Text} from './lib/offline-resilience-i18n-v415.mjs';
-import {checkDownloadedPublicPacks} from './lib/offline-freshness-v416.mjs';
+import {checkDownloadedPublicPacks,planSelectiveOfflineUpdate} from './lib/offline-freshness-v416.mjs';
 import {offline416Text} from './lib/offline-freshness-i18n-v416.mjs';
 (()=>{
 'use strict';
@@ -70,9 +70,9 @@ async function present(){
  '<div class="offline-status">'+esc(status||(!connected?t('offlineWarning'):scanSummary||t('local')))+'</div>'+
  (storage.supported?'<div class="offline-storage">'+esc(usage)+(storage.low?' · '+esc(tx('lowStorage')):'')+'</div>':'')+
  '<div class="offline-readiness"><strong>'+esc(tx('offlineSummary'))+'</strong><small>'+esc(tx('readyCount',{count:readyCount,total:OFFLINE_PACKS.length}))+'</small><small>'+esc(t('disclaimer'))+'</small></div>'+
- '<div class="offline-manager-actions"><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
+ '<div class="offline-manager-actions"><button type="button" data-offline-check-changes '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(busy==='checking'?v416('checking'):v416('check'))+'</button><button type="button" data-offline-apply-changes '+(busy||!connected||!hasCache||!freshnessCheck||!scanRows.some(row=>row.changed||row.unknown||(row.present&&!details.get(row.id)?.complete))?'disabled':'')+'>'+esc(busy==='applying'?v416('applying'):v416('apply'))+'</button><button type="button" data-offline-refresh-all '+(busy||!connected||!hasCache||![...details.values()].some(x=>x.present)?'disabled':'')+'>'+esc(tx('refreshAll'))+'</button>'+
  (typeof navigator.storage?.persist==='function'?'<button type="button" data-offline-persist>'+esc(tx('persistence'))+'</button>':'')+'</div>'+
- '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(v416('note'))+' '+esc(t('freshness'))+'</p>';
+ '<div class="offline-packs">'+buttons+'</div><p class="offline-disclaimer">'+esc(v416('note'))+' '+esc(v416('sourceHint'))+' '+esc(t('freshness'))+'</p>';
 }
 async function checkForChanges(){
  if(busy||!online()||!('caches' in window))return;
@@ -87,6 +87,42 @@ async function checkForChanges(){
   freshnessCheck=new Map(rows.map(row=>[row.id,row]));
   status=''; // Derived from scan rows during render so language changes retranslate it.
  }catch{status=v416('unknown',{count:0})}
+ busy=null;await present();
+}
+async function applyCheckedChanges(){
+ if(busy||!online()||!freshnessCheck||!('caches' in window))return;
+ await recovery;
+ busy='applying';status=v416('applying');await present();
+ let updated=0,errors=0;
+ try{
+  const cache=await caches.open(OFFLINE_CACHE);
+  for(const pack of OFFLINE_PACKS){
+   const checked=freshnessCheck.get(pack.id);
+   if(!checked?.present)continue; // Preserve opt-in: never add a new pack.
+   try{
+    const count=await lock(pack.id,async()=>{
+     const info=await inspectOfflinePack(cache,pack,last[pack.id]);
+     const plan=planSelectiveOfflineUpdate(pack,info,checked);
+     if(!plan.files.length)return 0;
+     const result=await durableOfflineUpdate(caches,pack,{
+      filesToUpdate:plan.files,
+      validateFile:file=>validateOfflineRequest(file,location.origin),
+      fetchFile:file=>fetch(file,{cache:'no-store',credentials:'same-origin'})
+     });
+     // The full-pack download timestamp is intentionally not reset by a subset
+     // refresh. This avoids falsely claiming every unchanged file is new.
+     if(plan.mode==='repair'||plan.files.length===pack.files.length){
+      last={...last,[pack.id]:new Date().toISOString()};
+      try{localStorage.setItem(key,JSON.stringify(last))}catch{}
+     }
+     return result.files;
+    });
+    updated+=count;
+   }catch{errors++}
+  }
+  freshnessCheck=null;
+  status=errors?v416('applyFailed'):updated?v416('applied',{count:updated}):v416('applyNone');
+ }catch{status=v416('applyFailed')}
  busy=null;await present();
 }
 async function downloadPack(id){
@@ -158,6 +194,7 @@ async function removePack(id){
 panel.addEventListener('click',event=>{
  const d=event.target.closest('[data-offline-download]'),r=event.target.closest('[data-offline-remove]');
  if(event.target.closest('[data-offline-check-changes]')){checkForChanges();return}
+ if(event.target.closest('[data-offline-apply-changes]')){applyCheckedChanges();return}
  if(event.target.closest('[data-offline-refresh-all]')){refreshDownloadedPacks();return}
  if(event.target.closest('[data-offline-persist]')){requestPersistence();return}
  if(d)downloadPack(d.dataset.offlineDownload);
@@ -173,5 +210,5 @@ window.addEventListener('online',()=>{status=tx('reconnected');present()});
 window.addEventListener('offline',()=>{status='';present()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)present()});
 present();
-window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.15',freshnessPreview:'4.16-wave1'};
+window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.16',freshnessPreview:'4.16-release-candidate'};
 })();
