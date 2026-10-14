@@ -6,6 +6,7 @@ import {directoryText} from './lib/i18n-directory-v410.mjs';
 import {contextMode} from './lib/i18n-context-v370.mjs';
 import {contextualText} from './lib/i18n-contextual-v420.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
+import {air413Text} from './lib/i18n-air-v413.mjs';
 (function(){
   'use strict';
   const core=window.SGBUDDY_CORE;
@@ -17,6 +18,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   const storeKey='sgbuddy-discover-saved-v1';
   const locale=()=>window.SGBUDDY_LANGUAGE||'en';
   const uiStatus=(key,fields={})=>discoverStatus(locale(),key,fields);
+  const airT=(key,fields={})=>air413Text(locale(),key,fields);
   const d=(key,fields={})=>directoryText(locale(),key,fields);
   const ctx=(key,fields={})=>contextualText(locale(),key,fields);
   let saved=new Set();
@@ -250,7 +252,7 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
   document.addEventListener('sgbuddy:persona',render);
   document.addEventListener('sgbuddy:language',()=>{localizeStaticFilters();render()});
   function category(psi){
-    return psi<=50?'Good':psi<=100?'Moderate':psi<=200?'Unhealthy':psi<=300?'Very unhealthy':'Hazardous';
+    return airT(psi<=50?'good':psi<=100?'moderate':psi<=200?'unhealthy':psi<=300?'veryUnhealthy':'hazardous');
   }
   function airValue(raw){const n=Number(raw);return Number.isFinite(n)&&raw!==null&&raw!==undefined?Math.round(n):null}
   function drawAirQuality(){
@@ -274,45 +276,55 @@ import {factTranslation} from './lib/i18n-facts-v310.mjs';
     const cached=offline||psiCached||pmCached;
     const missing=!psi||!pm;
     const badge=$('#v120AirStatus');
-    badge.textContent=!psi&&!pm?'Air readings unavailable'
-      :offline?'Saved offline readings'
-      :missing?'Partial air-quality data'
-      :cached?'Cached NEA air readings'
-      :delayed?'Delayed NEA readings'
-      :timestampUnknown?'NEA time unconfirmed'
-      :'Official NEA readings';
+    badge.textContent=airT(!psi&&!pm?'unavailable'
+      :offline?'offline'
+      :missing?'partial'
+      :cached?'cached'
+      :delayed?'delayed'
+      :timestampUnknown?'timestampUnknown'
+      :'official');
     badge.className='sync-badge'+(offline||missing||cached||delayed||timestampUnknown?' v120-stale':'');
     const statusNotes=[];
-    if(!psi)statusNotes.push('24h PSI unavailable');
-    if(!pm)statusNotes.push('1h PM2.5 unavailable');
-    if(cached)statusNotes.push('cached air readings — not confirmed live');
-    if(delayed)statusNotes.push('source timestamp outside expected refresh window');
-    if(timestampUnknown)statusNotes.push('source timestamp unavailable');
+    if(!psi)statusNotes.push(airT('psiUnavailable'));
+    if(!pm)statusNotes.push(airT('pmUnavailable'));
+    if(cached)statusNotes.push(airT('cachedCaution'));
+    if(delayed)statusNotes.push(airT('delayedCaution'));
+    if(timestampUnknown)statusNotes.push(airT('unknownTime'));
     $('#v120AirUpdated').textContent=sourceAges.length
       ?sourceAges.map(x=>x.name+': '+dateText(x.updatedAt)).join(' · ')+(statusNotes.length?' · '+statusNotes.join('; '):'')
-      :'PSI / PM2.5 source timestamps unavailable';
+      :airT('timestampsUnavailable');
     const regionSelected=String(air.region||'').toLowerCase();
     regionHost.innerHTML=regions.map(region=>{
       const p=airValue(psiRegions[region]),m=airValue(pmRegions[region]);
-      return '<div class="v120-region '+(regionSelected===region?'selected':'')+'"><strong>'+safe(region[0].toUpperCase()+region.slice(1))+'</strong>'+
+      return '<div class="v120-region '+(regionSelected===region?'selected':'')+'"><strong>'+safe(airT(region))+'</strong>'+
         '<span>PSI '+(p===null?'—':p)+'</span><small>PM2.5 '+(m===null?'—':m+' µg/m³')+'</small></div>';
     }).join('');
     const overall=airValue(psi?.overall);
-    $('#v120AirAdvisory').textContent=!psi&&!pm?'Air-quality data could not be retrieved. Refer to NEA before planning outdoor activity.':
-      overall!==null&&overall>100?'24h PSI is '+category(overall)+'. Consult NEA advice and consider adjusting prolonged outdoor plans.':
-      '24-hour PSI and 1-hour PM2.5 are different measures; check official NEA advisories when planning outdoor activities.';
+    $('#v120AirAdvisory').textContent=!psi&&!pm?airT('advisoryUnavailable'):
+      overall!==null&&overall>100?airT('advisoryHigh',{category:category(overall)}):
+      airT('advisoryGeneral');
   }
   const environment=$('#environmentCard');
   if(environment){
     const panel=document.createElement('div');panel.className='v120-air card';panel.id='v120AirExtended';
-    panel.innerHTML='<div class="v120-air-title"><div><div class="label">SINGAPORE AIR QUALITY</div><h3>PSI and PM2.5 by region</h3></div><span class="sync-badge" id="v120AirStatus">Loading</span></div>'+
-      '<p>Official NEA regional readings. PSI is a 24-hour index; 1-hour PM2.5 is a concentration, not an hourly PSI.</p>'+
-      '<div class="v120-air-regions" id="v120AirPanel" aria-label="Regional air quality"></div>'+
-      '<p class="v120-air-advisory" id="v120AirAdvisory" role="status">Checking current readings…</p>'+
-      '<div class="discover-actions"><small id="v120AirUpdated">Checking timestamps…</small>'+
-      sourceLink('https://www.nea.gov.sg/our-services/pollution-control/air-pollution','NEA guidance')+'</div>';
+    panel.innerHTML='<div class="v120-air-title"><div><div class="label">'+safe(airT('heading'))+'</div><h3>'+safe(airT('title'))+'</h3></div><span class="sync-badge" id="v120AirStatus">'+safe(airT('loading'))+'</span></div>'+
+      '<p>'+safe(airT('intro'))+'</p>'+
+      '<div class="v120-air-regions" id="v120AirPanel" aria-label="'+safe(airT('panelAria'))+'"></div>'+
+      '<p class="v120-air-advisory" id="v120AirAdvisory" role="status">'+safe(airT('checking'))+'</p>'+
+      '<div class="discover-actions"><small id="v120AirUpdated">'+safe(airT('checkingTime'))+'</small>'+
+      sourceLink('https://www.nea.gov.sg/our-services/pollution-control/air-pollution',airT('neaGuidance'))+'</div>';
     environment.insertAdjacentElement('afterend',panel);
+    function redrawLocalizedAir(){
+      const panel=$('#v120AirExtended');if(!panel)return;
+      panel.querySelector('.v120-air-title .label').textContent=airT('heading');
+      panel.querySelector('.v120-air-title h3').textContent=airT('title');
+      panel.querySelector('.v120-air-title + p').textContent=airT('intro');
+      panel.querySelector('.discover-actions a').textContent=airT('neaGuidance')+' ↗';
+      $('#v120AirPanel').setAttribute('aria-label',airT('panelAria'));
+      drawAirQuality();
+    }
     document.addEventListener('sgbuddy:weather',drawAirQuality);
+    document.addEventListener('sgbuddy:language',redrawLocalizedAir);
     drawAirQuality();
   }
   Promise.all([

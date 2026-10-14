@@ -12,6 +12,11 @@ import {classifyRenderedPair, aggregateRenderedObservations} from '../lib/audit-
 const outArg=process.argv.find(x=>x.startsWith('--out-dir='));
 const output=outArg?.slice('--out-dir='.length)||'artifacts/localization-v430';
 const takeShots=process.argv.includes('--screenshots');
+// V4.13 opt-in multi-persona evidence, while preserving V4.3's Visitor default.
+const selected=process.argv.find(x=>x.startsWith('--persona='));
+const persona=selected?selected.slice('--persona='.length):'visitor';
+const supportedPersonas=['resident','visitor','executive','new_in_sg','student'];
+assert.ok(supportedPersonas.includes(persona),'Unrecognized audit persona: '+persona);
 const browser=await chromium.launch({headless:true});
 const languages=LOCALES.filter(x=>x.code!=='en').map(x=>x.code);
 const rootUrl='http://127.0.0.1:8765/';
@@ -107,14 +112,14 @@ async function prepare(page,scene){
 }
 async function runViewport(viewport){
  const context=await browser.newContext({viewport,locale:'en-SG',serviceWorkers:'block'});
- await context.addInitScript(()=>{
+ await context.addInitScript(mode=>{
   localStorage.setItem('sgc-persona-onboarded','1');
-  localStorage.setItem('sgc-mode','visitor');
+  localStorage.setItem('sgc-mode',mode);
   localStorage.setItem('sgc-location-choice','not-now');
- });
+ },persona);
  const page=await context.newPage();
- const viewportId=viewport.width+'x'+viewport.height,persona='visitor';
- page.on('pageerror',e=>errors.push({viewport:viewportId,message:e.message.slice(0,240)}));
+ const viewportId=viewport.width+'x'+viewport.height;
+ page.on('pageerror',e=>errors.push({viewport:viewportId,persona,message:e.message.slice(0,240)}));
  try{
   await page.goto(rootUrl,{waitUntil:'domcontentloaded',timeout:35000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.12.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
@@ -123,7 +128,7 @@ async function runViewport(viewport){
   for(const scene of scenarios){
    await prepare(page,scene);
    const snapshot=await capture(page,scene,viewportId,persona);
-   if(!snapshot.observed)missingScreens.push({viewport:viewportId,locale:'en',screen:scene.id,reason:snapshot.reason});
+   if(!snapshot.observed)missingScreens.push({viewport:viewportId,persona,locale:'en',screen:scene.id,reason:snapshot.reason});
    baselines.set(scene.id,snapshot);
   }
   for(const locale of languages){
@@ -133,8 +138,8 @@ async function runViewport(viewport){
     await prepare(page,scene);
     const sample=await capture(page,scene,viewportId,persona);
     const baseline=baselines.get(scene.id);
-    if(!sample.observed){missingScreens.push({viewport:viewportId,locale,screen:scene.id,reason:sample.reason});continue}
-    if(sample.overflow)errors.push({viewport:viewportId,locale,screen:scene.id,message:'horizontal-overflow'});
+    if(!sample.observed){missingScreens.push({viewport:viewportId,persona,locale,screen:scene.id,reason:sample.reason});continue}
+    if(sample.overflow)errors.push({viewport:viewportId,persona,locale,screen:scene.id,message:'horizontal-overflow'});
     if(!baseline.observed)continue;
     const map=new Map(sample.slots.map(slot=>[slot.key,slot]));
     for(const original of baseline.slots){
@@ -155,10 +160,10 @@ try{
  for(const vp of [{width:390,height:844},{width:1366,height:900}])await runViewport(vp);
  const summary=aggregateRenderedObservations(results);
  const report={...summary,
-  auditDate:new Date().toISOString(),appVersion:'4.12.0',sourceBranch:'V4.3 audit development',personasSampled:['visitor'],
+  auditDate:new Date().toISOString(),appVersion:'4.12.0',sourceBranch:'V4.13 selected-persona rendered audit',personasSampled:[persona],
   viewportSizes:['390x844','1366x900'],scenariosAttempted:scenarios.map(s=>s.id),
   conditionalStatesNotExhaustivelyTested:true,wholeAppTranslationPercent:null,
-  limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered, server/API error variants and all persona combinations are not exhaustive','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
+  limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered and live server/API errors are not exhaustively simulated; persona runs are collected separately','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
   absentScreens:missingScreens,clientErrors:errors,
   evidence:results};
  const unresolved = new Map();
@@ -185,7 +190,7 @@ try{
  report.priorityCandidates=priorityCandidates;
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
- '**Not a verified whole-app completion percentage.** English baseline: V4.12.0; 12 supported locales, two Chromium viewports, Visitor persona.',
+ '**Not a verified whole-app completion percentage.** English baseline: V4.12.0; 12 supported locales, two Chromium viewports, '+persona+' persona.',
  '',
  '| Locale | Comparable authored text slots | Changed vs English | Unchanged English candidates | Review / uncertain |',
  '|---|---:|---:|---:|---:|',
@@ -195,7 +200,7 @@ try{
  }), '',
  '## Caveats','- A changed word is not a verified translation.',
  '- Source/operator content, proper nouns, numerical readings and unknown ownership are not counted as missing translations.',
- '- Only the Visitor persona and a defined set of screen states are sampled; whole-app coverage is **null**.',
+ '- Only the '+persona+' persona and defined screen states are sampled in this artifact; whole-app coverage is **null**.',
  '- Human review must adjudicate unchanged-English candidates and conditional UI; inspect JSON/CSV below.', '',
  '## Screen coverage',
  '| Scenario | Observed authored slots | Observed change rate | Unchanged candidates |',
@@ -217,7 +222,7 @@ try{
    observedChangeRate:summary.locale[c]?.observedChangeRatePercent,
    unchangedEnglish:summary.locale[c]?.potentialEnglishCount,
    needsReview:summary.locale[c]?.reviewQueueCount}])),
-   scenarios:scenarios.length,viewports:2,absentScreens:missingScreens.length,errors:errors.length,
+   persona,scenarios:scenarios.length,viewports:2,absentScreens:missingScreens.length,errors:errors.length,
    wholeAppTranslationPercent:null}));
  assert.ok(results.length>250,'No significant rendered UI sample collected');
  assert.equal(missingScreens.length,0,'Missing or hidden audited screen; check summary artifacts');

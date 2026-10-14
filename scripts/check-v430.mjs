@@ -9,6 +9,10 @@ assert.equal(classifyRenderedPair(source,undefined,'fr').status,'missingAfterLoc
 assert.equal(classifyRenderedPair({...source,ownership:'review'}, {value:'Options françaises'},'fr').status,'sourceOwnershipReview');
 assert.equal(classifyRenderedPair({...source,ownership:'protected'},{value:'Different place name'},'fr').status,'sourceProtected');
 assert.equal(classifyRenderedPair({...source,value:'MICHELIN'}, {value:'MICHELIN'},'fr').status,'invariantExcluded');
+assert.equal(classifyRenderedPair({...source,value:'Singapore'},{value:'Singapore'},'fr').status,'invariantExcluded','geographic identifier is not first-party translation');
+assert.equal(classifyRenderedPair({...source,value:'24h PSI'},{value:'24h PSI'},'fr').status,'invariantExcluded','air quality measurement unit is not first-party translation');
+assert.equal(classifyRenderedPair({...source,value:'1-hour PM2.5'},{value:'1-hour PM2.5'},'fr').status,'invariantExcluded','PM2.5 measurement label is not first-party translation');
+assert.equal(classifyRenderedPair({...source,value:'SINGAPORE AIR QUALITY'},{value:'SINGAPORE AIR QUALITY'},'fr').status,'unchangedEnglishCandidate','authored air-quality heading still requires translation');
 const sample=[
  {...changed,locale:'fr'},
  {...classifyRenderedPair(source,{value:'All categories'},'fr'),locale:'fr',key:'#tab|text'},
