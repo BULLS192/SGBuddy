@@ -13,7 +13,8 @@ assert.deepEqual(parseDateRange('17 Oct 2026'),{startDate:'2026-10-17',endDate:'
 assert.equal(parseDateRange('30 Feb 2026')?.startDate,null);
 const expoHtml='<html><h1>CAPS Cardshow</h1><p>Date</p><p>31 Oct – 1 Nov 2026</p><p>Time</p><p>10:00 – 21:00</p><p>Venue</p><p>Hall 6A</p><p>Admission Type</p><p>Open to Public (Free)</p></html>';
 const event=parseVenueDetail(expoHtml,expo,'https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/','2026-10-13');
-assert.ok(event);assert.equal(event.admission,'free');assert.equal(event.status,'needs-review');assert.equal(event.endDate,'2026-11-01');assert.equal(event.sourceId,'expo');
+assert.ok(event);assert.equal(event.admission,'free');assert.equal(event.admissionEvidence,'official-venue-free');assert.equal(event.access,'public-stated');assert.equal(event.status,'needs-review');assert.equal(event.endDate,'2026-11-01');assert.equal(event.sourceId,'expo');
+assert.equal(event.titleSource,'h1');assert.equal(event.titleReviewRequired,false);
 assert.equal(parseVenueDetail(expoHtml.replace('Open to Public (Free)','By Invitation Only'),expo,event.sourceUrl,'2026-10-13'),null);
 assert.equal(parseVenueDetail(expoHtml,expo,event.sourceUrl,'2026-11-02'),null);
 const mall=config.sources[2];

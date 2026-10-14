@@ -11,7 +11,7 @@ page.on('pageerror',e=>errors.push(e.message));
 const awaitText=(selector,expected)=>page.waitForFunction(({selector,expected})=>document.querySelector(selector)?.textContent?.trim()===expected,{selector,expected},{timeout:14000});
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.13.0',{timeout:30000});
+ await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.14.0',{timeout:30000});
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2200}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
@@ -40,7 +40,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.13.0',{timeout:30000});
+ await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.14.0',{timeout:30000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR');
  await awaitText('#buddyLauncher > span:last-child',extendedUi('pt-BR').askMerli);
  const metrics=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));

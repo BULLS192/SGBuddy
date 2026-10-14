@@ -1,0 +1,91 @@
+name: SGBuddy V4.14 Events Source Quality
+on:
+  pull_request:
+    paths:
+      - 'lib/events-public-html-v490.mjs'
+      - 'lib/events-review-v413.mjs'
+      - 'scripts/check-event-venues-v490.mjs'
+      - 'scripts/check-events-v414.mjs'
+      - 'scripts/check-events-v414-wave2.mjs'
+      - 'scripts/browser-qa-events-v414.mjs'
+      - 'lib/events-identity-v414.mjs'
+      - 'lib/events-weekend-v414.mjs'
+      - 'lib/events-explore-v414.mjs'
+      - 'lib/events-explore-i18n-v414.mjs'
+      - 'app-trip-v260.js'
+      - 'scripts/check-events-v414-wave4.mjs'
+      - 'scripts/check-release-v414.mjs'
+      - 'index.html'
+      - 'app-v090.js'
+      - 'scripts/browser-qa-events-v414-wave4.mjs'
+      - 'lib/events-editor-v414.mjs'
+      - 'lib/events-approval-guard-v414.mjs'
+      - 'scripts/event-editor-worklist-v414.mjs'
+      - 'scripts/check-events-v414-wave3.mjs'
+      - 'scripts/publish-reviewed-events-v490.mjs'
+      - 'app-events-v470.js'
+      - 'events-v470.css'
+      - 'sw.js'
+      - 'scripts/check-all.mjs'
+      - 'docs/events-intelligence-v414.md'
+      - '.github/workflows/check-v414-events.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  events-intelligence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Venue extraction and review-only provenance
+        run: |
+          node scripts/check-event-venues-v490.mjs
+          node scripts/check-events-v414.mjs
+          node scripts/check-events-v414-wave2.mjs
+          node scripts/check-events-v414-wave3.mjs
+          node scripts/check-events-v414-wave4.mjs
+          node scripts/check-release-v414.mjs
+          node scripts/event-editor-worklist-v414.mjs --check
+          node scripts/event-editor-worklist-v414.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
+          node scripts/check-event-review-v413.mjs
+          node scripts/event-review-summary-v413.mjs --check
+
+  weekend-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-weekend.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-weekend.log
+          exit 1
+      - run: node scripts/browser-qa-events-v414.mjs
+
+  trip-events-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v414-wave4.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v414-wave4.log
+          exit 1
+      - run: node scripts/browser-qa-events-v414-wave4.mjs

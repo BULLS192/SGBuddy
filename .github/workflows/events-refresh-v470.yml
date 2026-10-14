@@ -22,7 +22,9 @@ jobs:
           node scripts/sync-event-feeds-v470.mjs --write
           node scripts/sync-event-venues-v490.mjs --write
       - name: Summarize unapproved candidates for editorial review
-        run: node scripts/event-review-summary-v413.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          node scripts/event-review-summary-v413.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
+          node scripts/event-editor-worklist-v414.mjs --markdown >> "$GITHUB_STEP_SUMMARY"
       - name: Commit only if listings changed
         run: |
           if git diff --quiet -- data/events-v470.json data/events-review-queue-v470.json; then
