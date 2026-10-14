@@ -7,6 +7,8 @@ on:
       - 'scripts/check-v413-air.mjs'
       - 'scripts/browser-qa-v413-air.mjs'
       - 'scripts/browser-qa-v413-outages.mjs'
+      - 'scripts/browser-qa-v413-pwa.mjs'
+      - 'QA_CHECKLIST.md'
       - 'lib/i18n-air-v413.mjs'
       - 'lib/events-review-v413.mjs'
       - 'scripts/check-event-review-v413.mjs'
@@ -140,3 +142,24 @@ jobs:
         run: node scripts/browser-qa-v413-air.mjs
       - name: Simulate weather/train/traffic outage and recovery
         run: node scripts/browser-qa-v413-outages.mjs
+
+  pwa-disconnected-restart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve local first-party app
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/sgbuddy-v413-pwa.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v413-pwa.log
+          exit 1
+      - name: Test offline packs, disconnected reload, and interrupted update
+        run: node scripts/browser-qa-v413-pwa.mjs
