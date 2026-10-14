@@ -65,7 +65,7 @@ try{
   assert.equal(afterFirst.trips[0].days[0].length,0);
   assert.equal(afterFirst.trips[0].days[1].length,1,'Weekend event should land on Saturday');
   assert.equal(afterFirst.trips[0].days[1][0].place.sourceUrl,fixture.events[0].sourceUrl);
-  assert.ok((await page.locator('#myTripPlanner .trip-stop a').allTextContents()).some(x=>/Official event source/i.test(x)));
+  assert.ok((await page.locator('#myTripPlanner .trip-stop a').allTextContents()).some(x=>/Open event source/i.test(x)));
   // Re-adding on same date must not duplicate.
   const duplicate=await page.evaluate(event=>window.SGBUDDY_TRIP_API.addEvent(event),fixture.events[0]);
   assert.equal(duplicate.ok,false);assert.equal(duplicate.reason,'duplicate');
