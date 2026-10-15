@@ -9,7 +9,7 @@ try{
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:35000});
-  await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+  await page.locator('#navMoney').click();
   await page.locator('#tripNewName').fill('My Trip 2.0');
   await page.locator('#tripStartDate').fill('2026-11-21');
   await page.locator('#tripCreateForm button[type="submit"]').click();
@@ -29,7 +29,7 @@ try{
   await page.locator('[data-trip-time="1"]').press('Tab');
   assert.match(await page.locator('[data-trip-day-insights]').textContent(),/Time clashes:\s*1/);
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+  await page.locator('#navMoney').click();
   assert.match(await page.locator('[data-trip-day-insights]').textContent(),/Time clashes:\s*1/);
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
