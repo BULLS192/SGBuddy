@@ -7,10 +7,10 @@ import {STORE_KEY} from '../lib/trip-v260.mjs';
 import {tripOverview,dayRouteSegments,suggestDayPlaces} from '../lib/trip-insights-v420.mjs';
 const read=p=>readFileSync(p,'utf8');
 const html=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js'),quality=read('app-trip-quality-v420.js');
-assert.ok(html.includes('id="appVersion"')&&html.includes('v4.20.0'));
-assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.20.0'")&&boot.includes("textContent='v4.20.0'"));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v85'"));
-assert.ok(read('lib/offline-device-v417.mjs').includes("shellCache='sgbuddy-shell-v85'"),'Offline-device diagnostics must report current v85 shell');
+assert.ok(html.includes('id="appVersion"')&&html.includes('v4.21.0'));
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.21.0'")&&boot.includes("textContent='v4.21.0'"));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v86'"));
+assert.ok(read('lib/offline-device-v417.mjs').includes("shellCache='sgbuddy-shell-v86'"),'Offline-device diagnostics must report current v85 shell');
 for(const file of ['/app-trip-quality-v420.js','/lib/trip-insights-v420.mjs','/trip-quality-v420.css','/app-trip-v260.js','/lib/trip-v260.mjs']){
  assert.ok(sw.includes("'"+file+"'"),'Required offline asset not precached: '+file);
 }

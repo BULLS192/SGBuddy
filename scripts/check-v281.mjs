@@ -22,6 +22,6 @@ for(const {code,name} of LOCALES){
  if(code!=='en')assert.equal(SHELL_COVERAGE[code],SHELL_KEYS.length);
 }
 assert.equal(seen.size,12);
-assert.ok(sw.includes('/lib/i18n-shell-v281.mjs')&&sw.includes('sgbuddy-shell-v85'),'Installed PWA must refresh and precache locale UI');
-assert.ok(boot.includes('4.20.0')&&html.includes('v4.20.0'),'Client and static version should agree');
+assert.ok(sw.includes('/lib/i18n-shell-v281.mjs')&&sw.includes('sgbuddy-shell-v86'),'Installed PWA must refresh and precache locale UI');
+assert.ok(boot.includes('4.21.0')&&html.includes('v4.21.0'),'Client and static version should agree');
 console.log('V3.11.0 PASS: Saved is not Money in all 12 languages; 31 Home/Saved/Move keys per language; events, routing and cache preserved.');
