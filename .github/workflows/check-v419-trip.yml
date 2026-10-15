@@ -1,0 +1,25 @@
+name: SGBuddy My Trip 2.0 Wave 1
+on:
+  pull_request:
+    paths:
+      - 'lib/trip-v260.mjs'
+      - 'app-trip-v260.js'
+      - 'trip-v260.css'
+      - 'scripts/check-v419-trip.mjs'
+      - '.github/workflows/check-v419-trip.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  trip-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check app-trip-v260.js
+          node scripts/check-v260.mjs
+          node scripts/check-v419-trip.mjs

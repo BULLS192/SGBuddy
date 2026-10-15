@@ -61,3 +61,10 @@ html[data-ux-theme="light"] .trip-stop-actions a{color:#145a86}
 @media(max-width:680px){.my-trip-v260{padding:15px!important}.trip-day-panel{padding:12px}.trip-stop{padding:12px}.trip-stop-edit{grid-template-columns:1fr}.trip-search-result{align-items:stretch;flex-direction:column}.trip-search-result button{width:100%}.trip-done span{font-size:.73rem}}
 @media(max-width:400px){.trip-stop-head{flex-wrap:wrap}.trip-done{margin-left:39px}.trip-remove{margin-left:0}}
 @media(prefers-reduced-motion:reduce){.my-trip-v260 *{scroll-behavior:auto!important;transition:none!important}}
+
+/* My Trip 2.0 Wave 1 */
+.trip-day-insights{margin:0 0 15px;padding:12px 14px;border:1px solid var(--line,#35516d);border-radius:12px;background:rgba(81,134,159,.08);display:grid;gap:7px;min-width:0}
+.trip-day-insights strong{font-size:.9rem}.trip-day-insights p{font-size:.84rem;margin:0;overflow-wrap:anywhere}
+.trip-day-insights small{color:var(--muted,#b6c9da);font-size:.76rem;line-height:1.5}
+.trip-day-route{width:fit-content;max-width:100%;min-height:40px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px;font-size:.85rem}
+.trip-day-route:focus-visible{outline:3px solid #9adbf7;outline-offset:3px;border-radius:4px}
