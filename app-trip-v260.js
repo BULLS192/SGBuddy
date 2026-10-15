@@ -83,7 +83,7 @@ if(core&&discover){
   const el=e.target,trip=active();if(el.id==='tripSelect'){data.activeId=el.value;selectedDay=0;query='';save();render();return}
   if(!trip)return;
   let idx;
-  if(el.matches('[data-trip-time]')){idx=Number(el.dataset.tripTime);editStop(trip.days[selectedDay][idx],'time',el.value);save();return}
+  if(el.matches('[data-trip-time]')){idx=Number(el.dataset.tripTime);editStop(trip.days[selectedDay][idx],'time',el.value);save();const box=host.querySelector('[data-trip-day-insights]');if(box)box.outerHTML=dayInsightsMarkup(trip);return}
   if(el.matches('[data-trip-note]')){idx=Number(el.dataset.tripNote);editStop(trip.days[selectedDay][idx],'note',el.value);save();return}
   if(el.matches('[data-trip-done]')){idx=Number(el.dataset.tripDone);editStop(trip.days[selectedDay][idx],'done',el.checked);save();return}
   if(el.matches('[data-trip-transfer]')){idx=Number(el.dataset.tripTransfer);if(el.value!==''&&moveDay(trip,selectedDay,idx,Number(el.value))){save();render()}}

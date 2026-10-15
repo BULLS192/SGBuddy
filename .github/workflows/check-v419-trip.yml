@@ -6,6 +6,7 @@ on:
       - 'app-trip-v260.js'
       - 'trip-v260.css'
       - 'scripts/check-v419-trip.mjs'
+      - 'scripts/browser-qa-v419-trip.mjs'
       - '.github/workflows/check-v419-trip.yml'
   workflow_dispatch:
 permissions:
@@ -23,3 +24,11 @@ jobs:
           node --check app-trip-v260.js
           node scripts/check-v260.mjs
           node scripts/check-v419-trip.mjs
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-trip419.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-trip419.log; exit 1
+      - run: node scripts/browser-qa-v419-trip.mjs
