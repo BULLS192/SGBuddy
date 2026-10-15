@@ -100,3 +100,8 @@ html[data-ux-theme="light"] .ux423-events-slot .events-item{box-shadow:0 5px 18p
 #discoverHub.ux423-events-mode .discover-intro{padding:7px 9px;background:transparent;box-shadow:none;border:0}
 #discoverHub.ux423-events-mode .ux423-groups{margin:0}
 #discoverHub.ux423-events-mode .ux423-events-slot{margin-top:0}
+
+/* NEA 24h PSI 101+: safety-relevant status earns visual priority. */
+.ux-home-summary.ux423-air-alert{border:1px solid color-mix(in srgb,#bb7423 65%,var(--line));border-inline-start:4px solid #c68027;background:color-mix(in srgb,#da8d38 16%,var(--panel));border-radius:12px;padding:11px 14px;margin-top:13px;gap:10px;flex-wrap:wrap}
+.ux-home-summary.ux423-air-alert #uxPsi{font-size:1rem;color:var(--text);font-weight:850}
+.ux-home-summary.ux423-air-alert .ux-condition-link{color:var(--text);font-weight:740}
