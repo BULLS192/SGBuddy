@@ -38,7 +38,7 @@ const openTrip=()=>{
   all('.bottom-nav [data-nav-target]').forEach(a=>{const selected=a.dataset.navTarget==='trip';a.classList.toggle('active',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   window.scrollTo({top:0,behavior:'instant'});
 };
-window.SGBUDDY_V423={openTrip,version:'4.23.0-preview'};
+window.SGBUDDY_V423={openTrip,onDiscover:()=>selectGroup(group,category,group!=='events'),version:'4.23.0-preview'};
 
 // Four clear discovery paths; legacy tabs remain functional for deep links and modules.
 const groupTabs=d.createElement('div'),categories=d.createElement('div'),slot=d.createElement('div');
@@ -127,13 +127,19 @@ d.addEventListener('sgbuddy:trip-rendered',()=>queueMicrotask(foldTripTools));
 d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();foldTripTools()}));
 
 // Diagnostics are still one tap away from More, but no longer dominate it.
+// The station lookup belongs to Move, not to the global page chrome.
+const railCard=$('#railForm')?.closest('.manual.card'),moveView=$('.v1-view[data-view="move"]');
+if(railCard&&moveView){const rail=moveView.querySelector('#railStations');if(rail)rail.after(railCard);else moveView.appendChild(railCard)}
 const corePanel=$('#dataCorePanel');
 if(corePanel){
  const details=d.createElement('details');details.id='ux423Diagnostics';details.className='ux423-diagnostics';
  const summary=d.createElement('summary');summary.textContent=t()[21];details.appendChild(summary);
  corePanel.before(details);details.appendChild(corePanel);
 }
-paint();
+const preference=window.SGBUDDY_CORE?.state?.mode||'resident';
+const preferred={resident:['places','nearby'],visitor:['places','do'],executive:['places','nearby'],student:['food','eat'],new_in_sg:['places','essentials']};
+const first=preferred[preference]||preferred.visitor;
+selectGroup(first[0],first[1]);
 foldTripTools();
 // Visiting a shared itinerary opens its review screen without importing it.
 if(location.hash.startsWith('#sgtrip='))queueMicrotask(()=>router.show('trip'));
