@@ -16,6 +16,11 @@ try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
   await page.waitForFunction(()=>!!window.SGBUDDY_V423&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
   assert.equal(await page.locator('#myTripPlanner').evaluate(el=>el.closest('.v1-view')?.dataset.view),'trip');
+  assert.equal(await page.locator('#railForm').evaluate(el=>el.closest('.v1-view')?.dataset.view),'move','MRT station lookup belongs on Move');
+  await page.evaluate(()=>document.querySelector('#uxPsi').textContent='185 · Unhealthy');
+  await page.waitForFunction(()=>document.querySelector('#uxHomeSummary')?.classList.contains('ux423-air-alert'));
+  await page.evaluate(()=>document.querySelector('#uxPsi').textContent='45 · Good');
+  await page.waitForFunction(()=>!document.querySelector('#uxHomeSummary')?.classList.contains('ux423-air-alert'));
   assert.equal(await page.locator('.bottom-nav [data-nav-target]').count(),5);
   await page.locator('#navMoney').click();
   await page.locator('#ux423TripView').waitFor({state:'visible'});
