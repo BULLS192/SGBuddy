@@ -135,4 +135,6 @@ if(corePanel){
 }
 paint();
 foldTripTools();
+// Visiting a shared itinerary opens its review screen without importing it.
+if(location.hash.startsWith('#sgtrip='))queueMicrotask(()=>router.show('trip'));
 })();
