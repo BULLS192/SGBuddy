@@ -18,7 +18,7 @@ try{
   assert.equal(await page.locator('#navMoney').getAttribute('data-nav-target'),'trip');
   assert.match(await page.locator('#navAccount').textContent(),/More/);
   await page.locator('#navMoney').click();
-  await page.locator('[data-discover-tab="trip"]').waitFor({state:'visible'});
+  await page.locator('#ux423TripView').waitFor({state:'visible'});
   await page.locator('#tripNewName').fill('V4.22 visual test');
   await page.locator('#tripStartDate').fill('2026-11-20');
   await page.locator('#tripCreateForm button[type="submit"]').click();
