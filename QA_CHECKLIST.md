@@ -1,3 +1,16 @@
+# V4.19.0 — Development acceptance (Events + My Trip 2.0)
+
+- [ ] Exact-final-commit CI and all historical tests green; preview SHA verified.
+- [ ] Run Node/Chromium browser QA for itinerary editing, duplicate times, grouping, driving/walking route links and 12 languages.
+- [ ] Confirm service worker v84 and unchanged downloaded 3 packs/13 JSON files and rollback journals.
+- [ ] Ensure no unapproved review event is published. Review all 9 new source-evidence records before signoff.
+- [ ] Physical iPhone + Android installed-PWA recovery, native-speaker and independent editorial acceptance.
+- [ ] Only promote to V4.19 production on separate user authorization; V4.18 rollback retained.
+
+See `docs/release-v419-rc.md`.
+
+---
+
 # V4.18 Events Discovery — Development release acceptance
 
 **Current production:** V4.17.0. **V4.18 status:** development only.
