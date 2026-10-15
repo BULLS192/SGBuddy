@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES,TRAVEL_UI} from '../lib/i18n-v280.mjs';
 import {extendedUi} from '../lib/i18n-extended-v300.mjs';
+import {UX422_LABELS} from '../lib/ux-i18n-v422.mjs';
 import {explainer} from '../lib/i18n-explainers-v300.mjs';
 const browser=await chromium.launch({headless:true});
 const ctx=await browser.newContext({viewport:{width:390,height:844},locale:'en-SG'});
@@ -31,8 +32,9 @@ try{
   assert.equal((await page.locator('#foodSearch').getAttribute('placeholder')),tr.foodSearch,code+' Food search');
   assert.equal((await page.locator('#sgbFactQuery').getAttribute('placeholder')),explainer(code,'factSearch'),code+' facts search');
   assert.equal(await page.locator('html').getAttribute('lang'),code);
-  const savedLabel=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
-  assert.equal((await page.locator('#navMoney span').textContent()).trim(),savedLabel,code+' Saved should not be Money');
+  await awaitText('#navMoney span',UX422_LABELS[code][0]);
+  await awaitText('#ux422MoreHub [data-ux-go="saved"] strong',UX422_LABELS[code][2]);
+  assert.notEqual((await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim(),'Money',code+' Saved remains distinct from Money');
   if(code!=='en'){
    assert.equal((await page.locator('#sgbFoodLocalizedWarning').textContent()).includes(explainer(code,'foodNote')),true,code+' translated MUIS caution');
    assert.equal(await page.locator('#sgbFoodOriginalWarning').getAttribute('hidden'),null,'Original must be accessible');
@@ -46,5 +48,5 @@ try{
  const metrics=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));
  assert.ok(metrics.scroll<=metrics.width+8,'Mobile horizontal overflow '+JSON.stringify(metrics));
  assert.ok(!errors.length,'Client browser errors: '+errors.join(' | '));
- console.log('SGBuddy V3 CHROMIUM PASS: 12 locales, Merli, knowledge, food safety and MUIS source, language persistence, Saved/Money, 390px mobile.');
+ console.log('SGBuddy V3 CHROMIUM PASS: 12 locales, Merli, knowledge, food safety and MUIS source, language persistence, Saved via More, 390px mobile.');
 }finally{await browser.close()}
