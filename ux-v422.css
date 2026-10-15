@@ -57,3 +57,5 @@ html{scroll-padding-top:18px}
  .ux-primary-shortcuts .ux-shortcut{transition:none!important}
  .my-trip-v260 .trip-day-tabs{scroll-behavior:auto}
 }
+
+.ux422-preview-badge{margin-inline-start:7px;border:1px solid var(--accent);border-radius:999px;color:var(--accent);font-size:10px;padding:3px 7px;font-weight:750;white-space:nowrap}
