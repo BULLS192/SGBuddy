@@ -82,8 +82,7 @@ function trip(){
  }else if(out){const p=out.querySelector('.ux422-export-hint');if(p)p.textContent=l[18]}
 }
 function paint(){nav();moreHub();home();trip()}
-// Badge distinguishes review-only UX preview from the unchanged release version.
-const badge=$('#appVersion');if(badge&&!$('#ux422PreviewBadge')){const flag=d.createElement('span');flag.id='ux422PreviewBadge';flag.className='ux422-preview-badge';flag.textContent='UX Preview · V4.22';badge.after(flag)}
+// Production release uses the normal app version indicator; no development badges.
 d.addEventListener('sgbuddy:trip-rendered',()=>requestAnimationFrame(schedule));
 d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(schedule));
 d.addEventListener('sgbuddy:persona',()=>requestAnimationFrame(schedule));

@@ -12,7 +12,7 @@ try{
  page.on('pageerror',e=>errors.push(e.message));
  await page.goto(origin+'/__v422_offline_fixture__',{waitUntil:'domcontentloaded',timeout:30000});
  await page.evaluate(async()=>{
-  const old=await caches.open('sgbuddy-shell-v85');
+  const old=await caches.open('sgbuddy-shell-v86');
   await old.put('/__v422_obsolete_shell',new Response('old shell'));
   const saved=await caches.open('sgbuddy-offline-packs-v480');
   await saved.put('/data/events-v470.json',new Response('{"events":[]}',{headers:{'content-type':'application/json'}}));
@@ -22,24 +22,24 @@ try{
   localStorage.setItem('sgbuddy-my-trips-v260',JSON.stringify({schemaVersion:1,activeId:'v421-offline',trips:[{id:'v421-offline',name:'Offline test',startDate:'2026-11-21',createdAt:'2026-10-15T00:00:00Z',days:[[{key:'k1',place:{id:'m1',name:'Merlion',area:'Marina Bay',address:'Fullerton Road',kind:'Attraction'},time:'09:00',note:'Keep note private',done:false}]]}]}));
  });
  await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:60000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:60000});
  await page.waitForFunction(async()=>{
   const reg=await navigator.serviceWorker.ready;
-  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v86')&&!await caches.has('sgbuddy-shell-v85');
+  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v87')&&!await caches.has('sgbuddy-shell-v86');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
   await page.reload({waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:25000});
  }
  const before=await page.evaluate(async assets=>{
-  const cache=await caches.open('sgbuddy-shell-v86');
+  const cache=await caches.open('sgbuddy-shell-v87');
   return Promise.all(assets.map(async p=>!!await cache.match(p)));
  },assets);
  assert.deepEqual(before,assets.map(()=>true),'All V4.21 and V4.22 UX modules must be pre-cached');
- assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true,'Pre-downloaded calendar data must survive v86 activation');
+ assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true,'Pre-downloaded calendar data must survive v87 activation');
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
  await page.locator('#navMoney').click();
  await page.locator('.ux422-trip-overview').waitFor({state:'visible',timeout:20000});
  assert.match(await page.locator('.ux422-trip-overview').textContent(),/Offline test/);

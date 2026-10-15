@@ -27,3 +27,6 @@ These changes are a development preview, not a production release. No existing l
 - 12-locale exact nav and Saved utility labels, 44px minimum touch height, basic computed theme contrast, focus/token styles, semantic accessible region headings, retained print/calendar actions and no duplicated trip overviews.
 - Service-worker v86 pre-cache verifies new UX JS, CSS and 12-locale dictionary; simulated offline restart retains My Trip, More navigation, saved itinerary and downloaded pack.
 - These are automated **partial accessibility checks**, not complete WCAG certification, native-speaker evaluation, human visual sign-off or installed physical-device tests.
+
+## User-authorized release candidate — 2026-10-15
+User authorized a controlled V4.22 production deployment. Version has been bumped to **V4.22.0** and the shell to **v87**. The preview-only version badge is removed. Historical runtime assertions and browser regression checks must be updated to the current version, then the exact final SHA must pass GitHub CI and Vercel preview smoke tests before merging and deploying to production. Simulated offline/viewport checks do not constitute physical-device, native-speaker or complete WCAG acceptance.
