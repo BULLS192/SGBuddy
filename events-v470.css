@@ -56,3 +56,10 @@
 .events-actions a{margin-left:auto}
 @media(max-width:480px){.events-scope{grid-template-columns:1fr}.events-actions button{min-height:42px}}
 html[data-ux-theme="light"] .events-scope select{background:#fff;color:#173248;border-color:#b7cbd6}
+
+/* V4.18: responsive searchable time-window discovery */
+.events-search{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px;margin:12px 0}
+.events-search label{display:grid;gap:5px;flex:1 1 220px;min-width:0;font-size:.82rem}
+.events-search input{font:inherit;min-width:0;width:100%;max-width:100%;border:1px solid rgba(148,181,212,.45);border-radius:11px;padding:9px 12px;background:transparent;color:inherit}
+.events-search small{font-size:.76rem;opacity:.78;overflow-wrap:anywhere}
+@media(max-width:420px){.events-search{align-items:stretch}.events-search input{font-size:16px}.events-filters button{flex:0 1 auto;min-width:0}}

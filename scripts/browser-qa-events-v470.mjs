@@ -15,7 +15,7 @@ try{
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'attached',timeout:60000});
   await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible'});
-  assert.equal(await page.locator('#sgbuddyEvents [data-event-filter]').count(),5);
+  assert.equal(await page.locator('#sgbuddyEvents [data-event-filter]').count(),8);
   await page.locator('#sgbuddyEvents [data-event-filter="upcoming"]').click();
   const total=await page.locator('#sgbuddyEvents .events-item').count();
   assert.ok(total>=0);

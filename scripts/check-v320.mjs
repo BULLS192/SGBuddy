@@ -30,6 +30,6 @@ for(const {code} of LOCALES){
 const root=read('app-v090.js'),place=read('app-v110.js'),sw=read('sw.js');
 for(const marker of ["rt('syncing')","rt('weatherConditions'","rt('routingArrive')","dt('pm25Explanation'","runtimeTranslations?.runtimeOriginal(window.SGBUDDY_LANGUAGE","document.addEventListener('sgbuddy:language'"])assert.ok(root.includes(marker),'Main app has not bound runtime translations: '+marker);
 for(const marker of ["placeTranslations?.placeRuntimeText(window.SGBUDDY_LANGUAGE","lp('walk')","lp('transit')","lp('drive')","lp('ride')","lp('comparisonUnavailable')","lp('noPlaces')"])assert.ok(place.includes(marker),'Place ETA renderer is not localized: '+marker);
-assert.ok(sw.includes('sgbuddy-shell-v82'),'Installed app must refresh cached assets');
+assert.ok(sw.includes('sgbuddy-shell-v83'),'Installed app must refresh cached assets');
 for(const path of ['/lib/i18n-runtime-v320.mjs','/lib/i18n-place-eta-v320.mjs'])assert.ok(sw.includes(path),'Missing offline translation asset '+path);
 console.log('V3.2 PASS: 35 runtime messages and 22 transport/place labels × all 12 languages; unknown server error text unchanged; NEA PSI/PM2.5 semantics, source data, offline cache and UI bindings checked.');
