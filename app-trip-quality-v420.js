@@ -6,6 +6,33 @@ const doc=document,labels={"en":["Trip health","Planned days","Stops","Repeated 
 const locale=()=>labels[window.SGBUDDY_LANGUAGE]?window.SGBUDDY_LANGUAGE:'en';
 const t=()=>labels[locale()];
 const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+const printLabels={"en":["Print itinerary","This is a local printout; your notes may appear on paper.","Day","Time","Notes","Plan only — check venue hours, accessibility, admission and transport.","SGBuddy itinerary"],"zh-CN":["打印行程","仅在此设备打印；纸张可能包含您的备注。","第","时间","备注","仅供规划，请核实开放时间、无障碍设施、门票及交通。","SGBuddy 行程"],"zh-TW":["列印行程","僅在本裝置列印；紙本可能含有您的備註。","第","時間","備註","僅供規劃，請確認營業時間、無障礙設施、門票及交通。","SGBuddy 行程"],"ms":["Cetak perjalanan","Cetakan setempat boleh mendedahkan nota anda.","Hari","Masa","Nota","Perancangan sahaja — semak waktu, akses, kemasukan dan pengangkutan.","Jadual perjalanan SGBuddy"],"id":["Cetak perjalanan","Cetakan lokal mungkin menampilkan catatan Anda.","Hari","Waktu","Catatan","Hanya rencana — periksa jam, akses, tiket, dan transportasi.","Rencana perjalanan SGBuddy"],"ja":["旅程を印刷","印刷した紙にはメモが含まれることがあります。","日目","時刻","メモ","計画用です。営業時間、入場条件、交通手段を確認してください。","SGBuddy 旅程"],"ko":["일정 인쇄","출력물에 개인 메모가 포함될 수 있습니다.","일차","시간","메모","계획용입니다. 운영 시간, 입장 및 교통을 확인하세요.","SGBuddy 일정"],"th":["พิมพ์แผนเที่ยว","กระดาษพิมพ์อาจมีบันทึกส่วนตัวของคุณ","วันที่","เวลา","บันทึก","เป็นเพียงแผน ตรวจสอบเวลาเปิด การเข้าชม และการเดินทาง","กำหนดการ SGBuddy"],"vi":["In hành trình","Bản in tại chỗ có thể chứa ghi chú riêng.","Ngày","Giờ","Ghi chú","Chỉ là kế hoạch — kiểm tra giờ mở, quyền vào và phương tiện.","Hành trình SGBuddy"],"fr":["Imprimer l'itinéraire","L'impression locale peut révéler vos notes personnelles.","Jour","Heure","Notes","Plan uniquement — vérifiez les horaires, l'accès et les transports.","Itinéraire SGBuddy"],"es":["Imprimir itinerario","La impresión local puede mostrar tus notas privadas.","Día","Hora","Notas","Solo planificación: comprueba horarios, acceso y transporte.","Itinerario SGBuddy"],"pt-BR":["Imprimir roteiro","A impressão local pode mostrar suas anotações pessoais.","Dia","Horário","Notas","Apenas planejamento: confira horários, acesso e transporte.","Roteiro SGBuddy"]};
+const printT=()=>printLabels[locale()]||printLabels.en;
+function printMarkup(trip){
+ const l=printT(),date=String(trip?.startDate||'');
+ const html=Array.isArray(trip?.days)?trip.days.map((stops,i)=>{
+   const d=new Date(date+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+i);
+   const day=Number.isFinite(d.valueOf())?d.toISOString().slice(0,10):'';
+   return '<section class="trip-print-day"><h2>'+escapeHTML(l[2])+' '+(i+1)+' · '+escapeHTML(day)+'</h2>'+
+    '<ol>'+((Array.isArray(stops)?stops:[]).map(stop=>
+    '<li><strong>'+escapeHTML(stop?.place?.name||'')+'</strong>'+
+    (stop?.time?'<span>'+escapeHTML(l[3])+': '+escapeHTML(stop.time)+'</span>':'')+
+    (stop?.place?.address?'<span>'+escapeHTML(stop.place.address)+'</span>':'')+
+    (stop?.note?'<span>'+escapeHTML(l[4])+': '+escapeHTML(stop.note)+'</span>':'')+'</li>').join(''))+'</ol></section>';
+ }).join(''):'';
+ return '<h1>'+escapeHTML(trip?.name||l[6])+'</h1><p>'+escapeHTML(l[1])+'</p>'+html+
+ '<footer>'+escapeHTML(l[5])+'</footer>';
+}
+function printTrip(){
+ const trip=window.SGBUDDY_TRIP_API?.getActive();if(!trip)return;
+ let root=doc.getElementById('sgbuddy-trip-print-root');
+ if(!root){root=doc.createElement('section');root.id='sgbuddy-trip-print-root';root.className='trip-print-root';doc.body.append(root)}
+ root.innerHTML=printMarkup(trip);
+ window.print();
+}
+window.addEventListener('afterprint',()=>{doc.getElementById('sgbuddy-trip-print-root')?.remove()});
+
 let pending=false;
 function paint(){
  pending=false;
@@ -17,7 +44,7 @@ function paint(){
  const summary=doc.createElement('section');
  summary.className='trip-quality-summary';
  summary.setAttribute('aria-label',l[0]);
- summary.innerHTML='<strong>'+escapeHTML(l[0])+'</strong><p>'+
+ summary.innerHTML='<div class="trip-quality-heading"><strong>'+escapeHTML(l[0])+'</strong><button type="button" class="secondary" data-v420-print>'+escapeHTML(printT()[0])+'</button></div><p>'+
    escapeHTML(l[1]+': '+health.plannedDays+'/'+health.totalDays+' · '+l[2]+': '+health.totalStops+
    ' · '+l[4]+': '+health.timeConflicts+' · '+l[5]+': '+health.missingAddresses)+'</p>'+
    (health.repeated.length?'<p>'+escapeHTML(l[3])+': '+health.repeated.map(p=>escapeHTML(p.name)+' ('+p.days.join(', ')+')').join('; ')+'</p>':'');
@@ -53,6 +80,7 @@ doc.addEventListener('sgbuddy:discover-places-ready',schedule);
 doc.addEventListener('sgbuddy:language',schedule);
 doc.addEventListener('change',e=>{if(e.target?.matches?.('[data-trip-route-mode]'))schedule()});
 doc.addEventListener('click',e=>{
+ if(e.target?.closest?.('[data-v420-print]')){printTrip();return}
  const btn=e.target?.closest?.('[data-v420-add]');if(!btn)return;
  const api=window.SGBUDDY_TRIP_API,host=doc.getElementById('myTripPlanner');
  const trip=api?.getActive(),i=Number(host?.querySelector('.trip-day-tabs [aria-pressed="true"]')?.dataset.tripDay??0);

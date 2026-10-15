@@ -47,6 +47,12 @@ try{
    await page.locator('.trip-quality-summary strong').waitFor({state:'visible'});
    assert.ok((await page.locator('.trip-quality-summary strong').textContent()).trim().length>2,'Missing '+code);
   }
+
+  await page.evaluate(()=>{window.__v420Prints=0;window.print=()=>{window.__v420Prints++}});
+  await page.locator('[data-v420-print]').click();
+  assert.equal(await page.evaluate(()=>window.__v420Prints),1,'Print must be user-invoked');
+  assert.match(await page.locator('#sgbuddy-trip-print-root').textContent(),/Singapore trip/);
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips[0].days[0].length),7,'Print cannot mutate trip');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'Horizontal overflow '+width);
   assert.deepEqual(errors,[],'Browser errors '+width);
   console.log('V4.20 W1 CHROMIUM PASS '+width+': 12 locale panels, full segmented route, driving mode, safe directory add, local persistence');
