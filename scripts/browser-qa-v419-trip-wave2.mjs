@@ -8,7 +8,7 @@ try{
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:45000});
-  await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+  await page.locator('#navMoney').click();
   await page.locator('#tripNewName').fill('Singapore 2.0');
   await page.locator('#tripStartDate').fill('2026-11-20');
   await page.locator('#tripCreateForm button[type="submit"]').click();
@@ -33,7 +33,7 @@ try{
   assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips[0].days[0].length),3,'Area grouping must persist all stops locally');
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&Boolean(window.SGBUDDY_TRIP_API),{timeout:35000});
-  await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+  await page.locator('#navMoney').click();
   await page.locator('.trip-stop-name h4').first().waitFor({state:'visible',timeout:20000});
   assert.deepEqual(await page.locator('.trip-stop-name h4').allTextContents(),['Garden','Merlion','Museum']);
   assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips[0].days[0].length),3,'Reload must preserve grouped stops');
