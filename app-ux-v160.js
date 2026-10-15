@@ -82,7 +82,7 @@ function show(name,options={}){
  const dest=name==='explore'?'places':name;
  originalShow(dest,options);
  activeNav(dest);
- if(dest==='places')setExplore(selectedExplore);
+ if(dest==='places'){setExplore(selectedExplore);window.SGBUDDY_V423?.onDiscover?.();}
 }
 router.show=show;
 if(nav){
