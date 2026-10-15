@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-15",
+  "source": "Esplanade original official programme pages",
+  "status": "source-checked-candidates-not-published",
+  "publicationPolicy": "All sources, public eligibility, republishing permission and current admission must be signed off by a named human editor; do not turn source-check notes into approvals.",
+  "records": [
+    {
+      "id": "esplanade-rafta-rafta-2026",
+      "title": "Rafta Rafta",
+      "startDate": "2026-11-18",
+      "endDate": "2026-11-22",
+      "venue": "Esplanade Theatre Studio",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/rafta-rafta",
+      "evidenceNote": "Official Esplanade page lists 18–22 Nov 2026 and paid public ticket sales.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "esplanade-biswa-inventions-2026",
+      "title": "Inventions by Biswa Kalyan Rath",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-20",
+      "venue": "Esplanade Concert Hall",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/inventions-by-biswa-kalyan-rath",
+      "evidenceNote": "Official Esplanade page lists 20 Nov 2026 and ticket sales.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "esplanade-songs-bulbul-2026",
+      "title": "Songs of the Bulbul",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-20",
+      "venue": "Singtel Waterfront Theatre at Esplanade",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/songs-of-the-bulbul",
+      "evidenceNote": "Official Esplanade page lists 20 Nov 2026 and ticket sales.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "esplanade-very-mahogany-wedding-2026",
+      "title": "A Very Mahogany Wedding",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-20",
+      "venue": "Esplanade Annexe Studio",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/a-very-mahogany-wedding",
+      "evidenceNote": "Official Esplanade page lists 20 Nov 2026 and ticket sales; age restriction 18+.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "esplanade-dialled-in-2026",
+      "title": "Dialled In Singapore",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "venue": "Esplanade Annexe Studio",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/dialled-in-singapore",
+      "evidenceNote": "Official Esplanade page lists 21 Nov 2026 and ticket sales.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "esplanade-bedok-to-bollywood-2026",
+      "title": "Bedok to Bollywood",
+      "startDate": "2026-11-27",
+      "endDate": "2026-11-28",
+      "venue": "Esplanade Recital Studio",
+      "sourceId": "esplanade",
+      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/bedok-to-bollywood",
+      "evidenceNote": "Official Esplanade page lists 27–28 Nov 2026; newly-added 28 Nov show should be reconfirmed.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    }
+  ]
+}

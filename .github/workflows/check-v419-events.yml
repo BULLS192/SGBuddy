@@ -1,0 +1,24 @@
+name: SGBuddy V4.19 Event Evidence Quality
+on:
+  pull_request:
+    paths:
+      - 'data/events-review-queue-v470.json'
+      - 'data/events-evidence-v419.json'
+      - 'scripts/check-v419-event-evidence.mjs'
+      - '.github/workflows/check-v419-events.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node scripts/check-v419-event-evidence.mjs
+          node scripts/check-v418-discovery.mjs
+          node scripts/event-source-health-v418.mjs --check
