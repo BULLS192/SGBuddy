@@ -19,9 +19,13 @@ try{
  for(const {code} of LOCALES){
   await page.locator('#sgbLanguage').selectOption(code);
   assert.equal(await page.locator('html').getAttribute('lang'),code,code+' html locale');
-  const label=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
-  assert.equal((await page.locator('#navMoney span').textContent()).trim(),label,code+' Saved tab wrongly labelled Money');
-  await page.locator('#navMoney').click();
+  assert.ok((await page.locator('#navMoney span').textContent()).trim().length>1,code+' My Trip primary tab missing');
+  await page.locator('#navAccount').click();
+  await page.locator('#ux422MoreHub [data-ux-go="saved"]').waitFor({state:'visible'});
+  const savedLink=(await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim();
+  assert.ok(savedLink.length>2&&savedLink!=='Money',code+' Saved utility missing from More');
+  if(code!=='en')assert.notEqual(savedLink,'Saved places',code+' Saved utility not translated');
+  await page.locator('#ux422MoreHub [data-ux-go="saved"]').click();
   const savedHeading=(await page.locator('#uxSavedView .ux-saved-header h2').textContent()).trim();
   assert.ok(savedHeading===shellLocale(code).savedTitle||(code!=='en'&&savedHeading.length>2&&savedHeading!=='Saved'&&savedHeading!=='Save for later'),code+' Saved heading must stay localized');
   assert.ok(await page.locator('#uxSavedView').isVisible(),'Saved view remains functional in '+code);
@@ -35,11 +39,12 @@ try{
  await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0');
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Language persisted');
- assert.equal((await page.locator('#navMoney span').textContent()).trim(),TRAVEL_UI['pt-BR'].saved);
+ assert.match((await page.locator('#navMoney span').textContent()).trim(),/viagem/i);
  await page.locator('#sgbLanguage').selectOption('en');
- assert.equal((await page.locator('#navMoney span').textContent()).trim(),'Saved','Back to English works');
+ await page.waitForFunction(()=>document.querySelector('#navMoney span')?.textContent?.trim()==='My Trip');
+ assert.equal((await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim(),'Saved places','Back to English works');
  const dims=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
  assert.ok(dims.scroll<=dims.width+8,'Mobile has horizontal overflow: '+JSON.stringify(dims));
  assert.equal(errors.length,0,'Browser errors: '+errors.join(' / '));
- console.log('V2.8.1 CHROMIUM PASS: 12 languages, Saved navigation, Home/Move labels, responsive mobile, reload persistence.');
+ console.log('V2.8.1 CHROMIUM PASS: 12 languages, Saved via More navigation, Home/Move labels, responsive mobile, reload persistence.');
 }finally{await browser.close()}

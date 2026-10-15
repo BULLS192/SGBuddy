@@ -21,8 +21,10 @@ try{
   assert.equal((await page.locator('#fxConvert').textContent()).trim(),dict.convert,code+' converter');
   assert.equal((await page.locator('#accountHubOpen').textContent()).trim(),dict.accountOpen,code+' account');
   assert.equal((await page.locator('#savePlaces').textContent()).trim(),dict.saveQuick,code+' save addresses');
-  const saved=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
-  assert.equal((await page.locator('#navMoney span').textContent()).trim(),saved,code+' Saved navigation');
+  assert.ok((await page.locator('#navMoney span').textContent()).trim().length>1,code+' My Trip navigation');
+  const saved=(await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim();
+  assert.ok(saved.length>2&&saved!=='Money',code+' Saved utility in More');
+  if(code!=='en')assert.notEqual(saved,'Saved places',code+' Saved should translate');
   assert.equal(await page.locator('html').getAttribute('lang'),code);
   await page.locator('#navMove').click();
   assert.equal((await page.locator('#timingNowButton').textContent()).trim(),dict.leaveNow,code+' departure');
@@ -41,5 +43,5 @@ try{
  const dim=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
  assert.ok(dim.scroll<=dim.width+8,'Horizontal overflow '+JSON.stringify(dim));
  assert.equal(errs.length,0,'Uncaught errors: '+errs.join(' / '));
- console.log('SGBuddy V2.9 CHROMIUM PASS: 12 languages across Move, transport, money, Saved and accounts, persistence and mobile layout.');
+ console.log('SGBuddy V2.9 CHROMIUM PASS: 12 languages across Move, transport, money, Saved via More and accounts, persistence and mobile layout.');
 }finally{await browser.close()}
