@@ -25,7 +25,8 @@ const scenarios=[
  {id:'transport',scope:'.v1-view[data-view="move"]',route:'move'},
  {id:'saved',scope:'#uxSavedView',route:'saved'},
  {id:'account',scope:'.v1-view[data-view="account"]',route:'account'},
- ...['eat','do','shop','essentials','healthcare','apps','travel','trip','facts'].map(tab=>({id:'discover-'+tab,scope:'#discoverHub',route:'places',tab})),
+ ...['eat','do','shop','essentials','healthcare','apps','travel','facts'].map(tab=>({id:'discover-'+tab,scope:'#discoverHub',route:'places',tab})),
+  {id:'discover-trip',scope:'#ux423TripView',route:'trip'},
  ...['stalls','dishes','menus','hawker-menus'].map(food=>({id:'food-'+food,scope:'#foodExplorer',route:'places',tab:'eat',food})),
  {id:'merli-assistant',scope:'#buddyPanel',route:'today',merli:true}
 ];
@@ -100,8 +101,13 @@ function capture(page,scene,viewport,persona){
  },{scene,viewport,persona});
 }
 async function prepare(page,scene){
- await page.evaluate(route=>window.SGBUDDY_CORE.navigateTo(route),scene.route);
- if(scene.tab)await page.evaluate(tab=>document.querySelector('[data-discover-tab="'+tab+'"]')?.click(),scene.tab);
+ if(scene.route==='trip')await page.locator('#navMoney').click();
+ else await page.evaluate(route=>window.SGBUDDY_CORE.navigateTo(route),scene.route);
+ if(scene.tab)await page.evaluate(tab=>{
+  const group=tab==='eat'?'food':['apps','travel','facts'].includes(tab)?'guides':'places';
+  document.querySelector('[data-ux423-group="'+group+'"]').click();
+  document.querySelector('[data-ux423-category="'+tab+'"]').click();
+ },scene.tab);
  if(scene.food)await page.evaluate(food=>document.querySelector('[data-food-view="'+food+'"]')?.click(),scene.food);
  if(scene.merli)await page.evaluate(()=>{
   const p=document.querySelector('#buddyPanel');
