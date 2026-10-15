@@ -64,7 +64,7 @@ if(api&&host){
   if(btn.id==='tripImportShared'&&incoming){
    const result=api.importCopy(incoming);
    if(!result.ok){notify(result.message||tr.refused);return}
-   incoming=null;clearShareLink();generated='';error='';host.querySelector('.trip-share-v270')?.remove();mount();notify(tr.saved);return;
+   incoming=null;clearShareLink();generated='';error='';host.querySelector('.trip-share-v270')?.remove();mount();notify(tr.saved);api.open?.();return;
   }
   if(btn.id==='tripDismissShared'){incoming=null;clearShareLink();host.querySelector('.trip-share-v270')?.remove();mount();return}
  });
@@ -75,7 +75,7 @@ if(api&&host){
    if(file.size>MAX_FILE_BYTES)throw Error(t().tooLarge);
    const trip=importTripJSON(await file.text()),result=api.importCopy(trip);
    if(!result.ok)throw Error(result.message||t().refused);
-   incoming=null;clearShareLink();generated='';error='';host.querySelector('.trip-share-v270')?.remove();mount();notify(t().saved);
+   incoming=null;clearShareLink();generated='';error='';host.querySelector('.trip-share-v270')?.remove();mount();notify(t().saved);api.open?.();
   }catch(ex){notify(ex.message||t().failed)}
   e.target.value='';
  });
