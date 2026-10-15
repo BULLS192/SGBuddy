@@ -10,14 +10,14 @@ assert.equal(t.id,ref);assert.equal(t.days.length,4);assert.equal(t.days[2][0].p
 assert.deepEqual(updateTripDetails(t,{name:'Trip',startDate:'2026-02-30',dayCount:4}),{ok:false,reason:'invalid-input'});
 assert.deepEqual(updateTripDetails(t,{name:'Trip',startDate:'2026-11-05',dayCount:15}),{ok:false,reason:'invalid-input'});
 const p=newTrip('Groups','2026-11-05',2);
-for(const [i,area] of ['East','Central','East','Central'].entries())addStop(p,0,{id:'loc'+i,name:'Stop '+i,area});
+for(const [i,area] of ['East','Central','Central','East'].entries())addStop(p,0,{id:'loc'+i,name:'Stop '+i,area});
 editStop(p.days[0][1],'time','10:00');
 const timed=p.days[0][1];
 assert.equal(groupUntimedStopsByArea(p,0),true);
 assert.equal(p.days[0][1],timed,'Must not move timed appointment');
-assert.deepEqual(p.days[0].map(s=>s.place.id),['loc0','loc1','loc2','loc3']);
+assert.deepEqual(p.days[0].map(s=>s.place.id),['loc0','loc1','loc3','loc2']);
 editStop(p.days[0][1],'time','');assert.equal(groupUntimedStopsByArea(p,0),true);
-assert.deepEqual(p.days[0].map(s=>s.place.id),['loc0','loc2','loc1','loc3']);
+assert.deepEqual(p.days[0].map(s=>s.place.id),['loc0','loc3','loc1','loc2']);
 assert.equal(groupUntimedStopsByArea(p,0),false,'Second grouping stable');
 assert.equal(new URL(dayRouteUrl(p,0,{mode:'driving'})).searchParams.get('travelmode'),'driving');
 assert.equal(new URL(dayRouteUrl(p,0,{mode:'walking'})).searchParams.get('travelmode'),'walking');

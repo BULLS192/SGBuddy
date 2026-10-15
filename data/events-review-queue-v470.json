@@ -57,6 +57,23 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
+      "id": "gardens-sunflower-surprise-2026",
+      "title": "Sunflower Surprise: Garden by the Ocean",
+      "titleSource": "official-detail-page",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-09",
+      "endDate": "2026-11-09",
+      "venue": "Flower Dome, Gardens by the Bay",
+      "sourceId": "gardens",
+      "sourceUrl": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/sunflower-surprise-2026.html",
+      "admission": "ticketed",
+      "admissionEvidence": "official-detail-page-needs-editor",
+      "access": "unverified",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
+    },
+    {
       "id": "suntec-json-suss-convocation-2026-2026-10-13",
       "title": "SUSS Convocation 2026",
       "startDate": "2026-10-13",
@@ -285,6 +302,23 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
+      "id": "sentosa-koocesters-car-meet-2026",
+      "title": "Koocester’s Car Meet: Beasts vs Beauties",
+      "titleSource": "official-detail-page",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "venue": "Sentosa Cove",
+      "sourceId": "sentosa",
+      "sourceUrl": "https://www.sentosa.com.sg/en/things-to-do/events/koocester-care-meet-beasts-vs-beauties/",
+      "admission": "check",
+      "admissionEvidence": "official-detail-page-needs-editor",
+      "access": "unverified",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
+    },
+    {
       "id": "expo-world-conference-on-floating-solutions-2026",
       "title": "Events @ Singapore EXPO | WORLD CONFERENCE ON FLOATING SOLUTIONS 2026",
       "titleSource": "og:title",
@@ -361,6 +395,23 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
+      "id": "gardens-race-sustainability-2026",
+      "title": "Race to Sustainability! 2026",
+      "titleSource": "official-detail-page",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-22",
+      "endDate": "2026-11-29",
+      "venue": "Gardens by the Bay",
+      "sourceId": "gardens",
+      "sourceUrl": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/race-to-sustainability-2026.html",
+      "admission": "check",
+      "admissionEvidence": "official-detail-page-needs-editor",
+      "access": "unverified",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
       "id": "suntec-json-le-creuset-family-sale-oct-2026-2026-10-23",

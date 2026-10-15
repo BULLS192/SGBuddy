@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "asOf": "2026-10-15",
-  "source": "Esplanade original official programme pages",
+  "source": "Source-checked official event detail pages: Esplanade, Gardens by the Bay and Sentosa",
   "status": "source-checked-candidates-not-published",
   "publicationPolicy": "All sources, public eligibility, republishing permission and current admission must be signed off by a named human editor; do not turn source-check notes into approvals.",
   "records": [
@@ -79,6 +79,45 @@
       "sourceId": "esplanade",
       "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/bedok-to-bollywood",
       "evidenceNote": "Official Esplanade page lists 27–28 Nov 2026; newly-added 28 Nov show should be reconfirmed.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "gardens-sunflower-surprise-2026",
+      "title": "Sunflower Surprise: Garden by the Ocean",
+      "startDate": "2026-10-09",
+      "endDate": "2026-11-09",
+      "venue": "Flower Dome, Gardens by the Bay",
+      "sourceId": "gardens",
+      "sourceUrl": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/sunflower-surprise-2026.html",
+      "evidenceNote": "Official Gardens by the Bay event page: 9 Oct–9 Nov 2026, Flower Dome, admission charge applies; current ticket inventory not independently checked.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "gardens-race-sustainability-2026",
+      "title": "Race to Sustainability! 2026",
+      "startDate": "2026-10-22",
+      "endDate": "2026-11-29",
+      "venue": "Gardens by the Bay",
+      "sourceId": "gardens",
+      "sourceUrl": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/race-to-sustainability-2026.html",
+      "evidenceNote": "Official Gardens by the Bay programme: 22 Oct–29 Nov 2026; free admission for parts, selected programmes chargeable.",
+      "observedOn": "2026-10-15",
+      "requiresHumanApproval": true,
+      "publicListingRightsVerified": false
+    },
+    {
+      "id": "sentosa-koocesters-car-meet-2026",
+      "title": "Koocester’s Car Meet: Beasts vs Beauties",
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-18",
+      "venue": "Sentosa Cove",
+      "sourceId": "sentosa",
+      "sourceUrl": "https://www.sentosa.com.sg/en/things-to-do/events/koocester-care-meet-beasts-vs-beauties/",
+      "evidenceNote": "Official Sentosa event page lists Sun 18 Oct 2026, 8am–2pm at Sentosa Cove; independently reconfirm admission before listing.",
       "observedOn": "2026-10-15",
       "requiresHumanApproval": true,
       "publicListingRightsVerified": false

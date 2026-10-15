@@ -6,6 +6,7 @@ on:
       - 'app-trip-v260.js'
       - 'trip-v260.css'
       - 'scripts/check-v419-trip.mjs'
+      - 'scripts/check-v419-trip-wave2.mjs'
       - 'scripts/browser-qa-v419-trip.mjs'
       - '.github/workflows/check-v419-trip.yml'
   workflow_dispatch:
@@ -24,6 +25,7 @@ jobs:
           node --check app-trip-v260.js
           node scripts/check-v260.mjs
           node scripts/check-v419-trip.mjs
+          node scripts/check-v419-trip-wave2.mjs
       - run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
