@@ -17,7 +17,7 @@ assert.ok(data.content.includes('DTSTART;TZID=Asia/Singapore:20261121T093000'));
 assert.ok(data.content.includes('DTSTART;TZID=Asia/Singapore:20261122T140000'));
 assert.ok(data.content.includes('DTSTAMP:20261015T030000Z'));
 assert.ok(data.content.includes('SUMMARY:Gardens\\, Bay\\; 🪴'));
-assert.ok(data.content.replace(/\r\n /g,'').includes('Bring water\\; then\\\\walk\\nLine 2'),'Calendar lines must preserve escaped note after unfolding');
+assert.ok(data.content.replace(/\r\n /g,'').includes('Bring water\\; then\\\\walk Line 2'),'Trip sanitizes control-newlines in notes; calendar must preserve escaped punctuation after unfolding');
 assert.ok(!data.content.includes('DTEND'),'Do not invent activity durations');
 assert.ok(!data.content.includes('BEGIN:VALARM'),'No unsolicited alerts');
 assert.ok(!data.content.includes('ATTENDEE'),'Never expose contacts');
