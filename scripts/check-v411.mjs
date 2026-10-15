@@ -18,7 +18,7 @@ for(const {code} of LOCALES){
 const boot=readFileSync('app-v090.js','utf8'),sw=readFileSync('sw.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-remaining-v411.js')"));
 assert.ok(boot.includes("import('/app-offline-v480.js')")&&boot.includes("import('/app-events-v470.js')"));
-assert.ok(boot.includes("='4.18.0'"),'production badge changed');
+assert.ok(boot.includes("='4.19.0'"),'production badge changed');
 for(const path of ['/app-i18n-remaining-v411.js','/lib/i18n-remaining-v411.mjs'])assert.ok(sw.includes(path),path+' missing');
 assert.ok(sw.includes('sgbuddy-offline-packs-v480')&&sw.includes('SHELL_PATHS.has(url.pathname)'),'offline caching changed');
 const runtime=readFileSync('app-i18n-remaining-v411.js','utf8');
