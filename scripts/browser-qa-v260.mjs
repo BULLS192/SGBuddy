@@ -7,7 +7,7 @@ await page.addInitScript(()=>{localStorage.setItem('sgc-persona-onboarded','1');
 const ready=async()=>{await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});await page.locator('#navPlaces').click()};
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});await ready();
- await page.locator('[data-discover-tab="trip"]').click();
+ await page.locator('#navMoney').click();
  await page.locator('#myTripPlanner').waitFor({state:'visible'});
  await page.locator('#tripNewName').fill('Singapore December');
  await page.locator('#tripStartDate').fill('2026-12-01');
@@ -28,7 +28,7 @@ try{
  await page.locator('#tripCustomForm button[type="submit"]').click();
  assert.equal(await page.locator('.trip-stop').count(),1,'Custom stop should be added to Day 2');
  await page.reload({waitUntil:'domcontentloaded'});await ready();
- await page.locator('[data-discover-tab="trip"]').click();
+ await page.locator('#navMoney').click();
  assert.equal(await page.locator('#tripSelect option').count(),1);
  await page.locator('[data-trip-day="0"]').click();
  assert.equal(await page.locator('.trip-stop').count(),1,'Trip must persist after reload');
@@ -45,9 +45,9 @@ try{
  await page.locator('#tripCreateForm button[type="submit"]').click();
  assert.equal(await page.locator('#tripSelect option').count(),2,'Multiple trips supported');
  await page.locator('#tripSelect').selectOption({label:'Singapore December'});
- await page.locator('[data-discover-tab="eat"]').click();
+ await page.locator('#navPlaces').click();await page.locator('[data-ux423-group="food"]').click();
  await page.locator('[data-trip-add-place]').first().click();
- await page.locator('[data-discover-tab="trip"]').click();
+ await page.locator('#navMoney').click();
  assert.ok(await page.locator('.trip-stop').count()>=1,'Place-card Add to Trip should work');
  await page.locator('#sgbLanguage').selectOption('zh-CN');
  assert.equal(await page.locator('[data-discover-tab="trip"]').textContent(),'我的行程');
