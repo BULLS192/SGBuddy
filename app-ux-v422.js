@@ -27,10 +27,11 @@ function moreHub(){
  const host=$('#accountSection');if(!host)return;
  let section=$('#ux422MoreHub');if(!section){
   section=d.createElement('section');section.id='ux422MoreHub';section.className='ux422-more-hub';
+  section.setAttribute('role','region');section.setAttribute('aria-labelledby','ux422MoreTitle');
   host.prepend(section);
  }
  const l=t();
- section.innerHTML='<div class="ux422-eyebrow">'+esc(l[5])+'</div><h3>'+esc(l[6])+'</h3>'+
+ section.innerHTML='<div class="ux422-eyebrow">'+esc(l[5])+'</div><h3 id="ux422MoreTitle">'+esc(l[6])+'</h3>'+
  '<div class="ux422-more-grid"><button type="button" data-ux-go="saved"><span aria-hidden="true">☆</span><strong>'+esc(l[2])+'</strong><small>↗</small></button>'+
  '<button type="button" data-ux-go="money"><span aria-hidden="true">⇄</span><strong>'+esc(l[3])+'</strong><small>↗</small></button>'+
  '<button type="button" id="ux422AccountAccess"><span aria-hidden="true">◎</span><strong>'+esc(l[4])+'</strong><small>↗</small></button></div>';
@@ -51,7 +52,8 @@ function trip(){
  let intro=host.querySelector('.ux422-trip-overview');
  if(!intro){intro=d.createElement('section');intro.className='ux422-trip-overview';}
  const range=current.startDate?(toDay(current.startDate)+' · '+overview.totalDays+' '+l[12]):'';
- intro.innerHTML='<div class="ux422-trip-top"><div><span class="ux422-eyebrow">'+esc(l[11])+'</span><strong>'+esc(current.name||l[0])+'</strong><small>'+esc(range)+'</small></div>'+
+ intro.setAttribute('role','region');intro.setAttribute('aria-label',l[11]);
+ intro.innerHTML='<div class="ux422-trip-top"><div><span class="ux422-eyebrow">'+esc(l[11])+'</span><h4>'+esc(current.name||l[0])+'</h4><small>'+esc(range)+'</small></div>'+
  '<span class="ux422-local-badge" title="'+esc(l[15])+'">⌁ '+esc(l[14])+'</span></div>'+
  '<div class="ux422-metrics"><span><b>'+overview.plannedDays+'/'+overview.totalDays+'</b>'+esc(l[12])+'</span><span><b>'+overview.totalStops+'</b>'+esc(l[13])+'</span></div>'+
  '<p>'+esc(l[15])+'</p>';

@@ -12,6 +12,9 @@ on:
       - 'sw.js'
       - 'scripts/check-v422-ux.mjs'
       - 'scripts/browser-qa-v422-ux.mjs'
+      - 'scripts/browser-qa-v422-quality.mjs'
+      - 'scripts/browser-qa-v422-offline.mjs'
+      - 'lib/ux-i18n-v422.mjs'
       - '.github/workflows/check-v422-ux.yml'
   workflow_dispatch:
 permissions:
@@ -48,4 +51,6 @@ jobs:
           cat /tmp/sgbuddy-v422.log; exit 1
       - run: |
           node scripts/browser-qa-v422-ux.mjs
+          node scripts/browser-qa-v422-quality.mjs
+          node scripts/browser-qa-v422-offline.mjs
           node scripts/browser-qa-v421-trip.mjs

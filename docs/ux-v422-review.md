@@ -21,3 +21,9 @@ New scoped stylesheet harmonizes cards, contrast, focus states and >=44px critic
 - If accepted, perform dedicated V4.22.0 build/version/shell-v87 upgrade and controlled production release **only after explicit user authorization**.
 
 These changes are a development preview, not a production release. No existing local trip data is migrated or deleted.
+
+### Final automated accessibility and offline QA
+- Multiple width/device class targets: 320, 375, 390, 768 and 1366 CSS pixels in both light/dark modes.
+- 12-locale exact nav and Saved utility labels, 44px minimum touch height, basic computed theme contrast, focus/token styles, semantic accessible region headings, retained print/calendar actions and no duplicated trip overviews.
+- Service-worker v86 pre-cache verifies new UX JS, CSS and 12-locale dictionary; simulated offline restart retains My Trip, More navigation, saved itinerary and downloaded pack.
+- These are automated **partial accessibility checks**, not complete WCAG certification, native-speaker evaluation, human visual sign-off or installed physical-device tests.

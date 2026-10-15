@@ -8,7 +8,7 @@ html{scroll-padding-top:18px}
 .my-trip-v260 a:focus-visible,.events-panel button:focus-visible,.events-panel a:focus-visible{outline:3px solid var(--ux422-outline);outline-offset:3px}
 .ux422-more-hub{margin:18px 0 8px;padding:14px;border:1px solid var(--line);border-radius:var(--ux422-radius);background:var(--panel2);color:var(--text)}
 .ux422-more-hub h3{margin:4px 0 14px}
-.ux422-eyebrow{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.ux422-eyebrow{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:800}
 .ux422-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
 .ux422-more-grid button{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;text-align:left;padding:13px;min-height:56px;cursor:pointer}
 .ux422-more-grid strong{overflow-wrap:anywhere;font-size:.9rem}
@@ -17,7 +17,7 @@ html{scroll-padding-top:18px}
 .ux422-trip-overview{padding:17px;margin:15px 0;background:linear-gradient(130deg,rgba(21,104,99,.25),rgba(30,69,112,.11));border:1px solid var(--line);border-radius:var(--ux422-radius)}
 .ux422-trip-top{display:flex;justify-content:space-between;align-items:flex-start;gap:13px;flex-wrap:wrap}
 .ux422-trip-top>div{min-width:0;display:grid;gap:4px}
-.ux422-trip-top strong{font-size:clamp(1.1rem,3vw,1.35rem);line-height:1.25;overflow-wrap:anywhere}
+.ux422-trip-top h4{font-size:clamp(1.1rem,3vw,1.35rem);line-height:1.25;overflow-wrap:anywhere;margin:0;font-weight:750}
 .ux422-trip-top small{color:var(--muted);font-size:.84rem}
 .ux422-local-badge{background:rgba(90,190,176,.13);color:var(--accent);border:1px solid rgba(99,230,190,.3);border-radius:999px;padding:7px 10px;font-size:.73rem;font-weight:800}
 .ux422-metrics{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 8px}
@@ -62,7 +62,7 @@ html{scroll-padding-top:18px}
 
 /* Published Events: scannable heading, persistent source caveats and touch-safe filters */
 .events-panel .events-header{padding:2px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.events-panel .events-header .label{font-size:10px;letter-spacing:.1em}
+.events-panel .events-header .label{font-size:12px;letter-spacing:.1em}
 .events-panel .events-header h2{font-size:clamp(1.35rem,3vw,1.65rem);line-height:1.25}
 .events-panel .events-header p{font-size:.85rem;line-height:1.55;color:var(--muted)}
 .events-panel .events-filter-label{font-size:.75rem;font-weight:750;margin:9px 0}
@@ -72,3 +72,7 @@ html{scroll-padding-top:18px}
 .events-panel .events-item h3{line-height:1.36}
 .events-panel .events-disclaimer{font-size:.79rem;line-height:1.55}
 .events-panel :is(input,select){min-height:44px}
+
+/* Focus contrast on both explicitly supported UI palettes. */
+html[data-ux-theme="light"]{--ux422-outline:#176b65}
+html[data-ux-theme="light"] .ux422-more-hub{background:var(--panel2);color:var(--text)}

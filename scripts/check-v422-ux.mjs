@@ -20,6 +20,9 @@ assert.ok(!ux.includes("localStorage.setItem("),'UX must not change user storage
 assert.ok(!ux.includes("fetch("),'UX cannot add API dependency');
 assert.ok(css.includes('min-height:44px'),'Touch target rule');
 assert.ok(css.includes('prefers-reduced-motion'),'Reduced-motion required');
+assert.ok(ux.includes("section.setAttribute('aria-labelledby','ux422MoreTitle')"),'More hub must be named');
+assert.ok(ux.includes("intro.setAttribute('role','region')"),'Trip overview must be a named accessible region');
+assert.ok(css.includes('html[data-ux-theme="light"]'),'Light-theme focus must have explicit contrast');
 for(const code of ['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'])assert.ok(read('lib/ux-i18n-v422.mjs').includes('"'+code+'":'),'Missing UX translation '+code);
 assert.ok(ux.includes("UX Preview · V4.22"),'Development must be visibly labelled');
 console.log('V4.22 UX STATIC PASS: navigable Trip, More utilities, 12 locales, visual-only enhancement, v86 offline preview, production untouched.');
