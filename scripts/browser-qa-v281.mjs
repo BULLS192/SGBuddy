@@ -11,7 +11,7 @@ page.on('requestfailed',r=>failedRequests.push(r.url()+': '+r.failure()?.errorTe
 page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:9000}).catch(async e=>{
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:9000}).catch(async e=>{
    console.error('V2.8.1 STARTUP DIAGNOSTICS',JSON.stringify({version:await page.locator('#appVersion').textContent().catch(()=>null),errors,consoleLines,failedRequests}));throw e;
  });
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2000}).catch(()=>{});if(await location.isVisible())await page.locator('#notNowLocationButton').click();
@@ -37,7 +37,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0');
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0');
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Language persisted');
  assert.match((await page.locator('#navMoney span').textContent()).trim(),/viagem/i);
  await page.locator('#sgbLanguage').selectOption('en');
