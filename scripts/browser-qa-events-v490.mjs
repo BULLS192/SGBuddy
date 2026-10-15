@@ -29,6 +29,7 @@ try{
    await page.waitForFunction(s=>document.querySelector('#sgbuddyOffline h2')?.textContent===s,header,{timeout:7000});
   }
   await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
+  await page.locator('[data-ux423-group="events"]').click();
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible',timeout:10000});
   assert.equal(await page.locator('#sgbuddyEvents .events-item').count()>0,true,'curated listing missing');
   const over=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+2);
