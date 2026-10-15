@@ -12,7 +12,7 @@ try{
  page.on('pageerror',e=>errors.push(e.message));
  await page.goto(origin+'/__v420_offline_fixture__',{waitUntil:'domcontentloaded',timeout:30000});
  await page.evaluate(async()=>{
-  const old=await caches.open('sgbuddy-shell-v84');
+  const old=await caches.open('sgbuddy-shell-v85');
   await old.put('/__v420_obsolete_shell',new Response('old shell'));
   const saved=await caches.open('sgbuddy-offline-packs-v480');
   await saved.put('/data/events-v470.json',new Response('{"events":[]}',{headers:{'content-type':'application/json'}}));
@@ -25,7 +25,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:60000});
  await page.waitForFunction(async()=>{
   const reg=await navigator.serviceWorker.ready;
-  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v86')&&!await caches.has('sgbuddy-shell-v84');
+  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v86')&&!await caches.has('sgbuddy-shell-v85');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
   await page.reload({waitUntil:'domcontentloaded',timeout:45000});
@@ -47,6 +47,6 @@ try{
  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips[0].days[0][0].note),'Keep note private');
  assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true);
  assert.deepEqual(errors.filter(x=>/trip-insights-v420|app-trip-quality-v420|trip-quality-v420/i.test(x)),[]);
- console.log('V4.20 SW UPGRADE BROWSER PASS: v84→v85, new trip modules available offline, downloaded data and private trip intact.');
+ console.log('V4.20 SW UPGRADE BROWSER PASS: v85→v86, new trip modules available offline, downloaded data and private trip intact.');
  await context.close();
 }finally{await browser.close()}
