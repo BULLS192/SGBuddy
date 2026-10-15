@@ -14,6 +14,7 @@ try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded'});
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'attached',timeout:60000});
   await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
+  await page.locator('[data-ux423-group="events"]').click();
   await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible'});
   assert.equal(await page.locator('#sgbuddyEvents [data-event-filter]').count(),8);
   await page.locator('#sgbuddyEvents [data-event-filter="upcoming"]').click();
