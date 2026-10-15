@@ -8,7 +8,7 @@ try{
   await ctx.addInitScript(()=>{localStorage.setItem('sgc-persona-onboarded','1');localStorage.setItem('sgc-mode','visitor');localStorage.setItem('sgc-location-choice','not-now')});
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0',{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.20.0',{timeout:35000});
   await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
   await page.locator('#tripNewName').fill('My Trip 2.0');
   await page.locator('#tripStartDate').fill('2026-11-21');
