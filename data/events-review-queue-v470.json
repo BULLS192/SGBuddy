@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-15",
+  "asOf": "2026-10-16",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -72,48 +72,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
-    },
-    {
-      "id": "suntec-json-suss-convocation-2026-2026-10-13",
-      "title": "SUSS Convocation 2026",
-      "startDate": "2026-10-13",
-      "endDate": "2026-10-15",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/suss-convocation-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-stainless-steel-world-asia-conference-and-expo-2026",
-      "title": "Events @ Singapore EXPO | Stainless Steel World Asia Conference & Expo 2026",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-14",
-      "endDate": "2026-10-15",
-      "venue": "Hall 6",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/stainless-steel-world-asia-conference-and-expo-2026/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-hypergrowth-summit-2026-2026-10-15",
-      "title": "HyperGrowth Summit 2026",
-      "startDate": "2026-10-15",
-      "endDate": "2026-10-15",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hypergrowth-summit-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-diwali-bazaar-october-2026-2026-10-16",
@@ -610,6 +568,24 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
+      "id": "expo-caps-cardshow",
+      "title": "Events @ Singapore EXPO | CAPS@EXPO",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Hall 6A",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "expo-the-makers-ground-at-expo",
