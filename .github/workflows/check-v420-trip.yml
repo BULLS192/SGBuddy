@@ -7,6 +7,8 @@ on:
       - 'lib/trip-insights-v420.mjs'
       - 'scripts/check-v420-trip-quality.mjs'
       - 'scripts/check-v420-trip-integration.mjs'
+      - 'scripts/check-v420-print.mjs'
+      - 'scripts/check-v420-release.mjs'
       - 'scripts/browser-qa-v420-trip.mjs'
       - 'app-v090.js'
       - 'index.html'
@@ -28,6 +30,8 @@ jobs:
           node --check lib/trip-insights-v420.mjs
           node scripts/check-v420-trip-quality.mjs
           node scripts/check-v420-trip-integration.mjs
+          node scripts/check-v420-print.mjs
+          node scripts/check-v420-release.mjs
           node scripts/check-v419-release.mjs
           node scripts/check-v419-trip-wave2.mjs
   browser:

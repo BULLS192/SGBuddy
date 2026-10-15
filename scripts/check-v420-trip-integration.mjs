@@ -4,7 +4,7 @@ import {tripOverview,dayRouteSegments,suggestDayPlaces} from '../lib/trip-insigh
 const read=p=>readFileSync(p,'utf8'),boot=read('app-v090.js'),html=read('index.html'),ui=read('app-trip-quality-v420.js'),css=read('trip-quality-v420.css'),sw=read('sw.js');
 assert.ok(boot.includes("import('/app-trip-v260.js')")&&boot.includes("import('/app-share-v270.js')).then(()=>import('/app-trip-quality-v420.js'))"),'My Trip 2.0 must initialize before V4.20 extension');
 assert.ok(html.includes('/trip-quality-v420.css'),'Missing CSS integration');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v84'"),'This wave must not publish or revise current production version');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v85'"),'This wave must not publish or revise current production version');
 assert.ok(ui.includes("sgbuddy:trip-rendered")&&ui.includes("sgbuddy:discover-places-ready")&&ui.includes("sgbuddy:trip-add-place"));
 assert.ok(ui.includes("data-v420-route")&&ui.includes("data-v420-add"),'New controls missing');
 assert.ok(ui.includes("escapeHTML(p.name)")&&ui.includes("escapeHTML(p.area)")&&ui.includes("escapeHTML(p.id)"),'First-party directory text must be escaped');
