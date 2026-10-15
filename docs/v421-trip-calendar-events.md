@@ -13,3 +13,6 @@ Existing device-local `sgbuddy-my-trips-v260` and all V4.20 features remain inta
 
 ## Acceptance & release
 `node scripts/check-v421-calendar.mjs`, `node scripts/check-v421-events.mjs`, `node scripts/check-v421-integration.mjs`, and Playwright `scripts/browser-qa-v421-trip.mjs` run in CI. The stacked V4.21 branch retains **V4.20.0/v85** intentionally; before a V4.21 production release, increment version/worker, precache the new code and CSS, update historical assertions and run installed-device QA. **Do not merge or deploy without separate authorization.**
+
+## V4.21 controlled production gate
+Release candidate updated to **V4.21.0 / shell v86**. Worker precaches all four new application and library assets. Source cache `sgbuddy-offline-packs-v480` and trip local storage stay unchanged. Exact-final-SHA release QA and separate physical installed-device acceptance required; production promotion remains prohibited before verifying green CI.

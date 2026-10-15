@@ -9,7 +9,9 @@ on:
       - 'scripts/check-v421-calendar.mjs'
       - 'scripts/check-v421-events.mjs'
       - 'scripts/check-v421-integration.mjs'
+      - 'scripts/check-v421-release.mjs'
       - 'scripts/browser-qa-v421-trip.mjs'
+      - 'scripts/browser-qa-v421-offline.mjs'
       - 'app-v090.js'
       - 'index.html'
       - '.github/workflows/check-v421-trip.yml'
@@ -32,6 +34,7 @@ jobs:
           node scripts/check-v421-calendar.mjs
           node scripts/check-v421-events.mjs
           node scripts/check-v421-integration.mjs
+          node scripts/check-v421-release.mjs
           node scripts/check-v420-release.mjs
   browser:
     runs-on: ubuntu-latest
@@ -48,4 +51,6 @@ jobs:
           python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v421.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
           cat /tmp/sgbuddy-v421.log; exit 1
-      - run: node scripts/browser-qa-v421-trip.mjs
+      - run: |
+          node scripts/browser-qa-v421-trip.mjs
+          node scripts/browser-qa-v421-offline.mjs
