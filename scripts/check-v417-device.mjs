@@ -23,7 +23,7 @@ let state=await inspectOfflineDevice({cacheStorage,storage,serviceWorker:{contro
 assert.equal(state.level,'none');assert.equal(state.ready,0);assert.equal(state.supported,true);
 assert.equal(state.shellCached,false);assert.equal(state.storage.low,true);
 assert.equal(opens,0,'Not opted into a pack: should not create a new cache');
-stored.set('sgbuddy-shell-v86',new Map());
+stored.set('sgbuddy-shell-v87',new Map());
 stored.set(OFFLINE_CACHE,new Map(OFFLINE_PACKS[0].files.map(f=>[f,json()])));
 state=await inspectOfflineDevice({cacheStorage,storage,serviceWorker:{controller:{}},dates:{calendar:new Date().toISOString()}});
 assert.equal(state.level,'ready');assert.equal(state.ready,1);assert.equal(state.packs[0].valid,3);
@@ -77,6 +77,6 @@ assert.ok(app.includes('withOfflinePackLock')&&app.includes("window.addEventList
 assert.ok(app.includes('fetchOfflineWithTimeout')&&app.includes("method:'HEAD'"));
 assert.ok(!app.includes('localStorage.clear(')&&!app.includes('caches.delete(OFFLINE_CACHE)'));
 for(const f of ['/lib/offline-device-v417.mjs','/lib/offline-device-i18n-v417.mjs','/lib/offline-network-v417.mjs','/lib/offline-tab-lock-v417.mjs'])assert.ok(sw.includes(f));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v86'"));
-assert.ok(readFileSync('index.html','utf8').includes('v4.21.0'),'Release candidate version, development-only');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v87'"));
+assert.ok(readFileSync('index.html','utf8').includes('v4.22.0'),'Release candidate version, development-only');
 console.log('V4.17 DEVICE PASS — local-only, explicit check, all 12 locales, no cache creation, read-only, cancelable requests, preserved production version.');
