@@ -24,7 +24,9 @@ assert.equal(missing.admissionEvidence,null);
 assert.equal(missing.publicAccessEvidence,null);
 const sources=read('data/event-sources-v470.json'),published=read('data/events-v470.json'),queue=read('data/events-review-queue-v470.json');
 const result=buildEditorWorklist(queue,published,sources,'2026-10-14');
-assert.equal(result.total,61);
+assert.equal(result.total,queue.candidates.length,'Editor worklist must cover every held candidate');
+const evidence=read('data/events-evidence-v419.json');
+assert.equal(queue.candidates.filter(x=>evidence.records.some(r=>r.id===x.id)).length,evidence.records.length,'All newly source-checked Esplanade records remain held');
 assert.equal(result.autoApproved,0);
 assert.ok(result.rows.every(r=>r.approvalAllowed===false&&r.requiresEditor===true));
 assert.ok(result.rows.some(r=>r.category==='already-curated'));
@@ -56,4 +58,4 @@ assert.ok(publish.includes('checkEditorApproval('),'Publisher gate must invoke a
 assert.ok(publish.includes('publicListingRightsVerified'),'Existing rights signoff must remain');
 assert.ok(publish.includes("process.argv.includes('--publish')"),'No auto publish');
 assert.ok(!readFileSync('.github/workflows/events-refresh-v470.yml','utf8').includes('node scripts/publish-reviewed-events-v490.mjs'),'Daily event refresh must not publish');
-console.log('V4.14 WAVE 3 PASS: admission/public access evidence, 61 unpublished reviews, 14-day editor signoff and duplicate-proof approval gate.');
+console.log('V4.14 WAVE 3 PASS: admission/public access evidence, all unpublished reviews, 14-day editor signoff and duplicate-proof approval gate.');
