@@ -27,7 +27,7 @@ function moreHub(){
  const host=$('#accountSection');if(!host)return;
  let section=$('#ux422MoreHub');if(!section){
   section=d.createElement('section');section.id='ux422MoreHub';section.className='ux422-more-hub';
-  host.append(section);
+  host.prepend(section);
  }
  const l=t();
  section.innerHTML='<div class="ux422-eyebrow">'+esc(l[5])+'</div><h3>'+esc(l[6])+'</h3>'+
