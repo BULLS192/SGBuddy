@@ -16,7 +16,7 @@ async function check(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>!!window.SGBUDDY_V312&&document.querySelector('#appVersion')?.textContent==='v4.19.0',{timeout:35000});
+  await page.waitForFunction(()=>!!window.SGBUDDY_V312&&document.querySelector('#appVersion')?.textContent==='v4.20.0',{timeout:35000});
   await page.locator('#navMoney').click();
   await page.locator('#uxSavedContent .ux-saved-item').first().waitFor({state:'visible',timeout:9000});
   for(const {code} of LOCALES){
