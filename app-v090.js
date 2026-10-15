@@ -884,13 +884,13 @@ function v094SettingsCard(){
         <select id="settingCurrency">${FX_CURRENCIES.map(c=>'<option value="'+c+'">'+c+'</option>').join('')}</select>
       </label>
       <label>Language preference
-        <select id="settingLanguage"><option value="en">English</option><option value="zh">简体中文</option><option value="ms">Bahasa Melayu</option><option value="ta">தமிழ்</option><option value="pt">Português</option></select>
+        <select id="settingLanguage"><option value="en">English</option><option value="zh">简体中文</option><option value="zh-TW">繁體中文</option><option value="ms">Bahasa Melayu</option><option value="id">Bahasa Indonesia</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="th">ไทย</option><option value="vi">Tiếng Việt</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option><option value="ta">தமிழ் (legacy preference)</option></select>
       </label>
       <label>Walking preference
         <select id="settingWalking"><option value="low">Keep walking low</option><option value="normal">Balanced</option><option value="high">Walking is fine</option></select>
       </label>
     </div>
-    <p class="settings-note">Language is a preference signal for now; full interface translation is not claimed in v1.0.</p>
+    <p class="settings-note">Display language is selected separately in the app language picker. This is your saved account language preference.</p>
   `;
   return section;
 }
