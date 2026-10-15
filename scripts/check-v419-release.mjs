@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {STORE_KEY,updateTripDetails,groupUntimedStopsByArea,dayRouteUrl} from '../lib/trip-v260.mjs';
+import {OFFLINE_CACHE,OFFLINE_PACKS} from '../lib/offline-packs-v480.mjs';
+import {DISCOVERY_FILTERS} from '../lib/events-discovery-v418.mjs';
+import {LOCALES} from '../lib/i18n-v280.mjs';
+const read=p=>readFileSync(p,'utf8'),json=p=>JSON.parse(read(p));
+const index=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js'),trip=read('app-trip-v260.js');
+assert.ok(index.includes('id="appVersion"')&&index.includes('v4.19.0'));
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.19.0'")&&boot.includes("textContent='v4.19.0'"));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v84'"));
+assert.equal(OFFLINE_CACHE,'sgbuddy-offline-packs-v480');
+assert.equal(OFFLINE_PACKS.length,3);
+assert.equal(OFFLINE_PACKS.reduce((a,p)=>a+p.files.length,0),13);
+assert.ok(sw.includes("const PACK_CACHE='sgbuddy-offline-packs-v480'"));
+assert.ok(!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
+assert.ok(sw.includes("key.startsWith('sgbuddy-shell-v')&&key!==CACHE"));
+assert.ok(sw.includes("url.pathname.startsWith('/api/')"),'Live API routes excluded from offline shell');
+for(const p of ['/app-trip-v260.js','/lib/trip-v260.mjs','/trip-v260.css','/lib/events-discovery-v418.mjs'])assert.ok(sw.includes("'"+p+"'"),'Missing shell asset '+p);
+assert.equal(STORE_KEY,'sgbuddy-my-trips-v260');
+assert.equal(typeof updateTripDetails,'function');assert.equal(typeof groupUntimedStopsByArea,'function');assert.equal(typeof dayRouteUrl,'function');
+for(const x of ['tripEditForm','data-trip-day-insights','data-trip-group-area','data-trip-route-mode','data-trip-walking-route'])assert.ok(trip.includes(x),'Missing Trip 2.0 control '+x);
+assert.equal(LOCALES.length,12);
+assert.deepEqual(DISCOVERY_FILTERS.slice(0,4),['today','weekend','next7','next30']);
+const queue=json('data/events-review-queue-v470.json'),published=json('data/events-v470.json'),evidence=json('data/events-evidence-v419.json'),approvals=json('data/event-approvals-v490.json');
+assert.ok(evidence.records.length>=9,'Nine official-source review records required');
+const queueIds=new Set(queue.candidates.map(x=>x.id)),publishedIds=new Set(published.events.map(x=>x.id));
+assert.equal(queueIds.size,queue.candidates.length,'Duplicate candidate IDs');
+assert.equal(approvals.approvals.length,0,'No unreviewed auto-publication allowed');
+for(const row of evidence.records){
+ assert.ok(queueIds.has(row.id),'Evidence must appear in human-only review queue');
+ assert.ok(!publishedIds.has(row.id),'Unapproved event leaked into published feed');
+ assert.ok(!published.events.some(e=>e.sourceUrl===row.sourceUrl),'Unapproved official page already in publication');
+}
+assert.ok(!read('.github/workflows/events-refresh-v470.yml').includes('node scripts/publish-reviewed-events-v490.mjs'));
+console.log('V4.19 RELEASE QA PASS: exact runtime, offline v84, 13 pack files, existing trip storage, 12 locales and manual editorial hold.');

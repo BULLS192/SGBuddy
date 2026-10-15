@@ -22,7 +22,7 @@ for(const term of ['#accountSheet','#uxSavedView','#foodCards .food-stall','#dis
 assert.ok(!module.includes('innerHTML=')&&!module.includes('querySelectorAll("*")'),'Unsafe first-party text scope');
 const boot=readFileSync('app-v090.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-priority-v440.js')"),'Priority runtime not booted');
-assert.ok(boot.includes("='4.18.0'"),'Do not change production badge on development branch');
+assert.ok(boot.includes("='4.19.0'"),'Do not change production badge on development branch');
 const sw=readFileSync('sw.js','utf8');
 assert.ok(sw.includes('/lib/i18n-priority-v440.mjs')&&sw.includes('/app-i18n-priority-v440.js'),'Offline shell must include localized patch');
 assert.ok(readFileSync('scripts/check-all.mjs','utf8').includes("scripts/check-v440.mjs"),'Full suite missing V4.4');

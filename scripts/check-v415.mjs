@@ -54,7 +54,7 @@ for(const {code} of LOCALES){
  for(const key of OFFLINE_V415_KEYS)assert.ok(offline415Text(code,key,{used:'1 MB',total:'4 MB'}).length>6,code+' '+key);
 }
 const sw=readFileSync('sw.js','utf8');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v83'"),'Production cache key must stay until release');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v84'"),'Production cache key must stay until release');
 assert.ok(sw.includes('/lib/offline-resilience-v415.mjs')&&sw.includes('/lib/offline-resilience-i18n-v415.mjs'));
 assert.ok(sw.includes('sgbuddy-offline-packs-v480')&&!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 const ui=readFileSync('app-offline-v480.js','utf8');

@@ -1,5 +1,5 @@
 /* SGBuddy V2.6 — My Trip: local, editable itinerary. No cloud sync or booking. */
-import {STORE_KEY,MAX_TRIPS,MAX_DAYS,newTrip,dayDate,validPlace,addStop,moveStop,moveDay,editStop,hydrate,shareText} from './lib/trip-v260.mjs';
+import {STORE_KEY,MAX_TRIPS,MAX_DAYS,newTrip,dayDate,validPlace,addStop,moveStop,moveDay,editStop,hydrate,shareText,dayOverview,dayWalkingRouteUrl,updateTripDetails,groupUntimedStopsByArea,dayRouteUrl} from './lib/trip-v260.mjs';
 import {normalizeLocale} from './lib/i18n-v280.mjs';
 import {translatedTrip} from './lib/i18n-trip-v280.mjs';
 import {matchingEventDay,eventFallbackDate,eventTripPlace} from './lib/events-explore-v414.mjs';
@@ -17,7 +17,7 @@ if(core&&discover){
  const v312=(key,english)=>window.SGBUDDY_V312?.text(lang(),key)||english;
   const text=()=>translatedTrip(lang(),labels.en,labels.zh),localDay=()=>{const p=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Singapore',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return p.year+'-'+p.month+'-'+p.day};
  let data;try{data=hydrate(JSON.parse(localStorage.getItem(STORE_KEY)||'{}'))}catch{data=hydrate({})}
- let selectedDay=0,showPanel=false,catalogue=window.SGBUDDY_DISCOVER_PLACES||null,message='',query='';
+ let routeMode='walking',selectedDay=0,showPanel=false,catalogue=window.SGBUDDY_DISCOVER_PLACES||null,message='',query='';
  const host=doc.createElement('section');host.id='myTripPlanner';host.className='card my-trip-v260';host.hidden=true;host.setAttribute('role','tabpanel');host.setAttribute('aria-labelledby','discoverTab-trip');
  discover.insertBefore(host,$('#discoverResults'));
  const active=()=>data.trips.find(t=>t.id===data.activeId)||null;
@@ -36,6 +36,29 @@ if(core&&discover){
   const rows=catalogue.filter(p=>p&&p.id&&p.name&&[p.name,p.area,p.category,p.address].join(' ').toLowerCase().includes(q)).slice(0,8);
   return rows.length?rows.map(p=>'<div class="trip-search-result"><div><strong>'+escapeHTML(p.name)+'</strong><small>'+escapeHTML([p.area,p.category].filter(Boolean).join(' · '))+'</small></div><button class="secondary" type="button" data-trip-add-search="'+escapeHTML(p.id)+'">'+escapeHTML(s.add)+' '+(selectedDay+1)+'</button></div>').join(''):'<p class="trip-helper">'+escapeHTML(({en:'No matching places · Try a different name','zh-CN':'没有匹配地点，请尝试其他名称','zh-TW':'沒有符合的地點，請換個名稱',ms:'Tiada tempat sepadan · Cuba nama lain',id:'Tidak ada tempat cocok · Coba nama lain',ja:'該当する場所がありません。別の名前をお試しください。',ko:'검색 결과가 없습니다. 다른 이름을 시도하세요.',th:'ไม่พบสถานที่ ลองชื่ออื่น',vi:'Không tìm thấy địa điểm · Thử tên khác',fr:'Aucun lieu trouvé · Essayez un autre nom',es:'No hay lugares · Prueba otro nombre','pt-BR':'Nenhum local encontrado · Tente outro nome'})[lang()]||'No matching places')+'</p>';
  }
+
+ const dayInsightLabels={"en":["Day check","Timed","Time clashes","Without street address","Open walking route ↗","First five stops only","Maps calculates the route; no confirmed times or admission."],"zh-CN":["当日检查","定时","时间冲突","缺少街道地址","打开步行路线 ↗","仅前五站","地图负责规划路线；时间和入场未获核实。"],"zh-TW":["當日檢查","定時","時間衝突","缺少街道地址","開啟步行路線 ↗","僅前五站","地圖負責規劃路線；時間及入場未獲核實。"],"ms":["Semakan hari","Masa","Masa bertindih","Tiada alamat","Buka laluan berjalan ↗","Lima hentian pertama","Peta mengira laluan; masa dan kemasukan tidak disahkan."],"id":["Periksa hari","Terjadwal","Bentrok waktu","Alamat kurang","Buka rute jalan kaki ↗","Lima pemberhentian pertama","Peta menentukan rute; waktu dan akses belum dikonfirmasi."],"ja":["1日の確認","時刻指定","時間重複","住所未入力","徒歩ルートを開く ↗","最初の5か所","経路は地図で計算。営業時間と入場条件は未確認です。"],"ko":["하루 점검","시간 지정","시간 중복","주소 없음","도보 경로 열기 ↗","첫 5곳만","경로는 지도가 계산하며 입장 및 운영 시간은 미확인입니다."],"th":["ตรวจแผนรายวัน","ตั้งเวลา","เวลาซ้ำ","ไม่มีที่อยู่","เปิดเส้นทางเดิน ↗","เฉพาะห้าจุดแรก","แผนที่คำนวณเส้นทาง ยังไม่ยืนยันเวลาและการเข้าชม"],"vi":["Kiểm tra ngày","Có giờ","Trùng giờ","Thiếu địa chỉ","Mở đường đi bộ ↗","Chỉ năm điểm đầu","Bản đồ tính đường; giờ và quyền vào chưa được xác nhận."],"fr":["Vérification du jour","Horaires","Conflits","Adresses manquantes","Ouvrir trajet à pied ↗","Cinq premières étapes","Carte calcule le trajet ; horaires et accès non confirmés."],"es":["Revisión del día","Con hora","Conflictos","Sin dirección","Abrir ruta a pie ↗","Solo cinco primeras paradas","Mapa calcula la ruta; horarios y acceso sin confirmar."],"pt-BR":["Revisão do dia","Com horário","Conflitos","Sem endereço","Abrir rota a pé ↗","Só as cinco primeiras paradas","Mapa calcula a rota; horários e acesso não confirmados."]};
+ function dayInsightsMarkup(trip){
+  const stat=dayOverview(trip,selectedDay),l=dayInsightLabels[lang()]||dayInsightLabels.en;
+  const route=dayRouteUrl(trip,selectedDay,{mode:routeMode}),t=editLabels(),routeLabel=routeMode==='driving'?t[7]+' ↗':l[4];
+  return '<aside class="trip-day-insights" data-trip-day-insights><strong>'+escapeHTML(l[0])+'</strong><p>'+
+   escapeHTML(l[1]+': '+stat.timed+'/'+stat.count+' · '+l[2]+': '+stat.timeConflicts+' · '+l[3]+': '+stat.missingAddress)+'</p>'+
+   (route?'<a class="trip-day-route" data-trip-walking-route target="_blank" rel="noopener noreferrer" href="'+escapeHTML(route)+'">'+escapeHTML(routeLabel)+(stat.count>5?' · '+escapeHTML(l[5]):'')+'</a>':'')+
+   '<label class="trip-route-mode">'+escapeHTML(t[5])+'<select data-trip-route-mode aria-label="'+escapeHTML(t[5])+'">'+
+  '<option value="walking" '+(routeMode==='walking'?'selected':'')+'>'+escapeHTML(t[6])+'</option>'+
+  '<option value="driving" '+(routeMode==='driving'?'selected':'')+'>'+escapeHTML(t[7])+'</option></select></label>'+
+  '<button type="button" class="secondary" data-trip-group-area>'+escapeHTML(t[8])+'</button>'+
+  '<small>'+escapeHTML(t[9])+' '+escapeHTML(l[6])+'</small></aside>';
+ }
+ const tripEditLabels={"en":["Edit itinerary","Save changes","Updated itinerary","Cannot shorten: later days still contain stops","Invalid trip details","Route mode","Walking","Driving","Group untimed stops by area","Areas are text labels, not verified distances; timed stops stay in place.","No changes to group"],"zh-CN":["编辑行程","保存更改","行程已更新","后面的日期有安排，不能缩短","行程资料无效","路线方式","步行","驾车","按区域分组未定时地点","区域只是文字标签，非已核实距离；定时地点不移动。","无需分组"],"zh-TW":["編輯行程","儲存更改","行程已更新","後面的日期有安排，不能縮短","行程資料無效","路線方式","步行","開車","按地區分組未定時地點","地區只屬文字標籤，非已核實距離；定時地點不移動。","無須分組"],"ms":["Edit perjalanan","Simpan perubahan","Perjalanan dikemas kini","Hari kemudian mengandungi hentian","Butiran perjalanan tidak sah","Mod laluan","Berjalan","Memandu","Kumpulkan hentian tanpa masa mengikut kawasan","Kawasan ialah label teks; jarak tidak disahkan. Masa tetap tidak diubah.","Tiada perubahan"],"id":["Ubah perjalanan","Simpan perubahan","Perjalanan diperbarui","Hari berikutnya masih memiliki pemberhentian","Detail perjalanan tidak valid","Mode rute","Berjalan","Berkendara","Kelompokkan tempat tanpa jadwal menurut area","Area hanya label teks, bukan jarak terverifikasi. Jadwal tetap tidak digeser.","Tidak ada perubahan"],"ja":["旅程を編集","変更を保存","旅程を更新しました","後の日付に予定があり短縮できません","旅程情報が無効です","ルート方式","徒歩","車","時間未設定の場所をエリア別に整理","エリアは自己申告の文字情報で、距離は未確認です。時間指定は動かしません。","変更なし"],"ko":["여행 일정 수정","변경 저장","일정이 수정되었습니다","뒤쪽 날짜에 장소가 있어 줄일 수 없습니다","잘못된 일정 정보","경로 방식","도보","자동차","시간 없는 장소를 지역별로 묶기","지역은 텍스트 정보로 거리 검증이 아닙니다. 시간 지정 장소는 이동하지 않습니다.","변경 없음"],"th":["แก้ไขแผนเที่ยว","บันทึกการเปลี่ยนแปลง","อัปเดตแผนแล้ว","ไม่สามารถลดวันเพราะยังมีจุดแวะ","ข้อมูลการเดินทางไม่ถูกต้อง","รูปแบบเส้นทาง","เดิน","ขับรถ","จัดจุดที่ยังไม่กำหนดเวลาตามพื้นที่","พื้นที่เป็นเพียงข้อความ ไม่ใช่ระยะทางจริง จุดกำหนดเวลาไม่ถูกย้าย","ไม่เปลี่ยนแปลง"],"vi":["Sửa hành trình","Lưu thay đổi","Đã cập nhật hành trình","Ngày sau vẫn có điểm dừng","Thông tin hành trình không hợp lệ","Chế độ đường đi","Đi bộ","Lái xe","Nhóm điểm chưa đặt giờ theo khu vực","Khu vực là nhãn chữ, không phải khoảng cách xác thực. Điểm có giờ không đổi.","Không cần nhóm"],"fr":["Modifier le voyage","Enregistrer","Voyage modifié","Des arrêts existent dans les derniers jours","Détails du voyage invalides","Mode de trajet","À pied","En voiture","Regrouper les arrêts sans heure par quartier","Quartiers déclarés, distances non vérifiées. Les horaires restent en place.","Aucun changement"],"es":["Editar viaje","Guardar cambios","Viaje actualizado","Hay paradas en los últimos días","Datos del viaje no válidos","Modo de ruta","A pie","En coche","Agrupar paradas sin hora por zona","Las zonas son etiquetas, no distancias verificadas; los horarios no cambian.","Sin cambios"],"pt-BR":["Editar viagem","Salvar alterações","Viagem atualizada","Há paradas nos últimos dias","Dados da viagem inválidos","Tipo de rota","A pé","De carro","Agrupar paradas sem horário por região","Regiões são rótulos, não distâncias verificadas. Paradas com horário não mudam.","Sem alterações"]};
+ const editLabels=()=>tripEditLabels[lang()]||tripEditLabels.en;
+ const tripEditMarkup=trip=>{const l=editLabels(),s=text();
+ return '<details class="trip-edit-details"><summary>'+escapeHTML(l[0])+'</summary><form id="tripEditForm" class="trip-new-form">'+
+ '<label>'+escapeHTML(s.name)+'<input name="name" maxlength="90" required value="'+escapeHTML(trip.name)+'"></label>'+
+ '<label>'+escapeHTML(s.start)+'<input type="date" name="start" required value="'+escapeHTML(trip.startDate)+'"></label>'+
+ '<label>'+escapeHTML(s.days)+'<input type="number" min="1" max="'+MAX_DAYS+'" name="days" required value="'+trip.days.length+'"></label>'+
+ '<button type="submit" class="primary">'+escapeHTML(l[1])+'</button></form></details>';
+ };
  function stopMarkup(trip,stop,index){
   const s=text(),p=stop.place,canUp=index>0,canDown=index<trip.days[selectedDay].length-1;
   return '<article class="trip-stop" data-trip-stop="'+index+'"><div class="trip-stop-head"><span class="trip-stop-index">'+(index+1)+'</span><div class="trip-stop-name"><h4>'+escapeHTML(p.name)+'</h4><p>'+escapeHTML([p.area,p.kind].filter(Boolean).join(' · '))+'</p></div><label class="trip-done"><input type="checkbox" data-trip-done="'+index+'" '+(stop.done?'checked':'')+' /><span>'+escapeHTML(s.visit)+'</span></label></div>'+
@@ -46,9 +69,9 @@ if(core&&discover){
   const s=text(),trip=active();if(trip&&selectedDay>=trip.days.length)selectedDay=0;
   const creation='<details id="tripCreateDetails" '+(!trip||showPanel?'open':'')+'><summary>'+escapeHTML(s.newTrip)+'</summary><form id="tripCreateForm" class="trip-new-form"><label>'+escapeHTML(s.name)+'<input id="tripNewName" name="name" maxlength="90" required placeholder="'+escapeHTML(v312('tripNamePlaceholder','Singapore getaway'))+'" /></label><label>'+escapeHTML(s.start)+'<input id="tripStartDate" name="start" type="date" value="'+localDay()+'" required /></label><label>'+escapeHTML(s.days)+'<input id="tripNumberOfDays" name="days" type="number" min="1" max="'+MAX_DAYS+'" value="3" required /></label><button type="submit" class="primary">'+escapeHTML(s.create)+'</button></form></details>';
   host.innerHTML='<header class="trip-heading"><div class="label">'+escapeHTML(s.title)+' · SGBUDDY V2.6</div><h3>'+escapeHTML(s.title)+'</h3><p>'+escapeHTML(s.intro)+'</p></header><p class="trip-privacy">'+escapeHTML(s.device)+'</p>'+
-   creation+(trip?'<div class="trip-active"><label>'+escapeHTML(s.choose)+'<select id="tripSelect">'+data.trips.map(t=>'<option value="'+escapeHTML(t.id)+'" '+(t.id===data.activeId?'selected':'')+'>'+escapeHTML(t.name)+'</option>').join('')+'</select></label><button class="secondary trip-delete" type="button" id="tripDelete">'+escapeHTML(s.delete)+'</button></div>'+
+   creation+(trip?'<div class="trip-active"><label>'+escapeHTML(s.choose)+'<select id="tripSelect">'+data.trips.map(t=>'<option value="'+escapeHTML(t.id)+'" '+(t.id===data.activeId?'selected':'')+'>'+escapeHTML(t.name)+'</option>').join('')+'</select></label><button class="secondary trip-delete" type="button" id="tripDelete">'+escapeHTML(s.delete)+'</button></div>'+tripEditMarkup(trip)+
    '<div class="trip-day-tabs" role="group" aria-label="'+escapeHTML(s.selectDay)+'">'+trip.days.map((day,i)=>'<button data-trip-day="'+i+'" aria-pressed="'+(selectedDay===i)+'" type="button">'+escapeHTML(formatDay(i,trip))+' <span>('+day.length+')</span></button>').join('')+'</div>'+
-   '<section class="trip-day-panel"><div class="trip-day-head"><h4>'+escapeHTML(formatDay(selectedDay,trip))+'</h4><span>'+trip.days[selectedDay].length+' '+escapeHTML(s.selected)+'</span></div><div class="trip-stops">'+(trip.days[selectedDay].length?trip.days[selectedDay].map((stop,i)=>stopMarkup(trip,stop,i)).join(''):'<p class="trip-empty">'+escapeHTML(s.empty)+'</p>')+'</div>'+
+   '<section class="trip-day-panel"><div class="trip-day-head"><h4>'+escapeHTML(formatDay(selectedDay,trip))+'</h4><span>'+trip.days[selectedDay].length+' '+escapeHTML(s.selected)+'</span></div>'+dayInsightsMarkup(trip)+'<div class="trip-stops">'+(trip.days[selectedDay].length?trip.days[selectedDay].map((stop,i)=>stopMarkup(trip,stop,i)).join(''):'<p class="trip-empty">'+escapeHTML(s.empty)+'</p>')+'</div>'+
    '<div class="trip-add-panel"><label>'+escapeHTML(s.search)+'<input id="tripSearch" type="search" autocomplete="off" placeholder="'+escapeHTML(v312('tripSearchPlaceholder','Marina Bay, Chinatown, hawker centre…'))+'" value="'+escapeHTML(query)+'"/></label><div id="tripSearchResults" class="trip-search-results">'+searchMarkup()+'</div><form id="tripCustomForm" class="trip-custom-form"><strong>'+escapeHTML(s.manual)+'</strong><input name="customName" maxlength="140" required aria-label="'+escapeHTML(s.customName)+'" placeholder="'+escapeHTML(s.customName)+'"/><input name="customArea" maxlength="180" aria-label="'+escapeHTML(s.customArea)+'" placeholder="'+escapeHTML(s.customArea)+'"/><button type="submit" class="secondary">'+escapeHTML(s.addCustom)+'</button></form></div></section>'+
    '<div class="trip-export"><button type="button" class="primary" id="tripShare">'+escapeHTML(s.copy)+'</button><button type="button" class="secondary" id="tripDownload">'+escapeHTML(s.download)+'</button><button type="button" class="secondary" id="tripBrowse">'+escapeHTML(s.directory)+'</button></div>':'<p class="trip-empty">'+escapeHTML(s.noTrip)+'</p>')+
    '<p class="trip-helper" id="tripMessage" role="status">'+escapeHTML(message||s.saved)+'</p><p class="trip-warning">'+escapeHTML(s.warning)+'</p>';
@@ -66,14 +89,23 @@ if(core&&discover){
  doc.addEventListener('sgbuddy:trip-add-place',e=>{const place=validPlace(e.detail?.place);if(!place)return;add(place);core.toast?.(message)});
  host.addEventListener('submit',e=>{
   if(e.target.id==='tripCreateForm'){e.preventDefault();if(data.trips.length>=MAX_TRIPS){message=text().limit;render();return}const f=new FormData(e.target);try{const trip=newTrip(f.get('name'),String(f.get('start')||''),f.get('days'));data.trips.push(trip);data.activeId=trip.id;selectedDay=0;query='';showPanel=false;message='';save();render()}catch(err){message=err.message;$('#tripMessage').textContent=message}}
+  if(e.target.id==='tripEditForm'){
+   e.preventDefault();const trip=active();if(!trip)return;
+   const f=new FormData(e.target),r=updateTripDetails(trip,{name:f.get('name'),startDate:f.get('start'),dayCount:f.get('days')});
+   message=r.ok?editLabels()[2]:editLabels()[r.reason==='occupied-days'?3:4];
+   if(r.ok){selectedDay=Math.min(selectedDay,trip.days.length-1);save();render()}
+   else {const status=host.querySelector('#tripMessage');if(status)status.textContent=message}
+   return;
+  }
   if(e.target.id==='tripCustomForm'){e.preventDefault();const f=new FormData(e.target),name=String(f.get('customName')||'').trim(),area=String(f.get('customArea')||'').trim();if(!name)return;add({id:'manual-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7),name,area,kind:'Custom',status:'user-entered'});}
  });
  host.addEventListener('input',e=>{if(e.target.id==='tripSearch'){query=e.target.value;$('#tripSearchResults').innerHTML=searchMarkup()}});
  host.addEventListener('change',e=>{
   const el=e.target,trip=active();if(el.id==='tripSelect'){data.activeId=el.value;selectedDay=0;query='';save();render();return}
   if(!trip)return;
+  if(el.matches('[data-trip-route-mode]')){routeMode=el.value==='driving'?'driving':'walking';const aside=host.querySelector('[data-trip-day-insights]');if(aside)aside.outerHTML=dayInsightsMarkup(trip);return}
   let idx;
-  if(el.matches('[data-trip-time]')){idx=Number(el.dataset.tripTime);editStop(trip.days[selectedDay][idx],'time',el.value);save();return}
+  if(el.matches('[data-trip-time]')){idx=Number(el.dataset.tripTime);editStop(trip.days[selectedDay][idx],'time',el.value);save();const box=host.querySelector('[data-trip-day-insights]');if(box)box.outerHTML=dayInsightsMarkup(trip);return}
   if(el.matches('[data-trip-note]')){idx=Number(el.dataset.tripNote);editStop(trip.days[selectedDay][idx],'note',el.value);save();return}
   if(el.matches('[data-trip-done]')){idx=Number(el.dataset.tripDone);editStop(trip.days[selectedDay][idx],'done',el.checked);save();return}
   if(el.matches('[data-trip-transfer]')){idx=Number(el.dataset.tripTransfer);if(el.value!==''&&moveDay(trip,selectedDay,idx,Number(el.value))){save();render()}}
@@ -86,6 +118,10 @@ if(core&&discover){
   if(btn.id==='tripBrowse'){$('[data-discover-tab="do"]')?.click();return}
   if(btn.id==='tripDelete'&&trip){if(!confirm(text().confirm))return;data.trips=data.trips.filter(x=>x.id!==trip.id);data.activeId=data.trips[0]?.id||null;selectedDay=0;save();render();return}
   if(!trip)return;
+  if(btn.hasAttribute('data-trip-group-area')){
+   const changed=groupUntimedStopsByArea(trip,selectedDay);
+   message=changed?editLabels()[2]:editLabels()[10];if(changed)save();render();return;
+  }
   for(const [key,fn] of [['tripUp',i=>moveStop(trip,selectedDay,i,-1)],['tripDown',i=>moveStop(trip,selectedDay,i,1)],['tripRemove',i=>{trip.days[selectedDay].splice(i,1);return true}]]){
    if(btn.dataset[key]!==undefined){if(fn(Number(btn.dataset[key]))){save();render()}return}
   }
