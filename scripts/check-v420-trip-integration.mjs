@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {tripOverview,dayRouteSegments,suggestDayPlaces} from '../lib/trip-insights-v420.mjs';
+const read=p=>readFileSync(p,'utf8'),boot=read('app-v090.js'),html=read('index.html'),ui=read('app-trip-quality-v420.js'),css=read('trip-quality-v420.css'),sw=read('sw.js');
+assert.ok(boot.includes("import('/app-trip-v260.js')")&&boot.includes("import('/app-share-v270.js')).then(()=>import('/app-trip-quality-v420.js'))"),'My Trip 2.0 must initialize before V4.20 extension');
+assert.ok(html.includes('/trip-quality-v420.css'),'Missing CSS integration');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v85'"),'This wave must not publish or revise current production version');
+assert.ok(ui.includes("sgbuddy:trip-rendered")&&ui.includes("sgbuddy:discover-places-ready")&&ui.includes("sgbuddy:trip-add-place"));
+assert.ok(ui.includes("data-v420-route")&&ui.includes("data-v420-add"),'New controls missing');
+assert.ok(ui.includes("escapeHTML(p.name)")&&ui.includes("escapeHTML(p.area)")&&ui.includes("escapeHTML(p.id)"),'First-party directory text must be escaped');
+assert.ok(!ui.includes("data/events-review-queue-v470.json")&&!ui.includes("fetch("),'No unapproved data or external API');
+assert.ok(css.includes(':focus-visible'),'Accessible keyboard outlines required');
+for(const locale of ['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'])assert.ok(ui.includes('"'+locale+'":'),locale+' missing');
+assert.equal(typeof tripOverview,'function');assert.equal(typeof dayRouteSegments,'function');assert.equal(typeof suggestDayPlaces,'function');
+console.log('V4.20 W1 INTEGRATION PASS: dev-only runtime hook, 12 locales, escaped directories, no review queue access or production version edits.');

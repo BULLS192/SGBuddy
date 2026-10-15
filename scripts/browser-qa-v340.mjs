@@ -26,7 +26,7 @@ const payload={
 };
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0'&&!!window.SGBUDDY_DYNAMIC_I18N&&!!document.querySelector('[data-buddy-action="help"]'),{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.20.0'&&!!window.SGBUDDY_DYNAMIC_I18N&&!!document.querySelector('[data-buddy-action="help"]'),{timeout:30000});
  let apiCalls=0;
  await page.route('**/api/journey?*',route=>{
   if(new URL(route.request().url()).searchParams.get('action')==='compare'){
@@ -72,7 +72,7 @@ try{
  }
  assert.equal(apiCalls,1,'Language switching must not refetch the same transport result');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.20.0',{timeout:30000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Locale persistence');
  const desktop=await newContext(1366,900),wide=await desktop.newPage();
  wide.on('pageerror',e=>errors.push('desktop: '+e.message));

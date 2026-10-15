@@ -1,0 +1,28 @@
+/* V4.20 Wave 1 — compact read-only trip quality and review-safe suggestions */
+.trip-quality-summary,.trip-quality-routes,.trip-quality-suggestions{border:1px solid var(--line,#35516d);border-radius:12px;margin:12px 0;padding:12px 14px;min-width:0;background:rgba(81,134,159,.075)}
+.trip-quality-summary strong,.trip-quality-routes strong,.trip-quality-suggestions strong{font-size:.91rem}
+.trip-quality-summary p,.trip-quality-suggestions p{margin:6px 0;font-size:.82rem;line-height:1.55;overflow-wrap:anywhere}
+.trip-quality-legs,.trip-quality-options{display:grid;gap:8px;margin:10px 0}
+.trip-quality-legs a{width:fit-content;max-width:100%;display:inline-flex;align-items:center;min-height:40px;font-size:.86rem;text-decoration:underline;text-underline-offset:3px}
+.trip-quality-place{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;border:1px solid var(--line,#35516d);border-radius:10px;padding:9px 11px}
+.trip-quality-place span{display:grid;gap:4px;min-width:0;flex:1}
+.trip-quality-place b{font-size:.85rem;overflow-wrap:anywhere}
+.trip-quality-place small,.trip-quality-suggestions>small{color:var(--muted,#b6c9da);font-size:.75rem}
+.trip-quality-place button{min-height:40px}
+.trip-quality-legs a:focus-visible,.trip-quality-place button:focus-visible{outline:3px solid #9adbf7;outline-offset:3px}
+
+.trip-quality-heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.trip-quality-heading button{min-height:40px;padding:8px 12px}
+.trip-quality-heading button:focus-visible{outline:3px solid #9adbf7;outline-offset:3px}
+.trip-print-root{display:none}
+@media print{
+ body>*:not(#sgbuddy-trip-print-root){display:none!important}
+ html,body{background:white!important;color:black!important;margin:0!important;padding:0!important}
+ body #sgbuddy-trip-print-root{display:block!important;position:static!important;color:#000!important;background:#fff!important;font:12pt/1.4 Arial,sans-serif!important;padding:0 10mm!important}
+ .trip-print-root h1{font-size:20pt;margin:0 0 8mm}
+ .trip-print-day{break-inside:avoid-page;margin:5mm 0 8mm}
+ .trip-print-day h2{font-size:14pt;border-bottom:1px solid #999;padding-bottom:2mm}
+ .trip-print-day li{break-inside:avoid;margin-bottom:3mm}
+ .trip-print-day li span{display:block}
+ .trip-print-root footer{margin-top:10mm;font-size:10pt}
+}
