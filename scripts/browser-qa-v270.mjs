@@ -17,7 +17,7 @@ try{
  const a=await create(),b=await create();
  await a.page.goto(origin,{waitUntil:'domcontentloaded',timeout:30000});
  await a.page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
- await a.page.locator('#navPlaces').click();await a.page.locator('[data-discover-tab="trip"]').click();
+ await a.page.locator('#navMoney').click();
  await a.page.locator('#tripNewName').fill('Singapore weekend');
  await a.page.locator('#tripStartDate').fill('2027-01-01');
  await a.page.locator('#tripNumberOfDays').fill('3');
@@ -27,7 +27,7 @@ try{
  await a.page.locator('#tripCustomForm button[type="submit"]').click();
  await a.page.locator('[data-trip-note="0"]').fill('Bring camera');
  await a.page.locator('[data-trip-note="0"]').press('Tab');
- await a.page.locator('#tripMakeLink').click();
+ await a.page.locator('#ux423TripTools > summary').click();await a.page.locator('#tripMakeLink').click();
  const link=await a.page.locator('#tripShareLinkInput').inputValue();
  assert.ok(link.startsWith(origin+'/#sgtrip='),'Share should be self-contained fragment without external service');
  assert.ok(link.length<7800,'Link length bounded');
@@ -43,7 +43,7 @@ try{
  assert.ok(!(await b.page.evaluate(()=>location.hash)).includes('sgtrip'),'Consumed link must not persist in address bar');
  await b.page.locator('[data-trip-note="0"]').fill('Camera and snacks');
  await b.page.locator('[data-trip-note="0"]').press('Tab');
- await b.page.locator('#tripMakeLink').click();
+ await b.page.locator('#ux423TripTools > summary').click();await b.page.locator('#tripMakeLink').click();
  const reply=await b.page.locator('#tripShareLinkInput').inputValue();
  assert.notEqual(reply,link,'Collaborator edits produce a new snapshot link');
  assert.equal(await a.page.locator('[data-trip-note="0"]').inputValue(),'Bring camera','Original must remain unchanged');
@@ -57,6 +57,7 @@ try{
  assert.equal(await c.page.locator('#tripSelect option').count(),1,'Import JSON trip file');
  await c.page.locator('#sgbLanguage').selectOption('zh-CN');
  assert.match(await c.page.locator('#tripShareTitle').textContent(),/分享/);
+ await c.page.locator('#ux423TripTools > summary').click();
  await c.page.setViewportSize({width:375,height:812});
  assert.ok(await c.page.locator('.trip-share-v270').evaluate(el=>el.getBoundingClientRect().width<=innerWidth+8),'Share panel must fit phone viewport');
  assert.deepEqual(errs,[],'Browser JavaScript errors');
