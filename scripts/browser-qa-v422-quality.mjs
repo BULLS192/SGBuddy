@@ -60,6 +60,7 @@ try{
     await page.locator('#navAccount').click();
     await page.waitForFunction(data=>document.querySelector('#ux422MoreHub [data-ux-go="saved"] strong')?.textContent===data.saved,{saved:labels[2]},{timeout:15000});
     await page.locator('#navMoney').click();
+    await page.locator('.ux422-trip-overview').waitFor({state:'visible',timeout:15000});
     assert.equal(await page.locator('.ux422-trip-overview').count(),1,'Locale must not duplicate overview '+code);
    }
   }
