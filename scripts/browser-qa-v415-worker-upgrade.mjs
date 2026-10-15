@@ -31,11 +31,11 @@ try{
   localStorage.setItem('sgc-location-choice','not-now');
  },{files:allFiles,cacheName:OFFLINE_CACHE});
  await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.18.0'
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0'
   &&document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3,null,{timeout:65000});
  await page.waitForFunction(async ()=>{
   const reg=await navigator.serviceWorker.ready;
-  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v83')&&!await caches.has('sgbuddy-shell-v82');
+  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v84')&&!await caches.has('sgbuddy-shell-v82');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>Boolean(navigator.serviceWorker.controller))){
   await page.reload({waitUntil:'domcontentloaded',timeout:45000});
@@ -55,7 +55,7 @@ try{
  assert.deepEqual(routes,[]);
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.18.0'
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0'
   &&document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3,null,{timeout:60000});
  assert.equal(await page.evaluate(()=>localStorage.getItem('sgbuddy-v415-synthetic-saved-trip')),'preserve-me');
  const offline=await page.evaluate(async files=>{
@@ -74,7 +74,7 @@ try{
  await page.evaluate(async name=>(await caches.open(name)).put('/data/events-v470.json',
    new Response('{corrupt',{headers:{'content-type':'application/json'}})),OFFLINE_CACHE);
  const safe=await page.evaluate(async()=>{
-  const fallback=await(await caches.open('sgbuddy-shell-v83')).match('/data/events-v470.json');
+  const fallback=await(await caches.open('sgbuddy-shell-v84')).match('/data/events-v470.json');
   const response=await fetch('/data/events-v470.json');
   return {ok:response.ok,expected:await fallback.text(),actual:await response.text()};
  });
