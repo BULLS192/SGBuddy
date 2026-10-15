@@ -112,7 +112,7 @@ function foldTripTools(){
  const share=host.querySelector('.trip-share-v270');
  if(share){const versionShare=share.querySelector('.label');if(versionShare)versionShare.textContent=t()[18]}
  const exportRow=host.querySelector('.trip-export');
- if(tr&&exportRow&&share){
+ if(tr&&exportRow&&share&&!exportRow.closest('#ux423TripTools')){
   const folded=d.createElement('details');folded.id='ux423TripTools';folded.className='ux423-trip-tools';
   const summary=d.createElement('summary');summary.textContent=t()[18];folded.appendChild(summary);
   exportRow.before(folded);folded.appendChild(exportRow);folded.appendChild(share);
@@ -120,7 +120,7 @@ function foldTripTools(){
  if(!tr&&share){
   // Import remains exposed in the empty state; legal explanations stay on-demand.
   const blocks=[...share.querySelectorAll('.trip-share-warning, .trip-helper:not(#tripShareStatus)')];
-  if(blocks.length){const detail=d.createElement('details');detail.className='ux423-trip-notes';const summary=d.createElement('summary');summary.textContent=t()[17];detail.appendChild(summary);blocks[0].before(detail);blocks.forEach(b=>detail.appendChild(b))}
+  if(blocks.length&&!blocks[0].closest('.ux423-trip-notes')){const detail=d.createElement('details');detail.className='ux423-trip-notes';const summary=d.createElement('summary');summary.textContent=t()[17];detail.appendChild(summary);blocks[0].before(detail);blocks.forEach(b=>detail.appendChild(b))}
  }
 }
 d.addEventListener('sgbuddy:trip-rendered',()=>queueMicrotask(foldTripTools));
