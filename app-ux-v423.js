@@ -30,10 +30,13 @@ tripView.innerHTML='<header class="ux423-screen-head"><span class="ux423-kicker"
 main.appendChild(tripView);
 tripView.appendChild(host);
 host.setAttribute('role','region');host.setAttribute('aria-labelledby','ux423TripTitle');
+const skipPrefix={en:'Skip to','zh-CN':'跳到','zh-TW':'跳至',ms:'Langkau ke',id:'Lewati ke',ja:'移動先：',ko:'이동:',th:'ข้ามไปยัง',vi:'Đến',fr:'Aller à',es:'Ir a','pt-BR':'Ir para'};
+const syncTripSkip=()=>{const skip=$('.skip-link');if(skip){skip.href='#ux423TripTitle';skip.textContent=(skipPrefix[locale()]||skipPrefix.en)+' '+t()[23]}};
 const openTrip=()=>{
   // The original category activation performs a fresh render for all attached integrations.
   $('#discoverTab-trip')?.click();
   host.hidden=false;
+  syncTripSkip();
   all('.v1-view').forEach(view=>view.classList.toggle('hidden',view!==tripView));
   all('.bottom-nav [data-nav-target]').forEach(a=>{const selected=a.dataset.navTarget==='trip';a.classList.toggle('active',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   window.scrollTo({top:0,behavior:'instant'});
@@ -124,7 +127,7 @@ function foldTripTools(){
  }
 }
 d.addEventListener('sgbuddy:trip-rendered',()=>queueMicrotask(foldTripTools));
-d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();foldTripTools()}));
+d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();foldTripTools();if(!tripView.classList.contains('hidden'))syncTripSkip()}));
 
 // Diagnostics are still one tap away from More, but no longer dominate it.
 // The station lookup belongs to Move, not to the global page chrome.
