@@ -1,0 +1,89 @@
+/* SGBuddy V4.23 preview. A visual layer over existing production components. */
+:root{--ux423-focus:#35b9b0;--ux423-radius:20px;--ux423-soft:color-mix(in srgb,var(--accent) 9%,var(--panel))}
+.ux423-screen-head{display:flex;flex-direction:column;gap:7px;margin:2px 0 16px;padding:2px 2px 8px}
+.ux423-kicker{font-size:.7rem;letter-spacing:.17em;font-weight:800;color:var(--accent)}
+.ux423-screen-head h2{font-size:clamp(1.8rem,4.8vw,2.65rem);letter-spacing:-.035em;font-weight:760;line-height:1.08;margin:0}
+.ux423-screen-head p{font-size:.91rem;line-height:1.5;color:var(--muted);max-width:54ch;margin:0}
+.ux423-trip-view #myTripPlanner{max-width:100%;margin:0;border-radius:var(--ux423-radius)}
+.ux423-trip-view .trip-heading{padding-bottom:8px}
+.ux423-trip-view .trip-heading .label{font-size:.71rem;letter-spacing:.1em;color:var(--accent)}
+.ux423-trip-view .trip-heading h3{display:none}
+.ux423-trip-view .trip-heading p{color:var(--muted);font-size:.85rem;max-width:55ch}
+.ux423-trip-view .trip-privacy{border-inline-start:3px solid var(--accent);background:var(--ux423-soft);border-radius:0 10px 10px 0;padding:9px 12px;margin:4px 0 15px}
+.ux423-trip-view .ux422-trip-overview{margin:10px 0 14px}
+.ux423-trip-view .trip-day-tabs{margin-top:12px}
+.ux423-trip-view .trip-day-tabs button{border-radius:12px}
+.ux423-trip-view .trip-day-panel{border:1px solid var(--line);border-radius:16px}
+.ux423-trip-view .trip-active{padding-block:10px}
+.ux423-trip-view .trip-warning{font-size:.78rem;line-height:1.5;opacity:.8}
+.ux423-trip-tools,.ux423-trip-notes{margin-top:16px;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:0 14px}
+.ux423-trip-tools>summary,.ux423-trip-notes>summary{cursor:pointer;padding:15px 4px;min-height:48px;font-weight:750;color:var(--text)}
+.ux423-trip-tools[open],.ux423-trip-notes[open]{padding-bottom:15px}
+.ux423-trip-tools .trip-export{margin-block:8px 12px}
+.ux423-trip-tools .trip-share-v270{margin:0;border:0;background:transparent;padding:8px 0}
+.ux423-trip-view.ux423-empty-trip .trip-share-v270{padding-block:10px}
+.ux423-trip-view.ux423-empty-trip .trip-share-v270>header>p{font-size:.86rem;max-width:62ch}
+.ux423-trip-view.ux423-empty-trip .trip-incoming{display:block}
+.ux423-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:5px;background:var(--panel2);border:1px solid var(--line);border-radius:15px;margin:12px 0}
+.ux423-groups button{min-height:48px;padding:10px 8px;border:0;border-radius:11px;background:transparent;color:var(--muted);font-weight:730;font-size:.93rem;cursor:pointer}
+.ux423-groups button.active{background:var(--panel);color:var(--text);box-shadow:0 2px 14px rgba(0,0,0,.13)}
+.ux423-categories{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+.ux423-categories[hidden],.ux423-events-slot[hidden]{display:none!important}
+.ux423-categories button{min-height:44px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:.87rem;font-weight:650;cursor:pointer}
+.ux423-categories button.active{color:var(--text);background:var(--ux423-soft);border-color:var(--accent)}
+#discoverHub .discover-tabs{display:none!important}
+#discoverHub .discover-title-row{gap:9px}
+#discoverHub .discover-title-row h2{font-size:clamp(1.28rem,3vw,1.65rem);letter-spacing:-.02em}
+#discoverHub .discover-title-row p{font-size:.84rem}
+#discoverHub.ux423-events-mode > :not(.discover-intro):not(.ux423-events-slot){display:none!important}
+.v1-view[data-view="places"].ux423-events-mode > :not(#discoverHub){display:none!important}
+.ux423-events-slot{display:flex;flex-direction:column;gap:13px;margin-top:12px}
+.ux423-events-slot>.events-panel{margin:0;border-radius:var(--ux423-radius);padding:clamp(13px,3vw,22px)}
+.ux423-events-slot .events-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+.ux423-events-slot .events-item{display:flex;flex-direction:column;gap:8px;min-width:0;border-radius:17px;border:1px solid var(--line);background:var(--panel2);box-shadow:0 6px 22px rgba(0,0,0,.05)}
+.ux423-events-slot .events-item h3{font-size:1.08rem;line-height:1.3;margin:5px 0 4px}
+.ux423-events-slot .events-item .events-category{border-radius:999px;background:var(--ux423-soft);padding:5px 9px;font-size:.74rem}
+.ux423-events-slot .events-item .events-date{font-weight:700;color:var(--text)}
+.ux423-events-slot .events-item .events-summary{font-size:.88rem;line-height:1.5}
+.ux423-events-slot .events-item .events-proof{font-size:.73rem;color:var(--muted);margin-top:auto}
+.ux423-events-slot .events-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:7px}
+.ux423-events-slot .events-actions>:is(a,button){min-height:44px;border-radius:10px}
+.ux423-events-slot .events-scope,.ux423-events-slot .events-area-note{display:none}
+.ux423-events-slot .events-panel.ux423-show-filters .events-scope{display:flex}
+.ux423-events-slot .events-panel.ux423-show-filters .events-area-note{display:block}
+.ux423-events-slot .events-header>p{max-width:60ch}
+.ux423-refine{align-self:flex-end;order:0;min-height:44px;padding:9px 15px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--text);font-weight:680;cursor:pointer}
+.ux423-calendar-details{border:1px solid var(--line);border-radius:15px;background:var(--panel2);padding:0 14px}
+.ux423-calendar-details>summary{font-weight:750;cursor:pointer;padding:16px 4px;min-height:50px}
+.ux423-calendar-details>.calendar-card{margin:0 0 15px;border-radius:13px;background:var(--panel)}
+.ux423-diagnostics{margin:18px 0;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:0 14px}
+.ux423-diagnostics>summary{font-weight:740;cursor:pointer;color:var(--text);padding:15px 4px;min-height:48px}
+.ux423-diagnostics[open]{padding-bottom:14px}
+.ux423-diagnostics .data-core{margin:4px 0;border-radius:12px;background:var(--panel)}
+.ux423-diagnostics .developer-data{max-width:100%}
+.ux423-trip-view :is(button,select,input,summary,a):focus-visible,
+.ux423-groups button:focus-visible,.ux423-categories button:focus-visible,
+.ux423-refine:focus-visible,.ux423-calendar-details summary:focus-visible,
+.ux423-diagnostics summary:focus-visible{outline:3px solid var(--ux423-focus);outline-offset:3px}
+.ux423-trip-view :is(button,select,input),.ux423-events-slot :is(button,select,input){scroll-margin-block:90px}
+@media(max-width:640px){
+ .ux423-screen-head{padding-inline:2px}
+ .ux423-screen-head h2{font-size:1.9rem}
+ .ux423-groups{gap:3px;padding:4px;margin-block:10px}
+ .ux423-groups button{font-size:.81rem;padding:9px 2px;min-height:48px;overflow-wrap:anywhere}
+ .ux423-categories{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding-bottom:7px}
+ .ux423-categories button{flex-shrink:0}
+ .ux423-events-slot .events-list{grid-template-columns:minmax(0,1fr)}
+ .ux423-events-slot>.events-panel{padding:13px}
+ .ux423-trip-view #myTripPlanner{padding:clamp(12px,3vw,16px)}
+ .ux423-trip-view .trip-active{flex-wrap:wrap}
+ .ux423-trip-view .trip-active select{min-height:44px}
+ .ux423-trip-view .trip-day-tabs{overflow-x:auto;scroll-snap-type:x proximity}
+ .ux423-trip-view .trip-day-tabs button{scroll-snap-align:start;min-height:48px}
+ .ux423-trip-view .trip-add-panel input{min-height:44px}
+ #discoverHub .discover-intro{padding:13px}
+ .ux423-refine{align-self:stretch}
+}
+@media(prefers-reduced-motion:reduce){.ux423-trip-view *, .ux423-groups *, .ux423-events-slot *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+html[data-ux-theme="light"]{--ux423-focus:#166e69}
+html[data-ux-theme="light"] .ux423-events-slot .events-item{box-shadow:0 5px 18px rgba(27,51,68,.06)}
