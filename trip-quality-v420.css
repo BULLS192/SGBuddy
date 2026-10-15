@@ -1,0 +1,12 @@
+/* V4.20 Wave 1 — compact read-only trip quality and review-safe suggestions */
+.trip-quality-summary,.trip-quality-routes,.trip-quality-suggestions{border:1px solid var(--line,#35516d);border-radius:12px;margin:12px 0;padding:12px 14px;min-width:0;background:rgba(81,134,159,.075)}
+.trip-quality-summary strong,.trip-quality-routes strong,.trip-quality-suggestions strong{font-size:.91rem}
+.trip-quality-summary p,.trip-quality-suggestions p{margin:6px 0;font-size:.82rem;line-height:1.55;overflow-wrap:anywhere}
+.trip-quality-legs,.trip-quality-options{display:grid;gap:8px;margin:10px 0}
+.trip-quality-legs a{width:fit-content;max-width:100%;display:inline-flex;align-items:center;min-height:40px;font-size:.86rem;text-decoration:underline;text-underline-offset:3px}
+.trip-quality-place{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;border:1px solid var(--line,#35516d);border-radius:10px;padding:9px 11px}
+.trip-quality-place span{display:grid;gap:4px;min-width:0;flex:1}
+.trip-quality-place b{font-size:.85rem;overflow-wrap:anywhere}
+.trip-quality-place small,.trip-quality-suggestions>small{color:var(--muted,#b6c9da);font-size:.75rem}
+.trip-quality-place button{min-height:40px}
+.trip-quality-legs a:focus-visible,.trip-quality-place button:focus-visible{outline:3px solid #9adbf7;outline-offset:3px}
