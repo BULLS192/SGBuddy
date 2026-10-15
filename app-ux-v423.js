@@ -128,6 +128,8 @@ d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();fol
 
 // Diagnostics are still one tap away from More, but no longer dominate it.
 // The station lookup belongs to Move, not to the global page chrome.
+const versionBadge=$('#appVersion');
+if(versionBadge&&!$('#ux423Preview')){const flag=d.createElement('span');flag.id='ux423Preview';flag.className='ux423-preview-badge';flag.textContent='V4.23 design preview';versionBadge.after(flag)}
 const railCard=$('#railForm')?.closest('.manual.card'),moveView=$('.v1-view[data-view="move"]');
 if(railCard&&moveView){const rail=moveView.querySelector('#railStations');if(rail)rail.after(railCard);else moveView.appendChild(railCard)}
 const corePanel=$('#dataCorePanel');
