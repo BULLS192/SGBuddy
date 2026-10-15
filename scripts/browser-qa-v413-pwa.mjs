@@ -26,7 +26,7 @@ async function contextFor(viewport,serviceWorkers='allow'){
 async function launchAccount(page){
  await page.goto(base,{waitUntil:'domcontentloaded',timeout:40000});
  await page.waitForFunction(()=>window.SGBUDDY_CORE?.state?.mode==='resident'
-   &&document.querySelector('#appVersion')?.textContent==='v4.21.0'
+   &&document.querySelector('#appVersion')?.textContent==='v4.22.0'
    &&document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3,
    null,{timeout:60000});
  await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('account'));
@@ -99,10 +99,10 @@ async function offlineRestart(vp){
    await page.reload({waitUntil:'domcontentloaded',timeout:45000});
    await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,{timeout:30000});
   }
-  assert.ok(await page.evaluate(()=>caches.has('sgbuddy-shell-v86')),'installed shell missing from CacheStorage');
+  assert.ok(await page.evaluate(()=>caches.has('sgbuddy-shell-v87')),'installed shell missing from CacheStorage');
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded',timeout:50000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0'
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'
     &&document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3,null,{timeout:60000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('account'));
   await page.waitForSelector('#sgbuddyOffline .offline-pack',{state:'visible',timeout:15000});
