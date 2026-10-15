@@ -10,4 +10,4 @@
 
 **Test:** `node scripts/check-v420-trip-quality.mjs`, `node scripts/check-v420-trip-integration.mjs`, `node scripts/browser-qa-v420-trip.mjs` and existing V4.19 regressions.
 
-**Release gate:** this wave retains V4.19.0/v84 on the development branch deliberately. Before a future V4.20 production release, bump service-worker shell and manifest to cache `app-trip-quality-v420.js`, `trip-quality-v420.css`, `lib/trip-insights-v420.mjs`; update version assertions and re-run full PWA/device and multilingual QA. V4.19 production remains unchanged. Physical-device and editorial sign-offs are still required.
+**Release gate:** release candidate now uses V4.20.0/v85 on this development branch and pre-caches `app-trip-quality-v420.js`, `trip-quality-v420.css`, `lib/trip-insights-v420.mjs`; version-sensitive regressions updated, Chromium offline upgrade and multilingual CI required before final approval. V4.19 production remains unchanged. Physical-device and editorial sign-offs are still required.

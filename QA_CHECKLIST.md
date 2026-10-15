@@ -1,3 +1,11 @@
+## V4.20 Release Acceptance (Development branch; not production)
+- [x] Version 4.20.0, service worker v85; new trip modules included in the offline shell.
+- [x] Privacy-first print itinerary, private local data storage unchanged.
+- [ ] Exact-final-commit full GitHub CI and browser offline upgrade green.
+- [ ] Vercel preview serves exact SHA, v85 and new assets.
+- [ ] Physical iOS Safari / Android Chrome offline restart and native speaker signoff.
+- [ ] Separate user approval before merge and production deployment.
+
 # V4.19.0 — Development acceptance (Events + My Trip 2.0)
 
 - [ ] Exact-final-commit CI and all historical tests green; preview SHA verified.
