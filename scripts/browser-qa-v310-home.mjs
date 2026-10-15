@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {LOCALES} from '../lib/i18n-v280.mjs';
+import {UX422_LABELS} from '../lib/ux-i18n-v422.mjs';
 import {homeText as homeText311} from '../lib/i18n-home-v311.mjs';
 import {contextMode} from '../lib/i18n-context-v370.mjs';
 import {weatherTerm} from '../lib/i18n-weather-home-v311.mjs';
@@ -46,6 +47,8 @@ async function test(viewport){
    });
    const shortcuts=['shortcutNearby','shortcutNearbyCopy','shortcutEat','shortcutEatCopy','shortcutMove','shortcutMoveCopy','shortcutApps','shortcutAppsCopy'];
    const expectedShortcuts=shortcuts.map(key=>homeText311(code,key));
+   expectedShortcuts[4]=UX422_LABELS[code][7];
+   expectedShortcuts[5]=UX422_LABELS[code][8];
    try{
     await page.waitForFunction(values=>{
      const cards=[...document.querySelectorAll('.ux-primary-shortcuts .ux-shortcut')].slice(0,4);
