@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {calendarForTrip} from '../lib/trip-calendar-v421.mjs';
+import {tripPublishedEvents} from '../lib/trip-published-events-v421.mjs';
+const read=p=>readFileSync(p,'utf8'),boot=read('app-v090.js'),markup=read('index.html'),script=read('app-trip-extras-v421.js'),css=read('trip-extras-v421.css'),sw=read('sw.js');
+assert.ok(boot.includes("import('/app-trip-quality-v420.js')).then(()=>import('/app-trip-extras-v421.js'))"));
+assert.ok(markup.includes('/trip-extras-v421.css'));
+assert.ok(script.includes("calendarForTrip(trip)")&&script.includes("tripPublishedEvents(trip,published.events,published.sources,today())"));
+assert.ok(script.includes("window.SGBUDDY_TRIP_API?.addEvent(record.event)"));
+assert.ok(script.includes("fetch(url,{signal:ctrl.signal,credentials:'same-origin',cache:'no-store'})"));
+assert.ok(script.includes("'/data/events-v470.json','/data/event-sources-v470.json'"));
+assert.ok(!script.includes("data/events-review-queue-v470.json"));
+assert.ok(!script.includes("data/event-approvals-v490.json"));
+assert.ok(script.includes('URL.revokeObjectURL(url)'));
+assert.ok(script.includes("noopener noreferrer"));
+assert.ok(script.includes("esc(event.sourceUrl)")&&script.includes("esc(event.title)")&&script.includes("esc(event.venue)"));
+assert.ok(css.includes(':focus-visible'));
+assert.ok(sw.includes("sgbuddy-shell-v85"),'V4.21 development must not silently alter V4.20 release');
+for(const locale of ['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'])
+ assert.ok(script.includes('"'+locale+'":'),'Missing localization '+locale);
+assert.equal(typeof calendarForTrip,'function');
+assert.equal(typeof tripPublishedEvents,'function');
+console.log('V4.21 INTEGRATION PASS: explicit-only calendar/events, published sources, escaped links, unchanged v4.20 release.');

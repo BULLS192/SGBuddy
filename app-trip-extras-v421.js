@@ -29,12 +29,12 @@ function render(){
  panel.innerHTML='<div class="trip-v421-actions"><button type="button" class="secondary" data-v421-calendar>'+esc(l[0])+'</button>'+
  '<button type="button" class="secondary" data-v421-events '+(busy?'disabled':'')+'>'+esc(l[1])+'</button></div>'+
  '<p class="trip-v421-helper">'+esc(l[2])+' '+esc(l[3])+'</p><p role="status" class="trip-v421-status">'+esc(message||'')+'</p>'+
- (showing?'<div class="trip-v421-events"><strong>'+esc(l[6])+'</strong><p>'+esc(l[7])+' '+esc(l[16])+'</p>'+
+ (showing?'<div class="trip-v421-events"><strong>'+esc(l[6])+'</strong><p>'+esc(l[7])+' '+esc(l[17])+'</p>'+
  (busy?'<p>'+esc(l[8])+'</p>':hits.length?hits.map(({event,dayIndex,sourceState})=>
-  '<article class="trip-v421-event"><div><b>'+esc(event.title)+'</b><small>'+esc(l[15])+' '+(dayIndex+1)+' · '+esc(event.startDate)+
+  '<article class="trip-v421-event"><div><b>'+esc(event.title)+'</b><small>'+esc(l[16])+' '+(dayIndex+1)+' · '+esc(event.startDate)+
   (event.endDate!==event.startDate?' — '+esc(event.endDate):'')+' · '+esc(event.venue)+'</small>'+
-  (sourceState!=='snapshot'?'<small>'+esc(l[13])+'</small>':'')+
-  '<a href="'+esc(event.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(l[14])+'</a></div>'+
+  (sourceState!=='snapshot'?'<small>'+esc(l[14])+'</small>':'')+
+  '<a href="'+esc(event.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(l[15])+'</a></div>'+
   '<button type="button" class="secondary" data-v421-event="'+esc(event.id)+'">'+esc(l[11])+'</button></article>').join(''):
  '<p>'+esc(message&&message!==l[9]?message:l[9])+'</p>')+'</div>':'');
  summary.after(panel);
