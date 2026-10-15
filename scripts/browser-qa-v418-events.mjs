@@ -34,6 +34,7 @@ try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
   await page.waitForSelector('#sgbuddyEvents [data-event-search]',{state:'attached',timeout:65000});
   await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
+  await page.locator('[data-ux423-group="events"]').click();
   await page.waitForSelector('#sgbuddyEvents [data-event-search]',{state:'visible'});
   const items=()=>page.locator('#sgbuddyEvents .events-item');
   assert.equal(await page.locator('#sgbuddyEvents [data-event-filter]').count(),8);
