@@ -31,6 +31,7 @@ try{
    ,persona,{timeout:60000});
    assert.ok((await page.locator('#personaFocusTitle').textContent()||'').trim(),'persona guidance missing for '+persona);
    await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
+   await page.locator('[data-ux423-group="events"]').click();
    await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible',timeout:14000});
    // Verify real language-switch propagation in both Events and offline controls.
    for(const {code} of LOCALES){
