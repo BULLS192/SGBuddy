@@ -44,8 +44,7 @@ async function check(viewport){
    assert.ok(route.includes('Pasir Ris MRT')&&route.includes('Marina Bay'),code+' place names preserved');
    assert.ok((await page.locator('#journeyResults').textContent()).includes('Official route note: preserve the original'),code+' source caution preserved');
    assert.equal((await page.locator('#journeyResults .weather-route-badge').textContent()).trim(),v312Text(code,'rainSmart'));
-   await page.locator('#navPlaces').click();
-   await page.locator('[data-discover-tab="trip"]').click();
+   await page.locator('#navMoney').click();
    await page.locator('#myTripPlanner').waitFor({state:'visible',timeout:10000});
    assert.equal(await page.locator('#tripNewName').getAttribute('placeholder'),v312Text(code,'tripNamePlaceholder'));
    await page.locator('#navAccount').click();
