@@ -17,11 +17,12 @@ async function check(viewport){
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
-  await page.waitForSelector('#discoverTab-do',{timeout:30000});
+  await page.waitForSelector('[data-ux423-group="places"]',{state:'visible',timeout:30000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.waitForFunction(expected=>document.documentElement.lang===expected,code,{timeout:8000});
-   await page.locator('#discoverTab-do').click();
+   await page.locator('[data-ux423-group="places"]').click();
+   await page.locator('[data-ux423-category="do"]').click();
    const item=page.locator('#discoverResults .discover-item').first();
    await item.waitFor({timeout:15000});
    const id=await item.locator('[data-save-discover]').getAttribute('data-save-discover');
@@ -35,11 +36,12 @@ async function check(viewport){
    await updated.locator('[data-save-discover]').click();
    const freshness=await updated.locator('.discover-freshness').textContent();
    assert.ok(freshness.trim(),'Directory freshness state missing '+code);
-   await page.locator('#discoverTab-apps').click();
+   await page.locator('[data-ux423-group="guides"]').click();
+   await page.locator('[data-ux423-category="apps"]').click();
    const appCard=page.locator('#discoverResults .discover-item').first();
    await appCard.waitFor({state:'attached',timeout:10000});
    assert.equal(await appCard.locator('.discover-app-legacy-note').textContent(),directoryText(code,'publisherDownload'),code+' publisher warning');
-   await page.locator('#discoverTab-facts').click();
+   await page.locator('[data-ux423-category="facts"]').click();
    const facts=page.locator('#discoverResults .discover-fact');
    if(await facts.count()){
     assert.equal(await facts.first().locator('h3').textContent(),directoryText(code,'didYouKnow'),code+' facts title');
