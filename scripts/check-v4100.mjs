@@ -20,7 +20,7 @@ for(const {code} of LOCALES){
 const boot=readFileSync('app-v090.js','utf8'),sw=readFileSync('sw.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-categories-v4100.js')"));
 assert.ok(boot.includes("import('/app-offline-v480.js')"));
-assert.ok(boot.includes("='4.21.0'"),'shipping version must not change');
+assert.ok(boot.includes("='4.22.0'"),'shipping version must not change');
 for(const path of ['/app-i18n-categories-v4100.js','/lib/i18n-categories-v4100.mjs'])assert.ok(sw.includes(path),'offline shell lacks '+path);
 assert.ok(sw.includes('sgbuddy-offline-packs-v480'),'offline cache must remain');
 assert.ok(sw.includes('SHELL_PATHS.has(url.pathname)'),'origin cache policy must remain');

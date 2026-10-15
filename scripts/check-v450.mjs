@@ -16,10 +16,10 @@ for(const {code} of LOCALES){
 }
 const boot=readFileSync('app-v090.js','utf8');
 assert.ok(boot.includes("import('/app-i18n-food-discover-v450.js')"));
-assert.ok(boot.includes("='4.21.0'"),'release badge should match V4.11');
+assert.ok(boot.includes("='4.22.0'"),'release badge should match V4.11');
 const sw=readFileSync('sw.js','utf8');
 for(const asset of ['/app-i18n-food-discover-v450.js','/lib/i18n-food-discover-v450.mjs'])assert.ok(sw.includes(asset),'missing offline asset '+asset);
-assert.ok(sw.includes('sgbuddy-shell-v86'),'release requires upgraded PWA cache');
+assert.ok(sw.includes('sgbuddy-shell-v87'),'release requires upgraded PWA cache');
 const mod=readFileSync('app-i18n-food-discover-v450.js','utf8');
 for(const fragment of ['#foodToolsSubtitle','food-tool-filters > label:nth-child(1)','food-tool-filters > label:nth-child(2)','#discoverSearch','#discoverAreaFilter','#discoverSourceFilter','#discoverNeighbourhoodFilter','#discoverCategoryFilter','#discoverQuality','sgbuddy:language','sourceEnglish'])assert.ok(mod.includes(fragment),'runtime gap '+fragment);
 assert.ok(!mod.includes('innerHTML=')&&!mod.includes('querySelectorAll("*")'),'unsafe translation sweep');

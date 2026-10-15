@@ -20,6 +20,6 @@ assert.ok(boot.includes("import('/app-i18n-home-v311.js')"));
 assert.ok(!boot.includes("import('/app-i18n-home-v310.js')"));
 const sw=readFileSync('sw.js','utf8');
 for(const asset of ['/app-i18n-home-v310.js','/lib/i18n-home-v310.mjs'])assert.ok(sw.includes(asset));
-assert.ok(sw.includes('sgbuddy-shell-v86'));
+assert.ok(sw.includes('sgbuddy-shell-v87'));
 assert.ok(!bridge.includes('document.body.textContent'),'No broad text rewriting');
 console.log('V3.10 HOME PASS: 21 first-party messages × 12 locales and source-locked contextual bindings.');

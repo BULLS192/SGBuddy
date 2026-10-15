@@ -27,7 +27,7 @@ import {air413Text} from './lib/i18n-air-v413.mjs';
   let tab='eat',factIndex=0,savedOnly=false,showAll=false,loaded=false,areaFilter='all',visibleCount=24,sourceFilter='all',categoryFilter='all',includeArchive=false,neighbourhoodFilter='all',neighbourhoods=[];
   const addressCache=new Map();
   let officialClosures=new Map();
-  const tabs=[['eat','Eat'],['do','Things to do'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Everyday apps'],['travel','Travel prep'],['trip','My Trip'],['facts','Did you know?']];
+  const tabs=[['eat','Eat'],['do','Things to do'],['trip','My Trip'],['shop','Shop'],['essentials','Essentials'],['healthcare','Healthcare'],['apps','Everyday apps'],['travel','Travel prep'],['facts','Did you know?']];
   const directoryKinds={eat:'Eat',do:'Do',shop:'Shop',essentials:'Essentials',healthcare:'Healthcare'};
   const profiles={resident:'Resident',visitor:'Tourist',executive:'Business',student:'Student',new_in_sg:'New in SG'};
   const view=$('.v1-view[data-view="places"]');

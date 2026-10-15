@@ -1,0 +1,56 @@
+name: SGBuddy V4.22 UX Acceptance
+on:
+  pull_request:
+    paths:
+      - 'app-ux-v160.js'
+      - 'app-ux-v170.js'
+      - 'app-v120.js'
+      - 'app-v090.js'
+      - 'app-ux-v422.js'
+      - 'ux-v422.css'
+      - 'index.html'
+      - 'sw.js'
+      - 'scripts/check-v422-ux.mjs'
+      - 'scripts/browser-qa-v422-ux.mjs'
+      - 'scripts/browser-qa-v422-quality.mjs'
+      - 'scripts/browser-qa-v422-offline.mjs'
+      - 'lib/ux-i18n-v422.mjs'
+      - '.github/workflows/check-v422-ux.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check app-ux-v422.js
+          node --check app-ux-v160.js
+          node --check app-ux-v170.js
+          node scripts/check-v422-ux.mjs
+          node scripts/check-v421-release.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v422.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/sgbuddy-v422.log; exit 1
+      - run: |
+          node scripts/browser-qa-v422-ux.mjs
+          node scripts/browser-qa-v422-quality.mjs
+          node scripts/browser-qa-v422-offline.mjs
+          node scripts/browser-qa-v421-trip.mjs

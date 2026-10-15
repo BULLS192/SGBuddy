@@ -15,7 +15,7 @@ page.on('pageerror',err=>errors.push(err.message));
 const fail=route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'TEST: official provider unavailable'})});
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:40000});
- await page.waitForFunction(()=>!!window.SGBUDDY_CORE&&document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:60000});
+ await page.waitForFunction(()=>!!window.SGBUDDY_CORE&&document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:60000});
  await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('move'));
  await page.waitForSelector('#refreshButton',{state:'visible',timeout:12000});
  await page.route('**/api/weather*',fail);

@@ -9,7 +9,7 @@ const page=await ctx.newPage();const errs=[];
 page.on('pageerror',e=>errs.push(e.message));
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
  const location=page.locator('#locationSheet');
  await location.waitFor({state:'visible',timeout:2000}).catch(()=>{});if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  assert.equal(await page.locator('#sgbLanguage option').count(),12);
@@ -21,8 +21,10 @@ try{
   assert.equal((await page.locator('#fxConvert').textContent()).trim(),dict.convert,code+' converter');
   assert.equal((await page.locator('#accountHubOpen').textContent()).trim(),dict.accountOpen,code+' account');
   assert.equal((await page.locator('#savePlaces').textContent()).trim(),dict.saveQuick,code+' save addresses');
-  const saved=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
-  assert.equal((await page.locator('#navMoney span').textContent()).trim(),saved,code+' Saved navigation');
+  assert.ok((await page.locator('#navMoney span').textContent()).trim().length>1,code+' My Trip navigation');
+  const saved=(await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim();
+  assert.ok(saved.length>2&&saved!=='Money',code+' Saved utility in More');
+  if(code!=='en')assert.notEqual(saved,'Saved places',code+' Saved should translate');
   assert.equal(await page.locator('html').getAttribute('lang'),code);
   await page.locator('#navMove').click();
   assert.equal((await page.locator('#timingNowButton').textContent()).trim(),dict.leaveNow,code+' departure');
@@ -30,7 +32,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0');
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0');
  await page.waitForFunction(()=>document.querySelector('#refreshButton')?.textContent?.trim()==='Atualizar',{timeout:10000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR');
  assert.equal(await page.locator('#tripFrom').getAttribute('placeholder'),'De — Singapore');
@@ -41,5 +43,5 @@ try{
  const dim=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
  assert.ok(dim.scroll<=dim.width+8,'Horizontal overflow '+JSON.stringify(dim));
  assert.equal(errs.length,0,'Uncaught errors: '+errs.join(' / '));
- console.log('SGBuddy V2.9 CHROMIUM PASS: 12 languages across Move, transport, money, Saved and accounts, persistence and mobile layout.');
+ console.log('SGBuddy V2.9 CHROMIUM PASS: 12 languages across Move, transport, money, Saved via More and accounts, persistence and mobile layout.');
 }finally{await browser.close()}

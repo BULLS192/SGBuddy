@@ -20,7 +20,7 @@ const MODES={
  visitor:{
   label:'Tourist',title:'Make the most of Singapore',description:'Explore, navigate and get back to your hotel with confidence.',
   prompt:'Find sights, places to eat and a route back to your hotel.',
-  shortcuts:[['◇','Things to do','Places and experiences','do'],['♨','Find food','Try local favourites','eat'],['↗','Plan a trip','Attractions and hotel routes','move'],['⇄','Currency','Check reference exchange rates','money']],
+  shortcuts:[['◇','Things to do','Places and experiences','do'],['♨','Find food','Try local favourites','eat'],['↗','Plan a journey','Attractions and hotel routes','move'],['▤','My Trip','Build a day-by-day itinerary','trip']],
   discover:'Iconic sights, neighbourhoods and useful travel services for your stay.',
   search:'Search attractions, heritage sites or hawker food',journey:'Plan your next attraction, or use your saved hotel as a shortcut.',
   merli:['do','eat','home'],merliIntro:'I can help you discover Singapore and navigate back to your hotel.'

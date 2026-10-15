@@ -6,7 +6,9 @@ const file=p=>readFileSync(p,'utf8');
 const travel=file('app-travel-v250.js'),shell=file('app-ux-v160.js'),sw=file('sw.js'),boot=file('app-v090.js'),html=file('index.html');
 assert.ok(travel.includes('navMoney:s.saved'),'Saved tab must use actual Saved translations, never Money');
 assert.ok(!/navMoney:\s*\(?\{/.test(travel),'Money locale dictionary may not override the Saved tab');
-assert.ok(shell.includes("['navMoney','saved','Saved','saved']"),'Router must still point to Saved');
+assert.ok(shell.includes("['navMoney','trip','My Trip','trip']"),'V4.22 primary navigation must surface My Trip');
+assert.ok(shell.includes("if(name==='saved')"),'Saved route must remain functional via More');
+assert.ok(file('app-ux-v422.js').includes('data-ux-go="saved"'),'More hub must expose Saved explicitly');
 assert.ok(shell.includes("shellLocale(window.SGBUDDY_LANGUAGE).emptySaved"),'Saved empty states must localize on every render');
 assert.ok(shell.includes("document.addEventListener('sgbuddy:language'"),'Language picker must update shell views');
 assert.ok(shell.includes("document.addEventListener('sgbuddy:persona'"),'Mode switch must not revert UI to English');
@@ -22,6 +24,6 @@ for(const {code,name} of LOCALES){
  if(code!=='en')assert.equal(SHELL_COVERAGE[code],SHELL_KEYS.length);
 }
 assert.equal(seen.size,12);
-assert.ok(sw.includes('/lib/i18n-shell-v281.mjs')&&sw.includes('sgbuddy-shell-v86'),'Installed PWA must refresh and precache locale UI');
-assert.ok(boot.includes('4.21.0')&&html.includes('v4.21.0'),'Client and static version should agree');
+assert.ok(sw.includes('/lib/i18n-shell-v281.mjs')&&sw.includes('sgbuddy-shell-v87'),'Installed PWA must refresh and precache locale UI');
+assert.ok(boot.includes('4.22.0')&&html.includes('v4.22.0'),'Client and static version should agree');
 console.log('V3.11.0 PASS: Saved is not Money in all 12 languages; 31 Home/Saved/Move keys per language; events, routing and cache preserved.');

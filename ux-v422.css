@@ -1,0 +1,78 @@
+/* SGBuddy V4.22 UX-only design layer — tokens and components */
+:root{--ux422-outline:#81dccb;--ux422-radius:16px;--ux422-space:14px}
+html{scroll-padding-top:18px}
+.bottom-nav [data-nav-target]{min-height:48px}
+.bottom-nav [data-nav-target] span{font-size:12px;line-height:1.25}
+.bottom-nav [data-nav-target]:focus-visible,
+.ux422-more-hub button:focus-visible,.my-trip-v260 button:focus-visible,
+.my-trip-v260 a:focus-visible,.events-panel button:focus-visible,.events-panel a:focus-visible{outline:3px solid var(--ux422-outline);outline-offset:3px}
+.ux422-more-hub{margin:18px 0 8px;padding:14px;border:1px solid var(--line);border-radius:var(--ux422-radius);background:var(--panel2);color:var(--text)}
+.ux422-more-hub h3{margin:4px 0 14px}
+.ux422-eyebrow{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.ux422-more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ux422-more-grid button{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--text);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;text-align:left;padding:13px;min-height:56px;cursor:pointer}
+.ux422-more-grid strong{overflow-wrap:anywhere;font-size:.9rem}
+.ux422-more-grid button>span{font-size:21px;color:var(--accent)}
+.ux422-more-grid small{color:var(--accent)}
+.ux422-trip-overview{padding:17px;margin:15px 0;background:linear-gradient(130deg,rgba(21,104,99,.25),rgba(30,69,112,.11));border:1px solid var(--line);border-radius:var(--ux422-radius)}
+.ux422-trip-top{display:flex;justify-content:space-between;align-items:flex-start;gap:13px;flex-wrap:wrap}
+.ux422-trip-top>div{min-width:0;display:grid;gap:4px}
+.ux422-trip-top h4{font-size:clamp(1.1rem,3vw,1.35rem);line-height:1.25;overflow-wrap:anywhere;margin:0;font-weight:750}
+.ux422-trip-top small{color:var(--muted);font-size:.84rem}
+.ux422-local-badge{background:rgba(90,190,176,.13);color:var(--accent);border:1px solid rgba(99,230,190,.3);border-radius:999px;padding:7px 10px;font-size:.73rem;font-weight:800}
+.ux422-metrics{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 8px}
+.ux422-metrics span{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:11px;background:var(--panel);font-size:.78rem;color:var(--muted)}
+.ux422-metrics b{font-size:1.1rem;color:var(--text)}
+.ux422-trip-overview p{font-size:.79rem;color:var(--muted);margin:9px 0 0;line-height:1.5}
+.my-trip-v260 .trip-day-tabs{gap:9px;scroll-padding-inline:8px}
+.my-trip-v260 .trip-day-tabs button{min-height:46px}
+.my-trip-v260 .trip-day-panel{padding:clamp(12px,3vw,21px)}
+.ux422-day-tip{color:var(--muted);font-size:.78rem;margin:3px 0 12px}
+.my-trip-v260 .ux422-timeline .trip-stops{position:relative;gap:0;margin-left:8px;padding-left:15px;border-left:2px solid var(--line)}
+.my-trip-v260 .ux422-timeline .trip-stop{position:relative;margin:0 0 12px;background:var(--panel2)}
+.my-trip-v260 .ux422-timeline .trip-stop:before{content:'';position:absolute;left:-23px;top:23px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.my-trip-v260 .trip-stop-actions button,.my-trip-v260 .trip-transfer select,.my-trip-v260 .trip-search-result button{min-height:44px!important}
+.my-trip-v260 .trip-stop-name h4{font-size:1.02rem;line-height:1.4}
+.my-trip-v260 .trip-privacy{font-size:.8rem;line-height:1.55}
+.my-trip-v260 .trip-quality-summary,.my-trip-v260 .trip-v421,.my-trip-v260 .trip-quality-routes{border-radius:var(--ux422-radius);background:var(--panel2)}
+.ux422-tools-heading{font-size:1rem;margin:0 0 10px}
+.ux422-export-hint{color:var(--muted);width:100%;font-size:.79rem;line-height:1.5;margin:0 0 8px}
+.my-trip-v260 .trip-export button,.my-trip-v260 .trip-v421-actions button{min-height:44px}
+.events-panel .events-item{border-radius:14px}
+.events-panel .events-filters button{min-height:44px}
+.ux-primary-shortcuts .ux-shortcut{min-height:84px}
+.discover-tabs{scroll-padding-inline:12px;overscroll-behavior-inline:contain}
+.discover-tabs [role=tab]{min-height:44px}
+@media(max-width:640px){
+ .ux422-more-grid{grid-template-columns:1fr}
+ .ux422-more-grid button{min-height:48px}
+ .ux422-local-badge{font-size:.7rem}
+ .ux422-trip-overview{padding:13px}
+ .my-trip-v260 .trip-day-panel{padding:12px}
+ .my-trip-v260 .ux422-timeline .trip-stops{margin-left:7px;padding-left:11px}
+ .my-trip-v260 .ux422-timeline .trip-stop:before{left:-19px}
+ .my-trip-v260 .trip-v421-actions button{flex:1 1 170px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ux-primary-shortcuts .ux-shortcut{transition:none!important}
+ .my-trip-v260 .trip-day-tabs{scroll-behavior:auto}
+}
+
+
+
+/* Published Events: scannable heading, persistent source caveats and touch-safe filters */
+.events-panel .events-header{padding:2px 2px 12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.events-panel .events-header .label{font-size:12px;letter-spacing:.1em}
+.events-panel .events-header h2{font-size:clamp(1.35rem,3vw,1.65rem);line-height:1.25}
+.events-panel .events-header p{font-size:.85rem;line-height:1.55;color:var(--muted)}
+.events-panel .events-filter-label{font-size:.75rem;font-weight:750;margin:9px 0}
+.events-panel .events-filters{gap:8px;scroll-padding-inline:8px}
+.events-panel .events-filters button{min-height:44px;scroll-snap-align:start}
+.events-panel .events-item{padding:clamp(12px,2.8vw,18px);border:1px solid var(--line)}
+.events-panel .events-item h3{line-height:1.36}
+.events-panel .events-disclaimer{font-size:.79rem;line-height:1.55}
+.events-panel :is(input,select){min-height:44px}
+
+/* Focus contrast on both explicitly supported UI palettes. */
+html[data-ux-theme="light"]{--ux422-outline:#176b65}
+html[data-ux-theme="light"] .ux422-more-hub{background:var(--panel2);color:var(--text)}

@@ -8,12 +8,14 @@ assert.ok(bootstrap.includes("import('/app-v140.js')).then(()=>import('/app-i18n
 assert.ok(sw.includes('/app-ux-v160.js')&&sw.includes('/ux-v160.css'),'Offline shell must contain UX assets');
 const version=Number(sw.match(/sgbuddy-shell-v(\d+)/)?.[1]||0);
 assert.ok(version>=41,'Service worker cache must advance beyond the baseline (v41+)');
-for(const label of ['Home','Discover','Move','Saved','Profile']){
+for(const label of ['Home','Discover','Move','My Trip','More']){
  assert.ok(ui.includes("'"+label+"'"),'Missing bottom destination '+label);
 }
 for(const landmark of ['uxHomeSummary','uxExtraConditions','uxNearby','uxSavedView','uxPlaceDialog','uxDialogRoute','v110CompareCard','data-ux-go','sgbuddy:discover-tab','sgbuddy:knowledge-saved']){
  assert.ok(ui.includes(landmark),'UX landmark or interaction missing: '+landmark);
 }
+assert.ok(read('app-ux-v422.js').includes('data-ux-go="saved"'),'Saved must remain accessible through More');
+assert.ok(ui.includes("if(name==='saved')"),'Saved view route must remain wired');
 assert.ok(ui.includes('originalShow=router.show.bind(router)'),'Original router must remain available');
 assert.ok(ui.includes("name==='money'"),'Existing money tools must remain navigable');
 assert.ok(ui.includes("savedView.appendChild(savedAddresses)"),'Existing saved addresses must be retained');

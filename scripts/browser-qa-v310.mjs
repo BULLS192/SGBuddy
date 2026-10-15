@@ -14,7 +14,7 @@ page.on('pageerror',e=>errors.push(e.message));
 const textIs=(selector,expected)=>page.waitForFunction(({selector,expected})=>document.querySelector(selector)?.textContent?.trim()===expected,{selector,expected},{timeout:15000});
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
  const location=page.locator('#locationSheet');
  await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
@@ -36,8 +36,10 @@ try{
   assert.equal(await page.locator('#appLibraryCategory option[value="Government & identity"]').getAttribute('value'),'Government & identity',code+' stable category filter');
   assert.equal(await page.locator('#sgbFactList [data-fact-id="FACT-00001"] .sgb-fact-foot a').first().getAttribute('href'),baseLink,'Original official-source link changed');
   if(code!=='en')assert.equal(await page.locator('#sgbFactList [data-fact-id="FACT-00001"] p').getAttribute('data-content-localized'),'true');
-  const savedLabel=code==='en'?'Saved':code==='zh-CN'?'收藏':TRAVEL_UI[code].saved;
-  await textIs('#navMoney span',savedLabel);
+  await page.waitForFunction(()=>document.querySelector('#ux422MoreHub [data-ux-go="saved"] strong')?.textContent?.trim().length>2);
+  const savedLabel=(await page.locator('#ux422MoreHub [data-ux-go="saved"] strong').textContent()).trim();
+  assert.notEqual(savedLabel,'Money',code+' Saved utility cannot be labelled Money');
+  if(code!=='en')assert.notEqual(savedLabel,'Saved places',code+' Saved utility should localize');
  }
  // Search using the translated topic, not just the original English vocabulary.
  await page.locator('#sgbLanguage').selectOption('fr');
@@ -47,7 +49,7 @@ try{
  await page.locator('#sgbFactQuery').fill('');
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.21.0');
+ await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.22.0');
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR');
  await page.locator('#navPlaces').click();
  await page.locator('#discoverTab-facts').click();
@@ -55,5 +57,5 @@ try{
  const measure=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));
  assert.ok(measure.scroll<=measure.width+8,'Horizontal overflow '+JSON.stringify(measure));
  assert.deepEqual(errors,[],'Browser exceptions');
- console.log('V3.1 CHROMIUM PASS: 12 locale fact records, theme and cuisine/app categories, localized search, originals, persistence, Saved nav and mobile width.');
+ console.log('V3.1 CHROMIUM PASS: 12 locale fact records, theme and cuisine/app categories, localized search, originals, persistence, Saved via More and mobile width.');
 }finally{await browser.close()}
