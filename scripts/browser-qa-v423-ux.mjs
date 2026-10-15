@@ -26,6 +26,8 @@ try{
   await page.locator('#ux423TripView').waitFor({state:'visible'});
   assert.equal(await page.locator('.v1-view[data-view="places"]').isVisible(),false,'Discover must be isolated from My Trip');
   assert.ok(await page.locator('#myTripPlanner').isVisible());
+  assert.equal(await page.locator('.skip-link').getAttribute('href'),'#ux423TripTitle','Skip link must target My Trip after nav observers run');
+  assert.match(await page.locator('.skip-link').textContent(),/My Trip/,'Skip link must name My Trip');
   await page.locator('#tripNewName').fill('V4.23 continuity test');
   await page.locator('#tripStartDate').fill('2026-11-25');
   await page.locator('#tripCreateForm button[type="submit"]').click();
@@ -64,6 +66,9 @@ try{
    await page.locator('#sgbLanguage').selectOption(code);
    assert.ok((await page.locator('.ux423-groups button').first().textContent()).trim().length>1,code);
    assert.ok((await page.locator('#ux423TripTitle').textContent()).trim().length>1,code);
+   await page.locator('#navMoney').click();
+   assert.equal(await page.locator('.skip-link').getAttribute('href'),'#ux423TripTitle',code+' My Trip skip target');
+   await page.locator('#navAccount').click();
   }
   for(const theme of ['light','dark']){
    await page.evaluate(value=>document.documentElement.dataset.uxTheme=value,theme);
