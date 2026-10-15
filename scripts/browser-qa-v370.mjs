@@ -20,7 +20,7 @@ async function pass(width,height){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.18.0'&&!!window.SGBUDDY_CONTEXT_I18N,{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.19.0'&&!!window.SGBUDDY_CONTEXT_I18N,{timeout:35000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
    for(const mode of CONTEXT_MODES){
