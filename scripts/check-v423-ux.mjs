@@ -1,0 +1,23 @@
+/* V4.23 offline-safe, integration-preserving UI refinement acceptance. */
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read=path=>readFileSync(path,'utf8');
+const boot=read('app-v090.js'),html=read('index.html'),sw=read('sw.js'),route=read('app-ux-v160.js'),trip=read('app-trip-v260.js'),ux=read('app-ux-v423.js'),css=read('ux-v423.css');
+assert.ok(boot.includes("import('/app-ux-v422.js')).then(()=>import('/app-ux-v423.js')"),'V4.23 must load after V4.22');
+assert.ok(html.includes('/ux-v423.css'),'V4.23 stylesheet required');
+for(const asset of ['/app-ux-v423.js','/ux-v423.css'])assert.ok(sw.includes("'"+asset+"'"),'Offline precache missing: '+asset);
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v87'"),'Preview must not alter V4.22 production cache identity');
+assert.ok(route.includes("window.SGBUDDY_V423.openTrip()"),'Primary nav must route to independent My Trip');
+assert.ok(ux.includes("tripView.appendChild(host)"),'Existing trip node must move, not be cloned/reimplemented');
+assert.ok(trip.includes("window.SGBUDDY_VIEW_ROUTER.show('trip')"),'Event add and shared trip import must open independent Trip');
+assert.ok(ux.includes("data-ux423-group")&&ux.includes("data-ux423-category"),'Discover group and category controls required');
+assert.ok(ux.includes("slot.appendChild(events)")&&ux.includes("calendarDetails.appendChild(calendar)"),'Events and calendar providers remain unchanged');
+assert.ok(ux.includes('corePanel.before(details)'),'Diagnostics must use progressive disclosure');
+assert.ok(ux.includes('sgbuddy:trip-rendered'),'New and edited trip renders must refresh disclosure');
+assert.ok(!ux.includes('localStorage.setItem(')&&!ux.includes('fetch('),'V4.23 layer must not add data persistence or network dependencies');
+for(const lang of ['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'])assert.ok(ux.includes("'"+lang+"':")||ux.includes(lang+':'),'Missing V4.23 navigation locale '+lang);
+assert.ok(css.includes('focus-visible'),'Accessible focus visible');
+assert.ok(css.includes('prefers-reduced-motion'),'Reduced motion required');
+assert.ok(css.includes('min-height:44px'),'Touch-safe targets required');
+assert.ok(css.includes('data-ux-theme="light"'),'Light mode rule required');
+console.log('V4.23 STATIC PASS: isolated Trip, grouped Discover/Events, offline resources, 12 locales, same storage.');
