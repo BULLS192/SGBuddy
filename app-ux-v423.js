@@ -128,6 +128,12 @@ d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();fol
 
 // Diagnostics are still one tap away from More, but no longer dominate it.
 // The station lookup belongs to Move, not to the global page chrome.
+// Prioritize the official 24-hour PSI when it reaches NEA's unhealthy range.
+const psi=$('#uxPsi'),homeSummary=$('#uxHomeSummary');
+if(psi&&homeSummary){
+ const refreshAir=()=>{const n=Number.parseInt(psi.textContent||'',10);const alert=Number.isFinite(n)&&n>=101;homeSummary.classList.toggle('ux423-air-alert',alert);homeSummary.setAttribute('aria-live',alert?'polite':'off')};
+ new MutationObserver(refreshAir).observe(psi,{childList:true,characterData:true,subtree:true});refreshAir();
+}
 const versionBadge=$('#appVersion');
 if(versionBadge&&!$('#ux423Preview')){const flag=d.createElement('span');flag.id='ux423Preview';flag.className='ux423-preview-badge';flag.textContent='V4.23 design preview';versionBadge.after(flag)}
 const railCard=$('#railForm')?.closest('.manual.card'),moveView=$('.v1-view[data-view="move"]');
