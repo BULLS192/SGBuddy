@@ -40,7 +40,7 @@ try{
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
- await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+ await page.locator('#navMoney').click();
  await page.locator('.trip-quality-summary').waitFor({state:'visible',timeout:20000});
  assert.match(await page.locator('.trip-quality-summary').textContent(),/1.*Stops|Stops.*1/);
  assert.ok(await page.locator('[data-v420-print]').isVisible(),'Local print action should remain available while offline');
