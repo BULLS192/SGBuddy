@@ -17,7 +17,7 @@ try{
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_TRIP_API,{timeout:45000});
-  await page.locator('#navPlaces').click();await page.locator('[data-discover-tab="trip"]').click();
+  await page.locator('#navMoney').click();
   await page.locator('.trip-quality-summary').waitFor({state:'visible',timeout:10000});
   assert.match(await page.locator('.trip-quality-summary').textContent(),/Repeated places/);
   assert.match(await page.locator('.trip-quality-summary').textContent(),/Same-time clashes:\s*1/);
