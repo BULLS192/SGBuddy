@@ -44,10 +44,11 @@ try{
  await page.locator('.trip-quality-summary').waitFor({state:'visible',timeout:20000});
  await page.locator('[data-v421-calendar]').waitFor({state:'visible',timeout:20000});
  assert.match(await page.locator('.trip-quality-summary').textContent(),/1.*Stops|Stops.*1/);
- assert.ok(await page.locator('[data-v421-print]').isVisible(),'Local print action should remain available while offline');
+ await page.locator('[data-v420-print]').waitFor({state:'visible',timeout:15000});
+ await page.locator('[data-v421-calendar]').waitFor({state:'visible',timeout:15000});
  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sgbuddy-my-trips-v260')).trips[0].days[0][0].note),'Keep note private');
  assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true);
- assert.deepEqual(errors.filter(x=>/trip-insights-v421|app-trip-quality-v421|trip-quality-v421/i.test(x)),[]);
+ assert.deepEqual(errors.filter(x=>/trip-insights-v420|app-trip-quality-v420|trip-quality-v420|trip-calendar-v421|trip-published-events-v421|app-trip-extras-v421/i.test(x)),[]);
  console.log('V4.21 SW UPGRADE BROWSER PASS: v85→v86, new trip modules available offline, downloaded data and private trip intact.');
  await context.close();
 }finally{await browser.close()}
