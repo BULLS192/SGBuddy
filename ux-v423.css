@@ -90,3 +90,13 @@ html[data-ux-theme="light"] .ux423-events-slot .events-item{box-shadow:0 5px 18p
 
 /* Avoid duplicate persona and utility banners in grouped Discover. Their actions remain in the global mode control and More. */
 .v1-view[data-view="places"] #uxExploreContext,.v1-view[data-view="places"] > .ux-move-links{display:none!important}
+
+/* Preview identity without altering the production release version contract. */
+.ux423-preview-badge{display:inline-flex;align-items:center;margin-left:6px;padding:3px 8px;border:1px solid var(--line);border-radius:999px;background:var(--ux423-soft);font-size:.65rem;letter-spacing:.045em;font-weight:750;color:var(--accent)}
+/* Events has its own heading, so the shared Discover introduction collapses to navigation. */
+#discoverHub.ux423-events-mode .discover-intro>.label,
+#discoverHub.ux423-events-mode .discover-title-row,
+#discoverHub.ux423-events-mode #discoverQuality{display:none!important}
+#discoverHub.ux423-events-mode .discover-intro{padding:7px 9px;background:transparent;box-shadow:none;border:0}
+#discoverHub.ux423-events-mode .ux423-groups{margin:0}
+#discoverHub.ux423-events-mode .ux423-events-slot{margin-top:0}
