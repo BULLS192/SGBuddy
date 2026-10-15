@@ -17,7 +17,8 @@ async function check(viewport){
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>!!window.SGBUDDY_V312&&document.querySelector('#appVersion')?.textContent==='v4.21.0',{timeout:35000});
-  await page.locator('#navMoney').click();
+  await page.locator('#navAccount').click();
+  await page.locator('#ux422MoreHub [data-ux-go="saved"]').click();
   await page.locator('#uxSavedContent .ux-saved-item').first().waitFor({state:'visible',timeout:9000});
   for(const {code} of LOCALES){
    await page.locator('#sgbLanguage').selectOption(code);
@@ -47,7 +48,8 @@ async function check(viewport){
    await page.locator('[data-discover-tab="trip"]').click();
    await page.locator('#myTripPlanner').waitFor({state:'visible',timeout:10000});
    assert.equal(await page.locator('#tripNewName').getAttribute('placeholder'),v312Text(code,'tripNamePlaceholder'));
-   await page.locator('#navMoney').click();
+   await page.locator('#navAccount').click();
+  await page.locator('#ux422MoreHub [data-ux-go="saved"]').click();
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+8),code+' horizontal overflow');
   }
   assert.deepEqual(errors,[],'Uncaught browser errors');
@@ -56,5 +58,5 @@ async function check(viewport){
 try{
  await check({width:390,height:844});
  await check({width:1366,height:900});
- console.log('V3.12 CHROMIUM PASS: Saved, trip and journey across 12 locales, desktop/mobile, source protection.');
+ console.log('V3.12 CHROMIUM PASS: Saved via More, trip and journey across 12 locales, desktop/mobile, source protection.');
 }finally{await browser.close()}
