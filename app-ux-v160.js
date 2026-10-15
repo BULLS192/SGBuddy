@@ -38,7 +38,7 @@ const nav=$('.bottom-nav');
 navData.forEach(([id,target,label,art])=>{
  const a=$('#'+id);if(!a)return;
  a.dataset.navTarget=target;
- a.setAttribute('href',target==='saved'?'#uxSavedView':'#'+({today:'todaySection',places:'placesSection',move:'travelSection',account:'accountSection'}[target]||'uxSavedView'));
+ a.setAttribute('href',target==='saved'?'#uxSavedView':'#'+({today:'todaySection',places:'placesSection',move:'travelSection',trip:'myTripPlanner',account:'accountSection'}[target]||'uxSavedView'));
  a.innerHTML=icon(art)+'<span>'+label+'</span>';
 });
 if(nav){for(const id of ['navToday','navPlaces','navMove','navMoney','navAccount']){const item=$('#'+id);if(item)nav.appendChild(item)}}
