@@ -37,7 +37,7 @@ try{
   const text=readFileSync(await download.path(),'utf8');
   assert.ok(text.includes('BEGIN:VCALENDAR'));
   assert.ok(text.includes('DTSTART;TZID=Asia/Singapore:'+travelDate.replace(/-/g,'')+'T103000'));
-  assert.ok(text.includes('Keep this note private'),'ICS should preserve the user's personal note in their downloaded file');
+  assert.ok(text.includes('Keep this note private'),"ICS should preserve the user's personal note in the locally downloaded file");
   await page.locator('[data-v421-events]').click();
   await page.locator('.trip-v421-event').first().waitFor({state:'visible',timeout:20000});
   assert.equal(await page.locator('.trip-v421-event').count(),1,'Only verified and published event must appear');
