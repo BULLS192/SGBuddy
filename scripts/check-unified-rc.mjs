@@ -46,5 +46,5 @@ assert.ok(locQA.includes('scripts/browser-qa-v4100.mjs'),'V4.10 l10n QA missing'
 assert.ok(content('scripts/check-all.mjs').includes("scripts/check-v4100.mjs"));
 assert.ok(sw.includes("c.addAll([...new Set(SHELL)])"),'legacy duplicate PWA precache regression');
 assert.ok(sw.includes("key.startsWith('sgbuddy-shell-v')"),'offline packs must not be cleared on activation');
-assert.ok(boot.includes("='4.19.0'"),'production badge must not be prematurely changed');
+assert.ok(boot.includes("='4.20.0'"),'production badge must not be prematurely changed');
 console.log('SGBuddy unified release static contract passed: 12 locales, 11 curated events, 3 offline packs, both v490 QA suites.');
