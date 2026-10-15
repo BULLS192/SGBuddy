@@ -62,7 +62,9 @@ const savedAddresses=$('.saved.card');
 if(savedAddresses)savedView.appendChild(savedAddresses);
 let selectedExplore='eat',catalog=null,lastFocus=null;
 function show(name,options={}){
+ if(name!=='trip')document.querySelector('.ux423-trip-view')?.classList.add('hidden');
  if(name==='trip'){
+  if(window.SGBUDDY_V423?.openTrip){savedView.classList.add('hidden');window.SGBUDDY_V423.openTrip();return;}
   savedView.classList.add('hidden');
   originalShow('places',options);
   const btn=$('[data-discover-tab="trip"]');
