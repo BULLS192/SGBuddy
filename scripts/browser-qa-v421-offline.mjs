@@ -1,11 +1,11 @@
-/* V4.21 automated Chromium verification: shell v85 offline restart and private trip retention.
+/* V4.21 automated Chromium verification: shell v86 offline restart and private trip retention.
  * Browser emulation is NOT equivalent to physical installed iPhone or Android acceptance.
  */
 import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const origin='http://127.0.0.1:8765';
-const assets=['/app-trip-quality-v421.js','/lib/trip-insights-v421.mjs','/trip-quality-v421.css'];
+const assets=['/app-trip-quality-v420.js','/lib/trip-insights-v420.mjs','/trip-quality-v420.css','/app-trip-extras-v421.js','/trip-extras-v421.css','/lib/trip-calendar-v421.mjs','/lib/trip-published-events-v421.mjs'];
 try{
  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,serviceWorkers:'allow'});
  const page=await context.newPage(),errors=[];
@@ -36,7 +36,7 @@ try{
   return Promise.all(assets.map(async p=>!!await cache.match(p)));
  },assets);
  assert.deepEqual(before,[true,true,true,true,true,true,true],'All newly imported V4.21 modules must be pre-cached');
- assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true,'Pre-downloaded calendar data must survive v85 activation');
+ assert.equal(await page.evaluate(async()=>!!await(await caches.open('sgbuddy-offline-packs-v480')).match('/data/events-v470.json')),true,'Pre-downloaded calendar data must survive v86 activation');
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.21.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
