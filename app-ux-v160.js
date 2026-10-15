@@ -22,6 +22,7 @@ function icon(name){
  explore:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8z"/>',
  move:'<rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 11h14M8 16h1m6 0h1M8 21l2-2m6 0 2 2"/>',
  saved:'<path d="M6 4h12v17l-6-4-6 4z"/>',
+ trip:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18M7 14h4m-4 3h8"/>',
  profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'
  };
  return '<svg class="ux-nav-icon" viewBox="0 0 24 24" aria-hidden="true">'+paths[name]+'</svg>';
@@ -30,8 +31,8 @@ const navData=[
  ['navToday','today','Home','home'],
  ['navPlaces','places','Discover','explore'],
  ['navMove','move','Move','move'],
- ['navMoney','saved','Saved','saved'],
- ['navAccount','account','Profile','profile']
+ ['navMoney','trip','My Trip','trip'],
+ ['navAccount','account','More','profile']
 ];
 const nav=$('.bottom-nav');
 navData.forEach(([id,target,label,art])=>{
@@ -61,6 +62,13 @@ const savedAddresses=$('.saved.card');
 if(savedAddresses)savedView.appendChild(savedAddresses);
 let selectedExplore='eat',catalog=null,lastFocus=null;
 function show(name,options={}){
+ if(name==='trip'){
+  savedView.classList.add('hidden');
+  originalShow('places',options);
+  const btn=$('[data-discover-tab="trip"]');
+  if(btn){btn.click();setExplore('trip')}
+  activeNav('trip');scrollTop();return;
+ }
  if(name==='saved'){
  $$('.v1-view').forEach(v=>v.classList.toggle('hidden',v!==savedView));
  activeNav('saved');renderSaved();scrollTop();return;
@@ -102,7 +110,7 @@ function home(){
  document.addEventListener('sgbuddy:weather',update);
  const grid=document.createElement('div');grid.className='ux-primary-shortcuts';
  const items=[
- ['↗','Plan a trip','Routes and arrivals','move'],
+ ['↗','Plan a journey','MRT, buses and arrivals','move'],
  ['♨','Find food','Hawkers and dining','eat'],
  ['⌖','Near me','Everyday essentials','nearby'],
  ['◇','Explore','Discover Singapore','places']
