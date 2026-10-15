@@ -87,3 +87,6 @@
 @media(prefers-reduced-motion:reduce){.ux423-trip-view *, .ux423-groups *, .ux423-events-slot *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 html[data-ux-theme="light"]{--ux423-focus:#166e69}
 html[data-ux-theme="light"] .ux423-events-slot .events-item{box-shadow:0 5px 18px rgba(27,51,68,.06)}
+
+/* Avoid duplicate persona and utility banners in grouped Discover. Their actions remain in the global mode control and More. */
+.v1-view[data-view="places"] #uxExploreContext,.v1-view[data-view="places"] > .ux-move-links{display:none!important}
