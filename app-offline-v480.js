@@ -244,5 +244,5 @@ window.addEventListener('online',()=>{status=tx('reconnected');present()});
 window.addEventListener('offline',()=>{status='';present()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)present()});
 present();
-window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.18',freshnessPreview:'4.18-release-candidate'};
+window.SGBUDDY_OFFLINE_V480={packs:OFFLINE_PACKS.map(x=>x.id),cache:OFFLINE_CACHE,version:'4.18',freshnessPreview:'4.18-release-candidate',recovery};
 })();

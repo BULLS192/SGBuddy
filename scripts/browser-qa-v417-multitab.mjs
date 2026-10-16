@@ -58,9 +58,18 @@ try{
   }),{headers:{'content-type':'application/json'}}));
   await publicCache.put(files[1],new Response('{truncated',{headers:{'content-type':'application/json'}}));
  },{files,cacheName:OFFLINE_CACHE,journalName:transactionName(OFFLINE_PACKS[0]),marker:TXN_MARKER});
+ const journalState=await second.evaluate(async({journalName,marker,file})=>{
+  const j=await caches.open(journalName);
+  return {marker:!!await j.match(marker),backup:!!await j.match(file)};
+ },{journalName:transactionName(OFFLINE_PACKS[0]),marker:TXN_MARKER,file:files[1]});
+ assert.deepEqual(journalState,{marker:true,backup:true},'Interrupted transaction must have complete journal before restart');
  // A restart in a second tab must restore previously valid bytes.
  await first.reload({waitUntil:'domcontentloaded',timeout:45000});
  await first.waitForSelector('#sgbuddyOffline',{state:'attached',timeout:65000});
+ await first.waitForFunction(()=>Boolean(window.SGBUDDY_OFFLINE_V480?.recovery),null,{timeout:30000});
+ const recoveryRows=await first.evaluate(()=>window.SGBUDDY_OFFLINE_V480.recovery);
+ const calendarRecovery=recoveryRows.find(row=>row.id==='calendar');
+ assert.equal(calendarRecovery?.state,'restored','Startup rollback must report a restored calendar journal: '+JSON.stringify(recoveryRows));
  await first.waitForFunction(async()=> !(await caches.keys()).some(x=>x.startsWith('sgbuddy-offline-txn-v415-')),null,{timeout:30000});
  const restored=await first.evaluate(async({file,cache})=>(await(await caches.open(cache)).match(file)).text(),{file:files[1],cache:OFFLINE_CACHE});
  assert.equal(restored,original,'Interrupted cross-tab write must recover original JSON');
