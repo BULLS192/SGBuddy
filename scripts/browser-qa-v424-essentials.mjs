@@ -29,6 +29,8 @@ try{
   assert.equal(await page.locator('[data-v424-check="sgac"]').count(),1);
   await page.locator('[data-v424-check="passport"]').check();
   assert.ok((await page.evaluate(()=>localStorage.getItem('sgc-v424-arrival'))).includes('"passport":true'));
+  await page.locator('#v424Date').fill('2026-10-19');
+  assert.equal(await page.locator('[data-v424-check="passport"]').isChecked(),false,'new arrival resets old completion');
   await page.locator('.v424-goods > summary').click();
   await page.locator('#v424GoodsSearch').fill('vape');
   assert.equal(await page.locator('.v424-goods-row').count(),1);
