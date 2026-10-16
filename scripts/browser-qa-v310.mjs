@@ -19,7 +19,8 @@ try{
  await location.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
- await page.locator('#discoverTab-facts').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+ await page.locator('[data-ux423-category="facts"]').click();
  await page.locator('#sgbFactList [data-fact-id="FACT-00001"] p').waitFor({state:'attached',timeout:12000});
  await page.locator('#appLibraryCategory option[value="Government & identity"]').waitFor({state:'attached',timeout:12000});
  await page.locator('#foodCuisine option[value="Chinese"]').waitFor({state:'attached',timeout:12000});
@@ -52,7 +53,8 @@ try{
  await page.waitForFunction(()=>document.getElementById('appVersion')?.textContent==='v4.23.0');
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR');
  await page.locator('#navPlaces').click();
- await page.locator('#discoverTab-facts').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+ await page.locator('[data-ux423-category="facts"]').click();
  await textIs('#sgbFactList [data-fact-id="FACT-00001"] p',factTranslation('pt-BR',source));
  const measure=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));
  assert.ok(measure.scroll<=measure.width+8,'Horizontal overflow '+JSON.stringify(measure));

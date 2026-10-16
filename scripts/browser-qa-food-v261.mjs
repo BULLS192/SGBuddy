@@ -13,7 +13,7 @@ try{
  await sheet.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await sheet.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
- await page.locator('[data-discover-tab="eat"]').click();
+ await page.locator('[data-ux423-group="food"]').click();
  await page.locator('#foodExplorer').waitFor({state:'visible'});
  await page.waitForFunction(()=>window.__SGBUDDY_FOOD_TOOLS__==='v2.6',{timeout:20000});
  await page.waitForFunction(()=>document.querySelector('#foodPickNote')?.textContent?.includes('guide-listed food candidates'),{timeout:16000});
@@ -35,7 +35,7 @@ try{
  await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
  await page.locator('#navPlaces').click();
- await page.locator('[data-discover-tab="eat"]').click();
+ await page.locator('[data-ux423-group="food"]').click();
  await page.locator('#foodPickSaved').click();
  assert.ok((await page.locator('#foodPickResult').textContent()).includes('Toa Payoh'),'Saved food pick should survive reload');
  await page.locator('#foodToolServices').click();
@@ -45,7 +45,8 @@ try{
  assert.ok(links.some(x=>x.includes('Eatigo')),'Eatigo external deals handoff missing');
  await page.locator('[data-food-service="rescue"]').click();
  assert.ok((await page.locator('#foodServiceResults').textContent()).includes('treatsure'),'Food rescue service missing');
- await page.locator('[data-discover-tab="apps"]').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+ await page.locator('[data-ux423-category="apps"]').click();
  await page.locator('#everydayApps').waitFor({state:'visible'});
  await page.locator('[data-app-view="all"]').click();
  await page.waitForFunction(()=>Number.parseInt(document.querySelector('#appLibraryCount')?.textContent||'0',10)>=79,{timeout:16000});
@@ -53,7 +54,7 @@ try{
  assert.ok((await page.locator('#appLibraryCards').textContent()).includes('Burpple'));
  await page.locator('#appLibrarySearch').fill('Jiak Simi');
  assert.ok((await page.locator('#appLibraryCards').textContent()).includes('Jiak Simi'));
- await page.locator('[data-discover-tab="eat"]').click();
+ await page.locator('[data-ux423-group="food"]').click();
  const dimensions=await page.evaluate(()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth,tool:document.querySelector('#foodToolsV261')?.getBoundingClientRect().width}));
  assert.ok(dimensions.tool>=275&&dimensions.tool<=dimensions.viewport+5,'Mobile food card must fit phone viewport: '+JSON.stringify(dimensions));
  assert.ok(dimensions.scroll<=dimensions.viewport+16,'Mobile page overflow regression: '+JSON.stringify(dimensions));

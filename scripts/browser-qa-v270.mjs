@@ -49,6 +49,9 @@ try{
  assert.equal(await b.page.locator('.trip-stop').count(),1);
  assert.equal(await b.page.locator('[data-trip-note="0"]').inputValue(),'Bring camera');
  assert.ok(!(await b.page.evaluate(()=>location.hash)).includes('sgtrip'),'Consumed link must not persist in address bar');
+ // Shared-link import may leave the preview onscreen; open the independent editor first.
+ await b.page.locator('#navMoney').click();
+ await b.page.locator('#ux423TripView').waitFor({state:'visible'});
  await b.page.locator('[data-trip-note="0"]').fill('Camera and snacks');
  await b.page.locator('[data-trip-note="0"]').press('Tab');
  await openSharing(b.page);await b.page.locator('#tripMakeLink').click();
