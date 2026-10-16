@@ -4,14 +4,14 @@ V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supaba
 
 ## Included
 
-- Transparency: standalone offline-readable `legal.html` with privacy practices, data providers, accuracy and emergency disclaimers, terms of use and feedback contact. The app exposes a localized Legal & feedback tab plus a link from the account sign-up sheet. Feedback and privacy enquiries go to https://omnidite.com/contact; no personal email address, mailto link, feedback database or hidden submission.
+- Transparency: standalone offline-readable `legal.html` with privacy practices, data providers, accuracy and emergency disclaimers, terms of use and feedback contact. The app exposes a localized Legal & feedback tab plus a link from the account sign-up sheet. App feedback goes to https://omnidite.com/feedback?project=sgbuddy (SGBuddy preselected); privacy enquiries continue to https://omnidite.com/contact. No personal email address, mailto link, feedback database or hidden submission.
 
 
 - Emergency: offline-cached numbers for Police 999, SCDF 995, police emergency SMS 70999, and police information hotline. Calls/SMS are device handoffs, never auto-dialled.
 - Entry: per-trip local checklist, residency and border-mode SG Arrival Card exemptions, date-derived three-day submission window, HSA/CNB/ICA/Customs links, and searchable goods guidance.
 - Government: audience-filtered, reviewed, expiring notices from official HTTPS agencies, with source attribution and a stale-review warning. The seed is an editorial snapshot, NOT live alerts.
 - UI: Today shortcuts, header SOS, More hub, 12-language navigation labels and clear external sources. English legal summaries link to English authoritative pages.
-- Offline: release shell v89 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
+- Offline: current release shell v91 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
 
 ## Limitations and acceptance
 
@@ -37,4 +37,4 @@ Implement source discovery only from permitted official RSS/API/newsroom sources
 - Operator/privacy owner should independently review the wording, retention and account deletion process, Supabase/Vercel data flows, cross-border providers, and any PDPA responsibilities before production release.
 - The full notice remains in English; legal tab navigation uses the twelve shell languages. Arrange native-language review if localized policies are later introduced.
 - The account creation screen links directly to Privacy and Terms before registration. The legal page and app summary are precached for offline access. Signing out does not clear local device information.
-- Ensure the Omnidite contact page can receive feedback and privacy access, correction or deletion enquiries. The linked form requires connectivity and is not an emergency service.
+- Ensure the Omnidite feedback portal can receive app feedback, while the Contact page accepts privacy access, correction or deletion enquiries. The linked form requires connectivity and is not an emergency service.
