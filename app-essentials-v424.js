@@ -166,6 +166,6 @@ more.addEventListener('input',e=>{if(e.target.id==='v424GoodsSearch'){goodsQuery
 d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(paint));
 d.addEventListener('sgbuddy:persona',()=>requestAnimationFrame(paint));
 fetch('/data/gov-notices-v424.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('feed unavailable');return r.json()}).then(data=>{if(Array.isArray(data.notices))feed=data;paintTabs()}).catch(()=>{paintTabs()});
-window.SGBUDDY_V424={open:openPanel,profile,mode,version:'4.24.0-preview'};
+window.SGBUDDY_V424={open:openPanel,profile,mode,version:'4.24.0'};
 paint();
 })();

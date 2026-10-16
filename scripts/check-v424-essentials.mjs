@@ -34,4 +34,9 @@ assert.ok(legal.includes('Supabase')&&legal.includes('Vercel')&&legal.includes('
 assert.ok(legal.includes('not a Singapore government service'));
 assert.ok(index.includes('/legal.html#privacy')&&index.includes('/legal.html#terms'),'legal links before account creation');
 assert.ok(sw.includes("'/legal.html'"),'offline legal notice precache');
-console.log('V4.24 essentials and legal policy tests passed');
+const boot=readFileSync(new URL('../app-v090.js',import.meta.url),'utf8');
+assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"),'V4.24 release client version');
+assert.ok(index.includes('v4.24.0'),'V4.24 visible version badge');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v89'"),'V4.24 PWA cache version');
+assert.ok(!sw.includes('sgbuddy-shell-v88'),'V4.23 PWA cache must be rotated');
+console.log('V4.24 RELEASE PASS: rules, legal notice, 12 locales, v4.24.0 and v89 offline shell');

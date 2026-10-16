@@ -18,7 +18,7 @@ async function textIs(selector,value){
 }
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0',{timeout:30000});
  const modal=page.locator('#locationSheet');
  await modal.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await modal.isVisible())await page.locator('#notNowLocationButton').click();
@@ -56,7 +56,7 @@ try{
  }
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0',{timeout:30000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR','Language preference not persisted');
  assert.deepEqual(errors,[],'Unexpected browser runtime exceptions');
  console.log('V3.2 MOBILE PASS: 12 locales for account sync, weather, sensor/PM2.5 disclaimers, place ranking/ETA actions, journey required-destination error, persisted language and responsive layout.');

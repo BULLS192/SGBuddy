@@ -13,7 +13,7 @@ try{
   const page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
-  await page.waitForFunction(()=>window.SGBUDDY_V424?.version==='4.24.0-preview',{timeout:60000});
+  await page.waitForFunction(()=>window.SGBUDDY_V424?.version==='4.24.0',{timeout:60000});
   assert.equal(await page.locator('.bottom-nav [data-nav-target]').count(),5);
   await page.locator('#v424SOS').click();
   await page.locator('#v424Essentials').waitFor({state:'visible'});
@@ -66,14 +66,14 @@ try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
  await page.waitForFunction(async()=>{
   const reg=await navigator.serviceWorker.ready;
-  return !!reg.active&&await caches.has('sgbuddy-shell-v88');
+  return !!reg.active&&await caches.has('sgbuddy-shell-v89');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
  }
  const assets=['/app-essentials-v424.js','/essentials-v424.css','/lib/essentials-v424.mjs','/data/gov-notices-v424.json','/legal.html'];
- const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v88');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
+ const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v89');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
   assert.deepEqual(cached,[true,true,true,true,true],'offline shell must precache emergency guidance and legal notice');
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});

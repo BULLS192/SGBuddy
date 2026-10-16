@@ -34,5 +34,5 @@ const sw=readFileSync('sw.js','utf8'),app=readFileSync('app-offline-v480.js','ut
 assert.ok(sw.includes('/lib/offline-freshness-v416.mjs')&&sw.includes('/lib/offline-freshness-i18n-v416.mjs'));
 assert.ok(app.includes('data-offline-check-changes')&&app.includes("method:'HEAD'")&&app.includes("redirect:'error'"));
 assert.ok(!app.includes("window.addEventListener('online',checkForChanges"));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v88'")&&sw.includes('sgbuddy-offline-packs-v480'));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v89'")&&sw.includes('sgbuddy-offline-packs-v480'));
 console.log('V4.16 WAVE 1 PASS — HEAD-only changed/unchanged/unknown comparison; opt-in isolation; no cache writes; 12 locales.');
