@@ -8,7 +8,7 @@ const read=x=>readFileSync(x,'utf8'),json=x=>JSON.parse(read(x));
 const html=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js');
 assert.ok(html.includes('id="appVersion"')&&html.includes('v4.24.0'),'V4.14 visible first paint');
 assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'")&&boot.includes("textContent='v4.24.0'"),'V4.14 runtime version');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"),'V4.14 service-worker update required');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v91'"),'V4.14 service-worker update required');
 for(const path of ['/app-events-v470.js','/app-trip-v260.js','/lib/events-v470.mjs','/lib/events-identity-v414.mjs',
  '/lib/events-weekend-v414.mjs','/lib/events-explore-v414.mjs','/lib/events-explore-i18n-v414.mjs','/data/events-v470.json']){
  assert.ok(sw.includes("'"+path+"'"),'Missing PWA shell asset '+path);
