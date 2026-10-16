@@ -129,6 +129,8 @@ more.addEventListener('change',e=>{
  else if(x.id==='v424Date')profile.arrivalDate=validDay(x.value)?x.value:'';
  else if(x.matches('[data-v424-check]')){profile.completed[x.dataset.v424Check]=x.checked;save();return}
  else return;
+ // A different arrival or traveller type must never inherit completed declarations.
+ profile.completed={};
  save();paintTabs();
 });
 more.addEventListener('input',e=>{if(e.target.id==='v424GoodsSearch'){goodsQuery=e.target.value;renderGoods()}});
