@@ -108,7 +108,9 @@ function renderEmergency(host){
  '<div class="v424-emergency-more">'+
  '<a href="'+OFFICIAL_LINKS.police+'" target="_blank" rel="noopener noreferrer">Singapore Police Force ↗</a>'+
  '<a href="'+OFFICIAL_LINKS.ambulance+'" target="_blank" rel="noopener noreferrer">SCDF ambulance service ↗</a>'+
- '<a href="'+OFFICIAL_LINKS.embassy+'" target="_blank" rel="noopener noreferrer">Singapore overseas missions (MFA) ↗</a>'+
+ '<a href="'+OFFICIAL_LINKS.embassy+'" target="_blank" rel="noopener noreferrer">Foreign embassies in Singapore (MFA) ↗</a>'+ 
+ '<a href="'+OFFICIAL_LINKS.lostPassport+'" target="_blank" rel="noopener noreferrer">Lost passport: steps for foreign visitors ↗</a>'+ 
+ '<a href="'+OFFICIAL_LINKS.mentalHealth+'" target="_blank" rel="noopener noreferrer">Mental health support options (MOH) ↗</a>'+
  '<a href="https://www.google.com/maps/search/?api=1&query=Singapore+emergency+department" target="_blank" rel="noopener noreferrer">Find an emergency department ↗</a>'+
  '</div><p class="v424-note">Check official sources when online. Phone and SMS handoffs depend on your device and mobile service.</p>';
 }
