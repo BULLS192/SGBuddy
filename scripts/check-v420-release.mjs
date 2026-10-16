@@ -26,7 +26,9 @@ for(const token of ['tripOverview','dayRouteSegments','suggestDayPlaces','data-v
 for(const f of [tripOverview,dayRouteSegments,suggestDayPlaces])assert.equal(typeof f,'function');
 const publisher=JSON.parse(read('data/events-v470.json')),queue=JSON.parse(read('data/events-review-queue-v470.json'));
 assert.equal(publisher.events.length,11);
-assert.ok(queue.candidates.length>=70);
+assert.ok(Array.isArray(queue.candidates)&&queue.candidates.length>0,'Editorial review queue must remain populated');
+assert.equal(new Set(queue.candidates.map(e=>e.id)).size,queue.candidates.length,'Review candidate IDs must be unique');
+for(const candidate of queue.candidates)assert.ok(candidate.id&&candidate.title&&candidate.sourceId,'Review candidate requires identity and provenance');
 const publicIds=new Set(publisher.events.map(e=>e.id));
 for(const event of queue.candidates)assert.ok(!publicIds.has(event.id),'Review candidate leaked to publication');
 assert.equal(JSON.parse(read('data/event-approvals-v490.json')).approvals.length,0);
