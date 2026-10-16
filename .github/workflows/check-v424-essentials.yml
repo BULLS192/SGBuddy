@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'app-essentials-v424.js'
+      - 'legal.html'
       - 'essentials-v424.css'
       - 'lib/essentials-v424.mjs'
       - 'data/gov-notices-v424.json'
