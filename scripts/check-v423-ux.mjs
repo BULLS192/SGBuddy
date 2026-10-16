@@ -6,7 +6,7 @@ const boot=read('app-v090.js'),html=read('index.html'),sw=read('sw.js'),route=re
 assert.ok(boot.includes("import('/app-ux-v422.js')).then(()=>import('/app-ux-v423.js')"),'V4.23 must load after V4.22');
 assert.ok(html.includes('/ux-v423.css'),'V4.23 stylesheet required');
 for(const asset of ['/app-ux-v423.js','/ux-v423.css'])assert.ok(sw.includes("'"+asset+"'"),'Offline precache missing: '+asset);
-assert.ok(/const CACHE = 'sgbuddy-shell-v8[89]'/.test(sw),'V4.23+ must retain an upgraded offline shell cache');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v88'"),'V4.23 release must rotate the offline shell cache');
 assert.ok(route.includes("window.SGBUDDY_V423.openTrip()"),'Primary nav must route to independent My Trip');
 assert.ok(ux.includes("tripView.appendChild(host)"),'Existing trip node must move, not be cloned/reimplemented');
 assert.ok(trip.includes("window.SGBUDDY_VIEW_ROUTER.show('trip')"),'Event add and shared trip import must open independent Trip');
