@@ -10,6 +10,8 @@ on:
       - 'index.html'
       - 'sw.js'
       - 'scripts/check-v424-essentials.mjs'
+      - 'scripts/gov-discovery-v424.mjs'
+      - 'scripts/check-v424-gov-discovery.mjs'
       - 'scripts/browser-qa-v424-essentials.mjs'
       - '.github/workflows/check-v424-essentials.yml'
   workflow_dispatch:
@@ -30,6 +32,7 @@ jobs:
           node --check app-v090.js
           node --check sw.js
           node scripts/check-v424-essentials.mjs
+          node scripts/check-v424-gov-discovery.mjs
           node scripts/check-v423-ux.mjs
   browser:
     runs-on: ubuntu-latest
