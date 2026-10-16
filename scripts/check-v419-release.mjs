@@ -8,7 +8,7 @@ const read=p=>readFileSync(p,'utf8'),json=p=>JSON.parse(read(p));
 const index=read('index.html'),boot=read('app-v090.js'),sw=read('sw.js'),trip=read('app-trip-v260.js');
 assert.ok(index.includes('id="appVersion"')&&index.includes('v4.24.0'));
 assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'")&&boot.includes("textContent='v4.24.0'"));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v91'"));
 assert.equal(OFFLINE_CACHE,'sgbuddy-offline-packs-v480');
 assert.equal(OFFLINE_PACKS.length,3);
 assert.equal(OFFLINE_PACKS.reduce((a,p)=>a+p.files.length,0),13);
