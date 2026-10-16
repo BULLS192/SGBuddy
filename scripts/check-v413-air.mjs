@@ -23,7 +23,7 @@ for(const s of ["import {air413Text} from './lib/i18n-air-v413.mjs';","document.
  assert.ok(renderer.includes(s),'Missing Air Quality integration: '+s);
 }
 assert.ok(shell.includes('/lib/i18n-air-v413.mjs'),'Air Quality translations not installed with offline shell');
-assert.ok(shell.includes('sgbuddy-offline-packs-v480')&&shell.includes("sgbuddy-shell-v90"),'Unsafe version/cache change before release');
+assert.ok(shell.includes('sgbuddy-offline-packs-v480')&&shell.includes("sgbuddy-shell-v91"),'Unsafe version/cache change before release');
 assert.ok(boot.includes("if(contextOk)toast('Refreshed')"),'Refresh can falsely claim success');
 assert.ok(boot.includes("if(contextOk)toast('All SGBuddy data refreshed')"),'Core diagnostics can falsely claim success');
 assert.ok(boot.includes("updateHero();return weather?.source!=='device-cache'}catch(e){toast(e.message);return false}"),'Refresh must distinguish success from failure');
