@@ -99,7 +99,7 @@ async function offlineRestart(vp){
    await page.reload({waitUntil:'domcontentloaded',timeout:45000});
    await page.waitForFunction(()=>Boolean(navigator.serviceWorker?.controller),null,{timeout:30000});
   }
-  assert.ok(await page.evaluate(()=>caches.has('sgbuddy-shell-v89')),'installed shell missing from CacheStorage');
+  assert.ok(await page.evaluate(()=>caches.has('sgbuddy-shell-v90')),'installed shell missing from CacheStorage');
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded',timeout:50000});
   await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0'

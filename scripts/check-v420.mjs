@@ -25,7 +25,7 @@ for(const x of ["localizeStaticFilters()","contextualText(locale(),key,fields)",
 for(const x of ["ctx('foodLead',{centre:x.centreName,dishes:(x.dishes||[]).join(', ')})","ctx('foodLoadError')","ctx('oneMapChecking')","ctx('foodListedOn',{date:x.observedOn})"])assert.ok(food.includes(x),'Food not localized '+x);
 for(const x of ["notify('pickerCount',{count:options.length})","notify('pickerNoMatch')","lastNotice","renderPicked();if(lastNotice)"])assert.ok(picker.includes(x),'Picker not localized '+x);
 for(const x of ["ctx('merliCount'","ctx('merliEmpty')","ctx('merliOriginalSource')","factTranslation(locale(),f)||f.text"])assert.ok(merli.includes(x),'Merli not localized '+x);
-for(const x of ['sgbuddy-shell-v89','/lib/i18n-contextual-v420.mjs','/merli-avatar-v3111.js'])assert.ok(sw.includes(x),'Offline shell missing '+x);
+for(const x of ['sgbuddy-shell-v90','/lib/i18n-contextual-v420.mjs','/merli-avatar-v3111.js'])assert.ok(sw.includes(x),'Offline shell missing '+x);
 const audit=JSON.parse(execFileSync(process.execPath,['scripts/audit-app-v380.mjs','--json'],{encoding:'utf8',maxBuffer:35*1024*1024}));
 assert.equal(audit.globalWholeAppCompletionPercent,null,'Whole app translation must remain unverified');
 assert.equal(audit.locales.en.byArea.authoredUiCatalogue.total,553);
