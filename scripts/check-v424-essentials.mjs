@@ -25,4 +25,13 @@ for(const notice of feed.notices){
  assert.equal(notice.status,'approved');
 }
 assert.equal(visibleNotices(feed.notices,'resident','2028-01-01').some(n=>n.id==='moh-1777-retirement'),false);
-console.log('V4.24 essentials policy tests passed');
+const legal=readFileSync(new URL('../legal.html',import.meta.url),'utf8');
+const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const sw=readFileSync(new URL('../sw.js',import.meta.url),'utf8');
+for(const id of ['privacy','accuracy','terms','feedback'])assert.ok(legal.includes('id="'+id+'"'),id+' legal section');
+assert.ok(legal.includes('mailto:kevin@omnidite.com?subject=SGBuddy%20feedback'));
+assert.ok(legal.includes('Supabase')&&legal.includes('Vercel')&&legal.includes('location'),'disclose actual data handling');
+assert.ok(legal.includes('not a Singapore government service'));
+assert.ok(index.includes('/legal.html#privacy')&&index.includes('/legal.html#terms'),'legal links before account creation');
+assert.ok(sw.includes("'/legal.html'"),'offline legal notice precache');
+console.log('V4.24 essentials and legal policy tests passed');
