@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-16",
+  "policy": "Editorially reviewed government announcements and standing guidance. Not a live emergency alert service; source pages are authoritative.",
+  "notices": [
+    {
+      "id": "moh-1777-retirement",
+      "status": "approved",
+      "kind": "planned-change",
+      "title": "1777 non-emergency ambulance hotline will cease on 1 January 2027",
+      "summary": "For medical emergencies call 995. The 1777 non-emergency hotline is scheduled to stop on 1 January 2027; consult MOH/SCDF for updated non-emergency options.",
+      "agency": "MOH / SCDF",
+      "audiences": [
+        "resident",
+        "visitor",
+        "executive",
+        "student",
+        "new_in_sg"
+      ],
+      "effectiveAt": "2027-01-01",
+      "reviewedAt": "2026-10-16",
+      "expiresAt": "2027-03-31",
+      "sourceUrl": "https://www.moh.gov.sg/newsroom/1777-non-emergency-ambulance-hotline-to-cease--from-1-january-2027/"
+    },
+    {
+      "id": "lta-erp2-transition",
+      "status": "approved",
+      "kind": "upcoming-change",
+      "title": "ERP 2 road markings and signs begin rolling out from October 2026",
+      "summary": "LTA is gradually changing road signs and markings as part of ERP 2 transition. Motorists should check official LTA guidance before driving.",
+      "agency": "LTA",
+      "audiences": [
+        "resident",
+        "executive",
+        "new_in_sg"
+      ],
+      "effectiveAt": "2026-10-01",
+      "reviewedAt": "2026-10-16",
+      "expiresAt": "2027-03-31",
+      "sourceUrl": "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/9/news-releases/new-road-markings-signs-erp-2-transition-oct-26.html"
+    },
+    {
+      "id": "iras-invoicenow",
+      "status": "approved",
+      "kind": "business-rule",
+      "title": "GST InvoiceNow rollout: check your business's applicable phase",
+      "summary": "New voluntary GST registrants have been subject to GST InvoiceNow requirements since 1 April 2026. The phased requirement expands over time; verify your own effective date with IRAS.",
+      "agency": "IRAS",
+      "audiences": [
+        "executive"
+      ],
+      "effectiveAt": "2026-04-01",
+      "reviewedAt": "2026-10-16",
+      "expiresAt": "2028-12-31",
+      "sourceUrl": "https://www.iras.gov.sg/news-events/newsroom/committee-of-supply-2026--extension-of-gst-invoicenow-requirement-to-all-gst-registered-businesses-by-april-2031"
+    },
+    {
+      "id": "ica-sgac-guidance",
+      "status": "approved",
+      "kind": "standing-guidance",
+      "title": "SG Arrival Card: free submission within three days of arrival",
+      "summary": "Most travellers must submit SGAC within three days including arrival day. Transit passengers who do not clear immigration and residents entering at land checkpoints are exempt.",
+      "agency": "ICA",
+      "audiences": [
+        "visitor",
+        "student",
+        "executive",
+        "new_in_sg",
+        "resident"
+      ],
+      "reviewedAt": "2026-10-16",
+      "sourceUrl": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card"
+    },
+    {
+      "id": "hsa-vape-rules",
+      "status": "approved",
+      "kind": "standing-guidance",
+      "title": "Do not bring vapes or e-vaporisers into Singapore",
+      "summary": "E-vaporisers and related prohibited products must not be imported, possessed or used in Singapore. Travellers should check HSA's current restrictions.",
+      "agency": "HSA",
+      "audiences": [
+        "visitor",
+        "student",
+        "executive",
+        "new_in_sg",
+        "resident"
+      ],
+      "reviewedAt": "2026-10-16",
+      "sourceUrl": "https://www.hsa.gov.sg/tobacco-regulation/vaping-enforcement/"
+    },
+    {
+      "id": "moe-2026-education",
+      "status": "approved",
+      "kind": "education-update",
+      "title": "MOE 2026 education policy announcements",
+      "summary": "MOE's 2026 Committee of Supply announcement hub summarizes education initiatives; check eligibility and individual school notices for personal next steps.",
+      "agency": "MOE",
+      "audiences": [
+        "student",
+        "resident",
+        "new_in_sg"
+      ],
+      "reviewedAt": "2026-10-16",
+      "expiresAt": "2027-03-31",
+      "sourceUrl": "https://cos.moe.gov.sg/2026-announcements/"
+    }
+  ],
+  "sources": [
+    {
+      "id": "ica",
+      "agency": "ICA",
+      "url": "https://www.ica.gov.sg/news-and-publications/newsroom",
+      "audiences": [
+        "visitor",
+        "resident",
+        "executive",
+        "student",
+        "new_in_sg"
+      ]
+    },
+    {
+      "id": "mom",
+      "agency": "MOM",
+      "url": "https://www.mom.gov.sg/newsroom/press-releases",
+      "audiences": [
+        "executive",
+        "new_in_sg",
+        "student"
+      ]
+    },
+    {
+      "id": "moe",
+      "agency": "MOE",
+      "url": "https://www.moe.gov.sg/news",
+      "audiences": [
+        "student",
+        "resident"
+      ]
+    },
+    {
+      "id": "lta",
+      "agency": "LTA",
+      "url": "https://www.lta.gov.sg/content/ltagov/en/newsroom.html",
+      "audiences": [
+        "resident",
+        "visitor",
+        "executive",
+        "student",
+        "new_in_sg"
+      ]
+    },
+    {
+      "id": "nea",
+      "agency": "NEA",
+      "url": "https://www.nea.gov.sg/media/news",
+      "audiences": [
+        "resident",
+        "visitor",
+        "executive",
+        "student",
+        "new_in_sg"
+      ]
+    },
+    {
+      "id": "iras",
+      "agency": "IRAS",
+      "url": "https://www.iras.gov.sg/news-events/newsroom",
+      "audiences": [
+        "executive",
+        "resident"
+      ]
+    }
+  ]
+}
