@@ -41,10 +41,16 @@ try{
   await page.evaluate(()=>{window.SGBUDDY_CORE.state.mode='student';document.dispatchEvent(new Event('sgbuddy:persona'))});
   await page.waitForFunction(()=>[...document.querySelectorAll('.v424-notice h4')].some(n=>n.textContent.includes('MOE')));
   assert.equal(await page.locator('.v424-notice a:not([href^="https://"])').count(),0);
+  await page.locator('[data-v424-tab="legal"]').click();
+  assert.equal(await page.locator('.v424-legal-card').count(),4);
+  for(const anchor of ['privacy','accuracy','terms','feedback'])assert.equal(await page.locator('.v424-legal-card a[href="/legal.html#'+anchor+'"]').count(),1);
+  assert.equal(await page.locator('a.v424-feedback-action[href="mailto:kevin@omnidite.com?subject=SGBuddy%20feedback"]').count(),1);
+  assert.equal(await page.locator('#v424Content form').count(),0,'feedback uses email handoff, not silent form submission');
   for(const code of locales){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.waitForTimeout(70);
    assert.ok((await page.locator('#v424Title').textContent()).trim().length>3,code);
+   assert.ok((await page.locator('[data-v424-tab="legal"]').textContent()).trim().length>3,code);
   }
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'mobile overflow');
   assert.deepEqual(errors,[]);
@@ -66,9 +72,9 @@ try{
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
  }
- const assets=['/app-essentials-v424.js','/essentials-v424.css','/lib/essentials-v424.mjs','/data/gov-notices-v424.json'];
+ const assets=['/app-essentials-v424.js','/essentials-v424.css','/lib/essentials-v424.mjs','/data/gov-notices-v424.json','/legal.html'];
  const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v88');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
- assert.deepEqual(cached,[true,true,true,true],'offline shell must precache emergency and official guidance assets');
+  assert.deepEqual(cached,[true,true,true,true,true],'offline shell must precache emergency guidance and legal notice');
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
  await page.waitForFunction(()=>!!window.SGBUDDY_V424,{timeout:60000});
@@ -76,6 +82,11 @@ try{
  assert.ok(await page.locator('a.v424-contact[href="tel:999"]').isVisible());
  await page.locator('[data-v424-tab="notices"]').click();
  await page.waitForFunction(()=>document.querySelectorAll('.v424-notice').length>0);
+  await page.goto('http://127.0.0.1:8765/legal.html',{waitUntil:'domcontentloaded',timeout:45000});
+  assert.ok(await page.locator('#privacy').isVisible(),'privacy notice is available offline');
+  assert.ok(await page.locator('#accuracy').isVisible(),'accuracy disclaimer is available offline');
+  assert.ok(await page.locator('#terms').isVisible(),'terms are available offline');
+  assert.ok(await page.locator('#feedback a[href^="mailto:kevin@omnidite.com"]').isVisible(),'feedback contact is available offline');
  await context.close();
  console.log('V4.24 BROWSER + OFFLINE PASS');
 }finally{await browser.close()}
