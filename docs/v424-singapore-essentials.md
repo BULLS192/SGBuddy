@@ -8,7 +8,7 @@ V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supaba
 - Entry: per-trip local checklist, residency and border-mode SG Arrival Card exemptions, date-derived three-day submission window, HSA/CNB/ICA/Customs links, and searchable goods guidance.
 - Government: audience-filtered, reviewed, expiring notices from official HTTPS agencies, with source attribution and a stale-review warning. The seed is an editorial snapshot, NOT live alerts.
 - UI: Today shortcuts, header SOS, More hub, 12-language navigation labels and clear external sources. English legal summaries link to English authoritative pages.
-- Offline: shell v89 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
+- Offline: preview shell v88 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
 
 ## Limitations and acceptance
 
