@@ -15,7 +15,7 @@ async function check(viewport){
  page.on('pageerror',error=>errors.push(error.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0',{timeout:30000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
   await page.waitForSelector('[data-ux423-group="places"]',{state:'visible',timeout:30000});
   for(const {code} of LOCALES){

@@ -5,8 +5,8 @@ const html=read('index.html'),bootstrap=read('app-v090.js'),base=read('app-ux-v1
 assert.ok(bootstrap.includes("then(()=>import('/app-ux-v422.js'))"),'UX enhancement must load after localization');
 assert.ok(html.includes('/ux-v422.css'),'Enhancement stylesheet missing');
 for(const p of ['/app-ux-v422.js','/ux-v422.css'])assert.ok(sw.includes("'"+p+"'"),'Shell offline asset missing '+p);
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v88'"),'V4.22 release must increment offline cache');
-assert.ok(bootstrap.includes("__SGBUDDY_CLIENT_VERSION__='4.23.0'"),'Release must identify as V4.23.0');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v89'"),'V4.22 release must increment offline cache');
+assert.ok(bootstrap.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"),'Release must identify as V4.24.0');
 assert.ok(base.includes("['navMoney','trip','My Trip','trip']"),'Trip not promoted in primary navigation');
 assert.ok(base.includes("['navAccount','account','More','profile']"),'Existing profile route must remain under More');
 assert.ok(base.includes("if(name==='trip')"),'Trip navigation action missing');

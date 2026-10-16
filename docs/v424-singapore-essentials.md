@@ -1,4 +1,4 @@
-# SGBuddy V4.24 — Singapore Essentials (development preview)
+# SGBuddy V4.24 — Singapore Essentials (production release)
 
 V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supabase schema, or Events editorial publication.
 
@@ -11,7 +11,7 @@ V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supaba
 - Entry: per-trip local checklist, residency and border-mode SG Arrival Card exemptions, date-derived three-day submission window, HSA/CNB/ICA/Customs links, and searchable goods guidance.
 - Government: audience-filtered, reviewed, expiring notices from official HTTPS agencies, with source attribution and a stale-review warning. The seed is an editorial snapshot, NOT live alerts.
 - UI: Today shortcuts, header SOS, More hub, 12-language navigation labels and clear external sources. English legal summaries link to English authoritative pages.
-- Offline: preview shell v88 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
+- Offline: release shell v89 caches the rules, presentation, and reviewed feed. No cloud storage for trip dates, no account schema change.
 
 ## Limitations and acceptance
 
@@ -34,7 +34,7 @@ Implement source discovery only from permitted official RSS/API/newsroom sources
 
 ## Legal / privacy release check
 
-- Operator/privacy owner to review the wording, retention and account deletion process, Supabase/Vercel data flows, cross-border providers, and any PDPA responsibilities before production release.
+- Operator/privacy owner should independently review the wording, retention and account deletion process, Supabase/Vercel data flows, cross-border providers, and any PDPA responsibilities before production release.
 - The full notice remains in English; legal tab navigation uses the twelve shell languages. Arrange native-language review if localized policies are later introduced.
 - The account creation screen links directly to Privacy and Terms before registration. The legal page and app summary are precached for offline access. Signing out does not clear local device information.
 - Ensure the published Omnidite inbox remains monitored for feedback and privacy access, correction or deletion enquiries. Email links open the user's mail app; no promise of urgent response.

@@ -19,7 +19,7 @@ async function trial(width,height){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_SCREEN_I18N,{timeout:30000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0'&&!!window.SGBUDDY_SCREEN_I18N,{timeout:30000});
   const exists=await page.evaluate(entries=>entries.map(x=>({screen:x.screen,selector:x.selector,found:!!document.querySelector(x.selector)})),primary);
   assert.equal(exists.every(x=>x.found),true,JSON.stringify(exists.filter(x=>!x.found)));
   for(const {code} of LOCALES){
