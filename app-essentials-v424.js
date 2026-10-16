@@ -140,7 +140,7 @@ function renderLegal(host){
  ];
  host.innerHTML='<p class="v424-note" lang="en">Full legal notices are in English. The official government website is authoritative for entry, customs and safety requirements.</p>'+
   '<div class="v424-legal-grid">'+rows.map(([title,heading,detail,anchor])=>'<article class="v424-legal-card"><h4>'+esc(title)+'</h4><strong lang="en">'+esc(heading)+'</strong><p lang="en">'+esc(detail)+'</p><a href="/legal.html#'+anchor+'">'+esc(l[5])+' ↗</a></article>').join('')+'</div>'+
-  '<div class="v424-legal-contacts"><a class="v424-feedback-action" href="https://omnidite.com/contact" target="_blank" rel="noopener noreferrer">'+esc(l[6])+' ↗</a></div>'+
+  '<div class="v424-legal-contacts"><a class="v424-feedback-action" href="https://omnidite.com/feedback?project=sgbuddy" target="_blank" rel="noopener noreferrer">'+esc(l[6])+' ↗</a></div>'+
   '<p class="v424-note" lang="en">Opens the Omnidite contact page. SGBuddy does not transmit feedback itself; do not use this form for emergencies.</p>';
 }
 function paint(){paintHome();paintTabs();sos.setAttribute('aria-label',t(3))}
