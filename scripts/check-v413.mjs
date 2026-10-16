@@ -65,7 +65,7 @@ for(const pack of OFFLINE_PACKS){
 }
 assert.equal(filePaths.size,13,'offline pack file count changed; review new sources/rights before release');
 const sw=read('sw.js'),boot=read('app-v090.js'),html=read('index.html');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"),'unexpected release shell');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v91'"),'unexpected release shell');
 assert.ok(sw.includes(OFFLINE_CACHE)&&sw.includes('SHELL_PATHS.has(url.pathname)'),'offline cache fetch safety');
 assert.ok(boot.includes("import('/app-i18n-home-surface-v412.js')"),'V4.12 translations not loaded');
 assert.ok(html.includes('v4.24.0')&&boot.includes('v4.24.0'),'public version unexpected');
