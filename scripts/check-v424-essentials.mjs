@@ -15,7 +15,7 @@ assert.equal(arrivalTasks({status:'visitor',border:'air'}).some(t=>t.id==='sgac'
 assert.equal(officialUrl('https://ica.gov.sg.evil.example/'),null);
 assert.equal(officialUrl('javascript:alert(1)'),null);
 assert.ok(officialUrl('https://www.ica.gov.sg/enter-transit-depart/entering-singapore/'));
-assert.deepEqual(EMERGENCY_CONTACTS.map(c=>c.number),['999','995','70999','18002550000']);
+assert.deepEqual(EMERGENCY_CONTACTS.map(c=>c.number),['999','995','70999','18002550000','1771','1767']);
 const modes=['resident','visitor','executive','student','new_in_sg'];
 for(const mode of modes)assert.ok(visibleNotices(feed.notices,mode,'2026-10-16').length>0,'notices for '+mode);
 for(const notice of feed.notices){
