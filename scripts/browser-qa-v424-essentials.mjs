@@ -86,7 +86,7 @@ try{
   assert.ok(await page.locator('#privacy').isVisible(),'privacy notice is available offline');
   assert.ok(await page.locator('#accuracy').isVisible(),'accuracy disclaimer is available offline');
   assert.ok(await page.locator('#terms').isVisible(),'terms are available offline');
-  assert.ok(await page.locator('#feedback a[href^="mailto:kevin@omnidite.com"]').isVisible(),'feedback contact is available offline');
+  assert.ok(await page.locator('#feedback a.cta[href^="mailto:kevin@omnidite.com"]').isVisible(),'feedback contact is available offline');
  await context.close();
  console.log('V4.24 BROWSER + OFFLINE PASS');
 }finally{await browser.close()}
