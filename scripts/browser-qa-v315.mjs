@@ -21,7 +21,8 @@ try{
  await page.locator('[data-buddy-action="saved"]').evaluate(button=>button.click());
  await expected('#buddyReply',merliMessage('en','savedFacts'));
  await page.locator('#navPlaces').click();
- await page.locator('#discoverTab-apps').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+  await page.locator('[data-ux423-category="apps"]').click();
  await page.locator('[data-app-view="all"]').click();
  await page.locator('#appLibrarySearch').fill('MyICA');
  await page.locator('#appLibraryCards [data-app-id="V24-APP-004"]').waitFor({state:'attached',timeout:12000});

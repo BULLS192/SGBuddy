@@ -44,7 +44,9 @@ try{
   await page.locator('#discoverHub').waitFor({state:'visible'});
   assert.equal(await page.locator('#ux423TripView').isVisible(),false,'Trip must hide when changing primary tab');
   assert.equal(await page.locator('.ux423-groups button').count(),4);
+  assert.equal(await page.locator('#foodExplorer').isVisible(),false,'Places must not leak the Food library');
   await page.locator('[data-ux423-group="food"]').click();
+  assert.ok(await page.locator('#foodExplorer').isVisible(),'Food group must display its library');
   assert.ok(await page.locator('[data-ux423-category="eat"]').isVisible());
   await page.locator('[data-ux423-group="guides"]').click();
   assert.equal(await page.locator('.ux423-categories button').count(),3);

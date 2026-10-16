@@ -66,8 +66,11 @@ try{
  await c.page.locator('#tripImportJsonFile').setInputFiles({name:'trip.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'sgbuddy.trip',version:1,trip:{v:1,n:'File guest',s:'2027-01-01',d:[[['manual-1','Museum','Do','Downtown','','','',0]]]}}))});
  await c.page.locator('#tripSelect').waitFor({state:'visible',timeout:15000});
  assert.equal(await c.page.locator('#tripSelect option').count(),1,'Import JSON trip file');
+ // Open the editor before changing language; the preview alone does not mount the editable share panel.
+ await c.page.locator('#navMoney').click();
+ await c.page.locator('#ux423TripView').waitFor({state:'visible'});
  await c.page.locator('#sgbLanguage').selectOption('zh-CN');
- assert.match(await c.page.locator('#tripShareTitle').textContent(),/分享/);
+ await c.page.waitForFunction(()=>document.querySelector('#tripShareTitle')?.textContent?.includes('分享'),null,{timeout:12000});
  await openSharing(c.page);
  await c.page.setViewportSize({width:375,height:812});
  assert.ok(await c.page.locator('.trip-share-v270').evaluate(el=>el.getBoundingClientRect().width<=innerWidth+8),'Share panel must fit phone viewport');

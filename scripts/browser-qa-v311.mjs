@@ -23,7 +23,8 @@ try{
  const prompt=page.locator('#locationSheet');await prompt.waitFor({state:'visible',timeout:2500}).catch(()=>{});
  if(await prompt.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
- await page.locator('#discoverTab-facts').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+  await page.locator('[data-ux423-category="facts"]').click();
  await page.locator('#sgbFactQuery').fill('Kranji Mangrove');
  await page.locator('#sgbFactList [data-fact-id="FACT-NAT-011"]').waitFor({state:'attached',timeout:16000});
  const sourceLink=await page.locator('#sgbFactList [data-fact-id="FACT-NAT-011"] a').first().getAttribute('href');
@@ -34,7 +35,7 @@ try{
   assert.equal(await page.locator('#sgbFactList [data-fact-id="FACT-NAT-011"] a').first().getAttribute('href'),sourceLink,'Source mutated: '+code);
  }
  await page.locator('#sgbFactQuery').fill('');
- await page.locator('#discoverTab-eat').click();
+ await page.locator('[data-ux423-group="food"]').click();
  await page.locator('[data-food-view="dishes"]').click();
  await page.locator('#foodCards .food-stall').first().waitFor({state:'attached',timeout:15000});
  for(const {code} of LOCALES){

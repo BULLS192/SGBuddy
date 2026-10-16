@@ -81,6 +81,7 @@ function paint(){
  const opts=configs[group]||[];
  categories.innerHTML=opts.map(([tab,i])=>'<button type="button" data-ux423-category="'+tab+'" aria-pressed="'+(category===tab)+'" class="'+(category===tab?'active':'')+'">'+safe(l[i])+'</button>').join('');
  categories.hidden=group==='events';
+ const foodPanel=$('#foodExplorer');if(foodPanel)foodPanel.hidden=group!=='food';
  slot.hidden=group!=='events';
  placesView.classList.toggle('ux423-events-mode',group==='events');
  discover.classList.toggle('ux423-events-mode',group==='events');
