@@ -43,3 +43,16 @@
 .v424-home button:focus-visible,.v424-panel button:focus-visible,.v424-panel a:focus-visible,.v424-sos:focus-visible{outline:3px solid #68bafd;outline-offset:2px}
 @media(max-width:640px){.v424-home-actions{grid-template-columns:1fr 1fr}.v424-home-actions .v424-emergency-link{grid-column:1/-1}.v424-fields{grid-template-columns:1fr}.v424-contact-grid{grid-template-columns:1fr 1fr}.v424-sos{order:-1}}
 @media(prefers-reduced-motion:reduce){.v424-panel *,.v424-home *{scroll-behavior:auto!important;transition:none!important}}
+
+/* V4.24 legal and feedback disclosure */
+.v424-home-legal{margin:10px 0 0;text-align:right}
+.v424-home-legal button{min-height:44px;padding:8px 4px;border:0;background:none;color:var(--accent,#75bafc);font:inherit;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.v424-legal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.v424-legal-card{min-width:0;padding:16px;border:1px solid var(--stroke,rgba(138,164,190,.25));border-radius:14px}
+.v424-legal-card h4{font-size:1rem;margin:0 0 8px}
+.v424-legal-card strong{display:block;font-size:.85rem;color:var(--muted,#a3b1c0)}
+.v424-legal-card p{font-size:.86rem;margin:9px 0 14px}
+.v424-legal-card a{display:inline-flex;align-items:center;min-height:44px;font-size:.85rem}
+.v424-legal-contacts{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin:20px 0 12px}
+.v424-panel a.v424-feedback-action{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:11px;background:#2563aa;color:#fff;font-weight:700;text-decoration:none}
+@media(max-width:640px){.v424-legal-grid{grid-template-columns:1fr}}
