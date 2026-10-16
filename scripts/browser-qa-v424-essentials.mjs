@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {chromium} from 'playwright';
+const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+const locales=['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'];
+try{
+ for(const width of [390,1366]){
+  const context=await browser.newContext({viewport:{width,height:850},locale:'en-SG',serviceWorkers:'block'});
+  await context.addInitScript(()=>{
+   localStorage.setItem('sgc-persona-onboarded','1');
+   localStorage.setItem('sgc-mode','visitor');
+   localStorage.setItem('sgc-location-choice','not-now');
+  });
+  const page=await context.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
+  await page.waitForFunction(()=>window.SGBUDDY_V424?.version==='4.24.0-preview',{timeout:60000});
+  assert.equal(await page.locator('.bottom-nav [data-nav-target]').count(),5);
+  await page.locator('#v424SOS').click();
+  await page.locator('#v424Essentials').waitFor({state:'visible'});
+  for(const href of ['tel:999','tel:995','sms:70999'])assert.equal(await page.locator('a.v424-contact[href="'+href+'"]').count(),1);
+  await page.locator('[data-v424-tab="arrival"]').click();
+  assert.ok((await page.locator('.v424-date-hint').textContent()).includes('Need the SG Arrival Card'));
+  await page.locator('#v424Date').fill('2026-10-18');
+  assert.ok((await page.locator('.v424-date-hint').textContent()).includes('2026-10-16'));
+  await page.locator('#v424Border').selectOption('land');
+  await page.locator('#v424Status').selectOption('pr');
+  assert.equal(await page.locator('[data-v424-check="sgac"]').count(),0);
+  await page.locator('#v424Border').selectOption('air');
+  assert.equal(await page.locator('[data-v424-check="sgac"]').count(),1);
+  await page.locator('[data-v424-check="passport"]').check();
+  assert.ok((await page.evaluate(()=>localStorage.getItem('sgc-v424-arrival'))).includes('"passport":true'));
+  await page.locator('.v424-goods > summary').click();
+  await page.locator('#v424GoodsSearch').fill('vape');
+  assert.equal(await page.locator('.v424-goods-row').count(),1);
+  await page.locator('[data-v424-tab="notices"]').click();
+  await page.waitForFunction(()=>document.querySelectorAll('.v424-notice').length>0);
+  await page.evaluate(()=>{window.SGBUDDY_CORE.state.mode='executive';document.dispatchEvent(new Event('sgbuddy:persona'))});
+  await page.waitForFunction(()=>[...document.querySelectorAll('.v424-notice h4')].some(n=>n.textContent.includes('InvoiceNow')));
+  await page.evaluate(()=>{window.SGBUDDY_CORE.state.mode='student';document.dispatchEvent(new Event('sgbuddy:persona'))});
+  await page.waitForFunction(()=>[...document.querySelectorAll('.v424-notice h4')].some(n=>n.textContent.includes('MOE')));
+  assert.equal(await page.locator('.v424-notice a:not([href^="https://"])').count(),0);
+  for(const code of locales){
+   await page.locator('#sgbLanguage').selectOption(code);
+   await page.waitForTimeout(70);
+   assert.ok((await page.locator('#v424Title').textContent()).trim().length>3,code);
+  }
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),'mobile overflow');
+  assert.deepEqual(errors,[]);
+  await context.close();
+ }
+ console.log('V4.24 BROWSER PASS');
+}finally{await browser.close()}
