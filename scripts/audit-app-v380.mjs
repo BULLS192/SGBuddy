@@ -18,9 +18,10 @@ import {dynamicInventory,dynamicAuditPolicy} from './audit-dynamic-v380.mjs';
 const json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const read=file=>fs.readFileSync(file,'utf8');
 const list=folder=>fs.readdirSync(folder).sort();
-const sourceOwnedCalendarSnapshots=['data/holidays-2026-2027-v460.json','data/event-sources-v470.json','data/events-intake-v470.json','data/events-v470.json','data/event-feeds-v470.json','data/events-review-queue-v470.json','data/event-venue-sources-v490.json','data/events-curation-v490.json','data/event-approvals-v490.json','data/events-evidence-v419.json'];
-// Holidays and organiser names are source-owned facts, not authored editorial strings.
-// Keep the V3.8 translation denominator stable; report excluded datasets separately.
+const sourceOwnedCalendarSnapshots=['data/holidays-2026-2027-v460.json','data/event-sources-v470.json','data/events-intake-v470.json','data/events-v470.json','data/event-feeds-v470.json','data/events-review-queue-v470.json','data/event-venue-sources-v490.json','data/events-curation-v490.json','data/event-approvals-v490.json','data/events-evidence-v419.json','data/gov-notices-v424.json'];
+// The historical V3.8 audit keeps a fixed translation denominator. Curated Events
+// and V4.24 government notices have separate editorial and native-language review;
+// they must not silently distort the legacy translation percentage.
 const dataFiles=list('data').filter(n=>n.endsWith('.json')).map(n=>'data/'+n).filter(path=>!sourceOwnedCalendarSnapshots.includes(path));
 const localeCodes=LOCALES.map(x=>x.code);
 const en='en';

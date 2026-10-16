@@ -1,0 +1,56 @@
+name: SGBuddy V4.24 Singapore Essentials
+on:
+  pull_request:
+    paths:
+      - 'app-essentials-v424.js'
+      - 'legal.html'
+      - 'essentials-v424.css'
+      - 'lib/essentials-v424.mjs'
+      - 'data/gov-notices-v424.json'
+      - 'app-v090.js'
+      - 'index.html'
+      - 'sw.js'
+      - 'scripts/check-v424-essentials.mjs'
+      - 'scripts/gov-discovery-v424.mjs'
+      - 'scripts/check-v424-gov-discovery.mjs'
+      - 'scripts/browser-qa-v424-essentials.mjs'
+      - '.github/workflows/check-v424-essentials.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check app-essentials-v424.js
+          node --check lib/essentials-v424.mjs
+          node --check app-v090.js
+          node --check sw.js
+          node scripts/check-v424-essentials.mjs
+          node scripts/check-v424-gov-discovery.mjs
+          node scripts/check-v423-ux.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v424.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          exit 1
+      - run: |
+          node scripts/browser-qa-v424-essentials.mjs
+          node scripts/browser-qa-v423-ux.mjs
+          node scripts/browser-qa-v422-offline.mjs
