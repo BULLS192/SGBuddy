@@ -1,0 +1,28 @@
+name: SGBuddy V4.24 Official Source Review
+on:
+  schedule:
+    - cron: '41 20 * * *' # 04:41 SGT next day; runs only after workflow is on main
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-review:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-v424-gov-discovery.mjs
+      - name: Collect unapproved official-source candidates
+        run: node scripts/gov-discovery-v424.mjs --output /tmp/sgbuddy-gov-review.json
+      - name: Upload review artifact (never auto-publish)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gov-source-review
+          path: /tmp/sgbuddy-gov-review.json
+          if-no-files-found: warn
+          retention-days: 7
