@@ -14,9 +14,9 @@ async function check(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_V4100,{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_V4100,{timeout:35000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
-  await page.locator('#discoverTab-eat').click();
+  await page.locator('[data-ux423-group="food"]').click();
   await page.waitForFunction(()=>document.querySelector('#discoverCategoryFilter option[value="CHAS clinic"]'),{timeout:20000});
   await page.waitForSelector('#foodAwardYear option[value="editorial"]',{state:'attached',timeout:12000});
   // Identical machine value must survive locale switches, including rare kinds.

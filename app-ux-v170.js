@@ -273,6 +273,7 @@ const skip=$('.skip-link'),nav=$('.bottom-nav');
 function updateSkip(){
  if(!skip||!nav)return;
  const active=nav.querySelector('[data-nav-target].active')?.dataset.navTarget||'today';
+ if(active==='trip'&&window.SGBUDDY_V423?.syncTripSkip){window.SGBUDDY_V423.syncTripSkip();return}
  const anchors={today:'todaySection',places:'discoverTitle',move:'travelSection',saved:'uxSavedView',account:'accountSection'};
  skip.setAttribute('href','#'+(anchors[active]||anchors.today));
  skip.textContent='Skip to '+(active==='today'?'Home':active==='places'?'Discover':active==='move'?'Move':active==='saved'?'Saved':'Profile');

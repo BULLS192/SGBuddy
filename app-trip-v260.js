@@ -172,7 +172,7 @@ if(core&&discover){
    data.trips.push(copy);data.activeId=copy.id;selectedDay=0;query='';message='';if(!save()){data.trips.pop();data.activeId=data.trips[0]?.id||null;return {ok:false,message:text().saveFailed}}
    render();return {ok:true,tripId:copy.id};
   },
-  open:()=>{doc.getElementById('navPlaces')?.click();doc.getElementById('discoverTab-trip')?.click()}
+  open:()=>{if(window.SGBUDDY_VIEW_ROUTER?.show)window.SGBUDDY_VIEW_ROUTER.show('trip');else{doc.getElementById('navPlaces')?.click();doc.getElementById('discoverTab-trip')?.click()}}
  };
  render();
 }

@@ -15,7 +15,7 @@ assert.ok(script.includes('URL.revokeObjectURL(url)'));
 assert.ok(script.includes("noopener noreferrer"));
 assert.ok(script.includes("esc(event.sourceUrl)")&&script.includes("esc(event.title)")&&script.includes("esc(event.venue)"));
 assert.ok(css.includes(':focus-visible'));
-assert.ok(sw.includes("sgbuddy-shell-v87"),'V4.21 production candidate must use new v86 cache');
+assert.ok(sw.includes("sgbuddy-shell-v88"),'V4.21 production candidate must use new v86 cache');
 for(const locale of ['en','zh-CN','zh-TW','ms','id','ja','ko','th','vi','fr','es','pt-BR'])
  assert.ok(script.includes('"'+locale+'":'),'Missing localization '+locale);
 assert.equal(typeof calendarForTrip,'function');

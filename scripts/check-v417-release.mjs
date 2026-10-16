@@ -6,8 +6,8 @@ import {LOCALES} from '../lib/i18n-v280.mjs';
 import {DEVICE_KEYS,DEVICE_TEXT} from '../lib/offline-device-i18n-v417.mjs';
 const read=path=>readFileSync(path,'utf8');
 const app=read('app-offline-v480.js'),sw=read('sw.js'),ui=read('index.html'),boot=read('app-v090.js');
-assert.ok(ui.includes('v4.22.0')&&boot.includes("__SGBUDDY_CLIENT_VERSION__='4.22.0'")&&boot.includes("textContent='v4.22.0'"));
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v87'"));
+assert.ok(ui.includes('v4.23.0')&&boot.includes("__SGBUDDY_CLIENT_VERSION__='4.23.0'")&&boot.includes("textContent='v4.23.0'"));
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v88'"));
 assert.ok(!sw.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 assert.equal(OFFLINE_CACHE,'sgbuddy-offline-packs-v480');
 assert.equal(OFFLINE_PACKS.length,3);assert.equal(OFFLINE_PACKS.flatMap(x=>x.files).length,13);
@@ -26,4 +26,4 @@ assert.ok(!app.includes("localStorage.clear(")&&!app.includes("caches.delete(OFF
 assert.ok(read('lib/offline-transaction-v415.mjs').includes("sgbuddy-offline-txn-v415-"));
 assert.ok(read('docs/release-v417-rc.md').includes("sgbuddy-offline-packs-v480"));
 assert.ok(read('.github/workflows/check-v417-device.yml').includes("browser-qa-v417-multitab.mjs"));
-console.log('V4.17 RELEASE CHECK PASS: v4.22.0, v82 shell, 12 locales, opt-in packs, exclusive cross-tab locks, no destructive migration.');
+console.log('V4.17 RELEASE CHECK PASS: v4.23.0, v82 shell, 12 locales, opt-in packs, exclusive cross-tab locks, no destructive migration.');

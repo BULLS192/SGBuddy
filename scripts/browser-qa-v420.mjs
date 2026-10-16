@@ -10,10 +10,10 @@ async function check(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:35000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
-  await page.waitForSelector('#discoverTab-eat',{timeout:30000});
-  await page.locator('#discoverTab-do').click();
+  await page.waitForSelector('[data-ux423-group="food"]',{state:'visible',timeout:30000});
+  await page.locator('[data-ux423-group="places"]').click();await page.locator('[data-ux423-category="do"]').click();
   await page.waitForFunction(()=>!!document.querySelector('#discoverResults .discover-item'),{timeout:20000});
   const originalName=await page.locator('#discoverResults .discover-item h3').first().textContent();
   for(const {code} of LOCALES){
@@ -23,7 +23,7 @@ async function check(viewport){
    assert.equal((await page.locator('#discoverSourceFilter option[value="operator"]').textContent()).trim(),contextualText(code,'sourceOperator'),code+' operator filter');
    assert.equal((await page.locator('.discover-archive-filter').textContent()).trim(),contextualText(code,'archiveFilter'),code+' historical filter');
    assert.equal((await page.locator('#discoverResults .discover-item h3').first().textContent()),originalName,code+' official place identity changed');
-   await page.locator('#discoverTab-eat').click();
+   await page.locator('[data-ux423-group="food"]').click();
    await page.locator('[data-food-view="menus"]').click();
    await page.waitForFunction(()=>document.querySelectorAll('#foodCards .food-stall').length>0,{timeout:15000});
    const menu=page.locator('#foodCards .food-stall').first();
@@ -33,12 +33,12 @@ async function check(viewport){
    await page.locator('[data-food-view="hawker-menus"]').click();
    const cards=page.locator('#foodCards .food-stall');
    if(await cards.count())assert.ok((await cards.first().textContent()).includes(contextualText(code,'foodBrand')),code+' hawker brand context');
-   await page.locator('#discoverTab-facts').click();
+   await page.locator('[data-ux423-group="guides"]').click();await page.locator('[data-ux423-category="facts"]').click();
    await page.waitForFunction(()=>!!document.querySelector('#sgbFactCount'),{timeout:5000});
    const counter=await page.locator('#sgbFactCount').textContent();
    assert.ok(counter&&counter.length>10,code+' Merli facts status');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+12),code+' overflow');
-   await page.locator('#discoverTab-do').click();
+   await page.locator('[data-ux423-group="places"]').click();await page.locator('[data-ux423-category="do"]').click();
   }
   assert.deepEqual(errors,[],viewport.width+'px JS page errors');
  }finally{await context.close()}

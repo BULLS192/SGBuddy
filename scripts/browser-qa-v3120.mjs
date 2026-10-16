@@ -16,7 +16,7 @@ async function check(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>!!window.SGBUDDY_V312&&document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:35000});
+  await page.waitForFunction(()=>!!window.SGBUDDY_V312&&document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:35000});
   await page.locator('#navAccount').click();
   await page.locator('#ux422MoreHub [data-ux-go="saved"]').click();
   await page.locator('#uxSavedContent .ux-saved-item').first().waitFor({state:'visible',timeout:9000});
@@ -44,8 +44,7 @@ async function check(viewport){
    assert.ok(route.includes('Pasir Ris MRT')&&route.includes('Marina Bay'),code+' place names preserved');
    assert.ok((await page.locator('#journeyResults').textContent()).includes('Official route note: preserve the original'),code+' source caution preserved');
    assert.equal((await page.locator('#journeyResults .weather-route-badge').textContent()).trim(),v312Text(code,'rainSmart'));
-   await page.locator('#navPlaces').click();
-   await page.locator('[data-discover-tab="trip"]').click();
+   await page.locator('#navMoney').click();
    await page.locator('#myTripPlanner').waitFor({state:'visible',timeout:10000});
    assert.equal(await page.locator('#tripNewName').getAttribute('placeholder'),v312Text(code,'tripNamePlaceholder'));
    await page.locator('#navAccount').click();

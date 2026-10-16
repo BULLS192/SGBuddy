@@ -17,11 +17,12 @@ page.on('pageerror',e=>errors.push(e.message));
 const waitValue=(selector,expected)=>page.waitForFunction(({selector,expected})=>document.querySelector(selector)?.textContent?.trim()===expected,{selector,expected},{timeout:15000});
 try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
  const location=page.locator('#locationSheet');await location.waitFor({state:'visible',timeout:2000}).catch(()=>{});
  if(await location.isVisible())await page.locator('#notNowLocationButton').click();
  await page.locator('#navPlaces').click();
- await page.locator('#discoverTab-facts').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+  await page.locator('[data-ux423-category="facts"]').click();
  await page.locator('#sgbFactQuery').fill('SAFE-grade');
  await page.locator('#sgbFactList [data-fact-id="FACT-V21-022"]').waitFor({state:'attached',timeout:12000});
  const factUrl=await page.locator('#sgbFactList [data-fact-id="FACT-V21-022"] a').first().getAttribute('href');
@@ -32,7 +33,8 @@ try{
   assert.equal(await page.locator('#sgbFactList [data-fact-id="FACT-V21-022"] a').first().getAttribute('href'),factUrl,'Official source changed: '+code);
  }
  await page.locator('#sgbFactQuery').fill('');
- await page.locator('#discoverTab-apps').click();
+ await page.locator('[data-ux423-group="guides"]').click();
+  await page.locator('[data-ux423-category="apps"]').click();
  await page.locator('[data-app-view="all"]').click();
  await page.locator('#appLibrarySearch').fill(app.name);
  await page.locator('[data-app-id="V24-WEB-004"]').waitFor({state:'attached',timeout:15000});
@@ -52,7 +54,7 @@ try{
  await page.locator('[data-app-id="V24-WEB-004"]').waitFor({state:'attached',timeout:10000});
  await page.locator('#sgbLanguage').selectOption('pt-BR');
  await page.reload({waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0',{timeout:30000});
+ await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0',{timeout:30000});
  assert.equal(await page.locator('#sgbLanguage').inputValue(),'pt-BR');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+8),true,'390px mobile viewport overflow');
  assert.deepEqual(errors,[],'Unexpected browser errors');

@@ -25,7 +25,8 @@ const scenarios=[
  {id:'transport',scope:'.v1-view[data-view="move"]',route:'move'},
  {id:'saved',scope:'#uxSavedView',route:'saved'},
  {id:'account',scope:'.v1-view[data-view="account"]',route:'account'},
- ...['eat','do','shop','essentials','healthcare','apps','travel','trip','facts'].map(tab=>({id:'discover-'+tab,scope:'#discoverHub',route:'places',tab})),
+ ...['eat','do','shop','essentials','healthcare','apps','travel','facts'].map(tab=>({id:'discover-'+tab,scope:'#discoverHub',route:'places',tab})),
+  {id:'discover-trip',scope:'#ux423TripView',route:'trip'},
  ...['stalls','dishes','menus','hawker-menus'].map(food=>({id:'food-'+food,scope:'#foodExplorer',route:'places',tab:'eat',food})),
  {id:'merli-assistant',scope:'#buddyPanel',route:'today',merli:true}
 ];
@@ -100,8 +101,13 @@ function capture(page,scene,viewport,persona){
  },{scene,viewport,persona});
 }
 async function prepare(page,scene){
- await page.evaluate(route=>window.SGBUDDY_CORE.navigateTo(route),scene.route);
- if(scene.tab)await page.evaluate(tab=>document.querySelector('[data-discover-tab="'+tab+'"]')?.click(),scene.tab);
+ if(scene.route==='trip')await page.locator('#navMoney').click();
+ else await page.evaluate(route=>window.SGBUDDY_CORE.navigateTo(route),scene.route);
+ if(scene.tab)await page.evaluate(tab=>{
+  const group=tab==='eat'?'food':['apps','travel','facts'].includes(tab)?'guides':'places';
+  document.querySelector('[data-ux423-group="'+group+'"]').click();
+  document.querySelector('[data-ux423-category="'+tab+'"]').click();
+ },scene.tab);
  if(scene.food)await page.evaluate(food=>document.querySelector('[data-food-view="'+food+'"]')?.click(),scene.food);
  if(scene.merli)await page.evaluate(()=>{
   const p=document.querySelector('#buddyPanel');
@@ -122,7 +128,7 @@ async function runViewport(viewport){
  page.on('pageerror',e=>errors.push({viewport:viewportId,persona,message:e.message.slice(0,240)}));
  try{
   await page.goto(rootUrl,{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_CORE&&!!document.querySelector('#discoverHub'),{timeout:35000});
   await page.locator('#sgbLanguage').selectOption('en');
   const baselines=new Map();
   for(const scene of scenarios){
@@ -160,7 +166,7 @@ try{
  for(const vp of [{width:390,height:844},{width:1366,height:900}])await runViewport(vp);
  const summary=aggregateRenderedObservations(results);
  const report={...summary,
-  auditDate:new Date().toISOString(),appVersion:'4.22.0',sourceBranch:'V4.13 selected-persona rendered audit',personasSampled:[persona],
+  auditDate:new Date().toISOString(),appVersion:'4.23.0',sourceBranch:'V4.13 selected-persona rendered audit',personasSampled:[persona],
   viewportSizes:['390x844','1366x900'],scenariosAttempted:scenarios.map(s=>s.id),
   conditionalStatesNotExhaustivelyTested:true,wholeAppTranslationPercent:null,
   limitations:['Observed change from English is NOT proof of correct translation','Unknown source/editorial ownership excluded from denominator','User-entered and live server/API errors are not exhaustively simulated; persona runs are collected separately','Native-speaker and device-level PWA review still pending','Repeated DOM states are observations, not deduplicated global translation keys'],
@@ -190,7 +196,7 @@ try{
  report.priorityCandidates=priorityCandidates;
  const md=[
  '# SGBuddy V4.3 rendered-screen localization audit','',
- '**Not a verified whole-app completion percentage.** English baseline: V4.22.0; 12 supported locales, two Chromium viewports, '+persona+' persona.',
+ '**Not a verified whole-app completion percentage.** English baseline: V4.23.0; 12 supported locales, two Chromium viewports, '+persona+' persona.',
  '',
  '| Locale | Comparable authored text slots | Changed vs English | Unchanged English candidates | Review / uncertain |',
  '|---|---:|---:|---:|---:|',

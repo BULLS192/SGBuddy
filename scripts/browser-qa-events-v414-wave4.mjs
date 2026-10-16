@@ -40,6 +40,8 @@ try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
   await page.waitForFunction(()=>Boolean(window.SGBUDDY_TRIP_API?.addEvent)&&document.querySelectorAll('#sgbuddyEvents [data-event-trip]').length>=2,null,{timeout:60000});
   await page.evaluate(()=>window.SGBUDDY_VIEW_ROUTER?.show?.('places'));
+  await page.locator('[data-ux423-group="events"]').click();
+  await page.locator('.ux423-refine').click();
   await page.waitForSelector('#sgbuddyEvents [data-event-area]',{state:'visible',timeout:12000});
   const region=page.locator('#sgbuddyEvents [data-event-area]');
   const category=page.locator('#sgbuddyEvents [data-event-category]');

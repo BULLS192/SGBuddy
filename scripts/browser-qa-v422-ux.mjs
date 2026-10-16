@@ -13,12 +13,12 @@ try{
   const page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_TRIP_API,{timeout:50000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_TRIP_API,{timeout:50000});
   assert.equal(await page.locator('.bottom-nav [data-nav-target]').count(),5);
   assert.equal(await page.locator('#navMoney').getAttribute('data-nav-target'),'trip');
   assert.match(await page.locator('#navAccount').textContent(),/More/);
   await page.locator('#navMoney').click();
-  await page.locator('[data-discover-tab="trip"]').waitFor({state:'visible'});
+  await page.locator('#ux423TripView').waitFor({state:'visible'});
   await page.locator('#tripNewName').fill('V4.22 visual test');
   await page.locator('#tripStartDate').fill('2026-11-20');
   await page.locator('#tripCreateForm button[type="submit"]').click();

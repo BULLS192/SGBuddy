@@ -14,9 +14,9 @@ async function check(viewport){
  page.on('pageerror',e=>errors.push(e.message));
  try{
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:35000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_FOOD_DISCOVER_V450,{timeout:35000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_FOOD_DISCOVER_V450,{timeout:35000});
   await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
-  await page.locator('#discoverTab-eat').click();
+  await page.locator('[data-ux423-group="food"]').click();
   await page.waitForSelector('#foodToolsV261',{timeout:15000});
   await page.locator('[data-food-view="stalls"]').click();
   await page.waitForSelector('#foodCards .food-stall h4',{timeout:15000});
@@ -72,7 +72,7 @@ async function check(viewport){
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+12),code+' horizontal overflow');
   }
   // Verify the same accessible labels remain localized after switching discovery tabs.
-  await page.locator('#discoverTab-do').click();
+  await page.locator('[data-ux423-group="places"]').click();await page.locator('[data-ux423-category="do"]').click();
   assert.equal(await page.locator('#discoverSearch').getAttribute('aria-label'),foodDiscoverText('pt-BR','discoverSearchAria'));
   assert.deepEqual(errors,[],viewport.width+'px client errors '+JSON.stringify(errors));
   console.log('V4.5 CHROMIUM PASS '+viewport.width+'px: 12 locales, 14 scoped UI slots, persistent area/craving, protected MUIS and stall identities, Discover re-render.');

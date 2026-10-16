@@ -25,12 +25,13 @@ try{
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:40000});
    await page.waitForFunction(mode=>
     window.SGBUDDY_CORE?.state?.mode===mode&&
-    document.querySelector('#appVersion')?.textContent==='v4.22.0'&&
+    document.querySelector('#appVersion')?.textContent==='v4.23.0'&&
     document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3&&
     !!document.querySelector('#sgbuddyEvents h2')
    ,persona,{timeout:60000});
    assert.ok((await page.locator('#personaFocusTitle').textContent()||'').trim(),'persona guidance missing for '+persona);
    await page.evaluate(()=>window.SGBUDDY_CORE.navigateTo('places'));
+   await page.locator('[data-ux423-group="events"]').click();
    await page.waitForSelector('#sgbuddyEvents .events-filters',{state:'visible',timeout:14000});
    // Verify real language-switch propagation in both Events and offline controls.
    for(const {code} of LOCALES){
