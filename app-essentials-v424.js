@@ -26,7 +26,7 @@ const legalLabels={
  'zh-CN':['法律与反馈','隐私','准确性','使用条款','反馈','阅读完整说明','发送反馈'],
  'zh-TW':['法律與意見回饋','隱私','準確性','使用條款','意見回饋','閱讀完整說明','提交意見回饋'],
  ms:['Undang-undang & maklum balas','Privasi','Ketepatan','Terma','Maklum balas','Baca notis penuh','Hantar maklum balas'],
- id:['Hukum & masukan','Privasi','Akurasi','Ketentuan','Masukan','Baca pemberitahuan lengkap','Hubungi Omnidite'],
+ id:['Hukum & masukan','Privasi','Akurasi','Ketentuan','Masukan','Baca pemberitahuan lengkap','Kirim masukan'],
  ja:['法的情報とフィードバック','プライバシー','正確性','利用規約','ご意見','全文を読む','フィードバックを送信'],
  ko:['법적 안내 및 의견','개인정보','정확성','이용 약관','의견','전체 안내 보기','의견 보내기'],
  th:['กฎหมายและข้อเสนอแนะ','ความเป็นส่วนตัว','ความถูกต้อง','ข้อกำหนด','ข้อเสนอแนะ','อ่านรายละเอียด','ส่งข้อเสนอแนะ'],
