@@ -50,5 +50,32 @@ try{
   assert.deepEqual(errors,[]);
   await context.close();
  }
- console.log('V4.24 BROWSER PASS');
+ const context=await browser.newContext({viewport:{width:390,height:844},serviceWorkers:'allow'});
+ await context.addInitScript(()=>{
+  localStorage.setItem('sgc-persona-onboarded','1');
+  localStorage.setItem('sgc-mode','visitor');
+  localStorage.setItem('sgc-location-choice','not-now');
+ });
+ const page=await context.newPage();
+ await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
+ await page.waitForFunction(async()=>{
+  const reg=await navigator.serviceWorker.ready;
+  return !!reg.active&&await caches.has('sgbuddy-shell-v88');
+ },null,{timeout:65000});
+ if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
+  await page.reload({waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
+ }
+ const assets=['/app-essentials-v424.js','/essentials-v424.css','/lib/essentials-v424.mjs','/data/gov-notices-v424.json'];
+ const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v88');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
+ assert.deepEqual(cached,[true,true,true,true],'offline shell must precache emergency and official guidance assets');
+ await context.setOffline(true);
+ await page.reload({waitUntil:'domcontentloaded',timeout:45000});
+ await page.waitForFunction(()=>!!window.SGBUDDY_V424,{timeout:60000});
+ await page.locator('#v424SOS').click();
+ assert.ok(await page.locator('a.v424-contact[href="tel:999"]').isVisible());
+ await page.locator('[data-v424-tab="notices"]').click();
+ await page.waitForFunction(()=>document.querySelectorAll('.v424-notice').length>0);
+ await context.close();
+ console.log('V4.24 BROWSER + OFFLINE PASS');
 }finally{await browser.close()}
