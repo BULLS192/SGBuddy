@@ -35,5 +35,5 @@ for(const p of ['/app-calendar-v460.js','/lib/calendar-v460.mjs','/lib/calendar-
 assert.ok(html.includes('/calendar-v460.css'));
 assert.ok(app.includes("import('/app-calendar-v460.js')"),'calendar boot missing');
 assert.ok(app.includes("='4.24.0'"),'do not alter production version badge');
-assert.ok(sw.includes('sgbuddy-shell-v90'),'retain current production cache baseline');
+assert.ok(sw.includes('sgbuddy-shell-v91'),'retain current production cache baseline');
 console.log('V4.6 holiday/calendar/event-source static QA passed: '+items.length+' holidays, '+registry.sources.length+' candidate sources, '+locales.length+' locales.');

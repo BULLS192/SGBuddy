@@ -22,18 +22,18 @@ const labels={
  'pt-BR':['Essenciais de Singapura','Checklist de chegada','Avisos do governo','Ajuda de emergência','Confira os requisitos de entrada antes de viajar.','Fontes verificadas; não são alertas ao vivo.','Ligar para emergência','Números disponíveis offline','Seus dados ficam neste dispositivo.','Salvar','Fonte oficial','Verificado em','Detalhes','Status','Via de entrada','Data de chegada','Vou passar pela imigração','Posso levar isso?','Busque remédios ou vapes','Nenhum resultado','SG Arrival Card necessário','Possível isenção','Selecione a chegada para ver o prazo.','Confira as regras oficiais.','Abrir guia','Avisos importantes','Sem avisos verificados para este perfil.','Resumos em inglês; consulte o site oficial.']
 };
 const legalLabels={
- en:['Legal & feedback','Privacy','Accuracy','Terms','Feedback','Read full notice','Contact Omnidite'],
- 'zh-CN':['法律与反馈','隐私','准确性','使用条款','反馈','阅读完整说明','联系 Omnidite'],
- 'zh-TW':['法律與意見回饋','隱私','準確性','使用條款','意見回饋','閱讀完整說明','聯絡 Omnidite'],
- ms:['Undang-undang & maklum balas','Privasi','Ketepatan','Terma','Maklum balas','Baca notis penuh','Hubungi Omnidite'],
- id:['Hukum & masukan','Privasi','Akurasi','Ketentuan','Masukan','Baca pemberitahuan lengkap','Hubungi Omnidite'],
- ja:['法的情報とフィードバック','プライバシー','正確性','利用規約','ご意見','全文を読む','Omniditeに連絡'],
- ko:['법적 안내 및 의견','개인정보','정확성','이용 약관','의견','전체 안내 보기','Omnidite 문의'],
- th:['กฎหมายและข้อเสนอแนะ','ความเป็นส่วนตัว','ความถูกต้อง','ข้อกำหนด','ข้อเสนอแนะ','อ่านรายละเอียด','ติดต่อ Omnidite'],
- vi:['Pháp lý và góp ý','Quyền riêng tư','Độ chính xác','Điều khoản','Góp ý','Đọc toàn bộ','Liên hệ Omnidite'],
- fr:['Mentions légales et avis','Confidentialité','Exactitude','Conditions','Avis','Lire le texte complet','Contacter Omnidite'],
- es:['Avisos legales y comentarios','Privacidad','Exactitud','Condiciones','Comentarios','Leer el aviso completo','Contactar a Omnidite'],
- 'pt-BR':['Termos legais e comentários','Privacidade','Precisão','Termos','Comentários','Leia o aviso completo','Contatar a Omnidite']
+ en:['Legal & feedback','Privacy','Accuracy','Terms','Feedback','Read full notice','Send feedback'],
+ 'zh-CN':['法律与反馈','隐私','准确性','使用条款','反馈','阅读完整说明','发送反馈'],
+ 'zh-TW':['法律與意見回饋','隱私','準確性','使用條款','意見回饋','閱讀完整說明','提交意見回饋'],
+ ms:['Undang-undang & maklum balas','Privasi','Ketepatan','Terma','Maklum balas','Baca notis penuh','Hantar maklum balas'],
+ id:['Hukum & masukan','Privasi','Akurasi','Ketentuan','Masukan','Baca pemberitahuan lengkap','Kirim masukan'],
+ ja:['法的情報とフィードバック','プライバシー','正確性','利用規約','ご意見','全文を読む','フィードバックを送信'],
+ ko:['법적 안내 및 의견','개인정보','정확성','이용 약관','의견','전체 안내 보기','의견 보내기'],
+ th:['กฎหมายและข้อเสนอแนะ','ความเป็นส่วนตัว','ความถูกต้อง','ข้อกำหนด','ข้อเสนอแนะ','อ่านรายละเอียด','ส่งข้อเสนอแนะ'],
+ vi:['Pháp lý và góp ý','Quyền riêng tư','Độ chính xác','Điều khoản','Góp ý','Đọc toàn bộ','Gửi góp ý'],
+ fr:['Mentions légales et avis','Confidentialité','Exactitude','Conditions','Avis','Lire le texte complet','Envoyer un avis'],
+ es:['Avisos legales y comentarios','Privacidad','Exactitud','Condiciones','Comentarios','Leer el aviso completo','Enviar comentarios'],
+ 'pt-BR':['Termos legais e comentários','Privacidade','Precisão','Termos','Comentários','Leia o aviso completo','Enviar comentário']
 };
 const locale=()=>{const v=String(window.SGBUDDY_LANGUAGE||'en').replace('_','-');return labels[v]?v:v==='zh'?'zh-CN':v==='pt'?'pt-BR':'en'};
 const t=i=>labels[locale()][i];
@@ -136,12 +136,12 @@ function renderLegal(host){
   [l[1],'Privacy notice','Your chosen settings, places and checklist may be saved on this device; optional accounts, sync and location features also process data.','privacy'],
   [l[2],'Accuracy & safety','Guides and updates may be incomplete, delayed or stored offline. Confirm important decisions with official agencies; SGBuddy is not an emergency response service.','accuracy'],
   [l[3],'Terms of use','This independent information service is provided for convenience. Use it lawfully and verify third-party information before relying on it.','terms'],
-  [l[4],'Feedback & privacy requests','Report incorrect details or app problems using the verified Omnidite contact channel. Avoid sending sensitive identity or medical details.','feedback']
+  [l[4],'Feedback and issue reports','Report incorrect details or app problems through Omnidite’s dedicated feedback page. Avoid sending sensitive identity or medical details.','feedback']
  ];
  host.innerHTML='<p class="v424-note" lang="en">Full legal notices are in English. The official government website is authoritative for entry, customs and safety requirements.</p>'+
   '<div class="v424-legal-grid">'+rows.map(([title,heading,detail,anchor])=>'<article class="v424-legal-card"><h4>'+esc(title)+'</h4><strong lang="en">'+esc(heading)+'</strong><p lang="en">'+esc(detail)+'</p><a href="/legal.html#'+anchor+'">'+esc(l[5])+' ↗</a></article>').join('')+'</div>'+
   '<div class="v424-legal-contacts"><a class="v424-feedback-action" href="https://omnidite.com/feedback?project=sgbuddy" target="_blank" rel="noopener noreferrer">'+esc(l[6])+' ↗</a></div>'+
-  '<p class="v424-note" lang="en">Opens the Omnidite contact page. SGBuddy does not transmit feedback itself; do not use this form for emergencies.</p>';
+  '<p class="v424-note" lang="en">Opens Omnidite’s feedback page with SGBuddy selected. SGBuddy does not transmit feedback itself; this is not an emergency channel.</p>';
 }
 function paint(){paintHome();paintTabs();sos.setAttribute('aria-label',t(3))}
 d.addEventListener('click',e=>{
