@@ -29,9 +29,10 @@ const legal=readFileSync(new URL('../legal.html',import.meta.url),'utf8');
 const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
 const sw=readFileSync(new URL('../sw.js',import.meta.url),'utf8');
 for(const id of ['privacy','accuracy','terms','feedback'])assert.ok(legal.includes('id="'+id+'"'),id+' legal section');
-assert.ok(legal.includes('href="https://omnidite.com/contact"'),'Omnidite contact link in legal notice');
+assert.ok(legal.includes('href="https://omnidite.com/contact"'),'Privacy enquiries retain Omnidite contact link');
+assert.ok(legal.includes('href="https://omnidite.com/feedback?project=sgbuddy"'),'Feedback links to preselected Omnidite project');
 const essentials=readFileSync(new URL('../app-essentials-v424.js',import.meta.url),'utf8');
-assert.ok(essentials.includes('class="v424-feedback-action" href="https://omnidite.com/contact"'),'in-app contact goes to Omnidite');
+assert.ok(essentials.includes('class="v424-feedback-action" href="https://omnidite.com/feedback?project=sgbuddy"'),'in-app feedback opens preselected Omnidite project');
 for(const [label,source] of [['legal',legal],['essentials',essentials]]){
  assert.ok(!/@omnidite\.com\b/i.test(source),label+' must not expose a direct Omnidite email address');
  assert.ok(!source.includes('mailto:'),label+' must not offer direct email link');
