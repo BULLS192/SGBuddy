@@ -4,7 +4,7 @@ V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supaba
 
 ## Included
 
-- Transparency: standalone offline-readable `legal.html` with privacy practices, data providers, accuracy and emergency disclaimers, terms of use and feedback contact. The app exposes a localized Legal & feedback tab plus a link from the account sign-up sheet. Uses the published Omnidite contact `kevin@omnidite.com` via mailto; no feedback database or hidden submit.
+- Transparency: standalone offline-readable `legal.html` with privacy practices, data providers, accuracy and emergency disclaimers, terms of use and feedback contact. The app exposes a localized Legal & feedback tab plus a link from the account sign-up sheet. Feedback and privacy enquiries go to https://omnidite.com/contact; no personal email address, mailto link, feedback database or hidden submission.
 
 
 - Emergency: offline-cached numbers for Police 999, SCDF 995, police emergency SMS 70999, and police information hotline. Calls/SMS are device handoffs, never auto-dialled.
@@ -37,4 +37,4 @@ Implement source discovery only from permitted official RSS/API/newsroom sources
 - Operator/privacy owner should independently review the wording, retention and account deletion process, Supabase/Vercel data flows, cross-border providers, and any PDPA responsibilities before production release.
 - The full notice remains in English; legal tab navigation uses the twelve shell languages. Arrange native-language review if localized policies are later introduced.
 - The account creation screen links directly to Privacy and Terms before registration. The legal page and app summary are precached for offline access. Signing out does not clear local device information.
-- Ensure the published Omnidite inbox remains monitored for feedback and privacy access, correction or deletion enquiries. Email links open the user's mail app; no promise of urgent response.
+- Ensure the Omnidite contact page can receive feedback and privacy access, correction or deletion enquiries. The linked form requires connectivity and is not an emergency service.

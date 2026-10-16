@@ -29,7 +29,13 @@ const legal=readFileSync(new URL('../legal.html',import.meta.url),'utf8');
 const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
 const sw=readFileSync(new URL('../sw.js',import.meta.url),'utf8');
 for(const id of ['privacy','accuracy','terms','feedback'])assert.ok(legal.includes('id="'+id+'"'),id+' legal section');
-assert.ok(legal.includes('mailto:kevin@omnidite.com?subject=SGBuddy%20feedback'));
+assert.ok(legal.includes('href="https://omnidite.com/contact"'),'Omnidite contact link in legal notice');
+const essentials=readFileSync(new URL('../app-essentials-v424.js',import.meta.url),'utf8');
+assert.ok(essentials.includes('class="v424-feedback-action" href="https://omnidite.com/contact"'),'in-app contact goes to Omnidite');
+for(const [label,source] of [['legal',legal],['essentials',essentials]]){
+ assert.ok(!/@omnidite\.com\b/i.test(source),label+' must not expose a direct Omnidite email address');
+ assert.ok(!source.includes('mailto:'),label+' must not offer direct email link');
+}
 assert.ok(legal.includes('Supabase')&&legal.includes('Vercel')&&legal.includes('location'),'disclose actual data handling');
 assert.ok(legal.includes('not a Singapore government service'));
 assert.ok(index.includes('/legal.html#privacy')&&index.includes('/legal.html#terms'),'legal links before account creation');
@@ -37,6 +43,6 @@ assert.ok(sw.includes("'/legal.html'"),'offline legal notice precache');
 const boot=readFileSync(new URL('../app-v090.js',import.meta.url),'utf8');
 assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"),'V4.24 release client version');
 assert.ok(index.includes('v4.24.0'),'V4.24 visible version badge');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v89'"),'V4.24 PWA cache version');
-assert.ok(!sw.includes('sgbuddy-shell-v88'),'V4.23 PWA cache must be rotated');
-console.log('V4.24 RELEASE PASS: rules, legal notice, 12 locales, v4.24.0 and v89 offline shell');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"),'V4.24 PWA cache version');
+assert.ok(!sw.includes('sgbuddy-shell-v89'),'V4.24 previous PWA cache must be rotated');
+console.log('V4.24 RELEASE PASS: rules, legal notice, 12 locales, v4.24.0 and v90 offline shell');

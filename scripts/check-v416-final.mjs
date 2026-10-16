@@ -16,7 +16,7 @@ for(const {code} of LOCALES){
 }
 assert.ok(read('index.html').includes('v4.24.0'));
 assert.ok(read('app-v090.js').includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"));
-assert.ok(shell.includes("const CACHE = 'sgbuddy-shell-v89'"));
+assert.ok(shell.includes("const CACHE = 'sgbuddy-shell-v90'"));
 assert.ok(!shell.includes("caches.delete('sgbuddy-offline-packs-v480')"));
 assert.ok(!shell.includes("key.startsWith('sgbuddy-offline-txn-')"));
 for(const path of ['/lib/offline-freshness-v416.mjs','/lib/offline-freshness-i18n-v416.mjs','/lib/offline-transaction-v415.mjs'])

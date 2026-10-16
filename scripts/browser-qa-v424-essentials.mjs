@@ -44,8 +44,9 @@ try{
   await page.locator('[data-v424-tab="legal"]').click();
   assert.equal(await page.locator('.v424-legal-card').count(),4);
   for(const anchor of ['privacy','accuracy','terms','feedback'])assert.equal(await page.locator('.v424-legal-card a[href="/legal.html#'+anchor+'"]').count(),1);
-  assert.equal(await page.locator('a.v424-feedback-action[href="mailto:kevin@omnidite.com?subject=SGBuddy%20feedback"]').count(),1);
-  assert.equal(await page.locator('#v424Content form').count(),0,'feedback uses email handoff, not silent form submission');
+  assert.equal(await page.locator('a.v424-feedback-action[href="https://omnidite.com/contact"]').count(),1);
+  assert.equal(await page.locator('#v424Content a[href^="mailto:"]').count(),0,'in-app feedback must not reveal email');
+  assert.equal(await page.locator('#v424Content form').count(),0,'feedback links to Omnidite, not a hidden form submission');
   for(const code of locales){
    await page.locator('#sgbLanguage').selectOption(code);
    await page.waitForTimeout(70);
@@ -66,14 +67,14 @@ try{
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:50000});
  await page.waitForFunction(async()=>{
   const reg=await navigator.serviceWorker.ready;
-  return !!reg.active&&await caches.has('sgbuddy-shell-v89');
+  return !!reg.active&&await caches.has('sgbuddy-shell-v90');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{timeout:20000});
  }
  const assets=['/app-essentials-v424.js','/essentials-v424.css','/lib/essentials-v424.mjs','/data/gov-notices-v424.json','/legal.html'];
- const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v89');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
+ const cached=await page.evaluate(async items=>{const c=await caches.open('sgbuddy-shell-v90');return Promise.all(items.map(async path=>!!await c.match(path)))},assets);
   assert.deepEqual(cached,[true,true,true,true,true],'offline shell must precache emergency guidance and legal notice');
  await context.setOffline(true);
  await page.reload({waitUntil:'domcontentloaded',timeout:45000});
@@ -86,7 +87,9 @@ try{
   assert.ok(await page.locator('#privacy').isVisible(),'privacy notice is available offline');
   assert.ok(await page.locator('#accuracy').isVisible(),'accuracy disclaimer is available offline');
   assert.ok(await page.locator('#terms').isVisible(),'terms are available offline');
-  assert.ok(await page.locator('#feedback a.cta[href^="mailto:kevin@omnidite.com"]').isVisible(),'feedback contact is available offline');
+  assert.ok(await page.locator('#feedback a.cta[href="https://omnidite.com/contact"]').isVisible(),'feedback contact link is available offline');
+  assert.equal(await page.locator('a[href^="mailto:"]').count(),0,'legal notice must not show direct email links');
+  assert.ok(!/@omnidite\.com\b/i.test(await page.locator('body').innerText()),'legal notice must not expose a direct Omnidite email address');
  await context.close();
  console.log('V4.24 BROWSER + OFFLINE PASS');
 }finally{await browser.close()}

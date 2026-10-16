@@ -25,14 +25,14 @@ try{
  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.24.0',{timeout:60000});
  await page.waitForFunction(async()=>{
   const reg=await navigator.serviceWorker.ready;
-  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v89')&&!await caches.has('sgbuddy-shell-v85');
+  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v90')&&!await caches.has('sgbuddy-shell-v85');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>!!navigator.serviceWorker.controller)){
   await page.reload({waitUntil:'domcontentloaded',timeout:45000});
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:25000});
  }
  const before=await page.evaluate(async assets=>{
-  const cache=await caches.open('sgbuddy-shell-v89');
+  const cache=await caches.open('sgbuddy-shell-v90');
   return Promise.all(assets.map(async p=>!!await cache.match(p)));
  },assets);
  assert.deepEqual(before,[true,true,true],'All newly imported V4.20 modules must be pre-cached');

@@ -35,7 +35,7 @@ try{
   &&document.querySelectorAll('#sgbuddyOffline .offline-pack').length===3,null,{timeout:65000});
  await page.waitForFunction(async ()=>{
   const reg=await navigator.serviceWorker.ready;
-  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v89')&&!await caches.has('sgbuddy-shell-v82');
+  return Boolean(reg.active)&&await caches.has('sgbuddy-shell-v90')&&!await caches.has('sgbuddy-shell-v82');
  },null,{timeout:65000});
  if(!await page.evaluate(()=>Boolean(navigator.serviceWorker.controller))){
   await page.reload({waitUntil:'domcontentloaded',timeout:45000});
@@ -74,7 +74,7 @@ try{
  await page.evaluate(async name=>(await caches.open(name)).put('/data/events-v470.json',
    new Response('{corrupt',{headers:{'content-type':'application/json'}})),OFFLINE_CACHE);
  const safe=await page.evaluate(async()=>{
-  const fallback=await(await caches.open('sgbuddy-shell-v89')).match('/data/events-v470.json');
+  const fallback=await(await caches.open('sgbuddy-shell-v90')).match('/data/events-v470.json');
   const response=await fetch('/data/events-v470.json');
   return {ok:response.ok,expected:await fallback.text(),actual:await response.text()};
  });

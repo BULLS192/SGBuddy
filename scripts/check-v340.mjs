@@ -25,7 +25,7 @@ for(const key of ['renderComparison','lastComparison','if(lastComparison)renderC
 for(const key of ['merliCapability','merliPrivacy','merliBooking','translateNewChips','lastDynamicKey'])assert.ok(merli.includes(key),key+' missing');
 assert.ok(!transport.includes("+'<small>'+note"),'Do not inject provider HTML');
 const sw=source('sw.js');
-assert.ok(sw.includes('sgbuddy-shell-v89'));
+assert.ok(sw.includes('sgbuddy-shell-v90'));
 for(const file of ['/lib/i18n-dynamic-v340.mjs','/app-i18n-dynamic-v340.js'])assert.ok(sw.includes(file),'Missing PWA translation asset '+file);
 assert.ok(app.includes("import('/app-i18n-dynamic-v340.js')"));
 assert.ok(source('index.html').includes('v4.24.0')&&app.includes("='4.24.0'"));

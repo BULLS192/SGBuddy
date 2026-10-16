@@ -36,5 +36,5 @@ assert.ok(read('.github/workflows/check-v415-offline.yml').includes('browser-qa-
 const version=read('app-v090.js'),html=read('index.html');
 assert.ok(version.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"),'V4.15 runtime release version');
 assert.ok(html.includes('v4.24.0'),'V4.15 HTML badge');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v89'"),'Rotate shell cache only for release V4.15');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"),'Rotate shell cache only for release V4.15');
 console.log('V4.15 FULL RELEASE STATIC PASS: 12 locales, 3 public packs/13 assets, persisted recovery, user-triggered refresh, v80 shell and v4.24.0 release.');
