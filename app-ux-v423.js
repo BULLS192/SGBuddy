@@ -1,4 +1,4 @@
-/* V4.23 preview: navigation and disclosure only. Keep V4.22 persistence and providers. */
+/* V4.23 release: navigation and disclosure only. Keep established persistence and providers. */
 import {UX422_LABELS} from './lib/ux-i18n-v422.mjs';
 (()=>{
 'use strict';
@@ -32,16 +32,22 @@ tripView.appendChild(host);
 host.setAttribute('role','region');host.setAttribute('aria-labelledby','ux423TripTitle');
 const skipPrefix={en:'Skip to','zh-CN':'跳到','zh-TW':'跳至',ms:'Langkau ke',id:'Lewati ke',ja:'移動先：',ko:'이동:',th:'ข้ามไปยัง',vi:'Đến',fr:'Aller à',es:'Ir a','pt-BR':'Ir para'};
 const syncTripSkip=()=>{const skip=$('.skip-link');if(skip){skip.href='#ux423TripTitle';skip.textContent=(skipPrefix[locale()]||skipPrefix.en)+' '+t()[23]}};
+const syncTripNav=()=>{
+  if(tripView.classList.contains('hidden'))return;
+  all('.bottom-nav [data-nav-target]').forEach(a=>{const selected=a.dataset.navTarget==='trip';a.classList.toggle('active',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+};
 const openTrip=()=>{
   // The original category activation performs a fresh render for all attached integrations.
   $('#discoverTab-trip')?.click();
   host.hidden=false;
   syncTripSkip();
   all('.v1-view').forEach(view=>view.classList.toggle('hidden',view!==tripView));
-  all('.bottom-nav [data-nav-target]').forEach(a=>{const selected=a.dataset.navTarget==='trip';a.classList.toggle('active',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  syncTripNav();
+  // Event-to-trip handoffs can refresh Discover in the same frame; restore the destination tab.
+  requestAnimationFrame(syncTripNav);
   window.scrollTo({top:0,behavior:'instant'});
 };
-window.SGBUDDY_V423={openTrip,syncTripSkip,onDiscover:()=>selectGroup(group,category,group!=='events'),version:'4.23.0-preview'};
+window.SGBUDDY_V423={openTrip,syncTripSkip,onDiscover:()=>selectGroup(group,category,group!=='events'),version:'4.23.0'};
 
 // Four clear discovery paths; legacy tabs remain functional for deep links and modules.
 const groupTabs=d.createElement('div'),categories=d.createElement('div'),slot=d.createElement('div');
@@ -126,7 +132,7 @@ function foldTripTools(){
   if(blocks.length&&!blocks[0].closest('.ux423-trip-notes')){const detail=d.createElement('details');detail.className='ux423-trip-notes';const summary=d.createElement('summary');summary.textContent=t()[17];detail.appendChild(summary);blocks[0].before(detail);blocks.forEach(b=>detail.appendChild(b))}
  }
 }
-d.addEventListener('sgbuddy:trip-rendered',()=>queueMicrotask(foldTripTools));
+d.addEventListener('sgbuddy:trip-rendered',()=>queueMicrotask(()=>{foldTripTools();requestAnimationFrame(syncTripNav)}));
 d.addEventListener('sgbuddy:language',()=>requestAnimationFrame(()=>{paint();foldTripTools();if(!tripView.classList.contains('hidden'))syncTripSkip()}));
 
 // Diagnostics are still one tap away from More, but no longer dominate it.
@@ -137,8 +143,6 @@ if(psi&&homeSummary){
  const refreshAir=()=>{const n=Number.parseInt(psi.textContent||'',10);const alert=Number.isFinite(n)&&n>=101;homeSummary.classList.toggle('ux423-air-alert',alert);homeSummary.setAttribute('aria-live',alert?'polite':'off')};
  new MutationObserver(refreshAir).observe(psi,{childList:true,characterData:true,subtree:true});refreshAir();
 }
-const versionBadge=$('#appVersion');
-if(versionBadge&&!$('#ux423Preview')){const flag=d.createElement('span');flag.id='ux423Preview';flag.className='ux423-preview-badge';flag.textContent='V4.23 design preview';versionBadge.after(flag)}
 const railCard=$('#railForm')?.closest('.manual.card'),moveView=$('.v1-view[data-view="move"]');
 if(railCard&&moveView){const rail=moveView.querySelector('#railStations');if(rail)rail.after(railCard);else moveView.appendChild(railCard)}
 const corePanel=$('#dataCorePanel');

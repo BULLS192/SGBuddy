@@ -57,6 +57,14 @@ try{
   assert.ok(await page.locator('#sgbuddyEvents .events-scope').isVisible());
   await page.locator('.ux423-calendar-details > summary').click();
   assert.ok(await page.locator('#sgbuddyCalendar').isVisible(),'Official calendar source detail remains available');
+  // Adding a published event must land on My Trip with the corresponding tab selected.
+  const addEvent=page.locator('#sgbuddyEvents [data-event-trip]').first();
+  if(await addEvent.count()){
+   await addEvent.click();
+   await page.locator('#ux423TripView').waitFor({state:'visible'});
+   await page.waitForFunction(()=>document.querySelector('#navMoney')?.getAttribute('aria-current')==='page');
+   assert.equal(await page.locator('#navPlaces').getAttribute('aria-current'),null,'Discover must not remain selected after event-to-trip handoff');
+  }
   await page.locator('#navAccount').click();
   await page.locator('#ux423Diagnostics').waitFor({state:'attached'});
   assert.equal(await page.locator('#dataCoreDiagnostics').isVisible(),false);

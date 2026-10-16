@@ -25,7 +25,7 @@ try{
   const page=await ctx.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:45000});
-  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.22.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
+  await page.waitForFunction(()=>document.querySelector('#appVersion')?.textContent==='v4.23.0'&&!!window.SGBUDDY_TRIP_API,{timeout:60000});
   await page.locator('#navMoney').click();
   await page.locator('#ux423TripView').waitFor({state:'visible'});
   await page.locator('[data-v421-calendar]').waitFor({state:'visible',timeout:20000});

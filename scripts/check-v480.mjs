@@ -35,7 +35,7 @@ assert.ok(sw.includes('c.addAll([...new Set(SHELL)])'),'precache must deduplicat
 assert.ok(!sw.includes("keys.filter(k=>k!==CACHE)"),'must preserve downloaded packs');
 assert.ok(html.includes('/offline-v480.css'));
 assert.ok(boot.includes("import('/app-offline-v480.js')"));
-assert.ok(boot.includes("='4.22.0'"),'preserve public release badge');
+assert.ok(boot.includes("='4.23.0'"),'preserve public release badge');
 import {EVENT_CATEGORY_TEXT,EVENT_DESCRIPTIONS,localizedCategory,localizedEventSummary} from '../lib/events-content-v480.mjs';
 const events=JSON.parse(readFileSync('data/events-v470.json','utf8')).events;
 for(const {code} of LOCALES){
