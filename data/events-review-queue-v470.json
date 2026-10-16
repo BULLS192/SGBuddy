@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-16",
+  "asOf": "2026-10-17",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -72,18 +72,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
-    },
-    {
-      "id": "suntec-json-diwali-bazaar-october-2026-2026-10-16",
-      "title": "Diwali Bazaar October 2026",
-      "startDate": "2026-10-16",
-      "endDate": "2026-10-16",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/diwali-bazaar-october-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "expo-zak-salaam-india-expo-oct-2026",
@@ -944,28 +932,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 10
+      "candidateCount": 46,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
