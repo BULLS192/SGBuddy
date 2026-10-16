@@ -44,7 +44,7 @@ try{
   await page.locator('[data-v424-tab="legal"]').click();
   assert.equal(await page.locator('.v424-legal-card').count(),4);
   for(const anchor of ['privacy','accuracy','terms','feedback'])assert.equal(await page.locator('.v424-legal-card a[href="/legal.html#'+anchor+'"]').count(),1);
-  assert.equal(await page.locator('a.v424-feedback-action[href="https://omnidite.com/contact"]').count(),1);
+  assert.equal(await page.locator('a.v424-feedback-action[href="https://omnidite.com/feedback?project=sgbuddy"]').count(),1);
   assert.equal(await page.locator('#v424Content a[href^="mailto:"]').count(),0,'in-app feedback must not reveal email');
   assert.equal(await page.locator('#v424Content form').count(),0,'feedback links to Omnidite, not a hidden form submission');
   for(const code of locales){
@@ -87,7 +87,7 @@ try{
   assert.ok(await page.locator('#privacy').isVisible(),'privacy notice is available offline');
   assert.ok(await page.locator('#accuracy').isVisible(),'accuracy disclaimer is available offline');
   assert.ok(await page.locator('#terms').isVisible(),'terms are available offline');
-  assert.ok(await page.locator('#feedback a.cta[href="https://omnidite.com/contact"]').isVisible(),'feedback contact link is available offline');
+  assert.ok(await page.locator('#feedback a.cta[href="https://omnidite.com/feedback?project=sgbuddy"]').isVisible(),'feedback contact link is available offline');
   assert.equal(await page.locator('a[href^="mailto:"]').count(),0,'legal notice must not show direct email links');
   assert.ok(!/@omnidite\.com\b/i.test(await page.locator('body').innerText()),'legal notice must not expose a direct Omnidite email address');
  await context.close();
