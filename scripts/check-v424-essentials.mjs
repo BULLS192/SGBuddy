@@ -44,6 +44,6 @@ assert.ok(sw.includes("'/legal.html'"),'offline legal notice precache');
 const boot=readFileSync(new URL('../app-v090.js',import.meta.url),'utf8');
 assert.ok(boot.includes("__SGBUDDY_CLIENT_VERSION__='4.24.0'"),'V4.24 release client version');
 assert.ok(index.includes('v4.24.0'),'V4.24 visible version badge');
-assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v90'"),'V4.24 PWA cache version');
+assert.ok(sw.includes("const CACHE = 'sgbuddy-shell-v91'"),'V4.24 PWA cache version');
 assert.ok(!sw.includes('sgbuddy-shell-v89'),'V4.24 previous PWA cache must be rotated');
 console.log('V4.24 RELEASE PASS: rules, legal notice, 12 locales, v4.24.0 and v90 offline shell');
