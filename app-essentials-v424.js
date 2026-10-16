@@ -21,6 +21,20 @@ const labels={
  es:['Esenciales de Singapur','Lista de llegada','Avisos oficiales','Ayuda de emergencia','Consulta los requisitos de entrada antes de viajar.','Fuentes verificadas, no alertas en directo.','Llamar a emergencias','Teléfonos disponibles sin conexión','Tus datos permanecen en este dispositivo.','Guardar','Fuente oficial','Verificado','Detalles','Estatus','Medio de entrada','Fecha de llegada','Pasaré por inmigración','¿Puedo llevarlo?','Buscar medicinas o vapeadores','Sin resultados','Se requiere SG Arrival Card','Posible exención','Elige la fecha de llegada para ver el plazo.','Comprueba las normas oficiales.','Abrir guía','Avisos importantes','No hay avisos verificados para este perfil.','Resúmenes en inglés; consulta el sitio oficial.'],
  'pt-BR':['Essenciais de Singapura','Checklist de chegada','Avisos do governo','Ajuda de emergência','Confira os requisitos de entrada antes de viajar.','Fontes verificadas; não são alertas ao vivo.','Ligar para emergência','Números disponíveis offline','Seus dados ficam neste dispositivo.','Salvar','Fonte oficial','Verificado em','Detalhes','Status','Via de entrada','Data de chegada','Vou passar pela imigração','Posso levar isso?','Busque remédios ou vapes','Nenhum resultado','SG Arrival Card necessário','Possível isenção','Selecione a chegada para ver o prazo.','Confira as regras oficiais.','Abrir guia','Avisos importantes','Sem avisos verificados para este perfil.','Resumos em inglês; consulte o site oficial.']
 };
+const legalLabels={
+ en:['Legal & feedback','Privacy','Accuracy','Terms','Feedback','Read full notice','Email feedback'],
+ 'zh-CN':['法律与反馈','隐私','准确性','使用条款','反馈','阅读完整说明','发送反馈邮件'],
+ 'zh-TW':['法律與意見回饋','隱私','準確性','使用條款','意見回饋','閱讀完整說明','電郵回饋'],
+ ms:['Undang-undang & maklum balas','Privasi','Ketepatan','Terma','Maklum balas','Baca notis penuh','E-mel maklum balas'],
+ id:['Hukum & masukan','Privasi','Akurasi','Ketentuan','Masukan','Baca pemberitahuan lengkap','Email masukan'],
+ ja:['法的情報とフィードバック','プライバシー','正確性','利用規約','ご意見','全文を読む','メールで連絡'],
+ ko:['법적 안내 및 의견','개인정보','정확성','이용 약관','의견','전체 안내 보기','이메일 보내기'],
+ th:['กฎหมายและข้อเสนอแนะ','ความเป็นส่วนตัว','ความถูกต้อง','ข้อกำหนด','ข้อเสนอแนะ','อ่านรายละเอียด','ส่งอีเมล'],
+ vi:['Pháp lý và góp ý','Quyền riêng tư','Độ chính xác','Điều khoản','Góp ý','Đọc toàn bộ','Gửi email'],
+ fr:['Mentions légales et avis','Confidentialité','Exactitude','Conditions','Avis','Lire le texte complet','Envoyer un e-mail'],
+ es:['Avisos legales y comentarios','Privacidad','Exactitud','Condiciones','Comentarios','Leer el aviso completo','Enviar correo'],
+ 'pt-BR':['Termos legais e comentários','Privacidade','Precisão','Termos','Comentários','Leia o aviso completo','Enviar e-mail']
+};
 const locale=()=>{const v=String(window.SGBUDDY_LANGUAGE||'en').replace('_','-');return labels[v]?v:v==='zh'?'zh-CN':v==='pt'?'pt-BR':'en'};
 const t=i=>labels[locale()][i];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
@@ -47,17 +61,19 @@ function paintHome(){
  '<p>'+esc(t(4))+'</p><div class="v424-home-actions">'+
  '<button type="button" data-v424-open="arrival">✓ '+esc(t(1))+'</button>'+
  '<button type="button" data-v424-open="notices">◇ '+esc(t(2))+'</button>'+
- '<button type="button" data-v424-open="emergency" class="v424-emergency-link">✚ '+esc(t(3))+'</button></div>';
+ '<button type="button" data-v424-open="emergency" class="v424-emergency-link">✚ '+esc(t(3))+'</button></div>'+ 
+  '<p class="v424-home-legal"><button type="button" data-v424-open="legal">'+esc(legalLabels[locale()][0])+' →</button></p>';
 }
 function paintTabs(){
  more.innerHTML='<div class="v424-title"><div><div class="label">SGBUDDY / V4.24</div><h3 id="v424Title">'+esc(t(0))+'</h3></div><small>OFFLINE</small></div>'+
  '<div class="v424-tabs" role="tablist" aria-label="'+esc(t(0))+'">'+
- [['arrival',1],['notices',2],['emergency',3]].map(([id,n])=>'<button type="button" role="tab" data-v424-tab="'+id+'" aria-selected="'+(section===id)+'" class="'+(section===id?'active':'')+'">'+esc(t(n))+'</button>').join('')+'</div>'+
+ [['arrival',1],['notices',2],['emergency',3],['legal',null]].map(([id,n])=>'<button type="button" role="tab" data-v424-tab="'+id+'" aria-selected="'+(section===id)+'" class="'+(section===id?'active':'')+'">'+esc(n===null?legalLabels[locale()][0]:t(n))+'</button>').join('')+'</div>'+
  '<div id="v424Content" role="tabpanel" aria-live="polite"></div>';
  const content=$('#v424Content');
  if(section==='arrival')renderArrival(content);
  if(section==='notices')renderNotices(content);
  if(section==='emergency')renderEmergency(content);
+ if(section==='legal')renderLegal(content);
 }
 function renderArrival(host){
  const tasks=arrivalTasks(profile),need=sgacRequired(profile),windowDates=sgacWindow(profile.arrivalDate),today=singaporeDay();
@@ -113,6 +129,19 @@ function renderEmergency(host){
  '<a href="'+OFFICIAL_LINKS.mentalHealth+'" target="_blank" rel="noopener noreferrer">Mental health support options (MOH) ↗</a>'+
  '<a href="https://www.google.com/maps/search/?api=1&query=Singapore+emergency+department" target="_blank" rel="noopener noreferrer">Find an emergency department ↗</a>'+
  '</div><p class="v424-note">Check official sources when online. Phone and SMS handoffs depend on your device and mobile service.</p>';
+}
+function renderLegal(host){
+ const l=legalLabels[locale()];
+ const rows=[
+  [l[1],'Privacy notice','Your chosen settings, places and checklist may be saved on this device; optional accounts, sync and location features also process data.','privacy'],
+  [l[2],'Accuracy & safety','Guides and updates may be incomplete, delayed or stored offline. Confirm important decisions with official agencies; SGBuddy is not an emergency response service.','accuracy'],
+  [l[3],'Terms of use','This independent information service is provided for convenience. Use it lawfully and verify third-party information before relying on it.','terms'],
+  [l[4],'Feedback & privacy requests','Report incorrect details or app problems using the verified Omnidite contact channel. Avoid sending sensitive identity or medical details.','feedback']
+ ];
+ host.innerHTML='<p class="v424-note" lang="en">Full legal notices are in English. The official government website is authoritative for entry, customs and safety requirements.</p>'+
+  '<div class="v424-legal-grid">'+rows.map(([title,heading,detail,anchor])=>'<article class="v424-legal-card"><h4>'+esc(title)+'</h4><strong lang="en">'+esc(heading)+'</strong><p lang="en">'+esc(detail)+'</p><a href="/legal.html#'+anchor+'">'+esc(l[5])+' ↗</a></article>').join('')+'</div>'+
+  '<div class="v424-legal-contacts"><a class="v424-feedback-action" href="mailto:kevin@omnidite.com?subject=SGBuddy%20feedback">'+esc(l[6])+' ↗</a><a href="https://omnidite.com/contact" target="_blank" rel="noopener noreferrer">Omnidite contact ↗</a></div>'+
+  '<p class="v424-note" lang="en">Email opens your device’s mail app. SGBuddy does not automatically transmit this feedback, and this inbox is not for emergencies.</p>';
 }
 function paint(){paintHome();paintTabs();sos.setAttribute('aria-label',t(3))}
 d.addEventListener('click',e=>{
