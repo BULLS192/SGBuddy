@@ -4,6 +4,9 @@ V4.24 extends V4.23 without changing five primary tabs, Trip persistence, Supaba
 
 ## Included
 
+- Transparency: standalone offline-readable `legal.html` with privacy practices, data providers, accuracy and emergency disclaimers, terms of use and feedback contact. The app exposes a localized Legal & feedback tab plus a link from the account sign-up sheet. Uses the published Omnidite contact `kevin@omnidite.com` via mailto; no feedback database or hidden submit.
+
+
 - Emergency: offline-cached numbers for Police 999, SCDF 995, police emergency SMS 70999, and police information hotline. Calls/SMS are device handoffs, never auto-dialled.
 - Entry: per-trip local checklist, residency and border-mode SG Arrival Card exemptions, date-derived three-day submission window, HSA/CNB/ICA/Customs links, and searchable goods guidance.
 - Government: audience-filtered, reviewed, expiring notices from official HTTPS agencies, with source attribution and a stale-review warning. The seed is an editorial snapshot, NOT live alerts.
@@ -28,3 +31,10 @@ Keep V4.23 regression and V4.22 offline checks green before any merge.
 ## Next subwave
 
 Implement source discovery only from permitted official RSS/API/newsroom sources. Deduplicate into a private review queue, require source-backed approval, record editorial review/expiry metadata, and publish after verification. Only then add opt-in critical alerts.
+
+## Legal / privacy release check
+
+- Operator/privacy owner to review the wording, retention and account deletion process, Supabase/Vercel data flows, cross-border providers, and any PDPA responsibilities before production release.
+- The full notice remains in English; legal tab navigation uses the twelve shell languages. Arrange native-language review if localized policies are later introduced.
+- The account creation screen links directly to Privacy and Terms before registration. The legal page and app summary are precached for offline access. Signing out does not clear local device information.
+- Ensure the published Omnidite inbox remains monitored for feedback and privacy access, correction or deletion enquiries. Email links open the user's mail app; no promise of urgent response.
