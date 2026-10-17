@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-17",
+  "asOf": "2026-10-18",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -92,48 +92,6 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
-      "id": "suntec-json-chc-weekend-services-2026-10-17",
-      "title": "CHC Weekend Services",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/chc-weekend-services-5",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-eu-tour-briefing-17-oct-2026-2026-10-17",
-      "title": "EU Tour Briefing (17 Oct 2026)",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/eu-tour-briefing-17-oct-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-2026-plave-world-tour-keep-it-manic-in-singapore",
-      "title": "Events @ Singapore EXPO | 2026 PLAVE World Tour [KEEP IT MANIC] in Singapore",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Apex @ EXPO",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/2026-plave-world-tour-keep-it-manic-in-singapore/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
       "id": "expo-art-riot-2026-villains-and-neer-do-wells",
       "title": "Events @ Singapore EXPO | ART RIOT 2026: VILLAINS & NE'ER DO WELLS",
       "titleSource": "og:title",
@@ -150,18 +108,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-fcbc-weekly-service-oct-2026-2026-10-17",
-      "title": "FCBC Weekly Service (Oct 2026)",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fcbc-weekly-service-oct-2026-4",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-fomo-weekend-market-2026-10-17",
@@ -195,42 +141,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/hallyu-con-chkyc",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-makers-quest-sg-2026-10-17",
-      "title": "Makers Quest SG",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/makers-quest-sg-2",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-marvel-hero-rush-trading-card-game-2026-10-17",
-      "title": "Marvel Hero Rush Trading Card Game",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/marvel-hero-rush-trading-card-game-oct",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-ultraman-rise-cup-ex-singapore-2026-10-17",
-      "title": "Ultraman Rise Cup EX - Singapore",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/ultraman-rise-cup-ex-singapore",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -934,7 +844,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 46,
+      "candidateCount": 40,
       "format": "squarespace-json"
     },
     {

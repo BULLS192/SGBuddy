@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-13",
+  "asOf": "2026-10-18",
   "timezone": "Asia/Singapore",
   "sourceCount": 35,
   "events": [
@@ -38,26 +38,6 @@
       "audiences": [
         "visitor",
         "resident"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "plave-tour-2026",
-      "title": "2026 PLAVE World Tour [KEEP IT MANIC] in Singapore",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Singapore EXPO · Apex @ EXPO",
-      "sourceId": "expo",
-      "category": "music",
-      "admission": "ticketed",
-      "summary": "PLAVE’s live K-pop concert at the APEX venue.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/2026-plave-world-tour-keep-it-manic-in-singapore/",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
       ],
       "status": "scheduled",
       "verifiedAt": "2026-10-13",
@@ -137,26 +117,6 @@
       "audiences": [
         "resident",
         "visitor"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "makers-quest-2026",
-      "title": "Makers Quest SG",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-17",
-      "venue": "Suntec Singapore · Level 3 Concourse",
-      "sourceId": "suntec-convention",
-      "category": "arts",
-      "admission": "check",
-      "summary": "Artist-led market inspired by gaming and independent creators.",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/makers-quest-sg-2",
-      "audiences": [
-        "resident",
-        "visitor",
-        "student"
       ],
       "status": "scheduled",
       "verifiedAt": "2026-10-13",
