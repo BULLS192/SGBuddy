@@ -7,6 +7,7 @@ import {contextMode} from './lib/i18n-context-v370.mjs';
 import {contextualText} from './lib/i18n-contextual-v420.mjs';
 import {factTranslation} from './lib/i18n-facts-v310.mjs';
 import {air413Text} from './lib/i18n-air-v413.mjs';
+import {classifyAirReading,isCurrentAirReading,pmBandLabel} from './lib/air-quality-scale-v425.mjs';
 (function(){
   'use strict';
   const core=window.SGBUDDY_CORE;
@@ -254,7 +255,13 @@ import {air413Text} from './lib/i18n-air-v413.mjs';
   function category(psi){
     return airT(psi<=50?'good':psi<=100?'moderate':psi<=200?'unhealthy':psi<=300?'veryUnhealthy':'hazardous');
   }
-  function airValue(raw){const n=Number(raw);return Number.isFinite(n)&&raw!==null&&raw!==undefined?Math.round(n):null}
+  function airValue(raw){const band=classifyAirReading('psi',raw);return band?Math.round(band.value):null}
+  function airStatus(kind,value,item,cached,maxAgeMinutes){
+    const band=classifyAirReading(kind,value);
+    const current=isCurrentAirReading(item,{cached,maxAgeMinutes});
+    return {band,current,tone:band&&current?band.tone:'unknown',
+      label:band?(kind==='psi'?airT(band.key):pmBandLabel(band.key,locale())):''};
+  }
   function drawAirQuality(){
     const regionHost=$('#v120AirPanel');if(!regionHost)return;
     const air=state.weather?.airQuality||{},psi=air.psi24h,pm=air.pm25OneHour;
@@ -294,11 +301,31 @@ import {air413Text} from './lib/i18n-air-v413.mjs';
       ?sourceAges.map(x=>x.name+': '+dateText(x.updatedAt)).join(' · ')+(statusNotes.length?' · '+statusNotes.join('; '):'')
       :airT('timestampsUnavailable');
     const regionSelected=String(air.region||'').toLowerCase();
+    // Each pollutant has its own source timestamp, scale and color.
+    const psiCurrent=isCurrentAirReading(psi,{cached:offline||psiCached,maxAgeMinutes:120});
+    const pmCurrent=isCurrentAirReading(pm,{cached:offline||pmCached,maxAgeMinutes:90});
     regionHost.innerHTML=regions.map(region=>{
-      const p=airValue(psiRegions[region]),m=airValue(pmRegions[region]);
+      const p=airStatus('psi',psiRegions[region],psi,!psiCurrent,120);
+      const m=airStatus('pm25',pmRegions[region],pm,!pmCurrent,90);
       return '<div class="v120-region '+(regionSelected===region?'selected':'')+'"><strong>'+safe(airT(region))+'</strong>'+
-        '<span>PSI '+(p===null?'—':p)+'</span><small>PM2.5 '+(m===null?'—':m+' µg/m³')+'</small></div>';
+        '<span class="aq-reading" data-air-tone="'+p.tone+'">PSI <b>'+(p.band?Math.round(p.band.value):'—')+'</b><em>'+safe(p.label||'—')+'</em></span>'+
+        '<small class="aq-reading" data-air-tone="'+m.tone+'">PM2.5 <b>'+(m.band?Math.round(m.band.value)+' µg/m³':'—')+'</b><em>'+safe(m.label||'—')+'</em></small></div>';
     }).join('');
+    // Refresh the main weather card after its normal render so both surfaces agree.
+    for(const [selector,kind,value,item,cached,maxAge] of [
+      ['#envPsi','psi',psi?.overall,psi,offline||psiCached,120],
+      ['#envPm25','pm25',pm?.value,pm,offline||pmCached,90]
+    ]){
+      const node=$(selector);if(!node)continue;
+      const status=airStatus(kind,value,item,cached,maxAge);
+      node.dataset.airTone=status.tone;
+      node.textContent=status.band
+        ?Math.round(status.band.value)+(kind==='pm25'?' µg/m³':'')+' · '+status.label
+        :'—';
+      node.setAttribute('aria-label',(kind==='psi'?'24-hour PSI: ':'1-hour PM2.5: ')+
+        (status.band?Math.round(status.band.value)+' '+status.label:airT(kind==='psi'?'psiUnavailable':'pmUnavailable'))+
+        (status.current?'':'; '+airT(cached?'cached':item?.updatedAt?'delayed':'timestampUnknown')));
+    }
     const overall=airValue(psi?.overall);
     $('#v120AirAdvisory').textContent=!psi&&!pm?airT('advisoryUnavailable'):
       overall!==null&&overall>100?airT('advisoryHigh',{category:category(overall)}):

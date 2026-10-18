@@ -38,8 +38,9 @@ try{
   await expectText('#v120AirPanel .v120-region:first-child strong',text(code,'north'));
   await expectText('#v120AirAdvisory',text(code,'advisoryHigh',{category:text(code,'unhealthy')}));
   assert.equal(await page.locator('#v120AirPanel').getAttribute('aria-label'),text(code,'panelAria'));
-  assert.equal(await page.locator('#v120AirPanel .v120-region:first-child span').textContent(),'PSI 112');
-  assert.equal(await page.locator('#v120AirPanel .v120-region:first-child small').textContent(),'PM2.5 27 µg/m³');
+  assert.match(await page.locator('#v120AirPanel .v120-region:first-child span').textContent(),/PSI 112/);
+  assert.match(await page.locator('#v120AirPanel .v120-region:first-child small').textContent(),/PM2.5 27 µg\/m³/);
+  assert.equal(await page.locator('#v120AirPanel .v120-region:first-child span em').textContent(),text(code,'unhealthy'));
   assert.equal(await page.locator('#v120AirExtended .discover-actions a').getAttribute('href'),originalUrl,'official source URL rewritten');
   assert.ok((await page.locator('#v120AirUpdated').textContent()).includes('PSI: '),'source timestamp lost');
  }
