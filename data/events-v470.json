@@ -1,29 +1,9 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-18",
+  "asOf": "2026-10-19",
   "timezone": "Asia/Singapore",
   "sourceCount": 35,
   "events": [
-    {
-      "id": "suntec-lego-f1-2026",
-      "title": "F1 LEGO Experience the Thrill",
-      "startDate": "2026-10-01",
-      "endDate": "2026-10-18",
-      "venue": "Suntec City",
-      "sourceId": "suntec-city",
-      "category": "family",
-      "admission": "check",
-      "summary": "Life-size LEGO F1 display and race-themed activities; some activities require registration.",
-      "sourceUrl": "https://sunteccity.com.sg/experience-the-thrill",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
     {
       "id": "zak-salaam-2026",
       "title": "Zak Salaam India Expo",
@@ -38,85 +18,6 @@
       "audiences": [
         "visitor",
         "resident"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "art-riot-2026",
-      "title": "ART RIOT 2026: Villains & Ne’er-Do-Wells",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Singapore EXPO · Hall 6B",
-      "sourceId": "expo",
-      "category": "arts",
-      "admission": "ticketed",
-      "summary": "Artist market, performances and creative showcases.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/art-riot-2026-villains-and-neer-do-wells/",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "fomo-market-2026",
-      "title": "FOMO Weekend Market",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore · Hall 403",
-      "sourceId": "suntec-convention",
-      "category": "market",
-      "admission": "check",
-      "summary": "Local makers, lifestyle booths, shopping and food.",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fomo-weekend-market-2",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "hallyucon-2026",
-      "title": "HallyuCon",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore · Hall 405",
-      "sourceId": "suntec-convention",
-      "category": "culture",
-      "admission": "registration",
-      "summary": "K-pop, Korean lifestyle booths, dance and fan experiences.",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hallyu-con",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "hatcheed-2026",
-      "title": "Hatcheed",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore · Hall 406",
-      "sourceId": "suntec-convention",
-      "category": "family",
-      "admission": "check",
-      "summary": "Maternity, babyhood and family lifestyle discoveries.",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events",
-      "audiences": [
-        "resident",
-        "visitor"
       ],
       "status": "scheduled",
       "verifiedAt": "2026-10-13",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-18",
+  "asOf": "2026-10-19",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -90,89 +90,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "expo-art-riot-2026-villains-and-neer-do-wells",
-      "title": "Events @ Singapore EXPO | ART RIOT 2026: VILLAINS & NE'ER DO WELLS",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Hall 6B",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/art-riot-2026-villains-and-neer-do-wells/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-fomo-weekend-market-2026-10-17",
-      "title": "FOMO Weekend Market",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fomo-weekend-market-2",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-hallyucon-2026-10-17",
-      "title": "HallyuCon",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hallyu-con",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-hatcheed-2026-10-17",
-      "title": "Hatcheed",
-      "startDate": "2026-10-17",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hallyu-con-chkyc",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-chc-weekend-services-2026-10-18",
-      "title": "CHC Weekend Services",
-      "startDate": "2026-10-18",
-      "endDate": "2026-10-18",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/5rwk65gkmsmgrbhrnexbrcsatb6x9m",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "sentosa-koocesters-car-meet-2026",
-      "title": "Koocester’s Car Meet: Beasts vs Beauties",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-18",
-      "endDate": "2026-10-18",
-      "venue": "Sentosa Cove",
-      "sourceId": "sentosa",
-      "sourceUrl": "https://www.sentosa.com.sg/en/things-to-do/events/koocester-care-meet-beasts-vs-beauties/",
-      "admission": "check",
-      "admissionEvidence": "official-detail-page-needs-editor",
-      "access": "unverified",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
       "id": "expo-world-conference-on-floating-solutions-2026",
@@ -268,6 +185,18 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
+    },
+    {
+      "id": "suntec-json-singapore-airlines-time-to-fly-2026-2026-10-22",
+      "title": "Singapore Airlines Time to Fly (2026)",
+      "startDate": "2026-10-22",
+      "endDate": "2026-10-25",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/singapore-airlines-time-to-fly-2026",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-le-creuset-family-sale-oct-2026-2026-10-23",
@@ -750,6 +679,24 @@
       "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
     },
     {
+      "id": "expo-joji-solaris",
+      "title": "Events @ Singapore EXPO | JOJI: SOLARIS",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-22",
+      "venue": "Arena @ EXPO",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/joji-solaris/",
+      "admission": "ticketed",
+      "admissionEvidence": "official-venue-ticketed",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
       "id": "suntec-json-karate-competition-2026-2026-11-21",
       "title": "Karate Competition 2026",
       "startDate": "2026-11-21",
@@ -828,6 +775,24 @@
       "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
     },
     {
+      "id": "expo-2026-le-sserafim-tour-pureflow-in-singapore",
+      "title": "Events @ Singapore EXPO | 2026 LE SSERAFIM TOUR “PUREFLOW” IN SINGAPORE",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-28",
+      "venue": "Apex @ EXPO",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/2026-le-sserafim-tour-pureflow-in-singapore/",
+      "admission": "ticketed",
+      "admissionEvidence": "official-venue-ticketed",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
       "id": "suntec-json-livesmart-asia-yess21-workshop-2026-11-30",
       "title": "Livesmart Asia YESS21 Workshop",
       "startDate": "2026-11-30",
@@ -842,16 +807,28 @@
   ],
   "diagnostics": [
     {
-      "feed": "suntec-json",
+      "source": "expo-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 10,
       "state": "reachable",
-      "candidateCount": 40,
-      "format": "squarespace-json"
+      "reviewCandidates": 10
     },
     {
-      "feed": "nea-events-rss",
+      "source": "suntec-city-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 0,
       "state": "reachable",
-      "candidateCount": 0,
-      "format": "rss"
+      "reviewCandidates": 0
+    },
+    {
+      "source": "313-html",
+      "kind": "promotion",
+      "reviewOnly": true,
+      "links": 2,
+      "state": "reachable",
+      "reviewCandidates": 2
     }
   ]
 }
