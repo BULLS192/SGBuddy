@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {air413Text} from '../lib/i18n-air-v413.mjs';
+import {classifyAirReading,isCurrentAirReading,pmBandLabel} from '../lib/air-quality-scale-v425.mjs';
 
 const read=p=>fs.readFileSync(p,'utf8');
 const catalog=JSON.parse(read('data/discover-v120.json'));
@@ -54,7 +55,7 @@ assert.ok(discover.includes("category(psi)")||discover.includes('function catego
 
 // Regression: a missing rainfall or wind feed must never make healthy PSI/PM2.5
 // appear partial in the independent Air Quality panel.
-const airStart=discover.indexOf('  function drawAirQuality(){');
+const airStart=discover.indexOf('  function airStatus(');
 const airEnd=discover.indexOf('\n  const environment=',airStart);
 assert.ok(airStart!==-1&&airEnd>airStart,'Air quality renderer missing');
 const renderer=discover.slice(airStart,airEnd);
@@ -64,11 +65,11 @@ const simulateAir=weather=>{
   // Existing historical test evaluates the draw function out of context.
   // Inject the new first-party translation function without mocking source readings.
   const translatedRenderer=renderer.replaceAll(String.fromCharCode(36)+'(', 'lookup(');
-  new Function('state','lookup','safe','dateText','category','airValue','airT',translatedRenderer+';drawAirQuality()')(
+  new Function('state','lookup','safe','dateText','category','airValue','airT','classifyAirReading','isCurrentAirReading','pmBandLabel','locale',translatedRenderer+';drawAirQuality()')(
     fakeState,selector=>elements[selector.slice(1)],String,iso=>iso||'Not provided',
     n=>n<=50?'Good':n<=100?'Moderate':'Unhealthy',
     raw=>raw==null?null:Number(raw),
-    key=>air413Text('en',key)
+    key=>air413Text('en',key),classifyAirReading,isCurrentAirReading,pmBandLabel,()=> 'en'
   );
   return {badge:elements.v120AirStatus.textContent,details:elements.v120AirUpdated.textContent};
 };

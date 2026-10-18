@@ -7,6 +7,7 @@ on:
       - 'lib/air-quality-scale-v425.mjs'
       - 'sw.js'
       - 'scripts/check-v425-air.mjs'
+      - 'scripts/check-discover.mjs'
       - 'scripts/browser-qa-v425-air.mjs'
       - 'scripts/browser-qa-v413-air.mjs'
       - '.github/workflows/check-v425-air.yml'
@@ -28,6 +29,7 @@ jobs:
           node --check sw.js
           node scripts/check-v425-air.mjs
           node scripts/check-v413-air.mjs
+          node scripts/check-discover.mjs
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 20
