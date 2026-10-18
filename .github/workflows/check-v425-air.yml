@@ -1,0 +1,50 @@
+name: SGBuddy V4.25 Air Quality Colors
+on:
+  pull_request:
+    paths:
+      - 'app-v120.js'
+      - 'discover-v120.css'
+      - 'lib/air-quality-scale-v425.mjs'
+      - 'sw.js'
+      - 'scripts/check-v425-air.mjs'
+      - 'scripts/check-discover.mjs'
+      - 'scripts/browser-qa-v425-air.mjs'
+      - 'scripts/browser-qa-v413-air.mjs'
+      - '.github/workflows/check-v425-air.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check app-v120.js
+          node --check lib/air-quality-scale-v425.mjs
+          node --check sw.js
+          node scripts/check-v425-air.mjs
+          node scripts/check-v413-air.mjs
+          node scripts/check-discover.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/sgbuddy-v425.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8765/ >/dev/null && exit 0; sleep 1; done
+          exit 1
+      - run: |
+          node scripts/browser-qa-v425-air.mjs
+          node scripts/browser-qa-v413-air.mjs

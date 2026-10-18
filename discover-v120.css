@@ -44,3 +44,19 @@
 #v120AirUpdated{max-width:100%;overflow-wrap:anywhere;color:var(--muted,#a6b5c5)}
 @media(max-width:640px){.discover-intro{padding:15px!important}.discover-tabs{margin-right:-8px}.discover-title-row h2{font-size:1.4rem}.discover-grid{grid-template-columns:1fr}.v120-air{padding:15px!important}.v120-air-regions{grid-template-columns:repeat(2,minmax(0,1fr))}.v120-region:last-child{grid-column:1/-1}.discover-actions{gap:12px}}
 @media(prefers-reduced-motion:reduce){.discover-tabs *,.discover-fav{transition:none!important}}
+
+/* V4.25: accessible per-reading NEA severity tones. Unknown/cached stays neutral. */
+.aq-reading,.environment-value[data-air-tone]{--aq-fg:#b8c7d8;--aq-bg:rgba(143,170,198,.08);--aq-border:rgba(143,170,198,.28);color:var(--aq-fg);background:var(--aq-bg);border:1px solid var(--aq-border)}
+[data-air-tone="good"]{--aq-fg:#7ee7af;--aq-bg:rgba(31,151,89,.14);--aq-border:rgba(88,211,137,.48)}
+[data-air-tone="moderate"]{--aq-fg:#ffdf82;--aq-bg:rgba(177,125,27,.17);--aq-border:rgba(244,194,69,.48)}
+[data-air-tone="unhealthy"]{--aq-fg:#ffad77;--aq-bg:rgba(193,90,29,.17);--aq-border:rgba(255,151,87,.52)}
+[data-air-tone="very-unhealthy"]{--aq-fg:#ff8f9d;--aq-bg:rgba(171,49,67,.18);--aq-border:rgba(251,116,133,.52)}
+[data-air-tone="hazardous"]{--aq-fg:#c7a5ff;--aq-bg:rgba(120,62,170,.2);--aq-border:rgba(193,144,248,.54)}
+.aq-reading{display:grid;justify-items:center;gap:3px;border-radius:10px;padding:7px 4px;min-width:0;font-size:.7rem;font-weight:700}
+.aq-reading b{font-size:1.05rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.aq-reading em{font-style:normal;font-size:.64rem;line-height:1.25;overflow-wrap:anywhere}
+.v120-region .aq-reading{font-size:.72rem}
+.v120-region .aq-reading b{font-size:.95rem}
+.v120-region .aq-reading em{font-size:.68rem}
+.environment-value[data-air-tone]{border-radius:9px;padding:6px 7px;line-height:1.35;font-size:.9rem;min-height:42px;overflow-wrap:anywhere}
+@media(forced-colors:active){.aq-reading,.environment-value[data-air-tone]{border:2px solid CanvasText;background:Canvas;color:CanvasText}}
