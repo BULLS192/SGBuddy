@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-21",
+  "asOf": "2026-10-22",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -90,36 +90,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "expo-world-conference-on-floating-solutions-2026",
-      "title": "Events @ Singapore EXPO | WORLD CONFERENCE ON FLOATING SOLUTIONS 2026",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-19",
-      "endDate": "2026-10-21",
-      "venue": "Garnet Meeting Rooms,",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/world-conference-on-floating-solutions-2026/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-mag-payments-summit-2026-10-20",
-      "title": "MAG Payments Summit",
-      "startDate": "2026-10-20",
-      "endDate": "2026-10-21",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/mag-payments-summit",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-industrial-transformation-asia-pacific-itap-gams-2026-2026-10-21",
@@ -241,9 +211,27 @@
       "titleReviewRequired": false,
       "startDate": "2026-10-24",
       "endDate": "2026-10-25",
-      "venue": "Hall 5 & 6",
+      "venue": "Halls 5 & 6",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-car-expo/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "expo-the-lifestyle-edit-2026",
+      "title": "Events @ Singapore EXPO | The Lifestyle Edit 2026",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25",
+      "venue": "Hall 4B",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-lifestyle-edit-2026/",
       "admission": "free",
       "admissionEvidence": "official-venue-free",
       "access": "public-stated",
@@ -409,6 +397,24 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
+      "id": "expo-the-big-fashion-hunt",
+      "title": "Events @ Singapore EXPO | THE BIG FASHION HUNT",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Hall 5A",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-big-fashion-hunt/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
       "id": "expo-the-makers-ground-at-expo",
       "title": "Events @ Singapore EXPO | The Makers Ground @ EXPO",
       "titleSource": "og:title",
@@ -481,7 +487,7 @@
       "titleReviewRequired": false,
       "startDate": "2026-11-07",
       "endDate": "2026-11-07",
-      "venue": "Peridot Hall",
+      "venue": "Peridot Meeting Rooms",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/star-award-nite-singapore/",
       "admission": "ticketed",
@@ -577,18 +583,6 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-home-team-festival-2026-2026-11-16",
-      "title": "Home Team Festival 2026",
-      "startDate": "2026-11-16",
-      "endDate": "2026-11-22",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/home-team-festival-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "esplanade-rafta-rafta-2026",
       "title": "Rafta Rafta",
       "titleSource": "official-detail-page",
@@ -659,6 +653,18 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
+    },
+    {
+      "id": "suntec-json-home-team-festival-2026-2026-11-20",
+      "title": "Home Team Festival 2026",
+      "startDate": "2026-11-20",
+      "endDate": "2026-11-22",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/home-team-festival-2026",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "esplanade-biswa-inventions-2026",
