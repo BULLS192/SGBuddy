@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-22",
+  "asOf": "2026-10-23",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -90,18 +90,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-industrial-transformation-asia-pacific-itap-gams-2026-2026-10-21",
-      "title": "Industrial Transformation Asia Pacific ITAP / GAMS 2026",
-      "startDate": "2026-10-21",
-      "endDate": "2026-10-22",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/industrial-transformation-asia-pacific-itap-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-food-japan-2026-2026-10-22",
@@ -873,28 +861,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 10
+      "candidateCount": 37,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
