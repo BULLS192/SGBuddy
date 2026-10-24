@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-23",
+  "asOf": "2026-10-25",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -92,18 +92,6 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
-      "id": "suntec-json-food-japan-2026-2026-10-22",
-      "title": "Food Japan 2026",
-      "startDate": "2026-10-22",
-      "endDate": "2026-10-24",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/food-japan-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "suntec-json-namaste-bharat-2026-2026-10-22",
       "title": "Namaste Bharat 2026",
       "startDate": "2026-10-22",
@@ -169,30 +157,6 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-chc-weekend-services-2026-10-24",
-      "title": "CHC Weekend Services",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-24",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/chc-weekend-services-3",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-eu-tour-briefing-24-oct-2026-2026-10-24",
-      "title": "EU Tour Briefing (24 Oct 2026)",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-24",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/eu-tour-briefing-17-oct-2026-x56yg",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "expo-the-car-expo",
       "title": "Events @ Singapore EXPO | The Car Expo",
       "titleSource": "og:title",
@@ -227,30 +191,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-fostering-open-house-2026-2026-10-24",
-      "title": "Fostering Open House 2026",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-24",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/9sifl8sq2jz0qgse90mmf4n9azjecz",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-side-a-a-singapore-record-show-2026-2026-10-24",
-      "title": "Side A, A Singapore Record Show 2026",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-24",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/side-a-a-singapore-record-show-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-chc-weekend-services-2026-10-25",
@@ -863,7 +803,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 37,
+      "candidateCount": 32,
       "format": "squarespace-json"
     },
     {
