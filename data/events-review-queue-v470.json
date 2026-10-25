@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-25",
+  "asOf": "2026-10-26",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -74,36 +74,6 @@
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
-      "id": "expo-zak-salaam-india-expo-oct-2026",
-      "title": "Events @ Singapore EXPO | Zak Salaam India Expo",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-16",
-      "endDate": "2026-10-25",
-      "venue": "Hall 9",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/zak-salaam-india-expo-oct-2026/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-namaste-bharat-2026-2026-10-22",
-      "title": "Namaste Bharat 2026",
-      "startDate": "2026-10-22",
-      "endDate": "2026-10-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/namaste-bharat-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "gardens-race-sustainability-2026",
       "title": "Race to Sustainability! 2026",
       "titleSource": "official-detail-page",
@@ -119,108 +89,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
-    },
-    {
-      "id": "suntec-json-singapore-airlines-time-to-fly-2026-2026-10-22",
-      "title": "Singapore Airlines Time to Fly (2026)",
-      "startDate": "2026-10-22",
-      "endDate": "2026-10-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/singapore-airlines-time-to-fly-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-le-creuset-family-sale-oct-2026-2026-10-23",
-      "title": "Le Creuset Family Sale (Oct) 2026",
-      "startDate": "2026-10-23",
-      "endDate": "2026-10-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/le-creuset-family-sale-oct-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-universal-traveller-winter-wear-luggage-sale-2026-10-23",
-      "title": "Universal Traveller Winter Wear & Luggage Sale",
-      "startDate": "2026-10-23",
-      "endDate": "2026-10-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/universal-traveller-winter-wear-luggage-sale",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-the-car-expo",
-      "title": "Events @ Singapore EXPO | The Car Expo",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "venue": "Halls 5 & 6",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-car-expo/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "expo-the-lifestyle-edit-2026",
-      "title": "Events @ Singapore EXPO | The Lifestyle Edit 2026",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "venue": "Hall 4B",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-lifestyle-edit-2026/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-chc-weekend-services-2026-10-25",
-      "title": "CHC Weekend Services",
-      "startDate": "2026-10-25",
-      "endDate": "2026-10-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/44jxdtlxdyk8kmrapjdegemgwc6xwe",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-bini-signals-world-tour-2026-singapore",
-      "title": "Events @ Singapore EXPO | BINI: SIGNALS WORLD TOUR 2026 SINGAPORE",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-25",
-      "endDate": "2026-10-25",
-      "venue": "Arena @ EXPO",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/bini-signals-world-tour-2026-singapore/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "suntec-json-asia-pacific-agri-food-2026-2026-10-26",
@@ -371,6 +239,24 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
+      "id": "expo-asia-pacific-food-expo-2026",
+      "title": "Events @ Singapore EXPO | Asia Pacific Food Expo 2026",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-06",
+      "endDate": "2026-11-09",
+      "venue": "Hall 4",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/asia-pacific-food-expo-2026/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "suntec-json-14th-singapore-open-dance-championships-2026-2026-11-07",
@@ -801,16 +687,28 @@
   ],
   "diagnostics": [
     {
-      "feed": "suntec-json",
+      "source": "expo-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 10,
       "state": "reachable",
-      "candidateCount": 32,
-      "format": "squarespace-json"
+      "reviewCandidates": 9
     },
     {
-      "feed": "nea-events-rss",
+      "source": "suntec-city-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 0,
       "state": "reachable",
-      "candidateCount": 0,
-      "format": "rss"
+      "reviewCandidates": 0
+    },
+    {
+      "source": "313-html",
+      "kind": "promotion",
+      "reviewOnly": true,
+      "links": 2,
+      "state": "reachable",
+      "reviewCandidates": 2
     }
   ]
 }

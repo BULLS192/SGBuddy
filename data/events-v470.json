@@ -1,48 +1,9 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-19",
+  "asOf": "2026-10-26",
   "timezone": "Asia/Singapore",
   "sourceCount": 35,
   "events": [
-    {
-      "id": "zak-salaam-2026",
-      "title": "Zak Salaam India Expo",
-      "startDate": "2026-10-16",
-      "endDate": "2026-10-25",
-      "venue": "Singapore EXPO · Hall 9",
-      "sourceId": "expo",
-      "category": "culture",
-      "admission": "free",
-      "summary": "Indian products, food and cultural activities.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/zak-salaam-india-expo-oct-2026/",
-      "audiences": [
-        "visitor",
-        "resident"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "the-car-expo-2026",
-      "title": "The Car Expo",
-      "startDate": "2026-10-24",
-      "endDate": "2026-10-25",
-      "venue": "Singapore EXPO · Halls 5 & 6",
-      "sourceId": "expo",
-      "category": "exhibition",
-      "admission": "free",
-      "summary": "New and pre-owned cars, motoring accessories and lifestyle brands.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-car-expo/",
-      "audiences": [
-        "resident",
-        "visitor",
-        "executive"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
     {
       "id": "caps-cardshow-2026",
       "title": "CAPS Cardshow",
