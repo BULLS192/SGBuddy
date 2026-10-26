@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-26",
+  "asOf": "2026-10-27",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -184,6 +184,24 @@
       "venue": "Hall 6A",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "expo-pokemon-tcg-ultra-ball-league-season-1",
+      "title": "Events @ Singapore EXPO | Pokémon TCG Ultra Ball League Season 1",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-10-31",
+      "endDate": "2026-11-01",
+      "venue": "Garnett Rooms",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/pokemon-tcg-ultra-ball-league-season-1/",
       "admission": "free",
       "admissionEvidence": "official-venue-free",
       "access": "public-stated",
@@ -692,7 +710,7 @@
       "reviewOnly": true,
       "links": 10,
       "state": "reachable",
-      "reviewCandidates": 9
+      "reviewCandidates": 10
     },
     {
       "source": "suntec-city-html",
