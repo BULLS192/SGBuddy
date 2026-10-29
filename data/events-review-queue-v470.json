@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-28",
+  "asOf": "2026-10-29",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -98,18 +98,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/asia-pacific-agri-food-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-containerdays-ai-context-singapore-2026-2026-10-27",
-      "title": "ContainerDays & AI Context Singapore 2026",
-      "startDate": "2026-10-27",
-      "endDate": "2026-10-28",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hiehq5fot80cpq8gailx1n50u259yy",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -867,28 +855,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 10
+      "candidateCount": 38,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
