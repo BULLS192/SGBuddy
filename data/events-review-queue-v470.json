@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-30",
+  "asOf": "2026-10-31",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -83,24 +83,6 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-sidex-acdr-2026-in-conjunctio-with-fisac",
-      "title": "Events @ Singapore EXPO | SIDEX-ACDR 2026 in conjunction with FiSAC",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-28",
-      "endDate": "2026-10-30",
-      "venue": "Hall 3",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/sidex-acdr-2026-in-conjunctio-with-fisac/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "expo-winter-time-expo-sales",
