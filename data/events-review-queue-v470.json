@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-29",
+  "asOf": "2026-10-30",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -39,24 +39,6 @@
       "reason": "Check that this offer includes a public activity, not solely retail discounts"
     },
     {
-      "id": "expo-kpopx-fitness-piloxing-oct-2026",
-      "title": "Events @ Singapore EXPO | KpopX Fitness & Piloxing (October)",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-01",
-      "endDate": "2026-10-29",
-      "venue": "Foyer 2, Atrium 6",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/kpopx-fitness-piloxing-oct-2026/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
       "id": "gardens-sunflower-surprise-2026",
       "title": "Sunflower Surprise: Garden by the Ocean",
       "titleSource": "official-detail-page",
@@ -89,18 +71,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
-    },
-    {
-      "id": "suntec-json-asia-pacific-agri-food-2026-2026-10-26",
-      "title": "Asia Pacific Agri-Food 2026",
-      "startDate": "2026-10-26",
-      "endDate": "2026-10-29",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/asia-pacific-agri-food-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-17th-world-congress-of-the-intl-hepato-pancreato-biliary-ass-2026-10-28",
@@ -857,7 +827,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 38,
+      "candidateCount": 37,
       "format": "squarespace-json"
     },
     {
