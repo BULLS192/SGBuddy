@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-10-31",
+  "asOf": "2026-11-01",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -73,18 +73,6 @@
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
-      "id": "suntec-json-17th-world-congress-of-the-intl-hepato-pancreato-biliary-ass-2026-10-28",
-      "title": "17th World Congress of the Intl Hepato-Pancreato-Biliary Association (IHPBA) 2026",
-      "startDate": "2026-10-28",
-      "endDate": "2026-10-31",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/17th-world-congress-of-the-intl-hepato-pancreato-biliary-association-ihpba-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "expo-winter-time-expo-sales",
       "title": "Events @ Singapore EXPO | Winter Time Expo Sales",
       "titleSource": "og:title",
@@ -119,18 +107,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-bai-yin-qigong-2026-10-31",
-      "title": "Bai Yin Qigong",
-      "startDate": "2026-10-31",
-      "endDate": "2026-10-31",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/bai-yin-qigong-2",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "expo-caps-cardshow",
@@ -809,7 +785,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 37,
+      "candidateCount": 35,
       "format": "squarespace-json"
     },
     {
