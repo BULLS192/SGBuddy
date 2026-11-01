@@ -1,48 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-26",
+  "asOf": "2026-11-02",
   "timezone": "Asia/Singapore",
   "sourceCount": 35,
-  "events": [
-    {
-      "id": "caps-cardshow-2026",
-      "title": "CAPS Cardshow",
-      "startDate": "2026-10-31",
-      "endDate": "2026-11-01",
-      "venue": "Singapore EXPO · Hall 6A",
-      "sourceId": "expo",
-      "category": "exhibition",
-      "admission": "free",
-      "summary": "Trading-card and collectibles show with vendors, artists and tournaments.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/caps-cardshow/",
-      "audiences": [
-        "visitor",
-        "resident",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    },
-    {
-      "id": "makers-ground-2026",
-      "title": "The Makers Ground @ EXPO",
-      "startDate": "2026-10-31",
-      "endDate": "2026-11-01",
-      "venue": "Singapore EXPO · Foyer 2",
-      "sourceId": "expo",
-      "category": "market",
-      "admission": "free",
-      "summary": "Homegrown makers, crafts, creative stalls and live performances.",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/the-makers-ground-at-expo/",
-      "audiences": [
-        "resident",
-        "visitor",
-        "student"
-      ],
-      "status": "scheduled",
-      "verifiedAt": "2026-10-13",
-      "verificationMethod": "official_venue_page"
-    }
-  ]
+  "events": []
 }
