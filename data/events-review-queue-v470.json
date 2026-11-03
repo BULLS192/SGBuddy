@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-02",
+  "asOf": "2026-11-03",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -622,6 +622,24 @@
       "venue": "Hall 5B",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/asia-tcm-wellness-expo-2026/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "expo-sgcarmart-carnival-dec-2026",
+      "title": "Events @ Singapore EXPO | Sgcarmart CARnival Dec 2026",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-06",
+      "venue": "Hall 4",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/sgcarmart-carnival-dec-2026/",
       "admission": "free",
       "admissionEvidence": "official-venue-free",
       "access": "public-stated",
