@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-03",
+  "asOf": "2026-11-04",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -53,6 +53,24 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
+    },
+    {
+      "id": "expo-kpopx-fitness-piloxing-november",
+      "title": "Events @ Singapore EXPO | KpopX Fitness & Piloxing (November)",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-03",
+      "endDate": "2026-11-26",
+      "venue": "Foyer 2, Atrium 6",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/kpopx-fitness-piloxing-november/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "suntec-json-singapore-urban-mobility-week-2026-2026-11-04",
