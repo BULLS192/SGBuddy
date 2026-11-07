@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-07",
+  "asOf": "2026-11-08",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -103,18 +103,6 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-bjj-roots-competition-2026-11-07",
-      "title": "BJJ Roots Competition",
-      "startDate": "2026-11-07",
-      "endDate": "2026-11-07",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/bjj-roots-competition",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "suntec-json-craft-festival-2026-2026-11-07",
       "title": "Craft Festival 2026",
       "startDate": "2026-11-07",
@@ -145,36 +133,6 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
-      "id": "expo-star-award-nite-singapore",
-      "title": "Events @ Singapore EXPO | Star Award Nite Singapore",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-07",
-      "endDate": "2026-11-07",
-      "venue": "Peridot Meeting Rooms",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/star-award-nite-singapore/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-livesmart-asia-yess21-workshop-2026-11-07",
-      "title": "Livesmart Asia YESS21 Workshop",
-      "startDate": "2026-11-07",
-      "endDate": "2026-11-07",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/livesmart-asia-yess21-workshop-2",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "suntec-json-me-you-market-2026-11-07",
       "title": "Me-You Market",
       "startDate": "2026-11-07",
@@ -182,18 +140,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/me-you-market-2",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-pregnancy-seminar-2026-11-07",
-      "title": "Pregnancy Seminar",
-      "startDate": "2026-11-07",
-      "endDate": "2026-11-07",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/pregnancy-seminar-2",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -789,28 +735,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 9
+      "candidateCount": 31,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 1,
-      "state": "reachable",
-      "reviewCandidates": 1
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
