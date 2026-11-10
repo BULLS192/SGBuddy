@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-09",
+  "asOf": "2026-11-10",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -19,23 +19,6 @@
       "status": "needs-review",
       "kind": "promotion",
       "reason": "Check that this offer includes a public activity, not solely retail discounts"
-    },
-    {
-      "id": "gardens-sunflower-surprise-2026",
-      "title": "Sunflower Surprise: Garden by the Ocean",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-10-09",
-      "endDate": "2026-11-09",
-      "venue": "Flower Dome, Gardens by the Bay",
-      "sourceId": "gardens",
-      "sourceUrl": "https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/sunflower-surprise-2026.html",
-      "admission": "ticketed",
-      "admissionEvidence": "official-detail-page-needs-editor",
-      "access": "unverified",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
       "id": "gardens-race-sustainability-2026",
@@ -64,24 +47,6 @@
       "venue": "Foyer 2, Atrium 6",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/kpopx-fitness-piloxing-november/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "expo-asia-pacific-food-expo-2026",
-      "title": "Events @ Singapore EXPO | Asia Pacific Food Expo 2026",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-06",
-      "endDate": "2026-11-09",
-      "venue": "Hall 4",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/asia-pacific-food-expo-2026/",
       "admission": "free",
       "admissionEvidence": "official-venue-free",
       "access": "public-stated",
@@ -415,6 +380,18 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
+      "id": "suntec-json-renofiesta-2026-11-27",
+      "title": "RenoFiesta",
+      "startDate": "2026-11-27",
+      "endDate": "2026-11-28",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/renofiesta",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
       "id": "expo-2026-le-sserafim-tour-pureflow-in-singapore",
       "title": "Events @ Singapore EXPO | 2026 LE SSERAFIM TOUR “PUREFLOW” IN SINGAPORE",
       "titleSource": "og:title",
@@ -655,6 +632,18 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
+      "id": "suntec-json-public-garden-2026-2026-12-19",
+      "title": "Public Garden 2026",
+      "startDate": "2026-12-19",
+      "endDate": "2026-12-20",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/public-garden-2026",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
       "id": "suntec-json-market-leaders-mini-mastermind-event-2026-12-22",
       "title": "Market Leaders Mini-Mastermind Event",
       "startDate": "2026-12-22",
@@ -681,28 +670,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 9
+      "candidateCount": 30,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 1,
-      "state": "reachable",
-      "reviewCandidates": 1
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
