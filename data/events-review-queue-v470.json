@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-10",
+  "asOf": "2026-11-11",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -56,13 +56,13 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
-      "id": "suntec-json-cybersg-innovation-day-2026-2026-11-10",
-      "title": "CyberSG Innovation Day 2026",
-      "startDate": "2026-11-10",
-      "endDate": "2026-11-10",
+      "id": "suntec-json-amd-embedded-tech-day-2026-2026-11-11",
+      "title": "AMD Embedded Tech Day 2026",
+      "startDate": "2026-11-11",
+      "endDate": "2026-11-11",
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/cybersg-innovation-day-2026",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/design-marketing-pte-ltd",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
