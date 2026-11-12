@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-11",
+  "asOf": "2026-11-12",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -54,18 +54,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-amd-embedded-tech-day-2026-2026-11-11",
-      "title": "AMD Embedded Tech Day 2026",
-      "startDate": "2026-11-11",
-      "endDate": "2026-11-11",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/design-marketing-pte-ltd",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-the-tech-show-2026-tts-2026-11-13",
@@ -524,6 +512,24 @@
       "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
+      "id": "expo-home-planner-furniture-reno-expo",
+      "title": "Events @ Singapore EXPO | Home Planner Furniture & Reno Expo",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-12-05",
+      "endDate": "2026-12-13",
+      "venue": "Hall 6A",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/home-planner-furniture-reno-expo/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
       "id": "expo-sgcarmart-carnival-dec-2026",
       "title": "Events @ Singapore EXPO | Sgcarmart CARnival Dec 2026",
       "titleSource": "og:title",
@@ -549,6 +555,18 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/13th-singapore-international-chemistry-conference-sicc-2026",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
+      "id": "suntec-json-good-pet-fair-2026-2026-12-11",
+      "title": "Good Pet Fair 2026",
+      "startDate": "2026-12-11",
+      "endDate": "2026-12-13",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/good-pet-fair-2026",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -670,16 +688,28 @@
   ],
   "diagnostics": [
     {
-      "feed": "suntec-json",
+      "source": "expo-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 9,
       "state": "reachable",
-      "candidateCount": 30,
-      "format": "squarespace-json"
+      "reviewCandidates": 9
     },
     {
-      "feed": "nea-events-rss",
+      "source": "suntec-city-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 0,
       "state": "reachable",
-      "candidateCount": 0,
-      "format": "rss"
+      "reviewCandidates": 0
+    },
+    {
+      "source": "313-html",
+      "kind": "promotion",
+      "reviewOnly": true,
+      "links": 1,
+      "state": "reachable",
+      "reviewCandidates": 1
     }
   ]
 }
