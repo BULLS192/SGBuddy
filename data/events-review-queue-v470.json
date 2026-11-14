@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-14",
+  "asOf": "2026-11-15",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -81,30 +81,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/the-tech-show-2026-tts",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-cradle-celebratory-event-2026-11-14",
-      "title": "CRADLE Celebratory Event",
-      "startDate": "2026-11-14",
-      "endDate": "2026-11-14",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/cradle-celebratory-event",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-world-uni-expo-suntec-2026-11-14",
-      "title": "World Uni Expo @ Suntec",
-      "startDate": "2026-11-14",
-      "endDate": "2026-11-14",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/yfmr3tywld2xfxmdxbx6yln36ejkjb",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -706,28 +682,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 9,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 9
+      "candidateCount": 28,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
