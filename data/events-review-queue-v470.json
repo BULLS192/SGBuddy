@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-12",
+  "asOf": "2026-11-14",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -54,6 +54,24 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "313-merry-moments-with-mochiak-and-ahwoo",
+      "title": "Merry Moments with Mochiak & AhWoo",
+      "titleSource": "h1",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-13",
+      "endDate": "2027-01-03",
+      "venue": "313@somerset",
+      "sourceId": "313",
+      "sourceUrl": "https://www.313somerset.com.sg/whats-on/offers/merry-moments-with-mochiak-and-ahwoo/",
+      "admission": "check",
+      "admissionEvidence": null,
+      "access": "unverified",
+      "publicAccessEvidence": null,
+      "status": "needs-review",
+      "kind": "promotion",
+      "reason": "Check that this offer includes a public activity, not solely retail discounts"
     },
     {
       "id": "suntec-json-the-tech-show-2026-tts-2026-11-13",
@@ -707,9 +725,9 @@
       "source": "313-html",
       "kind": "promotion",
       "reviewOnly": true,
-      "links": 1,
+      "links": 2,
       "state": "reachable",
-      "reviewCandidates": 1
+      "reviewCandidates": 2
     }
   ]
 }
