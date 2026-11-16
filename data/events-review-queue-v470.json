@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-15",
+  "asOf": "2026-11-16",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -72,18 +72,6 @@
       "status": "needs-review",
       "kind": "promotion",
       "reason": "Check that this offer includes a public activity, not solely retail discounts"
-    },
-    {
-      "id": "suntec-json-the-tech-show-2026-tts-2026-11-13",
-      "title": "The Tech Show 2026 (TTS)",
-      "startDate": "2026-11-13",
-      "endDate": "2026-11-15",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/the-tech-show-2026-tts",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "esplanade-rafta-rafta-2026",
@@ -684,7 +672,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 28,
+      "candidateCount": 27,
       "format": "squarespace-json"
     },
     {
