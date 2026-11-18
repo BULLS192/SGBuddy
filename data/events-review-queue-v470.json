@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-17",
+  "asOf": "2026-11-18",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -542,6 +542,24 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
+      "id": "expo-beauty-fiesta-christmas-2026",
+      "title": "Events @ Singapore EXPO | Beauty Fiesta Christmas 2026",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-12-11",
+      "endDate": "2026-12-13",
+      "venue": "Hall 5B",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/beauty-fiesta-christmas-2026/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
       "id": "suntec-json-good-pet-fair-2026-2026-12-11",
       "title": "Good Pet Fair 2026",
       "startDate": "2026-12-11",
@@ -922,16 +940,28 @@
   ],
   "diagnostics": [
     {
-      "feed": "suntec-json",
+      "source": "expo-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 10,
       "state": "reachable",
-      "candidateCount": 48,
-      "format": "squarespace-json"
+      "reviewCandidates": 10
     },
     {
-      "feed": "nea-events-rss",
+      "source": "suntec-city-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 0,
       "state": "reachable",
-      "candidateCount": 0,
-      "format": "rss"
+      "reviewCandidates": 0
+    },
+    {
+      "source": "313-html",
+      "kind": "promotion",
+      "reviewOnly": true,
+      "links": 2,
+      "state": "reachable",
+      "reviewCandidates": 2
     }
   ]
 }
