@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-18",
+  "asOf": "2026-11-19",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -617,6 +617,24 @@
       "venue": "Peridot Meeting Rooms",
       "sourceId": "expo",
       "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/dartslive-super-league-finals-season-26/",
+      "admission": "free",
+      "admissionEvidence": "official-venue-free",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "expo-singapore-card-show-world-edition",
+      "title": "Events @ Singapore EXPO | SINGAPORE CARD SHOW - WORLD EDITION",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-12-12",
+      "endDate": "2026-12-13",
+      "venue": "Hall 4",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/singapore-card-show-world-edition/",
       "admission": "free",
       "admissionEvidence": "official-venue-free",
       "access": "public-stated",
