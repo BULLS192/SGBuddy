@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-19",
+  "asOf": "2026-11-20",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -92,18 +92,6 @@
       "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
     },
     {
-      "id": "suntec-json-h-a-t-on-for-better-care-2026-11-19",
-      "title": "H.A.T On for Better Care",
-      "startDate": "2026-11-19",
-      "endDate": "2026-11-19",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/hat-on-for-better-care",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "suntec-json-next-mastermind-2026-11-19",
       "title": "Next Mastermind",
       "startDate": "2026-11-19",
@@ -111,18 +99,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/next-mastermind",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-qs-education-seminar-2026-2026-11-19",
-      "title": "QS Education Seminar 2026",
-      "startDate": "2026-11-19",
-      "endDate": "2026-11-19",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/qs-education-seminar-2026",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -958,28 +934,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 10
+      "candidateCount": 46,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
