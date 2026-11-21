@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-20",
+  "asOf": "2026-11-21",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -92,36 +92,6 @@
       "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
     },
     {
-      "id": "suntec-json-next-mastermind-2026-11-19",
-      "title": "Next Mastermind",
-      "startDate": "2026-11-19",
-      "endDate": "2026-11-20",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/next-mastermind",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "esplanade-very-mahogany-wedding-2026",
-      "title": "A Very Mahogany Wedding",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-20",
-      "endDate": "2026-11-20",
-      "venue": "Esplanade Annexe Studio",
-      "sourceId": "esplanade",
-      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/a-very-mahogany-wedding",
-      "admission": "ticketed",
-      "admissionEvidence": "official-esplanade-ticket-link",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-public-buy-tickets",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
-    },
-    {
       "id": "suntec-json-home-team-festival-2026-2026-11-20",
       "title": "Home Team Festival 2026",
       "startDate": "2026-11-20",
@@ -132,42 +102,6 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "esplanade-biswa-inventions-2026",
-      "title": "Inventions by Biswa Kalyan Rath",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-20",
-      "endDate": "2026-11-20",
-      "venue": "Esplanade Concert Hall",
-      "sourceId": "esplanade",
-      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/inventions-by-biswa-kalyan-rath",
-      "admission": "ticketed",
-      "admissionEvidence": "official-esplanade-ticket-link",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-public-buy-tickets",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
-    },
-    {
-      "id": "esplanade-songs-bulbul-2026",
-      "title": "Songs of the Bulbul",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-20",
-      "endDate": "2026-11-20",
-      "venue": "Singtel Waterfront Theatre at Esplanade",
-      "sourceId": "esplanade",
-      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/songs-of-the-bulbul",
-      "admission": "ticketed",
-      "admissionEvidence": "official-esplanade-ticket-link",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-public-buy-tickets",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
     },
     {
       "id": "esplanade-dialled-in-2026",
@@ -252,6 +186,24 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
+    },
+    {
+      "id": "expo-aia-hyrox-singapore",
+      "title": "Events @ Singapore EXPO | AIA HYROX Singapore",
+      "titleSource": "og:title",
+      "titleReviewRequired": false,
+      "startDate": "2026-11-26",
+      "endDate": "2026-11-29",
+      "venue": "Halls 3 – 6A",
+      "sourceId": "expo",
+      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/aia-hyrox-singapore/",
+      "admission": "ticketed",
+      "admissionEvidence": "official-venue-ticketed",
+      "access": "public-stated",
+      "publicAccessEvidence": "official-venue-admission-label",
+      "status": "needs-review",
+      "kind": "event",
+      "reason": "Verify original official admission details, current dates and public eligibility"
     },
     {
       "id": "suntec-json-market-leaders-mini-mastermind-event-2026-11-26",
@@ -934,16 +886,28 @@
   ],
   "diagnostics": [
     {
-      "feed": "suntec-json",
+      "source": "expo-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 10,
       "state": "reachable",
-      "candidateCount": 46,
-      "format": "squarespace-json"
+      "reviewCandidates": 10
     },
     {
-      "feed": "nea-events-rss",
+      "source": "suntec-city-html",
+      "kind": "event",
+      "reviewOnly": true,
+      "links": 0,
       "state": "reachable",
-      "candidateCount": 0,
-      "format": "rss"
+      "reviewCandidates": 0
+    },
+    {
+      "source": "313-html",
+      "kind": "promotion",
+      "reviewOnly": true,
+      "links": 2,
+      "state": "reachable",
+      "reviewCandidates": 2
     }
   ]
 }
