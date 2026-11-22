@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -104,24 +104,6 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "esplanade-dialled-in-2026",
-      "title": "Dialled In Singapore",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-21",
-      "venue": "Esplanade Annexe Studio",
-      "sourceId": "esplanade",
-      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/dialled-in-singapore",
-      "admission": "ticketed",
-      "admissionEvidence": "official-esplanade-ticket-link",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-public-buy-tickets",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
-    },
-    {
       "id": "expo-joji-solaris",
       "title": "Events @ Singapore EXPO | JOJI: SOLARIS",
       "titleSource": "og:title",
@@ -138,30 +120,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-james-cook-university-education-parent-s-forum-2026-11-21",
-      "title": "James Cook University Education Parent’s Forum",
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-21",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/james-cook-university-education-parents-forum",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-karate-competition-2026-2026-11-21",
-      "title": "Karate Competition 2026",
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-21",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/karate-competition-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-livesmart-asia-yess21-workshop-2026-11-21",
@@ -886,28 +844,16 @@
   ],
   "diagnostics": [
     {
-      "source": "expo-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 10,
+      "feed": "suntec-json",
       "state": "reachable",
-      "reviewCandidates": 10
+      "candidateCount": 43,
+      "format": "squarespace-json"
     },
     {
-      "source": "suntec-city-html",
-      "kind": "event",
-      "reviewOnly": true,
-      "links": 0,
+      "feed": "nea-events-rss",
       "state": "reachable",
-      "reviewCandidates": 0
-    },
-    {
-      "source": "313-html",
-      "kind": "promotion",
-      "reviewOnly": true,
-      "links": 2,
-      "state": "reachable",
-      "reviewCandidates": 2
+      "candidateCount": 0,
+      "format": "rss"
     }
   ]
 }
