@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-22",
+  "asOf": "2026-11-23",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -72,66 +72,6 @@
       "status": "needs-review",
       "kind": "promotion",
       "reason": "Check that this offer includes a public activity, not solely retail discounts"
-    },
-    {
-      "id": "esplanade-rafta-rafta-2026",
-      "title": "Rafta Rafta",
-      "titleSource": "official-detail-page",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-18",
-      "endDate": "2026-11-22",
-      "venue": "Esplanade Theatre Studio",
-      "sourceId": "esplanade",
-      "sourceUrl": "https://www.esplanade.com/whats-on/festivals-and-series/kalaa-utsavam-indian-festival-of-arts/2026/rafta-rafta",
-      "admission": "ticketed",
-      "admissionEvidence": "official-esplanade-ticket-link",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-public-buy-tickets",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Official Esplanade date/title/ticket listing spot-checked on 2026-10-15; a named editor must independently verify current details, eligibility and republication rights before publication."
-    },
-    {
-      "id": "suntec-json-home-team-festival-2026-2026-11-20",
-      "title": "Home Team Festival 2026",
-      "startDate": "2026-11-20",
-      "endDate": "2026-11-22",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/home-team-festival-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "expo-joji-solaris",
-      "title": "Events @ Singapore EXPO | JOJI: SOLARIS",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-22",
-      "venue": "Arena @ EXPO",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/joji-solaris/",
-      "admission": "ticketed",
-      "admissionEvidence": "official-venue-ticketed",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-livesmart-asia-yess21-workshop-2026-11-21",
-      "title": "Livesmart Asia YESS21 Workshop",
-      "startDate": "2026-11-21",
-      "endDate": "2026-11-22",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/livesmart-asia-yess21-workshop-3",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-impa-singapore-2026-2026-11-24",
@@ -846,7 +786,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 43,
+      "candidateCount": 41,
       "format": "squarespace-json"
     },
     {
