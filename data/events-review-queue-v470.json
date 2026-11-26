@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-23",
+  "asOf": "2026-11-26",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -72,18 +72,6 @@
       "status": "needs-review",
       "kind": "promotion",
       "reason": "Check that this offer includes a public activity, not solely retail discounts"
-    },
-    {
-      "id": "suntec-json-impa-singapore-2026-2026-11-24",
-      "title": "IMPA Singapore 2026",
-      "startDate": "2026-11-24",
-      "endDate": "2026-11-25",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/impa-singapore-2026",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "expo-aia-hyrox-singapore",
@@ -786,7 +774,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 41,
+      "candidateCount": 40,
       "format": "squarespace-json"
     },
     {
