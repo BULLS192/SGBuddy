@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-26",
+  "asOf": "2026-11-27",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -38,24 +38,6 @@
       "reason": "Source reviewed 2026-10-15; editor must verify public eligibility, live details and listing permissions."
     },
     {
-      "id": "expo-kpopx-fitness-piloxing-november",
-      "title": "Events @ Singapore EXPO | KpopX Fitness & Piloxing (November)",
-      "titleSource": "og:title",
-      "titleReviewRequired": false,
-      "startDate": "2026-11-03",
-      "endDate": "2026-11-26",
-      "venue": "Foyer 2, Atrium 6",
-      "sourceId": "expo",
-      "sourceUrl": "https://www.singaporeexpo.com.sg/events-at-expo/kpopx-fitness-piloxing-november/",
-      "admission": "free",
-      "admissionEvidence": "official-venue-free",
-      "access": "public-stated",
-      "publicAccessEvidence": "official-venue-admission-label",
-      "status": "needs-review",
-      "kind": "event",
-      "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
       "id": "313-merry-moments-with-mochiak-and-ahwoo",
       "title": "Merry Moments with Mochiak & AhWoo",
       "titleSource": "h1",
@@ -90,18 +72,6 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
-    },
-    {
-      "id": "suntec-json-market-leaders-mini-mastermind-event-2026-11-26",
-      "title": "Market Leaders Mini-Mastermind Event",
-      "startDate": "2026-11-26",
-      "endDate": "2026-11-26",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/market-leaders-mini-mastermind-event-1",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "suntec-json-acheteur-de-luxe-2026-11-27",
@@ -774,7 +744,7 @@
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 40,
+      "candidateCount": 39,
       "format": "squarespace-json"
     },
     {
