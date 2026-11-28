@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "asOf": "2026-11-27",
+  "asOf": "2026-11-28",
   "candidates": [
     {
       "id": "313-celebrateyourbdaywithus",
@@ -162,6 +162,18 @@
       "status": "needs-review",
       "kind": "event",
       "reason": "Verify original official admission details, current dates and public eligibility"
+    },
+    {
+      "id": "suntec-json-ntu-cohass-early-admission-and-scholarship-engagement-event-2026-11-28",
+      "title": "NTU CoHASS Early Admission and Scholarship Engagement Event",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-28",
+      "venue": "Suntec Singapore Convention & Exhibition Centre",
+      "sourceId": "suntec-convention",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/ntu-cohass-early-admission-and-scholarship-engagement-event",
+      "status": "needs-review",
+      "access": "unverified",
+      "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
       "id": "expo-fkj-tyber-tour-in-singapore",
@@ -512,18 +524,6 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-edc-rally-2027-2027-01-02",
-      "title": "EDC Rally 2027",
-      "startDate": "2027-01-02",
-      "endDate": "2027-01-02",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/w86868z9rdolmfqqbppnwl31zv559r",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
       "id": "suntec-json-symposium-wanita-2027-01-02",
       "title": "Symposium Wanita",
       "startDate": "2027-01-02",
@@ -548,25 +548,13 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-flying-start-2027-2027-01-12",
-      "title": "Flying Start 2027",
-      "startDate": "2027-01-12",
-      "endDate": "2027-01-13",
+      "id": "suntec-json-ilm-by-shameem-sultanah-2027-01-09",
+      "title": "ILM by Shameem Sultanah",
+      "startDate": "2027-01-09",
+      "endDate": "2027-01-09",
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/flying-start-2027",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-staff-briefing-2027-2027-01-12",
-      "title": "Staff Briefing 2027",
-      "startDate": "2027-01-12",
-      "endDate": "2027-01-12",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/staff-briefing-2027",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/ilm-by-shameem-sultanah",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -584,13 +572,13 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-kickoff-2027-2027-01-14",
-      "title": "Kickoff 2027",
-      "startDate": "2027-01-14",
-      "endDate": "2027-01-14",
+      "id": "suntec-json-homefest-2027-2027-01-15",
+      "title": "HomeFest 2027",
+      "startDate": "2027-01-15",
+      "endDate": "2027-01-17",
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/kickoff-2027",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/homefest-2027",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -620,25 +608,25 @@
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-summit-suite-lunch-suntec-singapore-s-big-lohei-2026-lucky-d-2027-01-17",
-      "title": "Summit Suite Lunch- Suntec Singapore’s Big Lohei 2026 Lucky Draw",
-      "startDate": "2027-01-17",
-      "endDate": "2027-01-17",
+      "id": "suntec-json-world-uni-expo-suntec-2027-01-15",
+      "title": "World Uni Expo @ Suntec",
+      "startDate": "2027-01-15",
+      "endDate": "2027-01-16",
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/summit-suite-lunch-suntec-singapores-big-lohei-2026-lucky-draw",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fstwsj9dttf9zn7lydxc9jgkkn77d3",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
     },
     {
-      "id": "suntec-json-enforcement-horizontal-integration-ehi-dpe-2027-2027-01-18",
-      "title": "Enforcement Horizontal Integration (EHI) DPE 2027",
-      "startDate": "2027-01-18",
-      "endDate": "2027-01-18",
+      "id": "suntec-json-fsm-invest-expo-2027-2027-01-16",
+      "title": "FSM Invest Expo 2027",
+      "startDate": "2027-01-16",
+      "endDate": "2027-01-16",
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/enforcement-horizontal-integration-ehi-dpe-2027",
+      "sourceUrl": "https://www.suntecsingapore.com/visit-events/fsm-invest-expo-2027",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -651,18 +639,6 @@
       "venue": "Suntec Singapore Convention & Exhibition Centre",
       "sourceId": "suntec-convention",
       "sourceUrl": "https://www.suntecsingapore.com/visit-events/14th-developments-in-ip-law-series-2027-session-on-breach-of-confidence-privacy-and-data-protection",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-mws-day-2027-2027-01-22",
-      "title": "MWS Day 2027",
-      "startDate": "2027-01-22",
-      "endDate": "2027-01-22",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/mws-day-2027",
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
@@ -714,37 +690,13 @@
       "status": "needs-review",
       "access": "unverified",
       "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-summit-suite-lunch-suntec-singapore-s-big-lohei-2026-lucky-d-2027-01-23",
-      "title": "Summit Suite Lunch- Suntec Singapore’s Big Lohei 2026 Lucky Draw",
-      "startDate": "2027-01-23",
-      "endDate": "2027-01-23",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/summit-suite-lunch-suntec-singapores-big-lohei-2026-lucky-draw-4g9am",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
-    },
-    {
-      "id": "suntec-json-sales-and-marketing-workshop-2027-01-25",
-      "title": "Sales and Marketing Workshop",
-      "startDate": "2027-01-25",
-      "endDate": "2027-01-26",
-      "venue": "Suntec Singapore Convention & Exhibition Centre",
-      "sourceId": "suntec-convention",
-      "sourceUrl": "https://www.suntecsingapore.com/visit-events/sales-and-marketing-workshop-1",
-      "status": "needs-review",
-      "access": "unverified",
-      "reason": "Review official admission, dates and public accessibility before publishing"
     }
   ],
   "diagnostics": [
     {
       "feed": "suntec-json",
       "state": "reachable",
-      "candidateCount": 39,
+      "candidateCount": 35,
       "format": "squarespace-json"
     },
     {
